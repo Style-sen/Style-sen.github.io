@@ -1,2 +1,1 @@
-# Style-sen.github.io
-My own website.
+Generated automatically by [HexoBlog](https://github.com/Style-sen/HexoBlog)
