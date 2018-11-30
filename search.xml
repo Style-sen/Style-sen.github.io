@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HMAC]]></title>
+    <url>%2F2018%2F11%2F30%2FHMAC%2F</url>
+    <content type="text"><![CDATA[简介Hash-based message authentication code。 pythonhashlib模块12345678910&gt;&gt;&gt; import hashlib&gt;&gt;&gt; hashlib.algorithms_available&#123;&apos;whirlpool&apos;, &apos;md5&apos;, &apos;shake_256&apos;, &apos;BLAKE2s256&apos;, &apos;SHA224&apos;, &apos;blake2s256&apos;, &apos;BLAKE2b512&apos;, &apos;md5-sha1&apos;, &apos;md4&apos;, &apos;sha256&apos;, &apos;sha3_224&apos;, &apos;sha3_384&apos;, &apos;shake_128&apos;, &apos;blake2b512&apos;, &apos;SHA512&apos;, &apos;SHA1&apos;, &apos;sha224&apos;, &apos;RIPEMD160&apos;, &apos;sha3_256&apos;, &apos;SHA384&apos;, &apos;MD5-SHA1&apos;, &apos;sha3_512&apos;, &apos;SHA256&apos;, &apos;MD4&apos;, &apos;sha1&apos;, &apos;sha512&apos;, &apos;MD5&apos;, &apos;sha384&apos;, &apos;blake2s&apos;, &apos;ripemd160&apos;, &apos;blake2b&apos;&#125;&gt;&gt;&gt; hashlib.algorithms_guaranteed&#123;&apos;sha224&apos;, &apos;sha3_256&apos;, &apos;sha384&apos;, &apos;md5&apos;, &apos;shake_256&apos;, &apos;sha256&apos;, &apos;blake2s&apos;, &apos;sha3_224&apos;, &apos;blake2b&apos;, &apos;sha3_384&apos;, &apos;shake_128&apos;, &apos;sha3_512&apos;, &apos;sha1&apos;, &apos;sha512&apos;&#125;&gt;&gt;&gt; m=hashlib.sha512()&gt;&gt;&gt; m.update(&apos;helloword&apos;)&gt;&gt;&gt; m.update(b&apos;helloword&apos;) # 不能是unicode编码 &gt;&gt;&gt; m.hexdigest()&apos;c3710d9949a3ee2b1c89ec9e9dd154a649aeecc43422222ce3d4de51fa32f021e75123a1b5769aae35c939bf87f333d92ec58192ce5f55fa72e344225027c16e&apos; hmac模块]]></content>
+      <tags>
+        <tag>HMAC</tag>
+        <tag>PYTHON</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F11%2F29%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
