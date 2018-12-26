@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[域名、虚拟主机笔记]]></title>
+    <url>%2F2018%2F12%2F25%2F%E5%9F%9F%E5%90%8D%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[nginx配置nginx的配置在nginx.conf的http{}内编写。 `nginx -s reload &quot;软重启&quot;` 123456789101112131415// 全局区worker_processes 1; // 有1个工作的子进程,可以自行修改,但太大无益,因为要争夺CPU,一般设置为 CPU数*核数Event &#123;// 一般是配置nginx连接的特性// 如1个worker能同时允许多少连接 worker_connections 1024; // 这是指一个子进程最大允许连1024个连接&#125;http &#123; //这是配置http服务器的主要段 Server &#123; // 这是虚拟主机段 Location &#123; //定位,把特殊的路径或文件再次定位 ,如image目录单独处理 &#125; /// 如.php单独处理 &#125; Server &#123; &#125;&#125; server{}：配置虚拟主机的段。 基于域名： 12345678server &#123; listen 80; server_name z.com; location / &#123; root z.com; index index.html; &#125; &#125; 基于端口： 12345678server &#123; listen 5555;#修改监听的端口是5555 server_name z.com; location / &#123; root z.com;#此处可以使用相对路径也可以使用绝对路径，相对路径是相对于/usr/local/nginx/下面为相对路径，而绝对路径是从/usr/…..为绝对路径 index index.html; &#125; &#125; 基于IP: 12345678server &#123; listen 80; server_name 192.168.0.2;#需要使用ifconfig查看本机的ip location / &#123; root z.com;#此处可以使用相对路径也可以使用绝对路径，相对路径是相对于/usr/local/nginx/下面为相对路径，而绝对路径是从/usr/…..为绝对路径 index indexIp.html; &#125; &#125; apache配置`/etc/apache2/sites-enabled/`中存储虚拟主机配置文件。 1234567891011&lt;VirtualHost *:80&gt; # The ServerName directive sets the request scheme, hostname and port ServerName www.test.cn ServerAdmin webmaster@localhost DocumentRoot /var/www/public ServerAlias test.cn &lt;Directory &quot;/var/www/public&quot;&gt; &lt;/Directory&gt; ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt; `/etc/a[acje2/sites-available/`中存储指向上边目录中配置文件中的软连接。 主机记录 主机记录类型 说明 www | 将域名解析为www.example.com，填写www；@ | 将域名解析为example.com（不带www），填写@或者不填写；mail | 将域名解析为mail.example.com，通常用于解析邮箱服务器； | 泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析）；二级域名 | 如：mail.example.com或abc.example.com，填写mail或abc；手机网站 | 如：m.example.com，填写m。 注意配置域名之后，需要到域名控制处增加解析配置。]]></content>
+      <tags>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[给孩子上保险（笔记）]]></title>
     <url>%2F2018%2F12%2F21%2F%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E4%BF%9D%E9%99%A9%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[上医保是首位1. 每年为下一年交，截止年底。 2. 220元（郑州） 以保障优先1. 别想又能攒钱，又有保障，应以保障优先； 2. 大病保障，几百元就可以搞定。 保障需求 风险类型 风险等级 医疗花费 保障方式 常见小毛病 小风险 几百～几千 医保 普通疾病门诊、住院 相对频繁、小风险 1~5万 小额门诊、住院医疗险 意外门诊、住院 中等风险 1~5万 儿童意外险 未达重大疾病标准的“大病” 大风险 5~50万 儿童重疾险的轻症保障、高额住院医疗险 重大疾病 大风险 超过50万 儿童重疾险、高额住院医疗险 产品对比门诊险重疾 产品名称 重大疾病保险金 少儿特定重大疾病保险金 身故保险金 轻症疾病保险金 轻症疾病豁免保险费 保障期限 保费 慧馨安少儿定期重大疾病保险-2018版Plus 50w(一次为限) 50w(一次为限) 已交保险费 15w（附加险、一次为限） 豁免后期重大疾病保险费 20年 650/年（15年） 意外 产品名称 意外身故和伤残 意外医疗 免赔 保障期限 保费 小雨伞小顽童少儿意外险 50w 2w(含门诊住院) 无免赔 1年 150 医疗险]]></content>
@@ -34,18 +42,6 @@
     <content type="text"><![CDATA[NPMpackage.json作为描述文件，描述你的项目依赖哪些包。 12npm init # 可在当前目录下创建一个package.json文件npm init --yes # 可跳过回答问题步骤 文件内容： 123456789name # 【必须】version # 【必须】description # 描述信息，有助于搜索main # 入口文件，一般都是 index.jsscripts # 支持的脚本，默认是一个空的 testkeywords # 关键字，有助于在人们使用 npm search 搜索时发现你的项目author # 作者信息license # 默认是 MITbugs # 当前项目的一些错误信息，如果有的话]]></content>
       <tags>
         <tag>Node</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Kubernetes实战]]></title>
-    <url>%2F2018%2F12%2F18%2FKubernetes%E5%AE%9E%E6%88%98%2F</url>
-    <content type="text"><![CDATA[摘自杜先生的博客]]></content>
-      <categories>
-        <category>自动化运维</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-        <tag>Deploy</tag>
       </tags>
   </entry>
   <entry>
