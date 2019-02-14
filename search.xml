@@ -1,9 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[编写油猴脚本]]></title>
+    <url>%2F2019%2F01%2F30%2F%E7%BC%96%E5%86%99%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[元数据块元数据块是描述脚本的一个用户脚本部分。它通常包含脚本名称，命名空间，描述和包含和排除规则。元数据块出现在JavaScript行注释中，可能会出现在脚本内的任何位置， 但通常靠近文件的顶部 键 示例 备注 @name @name 脚本名称 脚本的名称。该项将显示在页面的标题以及链接内容，必填项 @description @description 脚本功能描述 脚本功能的描述，显示在脚本标题下面，必填项 @namespace @namespace 及 @name 这两个属性将帮助用户脚本管理器判断是否已安装该脚本 @version @version 0.0.1 脚本的版本标记将使用 Mozilla 版本格式 并显示于脚本的简介页面，必填项 @include @exclude @match @match ://www.52pojie.cn/ 描述脚本将执行的页面。该列表会被分析并展示到脚本的简介页面，以及用于脚本分类 @require @require http://cdn.bootcss.com/jquery.min.js 引用外部脚本到您的脚本 @updateURL @installURL @downloadURL 告知用户脚本管理器应该在哪个地址获取脚本更新。 @license 脚本所使用的许可协议名称或地址，该协议需包含用户是否允许二次分发或修改脚本的权利。不提供许可协议则表示用户仅允许个人使用且不得二次分发；该协议将在脚本的简介页面显示 @supportURL 用户可获得该脚本技术支持的链接地址 (如：错误反馈系统、论坛、电子 邮件)，该链接将显示在脚本的反馈页面 @contributionURL 用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面 @contributionAmount 建议捐赠金额，请配合 @contributionURL 使用 @compatible 标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上 @incompatible 标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上]]></content>
+      <tags>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker笔记]]></title>
+    <url>%2F2019%2F01%2F23%2FDocker%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[DockerfileCMD 支持三种格式 123CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给 ENTRYPOINT 的默认参数； 指定启动容器时执行的命令，每个 Dockerfile 只能有一条 CMD 命令。如果指定了多条命令，只有最后一条会被执行。 如果用户启动容器时候指定了运行的命令，则会覆盖掉 CMD 指定的命令。 配置网络bridge 默认。 解决问题 GitLab CI with docker and dind “mount: permission denied (are you root?)” Docker容器修改hosts文件重启不变 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/&lt;container_id&gt;，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。 docker运行nginx为什么要使用 daemon off]]></content>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker-compose编排容器]]></title>
+    <url>%2F2019%2F01%2F23%2FDocker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[思想命令语法buildimage command 覆盖默认命令。 depends_on 用于指定服务依赖，一般是mysql、redis等。 指定了依赖，将会优先于服务创建并启动依赖，也可以使用容器名作为主机名。 links也可以指定依赖。 external_links链接到 docker-compose.yml 外部的容器，甚至 并非 Compose 管理的容器。参数格式跟 links 类似。 1234external_links: - redis_1 - project_db_1:mysql - project_db_1:postgresql environment设置环境变量 1234567environment: RACK_ENV: development SESSION_SECRET: # 只给定名称的变量会自动获取它在 Compose 主机上的值，可以用来防止泄露不必要的数据environment: - RACK_ENV=development - SESSION_SECRET env_file 从文件中获取变量 如果通过 docker-compose -f FILE 指定了模板文件，则 env_file 中路径会基于模板文件路径。 如果有变量名称与 environment 指令冲突，则以后者为准。 1234567891011env_file: .envenv_file: - ./common.env - ./apps/web.env - /opt/secrets.env环境变量文件中每一行必须符合格式，支持 # 开头的注释行。# common.env: Set Rails/Rack environmentRACK_ENV=development links 链接到其它服务中的容器,使一个容器可以主动的去和另外一个容器通讯。使用服务名称（同时作为别名）或服务名称：服务别名 （SERVICE:ALIAS） 格式都可以。 12345678910links: - db - db:mysql - redis# 使用了别名将自动会在容器的/etc/hosts文件里创建相应记录：172.17.2.186 db172.17.2.186 mysql172.17.2.187 redis# 所以我们在容器里就可以直接使用别名作为服务的主机名。 volumes将本机的文件夹挂载到container中.]]></content>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[服务器硬件]]></title>
+    <url>%2F2019%2F01%2F23%2F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A1%AC%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[内存内存颗粒 DDR内存的颗粒为长方形； DDR2和DDR3内存的颗粒为正方形,而且体积大约只有DDR内存颗粒的三分之一。 项目 DDR DDR2 普通DDR3 普通DDR4 SO-DIMM DDR3 SO-DIMM DDR4 驱动电压VDD/VDDQ 2.5V/2.5V 1.8V/1.8V(±0.1) 1.5V/1.5V(±0.075) 1.2V 引脚标准 184Pin(52+40)x2 240Pin(64+56)x2 240Pin(72+48)x2 284Pin 204Pin 256Pin]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu服务器系统及基础设施]]></title>
+    <url>%2F2019%2F01%2F23%2FUbuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。 数据库 RDS for MySQL 物理备份文件恢复到自建数据库; SSH访问 上传目录到服务器 scp -r /tmp/local_dir username@servername:remote_dir ## ubuntu-18.04 设置开机启动脚本 Ubuntu 18.04 Server 设置静态IP]]></content>
+      <tags>
+        <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python笔记(1):类]]></title>
+    <url>%2F2019%2F01%2F22%2FPython%E7%AC%94%E8%AE%B0-1%2F</url>
+    <content type="text"><![CDATA[类属性直接在class中定义属性，这种属性是类属性，这个属性虽然归类所有，但类的所有实例都可以访问到，但是不能修改，只能类名.属性进行修改。 实例属性在类方法中定义的属性为实例属性，各个实例相互独立。]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>后端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[给车辆上保险(笔记)]]></title>
+    <url>%2F2019%2F01%2F19%2F%E7%BB%99%E8%BD%A6%E8%BE%86%E4%B8%8A%E4%BF%9D%E9%99%A9-%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[算法(一)]]></title>
+    <url>%2F2019%2F01%2F19%2F%E7%AE%97%E6%B3%95-%E4%B8%80%2F</url>
+    <content type="text"><![CDATA[矩阵向量向量积 a向量与b向量的向量积的方向与这两个向量所在平面垂直，且遵守右手定则。（一个简单的确定满足“右手定则”的结果向量的方向的方法是这样的：若坐标系是满足右手定则的，当右手的四指从a以不超过180度的转角转向b时，竖起的大拇指指向是c的方向。） 假设屏幕坐标系x向右，y向上，那么叉乘方向朝向本人。叉乘的结果是正数，说明a到b是逆时针，反之顺时针；若是0，则说明a，b共线。123a=[a1，a2，a3]=a1i+a2j+a3k；b=[b1，b2，b3]=b1i+b2j+b3k；则a×b=[a2b3-a3b2，a3b1-a1b3，a1b2-a2b1]。]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS笔记]]></title>
+    <url>%2F2019%2F01%2F19%2FJS%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[CANVAS 使用实时凸包算法实现 插件Velocity.js Velocity.js是一款动画切换插件，它重新实现了jQuery的$.animate()方法，并且你无须引入JQuery。它比JQuery更快，并实现了变色动画，形变，循环，擦除和SVG支持以及滚动。它是jQuery和CSS变换 的最佳组合。 Velocity 接收一组 css 属性键值对 (css map) 作为它的第一个参数，该参数作为动画效果的最终属性。第二个参数是可选参数 为动画的额外配置项 1234567// 当使用jQuery时，Velocity和jQuery的animate()用法类似$(&quot;#test&quot;).velocity(&#123; left: &quot;200px&quot;&#125;, &#123; duration: 450, delay: 300&#125;); 动画配置项 duration: 400, // 动画执行时间easing: “swing”, // 缓动效果queue: “”, // 队列begin: undefined, // 动画开始时的回调函数progress: undefined, // 动画执行中的回调函数（该函数会随着动画执行被不断触发）complete: undefined, // 动画结束时的回调函数display: undefined, // 动画结束时设置元素的 css display 属性visibility: undefined, // 动画结束时设置元素的 css visibility 属性loop: false, // 循环delay: false, // 延迟mobileHA: true // 移动端硬件加速（默认开启） Jquery $方法：$就是jquery对象，$()就是jQuery()，在里面可以传参数，作用就是获取元素123$(&quot;.div1&quot;) 表示获取类名为div1的元素，例如获取&lt;div class=&quot;div1&quot;&gt;&lt;/div&gt;$(&quot;.div1&quot;).onclick表示类名为div1的div点击事件jquery中$.，例如$.post()，$.get()，$.ajax()等这些都是jquery这个对象的方法 语句 功能 $(document).ready(function(){}) 必须等到页面内包括图片的所有元素加载完毕后才能执行 $(window).ready() DOM结构绘制完毕后就执行，不必等到加载完毕]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS语法]]></title>
+    <url>%2F2019%2F01%2F19%2FJS%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[变量 $在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变量的时候与你的变量重名，导致脚本中的变量被覆盖，这时，就可以使用$符号来进行标记一下哪些是你的脚本中的变量。 this指的是调用函数的那个对象，就是函数运行时所在的环境对象。 a. 全局对象; b. 函数作为某个对象的方法调用，这时this就指这个上级对象； c. 作为构造函数调用:通过这个函数，可以生成一个新对象。这时，this就指这个新对象，如new function()； d. apply 调用:apply()是函数的一个方法，作用是改变函数的调用对象。它的第一个参数就表示改变后的调用这个函数的对象。apply()的参数为空时，默认调用全局对象。 方法canvas对象标示一个html画布元素 父 子 功能 备注 Canvas.getContext(contextID) 返回一个用于在画布上绘图的环境 绘图参考 .strokeStyle 描述画笔（绘制图形）颜色或者样式的属性 .lineWidth clearRect() 清空画布 save() 通过将当前状态放入栈中，保存 canvas 全部状态的方法 beginPath() 创建一个新的路径 moveTo(x,y) 将一个新的子路径的起始点移动到(x，y)坐标的方法 lineTo(x,y) 使用直线连接子路径的终点到x，y坐标的方法（并不会真正地绘制） stroke() closePath() restore() Canvas.height 画布的高度 Canvas.width 画布的宽度 document对象 每个载入浏览器的 HTML 文档都会成为 Document 对象。 Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。 | | window对象 Window 对象表示浏览器中打开的窗口。| | || – | – || window.requestAnimationFrame(animate)| 告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。|| window.location.href | 当前页面的路由，可以修改这个值跳转到其他页面| 声明 “use strict” 的目的是指定代码在严格条件下执行,严格模式下你不能使用未声明的变量。]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[html笔记]]></title>
+    <url>%2F2019%2F01%2F18%2Fhtml%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[## DOMDOM （文档对象模型）定义了访问 HTML 和 XML 文档的标准.]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS笔记]]></title>
+    <url>%2F2019%2F01%2F18%2FCSS%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &#123;property: value；property: value&#125; 选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。 选择器 选择器 例子 例子描述 CSS .class .intro 选择 class=”intro” 的所有元素。 1 .class element .static h1 选择 class=”static” 中 h1 的所有元素 element.class h1.static 选择class为static的所有h1元素 #id #firstname 选择 id=”firstname” 的所有元素。 1 * * 选择所有元素。 2 element p 选择所有 元素。 1 element,element div,p 选择所有 元素和所有 元素。 1 element element div p 选择 元素内部的所有 元素。 1 element&gt;element div&gt;p 选择父元素为 元素的所有 元素。 2 element+element div+p 选择紧接在 元素之后的所有 元素。 2 [attribute] [target] 选择带有 target 属性所有元素。 2 [attribute=value] [target=_blank] 选择 target=”_blank” 的所有元素。 2 [attribute~=value] [title~=flower] 选择 title 属性包含单词 “flower” 的所有元素。 2[attribute|=value] [lang|=en] 选择 lang 属性值以 “en” 开头的所有元素。 2:link a:link 选择所有未被访问的链接。 1:visited a:visited 选择所有已被访问的链接。 1:active a:active 选择活动链接。 1| :hover | a:hover | 选择鼠标指针位于其上的链接。 |1|:focus input:focus 选择获得焦点的 input 元素。 2:first-letter p:first-letter 选择每个 元素的首字母。 1:first-line p:first-line 选择每个 元素的首行。 1:first-child p:first-child 选择属于父元素的第一个子元素的每个 元素。 2:before p:before 在每个 元素的内容之前插入内容。 2:after p:after 在每个 元素的内容之后插入内容。 2:lang(language) p:lang(it) 选择带有以 “it” 开头的 lang 属性值的每个 元素。 2element1~element2 p~ul 选择前面有 元素的每个 元素。 3[attribute^=value] a[src^=”https”] 选择其 src 属性值以 “https” 开头的每个 元素。 3[attribute$=value] a[src$=”.pdf”] 选择其 src 属性以 “.pdf” 结尾的所有 元素。 3[attribute=value] a[src=”abc”] 选择其 src 属性中包含 “abc” 子串的每个 元素。 3:first-of-type p:first-of-type 选择属于其父元素的首个 元素的每个 元素。 3:last-of-type p:last-of-type 选择属于其父元素的最后 元素的每个 元素。 3:only-of-type p:only-of-type 选择属于其父元素唯一的 元素的每个 元素。 3:only-child p:only-child 选择属于其父元素的唯一子元素的每个 元素。 3:nth-child(n) p:nth-child(2) 选择属于其父元素的第二个子元素的每个 元素。 3:nth-last-child(n) p:nth-last-child(2) 同上，从最后一个子元素开始计数。 3:nth-of-type(n) p:nth-of-type(2) 选择属于其父元素第二个 元素的每个 元素。 3:nth-last-of-type(n) p:nth-last-of-type(2) 同上，但是从最后一个子元素开始计数。 3:last-child p:last-child 选择属于其父元素最后一个子元素每个 元素。 3:root :root 选择文档的根元素。 3:empty p:empty 选择没有子元素的每个 元素（包括文本节点）。 3:target #news:target 选择当前活动的 #news 元素。 3:enabled input:enabled 选择每个启用的 元素。 3:disabled input:disabled 选择每个禁用的 元素 3:checked input:checked 选择每个被选中的 元素。 3:not(selector) :not(p) 选择非 元素的每个元素。 3::selection ::selection 选择被用户选取的元素部分。 3 属性 属性 功能 可能的值 background 背景色 border 在一个声明中设置所有的边框属性 color 颜色：red，#ff0000，#f00，rgb(255,0,0)，rgb(100%,0%,0%) display 规定元素应该生成的框的类型 参考 font-family 字体系列 “sans serif” font-size 字体大小px font-weight 规定字体的粗细 normal:默认值,定义标准的字符;bold:定义粗体字符;bolder:定义更粗的字符;lighter:定义更细的字符;100\200\300\400\500\600\700\800\900:定义由粗到细的字符,400 等同于 normal，而 700 等同于 bold;inherit:规定应该从父元素继承字体的粗细。 left 原始位置左侧增加px，可以为负 letter-spacing 设置字符间距 normal：默认，规定字符间没有额外的空间；length：定义字符间的固定空间（允许使用负值）；inherit：规定应该从父元素继承 letter-spacing 属性的值 line-height 设置行间的距离（行高） normal:默认,设置合理的行间距;number:设置数字，此数字会与当前的字体尺寸相乘来设置行间距;length:设置固定的行间距;%:基于当前字体尺寸的百分比行间距 inherit 规定应该从父元素继承 line-height 属性的值。|| margin | 在一个声明中设置所有外边距属性。| || margin-bottom |设置元素的下外边距| || margin-left |设置元素的左外边距| || margin-right |设置元素的右外边距| || margin-top |设置元素的上外边距| || opacity |规定元素的不透明级别|| padding |在一个声明中设置所有内边距属性 | || position | 定义建立元素布局所用的定位机制 | 默认：static；relative：相对于其正常位置进行定位；absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位；fixed：生成绝对定位的元素，相对于浏览器窗口进行定位；inherit：规定应该从父元素继承 position 属性的值|| text-align | 文字对齐：center || text-transform | 控制文本的大小写 | none：默认，定义带有小写字母和大写字母的标准的文本；capitalize：文本中的每个单词以大写字母开头；uppercase：定义仅有大写字母；lowercase：定义无大写字母，仅有小写字母；inherit：规定应该从父元素继承 text-transform 属性的值 || top || transform | 向元素应用 2D 或 3D 转换 | 参考 || z-index | 设置元素的堆叠顺序 | |]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Django静态文件]]></title>
+    <url>%2F2019%2F01%2F16%2FDjango%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[思路 Django提供 django.contrib.staticfiles 中间件来管理静态文件。 方法配置 将 django.contrib.staticfiles 包含进 INSTALLED_APPS； 在配置文件中定义 STATIC_URL； 访问开发 开发中，使用 runserver 并且 DEBUG=TRUE，可以直接访问；但是效率低而且不安全，不能用于生产环境。生产环境]]></content>
+      <tags>
+        <tag>Django</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[给自己上保险（笔记）]]></title>
+    <url>%2F2019%2F01%2F15%2F%E7%BB%99%E8%87%AA%E5%B7%B1%E4%B8%8A%E4%BF%9D%E9%99%A9%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[思路 资产配置都是反人性的。 首先问自己使用保险要解决什么问题. 需求重疾险作用 1. 疾病赔偿：轻症赔付、重症赔付； 2. 身故赔偿； 3. 到期或返还保险金，或身后留给受益人。 保多少 1. 家长打底20万，争取50万，有能力到100万； 2. 收入高的一方多一些； 缴费期 1. 40岁以内，可以交20年； 2. 40岁以上，不要超过60岁； 3. 异地投保缩短缴费期。 产品对比重疾险]]></content>
+      <tags>
+        <tag>保险</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS数据类型]]></title>
+    <url>%2F2019%2F01%2F15%2FJS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[数组Array既是一个数组，也是一个字典。 语句 功能 var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object arr.push() 在数组末尾添加一个元素 arr.pop() 先进后出 arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值 for (var key in dic){} 遍历 delete dic[“r”]; 删除一个KEY delete dic.r 删除一个KEY 字符串 语句 功能 str.split() 字符串转字符串数组 [‘1’,’2’,’3’].map(Number) 数字字符串数组转数字数组 parseInt(str) 字符串转整数 parseFloat(str) 字符串转浮点数 json 语句 功能 备注 JSON.stringify(arr) 字典转json 注：arr必须是Object不能是Array JSON.parse(jsonStr) json转数组]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Electron创建桌面应用]]></title>
+    <url>%2F2019%2F01%2F14%2F%E4%BD%BF%E7%94%A8Electron%E5%88%9B%E5%BB%BA%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[VUE]]></title>
+    <url>%2F2019%2F01%2F14%2FVUE%2F</url>
+    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>VUE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[微信小程序+BLE]]></title>
+    <url>%2F2019%2F01%2F09%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-BLE%2F</url>
+    <content type="text"><![CDATA[避坑指南 扫描过程中安卓和IOS差别很大，安卓设备地址就是mac地址，但是IOS无法获取mac地址，所以设备地址是针对本机范围有效的UUID 小程序代码组成WXML小程序宿主事件 常见的事件类型 触发条件 touchstart 手指触摸动作开始 touchmove 手指触摸后移动 touchcancel 手指触摸动作被打断，如来电提醒，弹窗 touchend 手指触摸动作结束 tap 手指触摸后马上离开 longpress 手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发 longtap 手指触摸后，超过350ms再离开（推荐使用longpress事件代替） transitionend 会在 WXSS transition 或 wx.createAnimation 动画结束后触发 animationstart 会在一个 WXSS animation 动画开始时触发 animationiteration 会在一个 WXSS animation 一次迭代结束时触发 animationend 会在一个 WXSS animation 动画完成时触发 除上表列举的事件类型之外的其他组件自定义事件，如无特殊声明都是非冒泡事件。 事件绑定的写法和组件属性一致，以key=”value”的形式，其中：key以bind或者catch开头，然后跟上事件的类型，如bindtap、catchtouchstart。自基础库版本1.5.0起，bind和catch后可以紧跟一个冒号，其含义不变，如bind:tap、catch:touchstart。同时bind和catch前还可以加上capture-来表示捕获阶段。value是一个字符串，需要在对应的页面Page构造器中定义同名的函数，否则触发事件时在控制台会有报错信息。 bind和capture-bind的含义分别代表事件的冒泡阶段和捕获阶段，先触发捕获阶段，然后触发冒泡阶段。同一个阶段，先触发outer组件，后触发inner组件。 bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡。]]></content>
+      <tags>
+        <tag>BLE</tag>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Jupyter Notebook]]></title>
+    <url>%2F2019%2F01%2F09%2FJupyter-Notebook%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[NRF的开源项目]]></title>
+    <url>%2F2019%2F01%2F08%2FNRF%E7%9A%84%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>NRF</tag>
+        <tag>BLE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[域名、虚拟主机笔记]]></title>
     <url>%2F2018%2F12%2F25%2F%E5%9F%9F%E5%90%8D%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[nginx配置nginx的配置在nginx.conf的http{}内编写。 `nginx -s reload &quot;软重启&quot;` 123456789101112131415// 全局区worker_processes 1; // 有1个工作的子进程,可以自行修改,但太大无益,因为要争夺CPU,一般设置为 CPU数*核数Event &#123;// 一般是配置nginx连接的特性// 如1个worker能同时允许多少连接 worker_connections 1024; // 这是指一个子进程最大允许连1024个连接&#125;http &#123; //这是配置http服务器的主要段 Server &#123; // 这是虚拟主机段 Location &#123; //定位,把特殊的路径或文件再次定位 ,如image目录单独处理 &#125; /// 如.php单独处理 &#125; Server &#123; &#125;&#125; server{}：配置虚拟主机的段。 基于域名： 12345678server &#123; listen 80; server_name z.com; location / &#123; root z.com; index index.html; &#125; &#125; 基于端口： 12345678server &#123; listen 5555;#修改监听的端口是5555 server_name z.com; location / &#123; root z.com;#此处可以使用相对路径也可以使用绝对路径，相对路径是相对于/usr/local/nginx/下面为相对路径，而绝对路径是从/usr/…..为绝对路径 index index.html; &#125; &#125; 基于IP: 12345678server &#123; listen 80; server_name 192.168.0.2;#需要使用ifconfig查看本机的ip location / &#123; root z.com;#此处可以使用相对路径也可以使用绝对路径，相对路径是相对于/usr/local/nginx/下面为相对路径，而绝对路径是从/usr/…..为绝对路径 index indexIp.html; &#125; &#125; apache配置`/etc/apache2/sites-enabled/`中存储虚拟主机配置文件。 1234567891011&lt;VirtualHost *:80&gt; # The ServerName directive sets the request scheme, hostname and port ServerName www.test.cn ServerAdmin webmaster@localhost DocumentRoot /var/www/public ServerAlias test.cn &lt;Directory &quot;/var/www/public&quot;&gt; &lt;/Directory&gt; ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt; `/etc/a[acje2/sites-available/`中存储指向上边目录中配置文件中的软连接。 主机记录 主机记录类型 说明 www | 将域名解析为www.example.com，填写www；@ | 将域名解析为example.com（不带www），填写@或者不填写；mail | 将域名解析为mail.example.com，通常用于解析邮箱服务器； | 泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析）；二级域名 | 如：mail.example.com或abc.example.com，填写mail或abc；手机网站 | 如：m.example.com，填写m。 注意配置域名之后，需要到域名控制处增加解析配置。]]></content>
+    <content type="text"><![CDATA[nginx配置nginx的配置在nginx.conf的http{}内编写。 `nginx -s reload &quot;软重启&quot;` 123456789101112131415// 全局区worker_processes 1; // 有1个工作的子进程,可以自行修改,但太大无益,因为要争夺CPU,一般设置为 CPU数*核数Event &#123;// 一般是配置nginx连接的特性// 如1个worker能同时允许多少连接 worker_connections 1024; // 这是指一个子进程最大允许连1024个连接&#125;http &#123; //这是配置http服务器的主要段 Server &#123; // 这是虚拟主机段 Location &#123; //定位,把特殊的路径或文件再次定位 ,如image目录单独处理 &#125; /// 如.php单独处理 &#125; Server &#123; &#125;&#125; server{}：配置虚拟主机的段。 基于域名： 12345678server &#123; listen 80; server_name z.com; location / &#123; root z.com; index index.html; &#125; &#125; 基于端口： 12345678server &#123; listen 5555;#修改监听的端口是5555 server_name z.com; location / &#123; root z.com;#此处可以使用相对路径也可以使用绝对路径，相对路径是相对于/usr/local/nginx/下面为相对路径，而绝对路径是从/usr/…..为绝对路径 index index.html; &#125; &#125; 基于IP: 12345678server &#123; listen 80; server_name 192.168.0.2;#需要使用ifconfig查看本机的ip location / &#123; root z.com;#此处可以使用相对路径也可以使用绝对路径，相对路径是相对于/usr/local/nginx/下面为相对路径，而绝对路径是从/usr/…..为绝对路径 index indexIp.html; &#125; &#125; apache配置`/etc/apache2/sites-enabled/`中存储虚拟主机配置文件。 1234567891011&lt;VirtualHost *:80&gt; # The ServerName directive sets the request scheme, hostname and port ServerName www.test.cn ServerAdmin webmaster@localhost DocumentRoot /var/www/public ServerAlias test.cn &lt;Directory &quot;/var/www/public&quot;&gt; &lt;/Directory&gt; ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt; `/etc/a[acje2/sites-available/`中存储指向上边目录中配置文件中的软连接。 主机记录 主机记录类型 说明 www 将域名解析为www.example.com，填写www @ 将域名解析为example.com（不带www），填写@或者不填写 mail 将域名解析为mail.example.com，通常用于解析邮箱服务器 * 泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析） 二级域名 如：mail.example.com或abc.example.com，填写mail或abc 手机网站 如：m.example.com，填写m 注意配置域名之后，需要到域名控制处增加解析配置。]]></content>
       <tags>
         <tag>运维</tag>
       </tags>
@@ -11,7 +163,7 @@
   <entry>
     <title><![CDATA[给孩子上保险（笔记）]]></title>
     <url>%2F2018%2F12%2F21%2F%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E4%BF%9D%E9%99%A9%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[上医保是首位1. 每年为下一年交，截止年底。 2. 220元（郑州） 以保障优先1. 别想又能攒钱，又有保障，应以保障优先； 2. 大病保障，几百元就可以搞定。 保障需求 风险类型 风险等级 医疗花费 保障方式 常见小毛病 小风险 几百～几千 医保 普通疾病门诊、住院 相对频繁、小风险 1~5万 小额门诊、住院医疗险 意外门诊、住院 中等风险 1~5万 儿童意外险 未达重大疾病标准的“大病” 大风险 5~50万 儿童重疾险的轻症保障、高额住院医疗险 重大疾病 大风险 超过50万 儿童重疾险、高额住院医疗险 产品对比门诊险重疾 产品名称 重大疾病保险金 少儿特定重大疾病保险金 身故保险金 轻症疾病保险金 轻症疾病豁免保险费 保障期限 保费 慧馨安少儿定期重大疾病保险-2018版Plus 50w(一次为限) 50w(一次为限) 已交保险费 15w（附加险、一次为限） 豁免后期重大疾病保险费 20年 650/年（15年） 意外 产品名称 意外身故和伤残 意外医疗 免赔 保障期限 保费 小雨伞小顽童少儿意外险 50w 2w(含门诊住院) 无免赔 1年 150 医疗险]]></content>
+    <content type="text"><![CDATA[上医保是首位1. 每年为下一年交，截止年底。 2. 220元（郑州） 以保障优先1. 别想又能攒钱，又有保障，应以保障优先； 2. 大病保障，几百元就可以搞定。 保障需求 风险类型 风险等级 医疗花费 保障方式 常见小毛病 小风险 几百～几千 医保 普通疾病门诊、住院 相对频繁、小风险 1~5万 小额门诊、住院医疗险 意外门诊、住院 中等风险 1~5万 儿童意外险 未达重大疾病标准的“大病” 大风险 5~50万 儿童重疾险的轻症保障、高额住院医疗险 重大疾病 大风险 超过50万 儿童重疾险、高额住院医疗险 注意事项 按中国保监会规定，除航空意外死亡及重大自然灾害意外死亡外，任何不满10周岁的被保险人，其死亡保险金额不得超过人民币20万元；已满10周岁但未满18周岁的被保险人，其死亡保险金额不得超过人民币50万元。 产品对比门诊险重疾 产品名称 重大疾病保险金 少儿特定重大疾病保险金 身故保险金 轻症疾病保险金 轻症疾病豁免保险费 保障期限 保费 慧馨安少儿定期重大疾病保险-2018版Plus 50w(一次为限) 50w(一次为限) 已交保险费 15w（附加险、一次为限） 豁免后期重大疾病保险费 20年 650/年（15年） 平安儿童重大疾病保险 50w 1年 264.5 意外 产品名称 意外身故和伤残 意外医疗 免赔 保障期限 保费 小雨伞小顽童少儿意外险 50w 2w(含门诊住院) 无免赔 1年 150 医疗险综合险 产品名称 意外身故和伤残 意外医疗 重大疾病 疾病身故残疾 住院医疗 疫苗接种身故和残疾 入院津贴 免赔 保障期限 保费 支持多次 儿童综合医疗保险 20w 3w(含门诊住院) 30w 10w 1w 0 100 1年 730.9 平安少儿综合保险 20w 2w+5k 30w(15项重大疾病) 20w 2w 40w 100 1年 1247.5 住院医疗为每次]]></content>
       <tags>
         <tag>保险</tag>
       </tags>
@@ -19,7 +171,7 @@
   <entry>
     <title><![CDATA[容器镜像服务]]></title>
     <url>%2F2018%2F12%2F21%2F%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1%2F</url>
-    <content type="text"><![CDATA[阿里云的容器镜像服务产品功能1. 用户可以根据自己的业务需求，选择不同的地域创建和删除镜像仓库，提供稳定快速的镜像上传、下载服务； 2. 每个镜像仓库都提供了公网、内网、VPC网络下对应的网络地址； 3. 支持便捷的镜像安全扫描功能，展示详细的镜像层信息； 4. 提供镜像漏洞报告，展示漏洞编号、漏洞等级、修复版本等多维度漏洞信息； 5. 支持阿里云Code、GitHub、Bitbucket、自建GitLab的源代码构建源； 6. 支持自动构建，源代码变更后实现自动构建成新Docker镜像； 7. 支持海外构建，源代码在海外实现构建成新Docker镜像； 8. 整合阿里云Code及CodePipeline，实现源代码到应用编译测试后，自动构建成新镜像； 9. 整合容器服务，实现新镜像构建完成后便捷部署至容器服务集群。 10. [通过配置镜像加速器可以提升获取Docker官方镜像的速度](https://help.aliyun.com/document_detail/60750.html?spm=a2c4g.11186623.4.3.43bf1e66F2XOnU) 操作使用1. `一般在企业账户下设置一个子账户来管理镜像服务`。 2. 命名空间 1) 作为一些仓库的集合，推荐将一个公司或组织的仓库集中在一个命名空间下面。 以公司名称作为命名空间：aliyun、alibaba 以团队、组织作为命名空间：misaka-team 2) 目前每个主账号可以创建5个命名空间 3. 创建镜像仓库 1) 仓库作为一些镜像的集合，推荐将一个（应用或功能）不同版本的镜像放置在一个仓库中。 以软件包作为仓库名称：centos、jetty 以应用名作为仓库名称：console-web、console-service 2) 创建过程中会选择关联代码库。 3) 私有仓库，仓库是其他用户不可见的，只有有权限的账户登录才能进行下载。 4. 管理镜像仓库 目录 功能 基本信息 查看并修改此镜像的基本信息 构建 设置构建规则， 并构建；查看构建日志一般tag为发布版，master为latest班 仓库授权 支持RAM细粒度控制仓库的访问权限 webhook 提供仓库镜像的消息触发功能，当镜像上传之后主动触发用户设置的访问地址；串联镜像服务的下游流程,详见触发器管理 镜像版本 可以对镜像进行安全扫描，生成漏洞报告，并查看层信息 镜像同步 5. 部署应用 点击，可以直接前往容器服务进行部署。 6. docker基本操作 1234docker login -u [user] -p [pw] [registry.cn-hangzhou.aliyuncs.com]docker pull registry.cn-hangzhou.aliyuncs.com/[命名空间]/[仓库名]:[版本]docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/[命名空间]/[仓库名]:[版本]docker push registry.cn-hangzhou.aliyuncs.com/[命名空间]/[仓库名]:[版本] 7. 对上游的建议 在编写项目代码时，配置信息一般从环境变量中获取，获取不到采用默认值。 缺点1. 构建失败之后，查看构建日志，很难定位到日志最后。 计费1. 目前容器镜像服务处于公测期间，免费提供镜像托管、镜像构建服务以及镜像加速器服务，请放心使用。]]></content>
+    <content type="text"><![CDATA[容器镜像 镜像中的应用尽量从环境变量获取配置参数； 退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。 阿里云的容器镜像服务产品功能1. 用户可以根据自己的业务需求，选择不同的地域创建和删除镜像仓库，提供稳定快速的镜像上传、下载服务； 2. 每个镜像仓库都提供了公网、内网、VPC网络下对应的网络地址； 3. 支持便捷的镜像安全扫描功能，展示详细的镜像层信息； 4. 提供镜像漏洞报告，展示漏洞编号、漏洞等级、修复版本等多维度漏洞信息； 5. 支持阿里云Code、GitHub、Bitbucket、自建GitLab的源代码构建源； 6. 支持自动构建，源代码变更后实现自动构建成新Docker镜像； 7. 支持海外构建，源代码在海外实现构建成新Docker镜像； 8. 整合阿里云Code及CodePipeline，实现源代码到应用编译测试后，自动构建成新镜像； 9. 整合容器服务，实现新镜像构建完成后便捷部署至容器服务集群。 10. [通过配置镜像加速器可以提升获取Docker官方镜像的速度](https://help.aliyun.com/document_detail/60750.html?spm=a2c4g.11186623.4.3.43bf1e66F2XOnU) 操作使用1. `一般在企业账户下设置一个子账户来管理镜像服务`。 2. 命名空间 1) 作为一些仓库的集合，推荐将一个公司或组织的仓库集中在一个命名空间下面。 以公司名称作为命名空间：aliyun、alibaba 以团队、组织作为命名空间：misaka-team 2) 目前每个主账号可以创建5个命名空间 3. 创建镜像仓库 1) 仓库作为一些镜像的集合，推荐将一个（应用或功能）不同版本的镜像放置在一个仓库中。 以软件包作为仓库名称：centos、jetty 以应用名作为仓库名称：console-web、console-service 2) 创建过程中会选择关联代码库。 3) 私有仓库，仓库是其他用户不可见的，只有有权限的账户登录才能进行下载。 4. 管理镜像仓库 目录 功能 基本信息 查看并修改此镜像的基本信息 构建 设置构建规则， 并构建；查看构建日志一般tag为发布版，master为latest班 仓库授权 支持RAM细粒度控制仓库的访问权限 webhook 提供仓库镜像的消息触发功能，当镜像上传之后主动触发用户设置的访问地址；串联镜像服务的下游流程,详见触发器管理 镜像版本 可以对镜像进行安全扫描，生成漏洞报告，并查看层信息 镜像同步 5. 部署应用 点击，可以直接前往容器服务进行部署。 6. docker基本操作 1234docker login -u [user] -p [pw] [registry.cn-hangzhou.aliyuncs.com]docker pull registry.cn-hangzhou.aliyuncs.com/[命名空间]/[仓库名]:[版本]docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/[命名空间]/[仓库名]:[版本]docker push registry.cn-hangzhou.aliyuncs.com/[命名空间]/[仓库名]:[版本] 7. 对上游的建议 在编写项目代码时，配置信息一般从环境变量中获取，获取不到采用默认值。 缺点1. 构建失败之后，查看构建日志，很难定位到日志最后。 计费1. 目前容器镜像服务处于公测期间，免费提供镜像托管、镜像构建服务以及镜像加速器服务，请放心使用。]]></content>
       <tags>
         <tag>Docker</tag>
         <tag>Deploy</tag>
@@ -93,10 +245,5 @@
         <tag>HMAC</tag>
         <tag>PYTHON</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F11%2F29%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>

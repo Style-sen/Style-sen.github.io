@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="nginx配置nginx的配置在nginx.conf的http{}内编写。 `nginx -s reload   &amp;quot;软重启&amp;quot;` 123456789101112131415// 全局区worker_processes 1; // 有1个工作的子进程,可以自行修改,但太大无益,因为要争夺CPU,一般设置为 CPU数*核数Event &amp;#123;// 一般是配置nginx连接的特性/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-25T07:20:22.956Z">
+<meta property="og:updated_time" content="2018-12-26T06:56:26.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="域名、虚拟主机笔记">
 <meta name="twitter:description" content="nginx配置nginx的配置在nginx.conf的http{}内编写。 `nginx -s reload   &amp;quot;软重启&amp;quot;` 123456789101112131415// 全局区worker_processes 1; // 有1个工作的子进程,可以自行修改,但太大无益,因为要争夺CPU,一般设置为 CPU数*核数Event &amp;#123;// 一般是配置nginx连接的特性/">
@@ -402,14 +402,31 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>www</td>
+<td>将域名解析为<a href="http://www.example.com，填写www" target="_blank" rel="noopener">www.example.com，填写www</a></td>
+</tr>
+<tr>
+<td>@</td>
+<td>将域名解析为example.com（不带www），填写@或者不填写</td>
+</tr>
+<tr>
+<td>mail</td>
+<td>将域名解析为mail.example.com，通常用于解析邮箱服务器</td>
+</tr>
+<tr>
+<td>*</td>
+<td>泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析）</td>
+</tr>
+<tr>
+<td>二级域名</td>
+<td>如：mail.example.com或abc.example.com，填写mail或abc</td>
+</tr>
+<tr>
+<td>手机网站</td>
+<td>如：m.example.com，填写m</td>
 </tr>
 </tbody>
 </table>
-<p>www    | 将域名解析为<a href="http://www.example.com，填写www；" target="_blank" rel="noopener">www.example.com，填写www；</a><br>@    | 将域名解析为example.com（不带www），填写@或者不填写；<br>mail    | 将域名解析为mail.example.com，通常用于解析邮箱服务器；</p>
-<ul>
-<li>| 泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析）；<br>二级域名    | 如：mail.example.com或abc.example.com，填写mail或abc；<br>手机网站    | 如：m.example.com，填写m。</li>
-</ul>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><pre><code>配置域名之后，需要到域名控制处增加解析配置。
 </code></pre>
       
@@ -450,6 +467,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/08/NRF的开源项目/" rel="prev" title="NRF的开源项目">
+                NRF的开源项目 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -526,7 +547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -548,7 +569,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,7 +622,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
