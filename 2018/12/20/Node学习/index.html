@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="NPMpackage.json作为描述文件，描述你的项目依赖哪些包。  12npm init          # 可在当前目录下创建一个package.json文件npm init --yes    # 可跳过回答问题步骤  文件内容： 123456789name              # 【必须】version           # 【必须】description       # 描述信">
+<meta name="description" content="NPM命令   命令 功能     npm view [name] versions 查看包所有的版本信息   npm info [name] 查看包所有的版本信息   npm view [name] version 查看包最新的版本信息   npm ls [name] 查看已安装的包的版本信息   npm ls [name] -g 查看全局安装的包的版本信息   npm install -g 升">
 <meta name="keywords" content="Node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node学习">
 <meta property="og:url" content="http://yoursite.com/2018/12/20/Node学习/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="NPMpackage.json作为描述文件，描述你的项目依赖哪些包。  12npm init          # 可在当前目录下创建一个package.json文件npm init --yes    # 可跳过回答问题步骤  文件内容： 123456789name              # 【必须】version           # 【必须】description       # 描述信">
+<meta property="og:description" content="NPM命令   命令 功能     npm view [name] versions 查看包所有的版本信息   npm info [name] 查看包所有的版本信息   npm view [name] version 查看包最新的版本信息   npm ls [name] 查看已安装的包的版本信息   npm ls [name] -g 查看全局安装的包的版本信息   npm install -g 升">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T08:08:54.412Z">
+<meta property="og:updated_time" content="2019-02-20T09:32:58.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node学习">
-<meta name="twitter:description" content="NPMpackage.json作为描述文件，描述你的项目依赖哪些包。  12npm init          # 可在当前目录下创建一个package.json文件npm init --yes    # 可跳过回答问题步骤  文件内容： 123456789name              # 【必须】version           # 【必须】description       # 描述信">
+<meta name="twitter:description" content="NPM命令   命令 功能     npm view [name] versions 查看包所有的版本信息   npm info [name] 查看包所有的版本信息   npm view [name] version 查看包最新的版本信息   npm ls [name] 查看已安装的包的版本信息   npm ls [name] -g 查看全局安装的包的版本信息   npm install -g 升">
 
 
 
@@ -380,13 +380,91 @@
       
 
       
-        <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><pre><code>作为描述文件，描述你的项目依赖哪些包。
+        <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>npm view [name] versions</td>
+<td>查看包所有的版本信息</td>
+</tr>
+<tr>
+<td>npm info [name]</td>
+<td>查看包所有的版本信息</td>
+</tr>
+<tr>
+<td>npm view [name] version</td>
+<td>查看包最新的版本信息</td>
+</tr>
+<tr>
+<td>npm ls [name]</td>
+<td>查看已安装的包的版本信息</td>
+</tr>
+<tr>
+<td>npm ls [name] -g</td>
+<td>查看全局安装的包的版本信息</td>
+</tr>
+<tr>
+<td>npm install -g</td>
+<td>升级全局的本地包</td>
+</tr>
+<tr>
+<td>npm update [name]</td>
+<td>升级某一个包</td>
+</tr>
+</tbody>
+</table>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><pre><code>作为描述文件，描述你的项目依赖哪些包。
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init          # 可在当前目录下创建一个package.json文件</span><br><span class="line">npm init --yes    # 可跳过回答问题步骤</span><br></pre></td></tr></table></figure>
 
 文件内容：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">name              # 【必须】</span><br><span class="line">version           # 【必须】</span><br><span class="line">description       # 描述信息，有助于搜索</span><br><span class="line">main              # 入口文件，一般都是 index.js</span><br><span class="line">scripts           # 支持的脚本，默认是一个空的 test</span><br><span class="line">keywords          # 关键字，有助于在人们使用 npm search 搜索时发现你的项目</span><br><span class="line">author            # 作者信息</span><br><span class="line">license           # 默认是 MIT</span><br><span class="line">bugs              # 当前项目的一些错误信息，如果有的话</span><br></pre></td></tr></table></figure>
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name              # 【必须】</span><br><span class="line">version           # 【必须】</span><br><span class="line">description       # 描述信息，有助于搜索</span><br><span class="line">main              # 入口文件，一般都是 index.js</span><br><span class="line">scripts           # 支持的脚本，默认是一个空的 test</span><br><span class="line">keywords          # 关键字，有助于在人们使用 npm search 搜索时发现你的项目</span><br><span class="line">author            # 作者信息</span><br><span class="line">license           # 默认是 MIT</span><br><span class="line">bugs              # 当前项目的一些错误信息，如果有的话</span><br><span class="line">dependencies      # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="PM2"><a href="#PM2" class="headerlink" title="PM2"></a>PM2</h2><p>pm2是一个内置负载均衡的node.js应用进程管理器</p>
+<p><code>npm install -g pm2</code></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pm2 start server.js –name</td>
+<td>启动一个应用，并指定名称</td>
+</tr>
+<tr>
+<td>pm2 list</td>
+<td>列出正在运行的应用</td>
+</tr>
+<tr>
+<td>pm2 stop [id/name]</td>
+<td>停止对应的应用</td>
+</tr>
+<tr>
+<td>pm2 delete [name]</td>
+<td>删除对应的应用</td>
+</tr>
+<tr>
+<td>pm2 reload [name]</td>
+<td>代码有更新，重载应用</td>
+</tr>
+<tr>
+<td>pm2 restart [name]</td>
+<td>重启应用</td>
+</tr>
+<tr>
+<td>pm2 show [name]</td>
+<td>查看相应的应用详情</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
     
@@ -416,7 +494,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/Kubernetes实战/" rel="next" title="Kubernetes实战">
+              <a href="/2018/12/18/运维-Kubernetes实战/" rel="next" title="Kubernetes实战">
                 <i class="fa fa-chevron-left"></i> Kubernetes实战
               </a>
             
@@ -426,7 +504,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/20/使用GitLab-CI-CD创建Docker镜像/" rel="prev" title="使用GitLab CI/CD创建Docker镜像">
+              <a href="/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/" rel="prev" title="使用GitLab CI/CD创建Docker镜像">
                 使用GitLab CI/CD创建Docker镜像 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -505,7 +583,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +605,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -560,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM"><span class="nav-number">1.</span> <span class="nav-text">NPM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">1.1.</span> <span class="nav-text">package.json</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM"><span class="nav-number">1.</span> <span class="nav-text">NPM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">1.1.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">1.2.</span> <span class="nav-text">package.json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PM2"><span class="nav-number">2.</span> <span class="nav-text">PM2</span></a></li></ol></div>
             
 
           </div>
