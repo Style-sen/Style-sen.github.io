@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[编辑-vscode]]></title>
+    <url>%2F2019%2F03%2F02%2F%E7%BC%96%E8%BE%91-vscode%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[运维-监控]]></title>
+    <url>%2F2019%2F02%2F27%2F%E8%BF%90%E7%BB%B4-%E7%9B%91%E6%8E%A7%2F</url>
+    <content type="text"><![CDATA[ZABBIX一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。]]></content>
+      <tags>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[运维-Mysql]]></title>
+    <url>%2F2019%2F02%2F27%2F%E8%BF%90%E7%BB%B4-Mysql%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[运维-负载均衡]]></title>
+    <url>%2F2019%2F02%2F26%2F%E8%BF%90%E7%BB%B4-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%2F</url>
+    <content type="text"><![CDATA[HAProxy可靠，高性能的TCP / HTTP负载均衡器haproxy是工作在四层之上的，这也就意味着它可以代理的服务要比nginx更广泛，性能比nginx也要更高一些。 让一个端口同时做两件事：http/https和ssh 需要设置为开机启动。]]></content>
+      <tags>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[微服务架构笔记(4)API文档服务器]]></title>
+    <url>%2F2019%2F02%2F22%2F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-4-API%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 API概述重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前端开发人员就可以基于API文档产生模拟数据（mock），然后使用mock的数据完成页面样式和页面交互；有了API文档，后端开发人员就可以基于API文档完成请求的处理以及返回响应数据。 API文档服务器（通常为WEB服务器）是一个可以动态生成最新版本API文档的服务器，并支持本地维护+远程访问。 软件开发流程中的几个关键环节：（1）产品经理提需求，画原型；（2）UI设计师根据原型出设计图；（3）测试团队根据产品原型编写测试用例，制定测试计划；（4）架构师根据原型编写API文档；（5）前后端工程师基于API文档完成业务开发；（6）测试、改BUG、发布。 swagger之不够完美的地方：（1）通过swagger生成的API文档看不见版本修改记录，你不知道什么时候后端开发人员悄悄改了下API文档而忘记/有意不通知前端开发人员，这样的锅前端背了太多；（2）接口文档由后端开发人员编写，前端开发人员的地位实际上比后端的低，并且前端开发人员仍然会经常找后端开发人员沟通修改API文档（强依赖仍然存在）；（3）本来swagger的API定义应该由架构师或项目经理编写，但由于后端开发人员可以直接改文档，这导致的实际效果就是：基本上API文档都直接由开发人员编写（或修改），其质量水平很难达到期望；（4）swagger生成API文档的类的定义可能是多层引用关联的，但是这个类又太容易被开发人员修改到，或者不小心改到，如果开发人员忘记通知前端或者只通知了部分改动，那就会造成严重的问题；（5）使用swagger的语法来编写API文档，其实还是很麻烦的，我们希望这个语法能够超级简单；（6）swagger会污染你的代码。 wagger的这些缺点其实综合来讲，其主要的问题就在于它让API编写/修改太过容易，让软件开发过程和管理过程太容易出错。如果你们团队建立了严格的管理机制，那还是可以将swagger用的很和谐的，但这不是笔者，作为一个架构师，可以撇开责任的理由。 如何让开发人员更不容易写出错误的代码是评价一个架构师能力的重要标准。 笔者在写代码或做架构的时候有一个思维习惯，就是不管某个问题多么复杂具体解决方案是什么，我会先去想想这个问题的最佳的处理方式应该是什么样子，然后再去想这些最佳的处理方式哪些可以实现，哪些实现不了而只能用次一点的方案，然后次一点的方案是否可以接受。 API工具POSTMAN工具 优点 缺点 只有在线版，不能私有部署 rap2 非官方rap2-delos部署文档 阿里妈妈前端团队出品的开源接口管理工具RAP第二代后端 RAP2前端 优点 缺点 可以导出postman文件 支持自动生成mock数据 Showdoc 优点 缺点 可以权限管理 版本控制不完善，需要手动添加 可以私有部署 Crapapi 优点 缺点 接口 文档 数据库表 BUG管理 附件 团队协作 apiDoccreates a documentation from API annotations in your source code]]></content>
+      <tags>
+        <tag>微服务</tag>
+        <tag>架构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[前端扩展和工程模板]]></title>
+    <url>%2F2019%2F02%2F21%2F%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95%2F</url>
+    <content type="text"><![CDATA[工程模板 vue-element-admin基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。 element-ui el-card 卡片 前端风向标 THX from Alimama FE]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[微服务架构笔记(3)流媒体服务器]]></title>
     <url>%2F2019%2F02%2F21%2F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-3-%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
     <content type="text"><![CDATA[协议HLS协议 HTTP Live Streaming（缩写是HLS）是一个由苹果公司提出的基于HTTP的流媒体网络传输协议。是苹果公司QuickTime X和iPhone软件系统的一部分。它的工作原理是把整个流分成一个个小的基于HTTP的文件来下载，每次只下载一些。当媒体流正在播放时，客户端可以选择从许多不同的备用源中以不同的速率下载同样的资源，允许流媒体会话适应不同的数据速率。在开始一个流媒体会话时，客户端会下载一个包含元数据的extended M3U (m3u8)playlist文件，用于寻找可用的媒体流。 HLS只请求基本的HTTP报文，与实时传输协议（RTP)不同，HLS可以穿过任何允许HTTP数据通过的防火墙或者代理服务器。它也很容易使用内容分发网络来传输媒体流。 HLS协议规定： 视频的封装格式是TS。视频的编码格式为H264,音频编码格式为MP3、AAC或者AC-3。除了TS视频文件本身，还定义了用来控制播放的m3u8文件（文本文件）。 HLS也有一些无法跨越的坑，比如采用HLS协议直播的视频延迟时间无法下到10秒以下，而RTMP协议的延迟最低可以到3、4秒左右。所以说对直播延迟比较敏感的服务请慎用HLS。]]></content>
@@ -12,7 +55,7 @@
   <entry>
     <title><![CDATA[微服务架构笔记(2)网络服务器]]></title>
     <url>%2F2019%2F02%2F18%2F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-2-%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[反向代理 反向代理不能用于前端页面的代理，只能用于接口数据。因为前端会涉及到很多的依赖静态文件，无法处理。 虚拟主机nginx 在nginx.conf配置文件中http选项配置多个serve即可实现多虚拟主机 http配置命令 命令 功能 nginx -s reload 重载配置文件 apache/etc/apache2/sites-enabled/中存储虚拟主机配置文件。 1234567891011&lt;VirtualHost *:80&gt; # The ServerName directive sets the request scheme, hostname and port ServerName www.test.cn ServerAdmin webmaster@localhost DocumentRoot /var/www/public ServerAlias test.cn &lt;Directory &quot;/var/www/public&quot;&gt; &lt;/Directory&gt; ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt; /etc/a[acje2/sites-available/中存储指向上边目录中配置文件中的软连接。 主机记录 主机记录类型 说明 www 将域名解析为www.example.com，填写www @ 将域名解析为example.com（不带www），填写@或者不填写 mail 将域名解析为mail.example.com，通常用于解析邮箱服务器 * 泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析） 二级域名 如：mail.example.com或abc.example.com，填写mail或abc 手机网站 如：m.example.com，填写m 注意配置域名之后，需要到域名控制处增加解析配置。]]></content>
+    <content type="text"><![CDATA[反向代理 反向代理不能用于前端页面的代理，只能用于接口数据。因为前端会涉及到很多的依赖静态文件，无法处理。 在前端项目中，最好不要写死接口的域名，最好使用反向代理。写死之后在部署的时候，尤其端口转发部署的时候，有坑。 虚拟主机nginx 在nginx.conf配置文件中http选项配置多个serve即可实现多虚拟主机 http配置命令 命令 功能 nginx -s reload 重载配置文件 apache/etc/apache2/sites-enabled/中存储虚拟主机配置文件。 1234567891011&lt;VirtualHost *:80&gt; # The ServerName directive sets the request scheme, hostname and port ServerName www.test.cn ServerAdmin webmaster@localhost DocumentRoot /var/www/public ServerAlias test.cn &lt;Directory &quot;/var/www/public&quot;&gt; &lt;/Directory&gt; ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt; /etc/a[acje2/sites-available/中存储指向上边目录中配置文件中的软连接。 主机记录 主机记录类型 说明 www 将域名解析为www.example.com，填写www @ 将域名解析为example.com（不带www），填写@或者不填写 mail 将域名解析为mail.example.com，通常用于解析邮箱服务器 * 泛解析，所有子域名均被解析到统一地址（除单独设置的子域名解析） 二级域名 如：mail.example.com或abc.example.com，填写mail或abc 手机网站 如：m.example.com，填写m 注意配置域名之后，需要到域名控制处增加解析配置。]]></content>
       <tags>
         <tag>微服务</tag>
         <tag>架构</tag>
@@ -45,7 +88,7 @@
   <entry>
     <title><![CDATA[Docker笔记]]></title>
     <url>%2F2019%2F01%2F23%2F%E8%BF%90%E7%BB%B4-Docker%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[DockerfileCMD 支持三种格式 123CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给 ENTRYPOINT 的默认参数； 指定启动容器时执行的命令，每个 Dockerfile 只能有一条 CMD 命令。如果指定了多条命令，只有最后一条会被执行。 如果用户启动容器时候指定了运行的命令，则会覆盖掉 CMD 指定的命令。 配置网络bridge 默认。 解决问题 GitLab CI with docker and dind “mount: permission denied (are you root?)” Docker容器修改hosts文件重启不变 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/&lt;container_id&gt;，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。 docker运行nginx为什么要使用 daemon off]]></content>
+    <content type="text"><![CDATA[安装 使用清华源 DockerfileCMD 支持三种格式 123CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给 ENTRYPOINT 的默认参数； 指定启动容器时执行的命令，每个 Dockerfile 只能有一条 CMD 命令。如果指定了多条命令，只有最后一条会被执行。 如果用户启动容器时候指定了运行的命令，则会覆盖掉 CMD 指定的命令。 配置网络bridge 默认。 解决问题 GitLab CI with docker and dind “mount: permission denied (are you root?)” Docker容器修改hosts文件重启不变 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/&lt;container_id&gt;，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。 docker运行nginx为什么要使用 daemon off 选择镜像UbuntuCENTOS 使用Docker创建容器时，基础镜像通常选择Ubuntu或Centos，不管哪个镜像的大小都在100MB以上。 ALPINE Alpine Linux的最大优势是小，Alpine Linux是一个面向安全的轻型的Linux发行版，Alpine Linux采用了 musl libc 和 busybox以减小系统的体积和运行时资源消耗。在保持瘦身的同时，Alpine Linux还提供了自己的包管理工具apk。 Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。 musl实现的DNS服务不会使用resolv.conf文件中的search和domain两个配置，通过DNS来进行服务发现时需要注意。 sgerrand / alpine-pkg-glibc. Alpine与glibc]]></content>
       <tags>
         <tag>Docker</tag>
       </tags>
@@ -65,8 +108,8 @@
   </entry>
   <entry>
     <title><![CDATA[Ubuntu服务器系统及基础设施]]></title>
-    <url>%2F2019%2F01%2F23%2FUbuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9F%2F</url>
-    <content type="text"><![CDATA[U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。 数据库 RDS for MySQL 物理备份文件恢复到自建数据库; SSH访问 上传目录到服务器 scp -r /tmp/local_dir username@servername:remote_dir ## ubuntu-18.04 设置开机启动脚本 Ubuntu 18.04 Server 设置静态IP]]></content>
+    <url>%2F2019%2F01%2F23%2F%E8%BF%90%E7%BB%B4-Ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。 数据库 RDS for MySQL 物理备份文件恢复到自建数据库; 系统管理systemctlSystemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。 netstat -t –tcp TCP -l –listening 显示监听的socket lsof列出打开文件，在linux中一切皆文件 包管理 snap包管理器。 系统中最好安装有一个版本的docker。 SSH访问常用操作 上传目录到服务器 scp -r /tmp/local_dir username@servername:remote_dir windows下工具 cmder类linux终端，支持很多linux命令 putty小而美 webshell huashengdun/webssh功能较简单; liftoff/GateOne功能强大，代码也很大。 HAProxy 让一个端口同时做两件事：http/https和ssh 常见问题 ubuntu-18.04 设置开机启动脚本 Ubuntu 18.04 Server 设置静态IP Ubuntu 16.04 DNS 修改 /etc/resolv.conf 被清空 或重启不生效解决 Ubuntu 18.04设置dns]]></content>
       <tags>
         <tag>server</tag>
       </tags>
@@ -121,7 +164,7 @@
   <entry>
     <title><![CDATA[html笔记]]></title>
     <url>%2F2019%2F01%2F18%2F%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[## DOMDOM （文档对象模型）定义了访问 HTML 和 XML 文档的标准. DOM事件]]></content>
+    <content type="text"><![CDATA[标签 换行 DOMDOM （文档对象模型）定义了访问 HTML 和 XML 文档的标准. DOM事件]]></content>
       <tags>
         <tag>前端</tag>
       </tags>
@@ -166,10 +209,10 @@
   <entry>
     <title><![CDATA[VUE]]></title>
     <url>%2F2019%2F01%2F14%2F%E5%89%8D%E7%AB%AF-VUE%2F</url>
-    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。 模板 vue-element-admin基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。]]></content>
+    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。 安装使用Vue CLI 可图形界面创建VUE项目。 VUE插件VUE-ROUTER vue router带参数页面刷新或者回退参数消失的解决方法12this.$router.push(&#123;path:&apos;&apos;,params:&#123;&#125;,query:&#123;&#125;&#125;)patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path]]></content>
       <tags>
-        <tag>前端</tag>
         <tag>VUE</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -226,7 +269,7 @@
   <entry>
     <title><![CDATA[Node学习]]></title>
     <url>%2F2018%2F12%2F20%2FNode%E5%AD%A6%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[NPM命令 命令 功能 npm view [name] versions 查看包所有的版本信息 npm info [name] 查看包所有的版本信息 npm view [name] version 查看包最新的版本信息 npm ls [name] 查看已安装的包的版本信息 npm ls [name] -g 查看全局安装的包的版本信息 npm install -g 升级全局的本地包 npm update [name] 升级某一个包 package.json作为描述文件，描述你的项目依赖哪些包。 12npm init # 可在当前目录下创建一个package.json文件npm init --yes # 可跳过回答问题步骤 文件内容： 12345678910name # 【必须】version # 【必须】description # 描述信息，有助于搜索main # 入口文件，一般都是 index.jsscripts # 支持的脚本，默认是一个空的 testkeywords # 关键字，有助于在人们使用 npm search 搜索时发现你的项目author # 作者信息license # 默认是 MITbugs # 当前项目的一些错误信息，如果有的话dependencies # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割 PM2pm2是一个内置负载均衡的node.js应用进程管理器 npm install -g pm2 命令 功能 pm2 start server.js –name 启动一个应用，并指定名称 pm2 list 列出正在运行的应用 pm2 stop [id/name] 停止对应的应用 pm2 delete [name] 删除对应的应用 pm2 reload [name] 代码有更新，重载应用 pm2 restart [name] 重启应用 pm2 show [name] 查看相应的应用详情]]></content>
+    <content type="text"><![CDATA[NPM命令 命令 功能 npm view [name] versions 查看包所有的版本信息 npm info [name] 查看包所有的版本信息 npm view [name] version 查看包最新的版本信息 npm ls [name] 查看已安装的包的版本信息 npm ls [name] -g 查看全局安装的包的版本信息 npm install -g 升级全局的本地包 npm update [name] 升级某一个包 npm install –unsafe-perm 设置为true以在运行程序包脚本时禁止UID / GID切换 package.json作为描述文件，描述你的项目依赖哪些包。 12npm init # 可在当前目录下创建一个package.json文件npm init --yes # 可跳过回答问题步骤 文件内容： 12345678910name # 【必须】version # 【必须】description # 描述信息，有助于搜索main # 入口文件，一般都是 index.jsscripts # 支持的脚本，默认是一个空的 testkeywords # 关键字，有助于在人们使用 npm search 搜索时发现你的项目author # 作者信息license # 默认是 MITbugs # 当前项目的一些错误信息，如果有的话dependencies # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割 npm问题 sudo npm install 时，报错 permission denied 的解决方案 PM2pm2是一个内置负载均衡的node.js应用进程管理器 npm install -g pm2 命令 功能 pm2 start server.js –name 启动一个应用，并指定名称 pm2 list 列出正在运行的应用 pm2 stop [id/name] 停止对应的应用 pm2 delete [name] 删除对应的应用 pm2 reload [name] 代码有更新，重载应用 pm2 restart [name] 重启应用 pm2 show [name] 查看相应的应用详情]]></content>
       <tags>
         <tag>Node</tag>
       </tags>

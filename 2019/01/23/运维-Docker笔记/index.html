@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="DockerfileCMD 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;">
+<meta name="description" content="安装 使用清华源  DockerfileCMD 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&amp;quot;param1&amp;quot;,&amp;quot;pa">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/23/运维-Docker笔记/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="DockerfileCMD 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;">
+<meta property="og:description" content="安装 使用清华源  DockerfileCMD 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&amp;quot;param1&amp;quot;,&amp;quot;pa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-21T03:34:54.856Z">
+<meta property="og:updated_time" content="2019-02-28T04:28:00.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker笔记">
-<meta name="twitter:description" content="DockerfileCMD 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;">
+<meta name="twitter:description" content="安装 使用清华源  DockerfileCMD 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；CMD [&amp;quot;param1&amp;quot;,&amp;quot;pa">
 
 
 
@@ -380,7 +380,10 @@
       
 
       
-        <h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><ol>
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/" target="_blank" rel="noopener">使用清华源</a></li>
+</ol>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><ol>
 <li><p>支持三种格式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；</span><br><span class="line">CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；</span><br><span class="line">CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给 ENTRYPOINT 的默认参数；</span><br></pre></td></tr></table></figure>
 </li>
@@ -395,6 +398,16 @@
 <li><a href="https://www.cnblogs.com/shuaiandjun/p/9484540.html" target="_blank" rel="noopener">GitLab CI with docker and dind “mount: permission denied (are you root?)”</a></li>
 <li>Docker容器修改hosts文件重启不变<br> 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/&lt;container_id&gt;，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。<br> 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。</li>
 <li><a href="https://segmentfault.com/a/1190000009583997" target="_blank" rel="noopener">docker运行nginx为什么要使用 daemon off</a></li>
+</ol>
+<h2 id="选择镜像"><a href="#选择镜像" class="headerlink" title="选择镜像"></a>选择镜像</h2><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h3 id="CENTOS"><a href="#CENTOS" class="headerlink" title="CENTOS"></a>CENTOS</h3><ol>
+<li>使用Docker创建容器时，基础镜像通常选择Ubuntu或Centos，不管哪个镜像的大小都在100MB以上。</li>
+</ol>
+<h3 id="ALPINE"><a href="#ALPINE" class="headerlink" title="ALPINE"></a>ALPINE</h3><ol start="2">
+<li>Alpine Linux的最大优势是小，Alpine Linux是一个面向安全的轻型的Linux发行版，Alpine Linux采用了 musl libc 和 busybox以减小系统的体积和运行时资源消耗。在保持瘦身的同时，Alpine Linux还提供了自己的包管理工具apk。</li>
+<li>Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。</li>
+<li>musl实现的DNS服务不会使用resolv.conf文件中的search和domain两个配置，通过DNS来进行服务发现时需要注意。</li>
+<li><a href="https://github.com/sgerrand/alpine-pkg-glibc" target="_blank" rel="noopener">sgerrand / alpine-pkg-glibc</a>.</li>
+<li><a href="https://www.szyhf.org/2016/12/16/alpine%E4%B8%8Eglibc/" target="_blank" rel="noopener">Alpine与glibc</a></li>
 </ol>
 
       
@@ -515,7 +528,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -537,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -570,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">1.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">1.1.</span> <span class="nav-text">CMD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">2.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">2.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">3.</span> <span class="nav-text">解决问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">2.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.1.</span> <span class="nav-text">CMD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">3.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">3.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">4.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">5.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">5.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">5.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">5.3.</span> <span class="nav-text">ALPINE</span></a></li></ol></li></ol></div>
             
 
           </div>
