@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="数组Array既是一个数组，也是一个字典。    语句 功能     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.push() 在数组末尾添加一个元素   arr.pop() 先进后出   arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值   for (var key in dic){} 遍历   de">
+<meta name="description" content="数组Array既是一个数组，也是一个字典。    语句 功能     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.push() 在数组末尾添加一个元素   arr.unshift() 在数组头部添加一个元素   arr.pop() 先进后出   arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值   fo">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS数据类型">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/前端-JS数据类型/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="数组Array既是一个数组，也是一个字典。    语句 功能     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.push() 在数组末尾添加一个元素   arr.pop() 先进后出   arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值   for (var key in dic){} 遍历   de">
+<meta property="og:description" content="数组Array既是一个数组，也是一个字典。    语句 功能     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.push() 在数组末尾添加一个元素   arr.unshift() 在数组头部添加一个元素   arr.pop() 先进后出   arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值   fo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-21T03:33:59.470Z">
+<meta property="og:updated_time" content="2019-03-14T01:21:22.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS数据类型">
-<meta name="twitter:description" content="数组Array既是一个数组，也是一个字典。    语句 功能     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.push() 在数组末尾添加一个元素   arr.pop() 先进后出   arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值   for (var key in dic){} 遍历   de">
+<meta name="twitter:description" content="数组Array既是一个数组，也是一个字典。    语句 功能     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.push() 在数组末尾添加一个元素   arr.unshift() 在数组头部添加一个元素   arr.pop() 先进后出   arr.shift() 把数组的第一个元素从其中删除，并返回第一个元素的值   fo">
 
 
 
@@ -398,6 +398,10 @@
 <td>在数组末尾添加一个元素</td>
 </tr>
 <tr>
+<td>arr.unshift()</td>
+<td>在数组头部添加一个元素</td>
+</tr>
+<tr>
 <td>arr.pop()</td>
 <td>先进后出</td>
 </tr>
@@ -425,8 +429,16 @@
 <td>array.length</td>
 <td>数组的长度　｜</td>
 </tr>
+<tr>
+<td>arrayObject.concat(arrayX,arrayX,……,arrayX)</td>
+<td>返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组</td>
+</tr>
 </tbody>
 </table>
+<ol>
+<li>判断JS对象是否拥有某属性两种方式，但稍有区别<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. in 运算符</span><br><span class="line">var obj = &#123;name:&apos;jack&apos;&#125;;</span><br><span class="line">alert(&apos;name&apos; in obj); // --&gt; true</span><br><span class="line">alert(&apos;toString&apos; in obj); // --&gt; true</span><br><span class="line">可看到无论是name，还是原形链上的toString，都能检测到返回true。</span><br><span class="line"></span><br><span class="line">2. hasOwnProperty 方法</span><br><span class="line"></span><br><span class="line">var obj = &#123;name:&apos;jack&apos;&#125;;</span><br><span class="line">obj.hasOwnProperty(&apos;name&apos;); // --&gt; true</span><br><span class="line">obj.hasOwnProperty(&apos;toString&apos;); // --&gt; false</span><br><span class="line">原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false。</span><br><span class="line">需注意的是，虽然in能检测到原型链的属性，但for in通常却不行。</span><br><span class="line">当然重写原型后for in在IE9/Firefox/Safari/Chrome/Opera下是可见的。见：for in的缺陷</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><table>
 <thead>
 <tr>
@@ -592,7 +604,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -614,7 +626,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
