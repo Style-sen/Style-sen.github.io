@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="SQLAlchemy配置项             Session状态管理   语句 功能     db.session.expire(product) 清除对象里缓存的数据   db.session.refresh(product) 不仅清除对象里缓存的数据，还会立刻触发一次数据库查询更新数据   db.session.expire_all() 清除session里所有对象的缓存   db.se">
+<meta name="description" content="数据库的设计注意事项及主流ORM框架的使用">
 <meta name="keywords" content="后端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后端-ORM">
 <meta property="og:url" content="http://yoursite.com/2019/03/08/后端-数据库-ORM/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="SQLAlchemy配置项             Session状态管理   语句 功能     db.session.expire(product) 清除对象里缓存的数据   db.session.refresh(product) 不仅清除对象里缓存的数据，还会立刻触发一次数据库查询更新数据   db.session.expire_all() 清除session里所有对象的缓存   db.se">
+<meta property="og:description" content="数据库的设计注意事项及主流ORM框架的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-11T01:49:18.840Z">
+<meta property="og:updated_time" content="2019-03-29T02:18:49.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-ORM">
-<meta name="twitter:description" content="SQLAlchemy配置项             Session状态管理   语句 功能     db.session.expire(product) 清除对象里缓存的数据   db.session.refresh(product) 不仅清除对象里缓存的数据，还会立刻触发一次数据库查询更新数据   db.session.expire_all() 清除session里所有对象的缓存   db.se">
+<meta name="twitter:description" content="数据库的设计注意事项及主流ORM框架的使用">
 
 
 
@@ -366,6 +366,10 @@
           
 
           
+              <div class="post-description">
+                  数据库的设计注意事项及主流ORM框架的使用
+              </div>
+          
 
         </div>
       </header>
@@ -380,7 +384,12 @@
       
 
       
-        <h2 id="SQLAlchemy"><a href="#SQLAlchemy" class="headerlink" title="SQLAlchemy"></a>SQLAlchemy</h2><h3 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h3><table>
+        <h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><ol>
+<li>数据库中的字段要区分永久性还是递变性，永久性存为一张表，递变性的字段单独为一张表，但是会随时间变化。</li>
+<li>永久性的字段衍伸的字段，可以用时重新计算；但是递变性的字段衍伸的字段，需要当时计算好之后存进数据库中。</li>
+</ol>
+<h2 id="SQLAlchemy"><a href="#SQLAlchemy" class="headerlink" title="SQLAlchemy"></a>SQLAlchemy</h2><p>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.</p>
+<h3 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h3><table>
 <thead>
 <tr>
 <th></th>
@@ -423,7 +432,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy(app.app, session_options=&#123;&apos;autocommit&apos;: True&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><pre><code>尽量使用sqlalchemy，而不用flask-sqlalchemy.
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy(app.app, session_options=&#123;&apos;autocommit&apos;: True&#125;)</span><br></pre></td></tr></table></figure>
 <ol>
 <li><a href="https://github.com/mitsuhiko/flask-openid/issues/47" target="_blank" rel="noopener">run example InvalidRequestError: No transaction is begun. #47</a></li>
 </ol>
@@ -546,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">1.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">1.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">1.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">1.3.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.3.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
             
 
           </div>
