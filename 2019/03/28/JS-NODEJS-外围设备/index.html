@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace t">
+<meta name="description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
 <meta name="keywords" content="NODE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NODEJS-外围设备">
+<meta property="og:title" content="NODEJS-常用模块">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/JS-NODEJS-外围设备/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace t">
+<meta property="og:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T01:10:44.848Z">
+<meta property="og:updated_time" content="2019-04-23T06:25:31.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NODEJS-外围设备">
-<meta name="twitter:description" content="BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace t">
+<meta name="twitter:title" content="NODEJS-常用模块">
+<meta name="twitter:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>NODEJS-外围设备 | 锦枫紫兰</title>
+  <title>NODEJS-常用模块 | 锦枫紫兰</title>
   
 
 
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NODEJS-外围设备</h1>
+          <h1 class="post-title" itemprop="name headline">NODEJS-常用模块</h1>
         
 
         <div class="post-meta">
@@ -380,18 +380,34 @@
       
 
       
-        <h2 id="BLE-使用CSR4-0"><a href="#BLE-使用CSR4-0" class="headerlink" title="BLE(使用CSR4.0)"></a>BLE(使用CSR4.0)</h2><h3 id="noble-noble"><a href="#noble-noble" class="headerlink" title="noble/noble"></a><a href="https://github.com/noble/noble" target="_blank" rel="noopener">noble/noble</a></h3><h4 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install --global --production windows-build-tools</span><br><span class="line">在工程目录下</span><br><span class="line">npm install bluetooth-hci-socket</span><br><span class="line">npm install noble</span><br></pre></td></tr></table></figure>
-<p>A <code>WinUSB</code> driver is required, use <a href="https://zadig.akeo.ie/" target="_blank" rel="noopener">Zadig tool</a> to replace the driver for your adapter.</p>
-<h2 id="Nordic-Semiconductor（NRF）"><a href="#Nordic-Semiconductor（NRF）" class="headerlink" title="Nordic Semiconductor（NRF）"></a>Nordic Semiconductor（NRF）</h2><p>参见[NRF-BLE]</p>
-<h2 id="NFC"><a href="#NFC" class="headerlink" title="NFC"></a>NFC</h2><h3 id="pokusew-nfc-pcsc"><a href="#pokusew-nfc-pcsc" class="headerlink" title="pokusew/nfc-pcsc"></a><a href="https://github.com/pokusew/nfc-pcsc" target="_blank" rel="noopener">pokusew/nfc-pcsc</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NFC类（继承自EventEmitter）</span><br><span class="line">|----emit reader(接收到pcsc的信号)</span><br><span class="line">    |----reader类（参数）</span><br><span class="line">        |----async write(blockNumber, data, blockSize = 4)</span><br><span class="line">        |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff)</span><br><span class="line">        |----async authenticate(blockNumber, keyType, key, obsolete = false)</span><br><span class="line">        |----async loadAuthenticationKey(keyNumber, key)</span><br><span class="line">        |----control(data, responseMaxLength)</span><br><span class="line">        |----transmit(data, responseMaxLength)</span><br><span class="line">        |----connect(mode = CONNECT_MODE_CARD)</span><br><span class="line">        |----disconnect()</span><br><span class="line">|----emit error</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>参考[pokusew/electron-vue-nfc]例子(<a href="https://github.com/pokusew/electron-vue-nfc" target="_blank" rel="noopener">https://github.com/pokusew/electron-vue-nfc</a>)</li>
+        <h2 id="NFC"><a href="#NFC" class="headerlink" title="NFC"></a>NFC</h2><h3 id="nfc-pcsc"><a href="#nfc-pcsc" class="headerlink" title="nfc-pcsc"></a><a href="https://www.npmjs.com/package/nfc-pcsc" target="_blank" rel="noopener">nfc-pcsc</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node:&gt;=8</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>分析源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NFC类（继承自EventEmitter）</span><br><span class="line">|----emit reader(接收到pcsc的信号)</span><br><span class="line">    |----reader类（参数）</span><br><span class="line">        |----async write(blockNumber, data, blockSize = 4)</span><br><span class="line">        |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff)</span><br><span class="line">        |----async authenticate(blockNumber, keyType, key, obsolete = false)</span><br><span class="line">        |----async loadAuthenticationKey(keyNumber, key)</span><br><span class="line">        |----control(data, responseMaxLength)</span><br><span class="line">        |----transmit(data, responseMaxLength)</span><br><span class="line">        |----connect(mode = CONNECT_MODE_CARD)</span><br><span class="line">        |----disconnect()</span><br><span class="line">|----emit error</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参考[pokusew/electron-vue-nfc]例子(<a href="https://github.com/pokusew/electron-vue-nfc" target="_blank" rel="noopener">https://github.com/pokusew/electron-vue-nfc</a>)</p>
+</li>
+<li>可以用于Electron APP，但是<a href="https://electronjs.org/docs/tutorial/using-native-node-modules" target="_blank" rel="noopener">需要使用NODE原生模块</a>。</li>
 </ol>
+<h2 id="USB"><a href="#USB" class="headerlink" title="USB"></a>USB</h2><h3 id="usb"><a href="#usb" class="headerlink" title="usb"></a><a href="https://www.npmjs.com/package/usb" target="_blank" rel="noopener">usb</a></h3><ol>
+<li><p>在安装usb之前，需要安装libusb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu/Debian: sudo apt-get install build-essential libudev-dev</span><br><span class="line">Windows：Use Zadig to install the WinUSB driver for your USB device. Otherwise you will get LIBUSB_ERROR_NOT_SUPPORTED when attempting to open devices.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>rebuild usb</code>需要使用原生模块</p>
+</li>
+</ol>
+<h2 id="BLE-使用CSR4-0"><a href="#BLE-使用CSR4-0" class="headerlink" title="BLE(使用CSR4.0)"></a>BLE(使用CSR4.0)</h2><h3 id="noble-noble"><a href="#noble-noble" class="headerlink" title="noble/noble"></a><a href="https://github.com/noble/noble" target="_blank" rel="noopener">noble/noble</a></h3><h4 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install --global --production windows-build-tools</span><br><span class="line">在工程目录下</span><br><span class="line">npm install bluetooth-hci-socket</span><br><span class="line">npm install noble</span><br></pre></td></tr></table></figure>
+<p>A <code>WinUSB</code> driver is required, use <a href="https://zadig.akeo.ie/" target="_blank" rel="noopener">Zadig tool</a> to replace the driver for your adapter.</p>
+<h3 id="Nordic-Semiconductor（NRF）"><a href="#Nordic-Semiconductor（NRF）" class="headerlink" title="Nordic Semiconductor（NRF）"></a>Nordic Semiconductor（NRF）</h3><p>参见[NRF-BLE]</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="Cfonts"><a href="#Cfonts" class="headerlink" title="Cfonts"></a><a href="">Cfonts</a></h3><p>性感的终端字体。</p>
+<h3 id="chalk"><a href="#chalk" class="headerlink" title="chalk"></a><a href="https://github.com/chalk/chalk" target="_blank" rel="noopener">chalk</a></h3><p>终端字型。</p>
+<h3 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a><a href="https://www.npmjs.com/package/electron" target="_blank" rel="noopener">Electron</a></h3><p>打造桌面应用。</p>
+<h3 id="seafile"><a href="#seafile" class="headerlink" title="seafile"></a><a href="https://www.npmjs.com/package/seafile" target="_blank" rel="noopener">seafile</a></h3><p>不好用，可以自己参照github，自己实现。</p>
+<h3 id="yargs-yargs"><a href="#yargs-yargs" class="headerlink" title="[yargs/yargs]"></a>[yargs/yargs]</h3><p>Yargs通过解析参数和生成优雅的用户界面，帮助您构建交互式命令行工具。</p>
 <h2 id="错误集锦"><a href="#错误集锦" class="headerlink" title="错误集锦"></a>错误集锦</h2><ol>
 <li><a href="https://github.com/node-ffi/node-ffi/issues/272" target="_blank" rel="noopener">fatal error LNK1107</a></li>
 <li><a href="https://cmsdk.com/node-js/error-in-node-module-fatal-error-lnk1107-invalid-or-corrupt-file-cannot-read-at-0x2be03e.html" target="_blank" rel="noopener">Error in node module: fatal error LNK1107</a></li>
 </ol>
-<h2 id="SEAFILE"><a href="#SEAFILE" class="headerlink" title="SEAFILE"></a>SEAFILE</h2><p><a href="https://github.com/haiwen/seafile-js" target="_blank" rel="noopener">haiwen/seafile-js</a></p>
 
       
     </div>
@@ -511,7 +527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -522,7 +538,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -533,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -566,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BLE-使用CSR4-0"><span class="nav-number">1.</span> <span class="nav-text">BLE(使用CSR4.0)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#noble-noble"><span class="nav-number">1.1.</span> <span class="nav-text">noble/noble</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#windows"><span class="nav-number">1.1.1.</span> <span class="nav-text">windows</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nordic-Semiconductor（NRF）"><span class="nav-number">2.</span> <span class="nav-text">Nordic Semiconductor（NRF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC"><span class="nav-number">3.</span> <span class="nav-text">NFC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pokusew-nfc-pcsc"><span class="nav-number">3.1.</span> <span class="nav-text">pokusew/nfc-pcsc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误集锦"><span class="nav-number">4.</span> <span class="nav-text">错误集锦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEAFILE"><span class="nav-number">5.</span> <span class="nav-text">SEAFILE</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC"><span class="nav-number">1.</span> <span class="nav-text">NFC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nfc-pcsc"><span class="nav-number">1.1.</span> <span class="nav-text">nfc-pcsc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#USB"><span class="nav-number">2.</span> <span class="nav-text">USB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#usb"><span class="nav-number">2.1.</span> <span class="nav-text">usb</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BLE-使用CSR4-0"><span class="nav-number">3.</span> <span class="nav-text">BLE(使用CSR4.0)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#noble-noble"><span class="nav-number">3.1.</span> <span class="nav-text">noble/noble</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#windows"><span class="nav-number">3.1.1.</span> <span class="nav-text">windows</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nordic-Semiconductor（NRF）"><span class="nav-number">3.2.</span> <span class="nav-text">Nordic Semiconductor（NRF）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cfonts"><span class="nav-number">4.1.</span> <span class="nav-text">Cfonts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chalk"><span class="nav-number">4.2.</span> <span class="nav-text">chalk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Electron"><span class="nav-number">4.3.</span> <span class="nav-text">Electron</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#seafile"><span class="nav-number">4.4.</span> <span class="nav-text">seafile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yargs-yargs"><span class="nav-number">4.5.</span> <span class="nav-text">[yargs/yargs]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误集锦"><span class="nav-number">5.</span> <span class="nav-text">错误集锦</span></a></li></ol></div>
             
 
           </div>

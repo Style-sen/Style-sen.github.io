@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Electron API 演示(中文版) 开始一个桌面项目使用Xmind制作功能描述和模块划分使用pencil制作界面原型使用yed制作流程图参考项目NordicSemiconductor/pc-nrfconnect-coreelectron-vue基于 vue (基本上是它听起来的样子) 来构造 electron 应用程序的样板代码。 问题 在Electron项目中npm install模块之后">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T06:53:22.737Z">
+<meta property="og:updated_time" content="2019-04-23T06:25:31.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Electron创建桌面应用">
 <meta name="twitter:description" content="Electron API 演示(中文版) 开始一个桌面项目使用Xmind制作功能描述和模块划分使用pencil制作界面原型使用yed制作流程图参考项目NordicSemiconductor/pc-nrfconnect-coreelectron-vue基于 vue (基本上是它听起来的样子) 来构造 electron 应用程序的样板代码。 问题 在Electron项目中npm install模块之后">
@@ -388,6 +388,11 @@
 <li><p>上个问题如果出问题可以使用下边的命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/.bin/electron-rebuild -m .</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>上述命令依然失败，删除<code>～/.electron-gyp</code>重试。</p>
+</li>
+<li><code>gyp ERR! stack Error: read ECONNRESET</code>为网络原因，在比较好的网络下解决。</li>
+<li><a href="https://devzone.nordicsemi.com/f/nordic-q-a/32559/pc-ble-driver-js-test-code-dfu-js-with-electron-module-error/125707" target="_blank" rel="noopener">pc-ble-driver-js test code dfu.js with electron module error</a>关于module did not register的问题。<br><code>增加.npmrc在工程目录下解决，都不需要Electron-rebuild</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">runtime = electron</span><br><span class="line">target = 2.0.17</span><br><span class="line">disturl = https://atom.io/download/electron</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 
       
@@ -502,7 +507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +518,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -524,7 +529,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

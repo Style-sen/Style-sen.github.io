@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CMSIS-DAP]]></title>
+    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
+    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
+      <categories>
+        <category>嵌入式调试</category>
+      </categories>
+      <tags>
+        <tag>CMSIS-DAP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python-桌面应用]]></title>
+    <url>%2F2019%2F04%2F23%2Fpython-%E6%89%93%E5%8C%85%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[PyQt5安装12pip install PyQt5pip install pyqt5-tools //包含designer和pyuic工具 疑难杂症 cx-freeze与python3.7]]></content>
+      <categories>
+        <category>PYTHON</category>
+        <category>桌面应用</category>
+      </categories>
+      <tags>
+        <tag>PYTHON</tag>
+        <tag>CX-FREEZE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[开始一个python应用]]></title>
+    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[虚拟环境venv模块只能创建python同版本的虚拟环境]]></content>
+      <categories>
+        <category>PYTHON</category>
+      </categories>
+      <tags>
+        <tag>PYTHON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据科学-Kaggle]]></title>
+    <url>%2F2019%2F04%2F18%2F%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-Kaggle%2F</url>
+    <content type="text"><![CDATA[##]]></content>
+      <categories>
+        <category>数据科学</category>
+      </categories>
+      <tags>
+        <tag>数据科学，KAGGLE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JS-标准库]]></title>
     <url>%2F2019%2F04%2F17%2FJS-%E6%A0%87%E5%87%86%E5%BA%93%2F</url>
     <content type="text"><![CDATA[promisePromise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。Promise 是一个绑定了回调的对象，而不是将回调传进函数内部。 使用Promise 若一个函数返回promise对象，就可以使用链式操作（then,catch）。 then() 函数会返回一个全新的 Promise，和原来的不同. 如果想要在回调中获取上个 Promise 中的结果，上个 Promise 中必须要返回结果。(使用 () =&gt; x 比() =&gt; { return x; } 更简洁一点). 一遇到异常抛出，promise链就会停下来，直接调用链式中的catch处理程序来继续当前执行。12345doSomething().then(result =&gt; doSomethingElse(value)).then(newResult =&gt; doThirdThing(newResult)).then(finalResult =&gt; console.log(`Got the final result: $&#123;finalResult&#125;`)).catch(failureCallback); 构建Promise 构造函数主要是用来包装还未支持promises的函数。 123456789101112131415161718//Promise构造函数执行时立即调用executor 函数//resolve 和 reject 两个函数作为参数传递给executor（executor 函数在Promise构造函数返回所建promise实例对象前被调用）。//resolve 和 reject 函数被调用时，分别将promise的状态改为fulfilled（完成）或rejected（失败）。//executor 内部通常会执行一些异步操作，一旦异步操作执行完毕(可能成功/失败)，要么调用resolve函数来将promise状态改成fulfilled，要么调用reject 函数将promise的状态改为rejected。//如果在executor函数中抛出一个错误，那么该promise 状态为rejected。executor函数的返回值被忽略。var promise1 = new Promise(function(resolve, reject) &#123; setTimeout(function() &#123; resolve('foo'); &#125;, 300);&#125;);promise1.then(function(value) &#123; console.log(value); // expected output: "foo"&#125;);console.log(promise1);// expected output: [object Promise] Promise.all(iterable)这个方法返回一个新的promise对象，该promise对象在iterable参数对象里所有的promise对象都成功的时候才会触发成功，一旦有任何一个iterable里面的promise对象失败则立即触发该promise对象的失败。这个新的promise对象在触发成功状态以后，会把一个包含iterable里所有promise返回值的数组作为成功回调的返回值，顺序跟iterable的顺序保持一致；如果这个新的promise对象触发了失败状态，它会把iterable里第一个触发失败的promise对象的错误信息作为它的失败错误信息。Promise.all方法常被用于处理多个promise对象的状态集合。 Promise.race(iterable)当iterable参数里的任意一个子promise被成功或失败后，父promise马上也会用子promise的成功返回值或失败详情作为参数调用父promise绑定的相应句柄，并返回该promise对象。 Promise.reject(reason)返回一个状态为失败的Promise对象，并将给定的失败信息传递给对应的处理方法 Promise.resolve(value)返回一个状态由给定value决定的Promise对象。如果该值是thenable(即，带有then方法的对象)，返回的Promise对象的最终状态由then方法执行决定；否则的话(该value为空，基本类型或者不带then方法的对象),返回的Promise对象状态为fulfilled，并且将该value传递给对应的then方法。通常而言，如果你不知道一个值是否是Promise对象，使用Promise.resolve(value) 来返回一个Promise对象,这样就能将该value以Promise对象形式使用。]]></content>
@@ -56,9 +102,9 @@
     <content type="text"><![CDATA[技术人员了解业务，尽可能快的了解业务；进行设计，尽可能快的进行设计。 业务软件推荐采用事后的，阶段性的，小步快跑的重构。 gitlabbadges/shieldsConcise, consistent, and legible badges in SVG and raster format sebbo2002/gitlab-badgesThis server acts like a very tiny shields.io to generate SVG badges for your private GitLab instance. Uses shield.io’s gh-badges to generate them. gitlab-ci-using-badges-for-each-jobseafilerap2]]></content>
   </entry>
   <entry>
-    <title><![CDATA[NODEJS-外围设备]]></title>
+    <title><![CDATA[NODEJS-常用模块]]></title>
     <url>%2F2019%2F03%2F28%2FJS-NODEJS-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87%2F</url>
-    <content type="text"><![CDATA[BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace the driver for your adapter. Nordic Semiconductor（NRF）参见[NRF-BLE] NFCpokusew/nfc-pcsc123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号) |----reader类（参数） |----async write(blockNumber, data, blockSize = 4) |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff) |----async authenticate(blockNumber, keyType, key, obsolete = false) |----async loadAuthenticationKey(keyNumber, key) |----control(data, responseMaxLength) |----transmit(data, responseMaxLength) |----connect(mode = CONNECT_MODE_CARD) |----disconnect()|----emit error 参考[pokusew/electron-vue-nfc]例子(https://github.com/pokusew/electron-vue-nfc) 错误集锦 fatal error LNK1107 Error in node module: fatal error LNK1107 SEAFILEhaiwen/seafile-js]]></content>
+    <content type="text"><![CDATA[NFCnfc-pcsc1node:&gt;=8 分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号) |----reader类（参数） |----async write(blockNumber, data, blockSize = 4) |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff) |----async authenticate(blockNumber, keyType, key, obsolete = false) |----async loadAuthenticationKey(keyNumber, key) |----control(data, responseMaxLength) |----transmit(data, responseMaxLength) |----connect(mode = CONNECT_MODE_CARD) |----disconnect()|----emit error 参考[pokusew/electron-vue-nfc]例子(https://github.com/pokusew/electron-vue-nfc) 可以用于Electron APP，但是需要使用NODE原生模块。 USBusb 在安装usb之前，需要安装libusb 12Ubuntu/Debian: sudo apt-get install build-essential libudev-devWindows：Use Zadig to install the WinUSB driver for your USB device. Otherwise you will get LIBUSB_ERROR_NOT_SUPPORTED when attempting to open devices. rebuild usb需要使用原生模块 BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace the driver for your adapter. Nordic Semiconductor（NRF）参见[NRF-BLE] 其他Cfonts性感的终端字体。 chalk终端字型。 Electron打造桌面应用。 seafile不好用，可以自己参照github，自己实现。 [yargs/yargs]Yargs通过解析参数和生成优雅的用户界面，帮助您构建交互式命令行工具。 错误集锦 fatal error LNK1107 Error in node module: fatal error LNK1107]]></content>
       <tags>
         <tag>NODE</tag>
       </tags>
@@ -329,7 +375,7 @@
   <entry>
     <title><![CDATA[使用Electron创建桌面应用]]></title>
     <url>%2F2019%2F01%2F14%2FJS-NODEJS-Electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[Electron API 演示(中文版) 开始一个桌面项目使用Xmind制作功能描述和模块划分使用pencil制作界面原型使用yed制作流程图参考项目NordicSemiconductor/pc-nrfconnect-coreelectron-vue基于 vue (基本上是它听起来的样子) 来构造 electron 应用程序的样板代码。 问题 在Electron项目中npm install模块之后，可能会出先版本不匹配的问题，此时需要使用Electron-rebuild重新编译一下。 1234567npm install --save-dev electron-rebuildEvery time you run &quot;npm install&quot;, run this:./node_modules/.bin/electron-rebuildOn Windows if you have trouble, try:.\node_modules.bin\electron-rebuild.cmd 上个问题如果出问题可以使用下边的命令： 1./node_modules/.bin/electron-rebuild -m .]]></content>
+    <content type="text"><![CDATA[Electron API 演示(中文版) 开始一个桌面项目使用Xmind制作功能描述和模块划分使用pencil制作界面原型使用yed制作流程图参考项目NordicSemiconductor/pc-nrfconnect-coreelectron-vue基于 vue (基本上是它听起来的样子) 来构造 electron 应用程序的样板代码。 问题 在Electron项目中npm install模块之后，可能会出先版本不匹配的问题，此时需要使用Electron-rebuild重新编译一下。 1234567npm install --save-dev electron-rebuildEvery time you run &quot;npm install&quot;, run this:./node_modules/.bin/electron-rebuildOn Windows if you have trouble, try:.\node_modules.bin\electron-rebuild.cmd 上个问题如果出问题可以使用下边的命令： 1./node_modules/.bin/electron-rebuild -m . 上述命令依然失败，删除～/.electron-gyp重试。 gyp ERR! stack Error: read ECONNRESET为网络原因，在比较好的网络下解决。 pc-ble-driver-js test code dfu.js with electron module error关于module did not register的问题。增加.npmrc在工程目录下解决，都不需要Electron-rebuild123runtime = electrontarget = 2.0.17disturl = https://atom.io/download/electron]]></content>
   </entry>
   <entry>
     <title><![CDATA[VUE]]></title>
@@ -385,7 +431,7 @@
   <entry>
     <title><![CDATA[Node学习]]></title>
     <url>%2F2018%2F12%2F20%2FJS-NODEJS%2F</url>
-    <content type="text"><![CDATA[内置对象processprocess对象是 Node 的一个全局对象，提供当前 Node 进程的信息。它可以在脚本的任意位置使用，不必通过require命令加载。该对象部署了EventEmitter接口。 属性 描述 process.version 返回一个字符串，表示当前使用的 Node 版本，比如v7.10.0 Node.js EventEmitter12345678910111213141516171819创建一个模块import EventEmitter from &apos;events&apos;;class someThing extends EventEmitter&#123; a=null constructor ()&#123; //初始化 super() this.a = new b(); this.a.on(&quot;&quot;, ()=&gt;&#123; this.emit(&quot;&quot;,c); &#125;); &#125; method ()&#123; &#125;&#125;export default someThing; 安装首先安装NVMUbuntu creationix/nvm (win8及以上) coreybutler/nvm-windows win8以下系统1在Windows的系统变量和用户变量中，均添加NVM_HOME和NVM_SYMLINK这两个名称的变量，前一个变量的值为nvm的安装路径，如C:\Dev\nvm，后一个变量的值为node.js的安装路径，如C:\Dev\nodejs。除此之外，还要确保系统变量PATH中，有%NVM_HOME%和%NVM_SYMLINK%这两个值，每个值的后面要加上英文的分号;。 12node_mirror: http://npm.taobao.org/mirrors/node/ npm_mirror: https://npm.taobao.org/mirrors/npm/ 将上边两行放入settings.txt文件中。 安装npm及nodejs123nvm vnvm install 10.15.3nvm use 10.15.3 安装cnmp完全替代nmp(使用国外的项目不要使用cnpm)1npm install cnpm -g --registry=https://registry.npm.taobao.org NPM使用命令 命令 功能 npm view [name] versions 查看包所有的版本信息 npm info [name] 查看包所有的版本信息 npm view [name] version 查看包最新的版本信息 npm ls [name] 查看已安装的包的版本信息 npm ls [name] -g 查看全局安装的包的版本信息 npm install -g 升级全局的本地包 npm update [name] 升级某一个包 npm install –unsafe-perm 设置为true以在运行程序包脚本时禁止UID / GID切换 npm install –save [–save-dev] -S, –save: Package will appear in your dependencies;-D, –save-dev: Package will appear in your devDependencies;-O, –save-optional: Package will appear in your optionalDependencies. package.json作为描述文件，描述你的项目依赖哪些包。 文件内容： 12345678910name # 【必须】version # 【必须】description # 描述信息，有助于搜索main # 入口文件，一般都是 index.jsscripts # 支持的脚本，默认是一个空的 testkeywords # 关键字，有助于在人们使用 npm search 搜索时发现你的项目author # 作者信息license # 默认是 MITbugs # 当前项目的一些错误信息，如果有的话dependencies # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割 npm问题 sudo npm install 时，报错 permission denied 的解决方案 PM2pm2是一个内置负载均衡的node.js应用进程管理器 npm install -g pm2 命令 功能 pm2 start server.js –name 启动一个应用，并指定名称 pm2 list 列出正在运行的应用 pm2 stop [id/name] 停止对应的应用 pm2 delete [name] 删除对应的应用 pm2 reload [name] 代码有更新，重载应用 pm2 restart [name] 重启应用 pm2 show [name] 查看相应的应用详情 NODEJS工程开始12npm init # 可在当前目录下创建一个package.json文件npm init --yes # 可跳过回答问题步骤 目录结构index.jsmain|—-config.js 插件Cfonts性感的终端字体。 chalk终端字型。 [Electron]打造桌面应用。 [yargs/yargs]Yargs通过解析参数和生成优雅的用户界面，帮助您构建交互式命令行工具。]]></content>
+    <content type="text"><![CDATA[安装首先安装NVMUbuntu creationix/nvm (win8及以上) coreybutler/nvm-windows win8以下系统1在Windows的系统变量和用户变量中，均添加NVM_HOME和NVM_SYMLINK这两个名称的变量，前一个变量的值为nvm的安装路径，如C:\Dev\nvm，后一个变量的值为node.js的安装路径，如C:\Dev\nodejs。除此之外，还要确保系统变量PATH中，有%NVM_HOME%和%NVM_SYMLINK%这两个值，每个值的后面要加上英文的分号;。 12node_mirror: http://npm.taobao.org/mirrors/node/ npm_mirror: https://npm.taobao.org/mirrors/npm/ 将上边两行放入settings.txt文件中。 然后安装NODE(会自动安装npm)123nvm --versionnvm install 10.15.3nvm use 10.15.3 1234// 源管理npm install -g nrmnrm listnrm use taobao //尽量不适用taobao源 注：windows还需安装npm install -g node-gyp和npm install –global windows-build-tools 使用yarn替换npmnpm install yarn -g 或者Installation 安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)1npm install cnpm -g --registry=https://registry.npm.taobao.org 问题 electron打包出现 Error: Unresolved node modules: vue NPM和YARN使用命令 NPM 功能 YARN npm view [name] versions 查看包所有的版本信息 npm info [name] 查看包所有的版本信息 npm view [name] version 查看包最新的版本信息 npm ls [name] 查看已安装的包的版本信息 npm ls [name] -g 查看全局安装的包的版本信息 npm install -g 升级全局的本地包 yarn global add npm update [name] 升级某一个包 npm install –unsafe-perm 设置为true以在运行程序包脚本时禁止UID / GID切换 npm install –save [–save-dev] -S, –save: Package will appear in your dependencies;-D, –save-dev: Package will appear in your devDependencies;-O, –save-optional: Package will appear in your optionalDependencies. npm audit 允许开发人员分析复杂的代码，并查明特定的漏洞和缺陷 npm audit fix 检测项目依赖中的漏洞并自动安装需要更新的有漏洞的依赖，而不必再自己进行跟踪和修复 npm audit fix –package-lock-only 运行audit fix，但是只更新pkglock， 不更新node_modules npm audit fix –only=prod 只更新dependencies中安装的包，跳过devDependencies中的包 npm audit fix –dry-run –json 运行命令，得到audit fix将会更新的内容，并且输出json格式的安装信息，但是并不真的安装更新 npm audit –json 得到json格式的详细检测报告 package.json作为描述文件，描述你的项目依赖哪些包。 文件内容： 12345678910name # 【必须】version # 【必须】description # 描述信息，有助于搜索main # 入口文件，一般都是 index.jsscripts # 支持的脚本，默认是一个空的 testkeywords # 关键字，有助于在人们使用 npm search 搜索时发现你的项目author # 作者信息license # 默认是 MITbugs # 当前项目的一些错误信息，如果有的话dependencies # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割 npm问题 sudo npm install 时，报错 permission denied 的解决方案 PM2pm2是一个内置负载均衡的node.js应用进程管理器 npm install -g pm2 命令 功能 pm2 start server.js –name 启动一个应用，并指定名称 pm2 list 列出正在运行的应用 pm2 stop [id/name] 停止对应的应用 pm2 delete [name] 删除对应的应用 pm2 reload [name] 代码有更新，重载应用 pm2 restart [name] 重启应用 pm2 show [name] 查看相应的应用详情 内置对象processprocess对象是 Node 的一个全局对象，提供当前 Node 进程的信息。它可以在脚本的任意位置使用，不必通过require命令加载。该对象部署了EventEmitter接口。 属性 描述 process.version 返回一个字符串，表示当前使用的 Node 版本，比如v7.10.0 Node.js EventEmitter12345678910111213141516171819创建一个模块import EventEmitter from &apos;events&apos;;class someThing extends EventEmitter&#123; a=null constructor ()&#123; //初始化 super() this.a = new b(); this.a.on(&quot;&quot;, ()=&gt;&#123; this.emit(&quot;&quot;,c); &#125;); &#125; method ()&#123; &#125;&#125;export default someThing; NODEJS工程开始12npm init # 可在当前目录下创建一个package.json文件npm init --yes # 可跳过回答问题步骤 目录结构index.jsmain|—-config.js]]></content>
       <tags>
         <tag>NODE</tag>
       </tags>
