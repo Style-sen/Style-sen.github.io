@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[CMSIS-DAP]]></title>
-    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
-    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
-      <categories>
-        <category>嵌入式调试</category>
-      </categories>
-      <tags>
-        <tag>CMSIS-DAP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[python-桌面应用]]></title>
     <url>%2F2019%2F04%2F23%2Fpython-%E6%89%93%E5%8C%85%E5%BA%94%E7%94%A8%2F</url>
     <content type="text"><![CDATA[PyQt5安装12pip install PyQt5pip install pyqt5-tools //包含designer和pyuic工具 疑难杂症 cx-freeze与python3.7]]></content>
@@ -22,6 +11,28 @@
       <tags>
         <tag>PYTHON</tag>
         <tag>CX-FREEZE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[财会金融]]></title>
+    <url>%2F2019%2F04%2F23%2F%E8%B4%A2%E4%BC%9A%E9%87%91%E8%9E%8D%2F</url>
+    <content type="text"><![CDATA[注册会计师TMT行业分析员TMT，是电信、媒体和科技（Telecommunication，Media，Technology）三个英文单词的首字母，整合在一起，实际是未来电信、媒体\科技（互联网）、信息技术的融合趋势所产生的。 证券从业资格证CFA]]></content>
+      <categories>
+        <category>财会金融</category>
+      </categories>
+      <tags>
+        <tag>财会</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CMSIS-DAP]]></title>
+    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
+    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
+      <categories>
+        <category>嵌入式调试</category>
+      </categories>
+      <tags>
+        <tag>CMSIS-DAP</tag>
       </tags>
   </entry>
   <entry>
@@ -104,7 +115,7 @@
   <entry>
     <title><![CDATA[NODEJS-常用模块]]></title>
     <url>%2F2019%2F03%2F28%2FJS-NODEJS-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87%2F</url>
-    <content type="text"><![CDATA[NFCnfc-pcsc1node:&gt;=8 分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号) |----reader类（参数） |----async write(blockNumber, data, blockSize = 4) |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff) |----async authenticate(blockNumber, keyType, key, obsolete = false) |----async loadAuthenticationKey(keyNumber, key) |----control(data, responseMaxLength) |----transmit(data, responseMaxLength) |----connect(mode = CONNECT_MODE_CARD) |----disconnect()|----emit error 参考[pokusew/electron-vue-nfc]例子(https://github.com/pokusew/electron-vue-nfc) 可以用于Electron APP，但是需要使用NODE原生模块。 USBusb 在安装usb之前，需要安装libusb 12Ubuntu/Debian: sudo apt-get install build-essential libudev-devWindows：Use Zadig to install the WinUSB driver for your USB device. Otherwise you will get LIBUSB_ERROR_NOT_SUPPORTED when attempting to open devices. rebuild usb需要使用原生模块 BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace the driver for your adapter. Nordic Semiconductor（NRF）参见[NRF-BLE] 其他Cfonts性感的终端字体。 chalk终端字型。 Electron打造桌面应用。 seafile不好用，可以自己参照github，自己实现。 [yargs/yargs]Yargs通过解析参数和生成优雅的用户界面，帮助您构建交互式命令行工具。 错误集锦 fatal error LNK1107 Error in node module: fatal error LNK1107]]></content>
+    <content type="text"><![CDATA[NFCnfc-pcsc1node:&gt;=8 分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号) |----reader类（参数） |----async write(blockNumber, data, blockSize = 4) |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff) |----async authenticate(blockNumber, keyType, key, obsolete = false) |----async loadAuthenticationKey(keyNumber, key) |----control(data, responseMaxLength) |----transmit(data, responseMaxLength) |----connect(mode = CONNECT_MODE_CARD) |----disconnect()|----emit error 参考[pokusew/electron-vue-nfc]例子(https://github.com/pokusew/electron-vue-nfc) 可以用于Electron APP，但是需要使用NODE原生模块。 注：运行包含此模块的应用时，需要一个NFC读卡器硬件插到电脑上，激活读卡器服务。否则运行程序会出现空白的情况。 USBusb 在安装usb之前，需要安装libusb 12Ubuntu/Debian: sudo apt-get install build-essential libudev-devWindows：Use Zadig to install the WinUSB driver for your USB device. Otherwise you will get LIBUSB_ERROR_NOT_SUPPORTED when attempting to open devices. rebuild usb需要使用原生模块 BLE(使用CSR4.0)noble/noblewindows1234npm install --global --production windows-build-tools在工程目录下npm install bluetooth-hci-socketnpm install noble A WinUSB driver is required, use Zadig tool to replace the driver for your adapter. Nordic Semiconductor（NRF）参见[NRF-BLE] 其他Cfonts性感的终端字体。 chalk终端字型。 Electron打造桌面应用。 seafile不好用，可以自己参照github，自己实现。 [yargs/yargs]Yargs通过解析参数和生成优雅的用户界面，帮助您构建交互式命令行工具。 错误集锦 fatal error LNK1107 Error in node module: fatal error LNK1107]]></content>
       <tags>
         <tag>NODE</tag>
       </tags>
@@ -141,7 +152,7 @@
   <entry>
     <title><![CDATA[数据分析-1-python]]></title>
     <url>%2F2019%2F03%2F15%2F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-1-python%2F</url>
-    <content type="text"><![CDATA[pandas定义一个Series定义一个DataFrame1df = pd.DataFrame(一个字典) # 注意：如果使用所有标量值（key和value也是标量），必须设置一个索引（index=字典.keys()） 根据一列通过算法生成另一列12# 使用apply函数, 如果city字段包含&apos;ing&apos;关键词，则&apos;判断&apos;这一列赋值为1,否则为0如： frame[&apos;panduan&apos;] = frame.city.apply(lambda x: 1 if &apos;ing&apos; in x else 0) DataFrame的排名1DataFrame.rank(axis=0, method=&apos;average&apos;, numeric_only=None, na_option=&apos;keep&apos;, ascending=True, pct=False) 参数 取值 功能 axis {0 or ‘index’, 1 or ‘columns’}, default 0 index to direct ranking method|{‘average’, ‘min’, ‘max’, ‘first’, ‘dense’}|average:相同的值给一个平均排名，min: 对于相同的值都取小的排名，max: 对于相同的值都取大的排名，first:对于相同的值按照出现的顺序排名，dense: like ‘min’, but rank always increases by 1 between groups||numeric_only|boolean:default None|Include only float, int, boolean data. Valid only for DataFrame or Panel objects||na_option|{‘keep’, ‘top’, ‘bottom’}|keep: leave NA values where they are,top: smallest rank if ascending,bottom: smallest rank if descending||ascending|boolean, default True|False从高(1)到低(N)排序||pct|boolean, default False|Computes percentage rank of data| DataFrame索引1DataFrame.set_index(keys, drop=True, append=False, inplace=False, verify_integrity=False)]]></content>
+    <content type="text"><![CDATA[pandas定义一个Series定义一个DataFrame1df = pd.DataFrame(一个字典) # 注意：如果使用所有标量值（key和value也是标量），必须设置一个索引（index=字典.keys()） 根据一列通过算法生成另一列12# 使用apply函数, 如果city字段包含&apos;ing&apos;关键词，则&apos;判断&apos;这一列赋值为1,否则为0如： frame[&apos;panduan&apos;] = frame.city.apply(lambda x: 1 if &apos;ing&apos; in x else 0) DataFrame的排名1DataFrame.rank(axis=0, method=&apos;average&apos;, numeric_only=None, na_option=&apos;keep&apos;, ascending=True, pct=False) 参数 取值 功能 axis {0 or ‘index’, 1 or ‘columns’}, default 0 index to direct ranking method|{‘average’, ‘min’, ‘max’, ‘first’, ‘dense’}|average:相同的值给一个平均排名，min: 对于相同的值都取小的排名，max: 对于相同的值都取大的排名，first:对于相同的值按照出现的顺序排名，dense: like ‘min’, but rank always increases by 1 between groups||numeric_only|boolean:default None|Include only float, int, boolean data. Valid only for DataFrame or Panel objects||na_option|{‘keep’, ‘top’, ‘bottom’}|keep: leave NA values where they are,top: smallest rank if ascending,bottom: smallest rank if descending||ascending|boolean, default True|False从高(1)到低(N)排序||pct|boolean, default False|Computes percentage rank of data| DataFrame索引1DataFrame.set_index(keys, drop=True, append=False, inplace=False, verify_integrity=False) DataFrame将一列导出数组1df[&apos;column&apos;].tolist()]]></content>
       <tags>
         <tag>数据分析</tag>
       </tags>
@@ -209,7 +220,7 @@
   <entry>
     <title><![CDATA[前端扩展和工程模板]]></title>
     <url>%2F2019%2F02%2F21%2F%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95%2F</url>
-    <content type="text"><![CDATA[工程模板 vue-element-admin基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。 element-ui el-card 卡片 前端风向标 THX from Alimama FE]]></content>
+    <content type="text"><![CDATA[前端风向标 THX from Alimama FE THX 是一系列前端开发相关的工具，框架和类库的集合，也是阿里集团阿里妈妈、一淘网和无线产品线 以及小微金服部分前端工程师的技术组织名称。]]></content>
       <tags>
         <tag>前端</tag>
       </tags>
@@ -288,7 +299,7 @@
   <entry>
     <title><![CDATA[Python笔记(1):类]]></title>
     <url>%2F2019%2F01%2F22%2FPython%E7%AC%94%E8%AE%B0-1%2F</url>
-    <content type="text"><![CDATA[类属性直接在class中定义属性，这种属性是类属性，这个属性虽然归类所有，但类的所有实例都可以访问到，但是不能修改，只能类名.属性进行修改。 实例属性在类方法中定义的属性为实例属性，各个实例相互独立。]]></content>
+    <content type="text"><![CDATA[类属性直接在class中定义属性，这种属性是类属性，这个属性虽然归类所有，但类的所有实例都可以访问到，但是不能修改，只能类名.属性进行修改。 实例属性在类方法中定义的属性为实例属性，各个实例相互独立。 数组有数组a，要求去掉a所有为0的元素1234567891011a = [2,4,0,8,9,10,100,0,9,7]# 方法1：Filtera= filter(None, a)# 方法2：Lambadaa = filter(lambda x: x != 0, a)# 方法3：forfor b in a: if b == 0: a.remove(b)]]></content>
       <tags>
         <tag>Python</tag>
         <tag>后端</tag>
@@ -375,12 +386,19 @@
   <entry>
     <title><![CDATA[使用Electron创建桌面应用]]></title>
     <url>%2F2019%2F01%2F14%2FJS-NODEJS-Electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[Electron API 演示(中文版) 开始一个桌面项目使用Xmind制作功能描述和模块划分使用pencil制作界面原型使用yed制作流程图参考项目NordicSemiconductor/pc-nrfconnect-coreelectron-vue基于 vue (基本上是它听起来的样子) 来构造 electron 应用程序的样板代码。 问题 在Electron项目中npm install模块之后，可能会出先版本不匹配的问题，此时需要使用Electron-rebuild重新编译一下。 1234567npm install --save-dev electron-rebuildEvery time you run &quot;npm install&quot;, run this:./node_modules/.bin/electron-rebuildOn Windows if you have trouble, try:.\node_modules.bin\electron-rebuild.cmd 上个问题如果出问题可以使用下边的命令： 1./node_modules/.bin/electron-rebuild -m . 上述命令依然失败，删除～/.electron-gyp重试。 gyp ERR! stack Error: read ECONNRESET为网络原因，在比较好的网络下解决。 pc-ble-driver-js test code dfu.js with electron module error关于module did not register的问题。增加.npmrc在工程目录下解决，都不需要Electron-rebuild123runtime = electrontarget = 2.0.17disturl = https://atom.io/download/electron]]></content>
+    <content type="text"><![CDATA[Electron API 演示(中文版) 完成一个桌面项目使用Xmind制作功能描述和模块划分使用pencil制作界面原型使用yed制作流程图开始一个工程注：创建一个新的空的工程之后，跑通整个流程（打包之后可运行，可CI/CD）之后，再开始写业务代码。 参考项目NordicSemiconductor/pc-nrfconnect-coreelectron-vue基于 vue (基本上是它听起来的样子) 来构造 electron 应用程序的样板代码。 项目结构webpack配置.electron-vue/webpack.renderer.config.js针对 electron 的 renderer 进程。此配置用来处理你的 Vue 应用程序，因此它包含 vue-loader 和许多其他可在官方 vuejs-templates/webpack 样板中找到的配置。 白名单里的外部组件一个关于此配置的重要的事情是，你可以将特定的模块列入白名单，而不是把它视为 webpack 的 externals。并没有很多情况需要这个功能，但在某些情况下，对于提供原始的 *.vue 组件的 Vue UI 库，他们需要被列入白名单，以至于 vue-loader 能够编译它们。另一个使用情况是使用 webpack 的 alias，例如设置 vue 来导入完整的 编译+运行环境 的构建。因此，vue 已经在白名单中了。例如element-ui。 打包分发 参考如何深入理解 electron-vue 的 build 构建命令 使用electron-builder，配置文件在package.json中的build项中，需要先node .electron/build.js,然后electron-builder. 使用electron-packager，配置文件在.electron/build.config.js中,packager的调用直接在.electron/build.js中，只需要node .electron/build.js. electron-vue构建之后，会有asar文件。如何查看asar文件内部结构？asar辅助查看工具 打包分发electron-builder 在CI服务器和开发机器上进行代码签名； 自动更新； 多种目标格式； DockerTo build Linux or Windows on any platform. 技巧 electron 打包之后，如何使用 F12 开启开发者工具？ 疑难杂症 在Electron项目中npm install模块之后，可能会出先版本不匹配的问题，此时需要使用Electron-rebuild重新编译一下。 1234567npm install --save-dev electron-rebuildEvery time you run &quot;npm install&quot;, run this:./node_modules/.bin/electron-rebuildOn Windows if you have trouble, try:.\node_modules.bin\electron-rebuild.cmd 上个问题如果出问题可以使用下边的命令： 1./node_modules/.bin/electron-rebuild -m . 上述命令依然失败，删除～/.electron-gyp重试。 gyp ERR! stack Error: read ECONNRESET为网络原因，在比较好的网络下解决。 pc-ble-driver-js test code dfu.js with electron module error关于module did not register的问题。增加.npmrc在工程目录下解决，都不需要Electron-rebuild 123runtime = electrontarget = 2.0.17disturl = https://atom.io/download/electron electron应用中使用了NFC读卡器功能，依赖的是系统的pcsc服务，此时运行代码显示空白，需要一个读卡器硬件辅助，启动读卡器服务，然后打开软件之后，不再是空白。 APIBrowserWindow 创建和控制浏览器窗口 在主进程和渲染进程调用的方式不一样12在主进程中直接调用：const &#123;BrowserWindow&#125; = require(&apos;electron&apos;)在渲染进程中则需使用remote来调用：const &#123;BrowserWindow&#125; = require(&apos;electron&apos;).remote]]></content>
+      <categories>
+        <category>桌面应用</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+        <tag>桌面应用</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[VUE]]></title>
     <url>%2F2019%2F01%2F14%2F%E5%89%8D%E7%AB%AF-VUE%2F</url>
-    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &apos;My App&apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&#123; beforeCreate: function () &#123; console.log(this.$appName) &#125;&#125;)则控制台会打印出 My App。就这么简单！ 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。 Vue导出页面为PDF格式 Vue导出json数据到Excel电子表格 安装使用Vue CLI 可图形界面创建VUE项目(vue ci)。 关于source map,在生产环境下，一定要关闭source map选项，这样在chrome的调试窗口source选项卡下，就不会看到项目源码。否则，在build的dist/js目录下有map文件。 使用vue cli使用的配置文件为 vue.config.js123module.exports = &#123; productionSourceMap: false&#125; VUE插件VUE-ROUTER vue router带参数页面刷新或者回退参数消失的解决方法12this.$router.push(&#123;path:&apos;&apos;,params:&#123;&#125;,query:&#123;&#125;&#125;)patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path vue-json-excel]]></content>
+    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &apos;My App&apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&#123; beforeCreate: function () &#123; console.log(this.$appName) &#125;&#125;)则控制台会打印出 My App。就这么简单！ 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。 Vue导出页面为PDF格式 Vue导出json数据到Excel电子表格 安装使用Vue CLI 可图形界面创建VUE项目(vue ci)。 关于source map,在生产环境下，一定要关闭source map选项，这样在chrome的调试窗口source选项卡下，就不会看到项目源码。否则，在build的dist/js目录下有map文件。 使用vue cli使用的配置文件为 vue.config.js123module.exports = &#123; productionSourceMap: false&#125; VUE插件VUE-ROUTER vue router带参数页面刷新或者回退参数消失的解决方法12this.$router.push(&#123;path:&apos;&apos;,params:&#123;&#125;,query:&#123;&#125;&#125;)patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path vue-json-excel基于VUE的扩展IVIEW一套基于Vue.js的高质量UI 组件库组件多于element-ui Element一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 vue-element-admin基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。]]></content>
       <tags>
         <tag>前端</tag>
         <tag>VUE</tag>
