@@ -39,14 +39,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[开始一个python应用]]></title>
-    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[虚拟环境venv模块只能创建python同版本的虚拟环境]]></content>
+    <title><![CDATA[CMSIS-DAP]]></title>
+    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
+    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
       <categories>
-        <category>PYTHON</category>
+        <category>嵌入式调试</category>
       </categories>
       <tags>
-        <tag>PYTHON</tag>
+        <tag>CMSIS-DAP</tag>
       </tags>
   </entry>
   <entry>
@@ -63,14 +63,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CMSIS-DAP]]></title>
-    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
-    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
+    <title><![CDATA[开始一个python应用]]></title>
+    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[虚拟环境venv模块只能创建python同版本的虚拟环境]]></content>
       <categories>
-        <category>嵌入式调试</category>
+        <category>PYTHON</category>
       </categories>
       <tags>
-        <tag>CMSIS-DAP</tag>
+        <tag>PYTHON</tag>
       </tags>
   </entry>
   <entry>
