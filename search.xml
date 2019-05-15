@@ -28,28 +28,6 @@
     <content type="text"><![CDATA[基本信息 celery/django-celery老的celery对django的集成，已经不再更新，最新版本为3.2.0（2016年11月23日），不再使用。 Celery 4.0支持Django 1.8和更新版本，所以直接使用celery即可pip install celery。 使用celery/django-celery-results将任务结果保存进Django ORM或者Django Cache中，最新版本为1.0.4（2018年11月14日）。 参考celery文档关于django的描述。 celery-with-redis不再使用，已不再更新。 celery任务放在每个APP下的tasks.py模块中。 参考Django初步使用Celery; 参考Django Celery定时任务和时间设置。]]></content>
   </entry>
   <entry>
-    <title><![CDATA[开始一个python应用]]></title>
-    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[虚拟环境venv模块只能创建python同版本的虚拟环境]]></content>
-      <categories>
-        <category>PYTHON</category>
-      </categories>
-      <tags>
-        <tag>PYTHON</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[CMSIS-DAP]]></title>
-    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
-    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
-      <categories>
-        <category>嵌入式调试</category>
-      </categories>
-      <tags>
-        <tag>CMSIS-DAP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[财会金融]]></title>
     <url>%2F2019%2F04%2F23%2F%E8%B4%A2%E4%BC%9A%E9%87%91%E8%9E%8D%2F</url>
     <content type="text"><![CDATA[注册会计师TMT行业分析员TMT，是电信、媒体和科技（Telecommunication，Media，Technology）三个英文单词的首字母，整合在一起，实际是未来电信、媒体\科技（互联网）、信息技术的融合趋势所产生的。 证券从业资格证CFA]]></content>
@@ -58,6 +36,17 @@
       </categories>
       <tags>
         <tag>财会</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[开始一个python应用]]></title>
+    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[虚拟环境venv模块只能创建python同版本的虚拟环境]]></content>
+      <categories>
+        <category>PYTHON</category>
+      </categories>
+      <tags>
+        <tag>PYTHON</tag>
       </tags>
   </entry>
   <entry>
@@ -71,6 +60,17 @@
       <tags>
         <tag>PYTHON</tag>
         <tag>CX-FREEZE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CMSIS-DAP]]></title>
+    <url>%2F2019%2F04%2F23%2F%E5%B5%8C%E5%85%A5%E5%BC%8F-ARM-CMSIS-DAP%2F</url>
+    <content type="text"><![CDATA[openocd123-f 指定配置文件（一般一个接口配置一个target配置）-c 命令-c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd123456789101112131415161718PyOCD debug tools for Arm Cortex devicesoptional arguments: -h, --help show this help message and exit -V, --version show program&apos;s version number and exit --help-options Display available session options.subcommands: commander Interactive command console. cmd Alias for &apos;commander&apos;. erase Erase entire device flash or specified sectors. flash Program an image to device flash. gdbserver Run the gdb remote server(s). gdb Alias for &apos;gdbserver&apos;. json Output information as JSON. list List information about probes, targets, or boards. pack Manage CMSIS-Packs for target support.]]></content>
+      <categories>
+        <category>嵌入式调试</category>
+      </categories>
+      <tags>
+        <tag>CMSIS-DAP</tag>
       </tags>
   </entry>
   <entry>
