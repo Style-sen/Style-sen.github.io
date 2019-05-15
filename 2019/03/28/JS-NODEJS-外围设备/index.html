@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-07T01:42:27.369Z">
+<meta property="og:updated_time" content="2019-05-15T02:48:39.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NODEJS-常用模块">
 <meta name="twitter:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
@@ -337,6 +337,8 @@
           
 
           
+
+          
             
           
 
@@ -389,6 +391,8 @@
 </li>
 <li>可以用于Electron APP，但是<a href="https://electronjs.org/docs/tutorial/using-native-node-modules" target="_blank" rel="noopener">需要使用NODE原生模块</a>。</li>
 <li>注：<code>运行包含此模块的应用时，需要一个NFC读卡器硬件插到电脑上，激活读卡器服务。否则运行程序会出现空白的情况。</code></li>
+<li>使用此模块读取ISO 14443-4 tags时，需要进行额外的配置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   // enable when you want to auto-process ISO 14443-4 tags (standard=TAG_ISO_14443_4)</span><br><span class="line">// when an ISO 14443-4 is detected, SELECT FILE command with the AID is issued</span><br><span class="line">// the response is available as card.data in the card event</span><br><span class="line">// you can set reader.aid to:</span><br><span class="line">// 1. a HEX string (which will be parsed automatically to Buffer)</span><br><span class="line">// reader.aid = &apos;F222222222&apos;;</span><br><span class="line">// 2. an instance of Buffer containing the AID bytes</span><br><span class="line">// reader.aid = Buffer.from(&apos;F222222222&apos;, &apos;hex&apos;);</span><br><span class="line">// 3. a function which must return an instance of a Buffer when invoked with card object (containing standard and atr)</span><br><span class="line">//    the function may generate AIDs dynamically based on the detected card</span><br><span class="line">// reader.aid = (&#123; standard, atr &#125;) =&gt; &#123;</span><br><span class="line">//</span><br><span class="line">// 	return Buffer.from(&apos;F222222222&apos;, &apos;hex&apos;);</span><br><span class="line">//</span><br><span class="line">// &#125;;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h2 id="USB"><a href="#USB" class="headerlink" title="USB"></a>USB</h2><h3 id="usb"><a href="#usb" class="headerlink" title="usb"></a><a href="https://www.npmjs.com/package/usb" target="_blank" rel="noopener">usb</a></h3><ol>
 <li><p>在安装usb之前，需要安装libusb</p>
@@ -528,7 +532,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +543,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -550,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -603,12 +607,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
-
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
   
 </div>
 
@@ -1112,5 +1123,6 @@
 
   
 
+  
 </body>
 </html>

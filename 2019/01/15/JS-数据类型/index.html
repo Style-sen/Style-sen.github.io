@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用          add   clear   keys   values   has   forEach   delete    数组Array既是一个数组，也是一个字典。    语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.pus">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T06:53:22.737Z">
+<meta property="og:updated_time" content="2019-05-15T02:48:39.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS数据类型">
 <meta name="twitter:description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用          add   clear   keys   values   has   forEach   delete    数组Array既是一个数组，也是一个字典。    语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.pus">
@@ -337,6 +337,8 @@
           
 
           
+
+          
             
           
 
@@ -460,11 +462,19 @@
 </tr>
 <tr>
 <td>array.forEach(function(currentValue, index, arr), thisValue)</td>
-<td>用于调用数组的每个元素，并将元素传递给回调函数</td>
+<td>用于调用数组的每个元素，并将元素传递给回调函数,没有返回值，forEach无法跳出循环（使用return也不行，只能抛异常跳出）</td>
 </tr>
 <tr>
 <td>[].map()</td>
 <td>基本用法跟forEach方法类似，作用不难理解，“映射”嘛，也就是原数组被“映射”成对应新数组</td>
+</tr>
+<tr>
+<td>[].some()</td>
+<td>返回一个boolean，判断是否有元素是否符合func条件,返回true时终止遍历</td>
+</tr>
+<tr>
+<td>[].every()</td>
+<td>返回一个boolean，判断每个元素是否符合func条件,every 返回false时终止遍历,返回true继续遍历</td>
 </tr>
 <tr>
 <td>array.length</td>
@@ -472,7 +482,7 @@
 </tr>
 <tr>
 <td>arrayObject.concat(arrayX,arrayX,……,arrayX)</td>
-<td>返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组</td>
+<td>返回一个新的数组,不改变原数组的值。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组</td>
 </tr>
 <tr>
 <td>Array.from()</td>
@@ -514,6 +524,10 @@
 <td>string.indexOf(‘str’)</td>
 <td>判断字符串是否包含另一个字符串</td>
 </tr>
+<tr>
+<td>encodeURIComponent(str)</td>
+<td>函数可把字符串作为 URI 组件进行编码</td>
+</tr>
 </tbody>
 </table>
 <h2 id="json"><a href="#json" class="headerlink" title="json"></a>json</h2><table>
@@ -536,7 +550,7 @@
 </tr>
 </tbody>
 </table>
-
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2>
       
     </div>
     
@@ -655,7 +669,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -666,7 +680,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -677,7 +691,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -710,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">1.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json"><span class="nav-number">4.</span> <span class="nav-text">json</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">1.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json"><span class="nav-number">4.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换"><span class="nav-number">5.</span> <span class="nav-text">转换</span></a></li></ol></div>
             
 
           </div>
@@ -730,12 +744,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
-
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
   
 </div>
 
@@ -1239,5 +1260,6 @@
 
   
 
+  
 </body>
 </html>

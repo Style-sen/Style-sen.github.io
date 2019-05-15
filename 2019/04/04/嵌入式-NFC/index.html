@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="NFC类型NFC-A基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B基于ISO/IEC 14443B。类似RFID-B。AM调制曼彻斯特编码（边沿触发）。106 Kbps数据速率。 NFC-F基于FeliCA JIS X6319-4。更快。也被称作FeliCA。它被用于各种各样的应用，如基于creadit卡或借记卡的支付">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-08T02:33:18.269Z">
+<meta property="og:updated_time" content="2019-05-15T02:48:39.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式-NFC">
 <meta name="twitter:description" content="NFC类型NFC-A基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B基于ISO/IEC 14443B。类似RFID-B。AM调制曼彻斯特编码（边沿触发）。106 Kbps数据速率。 NFC-F基于FeliCA JIS X6319-4。更快。也被称作FeliCA。它被用于各种各样的应用，如基于creadit卡或借记卡的支付">
@@ -337,6 +337,8 @@
           
 
           
+
+          
             
           
 
@@ -449,7 +451,229 @@
 </tr>
 </tbody>
 </table>
-<h2 id="NRF52832"><a href="#NRF52832" class="headerlink" title="NRF52832"></a>NRF52832</h2><p>NFCT(Near field communication tag)是NFC-A类型。</p>
+<h2 id="APDU"><a href="#APDU" class="headerlink" title="APDU"></a>APDU</h2><ol>
+<li>智能卡与智能卡读卡器之间传送的信息单元, 是给智能卡发送的命令。</li>
+</ol>
+<h3 id="IFD（读卡接口设备）与IC卡之间的通讯："><a href="#IFD（读卡接口设备）与IC卡之间的通讯：" class="headerlink" title="IFD（读卡接口设备）与IC卡之间的通讯："></a>IFD（读卡接口设备）与IC卡之间的通讯：</h3><ol>
+<li>首先，IFD发送5个字节的命令头给IC卡，这5个字节的内容告诉了IC卡要做什么操作；</li>
+<li>然后，IC卡回传一个过程字节给IFD，告诉IFD，IC卡是否支持该操作；</li>
+<li>如果返回的过程字节告诉IFD——IC卡支持该操作，则接下来就进行数据的传输（如果有的话），数据从IFD输入到IC卡或数据从IC卡输出到IFD；</li>
+<li>如果返回的过程字节告诉IFD——IC卡不支持该操作，则IC卡回传给IFD两个状态字节SW1 SW2，IFD根据SW1 SW2两字节判断IC卡不支持该操作的原因；</li>
+</ol>
+<h3 id="命令头"><a href="#命令头" class="headerlink" title="命令头"></a>命令头</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLA</td>
+<td>指令类别</td>
+<td>其中值‘FF’被保留用于PPS。注意 ISO/IEC 7816-4 强制‘FF’对于CLA为无效值</td>
+</tr>
+<tr>
+<td>INS</td>
+<td>指令码</td>
+<td>其中值‘6X’和‘9X’为无效值。注意 ISO/IEC 7816-4 强制‘6X’和‘9X’对于INS为无效值</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>参数1</td>
+<td></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>参数2</td>
+<td></td>
+</tr>
+<tr>
+<td>Lc</td>
+<td>Data的长度</td>
+<td>=0表示从卡传输256字节</td>
+</tr>
+<tr>
+<td>Data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Le</td>
+<td>希望响应的数据的长度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令类别和指令码"><a href="#指令类别和指令码" class="headerlink" title="指令类别和指令码"></a>指令类别和指令码</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>类别</th>
+<th>指令码</th>
+<th>功能</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT</td>
+<td>00</td>
+<td>A4</td>
+<td>选择文件</td>
+<td></td>
+</tr>
+<tr>
+<td>READ BINARY</td>
+<td>00</td>
+<td>B0</td>
+<td>读二进制文件内容</td>
+<td>0x00, 0xb0, 0x00, 0x00, 0x10 读取16个字节</td>
+</tr>
+<tr>
+<td>READ RECORD</td>
+<td>00</td>
+<td>B2</td>
+<td>读记录文件指定内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>十进制表示</th>
+<th>性质</th>
+<th>错误解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9000</td>
+<td>144， 0</td>
+<td>正常</td>
+<td>成功执行</td>
+</tr>
+<tr>
+<td>6200</td>
+<td>警告 信息未提供</td>
+</tr>
+<tr>
+<td>6281</td>
+<td>警告 回送数据可能出错</td>
+</tr>
+<tr>
+<td>6282</td>
+<td>警告 文件长度小于Le</td>
+</tr>
+<tr>
+<td>6283</td>
+<td>警告 选中的文件无效</td>
+</tr>
+<tr>
+<td>6284</td>
+<td>警告 FCI格式与P2指定的不符</td>
+</tr>
+<tr>
+<td>6300 警告 鉴别失败</td>
+</tr>
+<tr>
+<td>63Cx 警告 校验失败（x－允许重试次数）</td>
+</tr>
+<tr>
+<td>6400 出错 状态标志位没有变</td>
+</tr>
+<tr>
+<td>6581 出错 内存失败</td>
+</tr>
+<tr>
+<td>6700 出错 长度错误</td>
+</tr>
+<tr>
+<td>6882 出错 不支持安全报文</td>
+</tr>
+<tr>
+<td>6981 出错 命令与文件结构不相容，当前文件非所需文件</td>
+</tr>
+<tr>
+<td>6982 出错 操作条件（AC）不满足，没有校验PIN</td>
+</tr>
+<tr>
+<td>6983 出错 认证方法锁定，PIN被锁定</td>
+</tr>
+<tr>
+<td>6984 出错 随机数无效，引用的数据无效</td>
+</tr>
+<tr>
+<td>6985 出错 使用条件不满足</td>
+</tr>
+<tr>
+<td>6986 出错 不满足命令执行条件（不允许的命令，INS有错）</td>
+</tr>
+<tr>
+<td>6987 出错 MAC丢失</td>
+</tr>
+<tr>
+<td>6988 出错 MAC不正确</td>
+</tr>
+<tr>
+<td>698D 保留</td>
+</tr>
+<tr>
+<td>6A80 出错 数据域参数不正确</td>
+</tr>
+<tr>
+<td>6A81 出错 功能不支持；创建不允许；目录无效；应用锁定</td>
+</tr>
+<tr>
+<td>6A82</td>
+<td>106,130</td>
+<td>出错</td>
+<td>该文件未找到</td>
+</tr>
+<tr>
+<td>6A83 出错 该记录未找到</td>
+</tr>
+<tr>
+<td>6A84 出错 文件预留空间不足</td>
+</tr>
+<tr>
+<td>6A86 出错 P1或P2不正确</td>
+</tr>
+<tr>
+<td>6A88 出错 引用数据未找到</td>
+</tr>
+<tr>
+<td>6B00 出错 参数错误</td>
+</tr>
+<tr>
+<td>6Cxx 出错 Le长度错误，实际长度是xx</td>
+</tr>
+<tr>
+<td>6E00 出错 不支持的类：CLA有错</td>
+</tr>
+<tr>
+<td>6F00 出错 数据无效</td>
+</tr>
+<tr>
+<td>6D00 出错 不支持的指令代码</td>
+</tr>
+<tr>
+<td>9301 出错 资金不足</td>
+</tr>
+<tr>
+<td>9302 出错 MAC无效</td>
+</tr>
+<tr>
+<td>9303 出错 应用被永久锁定</td>
+</tr>
+</tbody>
+</table>
+<p>9401 出错 交易金额不足<br>9402 出错 交易计数器达到最大值<br>9403 出错 密钥索引不支持<br>9406 出错 所需MAC不可用<br>6900 出错 不能处理<br>6901 出错 命令不接受（无效状态）<br>61xx 正常 需发GET RESPONSE命令<br>6600 出错 接收通讯超时<br>6601 出错 接收字符奇偶错<br>6602 出错 校验和不对<br>6603 警告 当前DF文件无FCI<br>6604 警告 当前DF下无SF或KF</p>
+<h2 id="NDEF"><a href="#NDEF" class="headerlink" title="NDEF"></a>NDEF</h2><h2 id="读卡器"><a href="#读卡器" class="headerlink" title="读卡器"></a>读卡器</h2><h3 id="ACR122U"><a href="#ACR122U" class="headerlink" title="ACR122U"></a><a href="http://www.acr122.com/" target="_blank" rel="noopener">ACR122U</a></h3><ol>
+<li>支持Android™ OS 3.1 及以上版本（使用OTG）。</li>
+</ol>
+<h2 id="模拟标签"><a href="#模拟标签" class="headerlink" title="模拟标签"></a>模拟标签</h2><h3 id="NRF52832"><a href="#NRF52832" class="headerlink" title="NRF52832"></a>NRF52832</h3><p>NFCT(Near field communication tag)是NFC-A类型。</p>
 <table>
 <thead>
 <tr>
@@ -468,7 +692,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h3><h4 id="nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><a href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h" class="headerlink" title="nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h"></a>nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</h4><p> This is the NFC Forum NDEF tag 4 type emulation library. It implements the ISO14443-4A protocol (ISO-DEP) and additionally can emulate a read-writable NDEF content. If the emulation of the NDEF content is not needed, the library works in a raw mode where all APDUs are delivered to the user, who is then responsible to generate a timely RPDU as a response.</p>
+<h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><h5 id="nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><a href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h" class="headerlink" title="nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h"></a>nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</h5><p> This is the NFC Forum NDEF tag 4 type emulation library. It implements the ISO14443-4A protocol (ISO-DEP) and additionally can emulate a read-writable NDEF content. If the emulation of the NDEF content is not needed, the library works in a raw mode where all APDUs are delivered to the user, who is then responsible to generate a timely RPDU as a response.</p>
 <p> The sequence of initializing functions determines whether the NDEF emulation will run or whether the raw mode is used.</p>
 <ul>
 <li><p>E.g. NDEF emulation</p>
@@ -478,7 +702,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* @ref nfc_t4t_setup</span><br><span class="line">* @ref nfc_t4t_emulation_start</span><br><span class="line">* ... running in RAW emulation mode ...</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><a href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h" class="headerlink" title="nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h"></a>nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</h4><p>NFC Forum type 2 tag.</p>
+<h5 id="nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><a href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h" class="headerlink" title="nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h"></a>nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</h5><p>NFC Forum type 2 tag.</p>
 <h2 id="缩略语"><a href="#缩略语" class="headerlink" title="缩略语"></a>缩略语</h2><table>
 <thead>
 <tr>
@@ -612,7 +836,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -623,7 +847,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -634,7 +858,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -667,7 +891,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC类型"><span class="nav-number">1.</span> <span class="nav-text">NFC类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-A"><span class="nav-number">1.1.</span> <span class="nav-text">NFC-A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-B"><span class="nav-number">1.2.</span> <span class="nav-text">NFC-B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-F"><span class="nav-number">1.3.</span> <span class="nav-text">NFC-F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC标签类型"><span class="nav-number">2.</span> <span class="nav-text">NFC标签类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NRF52832"><span class="nav-number">3.</span> <span class="nav-text">NRF52832</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SDK"><span class="nav-number">3.1.</span> <span class="nav-text">SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><span class="nav-number">3.1.1.</span> <span class="nav-text">nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><span class="nav-number">3.1.2.</span> <span class="nav-text">nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略语"><span class="nav-number">4.</span> <span class="nav-text">缩略语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC类型"><span class="nav-number">1.</span> <span class="nav-text">NFC类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-A"><span class="nav-number">1.1.</span> <span class="nav-text">NFC-A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-B"><span class="nav-number">1.2.</span> <span class="nav-text">NFC-B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-F"><span class="nav-number">1.3.</span> <span class="nav-text">NFC-F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC标签类型"><span class="nav-number">2.</span> <span class="nav-text">NFC标签类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APDU"><span class="nav-number">3.</span> <span class="nav-text">APDU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IFD（读卡接口设备）与IC卡之间的通讯："><span class="nav-number">3.1.</span> <span class="nav-text">IFD（读卡接口设备）与IC卡之间的通讯：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令头"><span class="nav-number">3.2.</span> <span class="nav-text">命令头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令类别和指令码"><span class="nav-number">3.3.</span> <span class="nav-text">指令类别和指令码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">3.4.</span> <span class="nav-text">状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NDEF"><span class="nav-number">4.</span> <span class="nav-text">NDEF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读卡器"><span class="nav-number">5.</span> <span class="nav-text">读卡器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ACR122U"><span class="nav-number">5.1.</span> <span class="nav-text">ACR122U</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟标签"><span class="nav-number">6.</span> <span class="nav-text">模拟标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NRF52832"><span class="nav-number">6.1.</span> <span class="nav-text">NRF52832</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDK"><span class="nav-number">6.1.1.</span> <span class="nav-text">SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略语"><span class="nav-number">7.</span> <span class="nav-text">缩略语</span></a></li></ol></div>
             
 
           </div>
@@ -687,12 +911,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
-
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
   
 </div>
 
@@ -1196,5 +1427,6 @@
 
   
 
+  
 </body>
 </html>
