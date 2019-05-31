@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="server,">
+  <meta name="keywords" content="运维,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。  数据库 RDS for MySQL 物理备份文件恢复到自建数据库;  系统管理systemctlSystemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。">
-<meta name="keywords" content="server">
+<meta name="description" content="Ubuntu服务系统">
+<meta name="keywords" content="运维">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu服务器系统及基础设施">
 <meta property="og:url" content="http://yoursite.com/2019/01/23/运维-Ubuntu服务器系统/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。  数据库 RDS for MySQL 物理备份文件恢复到自建数据库;  系统管理systemctlSystemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。">
+<meta property="og:description" content="Ubuntu服务系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-27T09:11:23.145Z">
+<meta property="og:updated_time" content="2019-05-28T03:03:22.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu服务器系统及基础设施">
-<meta name="twitter:description" content="U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。  数据库 RDS for MySQL 物理备份文件恢复到自建数据库;  系统管理systemctlSystemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。">
+<meta name="twitter:description" content="Ubuntu服务系统">
 
 
 
@@ -335,6 +335,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -382,6 +404,10 @@
           
 
           
+              <div class="post-description">
+                  Ubuntu服务系统
+              </div>
+          
 
         </div>
       </header>
@@ -406,7 +432,11 @@
 <h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><ol>
 <li><a href="https://help.aliyun.com/knowledge_detail/41817.html" target="_blank" rel="noopener">RDS for MySQL 物理备份文件恢复到自建数据库</a>;</li>
 </ol>
-<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h3><p>Systemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。</p>
+<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h3><ol>
+<li>普通用户使用$PATH；</li>
+<li>使用sudo去执行一个程序时，出于安全的考虑，这个程序将在新的、最小化的环境中执行。也就是说，诸如PATH这样的环境变量，在sudo命令下已经被重置成默认的状态了。所以当一个刚初始化的PATH变量中不会包含你所要运行的程序所在的目录，用sudo去执行，你就会得到“command not found”的错误。<br>要改变PATH在sudo会话中的初始值，打开/etc/sudoers文件，找到“secure_path”一行。当值执行sudo命令时，”secure_path“中包含的路径将被当做默认PATH变量使用。比如加入/usr/local/bin到其中：<br><code>Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin</code><br>更改会即可生效。</li>
+</ol>
+<h3 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h3><p>Systemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。</p>
 <table>
 <thead>
 <tr>
@@ -483,7 +513,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/server/" rel="tag"><i class="fa fa-tag"></i>server</a>
+            <a href="/tags/运维/" rel="tag"><i class="fa fa-tag"></i>运维</a>
           
         </div>
       
@@ -496,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/22/Python笔记-1/" rel="next" title="Python笔记(1):类">
-                <i class="fa fa-chevron-left"></i> Python笔记(1):类
+              <a href="/2019/01/23/运维-supervisord/" rel="next" title="supervisord">
+                <i class="fa fa-chevron-left"></i> supervisord
               </a>
             
           </div>
@@ -585,7 +615,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -596,7 +626,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -640,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#U盘安装"><span class="nav-number">1.</span> <span class="nav-text">U盘安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">2.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">3.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#systemctl"><span class="nav-number">3.1.</span> <span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">3.2.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">3.3.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">3.4.</span> <span class="nav-text">包管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH访问"><span class="nav-number">4.</span> <span class="nav-text">SSH访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下工具"><span class="nav-number">4.2.</span> <span class="nav-text">windows下工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">4.3.</span> <span class="nav-text">webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAProxy"><span class="nav-number">4.4.</span> <span class="nav-text">HAProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">5.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#U盘安装"><span class="nav-number">1.</span> <span class="nav-text">U盘安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">2.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">3.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH"><span class="nav-number">3.1.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemctl"><span class="nav-number">3.2.</span> <span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">3.3.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">3.4.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">3.5.</span> <span class="nav-text">包管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH访问"><span class="nav-number">4.</span> <span class="nav-text">SSH访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下工具"><span class="nav-number">4.2.</span> <span class="nav-text">windows下工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">4.3.</span> <span class="nav-text">webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAProxy"><span class="nav-number">4.4.</span> <span class="nav-text">HAProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">5.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
             
 
           </div>

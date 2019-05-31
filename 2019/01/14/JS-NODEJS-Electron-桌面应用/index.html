@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="使用electron开发桌面应用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-07T01:42:27.369Z">
+<meta property="og:updated_time" content="2019-05-31T03:24:41.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Electron创建桌面应用">
 <meta name="twitter:description" content="使用electron开发桌面应用">
@@ -457,7 +457,10 @@
 </li>
 <li><p><code>electron应用中使用了NFC读卡器功能，依赖的是系统的pcsc服务，此时运行代码显示空白，需要一个读卡器硬件辅助，启动读卡器服务，然后打开软件之后，不再是空白。</code></p>
 </li>
+<li><p><code>No &#39;Access-Control-Allow-Origin&#39; error on for origin</code> 跨域访问</p>
+</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main/index.js</span><br><span class="line">mainWindow = new BrowserWindow(&#123;</span><br><span class="line">    height: 563,</span><br><span class="line">    useContentSize: true,</span><br><span class="line">    width: 1000,</span><br><span class="line">    webPreferences: &#123; webSecurity: false &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="BrowserWindow"><a href="#BrowserWindow" class="headerlink" title="BrowserWindow"></a><a href="https://electronjs.org/docs/api/browser-window#browserwindowgetfocusedwindow" target="_blank" rel="noopener">BrowserWindow</a></h3><ol>
 <li>创建和控制浏览器窗口</li>
 <li>在主进程和渲染进程调用的方式不一样<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在主进程中直接调用：const &#123;BrowserWindow&#125; = require(&apos;electron&apos;)</span><br><span class="line">在渲染进程中则需使用remote来调用：const &#123;BrowserWindow&#125; = require(&apos;electron&apos;).remote</span><br></pre></td></tr></table></figure></li>
@@ -583,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -594,7 +597,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

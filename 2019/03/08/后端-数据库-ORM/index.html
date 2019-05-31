@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="数据库的设计注意事项及主流ORM框架的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T02:18:49.101Z">
+<meta property="og:updated_time" content="2019-05-31T03:24:41.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-ORM">
 <meta name="twitter:description" content="数据库的设计注意事项及主流ORM框架的使用">
@@ -446,9 +446,13 @@
 <td>db.session.commit()</td>
 <td>不仅把所有本地修改写入到数据库，同时也提交了该事务</td>
 </tr>
+<tr>
+<td>db.session.delete()</td>
+<td>删除一条记录，参数只能是一条记录</td>
+</tr>
 </tbody>
 </table>
-<h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><pre><code>尽量使用sqlalchemy，而不用flask-sqlalchemy.
+<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><pre><code>尽量使用sqlalchemy，而不用flask-sqlalchemy.
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy(app.app, session_options=&#123;&apos;autocommit&apos;: True&#125;)</span><br></pre></td></tr></table></figure>
 <ol>
 <li><a href="https://github.com/mitsuhiko/flask-openid/issues/47" target="_blank" rel="noopener">run example InvalidRequestError: No transaction is begun. #47</a></li>
@@ -572,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,7 +587,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -627,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.3.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.3.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.4.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
             
 
           </div>

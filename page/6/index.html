@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/后端-web框架-Django-静态文件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/微服务架构笔记-4-API文件服务器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -310,7 +310,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/16/后端-web框架-Django-静态文件/" itemprop="url">Django静态文件</a></h1>
+                <a class="post-title-link" href="/2019/02/22/微服务架构笔记-4-API文件服务器/" itemprop="url">微服务架构笔记(4)API文档服务器</a></h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T11:41:14+08:00">
-                2019-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T14:15:25+08:00">
+                2019-02-22
               </time>
             
 
@@ -340,7 +340,7 @@
 
           
           
-             <span id="/2019/01/16/后端-web框架-Django-静态文件/" class="leancloud_visitors" data-flag-title="Django静态文件">
+             <span id="/2019/02/22/微服务架构笔记-4-API文件服务器/" class="leancloud_visitors" data-flag-title="微服务架构笔记(4)API文档服务器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,19 +391,13 @@
       
         
           
-          思路
-Django提供 django.contrib.staticfiles 中间件来管理静态文件。
-
-方法配置
-将 django.contrib.staticfiles 包含进  INSTALLED_APPS；
-在配置文件中定义 STATIC_URL；
-
-访问开发
-开发中，使用 runserver
+          参考[原创]基于VueJs的前后端分离框架搭建之完全攻略
+API概述重要性
+API文档服务器就是专门用来生成API文档的。有了API文档，前端开发人员就可以基于API文档产生模拟数据（mock），然后使用mock的数据完成页面样式和页面交互；有了API文档，后端开发人员就可以基于API文档完成请求的
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/16/后端-web框架-Django-静态文件/#more" rel="contents">
+            <a class="btn" href="/2019/02/22/微服务架构笔记-4-API文件服务器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -454,7 +448,7 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/日常-给自己上保险（笔记）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/前端-扩展/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -473,7 +467,7 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/15/日常-给自己上保险（笔记）/" itemprop="url">给自己上保险（笔记）</a></h1>
+                <a class="post-title-link" href="/2019/02/21/前端-扩展/" itemprop="url">前端扩展和工程模板</a></h1>
         
 
         <div class="post-meta">
@@ -485,8 +479,8 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T12:47:56+08:00">
-                2019-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T11:41:13+08:00">
+                2019-02-21
               </time>
             
 
@@ -503,7 +497,7 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
 
           
           
-             <span id="/2019/01/15/日常-给自己上保险（笔记）/" class="leancloud_visitors" data-flag-title="给自己上保险（笔记）">
+             <span id="/2019/02/21/前端-扩展/" class="leancloud_visitors" data-flag-title="前端扩展和工程模板">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -554,23 +548,171 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
       
         
           
-          思路
-资产配置都是反人性的。
-首先问自己使用保险要解决什么问题.
+          前端风向标
+THX from Alimama FE
 
-需求重疾险作用
-1. 疾病赔偿：轻症赔付、重症赔付；
-2. 身故赔偿；
-3. 到期或返还保险金，或身后留给受益人。
-保多少
-1. 家长打底20万，争取50万，有能力到100万；
-2. 收入高的一方多一些；
-缴费期
-1. 40岁以内，
+THX 是一系列前端开发相关的工具，框架和类库的集合，也是阿里集团阿里妈妈、一淘网和无线产品线 以及小微金服部分前端工程师的技术组织名称。
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/21/前端-扩展/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/微服务架构笔记-3-流媒体服务器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/21/微服务架构笔记-3-流媒体服务器/" itemprop="url">微服务架构笔记(3)流媒体服务器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T10:01:55+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/02/21/微服务架构笔记-3-流媒体服务器/" class="leancloud_visitors" data-flag-title="微服务架构笔记(3)流媒体服务器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          协议HLS协议
+HTTP Live Streaming（缩写是HLS）是一个由苹果公司提出的基于HTTP的流媒体网络传输协议。是苹果公司QuickTime X和iPhone软件系统的一部分。它的工作原理是把整个流分成一个个小的基于HTTP的文件来下载，每次只下载一些。当媒体流正在播放时，客户端可以选
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/15/日常-给自己上保险（笔记）/#more" rel="contents">
+            <a class="btn" href="/2019/02/21/微服务架构笔记-3-流媒体服务器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -621,7 +763,7 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/JS-数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/微服务架构笔记-2-网络服务器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -640,7 +782,7 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/15/JS-数据类型/" itemprop="url">JS数据类型</a></h1>
+                <a class="post-title-link" href="/2019/02/18/微服务架构笔记-2-网络服务器/" itemprop="url">微服务架构笔记(2)网络服务器</a></h1>
         
 
         <div class="post-meta">
@@ -652,8 +794,8 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T10:16:06+08:00">
-                2019-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-18T09:28:22+08:00">
+                2019-02-18
               </time>
             
 
@@ -670,7 +812,7 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
 
           
           
-             <span id="/2019/01/15/JS-数据类型/" class="leancloud_visitors" data-flag-title="JS数据类型">
+             <span id="/2019/02/18/微服务架构笔记-2-网络服务器/" class="leancloud_visitors" data-flag-title="微服务架构笔记(2)网络服务器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -721,54 +863,16 @@ Django提供 django.contrib.staticfiles 中间件来管理静态文件。
       
         
           
-          setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用
+          反向代理
+反向代理不能用于前端页面的代理，只能用于接口数据。因为前端会涉及到很多的依赖静态文件，无法处理。
+在前端项目中，最好不要写死接口的域名，最好使用反向代理。写死之后在部署的时候，尤其端口转发部署的时候，有坑。
 
-
-
-
-
-
-
-
-
-add
-
-
-clear
-
-
-keys
-
-
-values
-
-
-has
-
-
-forEach
-
-
-delete
-
-
-
-数组Array既是一个数组，也是一个字典。
-
-
-
-语句
-功能
-示例
-
-
-
-
-var a = ne
+虚拟主机nginx
+在nginx.conf配置文件中http选项配置多个serv
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/15/JS-数据类型/#more" rel="contents">
+            <a class="btn" href="/2019/02/18/微服务架构笔记-2-网络服务器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -819,7 +923,7 @@ var a = ne
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/JS-NODEJS-Electron-桌面应用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/日常-家常菜/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -838,7 +942,7 @@ var a = ne
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/14/JS-NODEJS-Electron-桌面应用/" itemprop="url">使用Electron创建桌面应用</a></h1>
+                <a class="post-title-link" href="/2019/02/17/日常-家常菜/" itemprop="url">家常菜</a></h1>
         
 
         <div class="post-meta">
@@ -850,183 +954,8 @@ var a = ne
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T15:03:27+08:00">
-                2019-01-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/桌面应用/" itemprop="url" rel="index">
-                    <span itemprop="name">桌面应用</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/01/14/JS-NODEJS-Electron-桌面应用/" class="leancloud_visitors" data-flag-title="使用Electron创建桌面应用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          使用electron开发桌面应用
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/14/JS-NODEJS-Electron-桌面应用/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/前端-VUE/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="锦枫紫兰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="锦枫紫兰">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/14/前端-VUE/" itemprop="url">VUE</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T11:58:24+08:00">
-                2019-01-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-17T16:37:13+08:00">
+                2019-02-17
               </time>
             
 
@@ -1043,7 +972,7 @@ var a = ne
 
           
           
-             <span id="/2019/01/14/前端-VUE/" class="leancloud_visitors" data-flag-title="VUE">
+             <span id="/2019/02/17/日常-家常菜/" class="leancloud_visitors" data-flag-title="家常菜">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1094,186 +1023,21 @@ var a = ne
       
         
           
-          VUE实例的生命周期
-VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。
-VUE实例属性12345678910Vue.prototype.$appName = &apos;My App&apos;这样 $appName 就在所有的 Vue 实例（
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/14/前端-VUE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/微信小程序-BLE/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="锦枫紫兰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="锦枫紫兰">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/09/微信小程序-BLE/" itemprop="url">微信小程序+BLE</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T10:24:02+08:00">
-                2019-01-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/01/09/微信小程序-BLE/" class="leancloud_visitors" data-flag-title="微信小程序+BLE">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          避坑指南
-扫描过程中安卓和IOS差别很大，安卓设备地址就是mac地址，但是IOS无法获取mac地址，所以设备地址是针对本机范围有效的UUID
-
-小程序代码组成WXML小程序宿主事件
-
-
-常见的事件类型
-触发条件
-
-
-
-
-touchstart
-手指触摸动作开始
-
-
-touchmove
-手指触摸后移动
+          炒干锅花菜
+花菜切小块，清洗干净备用；
+猪肉切片备用；
+蒜切小粒，小米椒切小粒，二荆条辣椒切小粒，干辣椒剪碎，备用。
+洋葱切撕备用。
+加水，放入盐，烧开，放入花菜，放一点食用油，焯水40秒;
+放油，油热，放入五花肉，爆出猪油;
+放入第三步料，爆香，
+放花菜，生抽，白糖，盐，翻炒;
+放在洋葱上即可。
 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/09/微信小程序-BLE/#more" rel="contents">
+            <a class="btn" href="/2019/02/17/日常-家常菜/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1324,7 +1088,7 @@ touchmove
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/Jupyter-Notebook/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/Mysql脚本/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -1343,7 +1107,7 @@ touchmove
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/09/Jupyter-Notebook/" itemprop="url">Jupyter Notebook</a></h1>
+                <a class="post-title-link" href="/2019/02/16/Mysql脚本/" itemprop="url">Mysql脚本</a></h1>
         
 
         <div class="post-meta">
@@ -1355,8 +1119,8 @@ touchmove
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T10:22:38+08:00">
-                2019-01-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T10:16:47+08:00">
+                2019-02-16
               </time>
             
 
@@ -1373,7 +1137,7 @@ touchmove
 
           
           
-             <span id="/2019/01/09/Jupyter-Notebook/" class="leancloud_visitors" data-flag-title="Jupyter Notebook">
+             <span id="/2019/02/16/Mysql脚本/" class="leancloud_visitors" data-flag-title="Mysql脚本">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1424,11 +1188,33 @@ touchmove
       
         
           
-          
+          ## 
+
+
+
+
+
+
+
+
+
+&lt;&gt;
+不相等
+
+
+in
+在区间
+
+
+
+遇到的问题
+删除数据的时候可能会出现MYSQL SAFE UPDATE MODE
+
+
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/09/Jupyter-Notebook/#more" rel="contents">
+            <a class="btn" href="/2019/02/16/Mysql脚本/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1479,7 +1265,7 @@ touchmove
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/日常-给孩子上保险（笔记）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/30/chrome-常用插件/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -1498,7 +1284,7 @@ touchmove
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/21/日常-给孩子上保险（笔记）/" itemprop="url">给孩子上保险（笔记）</a></h1>
+                <a class="post-title-link" href="/2019/01/30/chrome-常用插件/" itemprop="url">chrome插件</a></h1>
         
 
         <div class="post-meta">
@@ -1510,8 +1296,8 @@ touchmove
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T13:03:54+08:00">
-                2018-12-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-30T10:22:21+08:00">
+                2019-01-30
               </time>
             
 
@@ -1528,7 +1314,160 @@ touchmove
 
           
           
-             <span id="/2018/12/21/日常-给孩子上保险（笔记）/" class="leancloud_visitors" data-flag-title="给孩子上保险（笔记）">
+             <span id="/2019/01/30/chrome-常用插件/" class="leancloud_visitors" data-flag-title="chrome插件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          chrome插件
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/30/chrome-常用插件/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/运维-Docker笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/23/运维-Docker笔记/" itemprop="url">Docker笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T18:04:46+08:00">
+                2019-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/23/运维-Docker笔记/" class="leancloud_visitors" data-flag-title="Docker笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1579,33 +1518,16 @@ touchmove
       
         
           
-          上医保是首位1. 每年为下一年交，截止年底。
-2. 220元（郑州）
-以保障优先1. 别想又能攒钱，又有保障，应以保障优先；
-2. 大病保障，几百元就可以搞定。
-保障需求
+          安装
+使用清华源
 
-
-风险类型
-风险等级
-医疗花费
-保障方式
-
-
-
-
-常见小毛病
-小风险
-几百～几千
-医保
-
-
-普通疾病门诊、住院
-相对频繁、小风
+DockerfileENTRYPOINT 配置容器启动时运行的命令CMD 指定启动容器后执行的命令
+支持三种格式
+123CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/12/21/日常-给孩子上保险（笔记）/#more" rel="contents">
+            <a class="btn" href="/2019/01/23/运维-Docker笔记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1656,7 +1578,7 @@ touchmove
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/运维-容器镜像服务/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/运维-Docker-compose编排容器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -1675,7 +1597,7 @@ touchmove
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/21/运维-容器镜像服务/" itemprop="url">容器镜像服务</a></h1>
+                <a class="post-title-link" href="/2019/01/23/运维-Docker-compose编排容器/" itemprop="url">Docker-compose编排容器</a></h1>
         
 
         <div class="post-meta">
@@ -1687,8 +1609,8 @@ touchmove
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T09:34:38+08:00">
-                2018-12-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T16:06:54+08:00">
+                2019-01-23
               </time>
             
 
@@ -1705,7 +1627,7 @@ touchmove
 
           
           
-             <span id="/2018/12/21/运维-容器镜像服务/" class="leancloud_visitors" data-flag-title="容器镜像服务">
+             <span id="/2019/01/23/运维-Docker-compose编排容器/" class="leancloud_visitors" data-flag-title="Docker-compose编排容器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1756,16 +1678,19 @@ touchmove
       
         
           
-          容器镜像
-镜像中的应用尽量从环境变量获取配置参数；
-退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。
+          思想
+容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。
 
-阿里云的容器镜像服务产品功能1. 用户可以根据自己的业务需求，选择不同的地域创建和删除镜像仓库，提供稳定快速的镜像上传、下载服务；
-2. 每个镜像仓库都提供了公网、内网、VPC
+命令配置选项1234version: &apos;3&apos;services:  [server name]:    [配置选项]
+buildimagecommand
+覆盖默认命令。
+
+depends_on
+用于指定
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/12/21/运维-容器镜像服务/#more" rel="contents">
+            <a class="btn" href="/2019/01/23/运维-Docker-compose编排容器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1816,7 +1741,7 @@ touchmove
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/运维-服务器硬件/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
@@ -1835,7 +1760,7 @@ touchmove
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/" itemprop="url">使用GitLab CI/CD创建Docker镜像</a></h1>
+                <a class="post-title-link" href="/2019/01/23/运维-服务器硬件/" itemprop="url">服务器硬件</a></h1>
         
 
         <div class="post-meta">
@@ -1847,8 +1772,8 @@ touchmove
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T16:08:27+08:00">
-                2018-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T11:18:45+08:00">
+                2019-01-23
               </time>
             
 
@@ -1865,7 +1790,7 @@ touchmove
 
           
           
-             <span id="/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/" class="leancloud_visitors" data-flag-title="使用GitLab CI/CD创建Docker镜像">
+             <span id="/2019/01/23/运维-服务器硬件/" class="leancloud_visitors" data-flag-title="服务器硬件">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1916,17 +1841,31 @@ touchmove
       
         
           
-          翻译自Building Docker images with GitLab CI/CD
-GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。
-TIP: Tip:允许使用docker-compose和其他Docker编排工具。
-持续集成/部署的趋势之一:
+          内存内存颗粒
+DDR内存的颗粒为长方形；
+DDR2和DDR3内存的颗粒为正方形,而且体积大约只有DDR内存颗粒的三分之一。
 
-创建应用镜像
 
+
+
+项目
+DDR
+DDR2
+普通DDR3
+普通DDR4
+SO-DIMM DDR3
+SO-DIMM DDR4
+
+
+
+
+驱动电压VDD/VDDQ
+2.5V/2.5V
+1.8V/
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/#more" rel="contents">
+            <a class="btn" href="/2019/01/23/运维-服务器硬件/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1968,7 +1907,7 @@ TIP: Tip:允许使用docker-compose和其他Docker编排工具。
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2014,7 +1953,7 @@ TIP: Tip:允许使用docker-compose和其他Docker编排工具。
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2025,7 +1964,7 @@ TIP: Tip:允许使用docker-compose和其他Docker编排工具。
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

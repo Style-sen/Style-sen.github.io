@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="思想 容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。  命令配置选项1234version: &amp;apos;3&amp;apos;services:  [server name]:    [配置选项] buildimagecommand 覆盖默认命令。  depends_on 用于指定服务依赖，一般是mysql、redis等。 指定了依赖，将会优先于服务创建并启动依赖，也可以使用容器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T02:48:39.067Z">
+<meta property="og:updated_time" content="2019-05-31T03:24:41.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker-compose编排容器">
 <meta name="twitter:description" content="思想 容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。  命令配置选项1234version: &amp;apos;3&amp;apos;services:  [server name]:    [配置选项] buildimagecommand 覆盖默认命令。  depends_on 用于指定服务依赖，一般是mysql、redis等。 指定了依赖，将会优先于服务创建并启动依赖，也可以使用容器">
@@ -410,6 +410,7 @@
 </ol>
 <h3 id="external-links"><a href="#external-links" class="headerlink" title="external_links"></a>external_links</h3><p>链接到 docker-compose.yml 外部的容器，甚至 并非 Compose 管理的容器。参数格式跟 links 类似。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">external_links:</span><br><span class="line"> - redis_1</span><br><span class="line"> - project_db_1:mysql</span><br><span class="line"> - project_db_1:postgresql</span><br></pre></td></tr></table></figure>
+<h3 id="Entrypoint"><a href="#Entrypoint" class="headerlink" title="Entrypoint"></a>Entrypoint</h3><p>覆盖默认entrypoint</p>
 <h3 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h3><p>设置环境变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">environment:</span><br><span class="line">  RACK_ENV: development</span><br><span class="line">  SESSION_SECRET:  # 只给定名称的变量会自动获取它在 Compose 主机上的值，可以用来防止泄露不必要的数据</span><br><span class="line"></span><br><span class="line">environment:</span><br><span class="line">  - RACK_ENV=development</span><br><span class="line">  - SESSION_SECRET</span><br></pre></td></tr></table></figure>
 <h3 id="env-file"><a href="#env-file" class="headerlink" title="env_file"></a>env_file</h3><ol>
@@ -542,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -553,7 +554,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -597,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思想"><span class="nav-number">1.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置选项"><span class="nav-number">3.</span> <span class="nav-text">配置选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#build"><span class="nav-number">3.1.</span> <span class="nav-text">build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image"><span class="nav-number">3.2.</span> <span class="nav-text">image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command"><span class="nav-number">3.3.</span> <span class="nav-text">command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#depends-on"><span class="nav-number">3.4.</span> <span class="nav-text">depends_on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#external-links"><span class="nav-number">3.5.</span> <span class="nav-text">external_links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#environment"><span class="nav-number">3.6.</span> <span class="nav-text">environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#env-file"><span class="nav-number">3.7.</span> <span class="nav-text">env_file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#links"><span class="nav-number">3.8.</span> <span class="nav-text">links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volumes"><span class="nav-number">3.9.</span> <span class="nav-text">volumes</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思想"><span class="nav-number">1.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置选项"><span class="nav-number">3.</span> <span class="nav-text">配置选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#build"><span class="nav-number">3.1.</span> <span class="nav-text">build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image"><span class="nav-number">3.2.</span> <span class="nav-text">image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command"><span class="nav-number">3.3.</span> <span class="nav-text">command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#depends-on"><span class="nav-number">3.4.</span> <span class="nav-text">depends_on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#external-links"><span class="nav-number">3.5.</span> <span class="nav-text">external_links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Entrypoint"><span class="nav-number">3.6.</span> <span class="nav-text">Entrypoint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#environment"><span class="nav-number">3.7.</span> <span class="nav-text">environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#env-file"><span class="nav-number">3.8.</span> <span class="nav-text">env_file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#links"><span class="nav-number">3.9.</span> <span class="nav-text">links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volumes"><span class="nav-number">3.10.</span> <span class="nav-text">volumes</span></a></li></ol></li></ol></div>
             
 
           </div>

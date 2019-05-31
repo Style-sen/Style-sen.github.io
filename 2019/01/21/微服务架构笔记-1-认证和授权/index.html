@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="解决问题：微服务之间以及你的应用和微服务之间是怎么信任对方的？参考理解OAuth 2.0 概念 认证(authentication)和授权(authorization)。这是两个不同的概念，通俗点讲，认证是指系统需要确认你是谁，而授权是指在通过认证之后，你能干什么。 第三方应用程序(Third-party application):即需要访问用户在HTTP服务中的资源,下文又称’客户端’； HTT">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-14T07:24:15.683Z">
+<meta property="og:updated_time" content="2019-05-22T02:48:20.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记(1)认证和授权">
 <meta name="twitter:description" content="解决问题：微服务之间以及你的应用和微服务之间是怎么信任对方的？参考理解OAuth 2.0 概念 认证(authentication)和授权(authorization)。这是两个不同的概念，通俗点讲，认证是指系统需要确认你是谁，而授权是指在通过认证之后，你能干什么。 第三方应用程序(Third-party application):即需要访问用户在HTTP服务中的资源,下文又称’客户端’； HTT">
@@ -423,21 +423,24 @@
 </ol>
 <p>大多数情况下我们都需要实现自己的authentication server，好在spring 框架提供了一个基于spring security 的oauth框架来帮助实现对应的authentication server, resource server 以及client。</p>
 <p><a href="https://blog.csdn.net/liuchunming033/article/details/45564791" target="_blank" rel="noopener">使用Python实现OAuth2.0认证服务器</a></p>
-<h3 id="OAuth2"><a href="#OAuth2" class="headerlink" title="OAuth2"></a>OAuth2</h3><ol>
+<h2 id="OAuth2"><a href="#OAuth2" class="headerlink" title="OAuth2"></a>OAuth2</h2><ol>
 <li>OAuth的作用既可以满足微服务架构中服务的统一认证和授权，也可以让”第三方应用程序”安全可控地获取”资源所有者”的授权，与”服务商提供商”进行互动。</li>
 <li>OAuth在”客户端”与”服务提供商”之间，设置了一个授权层（authorization layer）。”客户端”不能直接登录”服务提供商”，只能登录授权层，以此将用户与客户端区分开来。”客户端”登录授权层所用的令牌（token），与用户的密码不同。用户可以在登录的时候，指定授权层令牌的权限范围和有效期。”客户端”登录授权层以后，”服务提供商”根据令牌的权限范围和有效期，向”客户端”开放用户储存的资料。</li>
 <li><em>资源服务器也要会判断认证服务器给的Token的有效性，可以通过共享数据库</em></li>
+<li><a href="https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md" target="_blank" rel="noopener">OAuth2中文文档</a></li>
+<li><a href="https://blog.csdn.net/qq_28877125/article/details/81318451" target="_blank" rel="noopener">Flask–搭建OAuth2.0认证服务器（一）</a></li>
+<li><a href="https://blog.csdn.net/qq_28877125/article/details/81346427" target="_blank" rel="noopener">Flask–搭建OAuth2.0认证服务器（二）</a></li>
 </ol>
-<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>A. 用户打开客户端以后，客户端要求用户给予授权。<br>B. 用户同意给予客户端授权。<br>C. 客户端使用上一步获得的授权，向认证服务器申请令牌。<br>D. 认证服务器对客户端进行认证以后，确认无误，同意发放令牌。<br>E. 客户端使用令牌，向资源服务器申请获取资源。<br>F. 资源服务器确认令牌无误，同意向客户端开放资源。</p>
-<h4 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h4><h5 id="授权码方式"><a href="#授权码方式" class="headerlink" title="授权码方式"></a>授权码方式</h5><p>授权码方式（authorization code）是功能最完整、流程最严密的授权模式。它的特点就是通过客户端的后台服务器，与”服务提供商”的认证服务器进行互动。</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>A. 用户打开客户端以后，客户端要求用户给予授权。<br>B. 用户同意给予客户端授权。<br>C. 客户端使用上一步获得的授权，向认证服务器申请令牌。<br>D. 认证服务器对客户端进行认证以后，确认无误，同意发放令牌。<br>E. 客户端使用令牌，向资源服务器申请获取资源。<br>F. 资源服务器确认令牌无误，同意向客户端开放资源。</p>
+<h3 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h3><h4 id="授权码方式"><a href="#授权码方式" class="headerlink" title="授权码方式"></a>授权码方式</h4><p>授权码方式（authorization code）是功能最完整、流程最严密的授权模式。它的特点就是通过客户端的后台服务器，与”服务提供商”的认证服务器进行互动。</p>
 <p>（A）用户访问客户端，后者将前者导向认证服务器。<br>（B）用户选择是否给予客户端授权。<br>（C）假设用户给予授权，认证服务器将用户导向客户端事先指定的”重定向URI”（redirection URI），同时附上一个授权码。<br>（D）客户端收到授权码，附上早先的”重定向URI”，向认证服务器申请令牌。这一步是在客户端的后台的服务器上完成的，对用户不可见。<br>（E）认证服务器核对了授权码和重定向URI，确认无误后，向客户端发送访问令牌（access token）和更新令牌（refresh token）。</p>
-<h5 id="简化方式"><a href="#简化方式" class="headerlink" title="简化方式"></a>简化方式</h5><p>简化模式（implicit grant type）不通过第三方应用程序的服务器，直接在浏览器中向认证服务器申请令牌，跳过了”授权码”这个步骤，因此得名。所有步骤在浏览器中完成，令牌对访问者是可见的，且客户端不需要认证。</p>
+<h4 id="简化方式"><a href="#简化方式" class="headerlink" title="简化方式"></a>简化方式</h4><p>简化模式（implicit grant type）不通过第三方应用程序的服务器，直接在浏览器中向认证服务器申请令牌，跳过了”授权码”这个步骤，因此得名。所有步骤在浏览器中完成，令牌对访问者是可见的，且客户端不需要认证。</p>
 <p>（A）客户端将用户导向认证服务器。<br>（B）用户决定是否给于客户端授权。<br>（C）假设用户给予授权，认证服务器将用户导向客户端指定的”重定向URI”，并在URI的Hash部分包含了访问令牌。<br>（D）浏览器向资源服务器发出请求，其中不包括上一步收到的Hash值。<br>（E）资源服务器返回一个网页，其中包含的代码可以获取Hash值中的令牌。<br>（F）浏览器执行上一步获得的脚本，提取出令牌。<br>（G）浏览器将令牌发给客户端。</p>
-<h5 id="密码模式"><a href="#密码模式" class="headerlink" title="密码模式"></a>密码模式</h5><p>密码模式（Resource Owner Password Credentials Grant）中，用户向客户端提供自己的用户名和密码。客户端使用这些信息，向”服务商提供商”索要授权。<br>在这种模式中，用户必须把自己的密码给客户端，但是客户端不得储存密码。这通常用在用户对客户端高度信任的情况下，比如客户端是操作系统的一部分，或者由一个著名公司出品。而认证服务器只有在其他授权模式无法执行的情况下，才能考虑使用这种模式。</p>
+<h4 id="密码模式"><a href="#密码模式" class="headerlink" title="密码模式"></a>密码模式</h4><p>密码模式（Resource Owner Password Credentials Grant）中，用户向客户端提供自己的用户名和密码。客户端使用这些信息，向”服务商提供商”索要授权。<br>在这种模式中，用户必须把自己的密码给客户端，但是客户端不得储存密码。这通常用在用户对客户端高度信任的情况下，比如客户端是操作系统的一部分，或者由一个著名公司出品。而认证服务器只有在其他授权模式无法执行的情况下，才能考虑使用这种模式。</p>
 <p>（A）用户向客户端提供用户名和密码。<br>（B）客户端将用户名和密码发给认证服务器，向后者请求令牌。<br>（C）认证服务器确认无误后，向客户端提供访问令牌。</p>
-<h5 id="客户端模式"><a href="#客户端模式" class="headerlink" title="客户端模式"></a>客户端模式</h5><p>客户端模式（Client Credentials Grant）指客户端以自己的名义，而不是以用户的名义，向”服务提供商”进行认证。严格地说，客户端模式并不属于OAuth框架所要解决的问题。在这种模式中，用户直接向客户端注册，客户端以自己的名义要求”服务提供商”提供服务，其实不存在授权问题。</p>
+<h4 id="客户端模式"><a href="#客户端模式" class="headerlink" title="客户端模式"></a>客户端模式</h4><p>客户端模式（Client Credentials Grant）指客户端以自己的名义，而不是以用户的名义，向”服务提供商”进行认证。严格地说，客户端模式并不属于OAuth框架所要解决的问题。在这种模式中，用户直接向客户端注册，客户端以自己的名义要求”服务提供商”提供服务，其实不存在授权问题。</p>
 <p>（A）客户端向认证服务器进行身份认证，并要求一个访问令牌。<br>（B）认证服务器确认无误后，向客户端提供访问令牌。</p>
-<h4 id="更新令牌"><a href="#更新令牌" class="headerlink" title="更新令牌"></a>更新令牌</h4><p>如果用户访问的时候，客户端的”访问令牌”已经过期，则需要使用”更新令牌”申请一个新的访问令牌。</p>
+<h3 id="更新令牌"><a href="#更新令牌" class="headerlink" title="更新令牌"></a>更新令牌</h3><p>如果用户访问的时候，客户端的”访问令牌”已经过期，则需要使用”更新令牌”申请一个新的访问令牌。</p>
 
       
     </div>
@@ -559,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -570,7 +573,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -614,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认证"><span class="nav-number">2.</span> <span class="nav-text">认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http-Basic认证"><span class="nav-number">2.1.</span> <span class="nav-text">Http Basic认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http-Digest认证"><span class="nav-number">2.2.</span> <span class="nav-text">Http Digest认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookies-amp-Session"><span class="nav-number">2.3.</span> <span class="nav-text">Cookies &amp; Session</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权"><span class="nav-number">3.</span> <span class="nav-text">授权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OAuth2"><span class="nav-number">3.1.</span> <span class="nav-text">OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流程"><span class="nav-number">3.1.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#授权方式"><span class="nav-number">3.1.2.</span> <span class="nav-text">授权方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#授权码方式"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">授权码方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简化方式"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">简化方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#密码模式"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">密码模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#客户端模式"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">客户端模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新令牌"><span class="nav-number">3.1.3.</span> <span class="nav-text">更新令牌</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认证"><span class="nav-number">2.</span> <span class="nav-text">认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http-Basic认证"><span class="nav-number">2.1.</span> <span class="nav-text">Http Basic认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http-Digest认证"><span class="nav-number">2.2.</span> <span class="nav-text">Http Digest认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookies-amp-Session"><span class="nav-number">2.3.</span> <span class="nav-text">Cookies &amp; Session</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权"><span class="nav-number">3.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OAuth2"><span class="nav-number">4.</span> <span class="nav-text">OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程"><span class="nav-number">4.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#授权方式"><span class="nav-number">4.2.</span> <span class="nav-text">授权方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#授权码方式"><span class="nav-number">4.2.1.</span> <span class="nav-text">授权码方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简化方式"><span class="nav-number">4.2.2.</span> <span class="nav-text">简化方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码模式"><span class="nav-number">4.2.3.</span> <span class="nav-text">密码模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端模式"><span class="nav-number">4.2.4.</span> <span class="nav-text">客户端模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新令牌"><span class="nav-number">4.3.</span> <span class="nav-text">更新令牌</span></a></li></ol></li></ol></div>
             
 
           </div>
