@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="数据库的设计注意事项及主流ORM框架的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-31T03:24:41.189Z">
+<meta property="og:updated_time" content="2019-06-05T06:00:05.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-ORM">
 <meta name="twitter:description" content="数据库的设计注意事项及主流ORM框架的使用">
@@ -138,7 +138,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -148,7 +148,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -290,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/08/后端-数据库-ORM/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="锦枫紫兰">
     </span>
 
@@ -452,7 +452,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><pre><code>尽量使用sqlalchemy，而不用flask-sqlalchemy.
+<h3 id="SQL-Statements-and-Expressions-APISQl语句和表达式API"><a href="#SQL-Statements-and-Expressions-APISQl语句和表达式API" class="headerlink" title="SQL Statements and Expressions APISQl语句和表达式API"></a><a href="https://docs.sqlalchemy.org/en/13/core/expression_api.html" target="_blank" rel="noopener">SQL Statements and Expressions API</a>SQl语句和表达式API</h3><h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><pre><code>尽量使用sqlalchemy，而不用flask-sqlalchemy.
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy(app.app, session_options=&#123;&apos;autocommit&apos;: True&#125;)</span><br></pre></td></tr></table></figure>
 <ol>
 <li><a href="https://github.com/mitsuhiko/flask-openid/issues/47" target="_blank" rel="noopener">run example InvalidRequestError: No transaction is begun. #47</a></li>
@@ -563,7 +563,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">锦枫紫兰</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -576,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -631,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.3.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.4.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Statements-and-Expressions-APISQl语句和表达式API"><span class="nav-number">2.3.</span> <span class="nav-text">SQL Statements and Expressions APISQl语句和表达式API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.4.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.5.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
             
 
           </div>

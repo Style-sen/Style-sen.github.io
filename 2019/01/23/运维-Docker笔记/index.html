@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="安装 使用清华源  DockerfileENTRYPOINT 配置容器启动时运行的命令CMD 指定启动容器后执行的命令 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互">
+<meta name="description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/23/运维-Docker笔记/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="安装 使用清华源  DockerfileENTRYPOINT 配置容器启动时运行的命令CMD 指定启动容器后执行的命令 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互">
+<meta property="og:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T02:48:39.067Z">
+<meta property="og:updated_time" content="2019-06-05T06:00:05.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker笔记">
-<meta name="twitter:description" content="安装 使用清华源  DockerfileENTRYPOINT 配置容器启动时运行的命令CMD 指定启动容器后执行的命令 支持三种格式 123CMD [&amp;quot;executable&amp;quot;,&amp;quot;param1&amp;quot;,&amp;quot;param2&amp;quot;] 使用 exec 执行，推荐方式；CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互">
+<meta name="twitter:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
 
 
 
@@ -138,7 +138,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -148,7 +148,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -290,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/运维-Docker笔记/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="锦枫紫兰">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="锦枫紫兰">
     </span>
 
@@ -397,9 +397,13 @@
 
       
         <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/" target="_blank" rel="noopener">使用清华源</a></li>
+<li><p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/" target="_blank" rel="noopener">使用清华源</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo. The Docker daemon always runs as the root user.</p>
+</li>
 </ol>
-<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><h3 id="ENTRYPOINT-配置容器启动时运行的命令"><a href="#ENTRYPOINT-配置容器启动时运行的命令" class="headerlink" title="ENTRYPOINT 配置容器启动时运行的命令"></a>ENTRYPOINT 配置容器启动时运行的命令</h3><h3 id="CMD-指定启动容器后执行的命令"><a href="#CMD-指定启动容器后执行的命令" class="headerlink" title="CMD 指定启动容器后执行的命令"></a>CMD 指定启动容器后执行的命令</h3><ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><h3 id="ENTRYPOINT-配置容器启动时运行的命令"><a href="#ENTRYPOINT-配置容器启动时运行的命令" class="headerlink" title="ENTRYPOINT 配置容器启动时运行的命令"></a>ENTRYPOINT 配置容器启动时运行的命令</h3><h3 id="CMD-指定启动容器后执行的命令"><a href="#CMD-指定启动容器后执行的命令" class="headerlink" title="CMD 指定启动容器后执行的命令"></a>CMD 指定启动容器后执行的命令</h3><ol>
 <li><p>支持三种格式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；</span><br><span class="line">CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；</span><br><span class="line">CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给 ENTRYPOINT 的默认参数；</span><br></pre></td></tr></table></figure>
 </li>
@@ -531,7 +535,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">锦枫紫兰</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -544,7 +548,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -599,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">2.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT-配置容器启动时运行的命令"><span class="nav-number">2.1.</span> <span class="nav-text">ENTRYPOINT 配置容器启动时运行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-指定启动容器后执行的命令"><span class="nav-number">2.2.</span> <span class="nav-text">CMD 指定启动容器后执行的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">3.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">3.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">4.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">5.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">5.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">5.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">5.3.</span> <span class="nav-text">ALPINE</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">3.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT-配置容器启动时运行的命令"><span class="nav-number">3.1.</span> <span class="nav-text">ENTRYPOINT 配置容器启动时运行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-指定启动容器后执行的命令"><span class="nav-number">3.2.</span> <span class="nav-text">CMD 指定启动容器后执行的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">4.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">4.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">5.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">6.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">6.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">6.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">6.3.</span> <span class="nav-text">ALPINE</span></a></li></ol></li></ol></div>
             
 
           </div>
