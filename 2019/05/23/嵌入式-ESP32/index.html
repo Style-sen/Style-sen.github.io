@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="ESP32开发">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-05T06:00:05.759Z">
+<meta property="og:updated_time" content="2019-06-10T03:45:17.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式-ESP32">
 <meta name="twitter:description" content="ESP32开发">
@@ -409,22 +409,23 @@
 <li><p>esp32 的 ROM 负责检测芯片的strapping配置，来决定芯片应该处于什么状态。比如，esp32 上电后，ROM 程序会检查 [GPIO0, GPIO2, GPIO4, MTDO, GPIO5]的状态。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果 GPIO0 / GPIO2 同时为低电平，则会进入下载模式，等待串口通信信息。</span><br><span class="line">如果GPIO0为高电平，则会进入Flash 运行模式，启动SPI 驱动，并加载Flash中的程序段。</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>关于启动模式<br>BOOT_MODE[5:0]:</p>
+<li><p>关于启动模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">BOOT_MODE[5:0]:</span><br><span class="line"></span><br><span class="line">pull-up, pull-down, pull-down, pull-up, pull-up, SW4 /5/4/3/2/1/ )  </span><br><span class="line">[GPIO0, GPIO2, GPIO4, MTDO, GPIO5]  </span><br><span class="line">1 x x x x --&gt; SPI Boot  </span><br><span class="line">0 0 x x x --&gt; Download Boot (Jonit-Detection of UART0+UART1+SDIO_Slave)  </span><br><span class="line">下载模式的串口输出如下(115200), ROM默认会输出当前所处的模式。  </span><br><span class="line">rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))   </span><br><span class="line">waiting for download  </span><br><span class="line"></span><br><span class="line">其中，boot:0x3 表示的是芯片strapping pin脚的状态，   </span><br><span class="line">0x03对应 [GPIO0, GPIO2, GPIO4, MTDO, GPIO5] 的值为 [ 0, 0, 0, 1, 1]  </span><br><span class="line">所以处于 Download Boot 模式。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于下载模式</p>
 </li>
 </ol>
-<p>pull-up, pull-down, pull-down, pull-up, pull-up, SW4 /5/4/3/2/1/ )<br>[GPIO0, GPIO2, GPIO4, MTDO, GPIO5]<br>1 x x x x –&gt; SPI Boot<br>0 0 x x x –&gt; Download Boot (Jonit-Detection of UART0+UART1+SDIO_Slave)<br>下载模式的串口输出如下(115200), ROM默认会输出当前所处的模式。<br>rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))<br>waiting for download  </p>
-<p>其中，boot:0x3 表示的是芯片strapping pin脚的状态，<br>0x03对应 [GPIO0, GPIO2, GPIO4, MTDO, GPIO5] 的值为 [ 0, 0, 0, 1, 1]<br>所以处于 Download Boot 模式。  </p>
-<ol start="4">
-<li><p>关于下载模式，可以使用esptool脚本，可以进行寄存器的读写，固件下载，程序运行等操作。</p>
-</li>
-<li><p>[关于STUB]<br>在ROM模式，由于芯片处于低频工作的状态，通信速率受限。在esptool中，会将一段小程序加载到esp32的RAM中，并跳转执行RAM中的小程序。这段小程序包含了ROM中相同的串口通信协议，并对其进行了扩充。</p>
-</li>
-<li><p>[关于 Flash Boot 模式]</p>
-</li>
+<p>可以使用<a href="https://github.com/espressif/esptool" target="_blank" rel="noopener">esptool</a>脚本，可以进行寄存器的读写，固件下载，程序运行等操作。</p>
+<ol start="5">
+<li>关于STUB</li>
+</ol>
+<p>在ROM模式，由于芯片处于低频工作的状态，通信速率受限。在esptool中，会将一段小程序加载到esp32的RAM中，并跳转执行RAM中的小程序。这段小程序包含了ROM中相同的串口通信协议，并对其进行了扩充。</p>
+<ol start="6">
+<li>关于 Flash Boot 模式</li>
 </ol>
 <p>如果芯片启动时，GPIO0为高电平，芯片会进入Flash 运行模式。 此时，启动SPI 驱动，并加载Flash中的程序段。ROM 会读取外置 Flash 的0x1000地址，加载并运行二级bootloader。</p>
 <ol start="7">
-<li>[关于二级Bootloader]</li>
+<li>关于二级Bootloader</li>
 </ol>
 <p>二级bootloader可以认为是一个独立的小程序，二级bootloader会对芯片频率进行初始化，并且读取系统SPI的配置信息，对Flash 运行模式以及频率进行配置，然后根据分区表的定义，从对应的地址加载应用程序，并且运行应用程序固件。</p>
 <h2 id="硬件家族"><a href="#硬件家族" class="headerlink" title="硬件家族"></a>硬件家族</h2><table>
@@ -444,12 +445,59 @@
 </tbody>
 </table>
 <h2 id="开始编程"><a href="#开始编程" class="headerlink" title="开始编程"></a>开始编程</h2><p><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/index.html" target="_blank" rel="noopener">ESP-IDF 编程指南</a></p>
+<ol>
+<li>构建toolchain；</li>
+<li>配置ESP-IDF；</li>
+<li>设置环境变量</li>
+<li><p>开始一个工程，工程目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">idf.py menuconfig   # 配置</span><br><span class="line">idf.py build    # build</span><br><span class="line">idf.py -p PORT flash    # flash</span><br><span class="line">idf.py -p PORT monitor    # 监控  Ctrl+]退出</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>升级ESP-IDF，使用git命令，直接pull即可，注意子模块的更新。</p>
+</li>
+</ol>
+<h3 id="了解编译系统Cmake"><a href="#了解编译系统Cmake" class="headerlink" title="了解编译系统Cmake"></a>了解<a href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/api-guides/build-system-cmake.html" target="_blank" rel="noopener">编译系统Cmake</a></h3><p>Read this document if you want to know how to organise and build a new ESP-IDF project or component using the CMake-based build system.\</p>
+<ol>
+<li>一个工程是各种组件的融合。</li>
+<li>project 是一个包含文件和配置的目录；</li>
+<li>工程配置放在工程根目录下的sdkconfig文件中，通过idf.py menuconfig来进行修改。一个工程只能有这一个文件。</li>
+<li>一个工程通常构建两个APP，一个是project app，一个是bootloader app。</li>
+<li>组件是独立的代码库，通称是以静态库(.a)提供。</li>
+</ol>
+<h4 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- myProject/</span><br><span class="line">     - CMakeLists.txt  # cmake规则文件</span><br><span class="line">     - sdkconfig    # idf.py menuconfig 自动生成</span><br><span class="line">     - components/ - component1/ - CMakeLists.txt</span><br><span class="line">                                 - Kconfig</span><br><span class="line">                                 - src1.c</span><br><span class="line">                   - component2/ - CMakeLists.txt</span><br><span class="line">                                 - Kconfig</span><br><span class="line">                                 - src1.c</span><br><span class="line">                                 - include/ - component2.h</span><br><span class="line">     - main/ - Kconfig.projbuild</span><br><span class="line">             - CMakeLists.txt    # 组件规则</span><br><span class="line">             - src/</span><br><span class="line">                 - app_main.c</span><br><span class="line">                 - module1/</span><br><span class="line">                 - module2/</span><br><span class="line">             - inc/</span><br><span class="line">                 - module1/</span><br><span class="line">                 - module2/</span><br><span class="line">     - build/    # idf.py menuconfig 自动生成</span><br></pre></td></tr></table></figure>
+<h5 id="CMakeLists-文件"><a href="#CMakeLists-文件" class="headerlink" title="CMakeLists 文件"></a>CMakeLists 文件</h5><p>最小的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set(COMPONENT_SRCS &quot;foo.c&quot;)   # 用空格分隔的源文件列表（*.c，*.cpp，*.cc，*.S），里面所有的源文件都将会编译进组件库中</span><br><span class="line">set(COMPONENT_ADD_INCLUDEDIRS &quot;include&quot;)    # 用空格分隔的目录列表，里面的路径会被添加到所有需要该组件的组件（包括 main 组件）全局 include 搜索路径中</span><br><span class="line">register_component()</span><br></pre></td></tr></table></figure></p>
+<h3 id="研究头文件"><a href="#研究头文件" class="headerlink" title="研究头文件"></a>研究头文件</h3><table>
+<thead>
+<tr>
+<th>头文件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bt.h</td>
+<td>configures the BT controller and VHCI from the host side.</td>
+</tr>
+<tr>
+<td>esp_bt_main.h</td>
+<td>initializes and enables the Bluedroid stack.</td>
+</tr>
+<tr>
+<td>esp_gap_ble_api.h</td>
+<td>implements the GAP configuration, such as advertising and connection parameters.</td>
+</tr>
+<tr>
+<td>esp_gattc_api.h</td>
+<td>implements the GATT Client configuration, such as connecting to peripherals and searching for services.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="研究Example"><a href="#研究Example" class="headerlink" title="研究Example"></a>研究Example</h3><h4 id="bluetooth"><a href="#bluetooth" class="headerlink" title="bluetooth"></a>bluetooth</h4><h5 id="gatt-client"><a href="#gatt-client" class="headerlink" title="gatt_client"></a>gatt_client</h5><h4 id="peripherals"><a href="#peripherals" class="headerlink" title="peripherals"></a>peripherals</h4><h5 id="timer-group"><a href="#timer-group" class="headerlink" title="timer_group"></a>timer_group</h5><h5 id="uart"><a href="#uart" class="headerlink" title="uart"></a>uart</h5><h6 id="uart-async-rxtxtasks"><a href="#uart-async-rxtxtasks" class="headerlink" title="uart_async_rxtxtasks"></a>uart_async_rxtxtasks</h6><ol>
+<li>创建freertos任务</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;freertos/FreeRTOS.h&quot;</span><br><span class="line">#include &quot;freertos/task.h&quot;</span><br><span class="line"></span><br><span class="line">xTaskCreate(rx_task, &quot;uart_rx_task&quot;, 1024*2, NULL, configMAX_PRIORITIES, NULL);</span><br><span class="line">xTaskCreate(tx_task, &quot;uart_tx_task&quot;, 1024*2, NULL, configMAX_PRIORITIES-1, NULL);</span><br></pre></td></tr></table></figure>
 <h2 id="MicroPython"><a href="#MicroPython" class="headerlink" title="MicroPython"></a>MicroPython</h2><ol>
 <li>参考<a href="https://docs.micropython.org/en/latest/esp32/quickref.html" target="_blank" rel="noopener">Quick reference for the ESP32</a></li>
 <li><a href="http://www.1zlab.com/wiki/micropython-esp32/emp-ide-userguide/" target="_blank" rel="noopener">MicroPython-ESP32基础教程</a></li>
-</ol>
-<ol>
-<li>使用<a href="https://github.com/espressif/esptool" target="_blank" rel="noopener">esptool</a>(串口BL工具)</li>
 </ol>
 
       
@@ -564,7 +612,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《ESP32技术参考手册》"><span class="nav-number">1.</span> <span class="nav-text">《ESP32技术参考手册》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程"><span class="nav-number">1.1.</span> <span class="nav-text">启动过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件家族"><span class="nav-number">2.</span> <span class="nav-text">硬件家族</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始编程"><span class="nav-number">3.</span> <span class="nav-text">开始编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MicroPython"><span class="nav-number">4.</span> <span class="nav-text">MicroPython</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《ESP32技术参考手册》"><span class="nav-number">1.</span> <span class="nav-text">《ESP32技术参考手册》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程"><span class="nav-number">1.1.</span> <span class="nav-text">启动过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件家族"><span class="nav-number">2.</span> <span class="nav-text">硬件家族</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始编程"><span class="nav-number">3.</span> <span class="nav-text">开始编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解编译系统Cmake"><span class="nav-number">3.1.</span> <span class="nav-text">了解编译系统Cmake</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工程目录"><span class="nav-number">3.1.1.</span> <span class="nav-text">工程目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CMakeLists-文件"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">CMakeLists 文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究头文件"><span class="nav-number">3.2.</span> <span class="nav-text">研究头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究Example"><span class="nav-number">3.3.</span> <span class="nav-text">研究Example</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bluetooth"><span class="nav-number">3.3.1.</span> <span class="nav-text">bluetooth</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#gatt-client"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">gatt_client</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peripherals"><span class="nav-number">3.3.2.</span> <span class="nav-text">peripherals</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#timer-group"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">timer_group</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#uart"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">uart</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#uart-async-rxtxtasks"><span class="nav-number">3.3.2.2.1.</span> <span class="nav-text">uart_async_rxtxtasks</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MicroPython"><span class="nav-number">4.</span> <span class="nav-text">MicroPython</span></a></li></ol></div>
             
 
           </div>
