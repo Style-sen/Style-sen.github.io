@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-05T06:00:05.759Z">
+<meta property="og:updated_time" content="2019-06-20T05:46:52.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker笔记">
 <meta name="twitter:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
@@ -416,18 +416,23 @@
 </ol>
 <h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><ol>
 <li><a href="https://www.cnblogs.com/shuaiandjun/p/9484540.html" target="_blank" rel="noopener">GitLab CI with docker and dind “mount: permission denied (are you root?)”</a></li>
-<li>Docker容器修改hosts文件重启不变<br> 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/&lt;container_id&gt;，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。<br> 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。</li>
+<li>Docker容器修改hosts文件重启不变<br> 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/<container_id>，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。<br> 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。</container_id></li>
 <li><a href="https://segmentfault.com/a/1190000009583997" target="_blank" rel="noopener">docker运行nginx为什么要使用 daemon off</a></li>
 </ol>
 <h2 id="选择镜像"><a href="#选择镜像" class="headerlink" title="选择镜像"></a>选择镜像</h2><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h3 id="CENTOS"><a href="#CENTOS" class="headerlink" title="CENTOS"></a>CENTOS</h3><ol>
 <li>使用Docker创建容器时，基础镜像通常选择Ubuntu或Centos，不管哪个镜像的大小都在100MB以上。</li>
 </ol>
-<h3 id="ALPINE"><a href="#ALPINE" class="headerlink" title="ALPINE"></a>ALPINE</h3><ol start="2">
+<h3 id="ALPINE"><a href="#ALPINE" class="headerlink" title="ALPINE"></a>ALPINE</h3><ol>
 <li>Alpine Linux的最大优势是小，Alpine Linux是一个面向安全的轻型的Linux发行版，Alpine Linux采用了 musl libc 和 busybox以减小系统的体积和运行时资源消耗。在保持瘦身的同时，Alpine Linux还提供了自己的包管理工具apk。</li>
 <li>Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。</li>
 <li>musl实现的DNS服务不会使用resolv.conf文件中的search和domain两个配置，通过DNS来进行服务发现时需要注意。</li>
 <li><a href="https://github.com/sgerrand/alpine-pkg-glibc" target="_blank" rel="noopener">sgerrand / alpine-pkg-glibc</a>.</li>
-<li><a href="https://www.szyhf.org/2016/12/16/alpine%E4%B8%8Eglibc/" target="_blank" rel="noopener">Alpine与glibc</a></li>
+<li><a href="https://www.szyhf.org/2016/12/16/alpine%E4%B8%8Eglibc/" target="_blank" rel="noopener">Alpine与glibc</a>。</li>
+<li>安装GCC <code>apk add build-base</code> 安装基础库（包含GCC、libc-dev、binutils）。</li>
+<li><code>OSError: mysql_config not found</code>执行<code>apk add mariadb-dev mariadb-client</code>.</li>
+<li><code>fatal error: linux/limits.h</code> 执行 <code>apk add linux-headers</code>.</li>
+<li><code>The headers or library files could not be found for jpeg</code> 执行 <code>apk add libjpeg-turbo-dev</code>.</li>
+<li><code>RUN pip install &quot;celery[librabbitmq,redis,msgpack]&quot;</code> 安装过程中出错，“poll or select”只需要安装6安装glibc即可。</li>
 </ol>
 
       
@@ -548,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -559,7 +564,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -570,7 +575,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

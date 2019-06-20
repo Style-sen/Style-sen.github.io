@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="数据库的设计注意事项及主流ORM框架的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T08:25:16.793Z">
+<meta property="og:updated_time" content="2019-06-19T01:34:00.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-ORM">
 <meta name="twitter:description" content="数据库的设计注意事项及主流ORM框架的使用">
@@ -405,7 +405,8 @@
 <li>永久性的字段衍伸的字段，可以用时重新计算；但是递变性的字段衍伸的字段，需要当时计算好之后存进数据库中。</li>
 </ol>
 <h2 id="SQLAlchemy"><a href="#SQLAlchemy" class="headerlink" title="SQLAlchemy"></a>SQLAlchemy</h2><p>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.</p>
-<h3 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h3><table>
+<h3 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -418,7 +419,9 @@
 </tr>
 </tbody>
 </table>
-<h3 id="Session状态管理"><a href="#Session状态管理" class="headerlink" title="Session状态管理"></a>Session状态管理</h3><table>
+</div>
+<h3 id="Session状态管理"><a href="#Session状态管理" class="headerlink" title="Session状态管理"></a>Session状态管理</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>语句</th>
@@ -452,11 +455,32 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="SQL-Statements-and-Expressions-APISQl语句和表达式API"><a href="#SQL-Statements-and-Expressions-APISQl语句和表达式API" class="headerlink" title="SQL Statements and Expressions APISQl语句和表达式API"></a><a href="https://docs.sqlalchemy.org/en/13/core/expression_api.html" target="_blank" rel="noopener">SQL Statements and Expressions API</a>SQl语句和表达式API</h3><h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><h3 id="flask-sqlalchemy"><a href="#flask-sqlalchemy" class="headerlink" title="flask-sqlalchemy"></a>flask-sqlalchemy</h3><pre><code>尽量使用sqlalchemy，而不用flask-sqlalchemy.
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy(app.app, session_options=&#123;&apos;autocommit&apos;: True&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="flask-sqlalchemy配置"><a href="#flask-sqlalchemy配置" class="headerlink" title="flask-sqlalchemy配置"></a><a href="http://www.pythondoc.com/flask-sqlalchemy/config.html" target="_blank" rel="noopener">flask-sqlalchemy配置</a></h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLALCHEMY_POOL_RECYCLE</td>
+<td>自动回收连接的秒数。这对 MySQL 是必须的，默认 情况下 MySQL 会自动移除闲置 8 小时或者以上的连接。 需要注意地是如果使用 MySQL 的话， Flask-SQLAlchemy 会自动地设置这个值为 2 小时。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@app.teardown_appcontext</span><br><span class="line">def shutdown_session(exception=None):</span><br><span class="line">    db.session.remove()</span><br></pre></td></tr></table></figure>
 <ol>
 <li><a href="https://github.com/mitsuhiko/flask-openid/issues/47" target="_blank" rel="noopener">run example InvalidRequestError: No transaction is begun. #47</a></li>
 <li><a href="https://stackoverflow.com/questions/23301968/invalid-transaction-persisting-across-requests" target="_blank" rel="noopener">Invalid transaction persisting across requests</a></li>
+<li><a href="https://serverfault.com/questions/407612/error-2006-mysql-server-has-gone-away" target="_blank" rel="noopener">Error 2006: MySQL server has gone away</a></li>
+<li><a href="https://www.cnblogs.com/lgjbky/p/9482278.html" target="_blank" rel="noopener">flask_sqlalchemy中db.session是如何保持请求间独立的—源码阅读笔记</a></li>
+<li><a href="https://www.cnblogs.com/lesliexong/p/8654615.html" target="_blank" rel="noopener">“Mysql has gone away”的几种可能</a></li>
 </ol>
 
       
@@ -577,7 +601,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +612,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -599,7 +623,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -632,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Statements-and-Expressions-APISQl语句和表达式API"><span class="nav-number">2.3.</span> <span class="nav-text">SQL Statements and Expressions APISQl语句和表达式API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.4.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.5.</span> <span class="nav-text">flask-sqlalchemy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Statements-and-Expressions-APISQl语句和表达式API"><span class="nav-number">2.3.</span> <span class="nav-text">SQL Statements and Expressions APISQl语句和表达式API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.4.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.5.</span> <span class="nav-text">flask-sqlalchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flask-sqlalchemy配置"><span class="nav-number">2.5.1.</span> <span class="nav-text">flask-sqlalchemy配置</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

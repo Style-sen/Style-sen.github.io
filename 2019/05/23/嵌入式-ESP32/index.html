@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="ESP32开发">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T08:25:16.793Z">
+<meta property="og:updated_time" content="2019-06-19T06:14:29.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式-ESP32">
 <meta name="twitter:description" content="ESP32开发">
@@ -418,19 +418,20 @@
 </li>
 </ol>
 <p>可以使用<a href="https://github.com/espressif/esptool" target="_blank" rel="noopener">esptool</a>脚本，可以进行寄存器的读写，固件下载，程序运行等操作。</p>
-<ol start="5">
+<ol>
 <li>关于STUB</li>
 </ol>
 <p>在ROM模式，由于芯片处于低频工作的状态，通信速率受限。在esptool中，会将一段小程序加载到esp32的RAM中，并跳转执行RAM中的小程序。这段小程序包含了ROM中相同的串口通信协议，并对其进行了扩充。</p>
-<ol start="6">
+<ol>
 <li>关于 Flash Boot 模式</li>
 </ol>
 <p>如果芯片启动时，GPIO0为高电平，芯片会进入Flash 运行模式。 此时，启动SPI 驱动，并加载Flash中的程序段。ROM 会读取外置 Flash 的0x1000地址，加载并运行二级bootloader。</p>
-<ol start="7">
+<ol>
 <li>关于二级Bootloader</li>
 </ol>
 <p>二级bootloader可以认为是一个独立的小程序，二级bootloader会对芯片频率进行初始化，并且读取系统SPI的配置信息，对Flash 运行模式以及频率进行配置，然后根据分区表的定义，从对应的地址加载应用程序，并且运行应用程序固件。</p>
-<h2 id="硬件家族"><a href="#硬件家族" class="headerlink" title="硬件家族"></a>硬件家族</h2><table>
+<h2 id="硬件家族"><a href="#硬件家族" class="headerlink" title="硬件家族"></a>硬件家族</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>硬件代码</th>
@@ -446,6 +447,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="开始编程"><a href="#开始编程" class="headerlink" title="开始编程"></a>开始编程</h2><p><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/index.html" target="_blank" rel="noopener">ESP-IDF 编程指南</a></p>
 <ol>
 <li>构建toolchain；</li>
@@ -466,8 +468,12 @@
 <li>组件是独立的代码库，通称是以静态库(.a)提供。</li>
 </ol>
 <h4 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- myProject/</span><br><span class="line">     - CMakeLists.txt  # cmake规则文件</span><br><span class="line">     - sdkconfig    # idf.py menuconfig 自动生成</span><br><span class="line">     - components/ - component1/ - CMakeLists.txt</span><br><span class="line">                                 - Kconfig</span><br><span class="line">                                 - src1.c</span><br><span class="line">                   - component2/ - CMakeLists.txt</span><br><span class="line">                                 - Kconfig</span><br><span class="line">                                 - src1.c</span><br><span class="line">                                 - include/ - component2.h</span><br><span class="line">     - main/ - Kconfig.projbuild</span><br><span class="line">             - CMakeLists.txt    # 组件规则</span><br><span class="line">             - src/</span><br><span class="line">                 - app_main.c</span><br><span class="line">                 - module1/</span><br><span class="line">                 - module2/</span><br><span class="line">             - inc/</span><br><span class="line">                 - module1/</span><br><span class="line">                 - module2/</span><br><span class="line">     - build/    # idf.py menuconfig 自动生成</span><br></pre></td></tr></table></figure>
-<h5 id="CMakeLists-文件"><a href="#CMakeLists-文件" class="headerlink" title="CMakeLists 文件"></a>CMakeLists 文件</h5><p>最小的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set(COMPONENT_SRCS &quot;foo.c&quot;)   # 用空格分隔的源文件列表（*.c，*.cpp，*.cc，*.S），里面所有的源文件都将会编译进组件库中</span><br><span class="line">set(COMPONENT_ADD_INCLUDEDIRS &quot;include&quot;)    # 用空格分隔的目录列表，里面的路径会被添加到所有需要该组件的组件（包括 main 组件）全局 include 搜索路径中</span><br><span class="line">register_component()</span><br></pre></td></tr></table></figure></p>
-<h3 id="研究头文件"><a href="#研究头文件" class="headerlink" title="研究头文件"></a>研究头文件</h3><table>
+<h4 id="项目CMakeLists-文件"><a href="#项目CMakeLists-文件" class="headerlink" title="项目CMakeLists 文件"></a>项目CMakeLists 文件</h4><p>必要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.5)    //必须放在 CMakeLists.txt 文件的第一行，它会告诉 CMake 构建该项目所需要的最小版本号</span><br><span class="line">include($ENV&#123;IDF_PATH&#125;/tools/cmake/project.cmake)    //会导入 CMake 的其余功能来完成配置项目、检索组件等任务。</span><br><span class="line">project(myProject)    //会创建项目本身，并指定项目名称</span><br></pre></td></tr></table></figure></p>
+<p>选用<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COMPONENT_DIRS    <span class="comment">//组件的搜索目录，默认为 $&#123;IDF_PATH&#125;/components、$&#123;PROJECT_PATH&#125;/components 和 EXTRA_COMPONENT_DIRS。如果您不想在这些位置搜索组件，请覆盖此变量。</span></span><br><span class="line">EXTRA_COMPONENT_DIRS    <span class="comment">//用于搜索组件的其它可选目录列表。路径可以是相对于项目目录的相对路径，也可以是绝对路径。</span></span><br><span class="line">COMPONENTS    <span class="comment">//要构建进项目中的组件名称列表，默认为 COMPONENT_DIRS 目录下检索到的所有组件。使用此变量可以“精简”项目以缩短构建时间。请注意，如果一个组件通过 COMPONENT_REQUIRES 指定了它依赖的另一个组件，则会自动将其添加到 COMPONENTS 中，所以 COMPONENTS 列表可能会非常短。</span></span><br><span class="line">COMPONENT_REQUIRES_COMMON    <span class="comment">//每个组件都需要的通用组件列表，这些通用组件会自动添加到每个组件的 COMPONENT_PRIV_REQUIRES 列表中以及项目的 COMPONENTS 列表中。默认情况下，此变量设置为 ESP-IDF 项目所需的最小核心“系统”组件集。通常您无需在项目中更改此变量。</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="组件CMakeLists-文件"><a href="#组件CMakeLists-文件" class="headerlink" title="组件CMakeLists 文件"></a>组件CMakeLists 文件</h4><p>最小的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set(COMPONENT_SRCS &quot;foo.c&quot;)   # 用空格分隔的源文件列表（*.c，*.cpp，*.cc，*.S），里面所有的源文件都将会编译进组件库中</span><br><span class="line">set(COMPONENT_ADD_INCLUDEDIRS &quot;include&quot;)    # 用空格分隔的目录列表，里面的路径会被添加到所有需要该组件的组件（包括 main 组件）全局 include 搜索路径中</span><br><span class="line">register_component()</span><br></pre></td></tr></table></figure></p>
+<h4 id="组件中使用第三方-CMake-项目"><a href="#组件中使用第三方-CMake-项目" class="headerlink" title="组件中使用第三方 CMake 项目"></a>组件中使用第三方 CMake 项目</h4><h3 id="研究API参考"><a href="#研究API参考" class="headerlink" title="研究API参考"></a>研究API参考</h3><h4 id="Event-Loop-Library"><a href="#Event-Loop-Library" class="headerlink" title="Event Loop Library"></a>Event Loop Library</h4><h4 id="peripherals"><a href="#peripherals" class="headerlink" title="peripherals"></a>peripherals</h4><h5 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">esp_err_ti2c_set_timeout(i2c_port_ti2c_num, int timeout)    //设置I2C的超时时间 第一个参数为 I2C的port number 第二个参数的单位为APB 80Mhz的时钟周期</span><br><span class="line">esp_err_ti2c_get_timeout(i2c_port_ti2c_num, int *timeout)    //读取I2C的超时间 第一个参数为 I2C的port number 第二个参数为存储结果的指针</span><br></pre></td></tr></table></figure>
+<h3 id="研究头文件"><a href="#研究头文件" class="headerlink" title="研究头文件"></a>研究头文件</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>头文件</th>
@@ -493,7 +499,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="研究Example"><a href="#研究Example" class="headerlink" title="研究Example"></a>研究Example</h3><h4 id="bluetooth"><a href="#bluetooth" class="headerlink" title="bluetooth"></a>bluetooth</h4><h5 id="gatt-client"><a href="#gatt-client" class="headerlink" title="gatt_client"></a>gatt_client</h5><h4 id="get-started"><a href="#get-started" class="headerlink" title="get-started"></a>get-started</h4><h5 id="blink"><a href="#blink" class="headerlink" title="blink"></a>blink</h5><h4 id="peripherals"><a href="#peripherals" class="headerlink" title="peripherals"></a>peripherals</h4><h5 id="timer-group-硬件定时器"><a href="#timer-group-硬件定时器" class="headerlink" title="timer_group(硬件定时器)"></a>timer_group(硬件定时器)</h5><ol>
+</div>
+<h3 id="研究Example"><a href="#研究Example" class="headerlink" title="研究Example"></a>研究Example</h3><h4 id="bluetooth"><a href="#bluetooth" class="headerlink" title="bluetooth"></a>bluetooth</h4><h5 id="gatt-client"><a href="#gatt-client" class="headerlink" title="gatt_client"></a>gatt_client</h5><h4 id="get-started"><a href="#get-started" class="headerlink" title="get-started"></a>get-started</h4><h5 id="blink"><a href="#blink" class="headerlink" title="blink"></a>blink</h5><h4 id="peripherals-1"><a href="#peripherals-1" class="headerlink" title="peripherals"></a>peripherals</h4><h5 id="ADC"><a href="#ADC" class="headerlink" title="ADC"></a>ADC</h5><h5 id="I2C-1"><a href="#I2C-1" class="headerlink" title="I2C"></a>I2C</h5><h6 id="i2c-self-test"><a href="#i2c-self-test" class="headerlink" title="i2c_self_test"></a>i2c_self_test</h6><h6 id="i2c-tools"><a href="#i2c-tools" class="headerlink" title="i2c_tools"></a>i2c_tools</h6><ol>
+<li>是开发I2C设备的有用的工具。</li>
+<li>默认 i2c 0，SDA（18）  SCL（19）</li>
+<li>提供命令行：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">==============================================================</span><br><span class="line">|       Steps to Use i2c-tools on ESP32                      |</span><br><span class="line">|                                                            |</span><br><span class="line">|  1. Try &apos;help&apos;, check all supported commands               |</span><br><span class="line">|  2. Try &apos;i2cconfig&apos; to configure your I2C bus              |</span><br><span class="line">|  3. Try &apos;i2cdetect&apos; to scan devices on the bus             |</span><br><span class="line">|  4. Try &apos;i2cget&apos; to get the content of specific register   |</span><br><span class="line">|  5. Try &apos;i2cset&apos; to set the value of specific register     |</span><br><span class="line">|  6. Try &apos;i2cdump&apos; to dump all the register (Experiment)    |</span><br><span class="line">|                                                            |</span><br><span class="line">==============================================================</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="spi-slave"><a href="#spi-slave" class="headerlink" title="spi_slave"></a>spi_slave</h5><h6 id="sender"><a href="#sender" class="headerlink" title="sender"></a>sender</h6><h5 id="timer-group-硬件定时器"><a href="#timer-group-硬件定时器" class="headerlink" title="timer_group(硬件定时器)"></a>timer_group(硬件定时器)</h5><ol>
 <li>使用队列；</li>
 <li>timer_group。</li>
 <li>参考<a href="https://blog.csdn.net/qq_27114397/article/details/81636607" target="_blank" rel="noopener">ESP32 学习笔记（十）Timer</a>.</li>
@@ -510,6 +523,9 @@
 <li><p>休眠模式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="使用PN532模块"><a href="#使用PN532模块" class="headerlink" title="使用PN532模块"></a>使用PN532模块</h4><ol>
+<li>参考<a href="https://github.com/redchenjs/nfc_attendance_system_esp32" target="_blank" rel="noopener">redchenjs/nfc_attendance_system_esp32</a></li>
 </ol>
 <h2 id="MicroPython"><a href="#MicroPython" class="headerlink" title="MicroPython"></a>MicroPython</h2><ol>
 <li>参考<a href="https://docs.micropython.org/en/latest/esp32/quickref.html" target="_blank" rel="noopener">Quick reference for the ESP32</a></li>
@@ -628,7 +644,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -639,7 +655,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -650,7 +666,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -683,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《ESP32技术参考手册》"><span class="nav-number">1.</span> <span class="nav-text">《ESP32技术参考手册》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程"><span class="nav-number">1.1.</span> <span class="nav-text">启动过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件家族"><span class="nav-number">2.</span> <span class="nav-text">硬件家族</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始编程"><span class="nav-number">3.</span> <span class="nav-text">开始编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解编译系统Cmake"><span class="nav-number">3.1.</span> <span class="nav-text">了解编译系统Cmake</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工程目录"><span class="nav-number">3.1.1.</span> <span class="nav-text">工程目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CMakeLists-文件"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">CMakeLists 文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究头文件"><span class="nav-number">3.2.</span> <span class="nav-text">研究头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究Example"><span class="nav-number">3.3.</span> <span class="nav-text">研究Example</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bluetooth"><span class="nav-number">3.3.1.</span> <span class="nav-text">bluetooth</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#gatt-client"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">gatt_client</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get-started"><span class="nav-number">3.3.2.</span> <span class="nav-text">get-started</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#blink"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">blink</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peripherals"><span class="nav-number">3.3.3.</span> <span class="nav-text">peripherals</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#timer-group-硬件定时器"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">timer_group(硬件定时器)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#uart"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">uart</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#uart-async-rxtxtasks"><span class="nav-number">3.3.3.2.1.</span> <span class="nav-text">uart_async_rxtxtasks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#system"><span class="nav-number">3.3.4.</span> <span class="nav-text">system</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#esp-timer"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">esp-timer</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MicroPython"><span class="nav-number">4.</span> <span class="nav-text">MicroPython</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《ESP32技术参考手册》"><span class="nav-number">1.</span> <span class="nav-text">《ESP32技术参考手册》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程"><span class="nav-number">1.1.</span> <span class="nav-text">启动过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件家族"><span class="nav-number">2.</span> <span class="nav-text">硬件家族</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始编程"><span class="nav-number">3.</span> <span class="nav-text">开始编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解编译系统Cmake"><span class="nav-number">3.1.</span> <span class="nav-text">了解编译系统Cmake</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工程目录"><span class="nav-number">3.1.1.</span> <span class="nav-text">工程目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目CMakeLists-文件"><span class="nav-number">3.1.2.</span> <span class="nav-text">项目CMakeLists 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件CMakeLists-文件"><span class="nav-number">3.1.3.</span> <span class="nav-text">组件CMakeLists 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件中使用第三方-CMake-项目"><span class="nav-number">3.1.4.</span> <span class="nav-text">组件中使用第三方 CMake 项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究API参考"><span class="nav-number">3.2.</span> <span class="nav-text">研究API参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-Loop-Library"><span class="nav-number">3.2.1.</span> <span class="nav-text">Event Loop Library</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peripherals"><span class="nav-number">3.2.2.</span> <span class="nav-text">peripherals</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#I2C"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">I2C</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究头文件"><span class="nav-number">3.3.</span> <span class="nav-text">研究头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究Example"><span class="nav-number">3.4.</span> <span class="nav-text">研究Example</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bluetooth"><span class="nav-number">3.4.1.</span> <span class="nav-text">bluetooth</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#gatt-client"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">gatt_client</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get-started"><span class="nav-number">3.4.2.</span> <span class="nav-text">get-started</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#blink"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">blink</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peripherals-1"><span class="nav-number">3.4.3.</span> <span class="nav-text">peripherals</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ADC"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">ADC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#I2C-1"><span class="nav-number">3.4.3.2.</span> <span class="nav-text">I2C</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#i2c-self-test"><span class="nav-number">3.4.3.2.1.</span> <span class="nav-text">i2c_self_test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i2c-tools"><span class="nav-number">3.4.3.2.2.</span> <span class="nav-text">i2c_tools</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spi-slave"><span class="nav-number">3.4.3.3.</span> <span class="nav-text">spi_slave</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#sender"><span class="nav-number">3.4.3.3.1.</span> <span class="nav-text">sender</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#timer-group-硬件定时器"><span class="nav-number">3.4.3.4.</span> <span class="nav-text">timer_group(硬件定时器)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#uart"><span class="nav-number">3.4.3.5.</span> <span class="nav-text">uart</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#uart-async-rxtxtasks"><span class="nav-number">3.4.3.5.1.</span> <span class="nav-text">uart_async_rxtxtasks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#system"><span class="nav-number">3.4.4.</span> <span class="nav-text">system</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#esp-timer"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">esp-timer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">3.5.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用PN532模块"><span class="nav-number">3.5.1.</span> <span class="nav-text">使用PN532模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MicroPython"><span class="nav-number">4.</span> <span class="nav-text">MicroPython</span></a></li></ol></div>
             
 
           </div>

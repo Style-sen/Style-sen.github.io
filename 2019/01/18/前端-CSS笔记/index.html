@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &amp;#123;property: value；property: value&amp;#125;  选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。   选择器   选择器 例子 例子描述 CSS     .class .intro 选择 class=”intro” 的所有元素。 1   .">
+<meta name="description" content="语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &amp;#123;property: value；property: value&amp;#125;  选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。   选择器    选择器 例子 例子描述 CSS     .class .intro 选择 class=”intro” 的所有元素。 1">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/18/前端-CSS笔记/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &amp;#123;property: value；property: value&amp;#125;  选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。   选择器   选择器 例子 例子描述 CSS     .class .intro 选择 class=”intro” 的所有元素。 1   .">
+<meta property="og:description" content="语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &amp;#123;property: value；property: value&amp;#125;  选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。   选择器    选择器 例子 例子描述 CSS     .class .intro 选择 class=”intro” 的所有元素。 1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-03-25T08:50:04.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS笔记">
-<meta name="twitter:description" content="语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &amp;#123;property: value；property: value&amp;#125;  选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。   选择器   选择器 例子 例子描述 CSS     .class .intro 选择 class=”intro” 的所有元素。 1   .">
+<meta name="twitter:description" content="语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1selector &amp;#123;property: value；property: value&amp;#125;  选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。   选择器    选择器 例子 例子描述 CSS     .class .intro 选择 class=”intro” 的所有元素。 1">
 
 
 
@@ -403,7 +403,8 @@
 <li><p>选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。</p>
 </li>
 </ol>
-<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><table>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>选择器</th>
@@ -482,8 +483,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>[attribute~=value]    [title~=flower]    选择 title 属性包含单词 “flower” 的所有元素。    2<br>[attribute|=value]    [lang|=en]    选择 lang 属性值以 “en” 开头的所有元素。    2<br>:link    a:link    选择所有未被访问的链接。    1<br>:visited    a:visited    选择所有已被访问的链接。    1<br>:active    a:active    选择活动链接。    1<br>| :hover |    a:hover |    选择鼠标指针位于其上的链接。    |1|<br>:focus    input:focus    选择获得焦点的 input 元素。    2<br>:first-letter    p:first-letter    选择每个 </p><p> 元素的首字母。    1<br>:first-line    p:first-line    选择每个 </p><p> 元素的首行。    1<br>:first-child    p:first-child    选择属于父元素的第一个子元素的每个 </p><p> 元素。    2<br>:before    p:before    在每个 </p><p> 元素的内容之前插入内容。    2<br>:after    p:after    在每个 </p><p> 元素的内容之后插入内容。    2<br>:lang(language)    p:lang(it)    选择带有以 “it” 开头的 lang 属性值的每个 </p><p> 元素。    2<br>element1~element2    p~ul    选择前面有 </p><p> 元素的每个 <ul> 元素。    3<br>[attribute^=value]    a[src^=”https”]    选择其 src 属性值以 “https” 开头的每个 <a> 元素。    3<br>[attribute$=value]    a[src$=”.pdf”]    选择其 src 属性以 “.pdf” 结尾的所有 <a> 元素。    3<br>[attribute<em>=value]    a[src</em>=”abc”]    选择其 src 属性中包含 “abc” 子串的每个 <a> 元素。    3<br>:first-of-type    p:first-of-type    选择属于其父元素的首个 <p> 元素的每个 </p><p> 元素。    3<br>:last-of-type    p:last-of-type    选择属于其父元素的最后 </p><p> 元素的每个 </p><p> 元素。    3<br>:only-of-type    p:only-of-type    选择属于其父元素唯一的 </p><p> 元素的每个 </p><p> 元素。    3<br>:only-child    p:only-child    选择属于其父元素的唯一子元素的每个 </p><p> 元素。    3<br>:nth-child(n)    p:nth-child(2)    选择属于其父元素的第二个子元素的每个 </p><p> 元素。    3<br>:nth-last-child(n)    p:nth-last-child(2)    同上，从最后一个子元素开始计数。    3<br>:nth-of-type(n)    p:nth-of-type(2)    选择属于其父元素第二个 </p><p> 元素的每个 </p><p> 元素。    3<br>:nth-last-of-type(n)    p:nth-last-of-type(2)    同上，但是从最后一个子元素开始计数。    3<br>:last-child    p:last-child    选择属于其父元素最后一个子元素每个 </p><p> 元素。    3<br>:root    :root    选择文档的根元素。    3<br>:empty    p:empty    选择没有子元素的每个 </p><p> 元素（包括文本节点）。    3<br>:target    #news:target    选择当前活动的 #news 元素。    3<br>:enabled    input:enabled    选择每个启用的 <input> 元素。    3<br>:disabled    input:disabled    选择每个禁用的 <input> 元素    3<br>:checked    input:checked    选择每个被选中的 <input> 元素。    3<br>:not(selector)    :not(p)    选择非 </p><p> 元素的每个元素。    3<br>::selection    ::selection    选择被用户选取的元素部分。    3</p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>属性</th>
@@ -539,6 +542,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>inherit    规定应该从父元素继承 line-height 属性的值。|<br>| margin | 在一个声明中设置所有外边距属性。| |<br>| margin-bottom |设置元素的下外边距| |<br>| margin-left    |设置元素的左外边距| |<br>| margin-right    |设置元素的右外边距| |<br>| margin-top    |设置元素的上外边距| |<br>| opacity    |规定元素的不透明级别|<br>| padding |在一个声明中设置所有内边距属性 | |<br>| position | 定义建立元素布局所用的定位机制 | 默认：static；relative：相对于其正常位置进行定位；absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位；fixed：生成绝对定位的元素，相对于浏览器窗口进行定位；inherit：规定应该从父元素继承 position 属性的值|<br>| table-layout | 用来显示表格单元格、行、列的算法规则 | automatic    默认。列宽度由单元格内容设定。fixed    列宽由表格宽度和列宽度设定。inherit    规定应该从父元素继承 table-layout 属性的值。 |<br>| text-align | 文字对齐：center |<br>| text-transform | 控制文本的大小写 | none：默认，定义带有小写字母和大写字母的标准的文本；capitalize：文本中的每个单词以大写字母开头；uppercase：定义仅有大写字母；lowercase：定义无大写字母，仅有小写字母；inherit：规定应该从父元素继承 text-transform 属性的值 |<br>| top |<br>| transform | 向元素应用 2D 或 3D 转换 | <a href="http://www.w3school.com.cn/cssref/pr_transform.asp" target="_blank" rel="noopener">参考</a> |<br>| z-index | 设置元素的堆叠顺序 | |</p>
 </a></a></a></ul></p>
       
@@ -659,7 +663,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -670,7 +674,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -681,7 +685,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

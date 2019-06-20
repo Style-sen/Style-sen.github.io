@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="类属性直接在class中定义属性，这种属性是类属性，这个属性虽然归类所有，但类的所有实例都可以访问到，但是不能修改，只能类名.属性进行修改。 实例属性在类方法中定义的属性为实例属性，各个实例相互独立。 数组有数组a，要求去掉a所有为0的元素1234567891011a = [2,4,0,8,9,10,100,0,9,7]# 方法1：Filtera= filter(None, a)# 方法2：Lam">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-07T01:42:27.393Z">
+<meta property="og:updated_time" content="2019-06-20T05:46:52.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python笔记(1):类">
 <meta name="twitter:description" content="类属性直接在class中定义属性，这种属性是类属性，这个属性虽然归类所有，但类的所有实例都可以访问到，但是不能修改，只能类名.属性进行修改。 实例属性在类方法中定义的属性为实例属性，各个实例相互独立。 数组有数组a，要求去掉a所有为0的元素1234567891011a = [2,4,0,8,9,10,100,0,9,7]# 方法1：Filtera= filter(None, a)# 方法2：Lam">
@@ -399,6 +399,8 @@
         <h2 id="类属性"><a href="#类属性" class="headerlink" title="类属性"></a>类属性</h2><p>直接在class中定义属性，这种属性是类属性，这个属性虽然归类所有，但类的所有实例都可以访问到，但是不能修改，只能类名.属性进行修改。</p>
 <h2 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h2><p>在类方法中定义的属性为实例属性，各个实例相互独立。</p>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="有数组a，要求去掉a所有为0的元素"><a href="#有数组a，要求去掉a所有为0的元素" class="headerlink" title="有数组a，要求去掉a所有为0的元素"></a>有数组a，要求去掉a所有为0的元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = [2,4,0,8,9,10,100,0,9,7]</span><br><span class="line"># 方法1：Filter</span><br><span class="line">a= filter(None, a)</span><br><span class="line"></span><br><span class="line"># 方法2：Lambada</span><br><span class="line">a = filter(lambda x: x != 0, a)</span><br><span class="line"></span><br><span class="line"># 方法3：for</span><br><span class="line">for b in a:</span><br><span class="line">    if b == 0:</span><br><span class="line">        a.remove(b)</span><br></pre></td></tr></table></figure>
+<h2 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h2><h3 id="psycopg2"><a href="#psycopg2" class="headerlink" title="psycopg2"></a>psycopg2</h3><p>操作PostgreSQL 数据库</p>
+
       
     </div>
     
@@ -440,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/运维-supervisord/" rel="prev" title="supervisord">
-                supervisord <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/23/运维-Ubuntu服务器系统/" rel="prev" title="Ubuntu服务器系统及基础设施">
+                Ubuntu服务器系统及基础设施 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -519,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -530,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -541,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类属性"><span class="nav-number">1.</span> <span class="nav-text">类属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例属性"><span class="nav-number">2.</span> <span class="nav-text">实例属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">3.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有数组a，要求去掉a所有为0的元素"><span class="nav-number">3.1.</span> <span class="nav-text">有数组a，要求去掉a所有为0的元素</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类属性"><span class="nav-number">1.</span> <span class="nav-text">类属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例属性"><span class="nav-number">2.</span> <span class="nav-text">实例属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">3.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有数组a，要求去掉a所有为0的元素"><span class="nav-number">3.1.</span> <span class="nav-text">有数组a，要求去掉a所有为0的元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方模块"><span class="nav-number">4.</span> <span class="nav-text">第三方模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#psycopg2"><span class="nav-number">4.1.</span> <span class="nav-text">psycopg2</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -408,7 +408,8 @@
 <p>这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</p>
 <h4 id="Promises对象"><a href="#Promises对象" class="headerlink" title="Promises对象"></a>Promises对象</h4><p>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。<br>每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成<code>f1().then(f2);</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jquery的实现</span><br><span class="line">function f1()&#123;</span><br><span class="line">    var dfd = $.Deferred();</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        // f1的任务代码</span><br><span class="line">        dfd.resolve();</span><br><span class="line">    &#125;, 500);</span><br><span class="line">    return dfd.promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。<br>指定多个回调函数：<code>f1().then(f2).then(f3);</code><br>再比如，指定发生错误时的回调函数：<code>f1().then(f2).fail(f3);</code><br>还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。</p>
-<h2 id="方法（前端）"><a href="#方法（前端）" class="headerlink" title="方法（前端）"></a>方法（前端）</h2><h3 id="canvas对象标示一个html画布元素"><a href="#canvas对象标示一个html画布元素" class="headerlink" title="canvas对象标示一个html画布元素"></a>canvas对象标示一个html画布元素</h3><table>
+<h2 id="方法（前端）"><a href="#方法（前端）" class="headerlink" title="方法（前端）"></a>方法（前端）</h2><h3 id="canvas对象标示一个html画布元素"><a href="#canvas对象标示一个html画布元素" class="headerlink" title="canvas对象标示一个html画布元素"></a>canvas对象标示一个html画布元素</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>父</th>
@@ -486,10 +487,12 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="document对象"><a href="#document对象" class="headerlink" title="document对象"></a>document对象</h3><ol>
 <li>每个载入浏览器的 HTML 文档都会成为 Document 对象。</li>
 <li>Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -506,12 +509,14 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="element对象"><a href="#element对象" class="headerlink" title="element对象"></a>element对象</h3><ol>
 <li>指定元素。</li>
 </ol>
 <h3 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp" target="_blank" rel="noopener">window对象</a></h3><ol>
 <li>Window 对象表示浏览器中打开的窗口。</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -534,6 +539,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="内置方法"><a href="#内置方法" class="headerlink" title="内置方法"></a>内置方法</h2><p>encodeURIComponent() 函数可把字符串作为URI组件进行编码，返回正常打印看不见的字符。</p>
 <h3 id="JavaScript中Get和Set访问器"><a href="#JavaScript中Get和Set访问器" class="headerlink" title="JavaScript中Get和Set访问器"></a>JavaScript中Get和Set访问器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">标准用法</span><br><span class="line">function Field(val)&#123;  </span><br><span class="line">    this.value = val;  </span><br><span class="line">&#125; </span><br><span class="line">Field.prototype = &#123;  </span><br><span class="line">    get value()&#123;  </span><br><span class="line">        return this._value;  </span><br><span class="line">    &#125;,  </span><br><span class="line">    set value(val)&#123;  </span><br><span class="line">        this._value = val;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var field = new Field(&quot;test&quot;);</span><br><span class="line">field.value=&quot;test2&quot;;</span><br><span class="line">//field.value will now return &quot;test2&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>是一种用于创建和初始化class创建的对象的特殊方法</p>
@@ -660,7 +666,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -671,7 +677,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -682,7 +688,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

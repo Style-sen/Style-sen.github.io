@@ -412,14 +412,15 @@
 <p>将上边两行放入settings.txt文件中。</p>
 <h3 id="然后安装NODE-会自动安装npm"><a href="#然后安装NODE-会自动安装npm" class="headerlink" title="然后安装NODE(会自动安装npm)"></a>然后安装NODE(会自动安装npm)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvm --version</span><br><span class="line">nvm install 10.15.3</span><br><span class="line">nvm use 10.15.3</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 源管理</span><br><span class="line">npm install -g nrm</span><br><span class="line">nrm list</span><br><span class="line">nrm use taobao //尽量不适用taobao源</span><br></pre></td></tr></table></figure>
-<p>注：windows还需安装<a href="https://github.com/nodejs/node-gyp#installation" target="_blank" rel="noopener">npm install -g node-gyp</a>和<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">npm install –global windows-build-tools</a></p>
+<p>注：windows还需安装<a href="https://github.com/nodejs/node-gyp#installation" target="_blank" rel="noopener">npm install -g node-gyp</a>和<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">npm install —global windows-build-tools</a></p>
 <h3 id="使用yarn替换npm"><a href="#使用yarn替换npm" class="headerlink" title="使用yarn替换npm"></a>使用yarn替换npm</h3><p><code>npm install yarn -g</code></p>
 <p>或者<a href="https://yarnpkg.com/en/docs/install#debian-stable" target="_blank" rel="noopener">Installation</a></p>
 <h3 id="安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用"><a href="#安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用" class="headerlink" title="安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)"></a>安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cnpm -g --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
 <li><a href="https://blog.csdn.net/gaoxuaiguoyi/article/details/80708815" target="_blank" rel="noopener">electron打包出现 Error: Unresolved node modules: vue</a></li>
 </ol>
-<h2 id="NPM和YARN使用"><a href="#NPM和YARN使用" class="headerlink" title="NPM和YARN使用"></a>NPM和YARN使用</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><table>
+<h2 id="NPM和YARN使用"><a href="#NPM和YARN使用" class="headerlink" title="NPM和YARN使用"></a>NPM和YARN使用</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>NPM</th>
@@ -458,12 +459,12 @@
 <td>升级某一个包</td>
 </tr>
 <tr>
-<td>npm install –unsafe-perm</td>
+<td>npm install —unsafe-perm</td>
 <td>设置为true以在运行程序包脚本时禁止UID / GID切换</td>
 </tr>
 <tr>
-<td>npm install –save [–save-dev]</td>
-<td>-S, –save: Package will appear in your dependencies;-D, –save-dev: Package will appear in your devDependencies;-O, –save-optional: Package will appear in your optionalDependencies.</td>
+<td>npm install —save [—save-dev]</td>
+<td>-S, —save: Package will appear in your dependencies;-D, —save-dev: Package will appear in your devDependencies;-O, —save-optional: Package will appear in your optionalDependencies.</td>
 </tr>
 <tr>
 <td>npm audit</td>
@@ -474,23 +475,24 @@
 <td>检测项目依赖中的漏洞并自动安装需要更新的有漏洞的依赖，而不必再自己进行跟踪和修复</td>
 </tr>
 <tr>
-<td>npm audit fix –package-lock-only</td>
+<td>npm audit fix —package-lock-only</td>
 <td>运行audit fix，但是只更新pkglock， 不更新node_modules</td>
 </tr>
 <tr>
-<td>npm audit fix –only=prod</td>
+<td>npm audit fix —only=prod</td>
 <td>只更新dependencies中安装的包，跳过devDependencies中的包</td>
 </tr>
 <tr>
-<td>npm audit fix –dry-run –json</td>
+<td>npm audit fix —dry-run —json</td>
 <td>运行命令，得到audit fix将会更新的内容，并且输出json格式的安装信息，但是并不真的安装更新</td>
 </tr>
 <tr>
-<td>npm audit –json</td>
+<td>npm audit —json</td>
 <td>得到json格式的详细检测报告</td>
 </tr>
 </tbody>
 </table>
+</div>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">安装github工程</span><br><span class="line">npm install https://github.com/huixisheng/zepto-lazyload.git#branch</span><br></pre></td></tr></table></figure>
 <h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><pre><code>作为描述文件，描述你的项目依赖哪些包。
 
@@ -503,6 +505,7 @@
 </ol>
 <h2 id="PM2"><a href="#PM2" class="headerlink" title="PM2"></a>PM2</h2><p>pm2是一个内置负载均衡的node.js应用进程管理器</p>
 <p><code>npm install -g pm2</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -512,7 +515,7 @@
 </thead>
 <tbody>
 <tr>
-<td>pm2 start server.js –name</td>
+<td>pm2 start server.js —name</td>
 <td>启动一个应用，并指定名称</td>
 </tr>
 <tr>
@@ -541,7 +544,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><h3 id="process"><a href="#process" class="headerlink" title="process"></a><a href="http://javascript.ruanyifeng.com/nodejs/process.html" target="_blank" rel="noopener">process</a></h3><p>process对象是 Node 的一个全局对象，提供当前 Node 进程的信息。它可以在脚本的任意位置使用，不必通过require命令加载。该对象部署了EventEmitter接口。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -556,9 +561,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="Node-js-EventEmitter"><a href="#Node-js-EventEmitter" class="headerlink" title="Node.js EventEmitter"></a><a href="http://www.runoob.com/nodejs/nodejs-event.html" target="_blank" rel="noopener">Node.js EventEmitter</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">创建一个模块</span><br><span class="line">import EventEmitter from &apos;events&apos;;</span><br><span class="line">class someThing extends EventEmitter&#123;</span><br><span class="line">    a=null</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        //初始化</span><br><span class="line">        super()</span><br><span class="line"></span><br><span class="line">        this.a = new b();</span><br><span class="line">        this.a.on(&quot;&quot;, ()=&gt;&#123;</span><br><span class="line">            this.emit(&quot;&quot;,c);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    method ()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default someThing;</span><br></pre></td></tr></table></figure>
 <h2 id="NODEJS工程"><a href="#NODEJS工程" class="headerlink" title="NODEJS工程"></a>NODEJS工程</h2><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init          # 可在当前目录下创建一个package.json文件</span><br><span class="line">npm init --yes    # 可跳过回答问题步骤</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>index.js<br>main<br>|—-config.js</p>
+</code></pre><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>index.js<br>main<br>|——config.js</p>
 
       
     </div>
@@ -678,7 +684,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -689,7 +695,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -700,7 +706,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

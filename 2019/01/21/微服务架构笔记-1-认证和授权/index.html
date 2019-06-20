@@ -428,8 +428,8 @@
 <li>OAuth在”客户端”与”服务提供商”之间，设置了一个授权层（authorization layer）。”客户端”不能直接登录”服务提供商”，只能登录授权层，以此将用户与客户端区分开来。”客户端”登录授权层所用的令牌（token），与用户的密码不同。用户可以在登录的时候，指定授权层令牌的权限范围和有效期。”客户端”登录授权层以后，”服务提供商”根据令牌的权限范围和有效期，向”客户端”开放用户储存的资料。</li>
 <li><em>资源服务器也要会判断认证服务器给的Token的有效性，可以通过共享数据库</em></li>
 <li><a href="https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md" target="_blank" rel="noopener">OAuth2中文文档</a></li>
-<li><a href="https://blog.csdn.net/qq_28877125/article/details/81318451" target="_blank" rel="noopener">Flask–搭建OAuth2.0认证服务器（一）</a></li>
-<li><a href="https://blog.csdn.net/qq_28877125/article/details/81346427" target="_blank" rel="noopener">Flask–搭建OAuth2.0认证服务器（二）</a></li>
+<li><a href="https://blog.csdn.net/qq_28877125/article/details/81318451" target="_blank" rel="noopener">Flask—搭建OAuth2.0认证服务器（一）</a></li>
+<li><a href="https://blog.csdn.net/qq_28877125/article/details/81346427" target="_blank" rel="noopener">Flask—搭建OAuth2.0认证服务器（二）</a></li>
 </ol>
 <h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>A. 用户打开客户端以后，客户端要求用户给予授权。<br>B. 用户同意给予客户端授权。<br>C. 客户端使用上一步获得的授权，向认证服务器申请令牌。<br>D. 认证服务器对客户端进行认证以后，确认无误，同意发放令牌。<br>E. 客户端使用令牌，向资源服务器申请获取资源。<br>F. 资源服务器确认令牌无误，同意向客户端开放资源。</p>
 <h3 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h3><h4 id="授权码方式"><a href="#授权码方式" class="headerlink" title="授权码方式"></a>授权码方式</h4><p>授权码方式（authorization code）是功能最完整、流程最严密的授权模式。它的特点就是通过客户端的后台服务器，与”服务提供商”的认证服务器进行互动。</p>
@@ -562,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -573,7 +573,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -584,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

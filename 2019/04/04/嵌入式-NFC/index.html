@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="NFC类型NFC-A基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B基于ISO/IEC 14443B。类似RFID-B。AM调制曼彻斯特编码（边沿触发）。106 Kbps数据速率。 NFC-F基于FeliCA JIS X6319-4。更快。也被称作FeliCA。它被用于各种各样的应用，如基于creadit卡或借记卡的支付">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T02:48:39.063Z">
+<meta property="og:updated_time" content="2019-06-20T05:46:52.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嵌入式-NFC">
 <meta name="twitter:description" content="NFC类型NFC-A基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B基于ISO/IEC 14443B。类似RFID-B。AM调制曼彻斯特编码（边沿触发）。106 Kbps数据速率。 NFC-F基于FeliCA JIS X6319-4。更快。也被称作FeliCA。它被用于各种各样的应用，如基于creadit卡或借记卡的支付">
@@ -399,7 +399,8 @@
         <h2 id="NFC类型"><a href="#NFC类型" class="headerlink" title="NFC类型"></a>NFC类型</h2><h3 id="NFC-A"><a href="#NFC-A" class="headerlink" title="NFC-A"></a>NFC-A</h3><p>基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。</p>
 <h3 id="NFC-B"><a href="#NFC-B" class="headerlink" title="NFC-B"></a>NFC-B</h3><p>基于ISO/IEC 14443B。类似RFID-B。AM调制曼彻斯特编码（边沿触发）。106 Kbps数据速率。</p>
 <h3 id="NFC-F"><a href="#NFC-F" class="headerlink" title="NFC-F"></a>NFC-F</h3><p>基于FeliCA JIS X6319-4。更快。也被称作FeliCA。它被用于各种各样的应用，如基于creadit卡或借记卡的支付，地铁车票的访问控制，在办公室和住宅公寓的个人识别等。</p>
-<h2 id="NFC标签类型"><a href="#NFC标签类型" class="headerlink" title="NFC标签类型"></a>NFC标签类型</h2><table>
+<h2 id="NFC标签类型"><a href="#NFC标签类型" class="headerlink" title="NFC标签类型"></a>NFC标签类型</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>type</th>
@@ -465,6 +466,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="APDU"><a href="#APDU" class="headerlink" title="APDU"></a>APDU</h2><ol>
 <li>智能卡与智能卡读卡器之间传送的信息单元, 是给智能卡发送的命令。</li>
 </ol>
@@ -474,7 +476,8 @@
 <li>如果返回的过程字节告诉IFD——IC卡支持该操作，则接下来就进行数据的传输（如果有的话），数据从IFD输入到IC卡或数据从IC卡输出到IFD；</li>
 <li>如果返回的过程字节告诉IFD——IC卡不支持该操作，则IC卡回传给IFD两个状态字节SW1 SW2，IFD根据SW1 SW2两字节判断IC卡不支持该操作的原因；</li>
 </ol>
-<h3 id="命令头"><a href="#命令头" class="headerlink" title="命令头"></a>命令头</h3><table>
+<h3 id="命令头"><a href="#命令头" class="headerlink" title="命令头"></a>命令头</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -519,7 +522,9 @@
 </tr>
 </tbody>
 </table>
-<h3 id="指令类别和指令码"><a href="#指令类别和指令码" class="headerlink" title="指令类别和指令码"></a>指令类别和指令码</h3><table>
+</div>
+<h3 id="指令类别和指令码"><a href="#指令类别和指令码" class="headerlink" title="指令类别和指令码"></a>指令类别和指令码</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>指令</th>
@@ -552,7 +557,9 @@
 </tr>
 </tbody>
 </table>
-<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><table>
+</div>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>状态码</th>
@@ -683,11 +690,27 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>9401 出错 交易金额不足<br>9402 出错 交易计数器达到最大值<br>9403 出错 密钥索引不支持<br>9406 出错 所需MAC不可用<br>6900 出错 不能处理<br>6901 出错 命令不接受（无效状态）<br>61xx 正常 需发GET RESPONSE命令<br>6600 出错 接收通讯超时<br>6601 出错 接收字符奇偶错<br>6602 出错 校验和不对<br>6603 警告 当前DF文件无FCI<br>6604 警告 当前DF下无SF或KF</p>
 <h2 id="NDEF"><a href="#NDEF" class="headerlink" title="NDEF"></a>NDEF</h2><h2 id="读卡器"><a href="#读卡器" class="headerlink" title="读卡器"></a>读卡器</h2><h3 id="ACR122U"><a href="#ACR122U" class="headerlink" title="ACR122U"></a><a href="http://www.acr122.com/" target="_blank" rel="noopener">ACR122U</a></h3><ol>
 <li>支持Android™ OS 3.1 及以上版本（使用OTG）。</li>
 </ol>
+<h3 id="PN532"><a href="#PN532" class="headerlink" title="PN532"></a>PN532</h3><p>PN532是一个高度集成的非接触读写芯片，它包含80C51微控制器内核，集成了13.56MHz下的各种主动/被动式非接触通信方法和协议。<br>PN532传输模块支持6种不同的工作模式：</p>
+<ul>
+<li>读写器模式，支持ISO/IEC 14443A / MIFARE®机制</li>
+<li>读写器模式，支持 FeliCa机制</li>
+<li>读写器模式，支持ISO/IEC 14443B机制</li>
+<li>卡操作模式，支持ISO 14443A / MIFARE®机制</li>
+<li>卡操作模式，FeliCa机制</li>
+<li>ISO/IEC18092，ECM340点对点</li>
+</ul>
+<h4 id="Libnfc"><a href="#Libnfc" class="headerlink" title="Libnfc"></a><a href="http://nfc-tools.org/index.php?title=Libnfc" target="_blank" rel="noopener">Libnfc</a></h4><p>modules</p>
+<h5 id="NFC-Device-Hardware-manipulation"><a href="#NFC-Device-Hardware-manipulation" class="headerlink" title="NFC Device/Hardware manipulation"></a>NFC Device/Hardware manipulation</h5><p><a href="http://www.libnfc.org/api/modules.html" target="_blank" rel="noopener">API</a></p>
+<p>nfc/drivers/pn532_i2c.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static nfc_device * pn532_i2c_open(const nfc_context *context, const nfc_connstring connstring)</span><br></pre></td></tr></table></figure></p>
+<p>nfc/nfc/nfc-internal.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int connstring_decode(const nfc_connstring connstring, const char *driver_name, const char *bus_name, char **pparam1, char **pparam2)</span><br></pre></td></tr></table></figure></p>
+<p>nfc/nfc/nfc.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nfc_initiator_init</span>	<span class="params">(	nfc_device * 	pnd	)</span>	<span class="comment">// Initialize NFC device as initiator (reader)读卡器</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nfc_initiator_list_passive_targets</span>	<span class="params">(	nfc_device * 	pnd,    <span class="comment">// nfc_device struct pointer that represent currently used device</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">const</span> nfc_modulation 	nm,    <span class="comment">// desired modulation</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            nfc_target 	ant[],    <span class="comment">// array of nfc_target that will be filled with targets info</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">const</span> <span class="keyword">size_t</span> 	szTargets     <span class="comment">// size of ant (will be the max targets listed)</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span>    <span class="comment">// List passive or emulated tags.	Returns the number of targets found on success, otherwise returns libnfc's error code (negative value)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nfc_initiator_select_passive_target</span>	<span class="params">(	nfc_device * 	pnd,    <span class="comment">// nfc_device struct pointer that represent currently used device</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">const</span> nfc_modulation 	nm,    <span class="comment">//desired modulation</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">const</span> <span class="keyword">uint8_t</span> * 	pbtInitData,  <span class="comment">// optional initiator data, NULL for using the default values.</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">const</span> <span class="keyword">size_t</span> 	szInitData,    <span class="comment">// pbtInitData的长度.</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                            nfc_target * 	pnt    <span class="comment">// nfc_target struct pointer which will filled if available</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span>	<span class="comment">// 选择一个tag  Returns selected passive target count on success, otherwise returns libnfc's error code (negative value)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 执行下边的函数必须先选择target</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nfc_initiator_transceive_bytes</span>	<span class="params">(	nfc_device * 	pnd,    <span class="comment">// nfc_device struct pointer that represent currently used device</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">const</span> <span class="keyword">uint8_t</span> * 	pbtTx,    <span class="comment">// 待发送帧的字节数组</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">const</span> <span class="keyword">size_t</span> 	szTx,    <span class="comment">// 待发送帧的字节数组的长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">uint8_t</span> * 	pbtRx,    <span class="comment">// 用来存储从卡中读取的数据字节</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">const</span> <span class="keyword">size_t</span> 	szRx,    <span class="comment">// size of pbtRx (Will return NFC_EOVFLOW if RX exceeds this size)</span></span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">int</span> 	timeout    <span class="comment">// in milliseconds</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span>	<span class="comment">// Returns received bytes count on success, otherwise returns libnfc's error code</span></span></span><br><span class="line"><span class="function"><span class="comment">//The NFC device (configured as initiator) will transmit the supplied bytes (pbtTx) to the target. It waits for the response and stores the received bytes in the pbtRx byte array.</span></span></span><br><span class="line"><span class="function"><span class="comment">//If NP_EASY_FRAMING option is disabled the frames will sent and received in raw mode: PN53x will not handle input neither output data.</span></span></span><br><span class="line"><span class="function"><span class="comment">//The parity bits are handled by the PN53x chip. The CRC can be generated automatically or handled manually. Using this function, frames can be communicated very fast via the NFC initiator to the tag.</span></span></span><br><span class="line"><span class="function"><span class="comment">//Tests show that on average this way of communicating is much faster than using the regular driver/middle-ware (often supplied by manufacturers).</span></span></span><br><span class="line"><span class="function"><span class="comment">//WARNING:The configuration option NP_HANDLE_PARITY must be set to true (the default value).</span></span></span><br><span class="line"><span class="function"><span class="comment">//<span class="doctag">NOTE:</span>When used with MIFARE Classic, NFC_EMFCAUTHFAIL error is returned if authentication command failed. You need to re-select the tag to operate with.</span></span></span><br><span class="line"><span class="function"><span class="comment">//<span class="doctag">NOTE:</span>If timeout equals to 0, the function blocks indefinitely (until an error is raised or function is completed) If timeout equals to -1, the default timeout will be used</span></span></span><br></pre></td></tr></table></figure></p>
 <h2 id="模拟标签"><a href="#模拟标签" class="headerlink" title="模拟标签"></a>模拟标签</h2><h3 id="NRF52832"><a href="#NRF52832" class="headerlink" title="NRF52832"></a>NRF52832</h3><p>NFCT(Near field communication tag)是NFC-A类型。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -706,6 +729,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><h5 id="nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><a href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h" class="headerlink" title="nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h"></a>nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</h5><p> This is the NFC Forum NDEF tag 4 type emulation library. It implements the ISO14443-4A protocol (ISO-DEP) and additionally can emulate a read-writable NDEF content. If the emulation of the NDEF content is not needed, the library works in a raw mode where all APDUs are delivered to the user, who is then responsible to generate a timely RPDU as a response.</p>
 <p> The sequence of initializing functions determines whether the NDEF emulation will run or whether the raw mode is used.</p>
 <ul>
@@ -717,7 +741,8 @@
 </li>
 </ul>
 <h5 id="nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><a href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h" class="headerlink" title="nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h"></a>nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</h5><p>NFC Forum type 2 tag.</p>
-<h2 id="缩略语"><a href="#缩略语" class="headerlink" title="缩略语"></a>缩略语</h2><table>
+<h2 id="缩略语"><a href="#缩略语" class="headerlink" title="缩略语"></a>缩略语</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -731,6 +756,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 
       
     </div>
@@ -850,7 +876,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -861,7 +887,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -872,7 +898,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -905,7 +931,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC类型"><span class="nav-number">1.</span> <span class="nav-text">NFC类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-A"><span class="nav-number">1.1.</span> <span class="nav-text">NFC-A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-B"><span class="nav-number">1.2.</span> <span class="nav-text">NFC-B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-F"><span class="nav-number">1.3.</span> <span class="nav-text">NFC-F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC标签类型"><span class="nav-number">2.</span> <span class="nav-text">NFC标签类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APDU"><span class="nav-number">3.</span> <span class="nav-text">APDU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IFD（读卡接口设备）与IC卡之间的通讯："><span class="nav-number">3.1.</span> <span class="nav-text">IFD（读卡接口设备）与IC卡之间的通讯：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令头"><span class="nav-number">3.2.</span> <span class="nav-text">命令头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令类别和指令码"><span class="nav-number">3.3.</span> <span class="nav-text">指令类别和指令码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">3.4.</span> <span class="nav-text">状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NDEF"><span class="nav-number">4.</span> <span class="nav-text">NDEF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读卡器"><span class="nav-number">5.</span> <span class="nav-text">读卡器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ACR122U"><span class="nav-number">5.1.</span> <span class="nav-text">ACR122U</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟标签"><span class="nav-number">6.</span> <span class="nav-text">模拟标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NRF52832"><span class="nav-number">6.1.</span> <span class="nav-text">NRF52832</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDK"><span class="nav-number">6.1.1.</span> <span class="nav-text">SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略语"><span class="nav-number">7.</span> <span class="nav-text">缩略语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC类型"><span class="nav-number">1.</span> <span class="nav-text">NFC类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-A"><span class="nav-number">1.1.</span> <span class="nav-text">NFC-A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-B"><span class="nav-number">1.2.</span> <span class="nav-text">NFC-B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFC-F"><span class="nav-number">1.3.</span> <span class="nav-text">NFC-F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFC标签类型"><span class="nav-number">2.</span> <span class="nav-text">NFC标签类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APDU"><span class="nav-number">3.</span> <span class="nav-text">APDU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IFD（读卡接口设备）与IC卡之间的通讯："><span class="nav-number">3.1.</span> <span class="nav-text">IFD（读卡接口设备）与IC卡之间的通讯：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令头"><span class="nav-number">3.2.</span> <span class="nav-text">命令头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令类别和指令码"><span class="nav-number">3.3.</span> <span class="nav-text">指令类别和指令码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">3.4.</span> <span class="nav-text">状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NDEF"><span class="nav-number">4.</span> <span class="nav-text">NDEF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读卡器"><span class="nav-number">5.</span> <span class="nav-text">读卡器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ACR122U"><span class="nav-number">5.1.</span> <span class="nav-text">ACR122U</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PN532"><span class="nav-number">5.2.</span> <span class="nav-text">PN532</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Libnfc"><span class="nav-number">5.2.1.</span> <span class="nav-text">Libnfc</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NFC-Device-Hardware-manipulation"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">NFC Device/Hardware manipulation</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟标签"><span class="nav-number">6.</span> <span class="nav-text">模拟标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NRF52832"><span class="nav-number">6.1.</span> <span class="nav-text">NRF52832</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDK"><span class="nav-number">6.1.1.</span> <span class="nav-text">SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nrf5-sdk-components-nfc-t4t-lib-nfc-t4t-lib-h"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nrf5-sdk-components-nfc-t2t-lib-nfc-t2t-lib-h"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略语"><span class="nav-number">7.</span> <span class="nav-text">缩略语</span></a></li></ol></div>
             
 
           </div>

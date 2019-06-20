@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Docker,Deploy,Gitlab,CI/CD,">
+  <meta name="keywords" content="Docker,Deploy,CI/CD,Gitlab,">
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="翻译自Building Docker images with GitLab CI/CD GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。 TIP: Tip:允许使用docker-compose和其他Docker编排工具。 持续集成/部署的趋势之一:  创建应用镜像 对所创建的镜像进行测试 将镜像推到远程registry 部署到服务器  应用中可包含Dockerfi">
-<meta name="keywords" content="Docker,Deploy,Gitlab,CI&#x2F;CD">
+<meta name="keywords" content="Docker,Deploy,CI&#x2F;CD,Gitlab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用GitLab CI&#x2F;CD创建Docker镜像">
 <meta property="og:url" content="http://yoursite.com/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/index.html">
@@ -452,8 +452,8 @@
 <li>By enabling <code>--docker-privileged</code>, you are effectively disabling all of<br>the security mechanisms of containers and exposing your host to privilege<br>escalation which can lead to container breakout. For more information, check<br>out the official Docker documentation on<br><a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities" target="_blank" rel="noopener">Runtime privilege and Linux capabilities</a>.</li>
 <li>当使用docker-in-docker, 每一个job都运行在干净的环境中不包含历史. 并行jobs也会工作得很好因为每一个构建都会获得他们自己的Docker引擎实例，彼此之间不会冲突。但是，这也意味着jobs会运行<br>很慢，没有layers的缓存。</li>
 <li>默认情况下， <code>docker:dind</code> 使用 <code>--storage-driver vfs</code> 是最慢. 可以使用另外一种storage driver<a href="#using-the-overlayfs-driver">Using the overlayfs driver</a>.</li>
-<li><p>因为<code>docker:dind</code>容器和runner容器没有共享他们的root文件系统, job的工作目录会被挂载在子容器中。 For example, if you have files you want to share with a<br>child container, you may create a subdirectory under <code>/builds/$CI_PROJECT_PATH</code><br>and use it as your mount point (for a more thorough explanation, check <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/41227" target="_blank" rel="noopener">issue<br>#41227</a>):</p>
-  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  MOUNT_POINT:</span> <span class="string">/builds/$CI_PROJECT_PATH/mnt</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">mkdir</span> <span class="bullet">-p</span> <span class="string">"$MOUNT_POINT"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">run</span> <span class="bullet">-v</span> <span class="string">"$MOUNT_POINT:/mnt"</span> <span class="string">my-docker-image</span></span><br></pre></td></tr></table></figure>
+<li><p>因为<code>docker:dind</code>容器和runner容器没有共享他们的root文件系统, job的工作目录会被挂载在子容器中。 For example, if you have files you want to share with a<br>child container, you may create a subdirectory under <code>/builds/$CI_PROJECT_PATH</code><br>and use it as your mount point (for a more thorough explanation, check [issue</p>
+<h1 id="41227-https-gitlab-com-gitlab-org-gitlab-ce-issues-41227"><a href="#41227-https-gitlab-com-gitlab-org-gitlab-ce-issues-41227" class="headerlink" title="41227](https://gitlab.com/gitlab-org/gitlab-ce/issues/41227)):"></a>41227](<a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/41227" target="_blank" rel="noopener">https://gitlab.com/gitlab-org/gitlab-ce/issues/41227</a>)):</h1>  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  MOUNT_POINT:</span> <span class="string">/builds/$CI_PROJECT_PATH/mnt</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">mkdir</span> <span class="bullet">-p</span> <span class="string">"$MOUNT_POINT"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">run</span> <span class="bullet">-v</span> <span class="string">"$MOUNT_POINT:/mnt"</span> <span class="string">my-docker-image</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>这种方法的一个样例: <a href="https://gitlab.com/gitlab-examples/docker" target="_blank" rel="noopener">https://gitlab.com/gitlab-examples/docker</a>.</p>
@@ -578,9 +578,9 @@
           
             <a href="/tags/Deploy/" rel="tag"><i class="fa fa-tag"></i>Deploy</a>
           
-            <a href="/tags/Gitlab/" rel="tag"><i class="fa fa-tag"></i>Gitlab</a>
-          
             <a href="/tags/CI-CD/" rel="tag"><i class="fa fa-tag"></i>CI/CD</a>
+          
+            <a href="/tags/Gitlab/" rel="tag"><i class="fa fa-tag"></i>Gitlab</a>
           
         </div>
       
@@ -682,7 +682,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -693,7 +693,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -704,7 +704,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -737,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Runner配置"><span class="nav-number">1.</span> <span class="nav-text">Runner配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用shell执行器"><span class="nav-number">1.1.</span> <span class="nav-text">使用shell执行器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用docker-in-docker执行器"><span class="nav-number">1.2.</span> <span class="nav-text">使用docker-in-docker执行器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Docker-socket-绑定"><span class="nav-number">1.3.</span> <span class="nav-text">使用 Docker socket 绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Making-docker-in-docker-builds-faster-with-Docker-layer-caching"><span class="nav-number">2.</span> <span class="nav-text">Making docker-in-docker builds faster with Docker layer caching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Docker-caching-works"><span class="nav-number">2.1.</span> <span class="nav-text">How Docker caching works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Docker-caching"><span class="nav-number">2.2.</span> <span class="nav-text">Using Docker caching</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-OverlayFS-driver"><span class="nav-number">3.</span> <span class="nav-text">Using the OverlayFS driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">3.1.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-driver-per-project"><span class="nav-number">3.2.</span> <span class="nav-text">Use driver per project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-driver-for-every-project"><span class="nav-number">3.3.</span> <span class="nav-text">Use driver for every project</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-GitLab-Container-Registry"><span class="nav-number">4.</span> <span class="nav-text">Using the GitLab Container Registry</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authenticating-to-the-Container-Registry"><span class="nav-number">4.1.</span> <span class="nav-text">Authenticating to the Container Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Container-Registry-examples"><span class="nav-number">4.2.</span> <span class="nav-text">Container Registry examples</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Runner配置"><span class="nav-number">1.</span> <span class="nav-text">Runner配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用shell执行器"><span class="nav-number">1.1.</span> <span class="nav-text">使用shell执行器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用docker-in-docker执行器"><span class="nav-number">1.2.</span> <span class="nav-text">使用docker-in-docker执行器</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#41227-https-gitlab-com-gitlab-org-gitlab-ce-issues-41227"><span class="nav-number"></span> <span class="nav-text">41227](https://gitlab.com/gitlab-org/gitlab-ce/issues/41227)):</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Docker-socket-绑定"><span class="nav-number">0.1.</span> <span class="nav-text">使用 Docker socket 绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Making-docker-in-docker-builds-faster-with-Docker-layer-caching"><span class="nav-number">1.</span> <span class="nav-text">Making docker-in-docker builds faster with Docker layer caching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Docker-caching-works"><span class="nav-number">1.1.</span> <span class="nav-text">How Docker caching works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Docker-caching"><span class="nav-number">1.2.</span> <span class="nav-text">Using Docker caching</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-OverlayFS-driver"><span class="nav-number">2.</span> <span class="nav-text">Using the OverlayFS driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">2.1.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-driver-per-project"><span class="nav-number">2.2.</span> <span class="nav-text">Use driver per project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-driver-for-every-project"><span class="nav-number">2.3.</span> <span class="nav-text">Use driver for every project</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-GitLab-Container-Registry"><span class="nav-number">3.</span> <span class="nav-text">Using the GitLab Container Registry</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authenticating-to-the-Container-Registry"><span class="nav-number">3.1.</span> <span class="nav-text">Authenticating to the Container Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Container-Registry-examples"><span class="nav-number">3.2.</span> <span class="nav-text">Container Registry examples</span></a></li></ol></li></div>
             
 
           </div>
