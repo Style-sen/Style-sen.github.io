@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="数据库的设计注意事项及主流ORM框架的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-19T01:34:00.164Z">
+<meta property="og:updated_time" content="2019-06-21T02:33:24.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-ORM">
 <meta name="twitter:description" content="数据库的设计注意事项及主流ORM框架的使用">
@@ -481,6 +481,101 @@
 <li><a href="https://serverfault.com/questions/407612/error-2006-mysql-server-has-gone-away" target="_blank" rel="noopener">Error 2006: MySQL server has gone away</a></li>
 <li><a href="https://www.cnblogs.com/lgjbky/p/9482278.html" target="_blank" rel="noopener">flask_sqlalchemy中db.session是如何保持请求间独立的—源码阅读笔记</a></li>
 <li><a href="https://www.cnblogs.com/lesliexong/p/8654615.html" target="_blank" rel="noopener">“Mysql has gone away”的几种可能</a></li>
+<li><p>SQLAlchemy中的create engine默认会用到MySQLdb模块.但是此模块只支持python2.7.所以需要改变与mysql的连接模块(例如pymysql).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">engine = create_engine(&quot;mysql+pymysql://root:xxxx@192.168.1.249:9306/TestDataBank&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://blog.csdn.net/powerccna/article/details/79315156" target="_blank" rel="noopener">Flask 将数据库表转换为sqlalchemy models</a>  </p>
+</li>
+<li><a href="https://segmentfault.com/q/1010000007044608" target="_blank" rel="noopener">flask sqlalchemy 如何在models定义两个不同数据库，表名相同（<strong>tablename</strong>）的class</a></li>
+</ol>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><h5 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sqlalchemy.create_engine  <span class="comment"># 创建一个数据库引</span></span><br><span class="line">sqlalchemy.Column  <span class="comment"># 纵队</span></span><br><span class="line">sqlalchemy.Table  <span class="comment"># 表格</span></span><br><span class="line">    Table.columns  <span class="comment"># 等同于 .c</span></span><br><span class="line">    Table.insert()  <span class="comment"># 获得一个插入句柄</span></span><br><span class="line">        insert().execute(name=<span class="string">'rsj217'</span>, email=<span class="string">'rsj21@gmail.com'</span>)  <span class="comment"># 插入一条数据</span></span><br><span class="line">        insert().execute(&#123;字典&#125;,&#123;字典&#125;)  <span class="comment"># 插入多条数据</span></span><br><span class="line">sqlalchemy.Index</span><br><span class="line">sqlalchemy.text</span><br><span class="line">sqlalchemy.PassiveDefault  <span class="comment"># 定义某一列的默认操作</span></span><br><span class="line">sqlalchemy.Numeric</span><br><span class="line">sqlalchemy.Integer  <span class="comment"># 整数</span></span><br><span class="line">sqlalchemy.String  <span class="comment"># 字符串</span></span><br><span class="line">sqlalchemy.text</span><br><span class="line">sqlalchemy.DateTime</span><br><span class="line">sqlalchemy.MetaData  <span class="comment"># 元数据,容器类对象</span></span><br><span class="line">sqlalchemy.exc.OperationalError</span><br><span class="line">sqlalchemy.schema.CreateTable</span><br><span class="line">sqlalchemy.select</span><br><span class="line">sqlalchemy.dialects</span><br><span class="line">    dialects.mysql</span><br><span class="line">        mysql.FLOAT  <span class="comment"># mysql的float类型 precision设置有效数字膈腧scale设置小数点后数字个数</span></span><br><span class="line">        mysql.DOUBLE</span><br><span class="line">        mysql.REAL  <span class="comment"># 可以保留原数据的精度</span></span><br><span class="line">        mysql.TIMESTAMP  <span class="comment"># 时间戳</span></span><br></pre></td></tr></table></figure>
+<h5 id="常用的SQLAlchemy查询过滤器（query-）"><a href="#常用的SQLAlchemy查询过滤器（query-）" class="headerlink" title="常用的SQLAlchemy查询过滤器（query.）"></a>常用的SQLAlchemy查询过滤器（query.）</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>过滤器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter()</td>
+<td>把过滤器添加到原查询上，返回一个新查询</td>
+</tr>
+<tr>
+<td>filter_by()</td>
+<td>把等值过滤器添加到原查询上，返回一个新查询</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>使用指定的值限定原查询返回的结果</td>
+</tr>
+<tr>
+<td>offset()</td>
+<td>偏移原查询返回的结果，返回一个新查询</td>
+</tr>
+<tr>
+<td>order_by()</td>
+<td>根据指定条件对原查询结果进行排序，返回一个新查询</td>
+</tr>
+<tr>
+<td>group_by()</td>
+<td>根据指定条件对原查询结果进行分组，返回一个新查询</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">User.query.filter(User.name.endswith(<span class="string">'g'</span>)).all()</span><br><span class="line">User.query.filter(User.name!=<span class="string">'wang'</span>).all()</span><br><span class="line">User.query.filter(and_(User.name!=<span class="string">'wang'</span>,User.email.endswith(<span class="string">'163.com'</span>))).all()</span><br><span class="line">User.query.filter(or_(User.name!=<span class="string">'wang'</span>,User.email.endswith(<span class="string">'163.com'</span>))).all()</span><br><span class="line">User.query.filter(not_(User.name==<span class="string">'chen'</span>)).all()</span><br><span class="line">User.query.filter_by(name=<span class="string">'zhang'</span>).update(&#123;<span class="string">'name'</span>:<span class="string">'li'</span>&#125;)</span><br><span class="line"><span class="comment"># 查询名字结尾字符为g的所有用户[开始 / 包含]</span></span><br><span class="line">User.query.filter(User.name.endswith(<span class="string">"g"</span>)).all()</span><br><span class="line">User.query.filter(User.name.startswith(<span class="string">"w"</span>)).all()</span><br><span class="line">User.query.filter(User.name.contains(<span class="string">"n"</span>)).all()</span><br><span class="line">User.query.filter(User.name.like(<span class="string">"%n%g"</span>)).all()  模糊查询</span><br><span class="line"><span class="comment"># 查询名字和邮箱都以li开头的所有用户[2种方式]</span></span><br><span class="line">User.query.filter(User.name.startswith(<span class="string">"li"</span>), User.email.startswith(<span class="string">"li"</span>)).all()</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> and_</span><br><span class="line">User.query.filter(and_(User.name.startswith(<span class="string">"li"</span>), User.email.startswith(<span class="string">"li"</span>))).all()</span><br><span class="line"><span class="comment"># 查询age是25 或者 `email`以`itheima.com`结尾的所有用户</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</span><br><span class="line">User.query.filter(or_(User.age == <span class="number">25</span>, User.email.endswith(<span class="string">"itheima.com"</span>))).all()</span><br><span class="line"><span class="comment"># 查询名字不等于wang的所有用户[2种方式]</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> not_</span><br><span class="line">User.query.filter(not_(User.name == <span class="string">"wang"</span>)).all()</span><br><span class="line">User.query.filter(User.name != <span class="string">"wang"</span>).all()</span><br><span class="line"><span class="comment"># 查询id为[1, 3, 5, 7, 9]的用户</span></span><br><span class="line">User.query.filter(User.id.in_([<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])).all()</span><br><span class="line"><span class="comment"># 所有用户先按年龄从小到大, 再按id从大到小排序, 取前5个</span></span><br><span class="line">User.query.order_by(User.age, User.id.desc()).limit(<span class="number">5</span>).all()</span><br></pre></td></tr></table></figure>
+<h5 id="常用的SQLAlchemy查询执行器"><a href="#常用的SQLAlchemy查询执行器" class="headerlink" title="常用的SQLAlchemy查询执行器"></a>常用的SQLAlchemy查询执行器</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all()</td>
+<td>以列表形式返回查询的所有结果</td>
+</tr>
+<tr>
+<td>first()</td>
+<td>返回查询的第一个结果，如果未查到，返回None</td>
+</tr>
+<tr>
+<td>first_or_404()</td>
+<td>返回查询的第一个结果，如果未查到，返回404</td>
+</tr>
+<tr>
+<td>get()</td>
+<td>返回指定主键对应的行，如不存在，返回None</td>
+</tr>
+<tr>
+<td>get_or_404()</td>
+<td>返回指定主键对应的行，如不存在，返回404</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>返回查询结果的数量</td>
+</tr>
+<tr>
+<td>paginate()</td>
+<td>返回一个Paginate对象，它包含指定范围内的结果</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"数据库分页"</span></span><br><span class="line">[employees] = [Employee].query.paginate([page],per_page=[<span class="number">10</span>])            <span class="string">"paginate是分页的方法，第一个参数是页码，第二个是每页显示多少条"</span></span><br><span class="line"><span class="string">"属性"</span></span><br><span class="line">[employees].items    <span class="string">"得到的结果不是一列表,需要在传到前台的值加一个 .items"</span></span><br><span class="line">[employees].pages    <span class="string">"总的页数"</span></span><br><span class="line">[employees].page     <span class="string">"当前页"</span></span><br><span class="line">paginate.prev_num    <span class="string">"上一页页码"</span></span><br><span class="line">paginate.next_num    <span class="string">"下一页页码"</span></span><br><span class="line">paginate.has_prev    <span class="string">"有无上一页 True/False"</span></span><br><span class="line">paginate.has_next    <span class="string">"有无下一页 True/False"</span></span><br><span class="line">paginate.pages       <span class="string">"查询总页数"</span></span><br><span class="line">paginate.total       <span class="string">"记录总数"</span></span><br><span class="line">paginate.per_page    <span class="string">"每页记录数量"</span></span><br><span class="line"><span class="string">"方法"</span></span><br><span class="line">.prev() 上一页的分页对象Pagination</span><br><span class="line">.next() 下一页的分页对象Pagination</span><br><span class="line">paginate.iter_pages()<span class="string">"方法  分页导航列表"</span></span><br><span class="line"><span class="string">"用来获得针对当前页的应显示的分页页码列表"</span></span><br><span class="line"><span class="string">"假设当前共有100页，当前页为50页，按照默认的参数设置调用iter_pages获得的列表为"</span></span><br><span class="line"><span class="string">"[1,2,None,48,49,50,51,52,53,54,55,None,99,100]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># paginate,对象，包含当前页的数据，paginate.items可被for循环遍历,每个遍历值为一个模型对象</span></span><br><span class="line"></span><br><span class="line">[pag] = [News].query.filter().order_by(News.create_time.desc()).paginate([page], [per_page], [<span class="keyword">False</span>])</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Automap 也可以使用automap.</li>
+<li>Flask中使用SqlAlchemy的较好方法:使用脚本生成models,其中用到了sqlautocode模块,此模块已经过时,已经迁移到更新的模块:flask-sqlacodegen.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flask-sqlacodegen mysql+pymysql://root:xxx@xxx.xxx.xxx/TestDataBank</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>（注意：此处加上—flask可以生成flask-SQLAlchemy对应的model。）<br>可以生成相应的table类文件.此种方法有一个弊端就是,如果更改了数据库的内容,还需要重新生成model文件.此时,就需要先更改model,然后使用数据库迁移命令增量更新数据库.</p>
+<ol>
+<li>迁移：flask-migrate 管理升级迁移数据库         Flask-Migrate  </li>
+<li></li>
 </ol>
 
       
@@ -601,7 +696,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -656,7 +751,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Statements-and-Expressions-APISQl语句和表达式API"><span class="nav-number">2.3.</span> <span class="nav-text">SQL Statements and Expressions APISQl语句和表达式API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.4.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.5.</span> <span class="nav-text">flask-sqlalchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flask-sqlalchemy配置"><span class="nav-number">2.5.1.</span> <span class="nav-text">flask-sqlalchemy配置</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">2.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项"><span class="nav-number">2.1.</span> <span class="nav-text">配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session状态管理"><span class="nav-number">2.2.</span> <span class="nav-text">Session状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Statements-and-Expressions-APISQl语句和表达式API"><span class="nav-number">2.3.</span> <span class="nav-text">SQL Statements and Expressions APISQl语句和表达式API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">2.4.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-sqlalchemy"><span class="nav-number">2.5.</span> <span class="nav-text">flask-sqlalchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flask-sqlalchemy配置"><span class="nav-number">2.5.1.</span> <span class="nav-text">flask-sqlalchemy配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">2.5.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的SQLAlchemy查询过滤器（query-）"><span class="nav-number">2.5.2.2.</span> <span class="nav-text">常用的SQLAlchemy查询过滤器（query.）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的SQLAlchemy查询执行器"><span class="nav-number">2.5.2.3.</span> <span class="nav-text">常用的SQLAlchemy查询执行器</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
