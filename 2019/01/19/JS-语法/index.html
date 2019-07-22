@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="变量 $在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变量的时候与你的变量重名，导致脚本中的变量被覆盖，这时，就可以使用$符号来进行标记一下哪些是你的脚本中的变量。 this指的是调用函数的那个对象，就是函数运行时所在的环境对象。 a. 全局对象; b. 函数作为某个对象的方法调用，这时this就指这个上级对象；">
+<meta name="description" content="变量、函数、对象、方法">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS语法">
 <meta property="og:url" content="http://yoursite.com/2019/01/19/JS-语法/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="变量 $在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变量的时候与你的变量重名，导致脚本中的变量被覆盖，这时，就可以使用$符号来进行标记一下哪些是你的脚本中的变量。 this指的是调用函数的那个对象，就是函数运行时所在的环境对象。 a. 全局对象; b. 函数作为某个对象的方法调用，这时this就指这个上级对象；">
+<meta property="og:description" content="变量、函数、对象、方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T06:53:22.753Z">
+<meta property="og:updated_time" content="2019-07-22T01:21:53.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS语法">
-<meta name="twitter:description" content="变量 $在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变量的时候与你的变量重名，导致脚本中的变量被覆盖，这时，就可以使用$符号来进行标记一下哪些是你的脚本中的变量。 this指的是调用函数的那个对象，就是函数运行时所在的环境对象。 a. 全局对象; b. 函数作为某个对象的方法调用，这时this就指这个上级对象；">
+<meta name="twitter:description" content="变量、函数、对象、方法">
 
 
 
@@ -382,6 +382,10 @@
           
 
           
+              <div class="post-description">
+                  变量、函数、对象、方法
+              </div>
+          
 
         </div>
       </header>
@@ -408,20 +412,27 @@
 <p>这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</p>
 <h4 id="Promises对象"><a href="#Promises对象" class="headerlink" title="Promises对象"></a>Promises对象</h4><p>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。<br>每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成<code>f1().then(f2);</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jquery的实现</span><br><span class="line">function f1()&#123;</span><br><span class="line">    var dfd = $.Deferred();</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        // f1的任务代码</span><br><span class="line">        dfd.resolve();</span><br><span class="line">    &#125;, 500);</span><br><span class="line">    return dfd.promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。<br>指定多个回调函数：<code>f1().then(f2).then(f3);</code><br>再比如，指定发生错误时的回调函数：<code>f1().then(f2).fail(f3);</code><br>还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。</p>
-<h2 id="方法（前端）"><a href="#方法（前端）" class="headerlink" title="方法（前端）"></a>方法（前端）</h2><h3 id="canvas对象标示一个html画布元素"><a href="#canvas对象标示一个html画布元素" class="headerlink" title="canvas对象标示一个html画布元素"></a>canvas对象标示一个html画布元素</h3><div class="table-container">
+<h2 id="对象（前端）"><a href="#对象（前端）" class="headerlink" title="对象（前端）"></a>对象（前端）</h2><h3 id="canvas对象标示一个html画布元素"><a href="#canvas对象标示一个html画布元素" class="headerlink" title="canvas对象标示一个html画布元素"></a>canvas对象标示一个html画布元素</h3><ol>
+<li><canvas> 标签只有两个属性—— width和height，这两个属性是可选的。当我们没有定义时，Canvas 的默认大小为300像素×150像素（宽×高，像素的单位是px）。但是，我们也可以使用HTML的高度和宽度属性来自定义尺寸。</canvas></li>
+<li>canvas元素有两套尺寸：一个是元素本身的大小(通过CSS设置)，另一个是元素绘图表面的大小(通过canvas自身的width和height属性设置)。<br>注意：通过CSS修改width和height，只是改变了元素本身大小，对元素绘图表面的大小并无影响;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Canvas = document.getElementById(&apos;tutorial&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>父</th>
 <th>子</th>
+<th>参数</th>
 <th>功能</th>
 <th>备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Canvas.getContext(contextID)</td>
+<td><code>ctx=Canvas.getContext(contextID)</code></td>
 <td></td>
+<td>‘2d’</td>
 <td>返回一个用于在画布上绘图的环境</td>
 <td><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="noopener">绘图参考</a></td>
 </tr>
@@ -437,13 +448,50 @@
 </tr>
 <tr>
 <td></td>
-<td>clearRect()</td>
-<td>清空画布</td>
+<td><code>.fillstyle</code></td>
+<td>使用内部方式描述颜色和样式的属性。默认值是 #000 （黑色）</td>
 </tr>
 <tr>
 <td></td>
-<td>save()</td>
-<td>通过将当前状态放入栈中，保存 canvas 全部状态的方法</td>
+<td><code>.font</code></td>
+<td>描述绘制文字时，当前字体样式的属性</td>
+</tr>
+<tr>
+<td></td>
+<td><code>.textAlign</code></td>
+<td></td>
+<td>textAlign的值为center时候文本的居中是基于你在fillText的时候所给的x的值，也就是说文本一半在x的左边，一半在x的右边</td>
+</tr>
+<tr>
+<td></td>
+<td><code>.textBaseline</code></td>
+<td>top文本基线在文本块的顶部。hanging文本基线是悬挂基线。middle文本基线在文本块的中间。alphabetic文本基线是标准的字母基线。ideographic文字基线是表意字基线；如果字符本身超出了alphabetic 基线，那么ideograhpic基线位置在字符本身的底部。bottom文本基线在文本块的底部。 与 ideographic 基线的区别在于 ideographic 基线不需要考虑下行字母。默认值是 alphabetic。</td>
+<td>当前文本基线的属性</td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.clearRect(x, y, width, height)</code></td>
+<td>设置指定矩形区域内（以 点 (x, y) 为起点，范围是(width, height) ）所有像素变成透明，并擦除之前绘制的所有内容的方法</td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.translate(x, y)</code></td>
+<td>绘图原点移动</td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.fillRect(x, y, width, height)</code></td>
+<td>绘制填充矩形的方法。矩形的起点在 (x, y) 位置，矩形的尺寸是 width 和 height ，fillStyle 属性决定矩形的样式</td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.scale(x, y)</code></td>
+<td>根据 x 水平方向和 y 垂直方向，为canvas 单位添加缩放变换的方法</td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.rotate(angle)</code></td>
+<td>在变换矩阵中增加旋转的方法。角度变量表示一个顺时针旋转角度并且用弧度表示。旋转中心点一直是 canvas 的起始点。 如果想改变中心点，我们可以通过 translate() 方法移动 canvas 。</td>
 </tr>
 <tr>
 <td></td>
@@ -472,8 +520,19 @@
 </tr>
 <tr>
 <td></td>
-<td>restore()</td>
+<td>save()</td>
+<td>通过将当前状态放入栈中，保存 canvas 全部状态的方法</td>
+</tr>
+<tr>
 <td></td>
+<td>restore()</td>
+<td>通过在绘图状态栈中弹出顶端的状态，将 canvas 恢复到最近的保存状态的方法。</td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.fillText(text, x, y [, maxWidth])</code></td>
+<td>文本、x坐标，y坐标[,宽]（是字左下点的位置）</td>
+<td>绘制文字</td>
 </tr>
 <tr>
 <td>Canvas.height</td>
@@ -488,6 +547,12 @@
 </tbody>
 </table>
 </div>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
+<li>绘制2D图形时，使用极坐标的话，可以通过旋转一定角度，那么x y坐标系跟着旋转。</li>
+</ol>
+<h4 id="案例学习"><a href="#案例学习" class="headerlink" title="案例学习"></a>案例学习</h4><ol>
+<li><a href="https://github.com/cuijing1031/Canvas-Gauge" target="_blank" rel="noopener">cuijing1031/Canvas-Gauge</a></li>
+</ol>
 <h3 id="document对象"><a href="#document对象" class="headerlink" title="document对象"></a>document对象</h3><ol>
 <li>每个载入浏览器的 HTML 文档都会成为 Document 对象。</li>
 <li>Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</li>
@@ -544,7 +609,8 @@
 <h3 id="JavaScript中Get和Set访问器"><a href="#JavaScript中Get和Set访问器" class="headerlink" title="JavaScript中Get和Set访问器"></a>JavaScript中Get和Set访问器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">标准用法</span><br><span class="line">function Field(val)&#123;  </span><br><span class="line">    this.value = val;  </span><br><span class="line">&#125; </span><br><span class="line">Field.prototype = &#123;  </span><br><span class="line">    get value()&#123;  </span><br><span class="line">        return this._value;  </span><br><span class="line">    &#125;,  </span><br><span class="line">    set value(val)&#123;  </span><br><span class="line">        this._value = val;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var field = new Field(&quot;test&quot;);</span><br><span class="line">field.value=&quot;test2&quot;;</span><br><span class="line">//field.value will now return &quot;test2&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>是一种用于创建和初始化class创建的对象的特殊方法</p>
 <h3 id="数学计算"><a href="#数学计算" class="headerlink" title="数学计算"></a>数学计算</h3><p>｜方法　｜　功能　｜<br>｜－－｜－－｜<br>｜parseInt　｜　丢弃小数部分　｜<br>｜Math.ceil　｜向上取整　｜<br>｜Math.round　｜四舍五入　｜<br>|Math.floor |向下取整　|<br>| % | 取余　｜</p>
-<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ol>
+<h3 id="apply-方法接受数组形式的参数"><a href="#apply-方法接受数组形式的参数" class="headerlink" title="apply() 方法接受数组形式的参数"></a>apply() 方法接受数组形式的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.max.apply(null, [1,2,3]); // 返回数组最大值</span><br><span class="line">Math.min.apply(null, [1,2,3]); // 返回数组最小值</span><br></pre></td></tr></table></figure>
+<h3 id="eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><a href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码" class="headerlink" title="eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码"></a>eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</h3><h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ol>
 <li>“use strict” 的目的是指定代码在严格条件下执行,严格模式下你不能使用未声明的变量。</li>
 </ol>
 
@@ -666,7 +732,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">104</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -721,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数（自定义）"><span class="nav-number">2.</span> <span class="nav-text">函数（自定义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程的四种方法"><span class="nav-number">2.1.</span> <span class="nav-text">异步编程的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">2.1.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听"><span class="nav-number">2.1.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布和订阅"><span class="nav-number">2.1.3.</span> <span class="nav-text">发布和订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promises对象"><span class="nav-number">2.1.4.</span> <span class="nav-text">Promises对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法（前端）"><span class="nav-number">3.</span> <span class="nav-text">方法（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas对象标示一个html画布元素"><span class="nav-number">3.1.</span> <span class="nav-text">canvas对象标示一个html画布元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">3.2.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象"><span class="nav-number">3.3.</span> <span class="nav-text">element对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">3.4.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置方法"><span class="nav-number">4.</span> <span class="nav-text">内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中Get和Set访问器"><span class="nav-number">4.1.</span> <span class="nav-text">JavaScript中Get和Set访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">4.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学计算"><span class="nav-number">4.3.</span> <span class="nav-text">数学计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">5.</span> <span class="nav-text">声明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数（自定义）"><span class="nav-number">2.</span> <span class="nav-text">函数（自定义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程的四种方法"><span class="nav-number">2.1.</span> <span class="nav-text">异步编程的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">2.1.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听"><span class="nav-number">2.1.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布和订阅"><span class="nav-number">2.1.3.</span> <span class="nav-text">发布和订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promises对象"><span class="nav-number">2.1.4.</span> <span class="nav-text">Promises对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象（前端）"><span class="nav-number">3.</span> <span class="nav-text">对象（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas对象标示一个html画布元素"><span class="nav-number">3.1.</span> <span class="nav-text">canvas对象标示一个html画布元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">3.2.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例学习"><span class="nav-number">3.2.1.</span> <span class="nav-text">案例学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">3.3.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象"><span class="nav-number">3.4.</span> <span class="nav-text">element对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">3.5.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置方法"><span class="nav-number">4.</span> <span class="nav-text">内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中Get和Set访问器"><span class="nav-number">4.1.</span> <span class="nav-text">JavaScript中Get和Set访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">4.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学计算"><span class="nav-number">4.3.</span> <span class="nav-text">数学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-方法接受数组形式的参数"><span class="nav-number">4.4.</span> <span class="nav-text">apply() 方法接受数组形式的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><span class="nav-number">4.5.</span> <span class="nav-text">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">5.</span> <span class="nav-text">声明</span></a></li></ol></div>
             
 
           </div>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="用Set 实现并集（Union）、交集（Intersect）和差集（Difference）1234567891011121314151617let a = new Set([1, 2, 3]);let b = new Set([4, 3, 2]);// 并集let union = new Set([...a, ...b]);// Set &amp;#123;1, 2, 3, 4&amp;#125;// 交集let">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T06:53:22.737Z">
+<meta property="og:updated_time" content="2019-07-15T10:01:39.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS-snippets">
 <meta name="twitter:description" content="用Set 实现并集（Union）、交集（Intersect）和差集（Difference）1234567891011121314151617let a = new Set([1, 2, 3]);let b = new Set([4, 3, 2]);// 并集let union = new Set([...a, ...b]);// Set &amp;#123;1, 2, 3, 4&amp;#125;// 交集let">
@@ -397,7 +397,16 @@
 
       
         <h2 id="用Set-实现并集（Union）、交集（Intersect）和差集（Difference）"><a href="#用Set-实现并集（Union）、交集（Intersect）和差集（Difference）" class="headerlink" title="用Set 实现并集（Union）、交集（Intersect）和差集（Difference）"></a>用Set 实现并集（Union）、交集（Intersect）和差集（Difference）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">let a = new Set([1, 2, 3]);</span><br><span class="line">let b = new Set([4, 3, 2]);</span><br><span class="line"></span><br><span class="line">// 并集</span><br><span class="line">let union = new Set([...a, ...b]);</span><br><span class="line">// Set &#123;1, 2, 3, 4&#125;</span><br><span class="line"></span><br><span class="line">// 交集</span><br><span class="line">let intersect = new Set([...a].filter(x =&gt; b.has(x)));//ES6</span><br><span class="line">var intersect = new Set([...a].filter(function(x)&#123;</span><br><span class="line">    return b.has(x);</span><br><span class="line">&#125;))</span><br><span class="line">// set &#123;2, 3&#125;</span><br><span class="line"></span><br><span class="line">// 差集</span><br><span class="line">let difference = new Set([...a].filter(x =&gt; !b.has(x)));</span><br><span class="line">// Set &#123;1&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用JS现在文件"><a href="#使用JS现在文件" class="headerlink" title="使用JS现在文件"></a><a href="https://www.hacksparrow.com/using-node-js-to-download-files.html" target="_blank" rel="noopener">使用JS现在文件</a></h2>
+<h2 id="使用JS现在文件"><a href="#使用JS现在文件" class="headerlink" title="使用JS现在文件"></a><a href="https://www.hacksparrow.com/using-node-js-to-download-files.html" target="_blank" rel="noopener">使用JS现在文件</a></h2><h2 id="cunzaizhuyi-maskPlugin"><a href="#cunzaizhuyi-maskPlugin" class="headerlink" title="cunzaizhuyi/maskPlugin"></a><a href="https://github.com/cunzaizhuyi/maskPlugin" target="_blank" rel="noopener">cunzaizhuyi/maskPlugin</a></h2><ol>
+<li>为一个视频添加一个覆盖物，从而挡住视频某区域，在视频的某一时间段，比如第10到第20分钟不显示划定的这块区域。应用场景包括遮挡卫视图标、遮挡视频右下角广告、充当马赛克等。</li>
+<li><code>有基于div和基于canvas两种技术方案，本文是使用canvas完成的</code>。</li>
+<li>主要原理是在HTML的video标签上贴上一个透明的canvas图层，然后响应mousedown、mousemove、mouseup事件。 由于canvas事件只是基于canvas元素，所以canvas内部每个元素（一个矩形，一个圆等）的事件响应要利用坐标来自己代码完成。</li>
+</ol>
+<h2 id="h5中利用canvas绘制video-忽略浏览器自带视频播放控件"><a href="#h5中利用canvas绘制video-忽略浏览器自带视频播放控件" class="headerlink" title="h5中利用canvas绘制video 忽略浏览器自带视频播放控件"></a><a href="https://www.jianshu.com/p/e5dfc486ecc6" target="_blank" rel="noopener">h5中利用canvas绘制video 忽略浏览器自带视频播放控件</a></h2><ol>
+<li>使用canvas绘制视频。</li>
+<li>可以在视频中绘制其他按钮。</li>
+</ol>
+
       
     </div>
     
@@ -516,7 +525,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">104</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -571,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用Set-实现并集（Union）、交集（Intersect）和差集（Difference）"><span class="nav-number">1.</span> <span class="nav-text">用Set 实现并集（Union）、交集（Intersect）和差集（Difference）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JS现在文件"><span class="nav-number">2.</span> <span class="nav-text">使用JS现在文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用Set-实现并集（Union）、交集（Intersect）和差集（Difference）"><span class="nav-number">1.</span> <span class="nav-text">用Set 实现并集（Union）、交集（Intersect）和差集（Difference）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JS现在文件"><span class="nav-number">2.</span> <span class="nav-text">使用JS现在文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cunzaizhuyi-maskPlugin"><span class="nav-number">3.</span> <span class="nav-text">cunzaizhuyi/maskPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#h5中利用canvas绘制video-忽略浏览器自带视频播放控件"><span class="nav-number">4.</span> <span class="nav-text">h5中利用canvas绘制video 忽略浏览器自带视频播放控件</span></a></li></ol></div>
             
 
           </div>
