@@ -250,17 +250,6 @@
     <content type="text"><![CDATA[基本信息 celery/django-celery老的celery对django的集成，已经不再更新，最新版本为3.2.0（2016年11月23日），不再使用。 Celery 4.0支持Django 1.8和更新版本，所以直接使用celery即可pip install celery。 使用celery/django-celery-results将任务结果保存进Django ORM或者Django Cache中，最新版本为1.0.4（2018年11月14日）。 参考celery文档关于django的描述。 celery-with-redis不再使用，已不再更新。 celery任务放在每个APP下的tasks.py模块中。 参考Django初步使用Celery; 参考Django Celery定时任务和时间设置。]]></content>
   </entry>
   <entry>
-    <title><![CDATA[开始一个python应用]]></title>
-    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[版本切换pyenv 命令 功能 pyenv versions 列出已安装python版本 pyenv local 设置当前shell的python版本 pyenv global 设置全局的python版本 pyenv install -l 列出可以使用的python版本 插件pyenv/pyenv-virtualenvpyenv-virtualenv is a pyenv plugin that provides features to manage virtualenvs and conda environments for Python on UNIX-like systems.12345pyenv virtualenv 2.7.10 my-virtual-env-2.7.10 # 指定python版本和安装目录，如果不指定python版本，则使用当前的python版本pyenv activate &lt;name&gt;pyenv deactivatepyenv uninstall my-virtual-envpyenv virtualenv-delete my-virtual-env 虚拟环境venv模块(python3.3以后的自带模块，是virtualenv的一个子集)只能创建python同版本的虚拟环境 virtualenv将一个目录建立为一个虚拟的python环境，可以建立多个虚拟环境，每个环境里面的python版本可以是不同的，也可以是相同的，而且环境之间相互独立。 1virtualenv [创建虚拟环境的目录] 新建一个虚拟环境的目录]]></content>
-      <categories>
-        <category>PYTHON</category>
-      </categories>
-      <tags>
-        <tag>PYTHON</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[python-桌面应用]]></title>
     <url>%2F2019%2F04%2F23%2Fpython-%E6%89%93%E5%8C%85%E5%BA%94%E7%94%A8%2F</url>
     <content type="text"><![CDATA[PyQt5安装12pip install PyQt5pip install pyqt5-tools //包含designer和pyuic工具 疑难杂症 cx-freeze与python3.7]]></content>
@@ -271,6 +260,17 @@
       <tags>
         <tag>PYTHON</tag>
         <tag>CX-FREEZE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[开始一个python应用]]></title>
+    <url>%2F2019%2F04%2F23%2Fpython-%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AApython%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[版本切换pyenv 命令 功能 pyenv versions 列出已安装python版本 pyenv local 设置当前shell的python版本 pyenv global 设置全局的python版本 pyenv install -l 列出可以使用的python版本 插件pyenv/pyenv-virtualenvpyenv-virtualenv is a pyenv plugin that provides features to manage virtualenvs and conda environments for Python on UNIX-like systems.12345pyenv virtualenv 2.7.10 my-virtual-env-2.7.10 # 指定python版本和安装目录，如果不指定python版本，则使用当前的python版本pyenv activate &lt;name&gt;pyenv deactivatepyenv uninstall my-virtual-envpyenv virtualenv-delete my-virtual-env 虚拟环境venv模块(python3.3以后的自带模块，是virtualenv的一个子集)只能创建python同版本的虚拟环境 virtualenv将一个目录建立为一个虚拟的python环境，可以建立多个虚拟环境，每个环境里面的python版本可以是不同的，也可以是相同的，而且环境之间相互独立。 1virtualenv [创建虚拟环境的目录] 新建一个虚拟环境的目录]]></content>
+      <categories>
+        <category>PYTHON</category>
+      </categories>
+      <tags>
+        <tag>PYTHON</tag>
       </tags>
   </entry>
   <entry>
@@ -673,7 +673,7 @@
   <entry>
     <title><![CDATA[VUE]]></title>
     <url>%2F2019%2F01%2F14%2F%E5%89%8D%E7%AB%AF-VUE%2F</url>
-    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &apos;My App&apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&#123; beforeCreate: function () &#123; console.log(this.$appName) &#125;&#125;)则控制台会打印出 My App。就这么简单！ 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。 Vue导出页面为PDF格式 Vue导出json数据到Excel电子表格 安装使用Vue CLI 可图形界面创建VUE项目(vue ci)。 关于source map,在生产环境下，一定要关闭source map选项，这样在chrome的调试窗口source选项卡下，就不会看到项目源码。否则，在build的dist/js目录下有map文件。 使用vue cli使用的配置文件为 vue.config.js123module.exports = &#123; productionSourceMap: false&#125; VUE插件VUE-ROUTER vue router带参数页面刷新或者回退参数消失的解决方法12this.$router.push(&#123;path:&apos;&apos;,params:&#123;&#125;,query:&#123;&#125;&#125;)patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path vue-json-excel基于VUE的扩展IVIEW一套基于Vue.js的高质量UI 组件库组件多于element-ui Element一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 vue-element-admin基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。]]></content>
+    <content type="text"><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &apos;My App&apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&#123; beforeCreate: function () &#123; console.log(this.$appName) &#125;&#125;)则控制台会打印出 My App。就这么简单！ 实战技巧 防止浏览器缓存css,js静态文件使用此方法可以在程序运行过程中，重新下载同名的静态文件。 Vue导出页面为PDF格式 Vue导出json数据到Excel电子表格 安装使用Vue CLI 可图形界面创建VUE项目(vue ci)。 关于source map,在生产环境下，一定要关闭source map选项，这样在chrome的调试窗口source选项卡下，就不会看到项目源码。否则，在build的dist/js目录下有map文件。 使用vue cli使用的配置文件为 vue.config.js123module.exports = &#123; productionSourceMap: false&#125; VUE插件VUE-ROUTER vue router带参数页面刷新或者回退参数消失的解决方法12this.$router.push(&#123;path:&apos;&apos;,params:&#123;&#125;,query:&#123;&#125;&#125;)patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path vue-json-excel基于VUE的扩展IVIEW一套基于Vue.js的高质量UI 组件库组件多于element-ui Element一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 vue-element-admin基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。 Ant Design of Vuevue-beauty基于 vue.js 和 ant-design样式 的PC端 UI 组件库ANTUE]]></content>
       <tags>
         <tag>前端</tag>
         <tag>VUE</tag>
