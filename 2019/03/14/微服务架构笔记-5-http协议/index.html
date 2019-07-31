@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="http消息结构 客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。 HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。  头部信息    应答头 说明     Allow 服务器支持哪些请求方法（如GET、POST等）。   Content-Encoding 文档的编码（Enc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微服务架构笔记-5-http协议">
+<meta property="og:title" content="微服务架构笔记-5-网络协议">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/微服务架构笔记-5-http协议/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="http消息结构 客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。 HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。  头部信息    应答头 说明     Allow 服务器支持哪些请求方法（如GET、POST等）。   Content-Encoding 文档的编码（Enc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T01:28:22.231Z">
+<meta property="og:updated_time" content="2019-07-30T09:06:11.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微服务架构笔记-5-http协议">
+<meta name="twitter:title" content="微服务架构笔记-5-网络协议">
+<meta name="twitter:description" content="http消息结构 客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。 HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。  头部信息    应答头 说明     Allow 服务器支持哪些请求方法（如GET、POST等）。   Content-Encoding 文档的编码（Enc">
 
 
 
@@ -122,7 +125,7 @@
 
 
 
-  <title>微服务架构笔记-5-http协议 | 锦枫紫兰</title>
+  <title>微服务架构笔记-5-网络协议 | 锦枫紫兰</title>
   
 
 
@@ -308,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">微服务架构笔记-5-http协议</h1>
+          <h1 class="post-title" itemprop="name headline">微服务架构笔记-5-网络协议</h1>
         
 
         <div class="post-meta">
@@ -338,7 +341,7 @@
 
           
           
-             <span id="/2019/03/14/微服务架构笔记-5-http协议/" class="leancloud_visitors" data-flag-title="微服务架构笔记-5-http协议">
+             <span id="/2019/03/14/微服务架构笔记-5-http协议/" class="leancloud_visitors" data-flag-title="微服务架构笔记-5-网络协议">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,7 +395,78 @@
       
 
       
-        
+        <h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><h3 id="消息结构"><a href="#消息结构" class="headerlink" title="消息结构"></a>消息结构</h3><ol>
+<li>客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。</li>
+<li>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</li>
+</ol>
+<h3 id="头部信息"><a href="#头部信息" class="headerlink" title="头部信息"></a>头部信息</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>应答头</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allow</td>
+<td>服务器支持哪些请求方法（如GET、POST等）。</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>文档的编码（Encode）方法。只有在解码之后才可以得到Content-Type头指定的内容类型。利用gzip压缩文档能够显著地减少HTML文档的下载时间。Java的GZIPOutputStream可以很方便地进行gzip压缩，但只有Unix上的Netscape和Windows上的IE 4、IE 5才支持它。因此，Servlet应该通过查看Accept-Encoding头（即request.getHeader(“Accept-Encoding”)）检查浏览器是否支持gzip，为支持gzip的浏览器返回经gzip压缩的HTML页面，为其他浏览器返回普通页面。</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>表示内容长度。只有当浏览器使用持久HTTP连接时才需要这个数据。如果你想要利用持久连接的优势，可以把输出文档写入 ByteArrayOutputStream，完成后查看其大小，然后把该值放入Content-Length头，最后通过byteArrayStream.writeTo(response.getOutputStream()发送内容。</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>表示后面的文档属于什么MIME类型。Servlet默认为text/plain，但通常需要显式地指定为text/html。由于经常要设置Content-Type，因此HttpServletResponse提供了一个专用的方法setContentType。</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>当前的GMT时间。你可以用setDateHeader来设置这个头以避免转换时间格式的麻烦。</td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>应该在什么时候认为文档已经过期，从而不再缓存它？</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>文档的最后改动时间。客户可以通过If-Modified-Since请求头提供一个日期，该请求将被视为一个条件GET，只有改动时间迟于指定时间的文档才会返回，否则返回一个304（Not Modified）状态。Last-Modified也可用setDateHeader方法来设置。</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>表示客户应当到哪里去提取文档。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态代码为302。</td>
+</tr>
+<tr>
+<td>Refresh</td>
+<td>表示浏览器应该在多少时间之后刷新文档，以秒计。除了刷新当前文档之外，你还可以通过setHeader(“Refresh”, “5; URL=<a href="http://host/path&quot;)让浏览器读取指定的页面。" target="_blank" rel="noopener">http://host/path&quot;)让浏览器读取指定的页面。</a> 注意这种功能通常是通过设置HTML页面HEAD区的＜META HTTP-EQUIV=”Refresh” CONTENT=”5;URL=<a href="http://host/path&quot;＞实现，这是因为，自动刷新或重定向对于那些不能使用CGI或Servlet的HTML编写者十分重要。但是，对于Servlet来说，直接设置Refresh头更加方便。" target="_blank" rel="noopener">http://host/path&quot;＞实现，这是因为，自动刷新或重定向对于那些不能使用CGI或Servlet的HTML编写者十分重要。但是，对于Servlet来说，直接设置Refresh头更加方便。</a> 注意Refresh的意义是”N秒之后刷新本页面或访问指定页面”，而不是”每隔N秒刷新本页面或访问指定页面”。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是＜META HTTP-EQUIV=”Refresh” …＞。 注意Refresh头不属于HTTP 1.1正式规范的一部分，而是一个扩展，但Netscape和IE都支持它。</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>服务器名字。Servlet一般不设置这个值，而是由Web服务器自己设置。</td>
+</tr>
+<tr>
+<td>Set-Cookie</td>
+<td>设置和页面关联的Cookie。Servlet不应使用response.setHeader(“Set-Cookie”, …)，而是应使用HttpServletResponse提供的专用方法addCookie。参见下文有关Cookie设置的讨论。</td>
+</tr>
+<tr>
+<td>WWW-Authenticate</td>
+<td>客户应该在Authorization头中提供什么类型的授权信息？在包含401（Unauthorized）状态行的应答中这个头是必需的。例如，response.setHeader(“WWW-Authenticate”, “BASIC realm=＼”executives＼””)。 注意Servlet一般不进行这方面的处理，而是让Web服务器的专门机制来控制受密码保护页面的访问（例如.htaccess）。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Server-Sent-Events-简称SSE"><a href="#Server-Sent-Events-简称SSE" class="headerlink" title="Server-Sent Events(简称SSE)"></a>Server-Sent Events(简称SSE)</h2><ol>
+<li>SSE是一种能让浏览器通过HTTP连接自动收到服务器端更新的技术，SSE EventSource 接口被W3C制定为HTML5的一部分。</li>
+<li>单向。</li>
+</ol>
+<h2 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h2><ol>
+<li>双向。</li>
+</ol>
+
       
     </div>
     
@@ -480,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -518,7 +601,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -541,6 +624,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息结构"><span class="nav-number">1.1.</span> <span class="nav-text">消息结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部信息"><span class="nav-number">1.2.</span> <span class="nav-text">头部信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Sent-Events-简称SSE"><span class="nav-number">2.</span> <span class="nav-text">Server-Sent Events(简称SSE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket"><span class="nav-number">3.</span> <span class="nav-text">websocket</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
