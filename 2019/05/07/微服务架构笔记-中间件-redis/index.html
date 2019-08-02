@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="参考docker-compose组建带密码redis集群 完整版  docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带密码的容器：1234redis:    restart: always    image: redis:5.0.5-alpine    command: redis-server --requirepas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构笔记-中间件-redis">
 <meta property="og:url" content="http://yoursite.com/2019/05/07/微服务架构笔记-中间件-redis/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="参考docker-compose组建带密码redis集群 完整版  docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带密码的容器：1234redis:    restart: always    image: redis:5.0.5-alpine    command: redis-server --requirepas">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T03:43:05.409Z">
+<meta property="og:updated_time" content="2019-08-02T03:02:51.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-中间件-redis">
+<meta name="twitter:description" content="参考docker-compose组建带密码redis集群 完整版  docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带密码的容器：1234redis:    restart: always    image: redis:5.0.5-alpine    command: redis-server --requirepas">
 
 
 
@@ -392,7 +395,12 @@
       
 
       
-        
+        <p>参考<a href="https://blog.csdn.net/alinyua/article/details/80936940" target="_blank" rel="noopener">docker-compose组建带密码redis集群 完整版</a></p>
+<ol>
+<li><code>docker exec -it 43f7a65ec7f8 redis-cli</code>使用redis-cli连接到redis容器。</li>
+<li>生成带密码的容器：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis:</span><br><span class="line">    restart: always</span><br><span class="line">    image: redis:5.0.5-alpine</span><br><span class="line">    command: redis-server --requirepass zeHnzQ2uUOUAsKMk</span><br></pre></td></tr></table></figure></li>
+</ol>
+
       
     </div>
     

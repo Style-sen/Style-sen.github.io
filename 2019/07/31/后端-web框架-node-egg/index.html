@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。1.1. 事件1.2. 获取方式 Context2.1. 获取方式 Request &amp;amp; Response3.1. 获取方式 Controller Service Helper6.1. 获取方式6.2.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后端-web框架-node-egg">
 <meta property="og:url" content="http://yoursite.com/2019/07/31/后端-web框架-node-egg/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。1.1. 事件1.2. 获取方式 Context2.1. 获取方式 Request &amp;amp; Response3.1. 获取方式 Controller Service Helper6.1. 获取方式6.2.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-31T06:16:49.540Z">
+<meta property="og:updated_time" content="2019-08-02T03:02:51.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-web框架-node-egg">
+<meta name="twitter:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。1.1. 事件1.2. 获取方式 Context2.1. 获取方式 Request &amp;amp; Response3.1. 获取方式 Controller Service Helper6.1. 获取方式6.2.">
 
 
 
@@ -392,7 +395,135 @@
       
 
       
-        
+        <p>Egg 奉行『约定优于配置』</p>
+<h2 id="渐进式开发"><a href="#渐进式开发" class="headerlink" title="渐进式开发"></a>渐进式开发</h2><h2 id="框架内置基础对象"><a href="#框架内置基础对象" class="headerlink" title="框架内置基础对象"></a>框架内置基础对象</h2><h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><ol>
+<li>Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。<br>1.1. 事件<br>1.2. 获取方式</li>
+<li>Context<br>2.1. 获取方式</li>
+<li>Request &amp; Response<br>3.1. 获取方式</li>
+<li>Controller</li>
+<li>Service</li>
+<li>Helper<br>6.1. 获取方式<br>6.2. 自定义 helper 方法</li>
+<li>Config<br>7.1. 获取方式</li>
+<li>Logger<br>8.1. App Logger<br>8.2. App CoreLogger<br>8.3. Context Logger<br>8.4. Context CoreLogger<br>8.5. Controller Logger &amp; Service Logger</li>
+<li>Subscription</li>
+</ol>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a><a href="https://eggjs.org/zh-cn/basics/structure.html" target="_blank" rel="noopener">目录结构</a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">egg-project</span><br><span class="line">├── package.json</span><br><span class="line">├── app.js (可选)    <span class="comment">//自定义启动时的初始化工作，可选</span></span><br><span class="line">├── agent.js (可选)</span><br><span class="line">├── app</span><br><span class="line">|   ├── router.js    <span class="comment">//配置 URL 路由规则</span></span><br><span class="line">│   ├── controller    <span class="comment">//解析用户的输入，处理后返回相应的结果</span></span><br><span class="line">│   |   └── home.js</span><br><span class="line">│   ├── service (可选)    <span class="comment">//编写业务逻辑层，可选，建议使用</span></span><br><span class="line">│   |   └── user.js</span><br><span class="line">│   ├── middleware (可选)    <span class="comment">//编写中间件，可选（例如同意错误处理）</span></span><br><span class="line">│   |   └── response_time.js</span><br><span class="line">│   ├── schedule (可选)    <span class="comment">//定时任务，可选</span></span><br><span class="line">│   |   └── my_task.js</span><br><span class="line">│   ├── public (可选)    <span class="comment">//放置静态资源，可选</span></span><br><span class="line">│   |   └── reset.css</span><br><span class="line">│   ├── view (可选)    <span class="comment">//放置模板文件，可选，由模板插件约定，具体参见模板渲染</span></span><br><span class="line">│   |   └── home.tpl</span><br><span class="line">|   ├── model    <span class="comment">//放置领域模型，可选，由领域类相关插件约定，如 egg-sequelize</span></span><br><span class="line">│   └── extend (可选)    <span class="comment">//框架的扩展，可选</span></span><br><span class="line">│       ├── helper.js (可选)</span><br><span class="line">│       ├── request.js (可选)</span><br><span class="line">│       ├── response.js (可选)</span><br><span class="line">│       ├── context.js (可选)</span><br><span class="line">│       ├── application.js (可选)</span><br><span class="line">│       └── agent.js (可选)</span><br><span class="line">├── config    <span class="comment">//编写配置文件</span></span><br><span class="line">|   ├── plugin.js    <span class="comment">//配置需要加载的插件</span></span><br><span class="line">|   ├── config.default.js</span><br><span class="line">│   ├── config.prod.js</span><br><span class="line">|   ├── config.test.js (可选)</span><br><span class="line">|   ├── config.local.js (可选)</span><br><span class="line">|   └── config.unittest.js (可选)</span><br><span class="line">└── test    <span class="comment">//单元测试</span></span><br><span class="line">    ├── middleware</span><br><span class="line">    |   └── response_time.test.js</span><br><span class="line">    └── controller</span><br><span class="line">        └── home.test.js</span><br></pre></td></tr></table></figure>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><h3 id="router"><a href="#router" class="headerlink" title="router"></a>router</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// app/router.js</span><br><span class="line">module.exports = app =&gt; &#123;</span><br><span class="line">  app.router.resources(&apos;topics&apos;, &apos;/api/v2/topics&apos;, app.controller.topics);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通过 app.resources 方法，我们将 topics 这个资源的增删改查接口映射到了 app/controller/topics.js 文件。</p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h4><ol>
+<li>我们约定 test 目录为存放所有测试脚本的目录，测试所使用到的 fixtures 和相关辅助脚本都应该放在此目录下。</li>
+<li>测试脚本文件统一按 ${filename}.test.js 命名，必须以 .test.js 作为文件后缀。</li>
+</ol>
+<p>一个应用的测试目录示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test</span><br><span class="line">├── controller</span><br><span class="line">│   └── home.test.js</span><br><span class="line">├── hello.test.js</span><br><span class="line">└── service</span><br><span class="line">    └── user.test.js</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>框架提供了强大且可扩展的配置功能，可以自动合并应用、插件、框架的配置，按顺序覆盖，且可以根据环境维护不同的配置。合并后的配置可直接从 app.config 获取。</li>
+</ol>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p><a href="https://github.com/eggjs/awesome-egg" target="_blank" rel="noopener">eggjs/awesome-egg</a></p>
+<h3 id="egg-validate"><a href="#egg-validate" class="headerlink" title="egg-validate"></a><a href>egg-validate</a></h3><ol>
+<li>作用：对参数进行检验。</li>
+<li>对API接口参数进行校验。</li>
+</ol>
+<h3 id="egg-socket"><a href="#egg-socket" class="headerlink" title="egg-socket"></a><a href>egg-socket</a></h3><ol>
+<li>egg-socket.io 内置了 socket.io-redis，在 cluster 模式下，使用 redis 可以较为简单的实现 clients/rooms 等信息共享。</li>
+<li>开启 redis 后，程序在启动时会尝试连接到 redis 服务器 此处 redis 仅用于存储连接实例信息，参见 #server.adapter。</li>
+</ol>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h2 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h2><h2 id="生产部署"><a href="#生产部署" class="headerlink" title="生产部署"></a>生产部署</h2><h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><ol>
+<li><p>只安装 dependencies 的依赖.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install --production</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zcvf ../release.tgz .</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ol>
+<li>框架内置了 egg-cluster 来启动 Master 进程，Master 有足够的稳定性，不再需要使用 pm2 等进程守护模块。</li>
+<li><p>框架也提供了 egg-scripts 来支持线上环境的运行和停止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ npm i egg-scripts --save</span><br><span class="line">添加 npm scripts 到 package.json：</span><br><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;egg-scripts start --daemon&quot;,</span><br><span class="line">    &quot;stop&quot;: &quot;egg-scripts stop&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动应用<code>$ egg-scripts start --port=7001 --daemon --title=egg-server-showcase</code></p>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—port=7001</td>
+<td>端口号，默认会读取环境变量 process.env.PORT，如未传递将使用框架内置端口 7001。</td>
+</tr>
+<tr>
+<td>—daemon</td>
+<td>是否允许在后台模式，无需 nohup。<code>若使用 Docker 建议直接前台运行</code>。</td>
+</tr>
+<tr>
+<td>—env=prod</td>
+<td>框架运行环境，默认会读取环境变量 process.env.EGG_SERVER_ENV， 如未传递将使用框架内置环境 prod。</td>
+</tr>
+<tr>
+<td>—workers=2</td>
+<td>框架 worker 线程数，默认会创建和 CPU 核数相当的 app worker 数，可以充分的利用 CPU 资源。</td>
+</tr>
+<tr>
+<td>—title=egg-server-showcase</td>
+<td>用于方便 ps 进程时 grep 用，默认为 egg-server-${appname}。</td>
+</tr>
+<tr>
+<td>—framework=yadan</td>
+<td>如果应用使用了自定义框架，可以配置 package.json 的 egg.framework 或指定该参数。</td>
+</tr>
+<tr>
+<td>—ignore-stderr</td>
+<td>忽略启动期的报错。</td>
+</tr>
+<tr>
+<td>—https.key</td>
+<td>指定 HTTPS 所需密钥文件的完整路径。</td>
+</tr>
+<tr>
+<td>—https.cert</td>
+<td>指定 HTTPS 所需证书文件的完整路径。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>所有 egg-cluster 的 Options 都支持透传，如 —port 等。</li>
+<li>更多参数可查看 egg-scripts 和 egg-cluster 文档。</li>
+<li><p>启动配置项也可以在config.{env}.js 中配置指定启动配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// config/config.default.js</span><br><span class="line"></span><br><span class="line">exports.cluster = &#123;</span><br><span class="line">  listen: &#123;</span><br><span class="line">    port: 7001,</span><br><span class="line">    hostname: &apos;127.0.0.1&apos;,</span><br><span class="line">    // path: &apos;/var/run/egg.sock&apos;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">path，port，hostname 均为 server.listen 的参数，egg-scripts 和 egg.startCluster 方法传入的 port 优先级高于此配置。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>停止命令<code>$ egg-scripts stop [--title=egg-server]</code>，该命令将杀死 master 进程，并通知 worker 和 agent 优雅退出。<br>支持以下参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--title=egg-server 用于杀死指定的 egg 应用，未传递则会终止所有的 Egg 应用。</span><br><span class="line">你也可以直接通过 ps -eo &quot;pid,command&quot; | grep -- &quot;--title=egg-server&quot; 来找到 master 进程，并 kill 掉，无需 kill -9。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h3><h4 id="Node-js-性能平台（alinode）"><a href="#Node-js-性能平台（alinode）" class="headerlink" title="Node.js 性能平台（alinode）"></a>Node.js 性能平台（alinode）</h4><ol>
+<li>Node.js 性能平台全部功能免费提供给用户使用。</li>
+<li>AliNode Runtime 可以直接替换掉 Node.js Runtime。</li>
+</ol>
+<h4 id="NSolid"><a href="#NSolid" class="headerlink" title="NSolid"></a>NSolid</h4><h3 id="前置代理模式（一般都需要反向代理）"><a href="#前置代理模式（一般都需要反向代理）" class="headerlink" title="前置代理模式（一般都需要反向代理）"></a>前置代理模式（一般都需要反向代理）</h3><ol>
+<li><code>一般来说我们的服务都不会直接接受外部的请求，而会将服务部署在接入层之后，从而实现多台机器的负载均衡和服务的平滑发布，保证高可用。</code></li>
+<li>在这个场景下，我们无法直接获取到真实用户请求的连接，从而无法确认用户的真实 IP，请求协议，甚至请求的域名。为了解决这个问题，框架默认提供了一系列配置项来让开发者配置，以便基于和接入层的约定（事实标准）来让应用层获取到真实的用户请求信息。</li>
+</ol>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><ol>
+<li>基于eggjs修改增加<code>alinode</code>和nginx、https的支持。</li>
+<li>[<code>直接在node镜像之上安装alinode，运行时一直不能选择alinode</code>].</li>
+<li>考虑基于<a href="https://github.com/toomeefed/docker-alinode/blob/master/4/slim/Dockerfile" target="_blank" rel="noopener">toomeefed/docker-alinode</a>进行更改：增加eggjs支持和nginx支持。</li>
+</ol>
+<h4 id="eggjs-docker"><a href="#eggjs-docker" class="headerlink" title="eggjs/docker"></a><a href="https://github.com/eggjs/docker" target="_blank" rel="noopener">eggjs/docker</a></h4><ol>
+<li>官方Docker。</li>
+<li>没有使用alinode。</li>
+<li>没有nginx。</li>
+</ol>
+<h4 id="aliyun-node-alinode-docker"><a href="#aliyun-node-alinode-docker" class="headerlink" title="aliyun-node/alinode-docker"></a><a href="https://github.com/aliyun-node/alinode-docker" target="_blank" rel="noopener">aliyun-node/alinode-docker</a></h4><ol>
+<li>非egg。</li>
+<li>没有nginx。</li>
+</ol>
+
       
     </div>
     
@@ -476,8 +607,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -537,6 +677,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#渐进式开发"><span class="nav-number">1.</span> <span class="nav-text">渐进式开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架内置基础对象"><span class="nav-number">2.</span> <span class="nav-text">框架内置基础对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">2.1.</span> <span class="nav-text">Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">3.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#controller"><span class="nav-number">3.1.</span> <span class="nav-text">controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router"><span class="nav-number">3.2.</span> <span class="nav-text">router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试"><span class="nav-number">3.3.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约定"><span class="nav-number">3.3.1.</span> <span class="nav-text">约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">3.4.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件"><span class="nav-number">4.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-validate"><span class="nav-number">4.1.</span> <span class="nav-text">egg-validate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-socket"><span class="nav-number">4.2.</span> <span class="nav-text">egg-socket</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架"><span class="nav-number">5.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Restful-API"><span class="nav-number">6.</span> <span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生产部署"><span class="nav-number">7.</span> <span class="nav-text">生产部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建"><span class="nav-number">7.1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">7.2.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控"><span class="nav-number">7.3.</span> <span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Node-js-性能平台（alinode）"><span class="nav-number">7.3.1.</span> <span class="nav-text">Node.js 性能平台（alinode）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSolid"><span class="nav-number">7.3.2.</span> <span class="nav-text">NSolid</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前置代理模式（一般都需要反向代理）"><span class="nav-number">7.4.</span> <span class="nav-text">前置代理模式（一般都需要反向代理）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker"><span class="nav-number">7.5.</span> <span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eggjs-docker"><span class="nav-number">7.5.1.</span> <span class="nav-text">eggjs/docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#aliyun-node-alinode-docker"><span class="nav-number">7.5.2.</span> <span class="nav-text">aliyun-node/alinode-docker</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
