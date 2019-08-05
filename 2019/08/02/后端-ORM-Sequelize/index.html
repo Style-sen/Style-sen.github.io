@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="摘自Sequelize 中文API文档 MODEL定义字段的配置123456789101112131415161718192021222324252627var Foo = sequelize.define(&apos;foo&apos;, &amp;#123;  flag: &amp;#123; type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true&amp;#125;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端-ORM-Sequelize">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/后端-ORM-Sequelize/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="摘自Sequelize 中文API文档 MODEL定义字段的配置123456789101112131415161718192021222324252627var Foo = sequelize.define(&apos;foo&apos;, &amp;#123;  flag: &amp;#123; type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true&amp;#125;,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-05T06:10:38.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="后端-ORM-Sequelize">
+<meta name="twitter:description" content="摘自Sequelize 中文API文档 MODEL定义字段的配置123456789101112131415161718192021222324252627var Foo = sequelize.define(&apos;foo&apos;, &amp;#123;  flag: &amp;#123; type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true&amp;#125;,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/02/后端-ORM-Sequelize/">
+
+
+
+
+
+  <title>后端-ORM-Sequelize | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/后端-ORM-Sequelize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">后端-ORM-Sequelize</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T20:10:26+08:00">
+                2019-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/08/02/后端-ORM-Sequelize/" class="leancloud_visitors" data-flag-title="后端-ORM-Sequelize">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>摘自<a href="https://itbilu.com/nodejs/npm/V1PExztfb.html#definition-define" target="_blank" rel="noopener">Sequelize 中文API文档</a></p>
+<h2 id="MODEL"><a href="#MODEL" class="headerlink" title="MODEL"></a>MODEL</h2><h3 id="定义字段的配置"><a href="#定义字段的配置" class="headerlink" title="定义字段的配置"></a>定义字段的配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = sequelize.define(<span class="string">'foo'</span>, &#123;</span><br><span class="line">  flag: &#123; <span class="attr">type</span>: Sequelize.BOOLEAN, <span class="attr">allowNull</span>: <span class="literal">false</span>, <span class="attr">defaultValue</span>: <span class="literal">true</span>&#125;,    <span class="comment">// 实例化时在没有显式设置属性值时，会自动设置为 true.设置 allowNull 选项为 false 后，会为列添加  NOT NULL 非空限制, 这意味着当执行查询（插入/更新）时相关字段为空会从数据库层抛出错误</span></span><br><span class="line">  myDate: &#123; <span class="attr">type</span>: Sequelize.DATE, <span class="attr">defaultValue</span>: Sequelize.NOW &#125;,    <span class="comment">// 日期默认值 =&gt; 当前时间</span></span><br><span class="line">  title: &#123; <span class="attr">type</span>: Sequelize.STRING, <span class="attr">allowNull</span>: <span class="literal">false</span>&#125;,</span><br><span class="line">  someUnique: &#123;<span class="attr">type</span>: Sequelize.STRING, <span class="attr">unique</span>: <span class="literal">true</span>&#125;,    <span class="comment">// 添加唯一（unique）约束后插入重复值会报错</span></span><br><span class="line">  uniqueOne: &#123; <span class="attr">type</span>: Sequelize.STRING,  <span class="attr">unique</span>: <span class="string">'compositeIndex'</span>&#125;,    <span class="comment">// unique属性可以是boolean 或 string类型</span></span><br><span class="line">  uniqueTwo: &#123; <span class="attr">type</span>: Sequelize.INTEGER, <span class="attr">unique</span>: <span class="string">'compositeIndex'</span>&#125;   <span class="comment">// 如果为多个字段添加了相同的字符串那么将会是一个符合唯一键</span></span><br><span class="line">  someUnique: &#123;<span class="attr">type</span>: Sequelize.STRING, <span class="attr">unique</span>: <span class="literal">true</span>&#125;     <span class="comment">// unique属性以一个简单的简写方式创建唯一索引</span></span><br><span class="line">  &#123;<span class="attr">someUnique</span>: &#123;<span class="attr">type</span>: Sequelize.STRING&#125;&#125;,    <span class="comment">// 同样的，也可以模型的选项中创建索引</span></span><br><span class="line">  &#123;<span class="attr">indexes</span>: [&#123;<span class="attr">unique</span>: <span class="literal">true</span>, <span class="attr">fields</span>: [<span class="string">'someUnique'</span>]&#125;]&#125;</span><br><span class="line">  identifier: &#123; <span class="attr">type</span>: Sequelize.STRING, <span class="attr">primaryKey</span>: <span class="literal">true</span>&#125;,    <span class="comment">// 定义一个主键</span></span><br><span class="line">  incrementMe: &#123; <span class="attr">type</span>: Sequelize.INTEGER, <span class="attr">autoIncrement</span>: <span class="literal">true</span> &#125;,    <span class="comment">//// autoIncrement 选项用于创建一个自增的整型列</span></span><br><span class="line">  hasComment: &#123; <span class="attr">type</span>: Sequelize.INTEGER, <span class="attr">comment</span>: <span class="string">"I'm a comment!"</span> &#125;,    <span class="comment">// Comments 可以在MySQL 和 PG中指定定段描述</span></span><br><span class="line">  fieldWithUnderscores: &#123; <span class="attr">type</span>: Sequelize.STRING, <span class="attr">field</span>: <span class="string">"field_with_underscores"</span> &#125;,   <span class="comment">// 可以通过 "field" 属性来指定数据库中的字段名</span></span><br><span class="line">  <span class="comment">// 通过references选项可以创建外键:</span></span><br><span class="line">  bar_id: &#123;</span><br><span class="line">    type: Sequelize.INTEGER,</span><br><span class="line">    references: &#123;</span><br><span class="line">      <span class="comment">// 引用另一个模型</span></span><br><span class="line">      model: Bar,</span><br><span class="line">      <span class="comment">// 连接模型的列表</span></span><br><span class="line">      key: <span class="string">'id'</span>,</span><br><span class="line">      <span class="comment">// 强制使用外键约束，仅适用于 PostgreSQL</span></span><br><span class="line">      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Sequelize.STRING                      <span class="comment">// VARCHAR(255)</span></span><br><span class="line">Sequelize.STRING(<span class="number">1234</span>)                <span class="comment">// VARCHAR(1234)</span></span><br><span class="line">Sequelize.STRING.BINARY               <span class="comment">// VARCHAR BINARY</span></span><br><span class="line">Sequelize.TEXT                        <span class="comment">// TEXT</span></span><br><span class="line">Sequelize.TEXT(<span class="string">'tiny'</span>)                <span class="comment">// TINYTEXT</span></span><br><span class="line"></span><br><span class="line">Sequelize.INTEGER                     <span class="comment">// INTEGER</span></span><br><span class="line">Sequelize.BIGINT                      <span class="comment">// BIGINT</span></span><br><span class="line">Sequelize.BIGINT(<span class="number">11</span>)                  <span class="comment">// BIGINT(11)</span></span><br><span class="line"></span><br><span class="line">Sequelize.FLOAT                       <span class="comment">// FLOAT</span></span><br><span class="line">Sequelize.FLOAT(<span class="number">11</span>)                   <span class="comment">// FLOAT(11)</span></span><br><span class="line">Sequelize.FLOAT(<span class="number">11</span>, <span class="number">12</span>)               <span class="comment">// FLOAT(11,12)</span></span><br><span class="line"></span><br><span class="line">Sequelize.REAL                        <span class="comment">// REAL        PostgreSQL only.</span></span><br><span class="line">Sequelize.REAL(<span class="number">11</span>)                    <span class="comment">// REAL(11)    PostgreSQL only.</span></span><br><span class="line">Sequelize.REAL(<span class="number">11</span>, <span class="number">12</span>)                <span class="comment">// REAL(11,12) PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.DOUBLE                      <span class="comment">// DOUBLE</span></span><br><span class="line">Sequelize.DOUBLE(<span class="number">11</span>)                  <span class="comment">// DOUBLE(11)</span></span><br><span class="line">Sequelize.DOUBLE(<span class="number">11</span>, <span class="number">12</span>)              <span class="comment">// DOUBLE(11,12)</span></span><br><span class="line"></span><br><span class="line">Sequelize.DECIMAL                     <span class="comment">// DECIMAL</span></span><br><span class="line">Sequelize.DECIMAL(<span class="number">10</span>, <span class="number">2</span>)              <span class="comment">// DECIMAL(10,2)</span></span><br><span class="line"></span><br><span class="line">Sequelize.DATE                        <span class="comment">// DATETIME for mysql / sqlite, TIMESTAMP WITH TIME ZONE for postgres</span></span><br><span class="line">Sequelize.DATE(<span class="number">6</span>)                     <span class="comment">// DATETIME(6) for mysql 5.6.4+. Fractional seconds support with up to 6 digits of precision </span></span><br><span class="line">Sequelize.DATEONLY                    <span class="comment">// DATE without time.</span></span><br><span class="line">Sequelize.BOOLEAN                     <span class="comment">// TINYINT(1)</span></span><br><span class="line"></span><br><span class="line">Sequelize.ENUM(<span class="string">'value 1'</span>, <span class="string">'value 2'</span>)  <span class="comment">// An ENUM with allowed values 'value 1' and 'value 2'</span></span><br><span class="line">Sequelize.ARRAY(Sequelize.TEXT)       <span class="comment">// Defines an array. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.JSON                        <span class="comment">// JSON column. PostgreSQL only.</span></span><br><span class="line">Sequelize.JSONB                       <span class="comment">// JSONB column. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.BLOB                        <span class="comment">// BLOB (bytea for PostgreSQL)</span></span><br><span class="line">Sequelize.BLOB(<span class="string">'tiny'</span>)                <span class="comment">// TINYBLOB (bytea for PostgreSQL. Other options are medium and long)</span></span><br><span class="line"></span><br><span class="line">Sequelize.UUID                        <span class="comment">//   PostgreSQL 和 SQLite 中为 UUID, MySQL 中为CHAR(36) BINARY (使用 defaultValue: Sequelize.UUIDV1 或 Sequelize.UUIDV4 生成默认值)</span></span><br><span class="line"></span><br><span class="line">Sequelize.RANGE(Sequelize.INTEGER)    <span class="comment">// Defines int4range range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.BIGINT)     <span class="comment">// Defined int8range range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DATE)       <span class="comment">// Defines tstzrange range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DATEONLY)   <span class="comment">// Defines daterange range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DECIMAL)    <span class="comment">// Defines numrange range. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.ARRAY(Sequelize.RANGE(Sequelize.DATE)) <span class="comment">// Defines array of tstzrange ranges. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.GEOMETRY                    <span class="comment">// Spatial column.  PostgreSQL (with PostGIS) or MySQL only.</span></span><br><span class="line">Sequelize.GEOMETRY(<span class="string">'POINT'</span>)           <span class="comment">// Spatial column with geomerty type.  PostgreSQL (with PostGIS) or MySQL only.</span></span><br><span class="line">Sequelize.GEOMETRY(<span class="string">'POINT'</span>, <span class="number">4326</span>)     <span class="comment">// Spatial column with geomerty type and SRID.  PostgreSQL (with PostGIS) or MySQL only.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Getters-amp-setters-访问器-amp-设置器"><a href="#Getters-amp-setters-访问器-amp-设置器" class="headerlink" title="Getters &amp; setters - 访问器&amp;设置器"></a>Getters &amp; setters - 访问器&amp;设置器</h3><h3 id="Validations-验证"><a href="#Validations-验证" class="headerlink" title="Validations - 验证"></a>Validations - 验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">var ValidateMe = sequelize.define(&apos;foo&apos;, &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">    type: Sequelize.STRING,</span><br><span class="line">    validate: &#123;</span><br><span class="line">      is: [&quot;^[a-z]+$&quot;,&apos;i&apos;],     // 只允许字母</span><br><span class="line">      is: /^[a-z]+$/i,          // 只允许字母</span><br><span class="line">      not: [&quot;[a-z]&quot;,&apos;i&apos;],       // 不能使用字母</span><br><span class="line">      isEmail: true,            // 检测邮箱格式 (foo@bar.com)</span><br><span class="line">      isUrl: true,              // 检查Url格式 (http://foo.com)</span><br><span class="line">      isIP: true,               // 检查 IPv4 或 IPv6 格式</span><br><span class="line">      isIPv4: true,             // 检查 IPv4</span><br><span class="line">      isIPv6: true,             // 检查 IPv6</span><br><span class="line">      isAlpha: true,            // 不能使用字母</span><br><span class="line">      isAlphanumeric: true,     // 只允许字母数字字符</span><br><span class="line">      isNumeric: true,          // 只能使用数字</span><br><span class="line">      isInt: true,              // 只能是整数</span><br><span class="line">      isFloat: true,            // 只能是浮点数</span><br><span class="line">      isDecimal: true,          // 检查数字</span><br><span class="line">      isLowercase: true,        // 检查小写字母</span><br><span class="line">      isUppercase: true,        // 检查大写字母</span><br><span class="line">      notNull: true,            // 不允许null</span><br><span class="line">      isNull: true,             // 只能为null</span><br><span class="line">      notEmpty: true,           // 不能空字符串</span><br><span class="line">      equals: &apos;specific value&apos;, // 只能使用指定值</span><br><span class="line">      contains: &apos;foo&apos;,          // 必须包含子字符串</span><br><span class="line">      notIn: [[&apos;foo&apos;, &apos;bar&apos;]],  // 不能是数组中的任意一个值</span><br><span class="line">      isIn: [[&apos;foo&apos;, &apos;bar&apos;]],   // 只能是数组中的任意一个值</span><br><span class="line">      notContains: &apos;bar&apos;,       // 不能包含子字符串</span><br><span class="line">      len: [2, 10],              // 值的长度必在 2 和 10 之间</span><br><span class="line">      isUUID: 4,                // 只能是UUID</span><br><span class="line">      isDate: true,             // 只能是日期字符串</span><br><span class="line">      isAfter: &quot;2011-11-05&quot;,    // 只能使用指定日期之后的时间</span><br><span class="line">      isBefore: &quot;2011-11-05&quot;,   // 只能使用指定日期之前的时间</span><br><span class="line">      max: 23,                  // 允许的最大值</span><br><span class="line">      min: 23,                  // 允许的最小值</span><br><span class="line">      isArray: true,            // 不能使用数组</span><br><span class="line">      isCreditCard: true,       // 检查是有效的信用卡</span><br><span class="line"></span><br><span class="line">      // 也可以自定义验证:</span><br><span class="line">      isEven: function(value) &#123;</span><br><span class="line">        if(parseInt(value) % 2 != 0) &#123;</span><br><span class="line">          throw new Error(&apos;Only even values are allowed!&apos;)</span><br><span class="line">        // we also are in the model&apos;s context here, so this.otherField</span><br><span class="line">        // would get the value of otherField if it existed</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="模型的使用"><a href="#模型的使用" class="headerlink" title="模型的使用"></a>模型的使用</h3><h4 id="Data-retrieval-Finders-数据索引-查找"><a href="#Data-retrieval-Finders-数据索引-查找" class="headerlink" title="Data retrieval / Finders - 数据索引/查找"></a>Data retrieval / Finders - 数据索引/查找</h4><ol>
+<li>查找方法是为了从数据库中查询数据，这些方法不是返回原始数据对象，而是返回模型实例。因会其返回的是模型实例，所以在文档的查询结果中可以任意调用模型实例的成员、方法等。（更多实例介绍请参考：instance）</li>
+</ol>
+<p>下面是一些常用的查询方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//find - 从数据库中查找一个指定元素</span></span><br><span class="line"><span class="comment">// 按已知 id查找</span></span><br><span class="line">Project.findById(<span class="number">123</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">project</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// project 是一个 Project 实例，且包含存储在数据中的数据</span></span><br><span class="line">  <span class="comment">// 当不存在 id 为123的记录时 project 为 null</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 按属性查找</span></span><br><span class="line">Project.findOne(&#123; <span class="attr">where</span>: &#123;<span class="attr">title</span>: <span class="string">'aProject'</span>&#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">project</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// project 是匹配到的第一个 title 为 'aProject' 的 Projects 或 null</span></span><br><span class="line">&#125;)</span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;<span class="attr">title</span>: <span class="string">'aProject'</span>&#125;,</span><br><span class="line">  attributes: [<span class="string">'id'</span>, [<span class="string">'name'</span>, <span class="string">'title'</span>]]</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">project</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// project 是匹配到的第一个 title 为 'aProject' 的 Projects 或 null</span></span><br><span class="line">  <span class="comment">// project 的 project.title 属性中会包含 'name'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//findOrCreate - 从数据库中查找一个指定元素如果不存在则创建记录</span></span><br><span class="line"><span class="comment">//findOrCreate可用于检测一个不确定是否存在的元素，如果存在则返回记录，不存在时会使用提供的默认值新建记录。</span></span><br><span class="line"><span class="comment">//如，当数据不存在时，其执行效果如下：</span></span><br><span class="line">User</span><br><span class="line">  .findOrCreate(&#123;<span class="attr">where</span>: &#123;<span class="attr">username</span>: <span class="string">'itbilu.com'</span>&#125;, <span class="attr">defaults</span>: &#123;<span class="attr">job</span>: <span class="string">'Technical Lead JavaScript'</span>&#125;&#125;)</span><br><span class="line">  .spread(<span class="function"><span class="keyword">function</span>(<span class="params">user, created</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(user.get(&#123;</span><br><span class="line">      plain: <span class="literal">true</span></span><br><span class="line">    &#125;))</span><br><span class="line">    <span class="built_in">console</span>.log(created)</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">      &#123;</span></span><br><span class="line"><span class="comment">        username: 'itbilu.com',</span></span><br><span class="line"><span class="comment">        job: 'Technical Lead JavaScript',</span></span><br><span class="line"><span class="comment">        id: 1,</span></span><br><span class="line"><span class="comment">        createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),</span></span><br><span class="line"><span class="comment">        updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      created: true</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="comment">//当数据存在时，会返回记录：</span></span><br><span class="line">User</span><br><span class="line">  .create(&#123; <span class="attr">username</span>: <span class="string">'fnord'</span>, <span class="attr">job</span>: <span class="string">'omnomnom'</span> &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    User</span><br><span class="line">      .findOrCreate(&#123;<span class="attr">where</span>: &#123;<span class="attr">username</span>: <span class="string">'fnord'</span>&#125;, <span class="attr">defaults</span>: &#123;<span class="attr">job</span>: <span class="string">'something else'</span>&#125;&#125;)</span><br><span class="line">      .spread(<span class="function"><span class="keyword">function</span>(<span class="params">user, created</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(user.get(&#123;</span><br><span class="line">          plain: <span class="literal">true</span></span><br><span class="line">        &#125;))</span><br><span class="line">        <span class="built_in">console</span>.log(created)</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">          &#123;</span></span><br><span class="line"><span class="comment">            username: 'fnord',</span></span><br><span class="line"><span class="comment">            job: 'omnomnom',</span></span><br><span class="line"><span class="comment">            id: 2,</span></span><br><span class="line"><span class="comment">            createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),</span></span><br><span class="line"><span class="comment">            updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)</span></span><br><span class="line"><span class="comment">          &#125;</span></span><br><span class="line"><span class="comment">          created: false</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//findAndCountAll - 从数据库中查找多个元素，返回数据与记录总数</span></span><br><span class="line"><span class="comment">//这个方法是findAll和count两个方法的便捷形式，这在你想使用limit和offset进行分页查询时非常有用。</span></span><br><span class="line"><span class="comment">//在返回值中，会包含以下两个属性：</span></span><br><span class="line"><span class="comment">//count - 整数，匹配到的总记录数</span></span><br><span class="line"><span class="comment">//rows - 对象数据，通过 limit 和 offset匹配的当前页数据</span></span><br><span class="line">Project</span><br><span class="line">  .findAndCountAll(&#123;</span><br><span class="line">     where: &#123;</span><br><span class="line">        title: &#123;</span><br><span class="line">          $like: <span class="string">'foo%'</span></span><br><span class="line">        &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     offset: <span class="number">10</span>,</span><br><span class="line">     limit: <span class="number">2</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result.count);</span><br><span class="line">    <span class="built_in">console</span>.log(result.rows);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//findAndCountAll同样支持使用include包含，使用包含时只有将required设置为true才会添加到count部分：</span></span><br><span class="line">User.findAndCountAll(&#123;</span><br><span class="line">  include: [</span><br><span class="line">     &#123; <span class="attr">model</span>: Profile, <span class="attr">required</span>: <span class="literal">true</span>&#125;</span><br><span class="line">  ],</span><br><span class="line">  limit: <span class="number">3</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//使用include时，两个模型之间应该存在主/外键关系，如果不存在就应该在include中手工建立连接。</span></span><br><span class="line"></span><br><span class="line">在上面的示例中，为Profile设置了required，所以在查询时会使用INNER JOIN内连接。</span><br><span class="line"></span><br><span class="line">findAll - 从数据库中查找多个元素</span><br><span class="line"></span><br><span class="line">findAndCountAll中使用的查询选项同样适用于findAll方法。</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询多条记录</span></span><br><span class="line">Project.findAll().then(<span class="function"><span class="keyword">function</span>(<span class="params">projects</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// projects 是一个包含Project实例的数组</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同样的，all是findAll的别名方法:</span></span><br><span class="line">Project.all().then(<span class="function"><span class="keyword">function</span>(<span class="params">projects</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// projects 是一个包含Project实例的数组</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过指定属性查找</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">'A Project'</span> &#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">projects</span>) </span>&#123;</span><br><span class="line"><span class="comment">// projects 是一个包含 Project 实例的数组</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询时使用字符串替换</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">where</span>: [<span class="string">"id &gt; ?"</span>, <span class="number">25</span>] &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">projects</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// projects 是一个包含 Project 实例的数组，各实例的id 大于25</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询指定范围</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">where</span>: &#123; <span class="attr">id</span>: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] &#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">projects</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// projects 是一个包含 Project 实例的数组，各实例id 是1, 2, 或 3</span></span><br><span class="line">  <span class="comment">// 这在实例执行时，会使用 IN查询</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.findAll(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    id: &#123;</span><br><span class="line">      $and: &#123;<span class="attr">a</span>: <span class="number">5</span>&#125;           <span class="comment">// AND (a = 5)</span></span><br><span class="line">      $or: [&#123;<span class="attr">a</span>: <span class="number">5</span>&#125;, &#123;<span class="attr">a</span>: <span class="number">6</span>&#125;]  <span class="comment">// (a = 5 OR a = 6)</span></span><br><span class="line">      $gt: <span class="number">6</span>,                <span class="comment">// id &gt; 6</span></span><br><span class="line">      $gte: <span class="number">6</span>,               <span class="comment">// id &gt;= 6</span></span><br><span class="line">      $lt: <span class="number">10</span>,               <span class="comment">// id &lt; 10</span></span><br><span class="line">      $lte: <span class="number">10</span>,              <span class="comment">// id &lt;= 10</span></span><br><span class="line">      $ne: <span class="number">20</span>,               <span class="comment">// id != 20</span></span><br><span class="line">      $between: [<span class="number">6</span>, <span class="number">10</span>],     <span class="comment">// BETWEEN 6 AND 10</span></span><br><span class="line">      $notBetween: [<span class="number">11</span>, <span class="number">15</span>], <span class="comment">// NOT BETWEEN 11 AND 15</span></span><br><span class="line">      $<span class="keyword">in</span>: [<span class="number">1</span>, <span class="number">2</span>],           <span class="comment">// IN [1, 2]</span></span><br><span class="line">      $notIn: [<span class="number">1</span>, <span class="number">2</span>],        <span class="comment">// NOT IN [1, 2]</span></span><br><span class="line">      $like: <span class="string">'%hat'</span>,         <span class="comment">// LIKE '%hat'</span></span><br><span class="line">      $notLike: <span class="string">'%hat'</span>       <span class="comment">// NOT LIKE '%hat'</span></span><br><span class="line">      $iLike: <span class="string">'%hat'</span>         <span class="comment">// ILIKE '%hat' (case insensitive)  (PG only)</span></span><br><span class="line">      $notILike: <span class="string">'%hat'</span>      <span class="comment">// NOT ILIKE '%hat'  (PG only)</span></span><br><span class="line">      $overlap: [<span class="number">1</span>, <span class="number">2</span>]       <span class="comment">// &amp;&amp; [1, 2] (PG array overlap operator)</span></span><br><span class="line">      $contains: [<span class="number">1</span>, <span class="number">2</span>]      <span class="comment">// @&gt; [1, 2] (PG array contains operator)</span></span><br><span class="line">      $contained: [<span class="number">1</span>, <span class="number">2</span>]     <span class="comment">// &lt;@ [1, 2] (PG array contained by operator)</span></span><br><span class="line">      $any: [<span class="number">2</span>,<span class="number">3</span>]            <span class="comment">// ANY ARRAY[2, 3]::INTEGER (PG only)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    status: &#123;</span><br><span class="line">      $not: <span class="literal">false</span>,           <span class="comment">// status NOT FALSE</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//IN/OR 等复合筛选</span></span><br><span class="line"><span class="comment">//如果要在查询中使用AND、OR或DOT等筛选条件，可以查询的where中指定$and、$or或$not等属性：</span></span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: <span class="string">'a project'</span>,</span><br><span class="line">    $or: [</span><br><span class="line">      &#123; <span class="attr">id</span>: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] &#125;,</span><br><span class="line">      &#123; <span class="attr">id</span>: &#123; <span class="attr">$gt</span>: <span class="number">10</span> &#125; &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: <span class="string">'a project'</span>,</span><br><span class="line">    id: &#123;</span><br><span class="line">      $or: [</span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">        &#123; <span class="attr">$gt</span>: <span class="number">10</span> &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个查询生成的实际SQL语句为：</span></span><br><span class="line">SELECT *</span><br><span class="line">FROM <span class="string">`Projects`</span></span><br><span class="line">WHERE (</span><br><span class="line">  <span class="string">`Projects`</span>.<span class="string">`name`</span> = <span class="string">'a project'</span></span><br><span class="line">   AND (<span class="string">`Projects`</span>.<span class="string">`id`</span> IN (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) OR <span class="string">`Projects`</span>.<span class="string">`id`</span> &gt; <span class="number">10</span>)</span><br><span class="line">)</span><br><span class="line">LIMIT <span class="number">1</span>;</span><br><span class="line">$not示例：</span><br><span class="line"></span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: <span class="string">'a project'</span>,</span><br><span class="line">    $not: [</span><br><span class="line">      &#123; <span class="attr">id</span>: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] &#125;,</span><br><span class="line">      &#123; <span class="attr">array</span>: &#123; <span class="attr">$contains</span>: [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] &#125; &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">将生成以下语句：</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM <span class="string">`Projects`</span></span><br><span class="line">WHERE (</span><br><span class="line">  <span class="string">`Projects`</span>.<span class="string">`name`</span> = <span class="string">'a project'</span></span><br><span class="line">   AND NOT (<span class="string">`Projects`</span>.<span class="string">`id`</span> IN (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) OR <span class="string">`Projects`</span>.<span class="string">`array`</span> @&gt; ARRAY[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]::INTEGER[])</span><br><span class="line">)</span><br><span class="line">LIMIT <span class="number">1</span>;</span><br><span class="line">对数据集使用limit、offset、order 和 group</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 limit 限制返回结果数</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">limit</span>: <span class="number">10</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳过前 10 条结果</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">offset</span>: <span class="number">10</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳过前 10 条结果后，返回两条数据</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">offset</span>: <span class="number">10</span>, <span class="attr">limit</span>: <span class="number">2</span> &#125;)</span><br><span class="line">分组与排序的语法是相似的，如下：</span><br><span class="line"></span><br><span class="line">Project.findAll(&#123;<span class="attr">order</span>: <span class="string">'title DESC'</span>&#125;)</span><br><span class="line"><span class="comment">// ORDER BY title DESC</span></span><br><span class="line"></span><br><span class="line">Project.findAll(&#123;<span class="attr">group</span>: <span class="string">'name'</span>&#125;)</span><br><span class="line"><span class="comment">// GROUP BY name</span></span><br><span class="line">传入简单的字符串时，查询字符串会逐字查询，即列名不转义。如果需要列名转义，可以提供一个数组参数。</span><br><span class="line"></span><br><span class="line">something.findOne(&#123;</span><br><span class="line">  order: [</span><br><span class="line">    <span class="string">'name'</span>,</span><br><span class="line">    <span class="comment">// will return `name`</span></span><br><span class="line">    <span class="string">'username DESC'</span>,</span><br><span class="line">    <span class="comment">// will return `username DESC` -- i.e. don't do it!</span></span><br><span class="line">    [<span class="string">'username'</span>, <span class="string">'DESC'</span>],</span><br><span class="line">    <span class="comment">// will return `username` DESC</span></span><br><span class="line">    sequelize.fn(<span class="string">'max'</span>, sequelize.col(<span class="string">'age'</span>)),</span><br><span class="line">    <span class="comment">// will return max(`age`)</span></span><br><span class="line">    [sequelize.fn(<span class="string">'max'</span>, sequelize.col(<span class="string">'age'</span>)), <span class="string">'DESC'</span>],</span><br><span class="line">    <span class="comment">// will return max(`age`) DESC</span></span><br><span class="line">    [sequelize.fn(<span class="string">'otherfunction'</span>, sequelize.col(<span class="string">'col1'</span>), <span class="number">12</span>, <span class="string">'lalala'</span>), <span class="string">'DESC'</span>],</span><br><span class="line">    <span class="comment">// will return otherfunction(`col1`, 12, 'lalala') DESC</span></span><br><span class="line">    [sequelize.fn(<span class="string">'otherfunction'</span>, sequelize.fn(<span class="string">'awesomefunction'</span>, sequelize.col(<span class="string">'col'</span>))), <span class="string">'DESC'</span>]</span><br><span class="line">    <span class="comment">// will return otherfunction(awesomefunction(`col`)) DESC, This nesting is potentially infinite!</span></span><br><span class="line">    [&#123; <span class="attr">raw</span>: <span class="string">'otherfunction(awesomefunction(`col`))'</span> &#125;, <span class="string">'DESC'</span>]</span><br><span class="line">    <span class="comment">// This won't be quoted, but direction will be added</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line">更多关于聚合查询，请参考：在Sequelize中使用group by分组聚合查询</span><br><span class="line"></span><br><span class="line">原始查询</span><br><span class="line"></span><br><span class="line">默情况下，Sequlize人为查询结构创建实例，通过这个实例可以进行数据的更新、删除等操作。有时候我只需要显示数据集，而不需要进行处理，这时可以通过设置raw选项来返回原始数据：</span><br><span class="line"></span><br><span class="line"><span class="comment">// 增加 raw 选项后，会返回数据库中的原始结果</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">where</span>: &#123; ... &#125;, <span class="attr">raw</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">count - 统计数据库中的元素数</span><br><span class="line"></span><br><span class="line">count可以统计数据库中的元素数：</span><br><span class="line"></span><br><span class="line">Project.count().then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"There are "</span> + c + <span class="string">" projects!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.count(&#123; <span class="attr">where</span>: [<span class="string">"id &gt; ?"</span>, <span class="number">25</span>] &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"There are "</span> + c + <span class="string">" projects with an id greater than 25."</span>)</span><br><span class="line">&#125;)</span><br><span class="line">max - 查找指定表中最大值</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库中有3条记录，年龄分别是 10, 5, 40</span></span><br><span class="line">Project.max(<span class="string">'age'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">max</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 会返回 40</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.max(<span class="string">'age'</span>, &#123; <span class="attr">where</span>: &#123; <span class="attr">age</span>: &#123; <span class="attr">lt</span>: <span class="number">20</span> &#125; &#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">max</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 会返回 10</span></span><br><span class="line">&#125;)</span><br><span class="line">min - 查找指定表中最小值</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库中有3条记录，年龄分别是 10, 5, 40</span></span><br><span class="line">Project.min(<span class="string">'age'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">min</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 会返回 5</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.min(<span class="string">'age'</span>, &#123; <span class="attr">where</span>: &#123; <span class="attr">age</span>: &#123; <span class="attr">$gt</span>: <span class="number">5</span> &#125; &#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">min</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 会返回 10</span></span><br><span class="line">&#125;)</span><br><span class="line">sum - 对指定属性求和</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库中有3条记录，年龄分别是 10, 5, 40</span></span><br><span class="line">Project.sum(<span class="string">'age'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">sum</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 会返回 55</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.sum(<span class="string">'age'</span>, &#123; <span class="attr">where</span>: &#123; <span class="attr">age</span>: &#123; <span class="attr">$gt</span>: <span class="number">5</span> &#125; &#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">sum</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 会返回 50</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Eager-loading-预加载"><a href="#Eager-loading-预加载" class="headerlink" title="Eager loading - 预加载"></a>Eager loading - 预加载</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/02/后端-web框架-基础件-socket-io/" rel="next" title="后端-web框架-基础件-socket.io">
+                <i class="fa fa-chevron-left"></i> 后端-web框架-基础件-socket.io
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MODEL"><span class="nav-number">1.</span> <span class="nav-text">MODEL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义字段的配置"><span class="nav-number">1.1.</span> <span class="nav-text">定义字段的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段类型"><span class="nav-number">1.2.</span> <span class="nav-text">字段类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getters-amp-setters-访问器-amp-设置器"><span class="nav-number">1.3.</span> <span class="nav-text">Getters &amp; setters - 访问器&amp;设置器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Validations-验证"><span class="nav-number">1.4.</span> <span class="nav-text">Validations - 验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型的使用"><span class="nav-number">1.5.</span> <span class="nav-text">模型的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-retrieval-Finders-数据索引-查找"><span class="nav-number">1.5.1.</span> <span class="nav-text">Data retrieval / Finders - 数据索引/查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eager-loading-预加载"><span class="nav-number">1.5.2.</span> <span class="nav-text">Eager loading - 预加载</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
