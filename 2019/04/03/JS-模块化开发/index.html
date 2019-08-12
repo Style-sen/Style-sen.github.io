@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="JS模块化开发规范及常用模块">
+<meta name="description" content="JS模块化开发规范及常用插件">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模块化开发及常用模块">
 <meta property="og:url" content="http://yoursite.com/2019/04/03/JS-模块化开发/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="JS模块化开发规范及常用模块">
+<meta property="og:description" content="JS模块化开发规范及常用插件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T03:02:51.660Z">
+<meta property="og:updated_time" content="2019-08-12T07:06:30.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模块化开发及常用模块">
-<meta name="twitter:description" content="JS模块化开发规范及常用模块">
+<meta name="twitter:description" content="JS模块化开发规范及常用插件">
 
 
 
@@ -383,7 +383,7 @@
 
           
               <div class="post-description">
-                  JS模块化开发规范及常用模块
+                  JS模块化开发规范及常用插件
               </div>
           
 
@@ -411,7 +411,8 @@
 <p>模块将被异步加载，模块加载不影响后面语句的运行。所有依赖某些模块的语句均放置在回调函数中。</p>
 <p>AMD规范的实现主要有RequireJS</p>
 <h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD规范的主要实现有SeaJS</p>
-<h2 id="常用模块"><a href="#常用模块" class="headerlink" title="常用模块"></a>常用模块</h2><h3 id="AXIOS"><a href="#AXIOS" class="headerlink" title="AXIOS"></a>AXIOS</h3><h3 id="kennethjiang-js-file-download保存数据到文件中"><a href="#kennethjiang-js-file-download保存数据到文件中" class="headerlink" title="kennethjiang/js-file-download保存数据到文件中"></a><a href="https://github.com/kennethjiang/js-file-download" target="_blank" rel="noopener">kennethjiang/js-file-download</a>保存数据到文件中</h3>
+<h2 id="常用模块"><a href="#常用模块" class="headerlink" title="常用模块"></a>常用模块</h2><h3 id="AXIOS"><a href="#AXIOS" class="headerlink" title="AXIOS"></a>AXIOS</h3><h3 id="kennethjiang-js-file-download保存数据到文件中"><a href="#kennethjiang-js-file-download保存数据到文件中" class="headerlink" title="kennethjiang/js-file-download保存数据到文件中"></a><a href="https://github.com/kennethjiang/js-file-download" target="_blank" rel="noopener">kennethjiang/js-file-download</a>保存数据到文件中</h3><h3 id="ioredis"><a href="#ioredis" class="headerlink" title="ioredis *"></a><a href="https://github.com/luin/ioredis#basic-usage" target="_blank" rel="noopener">ioredis</a> <strong>*</strong></h3><p>一个健壮的、以性能为中心的、功能全面的Redis Node.js客户端.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">redis.set(&quot;foo&quot;, &quot;bar&quot;);</span><br><span class="line">redis.get(&quot;foo&quot;, function(err, result) &#123;    // get value</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;);</span><br><span class="line">redis.del(&quot;foo&quot;);  // 删除键</span><br><span class="line"></span><br><span class="line">// Or using a promise if the last argument isn&apos;t a function</span><br><span class="line">redis.get(&quot;foo&quot;).then(function(result) &#123;</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Arguments to commands are flattened, so the following are the same:</span><br><span class="line">redis.sadd(&quot;set&quot;, 1, 3, 5, 7);</span><br><span class="line">redis.sadd(&quot;set&quot;, [1, 3, 5, 7]);</span><br><span class="line"></span><br><span class="line">// All arguments are passed directly to the redis server:</span><br><span class="line">redis.set(&quot;key&quot;, 100, &quot;EX&quot;, 10);</span><br><span class="line">redis.setex(&quot;key&quot;, time, &quot;msg&quot;);//存进redis中，并设置超时时间。</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -585,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Commonjs"><span class="nav-number">1.1.</span> <span class="nav-text">Commonjs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD-Asynchronous-Module-Definition"><span class="nav-number">1.2.</span> <span class="nav-text">AMD(Asynchronous Module Definition)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">1.3.</span> <span class="nav-text">CMD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用模块"><span class="nav-number">2.</span> <span class="nav-text">常用模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AXIOS"><span class="nav-number">2.1.</span> <span class="nav-text">AXIOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kennethjiang-js-file-download保存数据到文件中"><span class="nav-number">2.2.</span> <span class="nav-text">kennethjiang/js-file-download保存数据到文件中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Commonjs"><span class="nav-number">1.1.</span> <span class="nav-text">Commonjs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD-Asynchronous-Module-Definition"><span class="nav-number">1.2.</span> <span class="nav-text">AMD(Asynchronous Module Definition)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">1.3.</span> <span class="nav-text">CMD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用模块"><span class="nav-number">2.</span> <span class="nav-text">常用模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AXIOS"><span class="nav-number">2.1.</span> <span class="nav-text">AXIOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kennethjiang-js-file-download保存数据到文件中"><span class="nav-number">2.2.</span> <span class="nav-text">kennethjiang/js-file-download保存数据到文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ioredis"><span class="nav-number">2.3.</span> <span class="nav-text">ioredis *</span></a></li></ol></li></ol></div>
             
 
           </div>

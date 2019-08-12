@@ -82,14 +82,14 @@
 <meta name="description" content="变量、函数、对象、方法">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS语法">
+<meta property="og:title" content="JS语法(ES6)">
 <meta property="og:url" content="http://yoursite.com/2019/01/19/JS-语法/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="变量、函数、对象、方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T03:02:51.676Z">
+<meta property="og:updated_time" content="2019-08-12T07:06:30.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS语法">
+<meta name="twitter:title" content="JS语法(ES6)">
 <meta name="twitter:description" content="变量、函数、对象、方法">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>JS语法 | 锦枫紫兰</title>
+  <title>JS语法(ES6) | 锦枫紫兰</title>
   
 
 
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JS语法</h1>
+          <h1 class="post-title" itemprop="name headline">JS语法(ES6)</h1>
         
 
         <div class="post-meta">
@@ -342,7 +342,7 @@
 
           
           
-             <span id="/2019/01/19/JS-语法/" class="leancloud_visitors" data-flag-title="JS语法">
+             <span id="/2019/01/19/JS-语法/" class="leancloud_visitors" data-flag-title="JS语法(ES6)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -402,7 +402,17 @@
       
         <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
 <li>$在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变量的时候与你的变量重名，导致脚本中的变量被覆盖，这时，就可以使用$符号来进行标记一下哪些是你的脚本中的变量。</li>
-<li>this指的是调用函数的那个对象，就是函数运行时所在的环境对象。<br> a. 全局对象;<br> b. 函数作为某个对象的方法调用，这时this就指这个上级对象；<br> c. 作为构造函数调用:通过这个函数，可以生成一个新对象。这时，this就指这个新对象，如new function()；<br> d. apply 调用:apply()是函数的一个方法，作用是改变函数的调用对象。它的第一个参数就表示改变后的调用这个函数的对象。apply()的参数为空时，默认调用全局对象。</li>
+<li><p><code>this指的是调用函数的那个对象</code>，就是函数运行时所在的环境对象。<br> a. 全局对象;<br> b. 函数作为某个对象的方法调用，这时this就指这个上级对象；<br> c. 作为构造函数调用:通过这个函数，可以生成一个新对象。这时，this就指这个新对象，如new function()；<br> d. apply 调用:apply()是函数的一个方法，作用是改变函数的调用对象。它的第一个参数就表示改变后的调用这个函数的对象。apply()的参数为空时，默认调用全局对象。</p>
+<h3 id="let-and-const"><a href="#let-and-const" class="headerlink" title="let and const"></a>let and const</h3></li>
+<li><p>ES6新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在<code>let命令所在的代码块</code>内有效。</p>
+</li>
+<li><p>for循环的计数器，就很合适使用let命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line">for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = function () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 10</span><br><span class="line">var a = [];</span><br><span class="line">for (let i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = function () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 6</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>let不像var那样会发生“变量提升”现象。所以，变量一定要在声明后使用，否则报错。</p>
+</li>
+<li>const声明一个只读的常量。一旦声明，常量的值就不能改变。</li>
+<li>const的作用域与let命令相同：只在声明所在的块级作用域内有效。</li>
 </ol>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a>async 和 await</h3><ol>
 <li>async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。</li>
@@ -800,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#async-和-await"><span class="nav-number">2.1.</span> <span class="nav-text">async 和 await</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数（自定义）"><span class="nav-number">3.</span> <span class="nav-text">函数（自定义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程的四种方法"><span class="nav-number">3.1.</span> <span class="nav-text">异步编程的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听"><span class="nav-number">3.1.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布和订阅"><span class="nav-number">3.1.3.</span> <span class="nav-text">发布和订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promises对象"><span class="nav-number">3.1.4.</span> <span class="nav-text">Promises对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象（前端）"><span class="nav-number">4.</span> <span class="nav-text">对象（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas对象标示一个html画布元素"><span class="nav-number">4.1.</span> <span class="nav-text">canvas对象标示一个html画布元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.2.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例学习"><span class="nav-number">4.2.1.</span> <span class="nav-text">案例学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">4.3.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象"><span class="nav-number">4.4.</span> <span class="nav-text">element对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">4.5.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置方法"><span class="nav-number">5.</span> <span class="nav-text">内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中Get和Set访问器"><span class="nav-number">5.1.</span> <span class="nav-text">JavaScript中Get和Set访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">5.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学计算"><span class="nav-number">5.3.</span> <span class="nav-text">数学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-方法接受数组形式的参数"><span class="nav-number">5.4.</span> <span class="nav-text">apply() 方法接受数组形式的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><span class="nav-number">5.5.</span> <span class="nav-text">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">6.</span> <span class="nav-text">声明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-and-const"><span class="nav-number">1.1.</span> <span class="nav-text">let and const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#async-和-await"><span class="nav-number">2.1.</span> <span class="nav-text">async 和 await</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数（自定义）"><span class="nav-number">3.</span> <span class="nav-text">函数（自定义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程的四种方法"><span class="nav-number">3.1.</span> <span class="nav-text">异步编程的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听"><span class="nav-number">3.1.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布和订阅"><span class="nav-number">3.1.3.</span> <span class="nav-text">发布和订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promises对象"><span class="nav-number">3.1.4.</span> <span class="nav-text">Promises对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象（前端）"><span class="nav-number">4.</span> <span class="nav-text">对象（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas对象标示一个html画布元素"><span class="nav-number">4.1.</span> <span class="nav-text">canvas对象标示一个html画布元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.2.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例学习"><span class="nav-number">4.2.1.</span> <span class="nav-text">案例学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">4.3.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象"><span class="nav-number">4.4.</span> <span class="nav-text">element对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">4.5.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置方法"><span class="nav-number">5.</span> <span class="nav-text">内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中Get和Set访问器"><span class="nav-number">5.1.</span> <span class="nav-text">JavaScript中Get和Set访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">5.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学计算"><span class="nav-number">5.3.</span> <span class="nav-text">数学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-方法接受数组形式的参数"><span class="nav-number">5.4.</span> <span class="nav-text">apply() 方法接受数组形式的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><span class="nav-number">5.5.</span> <span class="nav-text">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">6.</span> <span class="nav-text">声明</span></a></li></ol></div>
             
 
           </div>

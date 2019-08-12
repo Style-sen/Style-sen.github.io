@@ -392,7 +392,12 @@
         
           
           摘自Sequelize 中文API文档
-MODEL定义字段的配置123456789101112131415161718192021222324252627var Foo = sequelize.define('foo', &#123;  flag: &#123; type: Sequelize.BO
+MODEL定义时间戳延时Getters &amp; setters - 访问器&amp;设置器
+可以在你的模型中将对象属性定义为访问/设置函数
+访问器&amp;设置器有以下两种定义方式：
+
+做为一个属性定义
+12345678910111213141516171
           ...
           <!--noindex-->
           <div class="post-button text-center">
