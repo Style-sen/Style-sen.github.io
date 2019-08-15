@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="后端,ORM,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="摘自Sequelize 中文API文档 MODEL定义时间戳延时Getters &amp;amp; setters - 访问器&amp;amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问器&amp;amp;设置器有以下两种定义方式： 做为一个属性定义    12345678910111213141516171819202122232425var Employee = sequelize.define(&amp;">
+<meta name="keywords" content="后端,ORM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ORM-Sequelize">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/后端-数据库-ORM-JS-Sequelize/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="摘自Sequelize 中文API文档 MODEL定义时间戳延时Getters &amp;amp; setters - 访问器&amp;amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问器&amp;amp;设置器有以下两种定义方式： 做为一个属性定义    12345678910111213141516171819202122232425var Employee = sequelize.define(&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-14T08:55:39.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ORM-Sequelize">
+<meta name="twitter:description" content="摘自Sequelize 中文API文档 MODEL定义时间戳延时Getters &amp;amp; setters - 访问器&amp;amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问器&amp;amp;设置器有以下两种定义方式： 做为一个属性定义    12345678910111213141516171819202122232425var Employee = sequelize.define(&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/02/后端-数据库-ORM-JS-Sequelize/">
+
+
+
+
+
+  <title>ORM-Sequelize | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/后端-数据库-ORM-JS-Sequelize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ORM-Sequelize</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T20:10:26+08:00">
+                2019-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/08/02/后端-数据库-ORM-JS-Sequelize/" class="leancloud_visitors" data-flag-title="ORM-Sequelize">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>摘自<a href="https://itbilu.com/nodejs/npm/V1PExztfb.html#definition-define" target="_blank" rel="noopener">Sequelize 中文API文档</a></p>
+<h2 id="MODEL定义"><a href="#MODEL定义" class="headerlink" title="MODEL定义"></a>MODEL定义</h2><h3 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h3><h3 id="延时"><a href="#延时" class="headerlink" title="延时"></a>延时</h3><h3 id="Getters-amp-setters-访问器-amp-设置器"><a href="#Getters-amp-setters-访问器-amp-设置器" class="headerlink" title="Getters &amp; setters - 访问器&amp;设置器"></a>Getters &amp; setters - 访问器&amp;设置器</h3><ol>
+<li>可以在你的模型中将对象属性定义为访问/设置函数</li>
+<li>访问器&amp;设置器有以下两种定义方式：<ul>
+<li>做为一个属性定义</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var Employee = sequelize.define(&apos;employee&apos;, &#123;</span><br><span class="line">  name:  &#123;</span><br><span class="line">    type     : Sequelize.STRING,</span><br><span class="line">    allowNull: false,</span><br><span class="line">    get      : function()  &#123;</span><br><span class="line">      var title = this.getDataValue(&apos;title&apos;);</span><br><span class="line">      // &apos;this&apos; allows you to access attributes of the instance</span><br><span class="line">      return this.getDataValue(&apos;name&apos;) + &apos; (&apos; + title + &apos;)&apos;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  title: &#123;</span><br><span class="line">    type     : Sequelize.STRING,</span><br><span class="line">    allowNull: false,</span><br><span class="line">    set      : function(val) &#123;</span><br><span class="line">      this.setDataValue(&apos;title&apos;, val.toUpperCase());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Employee</span><br><span class="line">  .create(&#123; name: &apos;John Doe&apos;, title: &apos;senior engineer&apos; &#125;)</span><br><span class="line">  .then(function(employee) &#123;</span><br><span class="line">    console.log(employee.get(&apos;name&apos;)); // John Doe (SENIOR ENGINEER)</span><br><span class="line">    console.log(employee.get(&apos;title&apos;)); // SENIOR ENGINEER</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<pre><code>* 做为模型选项
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//在下面的示例中，定义了一个名为fullName的访问器，它是对this.firstname和this.lastname两个属性引用，这个属性的一个假属性它并不是数据库中的一部分。定义假属性可以使用访问器或定义为VIRTUAL类型两种方式，Virtual类型可以验证而访问器则不能。</span><br><span class="line"></span><br><span class="line">var Foo = sequelize.define(</span><br><span class="line">  &apos;foo&apos;, &#123;</span><br><span class="line">    firstname: Sequelize.STRING,</span><br><span class="line">    lastname: Sequelize.STRING</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    getterMethods: &#123;</span><br><span class="line">      fullName : function()  &#123; return this.firstname + &apos; &apos; + this.lastname &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    setterMethods : &#123;</span><br><span class="line">      fullName : function(value) &#123;</span><br><span class="line">        var names = value.split(&apos; &apos;);</span><br><span class="line">        this.setDataValue(&apos;firstname&apos;, names.slice(0, -1).join(&apos; &apos;));</span><br><span class="line">        this.setDataValue(&apos;lastname&apos;, names.slice(-1).join(&apos; &apos;));</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="定义字段的配置"><a href="#定义字段的配置" class="headerlink" title="定义字段的配置"></a>定义字段的配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = sequelize.define(<span class="string">'foo'</span>, &#123;</span><br><span class="line">  flag: &#123; <span class="attr">type</span>: Sequelize.BOOLEAN, <span class="attr">allowNull</span>: <span class="literal">false</span>, <span class="attr">defaultValue</span>: <span class="literal">true</span>&#125;,    <span class="comment">// 实例化时在没有显式设置属性值时，会自动设置为 true.设置 allowNull 选项为 false 后，会为列添加  NOT NULL 非空限制, 这意味着当执行查询（插入/更新）时相关字段为空会从数据库层抛出错误</span></span><br><span class="line">  myDate: &#123; <span class="attr">type</span>: Sequelize.DATE, <span class="attr">defaultValue</span>: Sequelize.NOW &#125;,    <span class="comment">// 日期默认值 =&gt; 当前时间</span></span><br><span class="line">  title: &#123; <span class="attr">type</span>: Sequelize.STRING, <span class="attr">allowNull</span>: <span class="literal">false</span>&#125;,</span><br><span class="line">  someUnique: &#123;<span class="attr">type</span>: Sequelize.STRING, <span class="attr">unique</span>: <span class="literal">true</span>&#125;,    <span class="comment">// 添加唯一（unique）约束后插入重复值会报错</span></span><br><span class="line">  uniqueOne: &#123; <span class="attr">type</span>: Sequelize.STRING,  <span class="attr">unique</span>: <span class="string">'compositeIndex'</span>&#125;,    <span class="comment">// unique属性可以是boolean 或 string类型</span></span><br><span class="line">  uniqueTwo: &#123; <span class="attr">type</span>: Sequelize.INTEGER, <span class="attr">unique</span>: <span class="string">'compositeIndex'</span>&#125;   <span class="comment">// 如果为多个字段添加了相同的字符串那么将会是一个符合唯一键</span></span><br><span class="line">  someUnique: &#123;<span class="attr">type</span>: Sequelize.STRING, <span class="attr">unique</span>: <span class="literal">true</span>&#125;     <span class="comment">// unique属性以一个简单的简写方式创建唯一索引</span></span><br><span class="line">  &#123;<span class="attr">someUnique</span>: &#123;<span class="attr">type</span>: Sequelize.STRING&#125;&#125;,    <span class="comment">// 同样的，也可以模型的选项中创建索引</span></span><br><span class="line">  &#123;<span class="attr">indexes</span>: [&#123;<span class="attr">unique</span>: <span class="literal">true</span>, <span class="attr">fields</span>: [<span class="string">'someUnique'</span>]&#125;]&#125;</span><br><span class="line">  identifier: &#123; <span class="attr">type</span>: Sequelize.STRING, <span class="attr">primaryKey</span>: <span class="literal">true</span>&#125;,    <span class="comment">// 定义一个主键</span></span><br><span class="line">  incrementMe: &#123; <span class="attr">type</span>: Sequelize.INTEGER, <span class="attr">autoIncrement</span>: <span class="literal">true</span> &#125;,    <span class="comment">//// autoIncrement 选项用于创建一个自增的整型列</span></span><br><span class="line">  hasComment: &#123; <span class="attr">type</span>: Sequelize.INTEGER, <span class="attr">comment</span>: <span class="string">"I'm a comment!"</span> &#125;,    <span class="comment">// Comments 可以在MySQL 和 PG中指定定段描述</span></span><br><span class="line">  fieldWithUnderscores: &#123; <span class="attr">type</span>: Sequelize.STRING, <span class="attr">field</span>: <span class="string">"field_with_underscores"</span> &#125;,   <span class="comment">// 可以通过 "field" 属性来指定数据库中的字段名</span></span><br><span class="line">  <span class="comment">// 通过references选项可以创建外键:</span></span><br><span class="line">  bar_id: &#123;</span><br><span class="line">    type: Sequelize.INTEGER,</span><br><span class="line">    references: &#123;</span><br><span class="line">      <span class="comment">// 引用另一个模型</span></span><br><span class="line">      model: Bar,</span><br><span class="line">      <span class="comment">// 连接模型的列表</span></span><br><span class="line">      key: <span class="string">'id'</span>,</span><br><span class="line">      <span class="comment">// 强制使用外键约束，仅适用于 PostgreSQL</span></span><br><span class="line">      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Sequelize.STRING                      <span class="comment">// VARCHAR(255)</span></span><br><span class="line">Sequelize.STRING(<span class="number">1234</span>)                <span class="comment">// VARCHAR(1234)</span></span><br><span class="line">Sequelize.STRING.BINARY               <span class="comment">// VARCHAR BINARY</span></span><br><span class="line">Sequelize.TEXT                        <span class="comment">// TEXT</span></span><br><span class="line">Sequelize.TEXT(<span class="string">'tiny'</span>)                <span class="comment">// TINYTEXT</span></span><br><span class="line"></span><br><span class="line">Sequelize.INTEGER                     <span class="comment">// INTEGER</span></span><br><span class="line">Sequelize.BIGINT                      <span class="comment">// BIGINT</span></span><br><span class="line">Sequelize.BIGINT(<span class="number">11</span>)                  <span class="comment">// BIGINT(11)</span></span><br><span class="line"></span><br><span class="line">Sequelize.FLOAT                       <span class="comment">// FLOAT</span></span><br><span class="line">Sequelize.FLOAT(<span class="number">11</span>)                   <span class="comment">// FLOAT(11)</span></span><br><span class="line">Sequelize.FLOAT(<span class="number">11</span>, <span class="number">12</span>)               <span class="comment">// FLOAT(11,12)</span></span><br><span class="line"></span><br><span class="line">Sequelize.REAL                        <span class="comment">// REAL        PostgreSQL only.</span></span><br><span class="line">Sequelize.REAL(<span class="number">11</span>)                    <span class="comment">// REAL(11)    PostgreSQL only.</span></span><br><span class="line">Sequelize.REAL(<span class="number">11</span>, <span class="number">12</span>)                <span class="comment">// REAL(11,12) PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.DOUBLE                      <span class="comment">// DOUBLE</span></span><br><span class="line">Sequelize.DOUBLE(<span class="number">11</span>)                  <span class="comment">// DOUBLE(11)</span></span><br><span class="line">Sequelize.DOUBLE(<span class="number">11</span>, <span class="number">12</span>)              <span class="comment">// DOUBLE(11,12)</span></span><br><span class="line"></span><br><span class="line">Sequelize.DECIMAL                     <span class="comment">// DECIMAL</span></span><br><span class="line">Sequelize.DECIMAL(<span class="number">10</span>, <span class="number">2</span>)              <span class="comment">// DECIMAL(10,2)</span></span><br><span class="line"></span><br><span class="line">Sequelize.DATE                        <span class="comment">// DATETIME for mysql / sqlite, TIMESTAMP WITH TIME ZONE for postgres</span></span><br><span class="line">Sequelize.DATE(<span class="number">6</span>)                     <span class="comment">// DATETIME(6) for mysql 5.6.4+. Fractional seconds support with up to 6 digits of precision </span></span><br><span class="line">Sequelize.DATEONLY                    <span class="comment">// DATE without time.</span></span><br><span class="line">Sequelize.BOOLEAN                     <span class="comment">// TINYINT(1)</span></span><br><span class="line"></span><br><span class="line">Sequelize.ENUM(<span class="string">'value 1'</span>, <span class="string">'value 2'</span>)  <span class="comment">// An ENUM with allowed values 'value 1' and 'value 2'</span></span><br><span class="line">Sequelize.ARRAY(Sequelize.TEXT)       <span class="comment">// Defines an array. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.JSON                        <span class="comment">// JSON column. PostgreSQL only.</span></span><br><span class="line">Sequelize.JSONB                       <span class="comment">// JSONB column. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.BLOB                        <span class="comment">// BLOB (bytea for PostgreSQL)</span></span><br><span class="line">Sequelize.BLOB(<span class="string">'tiny'</span>)                <span class="comment">// TINYBLOB (bytea for PostgreSQL. Other options are medium and long)</span></span><br><span class="line"></span><br><span class="line">Sequelize.UUID                        <span class="comment">//   PostgreSQL 和 SQLite 中为 UUID, MySQL 中为CHAR(36) BINARY (使用 defaultValue: Sequelize.UUIDV1 或 Sequelize.UUIDV4 生成默认值)</span></span><br><span class="line"></span><br><span class="line">Sequelize.RANGE(Sequelize.INTEGER)    <span class="comment">// Defines int4range range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.BIGINT)     <span class="comment">// Defined int8range range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DATE)       <span class="comment">// Defines tstzrange range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DATEONLY)   <span class="comment">// Defines daterange range. PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DECIMAL)    <span class="comment">// Defines numrange range. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.ARRAY(Sequelize.RANGE(Sequelize.DATE)) <span class="comment">// Defines array of tstzrange ranges. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.GEOMETRY                    <span class="comment">// Spatial column.  PostgreSQL (with PostGIS) or MySQL only.</span></span><br><span class="line">Sequelize.GEOMETRY(<span class="string">'POINT'</span>)           <span class="comment">// Spatial column with geomerty type.  PostgreSQL (with PostGIS) or MySQL only.</span></span><br><span class="line">Sequelize.GEOMETRY(<span class="string">'POINT'</span>, <span class="number">4326</span>)     <span class="comment">// Spatial column with geomerty type and SRID.  PostgreSQL (with PostGIS) or MySQL only.</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>DATE</code>直接使用JS的<code>DATE()</code>类型的数据写入。</li>
+</ol>
+<h3 id="Validations-验证"><a href="#Validations-验证" class="headerlink" title="Validations - 验证"></a>Validations - 验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">var ValidateMe = sequelize.define(&apos;foo&apos;, &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">    type: Sequelize.STRING,</span><br><span class="line">    validate: &#123;</span><br><span class="line">      is: [&quot;^[a-z]+$&quot;,&apos;i&apos;],     // 只允许字母</span><br><span class="line">      is: /^[a-z]+$/i,          // 只允许字母</span><br><span class="line">      not: [&quot;[a-z]&quot;,&apos;i&apos;],       // 不能使用字母</span><br><span class="line">      isEmail: true,            // 检测邮箱格式 (foo@bar.com)</span><br><span class="line">      isUrl: true,              // 检查Url格式 (http://foo.com)</span><br><span class="line">      isIP: true,               // 检查 IPv4 或 IPv6 格式</span><br><span class="line">      isIPv4: true,             // 检查 IPv4</span><br><span class="line">      isIPv6: true,             // 检查 IPv6</span><br><span class="line">      isAlpha: true,            // 不能使用字母</span><br><span class="line">      isAlphanumeric: true,     // 只允许字母数字字符</span><br><span class="line">      isNumeric: true,          // 只能使用数字</span><br><span class="line">      isInt: true,              // 只能是整数</span><br><span class="line">      isFloat: true,            // 只能是浮点数</span><br><span class="line">      isDecimal: true,          // 检查数字</span><br><span class="line">      isLowercase: true,        // 检查小写字母</span><br><span class="line">      isUppercase: true,        // 检查大写字母</span><br><span class="line">      notNull: true,            // 不允许null</span><br><span class="line">      isNull: true,             // 只能为null</span><br><span class="line">      notEmpty: true,           // 不能空字符串</span><br><span class="line">      equals: &apos;specific value&apos;, // 只能使用指定值</span><br><span class="line">      contains: &apos;foo&apos;,          // 必须包含子字符串</span><br><span class="line">      notIn: [[&apos;foo&apos;, &apos;bar&apos;]],  // 不能是数组中的任意一个值</span><br><span class="line">      isIn: [[&apos;foo&apos;, &apos;bar&apos;]],   // 只能是数组中的任意一个值</span><br><span class="line">      notContains: &apos;bar&apos;,       // 不能包含子字符串</span><br><span class="line">      len: [2, 10],              // 值的长度必在 2 和 10 之间</span><br><span class="line">      isUUID: 4,                // 只能是UUID</span><br><span class="line">      isDate: true,             // 只能是日期字符串</span><br><span class="line">      isAfter: &quot;2011-11-05&quot;,    // 只能使用指定日期之后的时间</span><br><span class="line">      isBefore: &quot;2011-11-05&quot;,   // 只能使用指定日期之前的时间</span><br><span class="line">      max: 23,                  // 允许的最大值</span><br><span class="line">      min: 23,                  // 允许的最小值</span><br><span class="line">      isArray: true,            // 不能使用数组</span><br><span class="line">      isCreditCard: true,       // 检查是有效的信用卡</span><br><span class="line"></span><br><span class="line">      // 也可以自定义验证:</span><br><span class="line">      isEven: function(value) &#123;</span><br><span class="line">        if(parseInt(value) % 2 != 0) &#123;</span><br><span class="line">          throw new Error(&apos;Only even values are allowed!&apos;)</span><br><span class="line">        // we also are in the model&apos;s context here, so this.otherField</span><br><span class="line">        // would get the value of otherField if it existed</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="model配置"><a href="#model配置" class="headerlink" title="model配置"></a>model配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 不要添加时间戳属性 (updatedAt, createdAt)</span><br><span class="line">  timestamps: false,</span><br><span class="line"></span><br><span class="line">  // 不从数据库中删除数据，而只是增加一个 deletedAt 标识当前时间</span><br><span class="line">  // paranoid 属性只在启用 timestamps 时适用</span><br><span class="line">  paranoid: true,</span><br><span class="line"></span><br><span class="line">  // 不使用驼峰式命令规则，这样会在使用下划线分隔</span><br><span class="line">  // 这样 updatedAt 的字段名会是 updated_at</span><br><span class="line">  underscored: true,</span><br><span class="line"></span><br><span class="line">  // 禁止修改表名. 默认情况下</span><br><span class="line">  // sequelize会自动使用传入的模型名（define的第一个参数）做为表名</span><br><span class="line">  // 如果你不想使用这种方式你需要进行以下设置</span><br><span class="line">  freezeTableName: true,</span><br><span class="line"></span><br><span class="line">  // 定义表名</span><br><span class="line">  tableName: &apos;my_very_custom_table_name&apos;</span><br><span class="line">  // Enable optimistic locking.  When enabled, sequelize will add a version count attribute</span><br><span class="line">  // to the model and throw an OptimisticLockingError error when stale instances are saved.</span><br><span class="line">  // Set to true or a string with the attribute name you want to use to enable.</span><br><span class="line">  version: true,</span><br><span class="line"></span><br><span class="line">  // Sequelize instance</span><br><span class="line">  sequelize,</span><br></pre></td></tr></table></figure>
+<h2 id="Model的使用"><a href="#Model的使用" class="headerlink" title="Model的使用"></a>Model的使用</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>通过Sequelize获取的模型对象实例列是一个DAO（Data Access Object）对象，这些对象会拥有许多操作数据库表的实例对象方法，这个对象会有create()、find()、update()、destroy()等对象操作方法，这些方法会对应的生成INSERT、SELECT、UPDATE、DELETE等SQL语句。</p>
+<h4 id="增：create操作"><a href="#增：create操作" class="headerlink" title="增：create操作"></a>增：create操作</h4><p>create操作是指创建数据记录，我们可通过Model.create()方法添加一条数据或通过Model.bulkCreate()方法添加多条数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">User.create(&#123;</span><br><span class="line">  firstName: &apos;liu&apos;,</span><br><span class="line">  lastName: &apos;小明&apos;</span><br><span class="line">&#125;).then(function (created)&#123;</span><br><span class="line">  // 创建结果</span><br><span class="line">  console.log(created);</span><br><span class="line">&#125;).catch(function(err)&#123;</span><br><span class="line">  // 出错了</span><br><span class="line">  console.log(err);	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在这个方法，其实际执行SQL语句类似如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `user` (`id`,`first_name`,`lastName`,`createdAt`,`updatedAt`) VALUES (DEFAULT,&apos;liu&apos;,&apos;小明&apos;,&apos;2016-05-03 15:22:06&apos;,&apos;2016-05-03 15:22:06&apos;);</span><br></pre></td></tr></table></figure>
+<p>可以看出，除了我们在User对象定义时的两个字段外，其还额外处理了id、createdAt、updatedAt三个字段。id是数据表的主键，如果在定义对象时添加了主键，将使用自定义的主键，而没有添加时将自动添加一个名为id的主键。createdAt、updatedAt两个字段同样是自动添加的，如果不需要使用可以在定义模型时进行设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sequelize.define(&apos;user&apos;, &#123;</span><br><span class="line">  firstName: &#123;</span><br><span class="line">    type: Sequelize.STRING,</span><br><span class="line">    field: &apos;first_name&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  lastName: &#123;</span><br><span class="line">    type: Sequelize.STRING</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  freezeTableName: true,</span><br><span class="line">  &apos;createdAt&apos;: false,</span><br><span class="line">  &apos;updatedAt&apos;: &apos;utime&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="改：update操作"><a href="#改：update操作" class="headerlink" title="改：update操作"></a>改：update操作</h4><p>update操作是指修改数据记录，我们可通过Model.update()方法来修改已经存在的数据记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User.update(&#123;firstName:&apos;liu&apos;&#125;, &#123;where:&#123;id:1&#125;&#125;).then(function (result)&#123;</span><br><span class="line">  // 修改结果</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;).catch(function(err)&#123;</span><br><span class="line">  // 出错了</span><br><span class="line">  console.log(err);	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在.update()方法中，其实际生成的SQL语句类似如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `user` SET `first_name`=&apos;liu&apos;,`updatedAt`=&apos;2016-05-03 15:43:32&apos; WHERE `id` = 1</span><br></pre></td></tr></table></figure>
+<h4 id="查：find操作"><a href="#查：find操作" class="headerlink" title="查：find操作"></a>查：find操作</h4><p>find操作是指查询已存在的数据记录，我们可通过Model.findOne()方法查找一条数据，或通过Model.findAll()方法查找所有数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 按指定条件查找一条数据</span><br><span class="line">User.findOne(&#123;where:&#123;id:1&#125;&#125;).then(function (result)&#123;</span><br><span class="line">  // 查询结果</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;).catch(function(err)&#123;</span><br><span class="line">  // 出错了</span><br><span class="line">  console.log(err);	</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 查找所有数据</span><br><span class="line">User.findAll().then(function (result)&#123;</span><br><span class="line">  // 查询结果</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;).catch(function(err)&#123;</span><br><span class="line">  // 出错了</span><br><span class="line">  console.log(err);	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在上面的查询操作中，其实际执行SQL语句分别类似如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 单条数据查询</span><br><span class="line">SELECT `id`, `first_name` AS `firstName`, `lastName`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1</span><br><span class="line"></span><br><span class="line">// 多条数据查询</span><br><span class="line">SELECT `id`, `first_name` AS `firstName`, `lastName`, `createdAt`, `updatedAt` FROM `user` AS `user`</span><br></pre></td></tr></table></figure>
+<p><strong>对查询到实例可以执行save方法</strong></p>
+<h4 id="删：destroy操作"><a href="#删：destroy操作" class="headerlink" title="删：destroy操作"></a>删：destroy操作</h4><p>destroy操作是指删除已存在的数据记录，我们可通过Model.destroy()方法来删除数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User.destroy(&#123;where:&#123;id:1&#125;&#125;).then(function (result)&#123;</span><br><span class="line">  // 操作结果</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;).catch(function(err)&#123;</span><br><span class="line">  // 出错了</span><br><span class="line">  console.log(err);	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在以上.destroy()方法中，其实际生成的SQL语句类似如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM `user` WHERE `id` = 1</span><br></pre></td></tr></table></figure>
+<h3 id="Data-retrieval-Finders-数据索引-查找"><a href="#Data-retrieval-Finders-数据索引-查找" class="headerlink" title="Data retrieval / Finders - 数据索引/查找"></a>Data retrieval / Finders - 数据索引/查找</h3><ol>
+<li>查找方法是为了从数据库中查询数据，这些方法不是返回原始数据对象，而是<code>返回模型实例</code>。因其返回的是模型实例，所以在文档的查询结果中<code>可以任意调用模型实例的成员、方法</code>等。（更多实例介绍请参考：instance）</li>
+</ol>
+<p>下面是一些常用的查询方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//find - 从数据库中查找一个指定元素</span></span><br><span class="line"><span class="comment">// 按已知id查找</span></span><br><span class="line">Project.findByPk(<span class="number">123</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">project</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// project 是一个 Project 实例，且包含存储在数据中的数据</span></span><br><span class="line">  <span class="comment">// 当不存在 id 为123的记录时 project 为 null</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 按属性查找</span></span><br><span class="line">Project.findOne(&#123; <span class="attr">where</span>: &#123;<span class="attr">title</span>: <span class="string">'aProject'</span>&#125; &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">project</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// project 是匹配到的第一个 title 为 'aProject' 的 Projects 或 null</span></span><br><span class="line">&#125;)</span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;<span class="attr">title</span>: <span class="string">'aProject'</span>&#125;,</span><br><span class="line">  attributes: [<span class="string">'id'</span>, [<span class="string">'name'</span>, <span class="string">'title'</span>]]</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">project</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// project 是匹配到的第一个 title 为 'aProject' 的 Projects 或 null</span></span><br><span class="line">  <span class="comment">// project 的 project.title 属性中会包含 'name'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="findOrCreate-从数据库中查找一个指定元素如果不存在则创建记录"><a href="#findOrCreate-从数据库中查找一个指定元素如果不存在则创建记录" class="headerlink" title="findOrCreate - 从数据库中查找一个指定元素如果不存在则创建记录"></a>findOrCreate - 从数据库中查找一个指定元素如果不存在则创建记录</h4><ol>
+<li>findOrCreate可用于检测一个不确定是否存在的元素，如果存在则返回记录，不存在时会使用提供的默认值（<strong>默认值为常量</strong>）新建记录。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如，当数据不存在时，其执行效果如下：</span></span><br><span class="line">User</span><br><span class="line">  .findOrCreate(&#123;<span class="attr">where</span>: &#123;<span class="attr">username</span>: <span class="string">'sdepold'</span>&#125;, <span class="attr">defaults</span>: &#123;<span class="attr">job</span>: <span class="string">'Technical Lead JavaScript'</span>&#125;&#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">[user, created]</span>)=&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(user.get(&#123;</span><br><span class="line">      plain: <span class="literal">true</span></span><br><span class="line">    &#125;))</span><br><span class="line">    <span class="built_in">console</span>.log(created)</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">      [&#123;</span></span><br><span class="line"><span class="comment">        username: 'itbilu.com',</span></span><br><span class="line"><span class="comment">        job: 'Technical Lead JavaScript',</span></span><br><span class="line"><span class="comment">        id: 1,</span></span><br><span class="line"><span class="comment">        createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),</span></span><br><span class="line"><span class="comment">        updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)</span></span><br><span class="line"><span class="comment">      &#125;,</span></span><br><span class="line"><span class="comment">      true]</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="comment">//当数据存在时，会返回记录：</span></span><br><span class="line">User</span><br><span class="line">  .create(&#123; <span class="attr">username</span>: <span class="string">'fnord'</span>, <span class="attr">job</span>: <span class="string">'omnomnom'</span> &#125;)</span><br><span class="line">  .then(<span class="function"><span class="params">()</span>=&gt;</span> User.findOrCreate(&#123;<span class="attr">where</span>: &#123;<span class="attr">username</span>: <span class="string">'fnord'</span>&#125;, <span class="attr">defaults</span>: &#123;<span class="attr">job</span>: <span class="string">'something else'</span>&#125;&#125;))</span><br><span class="line">  .then(<span class="function">(<span class="params">[user, created]</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(user.get(&#123;</span><br><span class="line">          plain: <span class="literal">true</span></span><br><span class="line">        &#125;))</span><br><span class="line">        <span class="built_in">console</span>.log(created)</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">          [&#123;</span></span><br><span class="line"><span class="comment">            username: 'fnord',</span></span><br><span class="line"><span class="comment">            job: 'omnomnom',</span></span><br><span class="line"><span class="comment">            id: 2,</span></span><br><span class="line"><span class="comment">            createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),</span></span><br><span class="line"><span class="comment">            updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)</span></span><br><span class="line"><span class="comment">          &#125;,</span></span><br><span class="line"><span class="comment">          created: false]</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="findAndCountAll-从数据库中查找多个元素，返回数据与记录总数"><a href="#findAndCountAll-从数据库中查找多个元素，返回数据与记录总数" class="headerlink" title="findAndCountAll - 从数据库中查找多个元素，返回数据与记录总数"></a>findAndCountAll - 从数据库中查找多个元素，返回数据与记录总数</h4><ol>
+<li>这个方法是findAll和count两个方法的便捷形式，这在你想使用limit和offset进行分页查询时非常有用。</li>
+<li>在返回值中，会包含以下两个属性：<ul>
+<li>count - 整数，匹配到的总记录数</li>
+<li>rows - 对象数据，通过 limit 和 offset匹配的当前页数据</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Project</span><br><span class="line">  .findAndCountAll(&#123;</span><br><span class="line">     where: &#123;</span><br><span class="line">        title: &#123;</span><br><span class="line">          $like: <span class="string">'foo%'</span></span><br><span class="line">        &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     offset: <span class="number">10</span>,</span><br><span class="line">     limit: <span class="number">2</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result.count);</span><br><span class="line">    <span class="built_in">console</span>.log(result.rows);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//findAndCountAll同样支持使用include包含，使用包含时只有将required设置为true才会添加到count部分：</span></span><br><span class="line">User.findAndCountAll(&#123;</span><br><span class="line">  include: [</span><br><span class="line">     &#123; <span class="attr">model</span>: Profile, <span class="attr">required</span>: <span class="literal">true</span>&#125;</span><br><span class="line">  ],</span><br><span class="line">  limit: <span class="number">3</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//使用include时，两个模型之间应该存在主/外键关系，如果不存在就应该在include中手工建立连接。</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>在上面的示例中，为Profile设置了required，所以在查询时会使用INNER JOIN内连接。</li>
+</ol>
+<h4 id="findAll-从数据库中查找多个元素"><a href="#findAll-从数据库中查找多个元素" class="headerlink" title="findAll - 从数据库中查找多个元素"></a>findAll - 从数据库中查找多个元素</h4><ol>
+<li>findAndCountAll中使用的查询选项同样适用于findAll方法。</li>
+<li><code>Op = Sequelize.Op</code>;</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// find multiple entries</span></span><br><span class="line">Project.findAll().then(<span class="function"><span class="params">projects</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// projects will be an array of all Project instances</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// search for specific attributes - hash usage</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">where</span>: &#123; <span class="attr">name</span>: <span class="string">'A Project'</span> &#125; &#125;).then(<span class="function"><span class="params">projects</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// projects will be an array of Project instances with the specified name</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// search within a specific range</span></span><br><span class="line">Project.findAll(&#123; <span class="attr">where</span>: &#123; <span class="attr">id</span>: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] &#125; &#125;).then(<span class="function"><span class="params">projects</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// projects will be an array of Projects having the id 1, 2 or 3</span></span><br><span class="line">  <span class="comment">// this is actually doing an IN query</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.findAll(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    id: &#123;</span><br><span class="line">      [Op.and]: &#123;<span class="attr">a</span>: <span class="number">5</span>&#125;,           <span class="comment">// AND (a = 5)</span></span><br><span class="line">      [Op.or]: [&#123;<span class="attr">a</span>: <span class="number">5</span>&#125;, &#123;<span class="attr">a</span>: <span class="number">6</span>&#125;],  <span class="comment">// (a = 5 OR a = 6)</span></span><br><span class="line">      [Op.gt]: <span class="number">6</span>,                <span class="comment">// id &gt; 6</span></span><br><span class="line">      [Op.gte]: <span class="number">6</span>,               <span class="comment">// id &gt;= 6</span></span><br><span class="line">      [Op.lt]: <span class="number">10</span>,               <span class="comment">// id &lt; 10</span></span><br><span class="line">      [Op.lte]: <span class="number">10</span>,              <span class="comment">// id &lt;= 10</span></span><br><span class="line">      [Op.ne]: <span class="number">20</span>,               <span class="comment">// id != 20</span></span><br><span class="line">      [Op.between]: [<span class="number">6</span>, <span class="number">10</span>],     <span class="comment">// BETWEEN 6 AND 10</span></span><br><span class="line">      [Op.notBetween]: [<span class="number">11</span>, <span class="number">15</span>], <span class="comment">// NOT BETWEEN 11 AND 15</span></span><br><span class="line">      [Op.in]: [<span class="number">1</span>, <span class="number">2</span>],           <span class="comment">// IN [1, 2]</span></span><br><span class="line">      [Op.notIn]: [<span class="number">1</span>, <span class="number">2</span>],        <span class="comment">// NOT IN [1, 2]</span></span><br><span class="line">      [Op.like]: <span class="string">'%hat'</span>,         <span class="comment">// LIKE '%hat'</span></span><br><span class="line">      [Op.notLike]: <span class="string">'%hat'</span>,       <span class="comment">// NOT LIKE '%hat'</span></span><br><span class="line">      [Op.iLike]: <span class="string">'%hat'</span>,         <span class="comment">// ILIKE '%hat' (case insensitive)  (PG only)</span></span><br><span class="line">      [Op.notILike]: <span class="string">'%hat'</span>,      <span class="comment">// NOT ILIKE '%hat'  (PG only)</span></span><br><span class="line">      [Op.overlap]: [<span class="number">1</span>, <span class="number">2</span>],       <span class="comment">// &amp;&amp; [1, 2] (PG array overlap operator)</span></span><br><span class="line">      [Op.contains]: [<span class="number">1</span>, <span class="number">2</span>],      <span class="comment">// @&gt; [1, 2] (PG array contains operator)</span></span><br><span class="line">      [Op.contained]: [<span class="number">1</span>, <span class="number">2</span>],     <span class="comment">// &lt;@ [1, 2] (PG array contained by operator)</span></span><br><span class="line">      [Op.any]: [<span class="number">2</span>,<span class="number">3</span>]            <span class="comment">// ANY ARRAY[2, 3]::INTEGER (PG only)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    status: &#123;</span><br><span class="line">      [Op.not]: <span class="literal">false</span>           <span class="comment">// status NOT FALSE</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="IN-OR-等复合筛选"><a href="#IN-OR-等复合筛选" class="headerlink" title="IN/OR 等复合筛选"></a>IN/OR 等复合筛选</h4><ol>
+<li>如果要在查询中使用AND、OR或DOT等筛选条件，可以查询的where中指定$and、$or或$not等属性：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: &apos;a project&apos;,</span><br><span class="line">    $or: [</span><br><span class="line">      &#123; id: [1,2,3] &#125;,</span><br><span class="line">      &#123; id: &#123; $gt: 10 &#125; &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: &apos;a project&apos;,</span><br><span class="line">    id: &#123;</span><br><span class="line">      $or: [</span><br><span class="line">        [1,2,3],</span><br><span class="line">        &#123; $gt: 10 &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//这个查询生成的实际SQL语句为：</span><br><span class="line">SELECT *</span><br><span class="line">FROM `Projects`</span><br><span class="line">WHERE (</span><br><span class="line">  `Projects`.`name` = &apos;a project&apos;</span><br><span class="line">   AND (`Projects`.`id` IN (1,2,3) OR `Projects`.`id` &gt; 10)</span><br><span class="line">)</span><br><span class="line">LIMIT 1;</span><br><span class="line">$not示例：</span><br><span class="line"></span><br><span class="line">Project.findOne(&#123;</span><br><span class="line">  where: &#123;</span><br><span class="line">    name: &apos;a project&apos;,</span><br><span class="line">    $not: [</span><br><span class="line">      &#123; id: [1,2,3] &#125;,</span><br><span class="line">      &#123; array: &#123; $contains: [3,4,5] &#125; &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">将生成以下语句：</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM `Projects`</span><br><span class="line">WHERE (</span><br><span class="line">  `Projects`.`name` = &apos;a project&apos;</span><br><span class="line">   AND NOT (`Projects`.`id` IN (1,2,3) OR `Projects`.`array` @&gt; ARRAY[1,2,3]::INTEGER[])</span><br><span class="line">)</span><br><span class="line">LIMIT 1;</span><br></pre></td></tr></table></figure>
+<h4 id="对数据集使用limit、offset、order-和-group"><a href="#对数据集使用limit、offset、order-和-group" class="headerlink" title="对数据集使用limit、offset、order 和 group"></a>对数据集使用limit、offset、order 和 group</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 使用 limit 限制返回结果数</span><br><span class="line">Project.findAll(&#123; limit: 10 &#125;)</span><br><span class="line"></span><br><span class="line">// 跳过前 10 条结果</span><br><span class="line">Project.findAll(&#123; offset: 10 &#125;)</span><br><span class="line"></span><br><span class="line">// 跳过前 10 条结果后，返回两条数据</span><br><span class="line">Project.findAll(&#123; offset: 10, limit: 2 &#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>分组与排序的语法是相似的，所以下边语法适用分组和排序。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Project.findAll(&#123;order: [[&apos;title&apos;, &apos;DESC&apos;]]&#125;)</span><br><span class="line">// yields ORDER BY title DESC</span><br><span class="line"></span><br><span class="line">Project.findAll(&#123;group: &apos;name&apos;&#125;)</span><br><span class="line">// yields GROUP BY name</span><br></pre></td></tr></table></figure>
+<ol>
+<li>传入简单的字符串时，查询字符串会逐字查询，即列名不转义。如果需要列名转义，可以提供一个数组参数。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">something.findOne(&#123;</span><br><span class="line">  order: [</span><br><span class="line">    <span class="comment">// will return `name`</span></span><br><span class="line">    [<span class="string">'name'</span>],</span><br><span class="line">    <span class="comment">// will return `username` DESC</span></span><br><span class="line">    [<span class="string">'username'</span>, <span class="string">'DESC'</span>],</span><br><span class="line">    <span class="comment">// will return max(`age`)</span></span><br><span class="line">    sequelize.fn(<span class="string">'max'</span>, sequelize.col(<span class="string">'age'</span>)),</span><br><span class="line">    <span class="comment">// will return max(`age`) DESC</span></span><br><span class="line">    [sequelize.fn(<span class="string">'max'</span>, sequelize.col(<span class="string">'age'</span>)), <span class="string">'DESC'</span>],</span><br><span class="line">    <span class="comment">// will return otherfunction(`col1`, 12, 'lalala') DESC</span></span><br><span class="line">    [sequelize.fn(<span class="string">'otherfunction'</span>, sequelize.col(<span class="string">'col1'</span>), <span class="number">12</span>, <span class="string">'lalala'</span>), <span class="string">'DESC'</span>],</span><br><span class="line">    <span class="comment">// will return otherfunction(awesomefunction(`col`)) DESC, This nesting is potentially infinite!</span></span><br><span class="line">    [sequelize.fn(<span class="string">'otherfunction'</span>, sequelize.fn(<span class="string">'awesomefunction'</span>, sequelize.col(<span class="string">'col'</span>))), <span class="string">'DESC'</span>]</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="原始查询"><a href="#原始查询" class="headerlink" title="原始查询"></a>原始查询</h4><p>默情况下，Sequlize人为查询结构创建实例，通过这个实例可以进行数据的更新、删除等操作。有时候我只需要显示数据集，而不需要进行处理，这时可以通过设置raw选项来返回原始数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// 增加 raw 选项后，会返回数据库中的原始结果</span><br><span class="line">Project.findAll(&#123; where: &#123; ... &#125;, raw: true &#125;)</span><br><span class="line">count - 统计数据库中的元素数</span><br><span class="line"></span><br><span class="line">count可以统计数据库中的元素数：</span><br><span class="line"></span><br><span class="line">Project.count().then(function(c) &#123;</span><br><span class="line">  console.log(&quot;There are &quot; + c + &quot; projects!&quot;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.count(&#123; where: [&quot;id &gt; ?&quot;, 25] &#125;).then(function(c) &#123;</span><br><span class="line">  console.log(&quot;There are &quot; + c + &quot; projects with an id greater than 25.&quot;)</span><br><span class="line">&#125;)</span><br><span class="line">max - 查找指定表中最大值</span><br><span class="line"></span><br><span class="line">// 数据库中有3条记录，年龄分别是 10, 5, 40</span><br><span class="line">Project.max(&apos;age&apos;).then(function(max) &#123;</span><br><span class="line">  // 会返回 40</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.max(&apos;age&apos;, &#123; where: &#123; age: &#123; lt: 20 &#125; &#125; &#125;).then(function(max) &#123;</span><br><span class="line">  // 会返回 10</span><br><span class="line">&#125;)</span><br><span class="line">min - 查找指定表中最小值</span><br><span class="line"></span><br><span class="line">// 数据库中有3条记录，年龄分别是 10, 5, 40</span><br><span class="line">Project.min(&apos;age&apos;).then(function(min) &#123;</span><br><span class="line">  // 会返回 5</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.min(&apos;age&apos;, &#123; where: &#123; age: &#123; $gt: 5 &#125; &#125; &#125;).then(function(min) &#123;</span><br><span class="line">  // 会返回 10</span><br><span class="line">&#125;)</span><br><span class="line">sum - 对指定属性求和</span><br><span class="line"></span><br><span class="line">// 数据库中有3条记录，年龄分别是 10, 5, 40</span><br><span class="line">Project.sum(&apos;age&apos;).then(function(sum) &#123;</span><br><span class="line">  // 会返回 55</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Project.sum(&apos;age&apos;, &#123; where: &#123; age: &#123; $gt: 5 &#125; &#125; &#125;).then(function(sum) &#123;</span><br><span class="line">  // 会返回 50</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Eager-loading-预加载"><a href="#Eager-loading-预加载" class="headerlink" title="Eager loading - 预加载"></a>Eager loading - 预加载</h3><ol>
+<li>从数据库中加载数据时，除<strong>数据本身外还想得到与之相关联的数据</strong>－这就是所谓的预加载。也就是说，<code>使用find或findAll查询数据时，通过include属性同时加载关联的数据</code>。</li>
+</ol>
+<p>假设有以下数据结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var User = sequelize.define(&apos;user&apos;, &#123; name: Sequelize.STRING &#125;)</span><br><span class="line">  , Task = sequelize.define(&apos;task&apos;, &#123; name: Sequelize.STRING &#125;)</span><br><span class="line">  , Tool = sequelize.define(&apos;tool&apos;, &#123; name: Sequelize.STRING &#125;)</span><br><span class="line"></span><br><span class="line">Task.belongsTo(User)</span><br><span class="line">User.hasMany(Task)</span><br><span class="line">User.hasMany(Tool, &#123; as: &apos;Instruments&apos; &#125;)</span><br><span class="line"></span><br><span class="line">sequelize.sync().then(function() &#123;</span><br><span class="line">  // this is where we continue ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过belongsTo与hasMany建立关系后，就可以像下面这样查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Task.findAll(&#123; include: [ User ] &#125;).then(function(tasks) &#123;</span><br><span class="line">  console.log(JSON.stringify(tasks))</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">    [&#123;</span><br><span class="line">      &quot;name&quot;: &quot;A Task&quot;,</span><br><span class="line">      &quot;id&quot;: 1,</span><br><span class="line">      &quot;createdAt&quot;: &quot;2013-03-20T20:31:40.000Z&quot;,</span><br><span class="line">      &quot;updatedAt&quot;: &quot;2013-03-20T20:31:40.000Z&quot;,</span><br><span class="line">      &quot;userId&quot;: 1,</span><br><span class="line">      &quot;user&quot;: &#123;</span><br><span class="line">        &quot;name&quot;: &quot;John Doe&quot;,</span><br><span class="line">        &quot;id&quot;: 1,</span><br><span class="line">        &quot;createdAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,</span><br><span class="line">        &quot;updatedAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  */</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>由于Task与User是1对多的关系，所在查询时user会做为一个对象属性被同时加载。</p>
+<p>下面我们进行一个多对多的查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">User.findAll(&#123; include: [ Task ] &#125;).then(function(users) &#123;</span><br><span class="line">  console.log(JSON.stringify(users))</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">    [&#123;</span><br><span class="line">      &quot;name&quot;: &quot;John Doe&quot;,</span><br><span class="line">      &quot;id&quot;: 1,</span><br><span class="line">      &quot;createdAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,</span><br><span class="line">      &quot;updatedAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,</span><br><span class="line">      &quot;tasks&quot;: [&#123;</span><br><span class="line">        &quot;name&quot;: &quot;A Task&quot;,</span><br><span class="line">        &quot;id&quot;: 1,</span><br><span class="line">        &quot;createdAt&quot;: &quot;2013-03-20T20:31:40.000Z&quot;,</span><br><span class="line">        &quot;updatedAt&quot;: &quot;2013-03-20T20:31:40.000Z&quot;,</span><br><span class="line">        &quot;userId&quot;: 1</span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">  */</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在多对多的关系中，相关数据会做为一个数组属性被同时加载。</p>
+<p>关联查询时，可以使用as选项为关系数据指定别名：</p>
+<p>User.findAll({ include: [{ model: Tool, as: ‘Instruments’ }] }).then(function(users) {<br>  console.log(JSON.stringify(users))</p>
+<p>  /<em><br>    [{<br>      “name”: “John Doe”,<br>      “id”: 1,<br>      “createdAt”: “2013-03-20T20:31:45.000Z”,<br>      “updatedAt”: “2013-03-20T20:31:45.000Z”,<br>      “Instruments”: [{<br>        “name”: “Toothpick”,<br>        “id”: 1,<br>        “createdAt”: null,<br>        “updatedAt”: null,<br>        “userId”: 1<br>      }]<br>    }]
+  </em>/<br>})<br>关联查询时，同样可以使用where选项对关联数据进行筛选：</p>
+<p>User.findAll({<br>    include: [{<br>        model: Tool,<br>        as: ‘Instruments’,<br>        where: { name: { $like: ‘%ooth%’ } }<br>    }]<br>}).then(function(users) {<br>    console.log(JSON.stringify(users))</p>
+<pre><code>/*
+  [{
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;id&quot;: 1,
+    &quot;createdAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,
+    &quot;updatedAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,
+    &quot;Instruments&quot;: [{
+      &quot;name&quot;: &quot;Toothpick&quot;,
+      &quot;id&quot;: 1,
+      &quot;createdAt&quot;: null,
+      &quot;updatedAt&quot;: null,
+      &quot;userId&quot;: 1
+    }]
+  }],
+
+  [{
+    &quot;name&quot;: &quot;John Smith&quot;,
+    &quot;id&quot;: 2,
+    &quot;createdAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,
+    &quot;updatedAt&quot;: &quot;2013-03-20T20:31:45.000Z&quot;,
+    &quot;Instruments&quot;: [{
+      &quot;name&quot;: &quot;Toothpick&quot;,
+      &quot;id&quot;: 1,
+      &quot;createdAt&quot;: null,
+      &quot;updatedAt&quot;: null,
+      &quot;userId&quot;: 1
+    }]
+  }],
+*/
+</code></pre><p>  })<br>注意：使用include.where条件时，include.requied会被隐式的设置为true，即在查询时会使用INNER JOIN内连接。</p>
+<p>全关联</p>
+<p>如果多个模型间存在关联关系，而我们在查询时又要查询所有的数据，就可以设置all: true来关联所有模型：</p>
+<p>User.findAll({ include: [{ all: true }]});<br>包括软删除的数据</p>
+<p>如果要在结果中包含软删除的数据，请将include.paranoid设置为true：</p>
+<p>User.findAll({<br>    include: [{<br>        model: Tool,<br>        where: { name: { $like: ‘%ooth%’ } },<br>        paranoid: true // 查询并加载软删除的数据<br>    }]<br>});<br>预加载关联数据的排序</p>
+<p>在1对多（one-to-many）的关系中：</p>
+<p>Company.findAll({ include: [ Division ], order: [ [ Division, ‘name’ ] ] });<br>Company.findAll({ include: [ Division ], order: [ [ Division, ‘name’, ‘DESC’ ] ] });<br>Company.findAll({<br>  include: [ { model: Division, as: ‘Div’ } ],<br>  order: [ [ { model: Division, as: ‘Div’ }, ‘name’ ] ]<br>});<br>Company.findAll({<br>  include: [ { model: Division, as: ‘Div’ } ],<br>  order: [ [ { model: Division, as: ‘Div’ }, ‘name’, ‘DESC’ ] ]<br>});<br>Company.findAll({<br>  include: [ { model: Division, include: [ Department ] } ],<br>  order: [ [ Division, Department, ‘name’ ] ]<br>});<br>在多对多（many-to-many）的关系中同样可以使用排序：</p>
+<p>Company.findAll({<br>  include: [ { model: Division, include: [ Department ] } ],<br>  order: [ [ Division, DepartmentDivision, ‘name’ ] ]<br>});<br>嵌套预加载</p>
+<p>可以在关联模型中嵌套预加载关系模型：</p>
+<p>User.findAll({<br>  include: [<br>    {model: Tool, as: ‘Instruments’, include: [<br>      {model: Teacher, include: [ /<em> etc </em>/]}<br>    ]}<br>  ]<br>}).then(function(users) {<br>  console.log(JSON.stringify(users))</p>
+<p>  /<em><br>    [{<br>      “name”: “John Doe”,<br>      “id”: 1,<br>      “createdAt”: “2013-03-20T20:31:45.000Z”,<br>      “updatedAt”: “2013-03-20T20:31:45.000Z”,<br>      “Instruments”: [{ // 1:M and N:M association<br>        “name”: “Toothpick”,<br>        “id”: 1,<br>        “createdAt”: null,<br>        “updatedAt”: null,<br>        “userId”: 1,<br>        “Teacher”: { // 1:1 association<br>          “name”: “Jimi Hendrix”<br>        }<br>      }]<br>    }]
+  </em>/<br>})<br>这会生成一个外连接，但where子句的关系模型会使用内连接并返回唯一一个子句：</p>
+<p>User.findAll({<br>  include: [{<br>    model: Tool,<br>    as: ‘Instruments’,<br>    include: [{<br>      model: Teacher,<br>      where: {<br>        school: “Woodstock Music School”<br>      },<br>      required: false<br>    }]<br>  }]<br>}).then(function(users) {<br>  /<em> … </em>/<br>})<br>include同样支持嵌套加载：</p>
+<p>User.findAll({ include: [{ all: true, nested: true }]});</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><h5 id="build-创建新实例"><a href="#build-创建新实例" class="headerlink" title="build() - 创建新实例"></a>build() - 创建新实例</h5><p>参数，为一个字典。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build(values, [options]) -&gt; Instance</span><br></pre></td></tr></table></figure></p>
+<p>创建一个新的模型实例，Values参数为新例指定的键值对对象</p>
+<h5 id="create-创建保存新实例"><a href="#create-创建保存新实例" class="headerlink" title="create() - 创建保存新实例"></a>create() - 创建保存新实例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create(values, [options]) -&gt; Promise.&lt;Instance&gt;</span><br></pre></td></tr></table></figure>
+<p>构建一个新的模型实例，并进行保存。与build()方法不同的是，此方法除创建新实例外，还会将其保存到对应数据库表中。</p>
+<h2 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h2><p>有四种关联关系</p>
+<pre><code>* BelongsTo
+* HasOne
+* HasMany
+* BelongsToMany
+</code></pre><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="源模型和目标模型"><a href="#源模型和目标模型" class="headerlink" title="源模型和目标模型"></a>源模型和目标模型</h4><p><code>User.hasOne(Project);</code> User是源模型，Project是目标模型。</p>
+<h4 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h4><h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h3><h4 id="BelongsTo-属于"><a href="#BelongsTo-属于" class="headerlink" title="BelongsTo - 属于"></a>BelongsTo - 属于</h4><ol>
+<li>BelongsTo关联表示一对一关系的外键存在于源模型。</li>
+<li>如，下例中Player是通过外键关联的Team的一部分：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var Player = this.sequelize.define(&apos;player&apos;, &#123;/* attributes */&#125;)</span><br><span class="line">  , Team  = this.sequelize.define(&apos;team&apos;, &#123;/* attributes */&#125;);</span><br><span class="line"></span><br><span class="line">Player.belongsTo(Team); // 会为Player添加一个teamId 属性以保持与Team 主键的关系</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="外键-1"><a href="#外键-1" class="headerlink" title="外键"></a>外键</h5><ol>
+<li>默认情况下，一个属于关系的外键将从目标模型的名称和主键名称生成。</li>
+<li>默认命名使用驼峰式命名，而在源模型中添加了underscored: true配置，将使用蛇型命名。</li>
+<li>在定义中使用as命名时，会将其做为目标模型的名称.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.belongsTo(UserRole, &#123;as: &apos;role&apos;&#125;); // 会为 user添加 roleId 属性而不是 userRoleId</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="HasOne-拥有一个"><a href="#HasOne-拥有一个" class="headerlink" title="HasOne - 拥有一个"></a>HasOne - 拥有一个</h4><ol>
+<li>HasOne关联表示一对一关系的外键存在于目标模型。</li>
+</ol>
+<h4 id="HasOne-与BelongsTo-的不同"><a href="#HasOne-与BelongsTo-的不同" class="headerlink" title="HasOne 与BelongsTo 的不同"></a>HasOne 与BelongsTo 的不同</h4><ol>
+<li>在1:1 的关系中，可使用HasOne 或BelongsTo来定义。但它们的使用场景有所不同。</li>
+</ol>
+<h3 id="一对多-One-To-Many-关联"><a href="#一对多-One-To-Many-关联" class="headerlink" title="一对多(One-To-Many)关联"></a>一对多(One-To-Many)关联</h3><ol>
+<li>One-To-Many关联是指一个源模型连接多个目标模型。反之目标模型都会有一个明确的源。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var User = sequelize.define(&apos;user&apos;, &#123;/* ... */&#125;)</span><br><span class="line">var Project = sequelize.define(&apos;project&apos;, &#123;/* ... */&#125;)</span><br><span class="line">// 定义 hasMany 关联</span><br><span class="line">Project.hasMany(User, &#123;as: &apos;Workers&apos;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>会向 User 中添加一个projectId或project_id属性。Project 的实例中会有访问器getWorkers 和 setWorkers。这是一种单向关联方式，如果两个模型间还有其它关联方式请参考下面的多对多关系。</p>
+<h3 id="多对多-Belongs-To-Many-关联"><a href="#多对多-Belongs-To-Many-关联" class="headerlink" title="多对多(Belongs-To-Many)关联"></a>多对多(Belongs-To-Many)关联</h3><ol>
+<li>Belongs-To-Many 关联是指一个源模型连接多个目标模型。而且，目标模型也可以有多个相关的源。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Project.belongsToMany(User, &#123;through: &apos;UserProject&apos;&#125;);</span><br><span class="line">User.belongsToMany(Project, &#123;through: &apos;UserProject&apos;&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这会创建一个新模型UserProject其中会projectId和userId两个外键。是否使用驼峰命名取决与相关联的两个表。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/后端/" rel="tag"><i class="fa fa-tag"></i>后端</a>
+          
+            <a href="/tags/ORM/" rel="tag"><i class="fa fa-tag"></i>ORM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/02/后端-web框架-基础件-socket-io/" rel="next" title="后端-web框架-基础件-socket.io">
+                <i class="fa fa-chevron-left"></i> 后端-web框架-基础件-socket.io
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/JS-BROWSER对象/" rel="prev" title="JS-BROWSER对象">
+                JS-BROWSER对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MODEL定义"><span class="nav-number">1.</span> <span class="nav-text">MODEL定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间戳"><span class="nav-number">1.1.</span> <span class="nav-text">时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延时"><span class="nav-number">1.2.</span> <span class="nav-text">延时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getters-amp-setters-访问器-amp-设置器"><span class="nav-number">1.3.</span> <span class="nav-text">Getters &amp; setters - 访问器&amp;设置器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义字段的配置"><span class="nav-number">1.4.</span> <span class="nav-text">定义字段的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段类型"><span class="nav-number">1.5.</span> <span class="nav-text">字段类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Validations-验证"><span class="nav-number">1.6.</span> <span class="nav-text">Validations - 验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model配置"><span class="nav-number">1.7.</span> <span class="nav-text">model配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model的使用"><span class="nav-number">2.</span> <span class="nav-text">Model的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">2.1.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增：create操作"><span class="nav-number">2.1.1.</span> <span class="nav-text">增：create操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改：update操作"><span class="nav-number">2.1.2.</span> <span class="nav-text">改：update操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查：find操作"><span class="nav-number">2.1.3.</span> <span class="nav-text">查：find操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删：destroy操作"><span class="nav-number">2.1.4.</span> <span class="nav-text">删：destroy操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-retrieval-Finders-数据索引-查找"><span class="nav-number">2.2.</span> <span class="nav-text">Data retrieval / Finders - 数据索引/查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#findOrCreate-从数据库中查找一个指定元素如果不存在则创建记录"><span class="nav-number">2.2.1.</span> <span class="nav-text">findOrCreate - 从数据库中查找一个指定元素如果不存在则创建记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findAndCountAll-从数据库中查找多个元素，返回数据与记录总数"><span class="nav-number">2.2.2.</span> <span class="nav-text">findAndCountAll - 从数据库中查找多个元素，返回数据与记录总数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findAll-从数据库中查找多个元素"><span class="nav-number">2.2.3.</span> <span class="nav-text">findAll - 从数据库中查找多个元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IN-OR-等复合筛选"><span class="nav-number">2.2.4.</span> <span class="nav-text">IN/OR 等复合筛选</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对数据集使用limit、offset、order-和-group"><span class="nav-number">2.2.5.</span> <span class="nav-text">对数据集使用limit、offset、order 和 group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原始查询"><span class="nav-number">2.2.6.</span> <span class="nav-text">原始查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eager-loading-预加载"><span class="nav-number">2.3.</span> <span class="nav-text">Eager loading - 预加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">2.4.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#build-创建新实例"><span class="nav-number">2.4.0.1.</span> <span class="nav-text">build() - 创建新实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#create-创建保存新实例"><span class="nav-number">2.4.0.2.</span> <span class="nav-text">create() - 创建保存新实例</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#关联"><span class="nav-number">3.</span> <span class="nav-text">关联</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源模型和目标模型"><span class="nav-number">3.1.1.</span> <span class="nav-text">源模型和目标模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外键"><span class="nav-number">3.1.2.</span> <span class="nav-text">外键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对一"><span class="nav-number">3.2.</span> <span class="nav-text">一对一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BelongsTo-属于"><span class="nav-number">3.2.1.</span> <span class="nav-text">BelongsTo - 属于</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#外键-1"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">外键</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HasOne-拥有一个"><span class="nav-number">3.2.2.</span> <span class="nav-text">HasOne - 拥有一个</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HasOne-与BelongsTo-的不同"><span class="nav-number">3.2.3.</span> <span class="nav-text">HasOne 与BelongsTo 的不同</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对多-One-To-Many-关联"><span class="nav-number">3.3.</span> <span class="nav-text">一对多(One-To-Many)关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多-Belongs-To-Many-关联"><span class="nav-number">3.4.</span> <span class="nav-text">多对多(Belongs-To-Many)关联</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
