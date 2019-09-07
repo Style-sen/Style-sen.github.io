@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="参考docker-compose组建带密码redis集群 完整版  docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带密码的容器：1234redis:    restart: always    image: redis:5.0.5-alpine    command: redis-server --requirepas">
+<meta name="description" content="概述数据类型 Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。 不同的数据类型使用命令不同。  db redis默认有16个db.  命令详见Redis 命令参考 单机版 docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构笔记-中间件-redis">
 <meta property="og:url" content="http://yoursite.com/2019/05/07/微服务架构笔记-中间件-redis/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="参考docker-compose组建带密码redis集群 完整版  docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带密码的容器：1234redis:    restart: always    image: redis:5.0.5-alpine    command: redis-server --requirepas">
+<meta property="og:description" content="概述数据类型 Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。 不同的数据类型使用命令不同。  db redis默认有16个db.  命令详见Redis 命令参考 单机版 docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T03:02:51.676Z">
+<meta property="og:updated_time" content="2019-09-07T03:31:30.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-中间件-redis">
-<meta name="twitter:description" content="参考docker-compose组建带密码redis集群 完整版  docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带密码的容器：1234redis:    restart: always    image: redis:5.0.5-alpine    command: redis-server --requirepas">
+<meta name="twitter:description" content="概述数据类型 Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。 不同的数据类型使用命令不同。  db redis默认有16个db.  命令详见Redis 命令参考 单机版 docker exec -it 43f7a65ec7f8 redis-cli使用redis-cli连接到redis容器。 生成带">
 
 
 
@@ -395,10 +395,25 @@
       
 
       
-        <p>参考<a href="https://blog.csdn.net/alinyua/article/details/80936940" target="_blank" rel="noopener">docker-compose组建带密码redis集群 完整版</a></p>
-<ol>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ol>
+<li>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</li>
+<li>不同的数据类型使用命令不同。</li>
+</ol>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><ol>
+<li>redis默认有16个db.</li>
+</ol>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>详见<a href="http://redisdoc.com/" target="_blank" rel="noopener">Redis 命令参考</a></p>
+<h2 id="单机版"><a href="#单机版" class="headerlink" title="单机版"></a>单机版</h2><ol>
 <li><code>docker exec -it 43f7a65ec7f8 redis-cli</code>使用redis-cli连接到redis容器。</li>
-<li>生成带密码的容器：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis:</span><br><span class="line">    restart: always</span><br><span class="line">    image: redis:5.0.5-alpine</span><br><span class="line">    command: redis-server --requirepass zeHnzQ2uUOUAsKMk</span><br></pre></td></tr></table></figure></li>
+<li>生成带密码和持久化的容器：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis:</span><br><span class="line">    restart: always</span><br><span class="line">    image: redis:5.0.5-alpine</span><br><span class="line">    command: redis-server --requirepass zeHnzQ2uUOUAsKMk --appendonly yes</span><br><span class="line">    volumes:</span><br><span class="line">    - $PWD/data:/data</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="集群-高可用、高并发"><a href="#集群-高可用、高并发" class="headerlink" title="集群(高可用、高并发)"></a>集群(高可用、高并发)</h2><ol>
+<li>参考<a href="https://blog.csdn.net/alinyua/article/details/80936940" target="_blank" rel="noopener">docker-compose组建带密码redis集群 完整版</a></li>
+</ol>
+<h2 id="图形化客户端"><a href="#图形化客户端" class="headerlink" title="图形化客户端"></a>图形化客户端</h2><h3 id="Redis-Desktop-Manager"><a href="#Redis-Desktop-Manager" class="headerlink" title="Redis Desktop Manager"></a><a href="https://redisdesktop.com/" target="_blank" rel="noopener">Redis Desktop Manager</a></h3><p><code>sudo snap install redis-desktop-manager</code></p>
+<h2 id="使用见后端框架文档。"><a href="#使用见后端框架文档。" class="headerlink" title="使用见后端框架文档。"></a>使用见后端框架文档。</h2><h2 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h2><ol>
+<li>每个DB中可以有多个文件夹（可递归，使用’:’隔开）。</li>
 </ol>
 
       
@@ -488,8 +503,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -504,7 +528,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -526,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -549,6 +573,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#db"><span class="nav-number">1.2.</span> <span class="nav-text">db</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">1.3.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单机版"><span class="nav-number">2.</span> <span class="nav-text">单机版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群-高可用、高并发"><span class="nav-number">3.</span> <span class="nav-text">集群(高可用、高并发)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形化客户端"><span class="nav-number">4.</span> <span class="nav-text">图形化客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-Desktop-Manager"><span class="nav-number">4.1.</span> <span class="nav-text">Redis Desktop Manager</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用见后端框架文档。"><span class="nav-number">5.</span> <span class="nav-text">使用见后端框架文档。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用原则"><span class="nav-number">6.</span> <span class="nav-text">使用原则</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

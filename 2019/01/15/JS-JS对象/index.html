@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用           add   clear   keys   values   has   forEach   delete     数组Array既是一个数组，也是一个字典。     语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.">
+<meta name="description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用           add   clear   keys   values   has   forEach   delete     数组Array Array既是一个数组，也是一个字典。      语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS对象">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/JS-JS对象/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用           add   clear   keys   values   has   forEach   delete     数组Array既是一个数组，也是一个字典。     语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.">
+<meta property="og:description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用           add   clear   keys   values   has   forEach   delete     数组Array Array既是一个数组，也是一个字典。      语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T06:47:06.830Z">
+<meta property="og:updated_time" content="2019-08-28T05:43:24.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS对象">
-<meta name="twitter:description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用           add   clear   keys   values   has   forEach   delete     数组Array既是一个数组，也是一个字典。     语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object   arr.">
+<meta name="twitter:description" content="setSet 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用           add   clear   keys   values   has   forEach   delete     数组Array Array既是一个数组，也是一个字典。      语句 功能 示例     var a = new Array() 定义一个数组或者字典，定义字典最好使用 new Object">
 
 
 
@@ -430,7 +430,9 @@
 </tbody>
 </table>
 </div>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>Array既是一个数组，也是一个字典。</p>
+<h2 id="数组Array"><a href="#数组Array" class="headerlink" title="数组Array"></a>数组Array</h2><ol>
+<li>Array既是一个数组，也是一个字典。</li>
+</ol>
 <div class="table-container">
 <table>
 <thead>
@@ -462,11 +464,6 @@
 <td>把数组的第一个元素从其中删除，并返回第一个元素的值</td>
 </tr>
 <tr>
-<td><code>arr.splice(pos, 1)</code></td>
-<td>splice() 方法可删除从 index 处开始的零个或多个元素，并且用参数列表中声明的一个或多个值来替换那些被删除的元素</td>
-<td></td>
-</tr>
-<tr>
 <td>for (var key in dic){}</td>
 <td>遍历</td>
 </tr>
@@ -479,12 +476,9 @@
 <td>删除一个KEY，使用empty替换，但是长度不变</td>
 </tr>
 <tr>
-<td>array.forEach(function(currentValue, index, arr), thisValue)</td>
-<td>用于调用数组的每个元素，并将元素传递给回调函数,没有返回值，forEach无法跳出循环（使用return也不行，只能抛异常跳出）</td>
-</tr>
-<tr>
-<td>[].map()</td>
-<td>基本用法跟forEach方法类似，作用不难理解，“映射”嘛，也就是原数组被“映射”成对应新数组</td>
+<td><code>array.map()</code></td>
+<td>基本用法跟forEach方法类似，作用不难理解，“映射”嘛，也就是原数组被“映射”成<code>对应新数组</code></td>
+<td><code>array.ma(element=&gt;{return element.id})</code></td>
 </tr>
 <tr>
 <td>[].some()</td>
@@ -527,10 +521,20 @@
 <li><p>js扩展运算符（spread）是三个点（…）:<code>将一个数组转为用逗号分隔的参数序列</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">array.push(...items);</span><br><span class="line">function add(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;</span><br><span class="line">var numbers = [4, 38];</span><br><span class="line">add(...numbers) // 42</span><br><span class="line">//扩展运算符取代apply方法的一个实际的例子，应用Math.max方法，简化求出一个数组最大元素的写法。</span><br><span class="line">// ES5 的写法</span><br><span class="line">Math.max.apply(null, [14, 3, 77])</span><br><span class="line">// ES6 的写法</span><br><span class="line">Math.max(...[14, 3, 77])</span><br><span class="line">// 等同于</span><br><span class="line">Math.max(14, 3, 77);</span><br><span class="line">//通过push函数，将一个数组添加到另一个数组的尾部</span><br><span class="line">// ES5的 写法</span><br><span class="line">var arr1 = [0, 1, 2];</span><br><span class="line">var arr2 = [3, 4, 5];</span><br><span class="line">Array.prototype.push.apply(arr1, arr2);</span><br><span class="line">// ES6 的写法</span><br><span class="line">var arr1 = [0, 1, 2];</span><br><span class="line">var arr2 = [3, 4, 5];</span><br><span class="line">arr1.push(...arr2);</span><br><span class="line">//合并数组</span><br><span class="line">// ES5</span><br><span class="line">[1, 2].concat(more)</span><br><span class="line">// ES6</span><br><span class="line">[1, 2, ...more]</span><br><span class="line">var arr1 = [&apos;a&apos;, &apos;b&apos;];</span><br><span class="line">var arr2 = [&apos;c&apos;];</span><br><span class="line">var arr3 = [&apos;d&apos;, &apos;e&apos;];</span><br><span class="line">// ES5的合并数组</span><br><span class="line">arr1.concat(arr2, arr3);</span><br><span class="line">// [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line">// ES6的合并数组</span><br><span class="line">[...arr1, ...arr2, ...arr3]</span><br><span class="line">// [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">扩展运算符将字符串转为真正的数组</span><br><span class="line">[...&apos;hello&apos;]</span><br><span class="line">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>splice</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var array=[0,1,2,3,4,5];</span><br><span class="line">1、向数组中的指定位置添加数据</span><br><span class="line">arr.splice(2,0,&quot;10&quot;)</span><br><span class="line">输出: array=[0,1,10,2,3,4,5];</span><br><span class="line">2、删除数组中的指定位置的数据并用新数据替换</span><br><span class="line">arr.splice(2,1,&quot;10&quot;)</span><br><span class="line">输出: array=[0,1,10,3,4,5];</span><br><span class="line">3、删除数组中的指定位置开始的多个数据并用新数据替换</span><br><span class="line">arr.splice(2,3,&quot;10&quot;) </span><br><span class="line">输出: array=[0,1,10,5];</span><br><span class="line">4、删除数组中的指定位置的数据方法</span><br><span class="line">获取数组中数据的下标</span><br><span class="line">var index = array.indexOf(4);</span><br><span class="line">删除数据</span><br><span class="line">if(index&gt;-1)&#123;</span><br><span class="line">array.splice(index,1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
 </ol>
+<h3 id="对象方法"><a href="#对象方法" class="headerlink" title="对象方法"></a>对象方法</h3><h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><ol>
+<li>创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。 </li>
+</ol>
+<h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h4><ol>
+<li><code>array.forEach(function(currentValue, index, arr), thisValue)</code> 用于调用数组的每个元素，并将元素传递给回调函数,没有返回值，forEach无法跳出循环（使用return也不行，只能抛异常跳出）。</li>
+<li><code>foreach</code>为同步执行，回调函数中不能使用<code>await</code>语法。</li>
+<li><code>foreach</code>放在<code>async</code>函数中，如果回调函数中有异步执行，则异步执行。防止异步执行可使用<code>for（const element of array）</code>在回调函数中使用<code>await</code>。</li>
+</ol>
+<h4 id="includes-不会改变原数组"><a href="#includes-不会改变原数组" class="headerlink" title="includes 不会改变原数组"></a>includes 不会改变原数组</h4><ol>
+<li>判断当前数组是否包含某指定的值，如果是返回 true，否则返回 false。</li>
+</ol>
+<h4 id="splice-此方法会改变原数组"><a href="#splice-此方法会改变原数组" class="headerlink" title="splice 此方法会改变原数组"></a>splice 此方法会改变原数组</h4><p>splice() 方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var array=[0,1,2,3,4,5];</span><br><span class="line">1、向数组中的指定位置添加数据</span><br><span class="line">arr.splice(2,0,&quot;10&quot;)</span><br><span class="line">输出: array=[0,1,10,2,3,4,5];</span><br><span class="line">2、删除数组中的指定位置的数据并用新数据替换</span><br><span class="line">arr.splice(2,1,&quot;10&quot;)</span><br><span class="line">输出: array=[0,1,10,3,4,5];</span><br><span class="line">3、删除数组中的指定位置开始的多个数据并用新数据替换</span><br><span class="line">arr.splice(2,3,&quot;10&quot;) </span><br><span class="line">输出: array=[0,1,10,5];</span><br><span class="line">4、删除数组中的指定位置的数据方法</span><br><span class="line">获取数组中数据的下标</span><br><span class="line">var index = array.indexOf(4);</span><br><span class="line">删除数据</span><br><span class="line">if(index&gt;-1)&#123;</span><br><span class="line">array.splice(index,1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><div class="table-container">
 <table>
 <thead>
@@ -598,6 +602,76 @@
 <li>创建<code>var myDate=new Date()</code>；自动把当前日期和时间保存为其初始值。</li>
 <li><code>Date</code>对象直接<code>/1000</code>获得时间戳。</li>
 </ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><ol>
+<li>位运算符工作于32位的数字上。任何数字操作都将转换为32位。结果会转换为 JavaScript 数字。</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+<th>类似于</th>
+<th>结果</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>AND</td>
+<td>x = 5 &amp; 1</td>
+<td>0101 &amp; 0001</td>
+<td>0001</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OR</td>
+<td>x = 5</td>
+<td>1</td>
+<td>0101</td>
+<td>0001</td>
+<td>0101</td>
+<td>5</td>
+</tr>
+<tr>
+<td>~</td>
+<td>取反</td>
+<td>x = ~ 5</td>
+<td>~0101</td>
+<td>1010</td>
+<td>-6</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或</td>
+<td>x = 5 ^ 1</td>
+<td>0101 ^ 0001</td>
+<td>0100</td>
+<td>4</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移</td>
+<td>x = 5 &lt;&lt; 1</td>
+<td>0101 &lt;&lt; 1</td>
+<td>1010</td>
+<td>10</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移</td>
+<td>x = 5 &gt;&gt; 1</td>
+<td>0101 &gt;&gt; 1</td>
+<td>0010</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -717,7 +791,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -739,7 +813,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -772,7 +846,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">1.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json"><span class="nav-number">4.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换"><span class="nav-number">5.</span> <span class="nav-text">转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#buffer-NodeJs"><span class="nav-number">6.</span> <span class="nav-text">buffer(NodeJs)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-Buffer-类"><span class="nav-number">6.1.</span> <span class="nav-text">创建 Buffer 类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date"><span class="nav-number">7.</span> <span class="nav-text">Date</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">1.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组Array"><span class="nav-number">2.</span> <span class="nav-text">数组Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象方法"><span class="nav-number">2.1.</span> <span class="nav-text">对象方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">2.1.1.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach"><span class="nav-number">2.1.2.</span> <span class="nav-text">foreach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#includes-不会改变原数组"><span class="nav-number">2.1.3.</span> <span class="nav-text">includes 不会改变原数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#splice-此方法会改变原数组"><span class="nav-number">2.1.4.</span> <span class="nav-text">splice 此方法会改变原数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json"><span class="nav-number">4.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换"><span class="nav-number">5.</span> <span class="nav-text">转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#buffer-NodeJs"><span class="nav-number">6.</span> <span class="nav-text">buffer(NodeJs)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-Buffer-类"><span class="nav-number">6.1.</span> <span class="nav-text">创建 Buffer 类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date"><span class="nav-number">7.</span> <span class="nav-text">Date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">8.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算符"><span class="nav-number">8.1.</span> <span class="nav-text">位运算符</span></a></li></ol></li></ol></div>
             
 
           </div>

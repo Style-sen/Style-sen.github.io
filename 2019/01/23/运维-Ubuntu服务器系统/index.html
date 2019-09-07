@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Ubuntu服务系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T06:47:06.830Z">
+<meta property="og:updated_time" content="2019-09-07T03:31:30.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu服务器系统及基础设施">
 <meta name="twitter:description" content="Ubuntu服务系统">
@@ -546,6 +546,9 @@
 <h3 id="HAProxy"><a href="#HAProxy" class="headerlink" title="HAProxy"></a><a href="https://www.haproxy.org/" target="_blank" rel="noopener">HAProxy</a></h3><ol>
 <li><a href="https://blog.csdn.net/muye0503/article/details/45721411" target="_blank" rel="noopener">让一个端口同时做两件事：http/https和ssh</a></li>
 </ol>
+<h2 id="系统管理工具"><a href="#系统管理工具" class="headerlink" title="系统管理工具"></a>系统管理工具</h2><h3 id="webmin"><a href="#webmin" class="headerlink" title="webmin"></a><a href="http://www.webmin.com/" target="_blank" rel="noopener">webmin</a></h3><ol>
+<li>ubuntu上下载deb文件之后，直接安装即开始运行，可以通过<code>https://localhost:10000</code>访问。</li>
+</ol>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
 <li><a href="https://www.cnblogs.com/airdot/p/9688530.html" target="_blank" rel="noopener">ubuntu-18.04 设置开机启动脚本</a></li>
 <li><a href="https://www.cnblogs.com/jianxuanbing/p/10042892.html" target="_blank" rel="noopener">Ubuntu 18.04 Server 设置静态IP</a></li>
@@ -582,8 +585,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/22/python-面向对象-内部方法/" rel="next" title="Python-面向对象">
-                <i class="fa fa-chevron-left"></i> Python-面向对象
+              <a href="/2019/01/23/运维-supervisord/" rel="next" title="supervisord">
+                <i class="fa fa-chevron-left"></i> supervisord
               </a>
             
           </div>
@@ -592,8 +595,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/运维-supervisord/" rel="prev" title="supervisord">
-                supervisord <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/23/运维-服务器硬件/" rel="prev" title="服务器硬件">
+                服务器硬件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -671,7 +674,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -693,7 +696,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -726,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#U盘安装"><span class="nav-number">1.</span> <span class="nav-text">U盘安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统"><span class="nav-number">2.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">3.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SHELL"><span class="nav-number">3.1.</span> <span class="nav-text">SHELL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH"><span class="nav-number">3.2.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemctl"><span class="nav-number">3.3.</span> <span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">3.4.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">3.5.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">3.6.</span> <span class="nav-text">包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux"><span class="nav-number">3.7.</span> <span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用C-S模型构建"><span class="nav-number">3.7.1.</span> <span class="nav-text">使用C/S模型构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令"><span class="nav-number">3.7.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Command"><span class="nav-number">3.8.</span> <span class="nav-text">Command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本"><span class="nav-number">3.9.</span> <span class="nav-text">shell脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH访问"><span class="nav-number">4.</span> <span class="nav-text">SSH访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下工具"><span class="nav-number">4.2.</span> <span class="nav-text">windows下工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">4.3.</span> <span class="nav-text">webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAProxy"><span class="nav-number">4.4.</span> <span class="nav-text">HAProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">5.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#U盘安装"><span class="nav-number">1.</span> <span class="nav-text">U盘安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统"><span class="nav-number">2.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">3.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SHELL"><span class="nav-number">3.1.</span> <span class="nav-text">SHELL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH"><span class="nav-number">3.2.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemctl"><span class="nav-number">3.3.</span> <span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">3.4.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">3.5.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">3.6.</span> <span class="nav-text">包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux"><span class="nav-number">3.7.</span> <span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用C-S模型构建"><span class="nav-number">3.7.1.</span> <span class="nav-text">使用C/S模型构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令"><span class="nav-number">3.7.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Command"><span class="nav-number">3.8.</span> <span class="nav-text">Command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本"><span class="nav-number">3.9.</span> <span class="nav-text">shell脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH访问"><span class="nav-number">4.</span> <span class="nav-text">SSH访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下工具"><span class="nav-number">4.2.</span> <span class="nav-text">windows下工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">4.3.</span> <span class="nav-text">webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAProxy"><span class="nav-number">4.4.</span> <span class="nav-text">HAProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理工具"><span class="nav-number">5.</span> <span class="nav-text">系统管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webmin"><span class="nav-number">5.1.</span> <span class="nav-text">webmin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">6.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
             
 
           </div>
