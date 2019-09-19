@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="变量、函数、对象、方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-22T07:56:57.475Z">
+<meta property="og:updated_time" content="2019-09-18T05:32:33.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS语法(ES6)">
 <meta name="twitter:description" content="变量、函数、对象、方法">
@@ -427,6 +427,12 @@
 <li>看到上面的阻塞一词，心慌了吧……放心，这就是 await 必须用在 async 函数中的原因。async 函数调用不会造成阻塞，它内部所有的阻塞都被封装在一个 Promise 对象中异步执行。</li>
 <li><code>async/await 的优势在于处理 then 链，与promise类似</code>。</li>
 </ol>
+<h3 id="Throw-和-Try-to-Catch"><a href="#Throw-和-Try-to-Catch" class="headerlink" title="Throw 和 Try to Catch"></a>Throw 和 Try to Catch</h3><ol>
+<li>try 语句使您能够测试代码块中的错误。</li>
+<li>catch 语句允许您处理错误。</li>
+<li>throw 语句允许您创建自定义错误。</li>
+<li>finally 使您能够执行代码，在 try 和 catch 之后，无论结果如何。</li>
+</ol>
 <h2 id="函数（自定义）"><a href="#函数（自定义）" class="headerlink" title="函数（自定义）"></a>函数（自定义）</h2><h3 id="异步编程的四种方法"><a href="#异步编程的四种方法" class="headerlink" title="异步编程的四种方法"></a>异步编程的四种方法</h3><h4 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function f1(callback)&#123;</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        // f1的任务代码</span><br><span class="line">        callback();</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line">f1(f2);</span><br></pre></td></tr></table></figure>
 <p>回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。</p>
 <h4 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JQUERY的写法</span><br><span class="line">f1.on(&apos;done&apos;, f2);</span><br><span class="line">function f1()&#123;</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        // f1的任务代码</span><br><span class="line">        f1.trigger(&apos;done&apos;);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -631,7 +637,38 @@
 <h2 id="内置方法"><a href="#内置方法" class="headerlink" title="内置方法"></a>内置方法</h2><p>encodeURIComponent() 函数可把字符串作为URI组件进行编码，返回正常打印看不见的字符。</p>
 <h3 id="JavaScript中Get和Set访问器"><a href="#JavaScript中Get和Set访问器" class="headerlink" title="JavaScript中Get和Set访问器"></a>JavaScript中Get和Set访问器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">标准用法</span><br><span class="line">function Field(val)&#123;  </span><br><span class="line">    this.value = val;  </span><br><span class="line">&#125; </span><br><span class="line">Field.prototype = &#123;  </span><br><span class="line">    get value()&#123;  </span><br><span class="line">        return this._value;  </span><br><span class="line">    &#125;,  </span><br><span class="line">    set value(val)&#123;  </span><br><span class="line">        this._value = val;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var field = new Field(&quot;test&quot;);</span><br><span class="line">field.value=&quot;test2&quot;;</span><br><span class="line">//field.value will now return &quot;test2&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>是一种用于创建和初始化class创建的对象的特殊方法</p>
-<h3 id="数学计算"><a href="#数学计算" class="headerlink" title="数学计算"></a>数学计算</h3><p>｜方法　｜　功能　｜<br>｜－－｜－－｜<br>｜parseInt　｜　丢弃小数部分　｜<br>｜Math.ceil　｜向上取整　｜<br>｜Math.round　｜四舍五入　｜<br>|Math.floor |向下取整　|<br>| % | 取余　｜</p>
+<h3 id="数学计算"><a href="#数学计算" class="headerlink" title="数学计算"></a>数学计算</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法　</th>
+<th>　功能　</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parseInt　</td>
+<td>　丢弃小数部分　</td>
+</tr>
+<tr>
+<td>Math.ceil　</td>
+<td>向上取整　</td>
+</tr>
+<tr>
+<td>Math.round　</td>
+<td>四舍五入　</td>
+</tr>
+<tr>
+<td>Math.floor</td>
+<td>向下取整　</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取余　｜</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="apply-方法接受数组形式的参数"><a href="#apply-方法接受数组形式的参数" class="headerlink" title="apply() 方法接受数组形式的参数"></a>apply() 方法接受数组形式的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.max.apply(null, [1,2,3]); // 返回数组最大值</span><br><span class="line">Math.min.apply(null, [1,2,3]); // 返回数组最小值</span><br></pre></td></tr></table></figure>
 <h3 id="eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><a href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码" class="headerlink" title="eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码"></a>eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</h3><h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ol>
 <li>“use strict” 的目的是指定代码在严格条件下执行,严格模式下你不能使用未声明的变量。</li>
@@ -755,7 +792,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">121</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -810,7 +847,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-and-const"><span class="nav-number">1.1.</span> <span class="nav-text">let and const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#async-和-await"><span class="nav-number">2.1.</span> <span class="nav-text">async 和 await</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数（自定义）"><span class="nav-number">3.</span> <span class="nav-text">函数（自定义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程的四种方法"><span class="nav-number">3.1.</span> <span class="nav-text">异步编程的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听"><span class="nav-number">3.1.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布和订阅"><span class="nav-number">3.1.3.</span> <span class="nav-text">发布和订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promises对象"><span class="nav-number">3.1.4.</span> <span class="nav-text">Promises对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象（前端）"><span class="nav-number">4.</span> <span class="nav-text">对象（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas对象标示一个html画布元素"><span class="nav-number">4.1.</span> <span class="nav-text">canvas对象标示一个html画布元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.2.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例学习"><span class="nav-number">4.2.1.</span> <span class="nav-text">案例学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">4.3.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象"><span class="nav-number">4.4.</span> <span class="nav-text">element对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">4.5.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置方法"><span class="nav-number">5.</span> <span class="nav-text">内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中Get和Set访问器"><span class="nav-number">5.1.</span> <span class="nav-text">JavaScript中Get和Set访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">5.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学计算"><span class="nav-number">5.3.</span> <span class="nav-text">数学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-方法接受数组形式的参数"><span class="nav-number">5.4.</span> <span class="nav-text">apply() 方法接受数组形式的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><span class="nav-number">5.5.</span> <span class="nav-text">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">6.</span> <span class="nav-text">声明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-and-const"><span class="nav-number">1.1.</span> <span class="nav-text">let and const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#async-和-await"><span class="nav-number">2.1.</span> <span class="nav-text">async 和 await</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Throw-和-Try-to-Catch"><span class="nav-number">2.2.</span> <span class="nav-text">Throw 和 Try to Catch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数（自定义）"><span class="nav-number">3.</span> <span class="nav-text">函数（自定义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程的四种方法"><span class="nav-number">3.1.</span> <span class="nav-text">异步编程的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听"><span class="nav-number">3.1.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布和订阅"><span class="nav-number">3.1.3.</span> <span class="nav-text">发布和订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promises对象"><span class="nav-number">3.1.4.</span> <span class="nav-text">Promises对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象（前端）"><span class="nav-number">4.</span> <span class="nav-text">对象（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas对象标示一个html画布元素"><span class="nav-number">4.1.</span> <span class="nav-text">canvas对象标示一个html画布元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.2.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例学习"><span class="nav-number">4.2.1.</span> <span class="nav-text">案例学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">4.3.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象"><span class="nav-number">4.4.</span> <span class="nav-text">element对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">4.5.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置方法"><span class="nav-number">5.</span> <span class="nav-text">内置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中Get和Set访问器"><span class="nav-number">5.1.</span> <span class="nav-text">JavaScript中Get和Set访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">5.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学计算"><span class="nav-number">5.3.</span> <span class="nav-text">数学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-方法接受数组形式的参数"><span class="nav-number">5.4.</span> <span class="nav-text">apply() 方法接受数组形式的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-函数可计算某个字符串，并执行其中的的-JavaScript-代码"><span class="nav-number">5.5.</span> <span class="nav-text">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">6.</span> <span class="nav-text">声明</span></a></li></ol></div>
             
 
           </div>
