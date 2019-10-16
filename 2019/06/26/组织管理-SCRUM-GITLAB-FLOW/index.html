@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考GitLab 工作流概览 GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。 软件开发阶段一般情况下，软件开发经过 10 个主要阶段；GitLab 为这 10 个阶段依次提供了解决方案： IDEA： 每一个从点子开始的项目，通常来源于一次闲聊。在这个阶段，GitLab 集成了 Mattermost。（开始一个项目）ISSUE： 最有效的讨论一个点子的方法，就">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-01T02:16:40.799Z">
+<meta property="og:updated_time" content="2019-10-16T06:11:19.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组织管理-SCRUM+GITLAB-FLOW">
 <meta name="twitter:description" content="参考GitLab 工作流概览 GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。 软件开发阶段一般情况下，软件开发经过 10 个主要阶段；GitLab 为这 10 个阶段依次提供了解决方案： IDEA： 每一个从点子开始的项目，通常来源于一次闲聊。在这个阶段，GitLab 集成了 Mattermost。（开始一个项目）ISSUE： 最有效的讨论一个点子的方法，就">
@@ -398,13 +398,16 @@
       
         <p>参考<a href="https://linux.cn/article-8503-1.html" target="_blank" rel="noopener">GitLab 工作流概览</a></p>
 <p>GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。</p>
-<h2 id="软件开发阶段"><a href="#软件开发阶段" class="headerlink" title="软件开发阶段"></a>软件开发阶段</h2><p>一般情况下，软件开发经过 10 个主要阶段；GitLab 为这 10 个阶段依次提供了解决方案：</p>
+<h2 id="软件开发阶段"><a href="#软件开发阶段" class="headerlink" title="软件开发阶段"></a>软件开发阶段</h2><p><strong>一般情况下，软件开发经过 10 个主要阶段；GitLab 为这 10 个阶段依次提供了解决方案</strong>：</p>
 <p><code>IDEA</code>： 每一个从点子开始的项目，通常来源于一次闲聊。在这个阶段，GitLab 集成了 Mattermost。（开始一个项目）<br><code>ISSUE</code>： 最有效的讨论一个点子的方法，就是为这个点子建立一个工单讨论。你的团队和你的合作伙伴可以在 工单追踪器issue tracker 中帮助你去提升这个点子。<br><code>PLAN</code>： 一旦讨论得到一致的同意，就是开始编码的时候了。但是等等！首先，我们需要优先考虑组织我们的工作流。对于此，我们可以使用 工单看板Issue Board。（backlog）<br><code>CODE</code>： 现在，当一切准备就绪，我们可以开始写代码了。<br><code>COMMIT</code>： 当我们为我们的初步成果欢呼的时候，我们就可以在版本控制下，提交代码到功能分支了。<br><code>TEST</code>： 通过 GitLab CI，我们可以运行脚本来构建和测试我们的应用。<br><code>REVIEW</code>： 一旦脚本成功运行，我们测试和构建成功，我们就可以进行 代码复审code review 以及批准。<br><code>STAGING</code>：： 现在是时候将我们的代码部署到演示环境来检查一下，看看是否一切就像我们预估的那样顺畅——或者我们可能仍然需要修改。<br><code>PRODUCTION</code>： 当一切都如预期，就是部署到生产环境的时候了！<br><code>FEEDBACK</code>： 现在是时候返回去看我们项目中需要提升的部分了。我们使用周期分析 Cycle Analytics来对当前项目中关键的部分进行的反馈。</p>
 <h2 id="GitLab-工单追踪器"><a href="#GitLab-工单追踪器" class="headerlink" title="GitLab 工单追踪器"></a>GitLab 工单追踪器</h2><ol>
 <li>就是一个sprint backlog。每一个sprint就是一个milestone。</li>
 <li>包含了一个backlog看板。</li>
 </ol>
-<h2 id="通过-GitLab-进行代码复审"><a href="#通过-GitLab-进行代码复审" class="headerlink" title="通过 GitLab 进行代码复审"></a>通过 GitLab 进行代码复审</h2><h2 id="构建、测试以及发布"><a href="#构建、测试以及发布" class="headerlink" title="构建、测试以及发布"></a>构建、测试以及发布</h2><p><a href="https://git.witcent.net/help/topics/autodevops/index.md" target="_blank" rel="noopener">Auto DevOps</a></p>
+<h2 id="通过-GitLab-进行代码复审"><a href="#通过-GitLab-进行代码复审" class="headerlink" title="通过 GitLab 进行代码复审"></a>通过 GitLab 进行代码复审</h2><ol>
+<li>在<code>merge request</code>页面，可以进行评论，也可以<code>Insert suggestion</code>进行代码的建议修改。</li>
+</ol>
+<h2 id="构建、测试以及发布"><a href="#构建、测试以及发布" class="headerlink" title="构建、测试以及发布"></a>构建、测试以及发布</h2><p><a href="https://git.witcent.net/help/topics/autodevops/index.md" target="_blank" rel="noopener">Auto DevOps</a></p>
 <h2 id="11条规则"><a href="#11条规则" class="headerlink" title="11条规则"></a>11条规则</h2><ol>
 <li>使用功能分支，不直接提交（commit）到 master 分支。</li>
 </ol>
@@ -568,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

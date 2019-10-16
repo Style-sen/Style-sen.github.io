@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
+<meta name="description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 12345678910111213141516NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async r">
 <meta name="keywords" content="NODE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NODEJS-常用模块">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/JS-NODEJS-外围设备/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
+<meta property="og:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 12345678910111213141516NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async r">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-19T01:34:00.164Z">
+<meta property="og:updated_time" content="2019-10-16T06:11:19.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NODEJS-常用模块">
-<meta name="twitter:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 123456789101112NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async read(bloc">
+<meta name="twitter:description" content="NFCnfc-pcsc1node:&amp;gt;=8  分析源码 12345678910111213141516NFC类（继承自EventEmitter）|----emit reader(接收到pcsc的信号)    |----reader类（参数）        |----async write(blockNumber, data, blockSize = 4)        |----async r">
 
 
 
@@ -399,7 +399,7 @@
         <h2 id="NFC"><a href="#NFC" class="headerlink" title="NFC"></a>NFC</h2><h3 id="nfc-pcsc"><a href="#nfc-pcsc" class="headerlink" title="nfc-pcsc"></a><a href="https://www.npmjs.com/package/nfc-pcsc" target="_blank" rel="noopener">nfc-pcsc</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node:&gt;=8</span><br></pre></td></tr></table></figure>
 <ol>
 <li><p>分析源码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NFC类（继承自EventEmitter）</span><br><span class="line">|----emit reader(接收到pcsc的信号)</span><br><span class="line">    |----reader类（参数）</span><br><span class="line">        |----async write(blockNumber, data, blockSize = 4)</span><br><span class="line">        |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff)</span><br><span class="line">        |----async authenticate(blockNumber, keyType, key, obsolete = false)</span><br><span class="line">        |----async loadAuthenticationKey(keyNumber, key)</span><br><span class="line">        |----control(data, responseMaxLength)</span><br><span class="line">        |----transmit(data, responseMaxLength)</span><br><span class="line">        |----connect(mode = CONNECT_MODE_CARD)</span><br><span class="line">        |----disconnect()</span><br><span class="line">|----emit error</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">NFC类（继承自EventEmitter）</span><br><span class="line">|----emit reader(接收到pcsc的信号)</span><br><span class="line">    |----reader类（参数）</span><br><span class="line">        |----async write(blockNumber, data, blockSize = 4)</span><br><span class="line">        |----async read(blockNumber, length, blockSize = 4, packetSize = 16, readClass = 0xff)</span><br><span class="line">        |----async authenticate(blockNumber, keyType, key, obsolete = false)</span><br><span class="line">        |----async loadAuthenticationKey(keyNumber, key)</span><br><span class="line">        |----control(data, responseMaxLength)</span><br><span class="line">        |----transmit(data, responseMaxLength)</span><br><span class="line">        |----connect(mode = CONNECT_MODE_CARD)</span><br><span class="line">        |----disconnect()</span><br><span class="line">		|----emit error</span><br><span class="line">		|----emit card.off    //卡离开读卡器</span><br><span class="line">		|----emit card</span><br><span class="line">		|----emit end</span><br><span class="line">|----emit error</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>参考[pokusew/electron-vue-nfc]例子(<a href="https://github.com/pokusew/electron-vue-nfc" target="_blank" rel="noopener">https://github.com/pokusew/electron-vue-nfc</a>)</p>
 </li>
@@ -549,7 +549,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

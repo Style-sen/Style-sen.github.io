@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="Webhook 使用GO语言编写。 sudo apt-get install webhook安装。 Get或者Post都可以触发hook。 service webhook status 可以查看webhook状态。  使用1234567891011121314151617181920212223Usage of webhook:  -cert string        path to the H">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运维-WEBHOOK">
 <meta property="og:url" content="http://yoursite.com/2019/09/23/运维-WEBHOOK/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="Webhook 使用GO语言编写。 sudo apt-get install webhook安装。 Get或者Post都可以触发hook。 service webhook status 可以查看webhook状态。  使用1234567891011121314151617181920212223Usage of webhook:  -cert string        path to the H">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T03:43:40.886Z">
+<meta property="og:updated_time" content="2019-10-10T04:19:41.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维-WEBHOOK">
+<meta name="twitter:description" content="Webhook 使用GO语言编写。 sudo apt-get install webhook安装。 Get或者Post都可以触发hook。 service webhook status 可以查看webhook状态。  使用1234567891011121314151617181920212223Usage of webhook:  -cert string        path to the H">
 
 
 
@@ -392,7 +395,83 @@
       
 
       
-        
+        <h2 id="Webhook"><a href="#Webhook" class="headerlink" title="Webhook"></a><a href="https://github.com/adnanh/webhook" target="_blank" rel="noopener">Webhook</a></h2><ol>
+<li>使用GO语言编写。</li>
+<li><code>sudo apt-get install webhook</code>安装。</li>
+<li>Get或者Post都可以触发hook。</li>
+<li><code>service webhook status</code> 可以查看webhook状态。</li>
+</ol>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Usage of webhook:</span><br><span class="line">  -cert string</span><br><span class="line">        path to the HTTPS certificate pem file (default &quot;cert.pem&quot;) HTTPS证书的路径</span><br><span class="line">  -header value</span><br><span class="line">        response header to return, specified in format name=value, use multiple times to set multiple headers</span><br><span class="line">  -hooks string</span><br><span class="line">        hook json文件的路径 (default &quot;hooks.json&quot;)</span><br><span class="line">  -hotreload</span><br><span class="line">        watch hooks file for changes and reload them automatically</span><br><span class="line">  -ip string</span><br><span class="line">        ip the webhook should serve hooks on (default &quot;0.0.0.0&quot;)</span><br><span class="line">  -key string</span><br><span class="line">        path to the HTTPS certificate private key pem file (default &quot;key.pem&quot;)</span><br><span class="line">  -nopanic</span><br><span class="line">        do not panic if hooks cannot be loaded when webhook is not running in verbose mode</span><br><span class="line">  -port int</span><br><span class="line">        port the webhook should serve hooks on (default 9000)</span><br><span class="line">  -secure</span><br><span class="line">        use HTTPS instead of HTTP</span><br><span class="line">  -urlprefix string</span><br><span class="line">        url prefix to use for served hooks (protocol://yourserver:port/PREFIX/:hook-id) (default &quot;hooks&quot;)</span><br><span class="line">  -verbose</span><br><span class="line">        show verbose output</span><br></pre></td></tr></table></figure>
+<h4 id="创建一个hooks-json文件"><a href="#创建一个hooks-json文件" class="headerlink" title="创建一个hooks.json文件"></a>创建一个<code>hooks.json</code>文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;id&quot;: &quot;redeploy-webhook&quot;,</span><br><span class="line">    &quot;execute-command&quot;: &quot;/var/scripts/redeploy.sh&quot;,</span><br><span class="line">    &quot;command-working-directory&quot;: &quot;/var/webhook&quot;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>必须包含<code>id</code>和<code>execute-command</code>属性，其他属性为可选的。</li>
+</ol>
+<p>属性列表如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>指定hook的ID，这个只用来创建HTTP endpoint (<a href="http://yourserver:port/hooks/your-hook-id" target="_blank" rel="noopener">http://yourserver:port/hooks/your-hook-id</a>)</td>
+</tr>
+<tr>
+<td>execute-command</td>
+<td>hook触发执行的命令</td>
+</tr>
+<tr>
+<td>command-working-directory</td>
+<td>指定hook执行命令的工作路径</td>
+</tr>
+<tr>
+<td>response-message</td>
+<td>string回复</td>
+</tr>
+<tr>
+<td>response-headers</td>
+<td>specifies the list of headers in format {“name”: “X-Example-Header”, “value”: “it works”} that will be returned in HTTP response for the hook</td>
+</tr>
+<tr>
+<td>include-command-output-in-response</td>
+<td>- boolean whether webhook should wait for the command to finish and return the raw output as a response to the hook initiator. If the command fails to execute or encounters any errors while executing the response will result in 500 Internal Server Error HTTP status code, otherwise the 200 OK status code will be returned.</td>
+</tr>
+<tr>
+<td>include-command-output-in-response-on-error</td>
+<td>- boolean whether webhook should include command stdout &amp; stderror as a response in failed executions. It only works if include-command-output-in-response is set to true.</td>
+</tr>
+<tr>
+<td>parse-parameters-as-json</td>
+<td>- specifies the list of arguments that contain JSON strings. These parameters will be decoded by webhook and you can access them like regular objects in rules and pass-arguments-to-command.</td>
+</tr>
+<tr>
+<td>pass-arguments-to-command</td>
+<td>specifies the list of arguments that will be passed to the command. Check Referencing request values page to see how to reference the values from the request. If you want to pass a static string value to your command you can specify it as { “source”: “string”, “name”: “argumentvalue” }</td>
+</tr>
+<tr>
+<td>pass-environment-to-command</td>
+<td>specifies the list of arguments that will be passed to the command 作为环境变量. If you do not specify the “envname” field in the referenced value, the hook will be in format “HOOK_argumentname”, otherwise “envname” field will be used as it’s name. Check Referencing request values page to see how to reference the values from the request. If you want to pass a static string value to your command you can specify it as { “source”: “string”, “envname”: “SOMETHING”, “name”: “argumentvalue” }</td>
+</tr>
+<tr>
+<td>pass-file-to-command</td>
+<td>specifies a list of entries that will be serialized as a file. Incoming data will be serialized in a request-temporary-file (otherwise parallel calls of the hook would lead to concurrent overwritings of the file). The filename to be addressed within the subsequent script is provided via an environment variable. Use envname to specify the name of the environment variable. If envname is not provided HOOK_ and the name used to reference the request value are used. Defining command-working-directory will store the file relative to this location, if not provided, the systems temporary file directory will be used. If base64decode is true, the incoming binary data will be base 64 decoded prior to storing it into the file. By default the corresponding file will be removed after the webhook exited.</td>
+</tr>
+<tr>
+<td>trigger-rule</td>
+<td>specifies the rule that will be evaluated in order to determine should the hook be triggered. Check Hook rules page to see the list of valid rules and their usage</td>
+</tr>
+<tr>
+<td>trigger-rule-mismatch-http-response-code</td>
+<td>specifies the HTTP status code to be returned when the trigger rule is not satisfied</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Hook-Rule"><a href="#Hook-Rule" class="headerlink" title="Hook Rule"></a>Hook Rule</h4>
       
     </div>
     
@@ -425,6 +504,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/23/数据科学-JUPYTER/" rel="prev" title="数据科学-JUPYTER">
+                数据科学-JUPYTER <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -476,8 +559,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -492,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -537,6 +629,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Webhook"><span class="nav-number">1.</span> <span class="nav-text">Webhook</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个hooks-json文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">创建一个hooks.json文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hook-Rule"><span class="nav-number">1.1.2.</span> <span class="nav-text">Hook Rule</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
