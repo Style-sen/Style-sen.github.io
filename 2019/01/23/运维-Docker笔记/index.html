@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T03:02:51.676Z">
+<meta property="og:updated_time" content="2019-10-30T09:05:16.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker笔记">
 <meta name="twitter:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
@@ -438,6 +438,9 @@
 <li><code>The headers or library files could not be found for jpeg</code> 执行 <code>apk add libjpeg-turbo-dev</code>.</li>
 <li><code>RUN pip install &quot;celery[librabbitmq,redis,msgpack]&quot;</code> 安装过程中出错，“poll or select”只需要安装6安装glibc即可。</li>
 </ol>
+<h3 id="NGINX-官方镜像"><a href="#NGINX-官方镜像" class="headerlink" title="NGINX 官方镜像"></a>NGINX 官方镜像</h3><h4 id="nginx-alpine"><a href="#nginx-alpine" class="headerlink" title="nginx:alpine"></a>nginx:alpine</h4><ol>
+<li>包含<code>envsubst</code>命令。</li>
+</ol>
 
       
     </div>
@@ -557,7 +560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">132</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +582,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -612,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">3.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">3.1.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">3.2.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT-配置容器启动时运行的命令"><span class="nav-number">3.3.</span> <span class="nav-text">ENTRYPOINT 配置容器启动时运行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-指定启动容器后执行的命令"><span class="nav-number">3.4.</span> <span class="nav-text">CMD 指定启动容器后执行的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">4.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">4.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">5.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">6.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">6.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">6.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">6.3.</span> <span class="nav-text">ALPINE</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">3.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">3.1.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">3.2.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT-配置容器启动时运行的命令"><span class="nav-number">3.3.</span> <span class="nav-text">ENTRYPOINT 配置容器启动时运行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-指定启动容器后执行的命令"><span class="nav-number">3.4.</span> <span class="nav-text">CMD 指定启动容器后执行的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">4.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">4.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">5.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">6.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">6.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">6.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">6.3.</span> <span class="nav-text">ALPINE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NGINX-官方镜像"><span class="nav-number">6.4.</span> <span class="nav-text">NGINX 官方镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-alpine"><span class="nav-number">6.4.1.</span> <span class="nav-text">nginx:alpine</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

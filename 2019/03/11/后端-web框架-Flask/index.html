@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Flask开发">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-19T07:25:15.716Z">
+<meta property="og:updated_time" content="2019-10-30T09:05:16.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-web框架-Flask">
 <meta name="twitter:description" content="Flask开发">
@@ -451,7 +451,8 @@
 </ol>
 <h4 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h4><ol>
 <li>使用task嵌套时, 子task调用间隔不能太小，尤其在子task间结果相互依赖，特别是都操作数据库。</li>
-<li>celery容器和APP容器分开运行，<a href="https://github.com/nickjj/build-a-saas-app-with-flask" target="_blank" rel="noopener">参考</a>。</li>
+<li>celery容器和APP容器分开运行，<a href="https://github.com/nickjj/build-a-saas-app-with-flask" target="_blank" rel="noopener">参考</a>。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">celery</span><br><span class="line">----status</span><br><span class="line">--------AsyncResult    方法，获取任务ID的状态</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h3 id="使用cookiecutter"><a href="#使用cookiecutter" class="headerlink" title="使用cookiecutter"></a><em>使用<a href="https://github.com/cookiecutter-flask/cookiecutter-flask" target="_blank" rel="noopener">cookiecutter</a></em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">myflaskapp</span><br><span class="line">|---autoapp.py（调用create_app）</span><br><span class="line">|---myflaskapp</span><br><span class="line">    |---app.py(创建create_app)</span><br><span class="line">    |---database.py(数据库)</span><br><span class="line">    |---extensions.py(flask扩展集合)</span><br><span class="line">    |---settings.py(配置)</span><br><span class="line">    |---models.py（自己觉得可以把公用的orm放在这）</span><br><span class="line">    |---public（其他业务）</span><br><span class="line">        |---forms.py</span><br><span class="line">        |---models.py</span><br><span class="line">        |---views.py</span><br><span class="line">        |---api.py(创建新的blueprint)</span><br><span class="line">    |---user（用户管理）</span><br><span class="line">        |---forms.py</span><br><span class="line">        |---models.py（ORM）</span><br><span class="line">        |---views.py(blueprint)</span><br><span class="line">        |---api.py（创建新的blueprint）</span><br><span class="line">    |---templates</span><br><span class="line">        |---public(专有的页面)</span><br><span class="line">        |---user（专有的页面）</span><br></pre></td></tr></table></figure>
 <h3 id="使用docker"><a href="#使用docker" class="headerlink" title="使用docker"></a>使用<a href="https://github.com/tiangolo/uwsgi-nginx-flask-docker" target="_blank" rel="noopener">docker</a></h3><h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><h3 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h3><p>==（注：站点认证使用flask-login，API认证使用flask-httpauth）==</p>
@@ -582,7 +583,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">132</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -604,7 +605,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

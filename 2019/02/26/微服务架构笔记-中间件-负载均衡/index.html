@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="负载均衡的作用转发功能按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 2、故障移除 通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。 3、恢复添加 如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。 HAProxy可靠，高性能的TCP / HTTP负载均衡器hap">
+<meta name="description" content="负载均衡的作用转发功能按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 故障移除通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。 恢复添加如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。 OSPF负载均衡 OSPF（开放式最短链路优先）是一个内部网关协议（Inte">
 <meta name="keywords" content="运维">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运维-负载均衡">
 <meta property="og:url" content="http://yoursite.com/2019/02/26/微服务架构笔记-中间件-负载均衡/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="负载均衡的作用转发功能按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 2、故障移除 通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。 3、恢复添加 如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。 HAProxy可靠，高性能的TCP / HTTP负载均衡器hap">
+<meta property="og:description" content="负载均衡的作用转发功能按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 故障移除通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。 恢复添加如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。 OSPF负载均衡 OSPF（开放式最短链路优先）是一个内部网关协议（Inte">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-11T09:50:48.868Z">
+<meta property="og:updated_time" content="2019-10-30T09:05:16.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维-负载均衡">
-<meta name="twitter:description" content="负载均衡的作用转发功能按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 2、故障移除 通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。 3、恢复添加 如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。 HAProxy可靠，高性能的TCP / HTTP负载均衡器hap">
+<meta name="twitter:description" content="负载均衡的作用转发功能按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 故障移除通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。 恢复添加如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。 OSPF负载均衡 OSPF（开放式最短链路优先）是一个内部网关协议（Inte">
 
 
 
@@ -397,10 +397,17 @@
 
       
         <h2 id="负载均衡的作用"><a href="#负载均衡的作用" class="headerlink" title="负载均衡的作用"></a>负载均衡的作用</h2><h3 id="转发功能"><a href="#转发功能" class="headerlink" title="转发功能"></a>转发功能</h3><p>按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。</p>
-<p>2、故障移除</p>
-<p>通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。</p>
-<p>3、恢复添加</p>
-<p>如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。</p>
+<h3 id="故障移除"><a href="#故障移除" class="headerlink" title="故障移除"></a>故障移除</h3><p>通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。</p>
+<h3 id="恢复添加"><a href="#恢复添加" class="headerlink" title="恢复添加"></a>恢复添加</h3><p>如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。</p>
+<h2 id="OSPF负载均衡"><a href="#OSPF负载均衡" class="headerlink" title="OSPF负载均衡"></a>OSPF负载均衡</h2><ol>
+<li>OSPF（开放式最短链路优先）是一个内部网关协议（Interior Gateway Protocol，简称 IGP）。</li>
+<li>OSPF 通过路由器之间通告网络接口的状态来建立链路状态数据库，生成最短路径树，OSPF 会自动计算路由接口上的 Cost 值，但也可以通过手工指定该接口的 Cost 值，手工指定的优先于自动计算的值。</li>
+<li>OSPF 计算的 Cost，同样是和接口带宽成反比，带宽越高，Cost 值越小。到达目标相同 Cost 值的路径，可以执行负载均衡，最多 6 条链路同时执行负载均衡。</li>
+</ol>
+<h2 id="LVS"><a href="#LVS" class="headerlink" title="LVS"></a>LVS</h2><ol>
+<li>它是一种集群（Cluster）技术，采用 IP 负载均衡技术和基于内容请求分发技术。</li>
+<li>调度器具有很好的吞吐率，将请求均衡地转移到不同的服务器上执行，且调度器自动屏蔽掉服务器的故障，从而将一组服务器构成一个高性能的、高可用的虚拟服务器。</li>
+</ol>
 <h2 id="HAProxy可靠，高性能的TCP-HTTP负载均衡器"><a href="#HAProxy可靠，高性能的TCP-HTTP负载均衡器" class="headerlink" title="HAProxy可靠，高性能的TCP / HTTP负载均衡器"></a><a href="https://www.haproxy.org/" target="_blank" rel="noopener">HAProxy</a>可靠，高性能的TCP / HTTP负载均衡器</h2><p>haproxy是工作在四层之上的，这也就意味着它可以代理的服务要比nginx更广泛，性能比nginx也要更高一些。</p>
 <ol>
 <li><a href="https://blog.csdn.net/muye0503/article/details/45721411" target="_blank" rel="noopener">让一个端口同时做两件事：http/https和ssh</a></li>
@@ -440,7 +447,7 @@
 <h3 id="keepalive-nginx实现负载均衡高可用"><a href="#keepalive-nginx实现负载均衡高可用" class="headerlink" title="keepalive+nginx实现负载均衡高可用"></a>keepalive+nginx实现负载均衡高可用</h3><ol>
 <li>为了避免负载均衡服务器的宕机故障，需要建立一个备份机。主备机上都运行高可用（High Availability）监控程序，通过传送心跳信息来监控对方的运行状况。当备份机不能在一定的时间内收到对方的正常心跳时，它就接管主服务器的服务IP并继续提供负载均衡服务；当备份管理器又从主管理器收到“I am alive”这样的信息时，它就释放服务IP地址，这样的主服务器就开始再次提供负载均衡服务。</li>
 </ol>
-<h4 id="keepalive-安装"><a href="#keepalive-安装" class="headerlink" title="keepalive 安装"></a>keepalive 安装</h4><h4 id="keepalive-配置"><a href="#keepalive-配置" class="headerlink" title="keepalive 配置"></a>keepalive 配置</h4><h2 id="LVS"><a href="#LVS" class="headerlink" title="LVS"></a>LVS</h2>
+<h4 id="keepalive-安装"><a href="#keepalive-安装" class="headerlink" title="keepalive 安装"></a>keepalive 安装</h4><h4 id="keepalive-配置"><a href="#keepalive-配置" class="headerlink" title="keepalive 配置"></a>keepalive 配置</h4>
       
     </div>
     
@@ -480,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/27/运维-数据库-MYSQL/" rel="prev" title="运维-Mysql">
-                运维-Mysql <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/27/运维-错误收集与监控/" rel="prev" title="运维-监控">
+                运维-监控 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -559,7 +566,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">132</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -581,7 +588,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -614,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡的作用"><span class="nav-number">1.</span> <span class="nav-text">负载均衡的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转发功能"><span class="nav-number">1.1.</span> <span class="nav-text">转发功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HAProxy可靠，高性能的TCP-HTTP负载均衡器"><span class="nav-number">2.</span> <span class="nav-text">HAProxy可靠，高性能的TCP / HTTP负载均衡器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NGINX"><span class="nav-number">3.</span> <span class="nav-text">[NGINX]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx的负载分发策略"><span class="nav-number">3.1.</span> <span class="nav-text">Nginx的负载分发策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Nginx的负载均衡与分发策略"><span class="nav-number">3.2.</span> <span class="nav-text">配置Nginx的负载均衡与分发策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Nginx的高可用"><span class="nav-number">3.3.</span> <span class="nav-text">使用Nginx的高可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keepalive-nginx实现负载均衡高可用"><span class="nav-number">3.4.</span> <span class="nav-text">keepalive+nginx实现负载均衡高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#keepalive-安装"><span class="nav-number">3.4.1.</span> <span class="nav-text">keepalive 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keepalive-配置"><span class="nav-number">3.4.2.</span> <span class="nav-text">keepalive 配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LVS"><span class="nav-number">4.</span> <span class="nav-text">LVS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡的作用"><span class="nav-number">1.</span> <span class="nav-text">负载均衡的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转发功能"><span class="nav-number">1.1.</span> <span class="nav-text">转发功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障移除"><span class="nav-number">1.2.</span> <span class="nav-text">故障移除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复添加"><span class="nav-number">1.3.</span> <span class="nav-text">恢复添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSPF负载均衡"><span class="nav-number">2.</span> <span class="nav-text">OSPF负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LVS"><span class="nav-number">3.</span> <span class="nav-text">LVS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HAProxy可靠，高性能的TCP-HTTP负载均衡器"><span class="nav-number">4.</span> <span class="nav-text">HAProxy可靠，高性能的TCP / HTTP负载均衡器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NGINX"><span class="nav-number">5.</span> <span class="nav-text">[NGINX]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx的负载分发策略"><span class="nav-number">5.1.</span> <span class="nav-text">Nginx的负载分发策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Nginx的负载均衡与分发策略"><span class="nav-number">5.2.</span> <span class="nav-text">配置Nginx的负载均衡与分发策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Nginx的高可用"><span class="nav-number">5.3.</span> <span class="nav-text">使用Nginx的高可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keepalive-nginx实现负载均衡高可用"><span class="nav-number">5.4.</span> <span class="nav-text">keepalive+nginx实现负载均衡高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#keepalive-安装"><span class="nav-number">5.4.1.</span> <span class="nav-text">keepalive 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keepalive-配置"><span class="nav-number">5.4.2.</span> <span class="nav-text">keepalive 配置</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
