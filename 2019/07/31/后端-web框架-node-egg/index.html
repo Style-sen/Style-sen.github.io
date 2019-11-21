@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-15T01:53:04.793Z">
+<meta property="og:updated_time" content="2019-11-15T06:55:06.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-web框架-node-egg">
 <meta name="twitter:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
@@ -444,7 +444,64 @@
 <li>controller - 指定路由映射到的具体的 controller 上，controller 可以有两种写法：</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.controller.user.fetch - 直接指定一个具体的 controller</span><br><span class="line">&apos;user.fetch&apos; - 可以简写为字符串形式</span><br></pre></td></tr></table></figure>
-<h4 id="RESTful-风格的-URL-定义"><a href="#RESTful-风格的-URL-定义" class="headerlink" title="RESTful 风格的 URL 定义"></a>RESTful 风格的 URL 定义</h4><p>通过 app.resources 方法，我们将 topics 这个资源的增删改查接口映射到了 app/controller/topics.js 文件。</p>
+<h4 id="RESTful-风格的-URL-定义"><a href="#RESTful-风格的-URL-定义" class="headerlink" title="RESTful 风格的 URL 定义"></a>RESTful 风格的 URL 定义</h4><p>通过 app.resources 方法，我们将 posts 这个资源的增删改查接口映射到了 app/controller/posts.js 文件。</p>
+<p>只需要在 posts.js 里面实现对应的函数就可以了。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>RouteName</th>
+<th>Controller.Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/posts</td>
+<td>posts</td>
+<td>app.controllers.posts.index</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/new</td>
+<td>new_post</td>
+<td>app.controllers.posts.new</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.show</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/:id/edit</td>
+<td>edit_post</td>
+<td>app.controllers.posts.edit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/posts</td>
+<td>posts</td>
+<td>app.controllers.posts.create</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.update</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.destroy</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h4><ol>
 <li>我们约定 test 目录为存放所有测试脚本的目录，测试所使用到的 fixtures 和相关辅助脚本都应该放在此目录下。</li>
 <li>测试脚本文件统一按 ${filename}.test.js 命名，必须以 .test.js 作为文件后缀。</li>
@@ -760,7 +817,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">135</span>
+                  <span class="site-state-item-count">137</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

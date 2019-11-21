@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如日历或联系人等信息）。通过这些API，我们希望对Web应用进行扩展，实现过去只有专有平台才可以实现的功能。 在使用 JavaScript 编写 Web 代码时，有许多 API 可供调用。这里是所有接口（即对象类型）的列表，你可以在开发网站或 Web 应用程序时">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T06:32:50.002Z">
+<meta property="og:updated_time" content="2019-11-21T02:23:16.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端-web api">
 <meta name="twitter:description" content="WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如日历或联系人等信息）。通过这些API，我们希望对Web应用进行扩展，实现过去只有专有平台才可以实现的功能。 在使用 JavaScript 编写 Web 代码时，有许多 API 可供调用。这里是所有接口（即对象类型）的列表，你可以在开发网站或 Web 应用程序时">
@@ -397,6 +397,12 @@
       
         <p>WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如日历或联系人等信息）。通过这些API，我们希望对Web应用进行扩展，实现过去只有专有平台才可以实现的功能。</p>
 <p>在使用 JavaScript 编写 Web 代码时，有许多 API 可供调用。<a href="https://developer.mozilla.org/zh-CN/docs/Web/API" target="_blank" rel="noopener">这里</a>是所有接口（即对象类型）的列表，你可以在开发网站或 Web 应用程序时使用它们。</p>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><h3 id="FileReader"><a href="#FileReader" class="headerlink" title="FileReader"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">FileReader</a></h3><p>FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。</p>
+<p>其中File对象可以是来自用户在一个<input>元素上选择文件后返回的FileList对象,也可以来自拖放操作生成的 DataTransfer对象,还可以是来自在一个HTMLCanvasElement上执行mozGetAsFile()方法后返回结果。</p>
+<p>重要提示： FileReader仅用于以安全的方式从用户（远程）系统读取文件内容 它不能用于从文件系统中按路径名简单地读取文件。 要在JavaScript中按路径名读取文件，应使用标准Ajax解决方案进行服务器端文件读取，如果读取跨域，则使用CORS权限。</p>
+<p>Note: 此特性在 Web Worker 中可用。</p>
+<h3 id="FileReaderSync"><a href="#FileReaderSync" class="headerlink" title="FileReaderSync"></a>FileReaderSync</h3><p>FileReaderSync接口允许以同步的方式读取File或Blob对象中的内容。</p>
+<p>该接口只在workers里可用,因为在主线程里进行同步I/O操作可能会阻塞用户界面。</p>
 
       
     </div>
@@ -485,8 +491,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,7 +516,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">135</span>
+                  <span class="site-state-item-count">137</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,6 +561,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">1.</span> <span class="nav-text">F</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FileReader"><span class="nav-number">1.1.</span> <span class="nav-text">FileReader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FileReaderSync"><span class="nav-number">1.2.</span> <span class="nav-text">FileReaderSync</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
