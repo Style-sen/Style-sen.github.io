@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="UCLOUDALIYUNECS安全组默认安全组安全SSL证书免费型 DV SSL 证书 填写证书绑定的域名，这里的域名是子域名，不能写顶级域名； 域名验证方式，如果域名使用的是阿里云的 DNS ，那么就可以直接用“自动 DNS验证”，只要这个域名是在账号名下，那么就自动添加 DNS 记录用于验证，否则就手动修改域名的 DNS 记录，或者上传验证文件到网站对应目录；CSR 生成方式默认选择系统生成。">
+<meta name="description" content="UCLOUDALIYUNECS安全组概念 网卡类型： VPC网络：只需要设置出方向或入方向的规则，不区分内网和公网。专有网络（VPC）实例的公网访问通过私网网卡映射完成，所以，您在实例内部看不到公网网卡，在安全组里也只能设置内网规则。您设置的安全组规则同时对内网和公网生效。 经典网络：需要分别设置公网或内网的出方向或入方向规则。 规则方向： 出方向：是指ECS实例访问内网中其他ECS实例或者公网上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运维-选择公有云产品">
 <meta property="og:url" content="http://yoursite.com/2019/07/15/运维-选择公有云产品/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="UCLOUDALIYUNECS安全组默认安全组安全SSL证书免费型 DV SSL 证书 填写证书绑定的域名，这里的域名是子域名，不能写顶级域名； 域名验证方式，如果域名使用的是阿里云的 DNS ，那么就可以直接用“自动 DNS验证”，只要这个域名是在账号名下，那么就自动添加 DNS 记录用于验证，否则就手动修改域名的 DNS 记录，或者上传验证文件到网站对应目录；CSR 生成方式默认选择系统生成。">
+<meta property="og:description" content="UCLOUDALIYUNECS安全组概念 网卡类型： VPC网络：只需要设置出方向或入方向的规则，不区分内网和公网。专有网络（VPC）实例的公网访问通过私网网卡映射完成，所以，您在实例内部看不到公网网卡，在安全组里也只能设置内网规则。您设置的安全组规则同时对内网和公网生效。 经典网络：需要分别设置公网或内网的出方向或入方向规则。 规则方向： 出方向：是指ECS实例访问内网中其他ECS实例或者公网上">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-30T09:08:01.994Z">
+<meta property="og:updated_time" content="2019-12-20T03:27:37.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维-选择公有云产品">
-<meta name="twitter:description" content="UCLOUDALIYUNECS安全组默认安全组安全SSL证书免费型 DV SSL 证书 填写证书绑定的域名，这里的域名是子域名，不能写顶级域名； 域名验证方式，如果域名使用的是阿里云的 DNS ，那么就可以直接用“自动 DNS验证”，只要这个域名是在账号名下，那么就自动添加 DNS 记录用于验证，否则就手动修改域名的 DNS 记录，或者上传验证文件到网站对应目录；CSR 生成方式默认选择系统生成。">
+<meta name="twitter:description" content="UCLOUDALIYUNECS安全组概念 网卡类型： VPC网络：只需要设置出方向或入方向的规则，不区分内网和公网。专有网络（VPC）实例的公网访问通过私网网卡映射完成，所以，您在实例内部看不到公网网卡，在安全组里也只能设置内网规则。您设置的安全组规则同时对内网和公网生效。 经典网络：需要分别设置公网或内网的出方向或入方向规则。 规则方向： 出方向：是指ECS实例访问内网中其他ECS实例或者公网上">
 
 
 
@@ -395,9 +395,27 @@
       
 
       
-        <h2 id="UCLOUD"><a href="#UCLOUD" class="headerlink" title="UCLOUD"></a><a href="https://www.ucloud.cn/" target="_blank" rel="noopener">UCLOUD</a></h2><h2 id="ALIYUN"><a href="#ALIYUN" class="headerlink" title="ALIYUN"></a><a href>ALIYUN</a></h2><h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><h4 id="安全组"><a href="#安全组" class="headerlink" title="安全组"></a>安全组</h4><h4 id="默认安全组"><a href="#默认安全组" class="headerlink" title="默认安全组"></a>默认安全组</h4><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h4 id="SSL证书"><a href="#SSL证书" class="headerlink" title="SSL证书"></a>SSL证书</h4><h5 id="免费型-DV-SSL-证书"><a href="#免费型-DV-SSL-证书" class="headerlink" title="免费型 DV SSL 证书"></a>免费型 DV SSL 证书</h5><ol>
+        <h2 id="UCLOUD"><a href="#UCLOUD" class="headerlink" title="UCLOUD"></a><a href="https://www.ucloud.cn/" target="_blank" rel="noopener">UCLOUD</a></h2><h2 id="ALIYUN"><a href="#ALIYUN" class="headerlink" title="ALIYUN"></a><a href>ALIYUN</a></h2><h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><h4 id="安全组"><a href="#安全组" class="headerlink" title="安全组"></a>安全组</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><ol>
+<li>网卡类型：<br> VPC网络：只需要设置出方向或入方向的规则，不区分内网和公网。专有网络（VPC）实例的公网访问通过私网网卡映射完成，所以，您在实例内部看不到公网网卡，在安全组里也只能设置内网规则。您设置的安全组规则同时对内网和公网生效。<br> 经典网络：需要分别设置公网或内网的出方向或入方向规则。</li>
+<li>规则方向：<br> 出方向：是指ECS实例访问内网中其他ECS实例或者公网上的资源。<br> 入方向：是指内网中的其他ECS实例或公网上的资源访问ECS实例。</li>
+</ol>
+<h5 id="默认安全组"><a href="#默认安全组" class="headerlink" title="默认安全组"></a>默认安全组</h5><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h4 id="SSL证书"><a href="#SSL证书" class="headerlink" title="SSL证书"></a>SSL证书</h4><h5 id="免费型-DV-SSL-证书"><a href="#免费型-DV-SSL-证书" class="headerlink" title="免费型 DV SSL 证书"></a>免费型 DV SSL 证书</h5><ol>
 <li>填写证书绑定的域名，这里的域名是子域名，不能写顶级域名；</li>
 <li>域名验证方式，如果域名使用的是阿里云的 DNS ，那么就可以直接用“自动 DNS验证”，只要这个域名是在账号名下，那么就自动添加 DNS 记录用于验证，否则就手动修改域名的 DNS 记录，或者上传验证文件到网站对应目录；CSR 生成方式默认选择系统生成。</li>
+</ol>
+<h3 id="备案"><a href="#备案" class="headerlink" title="备案"></a>备案</h3><p><a href="https://help.aliyun.com/product/35468.html?spm=a2c4g.11186623.6.540.560e3256EuaPDG" target="_blank" rel="noopener">阿里云文档</a></p>
+<h4 id="ICP备案流程（APP端）"><a href="#ICP备案流程（APP端）" class="headerlink" title="ICP备案流程（APP端）"></a>ICP备案流程（APP端）</h4><h4 id="管理查看ICP备案信息"><a href="#管理查看ICP备案信息" class="headerlink" title="管理查看ICP备案信息"></a>管理查看ICP备案信息</h4><h5 id="备案信息核查"><a href="#备案信息核查" class="headerlink" title="备案信息核查"></a>备案信息核查</h5><h6 id="域名核验"><a href="#域名核验" class="headerlink" title="域名核验"></a>域名核验</h6><h5 id="变更备案"><a href="#变更备案" class="headerlink" title="变更备案"></a>变更备案</h5><h6 id="可变更备案信息"><a href="#可变更备案信息" class="headerlink" title="可变更备案信息"></a>可变更备案信息</h6><p>根据管局规则及规定，备案信息中的部分信息无法变更。</p>
+<ol>
+<li>根据相关规定，2019年4月22日起，变更网站信息时，<code>只能对网站域名进行删除，不能修改或新增域名</code>（除不能修改网站域名外，其他信息仍可以修改，例如联系方式、电子邮箱等）。</li>
+<li>变更备案时，<code>不能变更备案所在省份</code>。如需变更备案省份，需要重新申请一个目标省份的备案。</li>
+<li>有些省市管局不允许直接变更，或您的备案信息已经取消了在阿里云的接入导致无法变更。这种情况下，您需先注销备案后重新申请备案。</li>
+</ol>
+<h5 id="阿里云备案账号维护"><a href="#阿里云备案账号维护" class="headerlink" title="阿里云备案账号维护"></a>阿里云备案账号维护</h5><h6 id="找回备案账号"><a href="#找回备案账号" class="headerlink" title="找回备案账号"></a>找回备案账号</h6><ol>
+<li>判断是否需要导入或认领备案信息<br> 您可在阿里云登录名找回页面输入您备案的域名，拖动滑块完成认证后，单击立即找回，通过页面提示判断您是否需要导入或认领备案信息。</li>
+</ol>
+<h5 id="原万网ICP备案信息导入阿里云"><a href="#原万网ICP备案信息导入阿里云" class="headerlink" title="原万网ICP备案信息导入阿里云"></a>原万网ICP备案信息导入阿里云</h5><h6 id="导入原万网备案信息"><a href="#导入原万网备案信息" class="headerlink" title="导入原万网备案信息"></a>导入原万网备案信息</h6><ol>
+<li>找回原万网备案登录账号及密码：准备资料-&gt;初始化邮箱-&gt;重置登录密码。</li>
+<li>导入原万网备案信息。<br><code>如果目标账户有正在进行的订单，将不能导入</code></li>
 </ol>
 
       
@@ -512,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">137</span>
+                  <span class="site-state-item-count">139</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UCLOUD"><span class="nav-number">1.</span> <span class="nav-text">UCLOUD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALIYUN"><span class="nav-number">2.</span> <span class="nav-text">ALIYUN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ECS"><span class="nav-number">2.1.</span> <span class="nav-text">ECS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全组"><span class="nav-number">2.1.1.</span> <span class="nav-text">安全组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认安全组"><span class="nav-number">2.1.2.</span> <span class="nav-text">默认安全组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">2.2.</span> <span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书"><span class="nav-number">2.2.1.</span> <span class="nav-text">SSL证书</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#免费型-DV-SSL-证书"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">免费型 DV SSL 证书</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UCLOUD"><span class="nav-number">1.</span> <span class="nav-text">UCLOUD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALIYUN"><span class="nav-number">2.</span> <span class="nav-text">ALIYUN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ECS"><span class="nav-number">2.1.</span> <span class="nav-text">ECS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全组"><span class="nav-number">2.1.1.</span> <span class="nav-text">安全组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认安全组"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">默认安全组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">2.2.</span> <span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书"><span class="nav-number">2.2.1.</span> <span class="nav-text">SSL证书</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#免费型-DV-SSL-证书"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">免费型 DV SSL 证书</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备案"><span class="nav-number">2.3.</span> <span class="nav-text">备案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ICP备案流程（APP端）"><span class="nav-number">2.3.1.</span> <span class="nav-text">ICP备案流程（APP端）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理查看ICP备案信息"><span class="nav-number">2.3.2.</span> <span class="nav-text">管理查看ICP备案信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#备案信息核查"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">备案信息核查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#域名核验"><span class="nav-number">2.3.2.1.1.</span> <span class="nav-text">域名核验</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变更备案"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">变更备案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#可变更备案信息"><span class="nav-number">2.3.2.2.1.</span> <span class="nav-text">可变更备案信息</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#阿里云备案账号维护"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">阿里云备案账号维护</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#找回备案账号"><span class="nav-number">2.3.2.3.1.</span> <span class="nav-text">找回备案账号</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原万网ICP备案信息导入阿里云"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">原万网ICP备案信息导入阿里云</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#导入原万网备案信息"><span class="nav-number">2.3.2.4.1.</span> <span class="nav-text">导入原万网备案信息</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

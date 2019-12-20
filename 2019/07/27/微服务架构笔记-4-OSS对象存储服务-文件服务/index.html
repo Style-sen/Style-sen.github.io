@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考微服务之分布式文件系统 搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage Service)，提供的海量、安全、低成本、高可靠的云存储服务。它具有与平台无关的RESTful API接口，能够提供数据可靠性和服务可用性。 意义 降低WEB服务器压力 独立服务易扩展 统一访问格式 安全认证  服务选择Self Hoste">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-30T09:05:16.066Z">
+<meta property="og:updated_time" content="2019-12-10T10:15:48.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构-4-OSS对象存储服务(文件服务)">
 <meta name="twitter:description" content="参考微服务之分布式文件系统 搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage Service)，提供的海量、安全、低成本、高可靠的云存储服务。它具有与平台无关的RESTful API接口，能够提供数据可靠性和服务可用性。 意义 降低WEB服务器压力 独立服务易扩展 统一访问格式 安全认证  服务选择Self Hoste">
@@ -408,15 +408,86 @@
 <h3 id="Minio"><a href="#Minio" class="headerlink" title="Minio"></a><a href="https://min.io/" target="_blank" rel="noopener">Minio</a></h3><ol>
 <li>Minio是Apache License v2.0下发布的对象存储服务器。它与Amazon S3云存储服务兼容。<code>它最适合存储非结构化数据</code>，如照片，视频，日志文件，备份和容器/ VM映像。对象的大小可以从几KB到最大5TB。</li>
 <li>Minio服务器足够轻，可以与应用程序堆栈捆绑在一起，类似于NodeJS，Redis和MySQL。</li>
+<li>因为与Amazon S3云存储服务兼容，所以可以被很多框架访问。</li>
 </ol>
-<h4 id="存储机制"><a href="#存储机制" class="headerlink" title="存储机制"></a>存储机制</h4><ol>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><h4 id="存储机制"><a href="#存储机制" class="headerlink" title="存储机制"></a>存储机制</h4><ol>
 <li>Minio使用纠删码erasure code和校验和checksum来保护数据免受硬件故障和无声数据损坏。 即便丢失一半数量（N/2）的硬盘，仍然可以恢复数据。</li>
 </ol>
 <h5 id="纠删码"><a href="#纠删码" class="headerlink" title="纠删码"></a>纠删码</h5><ol>
 <li>纠删码是一种恢复丢失和损坏数据的数学算法，目前，纠删码技术在分布式存储系统中的应用主要有三类，阵列纠删码（Array Code: RAID5、RAID6等）、RS(Reed-Solomon)里德-所罗门类纠删码和LDPC(LowDensity Parity Check Code)低密度奇偶校验纠删码。</li>
 <li>Erasure Code是一种编码技术，它可以将n份原始数据，增加m份数据，并能通过n+m份中的任意n份数据，还原为原始数据。即如果有任意小于等于m份的数据失效，仍然能通过剩下的数据还原出来。</li>
 </ol>
-<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><h3 id="seafile"><a href="#seafile" class="headerlink" title="seafile"></a>seafile</h3><ol>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><h5 id="单点模式"><a href="#单点模式" class="headerlink" title="单点模式"></a>单点模式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9000:9000 --name minio1 \</span><br><span class="line">  -v /mnt/data:/data \</span><br><span class="line">  -v /mnt/config:/root/.minio \</span><br><span class="line">  minio/minio server /data</span><br></pre></td></tr></table></figure>
+<h5 id="集群模式"><a href="#集群模式" class="headerlink" title="集群模式"></a>集群模式</h5><ol>
+<li>参考<a href="https://www.zengxi.net/articles/2018/docker-mino-cluster/" target="_blank" rel="noopener">Docker Compose创建minio集群</a>;</li>
+<li>分布式的Minio服务至少需要4个节点，所以在docker-compose.yml文件中，至少要配置4个服务。每个服务的command配置必须一样，保证集群环境正常运行。最多共16个。</li>
+<li>添加一个服务：<br> a. 复制服务定义并适当地更改新服务的名称。<br> b. 更新每个服务中的命令部分。<br> c. 更新要为新服务公开的端口号。 另外，请确保分配给新服务的端口尚未使用。</li>
+<li>创建集群之后，使用负载均衡。</li>
+</ol>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><h5 id="mc客户端"><a href="#mc客户端" class="headerlink" title="mc客户端"></a>mc客户端</h5><h5 id="JS-API"><a href="#JS-API" class="headerlink" title="JS API"></a>JS API</h5><h6 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var Minio = require(&apos;minio&apos;)</span><br><span class="line"></span><br><span class="line">var minioClient = new Minio.Client(&#123;</span><br><span class="line">    endPoint: &apos;play.min.io&apos;,</span><br><span class="line">    port: 9000,</span><br><span class="line">    useSSL: true,</span><br><span class="line">    accessKey: &apos;Q3AM3UQ867SPQQA43P2F&apos;,</span><br><span class="line">    secretKey: &apos;zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h6 id="操作存储桶"><a href="#操作存储桶" class="headerlink" title="操作存储桶"></a>操作存储桶</h6><ol>
+<li><p><code>makeBucket(名称，区域[,回调函数])</code>创建一个新的存储桶。<em>名称不能是路径</em>。</p>
+</li>
+<li><p><code>listBuckets</code>列出所有存储桶。</p>
+</li>
+<li><p><code>bucketExists</code>验证存储桶是否存在。</p>
+</li>
+<li><p><code>removeBucket</code>删除存储桶。</p>
+</li>
+<li><p><code>listObjects</code>列出存储桶中所有对象。</p>
+</li>
+<li><p><code>listObjectsV2</code>使用S3 listing objects V2版本API列出所有对象。</p>
+</li>
+<li><p><code>listIncompleteUploads</code>列出存储桶中未完整上传的对象。</p>
+</li>
+</ol>
+<h6 id="操作对象"><a href="#操作对象" class="headerlink" title="操作对象"></a>操作对象</h6><ol>
+<li><p><code>getObject</code>下载对象。</p>
+</li>
+<li><p><code>getPartialObject</code>下载对象中指定区间的字节数组，并返回流。</p>
+</li>
+<li><p><code>fGetObject</code>下载并将对象保存成本地文件。</p>
+</li>
+<li><p><code>putObject(bucketName, objectName, stream, size, metaData[, callback])</code>从一个stream/Buffer中上传一个对象。<em>bucketName相当于根目录，objectName可以包含相对根目录的路径，同名的objectName直接覆盖掉</em></p>
+</li>
+<li><p><code>fPutObject</code>上传文件。<code>会覆盖掉以前的同名文件，即更新</code></p>
+</li>
+<li><p><code>copyObject</code>将源对象拷贝到指定存储桶的新对象中。</p>
+</li>
+<li><p><code>statObject</code>获取对象的元数据。</p>
+</li>
+<li><p><code>removeObject</code>删除一个对象。</p>
+</li>
+<li><p><code>removeIncompleteUpload</code>删除一个未完整上传的对象。</p>
+</li>
+</ol>
+<h6 id="Presigned操作"><a href="#Presigned操作" class="headerlink" title="Presigned操作"></a>Presigned操作</h6><p>Presigned URLs用于对私有对象提供临时的上传/下载功能。</p>
+<ol>
+<li><p><code>presignedUrl</code>生成一个给指定HTTP方法（’httpMethod’）请求用的presigned URL。浏览器/移动端的客户端可以用这个URL进行下载，即使其所在的存储桶是私有的。这个presigned URL可以设置一个失效时间，默认值是7天。</p>
+</li>
+<li><p><code>presignedGetObject</code>生成一个给HTTP GET请求用的presigned URL。浏览器/移动端的客户端可以用这个URL进行下载，即使其所在的存储桶是私有的。这个presigned URL可以设置一个失效时间，默认值是7天。</p>
+</li>
+<li><p><code>presignedPutObject</code>生成一个给HTTP PUT请求用的presigned URL。浏览器/移动端的客户端可以用这个URL进行上传，即使其所在的存储桶是私有的。这个presigned URL可以设置一个失效时间，默认值是7天。</p>
+</li>
+<li><p><code>presignedPostPolicy</code>允许给POST请求的presigned URL设置条件策略。比如接收上传的存储桶名称、名称前缀、过期策略。</p>
+</li>
+</ol>
+<h6 id="存储桶策略-通知"><a href="#存储桶策略-通知" class="headerlink" title="存储桶策略/通知"></a>存储桶策略/通知</h6><p>存储桶可以配置在指定事件类型和相应路径上触发通知。</p>
+<ol>
+<li><p><code>getBucketNotification</code>    获取指定存储桶名称的通知配置。</p>
+</li>
+<li><p><code>setBucketNotification</code>    上传一个用户创建的通知配置，并绑定到指定的存储桶上。</p>
+</li>
+<li><p><code>removeAllBucketNotification</code>    删除指定存储桶上的通知配置。</p>
+</li>
+<li><p><code>getBucketPolicy</code>获取指定存储桶的访问策略，如果objectPrefix不为空，则会取相应对象前缀上的访问策略。</p>
+</li>
+<li><p><code>setBucketPolicy</code>设置指定存储桶的策略。如果objectPrefix不为空，则会给符合该前缀的对象（们）设置策略。</p>
+</li>
+<li><p><code>listenBucketNotification</code>    监听存储桶上的通知，可通过前缀、后缀、事件类型进行过滤。使用本API并不需要预先设置存储桶通知。这是Minio的一个扩展API，服务端基于过来的请求使用唯一ID自动注册或者取消注册。返回一个EventEmitter对象，它可以广播一个通知事件。停止监听，调用EventEmitter的stop()方法。</p>
+</li>
+</ol>
+<h3 id="seafile"><a href="#seafile" class="headerlink" title="seafile"></a>seafile</h3><ol>
 <li>企业云盘。</li>
 </ol>
 
@@ -538,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">137</span>
+                  <span class="site-state-item-count">139</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -593,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#意义"><span class="nav-number">1.</span> <span class="nav-text">意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务选择"><span class="nav-number">2.</span> <span class="nav-text">服务选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Minio"><span class="nav-number">2.1.</span> <span class="nav-text">Minio</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储机制"><span class="nav-number">2.1.1.</span> <span class="nav-text">存储机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#纠删码"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">纠删码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署"><span class="nav-number">2.1.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#seafile"><span class="nav-number">2.2.</span> <span class="nav-text">seafile</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#意义"><span class="nav-number">1.</span> <span class="nav-text">意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务选择"><span class="nav-number">2.</span> <span class="nav-text">服务选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Minio"><span class="nav-number">2.1.</span> <span class="nav-text">Minio</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">2.1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储机制"><span class="nav-number">2.1.2.</span> <span class="nav-text">存储机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#纠删码"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">纠删码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署"><span class="nav-number">2.1.3.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单点模式"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">单点模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集群模式"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">集群模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">2.1.4.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mc客户端"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">mc客户端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JS-API"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">JS API</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#构造函数"><span class="nav-number">2.1.4.2.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作存储桶"><span class="nav-number">2.1.4.2.2.</span> <span class="nav-text">操作存储桶</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作对象"><span class="nav-number">2.1.4.2.3.</span> <span class="nav-text">操作对象</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Presigned操作"><span class="nav-number">2.1.4.2.4.</span> <span class="nav-text">Presigned操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#存储桶策略-通知"><span class="nav-number">2.1.4.2.5.</span> <span class="nav-text">存储桶策略/通知</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#seafile"><span class="nav-number">2.2.</span> <span class="nav-text">seafile</span></a></li></ol></li></ol></div>
             
 
           </div>
