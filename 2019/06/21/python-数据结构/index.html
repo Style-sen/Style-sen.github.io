@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="数组有数组a，要求去掉a所有为0的元素1234567891011a = [2,4,0,8,9,10,100,0,9,7]# 方法1：Filtera= filter(None, a)# 方法2：Lambadaa = filter(lambda x: x != 0, a)# 方法3：forfor b in a:    if b == 0:        a.remove(b) 集合1234567891">
+<meta name="description" content="字符串字符串驻留 由于Cpython在编译优化时, 某些情况下会尝试使用已经存在的不可变对象而不是每次都创建一个新对象。这种行为被称作字符串的驻留[string interning]。 发生驻留之后, 许多变量可能指向内存中的相同字符串对象，从而节省内存。 在上面的代码中, 字符串是隐式驻留的. 何时发生隐式驻留则取决于具体的实现.。 所有长度为 0 和长度为 1 的字符串都被驻留。 字符串在编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python-数据类型">
 <meta property="og:url" content="http://yoursite.com/2019/06/21/python-数据结构/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="数组有数组a，要求去掉a所有为0的元素1234567891011a = [2,4,0,8,9,10,100,0,9,7]# 方法1：Filtera= filter(None, a)# 方法2：Lambadaa = filter(lambda x: x != 0, a)# 方法3：forfor b in a:    if b == 0:        a.remove(b) 集合1234567891">
+<meta property="og:description" content="字符串字符串驻留 由于Cpython在编译优化时, 某些情况下会尝试使用已经存在的不可变对象而不是每次都创建一个新对象。这种行为被称作字符串的驻留[string interning]。 发生驻留之后, 许多变量可能指向内存中的相同字符串对象，从而节省内存。 在上面的代码中, 字符串是隐式驻留的. 何时发生隐式驻留则取决于具体的实现.。 所有长度为 0 和长度为 1 的字符串都被驻留。 字符串在编译">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-25T02:05:21.648Z">
+<meta property="og:updated_time" content="2019-12-25T08:18:24.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-数据类型">
-<meta name="twitter:description" content="数组有数组a，要求去掉a所有为0的元素1234567891011a = [2,4,0,8,9,10,100,0,9,7]# 方法1：Filtera= filter(None, a)# 方法2：Lambadaa = filter(lambda x: x != 0, a)# 方法3：forfor b in a:    if b == 0:        a.remove(b) 集合1234567891">
+<meta name="twitter:description" content="字符串字符串驻留 由于Cpython在编译优化时, 某些情况下会尝试使用已经存在的不可变对象而不是每次都创建一个新对象。这种行为被称作字符串的驻留[string interning]。 发生驻留之后, 许多变量可能指向内存中的相同字符串对象，从而节省内存。 在上面的代码中, 字符串是隐式驻留的. 何时发生隐式驻留则取决于具体的实现.。 所有长度为 0 和长度为 1 的字符串都被驻留。 字符串在编译">
 
 
 
@@ -395,7 +395,18 @@
       
 
       
-        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="有数组a，要求去掉a所有为0的元素"><a href="#有数组a，要求去掉a所有为0的元素" class="headerlink" title="有数组a，要求去掉a所有为0的元素"></a>有数组a，要求去掉a所有为0的元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = [2,4,0,8,9,10,100,0,9,7]</span><br><span class="line"># 方法1：Filter</span><br><span class="line">a= filter(None, a)</span><br><span class="line"></span><br><span class="line"># 方法2：Lambada</span><br><span class="line">a = filter(lambda x: x != 0, a)</span><br><span class="line"></span><br><span class="line"># 方法3：for</span><br><span class="line">for b in a:</span><br><span class="line">    if b == 0:</span><br><span class="line">        a.remove(b)</span><br></pre></td></tr></table></figure>
+        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串驻留"><a href="#字符串驻留" class="headerlink" title="字符串驻留"></a>字符串驻留</h3><ol>
+<li>由于Cpython在编译优化时, 某些情况下会尝试使用已经存在的不可变对象而不是每次都创建一个新对象。这种行为被称作字符串的驻留[string interning]。</li>
+<li>发生驻留之后, 许多变量可能指向内存中的相同字符串对象，从而节省内存。</li>
+<li>在上面的代码中, 字符串是隐式驻留的. 何时发生隐式驻留则取决于具体的实现.。</li>
+<li>所有长度为 0 和长度为 1 的字符串都被驻留。</li>
+<li>字符串在编译时被实现 (‘wtf’ 将被驻留, 但是 ‘’.join([‘w’, ‘t’, ‘f’]) 将不会被驻留)不会被驻留。</li>
+<li>字符串中只包含<code>字母、数字或下划线</code>时将会驻留. 所以 ‘wtf!’ 由于包含 ! 而未被驻留. </li>
+<li>当在同一行将 a 和 b 的值设置为 “wtf!” 的时候, Python 解释器会创建一个新对象, 然后同时引用第二个变量(<code>注: 仅适用于3.7以下，3.7是不一样的</code>). 如果你在不同的行上进行赋值操作, 它就不会“知道”已经有一个 wtf！ 对象 (因为 “wtf!” 不是按照上面提到的方式被隐式驻留的). 它是一种编译器优化, 特别适用于交互式环境.</li>
+<li>常量折叠(constant folding) 是 Python 中的一种 窥孔优化(peephole optimization) 技术. 这意味着在编译时表达式 ‘a’*20会被替换为’aaaaaaaaaaaaaaaaaaaa’ 以减少运行时的时钟周期. <code>只有长度小于 20 的字符串才会发生常量折叠</code>.</li>
+<li>在 3.7 版本中, 常量折叠已经从窥孔优化器迁移至新的 AST 优化器, 后者可以以更高的一致性来执行优化<code>可支持长度大于20的常量折叠</code>. </li>
+</ol>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="有数组a，要求去掉a所有为0的元素"><a href="#有数组a，要求去掉a所有为0的元素" class="headerlink" title="有数组a，要求去掉a所有为0的元素"></a>有数组a，要求去掉a所有为0的元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = [2,4,0,8,9,10,100,0,9,7]</span><br><span class="line"># 方法1：Filter</span><br><span class="line">a= filter(None, a)</span><br><span class="line"></span><br><span class="line"># 方法2：Lambada</span><br><span class="line">a = filter(lambda x: x != 0, a)</span><br><span class="line"></span><br><span class="line"># 方法3：for</span><br><span class="line">for b in a:</span><br><span class="line">    if b == 0:</span><br><span class="line">        a.remove(b)</span><br></pre></td></tr></table></figure>
 <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&quot;集合主要对字符串或列表(可以是数字列表)，不能是数字&quot;</span><br><span class="line"></span><br><span class="line">&quot;创建集合&quot;</span><br><span class="line">set()</span><br><span class="line"></span><br><span class="line">.add()    &quot;把要传入的元素做为一个整个添加到集合中&quot;</span><br><span class="line">.update()    &quot;是把要传入的元素拆分，做为个体传入到集合中&quot;</span><br><span class="line">.remove()    &quot;删除操作&quot;</span><br><span class="line">&amp;    &quot;交集&quot;</span><br><span class="line">|    &quot;并集&quot;</span><br><span class="line">-    &quot;差集&quot;</span><br><span class="line">a.issubset(b)    &quot;判断a是否是b的子集&quot;</span><br><span class="line">a.issuperset(b)    &quot;判断a是否是b的父集&quot;</span><br></pre></td></tr></table></figure>
 <ol>
 <li><a href="https://www.jiqizhixin.com/articles/062403" target="_blank" rel="noopener">一文带你了解 Python 集合与基本的集合运算</a></li>
@@ -513,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">141</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有数组a，要求去掉a所有为0的元素"><span class="nav-number">1.1.</span> <span class="nav-text">有数组a，要求去掉a所有为0的元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-number">2.</span> <span class="nav-text">集合</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串驻留"><span class="nav-number">1.1.</span> <span class="nav-text">字符串驻留</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有数组a，要求去掉a所有为0的元素"><span class="nav-number">2.1.</span> <span class="nav-text">有数组a，要求去掉a所有为0的元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-number">3.</span> <span class="nav-text">集合</span></a></li></ol></div>
             
 
           </div>
