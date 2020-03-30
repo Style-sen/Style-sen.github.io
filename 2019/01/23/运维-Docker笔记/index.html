@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
+<meta name="description" content="Docker进程管理参考从一个实例，一窥docker进程管理  在Docker中，进程管理的基础是Linux内核的PID命名空间技术。在不同的PID命名空间下，可以有相同的PID。 Linux内核为所有的PID命名空间维护了一个树状的数据结构，最顶层是系统初始化时创建的root namespace（根命名空间）， 父节点可以看到子节点中的进程，并可以通过信号等方式对子节点中的进程产生影响。反过来，">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/23/运维-Docker笔记/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
+<meta property="og:description" content="Docker进程管理参考从一个实例，一窥docker进程管理  在Docker中，进程管理的基础是Linux内核的PID命名空间技术。在不同的PID命名空间下，可以有相同的PID。 Linux内核为所有的PID命名空间维护了一个树状的数据结构，最顶层是系统初始化时创建的root namespace（根命名空间）， 父节点可以看到子节点中的进程，并可以通过信号等方式对子节点中的进程产生影响。反过来，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-11T10:22:41.131Z">
+<meta property="og:updated_time" content="2020-03-30T04:43:01.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker笔记">
-<meta name="twitter:description" content="安装 使用清华源 1sudo snap install docker  The Docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo.">
+<meta name="twitter:description" content="Docker进程管理参考从一个实例，一窥docker进程管理  在Docker中，进程管理的基础是Linux内核的PID命名空间技术。在不同的PID命名空间下，可以有相同的PID。 Linux内核为所有的PID命名空间维护了一个树状的数据结构，最顶层是系统初始化时创建的root namespace（根命名空间）， 父节点可以看到子节点中的进程，并可以通过信号等方式对子节点中的进程产生影响。反过来，">
 
 
 
@@ -396,7 +396,13 @@
       
 
       
-        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+        <h2 id="Docker进程管理"><a href="#Docker进程管理" class="headerlink" title="Docker进程管理"></a>Docker进程管理</h2><p>参考<a href="https://zhuanlan.zhihu.com/p/56350784" target="_blank" rel="noopener">从一个实例，一窥docker进程管理</a></p>
+<ol>
+<li>在Docker中，进程管理的基础是Linux内核的PID命名空间技术。在不同的PID命名空间下，可以有相同的PID。</li>
+<li>Linux内核为所有的PID命名空间维护了一个树状的数据结构，最顶层是系统初始化时创建的root namespace（根命名空间）， 父节点可以看到子节点中的进程，并可以通过信号等方式对子节点中的进程产生影响。反过来，子节点不能看到父节点名空间中的任何内容，也不可能通过kill或ptrace影响父节点或其他名空间中的进程。</li>
+<li>在<code>docker中有一个很特殊的进程——PID为1的进程，这也是docker的主进程(支持这一个)</code>，通过Dockerfile中的 ENTRYPOINT 和/或 CMD指令指定。当主进程退出的时候，容器所拥有的PIG命名空间就会被销毁，容器的生命周期也会结束docker最佳实践建议的是<code>一个container一个service</code>，并不强制要你一个container一个线程。有的服务，会催生更多的子进程，比如Apache和uwsgi，这是完全OK的。</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
 <li><p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/" target="_blank" rel="noopener">使用清华源</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install docker</span><br></pre></td></tr></table></figure>
 </li>
@@ -420,14 +426,30 @@
 <li>Docker 不是虚拟机，容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，容器内没有后台服务的概念。</li>
 <li>对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。</li>
 </ol>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ol>
+<li><p>使用<code>.dockerignore</code>排除构建无关文件，可提高构建速度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当我们在 docker build 的过程中，首先会将指定的上下文目录`Sending build context to Docker daemon  27.41MB</span><br><span class="line">`打包传递给 docker引擎，而这个上下文目录中可能并不是所有的文件我们都会在 Dockerfile 中使用到，那么这个时候就可以在 .dockerignore 文件中指定在传递给 docker引擎时需要忽略掉的文件或文件夹。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用多阶段构建。</p>
+</li>
+<li><code>一个容器只做一件事</code>，需要网络通信，则可以将他们置于一个网络下。</li>
+<li><code>减少镜像层数</code>，只有<code>RUN</code>,<code>COPY</code>,<code>ADD</code>会创建层数，其他指令不会增加层数。</li>
+<li>将多行参数进行排序。</li>
+<li>充分利用构建缓存。</li>
+</ol>
 <h2 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h2><h3 id="bridge"><a href="#bridge" class="headerlink" title="bridge"></a>bridge</h3><ol>
 <li>默认。</li>
+</ol>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><code>docker network create</code>创建一个网络。</li>
+<li><code>docker network ls</code>列出网络。</li>
 </ol>
 <h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><ol>
 <li><a href="https://www.cnblogs.com/shuaiandjun/p/9484540.html" target="_blank" rel="noopener">GitLab CI with docker and dind “mount: permission denied (are you root?)”</a></li>
 <li>Docker容器修改hosts文件重启不变<br> 1./etc/hosts, /etc/resolv.conf和/etc/hostname，容器中的这三个文件不存在于镜像，而是存在于/var/lib/docker/containers/<container_id>，在启动容器的时候，通过mount的形式将这些文件挂载到容器内部。因此，如果在容器中修改这些文件的话，修改部分不会存在于容器的top layer，而是直接写入这三个物理文件中。<br> 2.为什么重启后修改内容不存在了？原因是：每次Docker在启动容器的时候，通过重新构建新的/etc/hosts文件，这又是为什么呢？原因是：容器重启，IP地址为改变，hosts文件中原来的IP地址无效，因此理应修改hosts文件，否则会产生脏数据。</container_id></li>
 <li><a href="https://segmentfault.com/a/1190000009583997" target="_blank" rel="noopener">docker运行nginx为什么要使用 daemon off</a></li>
 <li>宿主机可以访问外网，但是容器不能，<code>重启Docker可以解决（或者升级Docker并重启宿主机）</code>。</li>
+<li>docker中使用定时任务，定时任务放进<code>supervisord</code>中.</li>
 </ol>
 <h2 id="选择镜像"><a href="#选择镜像" class="headerlink" title="选择镜像"></a>选择镜像</h2><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h3 id="CENTOS"><a href="#CENTOS" class="headerlink" title="CENTOS"></a>CENTOS</h3><ol>
 <li>使用Docker创建容器时，基础镜像通常选择Ubuntu或Centos，不管哪个镜像的大小都在100MB以上。</li>
@@ -447,7 +469,22 @@
 <h3 id="NGINX-官方镜像"><a href="#NGINX-官方镜像" class="headerlink" title="NGINX 官方镜像"></a>NGINX 官方镜像</h3><h4 id="nginx-alpine"><a href="#nginx-alpine" class="headerlink" title="nginx:alpine"></a>nginx:alpine</h4><ol>
 <li>包含<code>envsubst</code>命令。</li>
 </ol>
-
+<h2 id="资源限制"><a href="#资源限制" class="headerlink" title="资源限制 *"></a><strong>资源限制</strong> <strong>*</strong></h2><p>参考<a href="https://www.cnblogs.com/zhuochong/p/9728383.html" target="_blank" rel="noopener">Docker(二十)-Docker容器CPU、memory资源限制</a></p>
+<ol>
+<li>在使用 docker 运行容器时，默认的情况下，docker没有对容器进行硬件资源的限制，当一台主机上运行几百个容器，这些容器虽然互相隔离，但是底层却使用着相同的 CPU、内存和磁盘资源。如果不对容器使用的资源进行限制，那么容器之间会互相影响，小的来说会导致容器资源使用不公平；大的来说，可能会导致主机和集群资源耗尽，服务完全不可用。</li>
+<li>docker 作为容器的管理者，自然提供了控制容器资源的功能。正如使用内核的 namespace 来做容器之间的隔离，docker 也是通过内核的 cgroups 来做容器的资源限制；包括CPU、内存、磁盘三大方面，基本覆盖了常见的资源配额和使用量控制。</li>
+<li>Docker内存控制OOME在linxu系统上，如果内核探测到当前宿主机已经没有可用内存使用，那么会抛出一个OOME(Out Of Memory Exception:内存异常 )，并且会开启killing去杀掉一些进程。</li>
+<li>一旦发生OOME，任何进程都有可能被杀死，包括docker daemon在内，为此，docker特地调整了docker daemon的OOM_Odj优先级，以免他被杀掉，但容器的优先级并未被调整。经过系统内部复制的计算后，每个系统进程都会有一个OOM_Score得分，OOM_Odj越高，得分越高，（在docker run的时候可以调整OOM_Odj）得分最高的优先被kill掉，当然，也可以指定一些特定的重要的容器禁止被OMM杀掉，在启动容器时使用 –oom-kill-disable=true指定。</li>
+</ol>
+<h3 id="Cgroup"><a href="#Cgroup" class="headerlink" title="Cgroup"></a>Cgroup</h3><ol>
+<li>可以使用stress工具来测试CPU和内存.</li>
+</ol>
+<h3 id="内存限制"><a href="#内存限制" class="headerlink" title="内存限制"></a>内存限制</h3><ol>
+<li>Docker 提供的内存限制功能有以下几点：<br>a. 容器能使用的内存和交换分区大小。<br>b. 容器的核心内存大小。<br>c. 容器虚拟内存的交换行为。<br>d. 容器内存的软性限制。<br>e. 是否杀死占用过多内存的容器。<br>f. 容器被杀死的优先级.</li>
+<li>一般情况下，达到内存限制的容器过段时间后就会被系统杀死。</li>
+<li>执行docker run命令时能使用的和内存限制相关的所有选项如下。<br>|选项|    描述|<br>|—|—|<br>|-m,—memory          |内存限制，格式是数字加单位，单位可以为 b,k,m,g。最小为 4M|<br>|—memory-swap          |内存+交换分区大小总限制。格式同上。必须比-m设置的大|<br>|—memory-reservation |    内存的软性限制。格式同上|<br>|—oom-kill-disable      |是否阻止 OOM killer 杀死容器，默认没设置|<br>|—oom-score-adj      |容器被 OOM killer 杀死的优先级，范围是[-1000, 1000]，默认为 0|<br>|—memory-swappiness  |用于设置容器的虚拟内存控制行为。值为 0~100 之间的整数|<br>|—kernel-memory      |核心内存限制。格式同上，最小为 4M |</li>
+</ol>
+<h3 id="CPU限制"><a href="#CPU限制" class="headerlink" title="CPU限制"></a>CPU限制</h3><h3 id="磁盘IO限制"><a href="#磁盘IO限制" class="headerlink" title="磁盘IO限制"></a>磁盘IO限制</h3>
       
     </div>
     
@@ -566,7 +603,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">155</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +625,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -621,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">3.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">3.1.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">3.2.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT-配置容器启动时运行的命令"><span class="nav-number">3.3.</span> <span class="nav-text">ENTRYPOINT 配置容器启动时运行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-指定启动容器后执行的命令"><span class="nav-number">3.4.</span> <span class="nav-text">CMD 指定启动容器后执行的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">4.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">4.1.</span> <span class="nav-text">bridge</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">5.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">6.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">6.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">6.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">6.3.</span> <span class="nav-text">ALPINE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NGINX-官方镜像"><span class="nav-number">6.4.</span> <span class="nav-text">NGINX 官方镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-alpine"><span class="nav-number">6.4.1.</span> <span class="nav-text">nginx:alpine</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker进程管理"><span class="nav-number">1.</span> <span class="nav-text">Docker进程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">4.</span> <span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">4.1.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">4.2.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT-配置容器启动时运行的命令"><span class="nav-number">4.3.</span> <span class="nav-text">ENTRYPOINT 配置容器启动时运行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD-指定启动容器后执行的命令"><span class="nav-number">4.4.</span> <span class="nav-text">CMD 指定启动容器后执行的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最佳实践"><span class="nav-number">4.5.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置网络"><span class="nav-number">5.</span> <span class="nav-text">配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">5.1.</span> <span class="nav-text">bridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">5.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">6.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择镜像"><span class="nav-number">7.</span> <span class="nav-text">选择镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">7.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CENTOS"><span class="nav-number">7.2.</span> <span class="nav-text">CENTOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALPINE"><span class="nav-number">7.3.</span> <span class="nav-text">ALPINE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NGINX-官方镜像"><span class="nav-number">7.4.</span> <span class="nav-text">NGINX 官方镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-alpine"><span class="nav-number">7.4.1.</span> <span class="nav-text">nginx:alpine</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源限制"><span class="nav-number">8.</span> <span class="nav-text">资源限制 *</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cgroup"><span class="nav-number">8.1.</span> <span class="nav-text">Cgroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存限制"><span class="nav-number">8.2.</span> <span class="nav-text">内存限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU限制"><span class="nav-number">8.3.</span> <span class="nav-text">CPU限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘IO限制"><span class="nav-number">8.4.</span> <span class="nav-text">磁盘IO限制</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -641,7 +678,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

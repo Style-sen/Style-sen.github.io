@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Ubuntu服务系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-15T01:53:04.797Z">
+<meta property="og:updated_time" content="2020-03-30T04:43:01.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu服务器系统及基础设施">
 <meta name="twitter:description" content="Ubuntu服务系统">
@@ -455,7 +455,13 @@
 </tbody>
 </table>
 </div>
-<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="SHELL"><a href="#SHELL" class="headerlink" title="SHELL"></a>SHELL</h3><h3 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h3><ol>
+<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="SHELL终端"><a href="#SHELL终端" class="headerlink" title="SHELL终端"></a>SHELL终端</h3><h4 id="SH"><a href="#SH" class="headerlink" title="SH"></a>SH</h4><h4 id="BASH"><a href="#BASH" class="headerlink" title="BASH"></a>BASH</h4><ol>
+<li>bash shell的命令分为两类：<code>外部命令</code>和<code>内部命令</code>。外部命令是通过系统调用或独立的程序实现的，如sed、awk等等。内部命令是由特殊的文件格式(.def)所实现，如cd、history、exec等等。</li>
+<li><code>fork</code>是linux的系统调用，用来创建子进程(child process)。子进程是父进程(parent process)的一个副本，从父进程那里获得一定的资源分配以及继承父进程的环境。子进程与父进程唯一不同的地方在于pid(process id)。</li>
+<li>环境变量只能单向从父进程传给子进程。不管子进程的环境变量如何变化，都不会影响父进程的环境变量。</li>
+<li><code>exec</code>命令不产生新的子进程。在执行时会把当前的shell process关闭，然后换到后面的命令继续执行。PID不变。</li>
+</ol>
+<h3 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h3><ol>
 <li>普通用户使用$PATH；</li>
 <li>使用sudo去执行一个程序时，出于安全的考虑，这个程序将在新的、最小化的环境中执行。也就是说，诸如PATH这样的环境变量，在sudo命令下已经被重置成默认的状态了。所以当一个刚初始化的PATH变量中不会包含你所要运行的程序所在的目录，用sudo去执行，你就会得到“command not found”的错误。<br>要改变PATH在sudo会话中的初始值，打开/etc/sudoers文件，找到“secure_path”一行。当值执行sudo命令时，”secure_path“中包含的路径将被当做默认PATH变量使用。比如加入/usr/local/bin到其中：<br><code>Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin</code><br>更改会即可生效。</li>
 </ol>
@@ -475,6 +481,14 @@
 </tbody>
 </table>
 </div>
+<h3 id="iostat-查看磁盘IO"><a href="#iostat-查看磁盘IO" class="headerlink" title="iostat 查看磁盘IO"></a><code>iostat</code> 查看磁盘IO</h3><ol>
+<li>avg-cpu：为总体CPU使用统计情况，对于多核CPU，这里为所有CPU的平均值;主要看iowait的值，它指示CPU用于等待io请求完成的时间。</li>
+<li>Device：为各磁盘设备的io统计信息。</li>
+<li>Device中各列含义:<br>a. Device：设备名称<br>b. tps：每秒进程下发的IO读、写请求数量<br>c. Blk_read/s：每秒读扇区数量（一扇区为512bytes）<br>d. Blk_wrtn/s：每秒写扇区数量<br>e. Blk_read：取样时间间隔内读扇区总数量<br>f. Blk_wrtn：取样时间间隔内写扇区总数量</li>
+<li><code>iostat 1 3</code>表示每隔1秒打印1次，共打印3次。iostat命令还有一个非常实用的选项-x，它可以显示更多的信息，也是一个最常用的选项.</li>
+<li>-d选项可以把CPU相关信息过滤掉，只显示磁盘相关信息:<br>rrqm/s：每秒对该设备的读请求被合并次数，文件系统会对读取同块（block）的请求进行合并。<br>wrqm/s：每秒对该设备的写请求被合并次数。<br>r/s：每秒完成的读次数。<br>w/s：每秒完成的写次数。<br>rkB/s：每秒读数据量（kB为单位）。<br>wkB/s：每秒写数据量（kB为单位）。<br>avgrq-sz：平均每次IO操作的数据量（扇区数为单位）。<br>avgqu-sz：平均等待处理的IO请求队列长度。<br>await：平均每次IO请求等待时间（包括等待时间和处理时间，毫秒为单位）。<br>svctm：平均每次IO请求的处理时间（毫秒为单位）。<br>%util：采用周期内用于IO操作的时间比率，即IO队列非空的时间比率。</li>
+<li>最应该关注的是%util，磁盘使用率100%，其实就是%util的值为100%。<h3 id="iotop-查看哪个进程磁盘读写最高"><a href="#iotop-查看哪个进程磁盘读写最高" class="headerlink" title="iotop 查看哪个进程磁盘读写最高"></a><code>iotop</code> 查看哪个进程磁盘读写最高</h3></li>
+</ol>
 <h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><div class="table-container">
 <table>
 <thead>
@@ -529,10 +543,17 @@
 </div>
 <h3 id="shell脚本"><a href="#shell脚本" class="headerlink" title="shell脚本"></a>shell脚本</h3><ol>
 <li>在脚本中使用export设置环境变量，<code>./</code>之后没有生效。原因是执行脚本用./test.sh的方式，如果采用source test.sh，则环境变量会生效。</li>
-<li>直接执行一个脚本文件是在一个子shell中运行的，而source则是在当前shell环境中运行的。</li>
+<li><code>直接执行一个脚本文件是在一个子shell中运行的，而source则是在当前shell环境中运行的</code>。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/zsh</span><br><span class="line"></span><br><span class="line">function mimvp_randnum_uuid()&#123;</span><br><span class="line">    min=$1</span><br><span class="line">    max=$2</span><br><span class="line">    mid=$(($max-$min+1))</span><br><span class="line">    num=$(head -n 20 /proc/sys/kernel/random/uuid | cksum | cut -f1 -d &apos; &apos;)</span><br><span class="line">    randnum=$(($num%$mid+$min))</span><br><span class="line">    echo $randnum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function print_randnum_uuid()&#123;</span><br><span class="line">    for i in &#123;1..50&#125;;</span><br><span class="line">    do </span><br><span class="line">        randnum=$(mimvp_randnum_uuid 40000000 50000000)</span><br><span class="line">        #echo -e &quot;$i \t $randnum&quot;</span><br><span class="line">        echo $randnum</span><br><span class="line">    done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print_randnum_uuid</span><br></pre></td></tr></table></figure>
-<h2 id="SSH访问"><a href="#SSH访问" class="headerlink" title="SSH访问"></a>SSH访问</h2><h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ol>
+<h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><p>参考<a href="https://www.lulinux.com/archives/2258" target="_blank" rel="noopener">Ubuntu 16.04设置crontab定时计划任务</a><br>参考<a href="https://www.cnblogs.com/peida/archive/2013/01/08/2850483.html" target="_blank" rel="noopener">每天一个linux命令（50）：crontab命令</a></p>
+<ol>
+<li>crond是linux下用来周期性的执行某种任务或等待处理某些事件的一个守护进程，与windows下的计划任务类似，当安装完成操作系统后，默认会安装此服务工具（<code>如果使用的容器镜像，可能被裁减</code>），并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。</li>
+<li>Linux下的任务调度分为两类，<code>系统任务调度</code>和<code>用户任务调度</code>。</li>
+<li>在<code>/etc/crontab</code>文件，是系统任务调度的配置文件。</li>
+<li>用户任务调度：用户定期要执行的工作。用户可以使用 crontab 工具来定制自己的计划任务。所有用户定义的crontab 文件都被保存在 <code>/var/spool/cron/crontabs</code>目录中。其文件名与用户名一致。</li>
+</ol>
+<h4 id="crontab命令"><a href="#crontab命令" class="headerlink" title="crontab命令"></a>crontab命令</h4><h3 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h3><h4 id="rsyslog-日志收集"><a href="#rsyslog-日志收集" class="headerlink" title="rsyslog 日志收集"></a>rsyslog 日志收集</h4><h2 id="SSH访问"><a href="#SSH访问" class="headerlink" title="SSH访问"></a>SSH访问</h2><h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ol>
 <li>上传目录到服务器</li>
 </ol>
 <p><code>scp  -r /tmp/local_dir username@servername:remote_dir</code></p>
@@ -543,6 +564,7 @@
 <h2 id="windows下工具"><a href="#windows下工具" class="headerlink" title="windows下工具"></a>windows下工具</h2><ol>
 <li><a href="https://cmder.net/" target="_blank" rel="noopener">cmder</a>类linux终端，支持很多linux命令</li>
 <li><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="noopener">putty</a>小而美</li>
+<li>注：putty支持putty私钥，不支持openssh密钥，需要转换。<a href="https://blog.csdn.net/icbm/article/details/89391093" target="_blank" rel="noopener">Unable to use key file “xxx” (OpenSSH SSH-2 private key)</a></li>
 </ol>
 <h3 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h3><ol>
 <li><a href="https://github.com/huashengdun/webssh" target="_blank" rel="noopener">huashengdun/webssh</a>功能较简单;</li>
@@ -590,8 +612,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/22/python-面向对象-内部方法/" rel="next" title="Python-面向对象">
-                <i class="fa fa-chevron-left"></i> Python-面向对象
+              <a href="/2019/01/23/运维-supervisord/" rel="next" title="supervisord">
+                <i class="fa fa-chevron-left"></i> supervisord
               </a>
             
           </div>
@@ -600,8 +622,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/运维-supervisord/" rel="prev" title="supervisord">
-                supervisord <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/23/运维-服务器硬件/" rel="prev" title="服务器硬件">
+                服务器硬件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -679,7 +701,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">155</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -701,7 +723,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -734,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#U盘安装"><span class="nav-number">1.</span> <span class="nav-text">U盘安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统"><span class="nav-number">2.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">3.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SHELL"><span class="nav-number">3.1.</span> <span class="nav-text">SHELL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH"><span class="nav-number">3.2.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemctl"><span class="nav-number">3.3.</span> <span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">3.4.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">3.5.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">3.6.</span> <span class="nav-text">包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux"><span class="nav-number">3.7.</span> <span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用C-S模型构建"><span class="nav-number">3.7.1.</span> <span class="nav-text">使用C/S模型构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令"><span class="nav-number">3.7.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Command"><span class="nav-number">3.8.</span> <span class="nav-text">Command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本"><span class="nav-number">3.9.</span> <span class="nav-text">shell脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH访问"><span class="nav-number">4.</span> <span class="nav-text">SSH访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows下工具"><span class="nav-number">5.</span> <span class="nav-text">windows下工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">5.1.</span> <span class="nav-text">webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAProxy"><span class="nav-number">5.2.</span> <span class="nav-text">HAProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理工具"><span class="nav-number">6.</span> <span class="nav-text">系统管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webmin"><span class="nav-number">6.1.</span> <span class="nav-text">webmin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用工具"><span class="nav-number">7.</span> <span class="nav-text">常用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#envsubst-将环境变量传递给文件"><span class="nav-number">7.1.</span> <span class="nav-text">envsubst  将环境变量传递给文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">8.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#U盘安装"><span class="nav-number">1.</span> <span class="nav-text">U盘安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统"><span class="nav-number">2.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">3.</span> <span class="nav-text">系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SHELL终端"><span class="nav-number">3.1.</span> <span class="nav-text">SHELL终端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SH"><span class="nav-number">3.1.1.</span> <span class="nav-text">SH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BASH"><span class="nav-number">3.1.2.</span> <span class="nav-text">BASH</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH"><span class="nav-number">3.2.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemctl"><span class="nav-number">3.3.</span> <span class="nav-text">systemctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iostat-查看磁盘IO"><span class="nav-number">3.4.</span> <span class="nav-text">iostat 查看磁盘IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iotop-查看哪个进程磁盘读写最高"><span class="nav-number">3.5.</span> <span class="nav-text">iotop 查看哪个进程磁盘读写最高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">3.6.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">3.7.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包管理"><span class="nav-number">3.8.</span> <span class="nav-text">包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux"><span class="nav-number">3.9.</span> <span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用C-S模型构建"><span class="nav-number">3.9.1.</span> <span class="nav-text">使用C/S模型构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令"><span class="nav-number">3.9.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Command"><span class="nav-number">3.10.</span> <span class="nav-text">Command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本"><span class="nav-number">3.11.</span> <span class="nav-text">shell脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时任务"><span class="nav-number">3.12.</span> <span class="nav-text">定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#crontab命令"><span class="nav-number">3.12.1.</span> <span class="nav-text">crontab命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统日志"><span class="nav-number">3.13.</span> <span class="nav-text">系统日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rsyslog-日志收集"><span class="nav-number">3.13.1.</span> <span class="nav-text">rsyslog 日志收集</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH访问"><span class="nav-number">4.</span> <span class="nav-text">SSH访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows下工具"><span class="nav-number">5.</span> <span class="nav-text">windows下工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">5.1.</span> <span class="nav-text">webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAProxy"><span class="nav-number">5.2.</span> <span class="nav-text">HAProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理工具"><span class="nav-number">6.</span> <span class="nav-text">系统管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webmin"><span class="nav-number">6.1.</span> <span class="nav-text">webmin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用工具"><span class="nav-number">7.</span> <span class="nav-text">常用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#envsubst-将环境变量传递给文件"><span class="nav-number">7.1.</span> <span class="nav-text">envsubst  将环境变量传递给文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">8.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
             
 
           </div>
@@ -754,7 +776,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

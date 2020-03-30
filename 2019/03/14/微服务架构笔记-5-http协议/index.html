@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="http HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP连接就结束了。 HTTP请求和HTTP响应，都是通过TCP连接这个通道来回传输的。长连接是指的TCP连接，而不是HTTP连接。 TCP连接才有真正的长连接（目的是重复使用，多个Http请求复用同一个TCP连接）和短连接这一说。  消息结构 客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（reques">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-25T08:18:24.022Z">
+<meta property="og:updated_time" content="2020-03-30T04:43:01.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-网络协议">
 <meta name="twitter:description" content="http HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP连接就结束了。 HTTP请求和HTTP响应，都是通过TCP连接这个通道来回传输的。长连接是指的TCP连接，而不是HTTP连接。 TCP连接才有真正的长连接（目的是重复使用，多个Http请求复用同一个TCP连接）和短连接这一说。  消息结构 客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（reques">
@@ -478,7 +478,7 @@
 <h2 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h2><ol>
 <li>双向。</li>
 </ol>
-<h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><ol>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><ol>
 <li>客户端起一个<code>定时器</code>，定时发起请求向服务端请求数据。</li>
 <li>服务端接到请求之后马上返回响应信息并关闭连接。</li>
 <li><code>优点</code>：后端简单。</li>
@@ -610,7 +610,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">155</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -632,7 +632,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -665,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息结构"><span class="nav-number">1.1.</span> <span class="nav-text">消息结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部信息"><span class="nav-number">1.2.</span> <span class="nav-text">头部信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Sent-Events-简称SSE"><span class="nav-number">2.</span> <span class="nav-text">Server-Sent Events(简称SSE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket"><span class="nav-number">3.</span> <span class="nav-text">websocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">4.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轮询"><span class="nav-number">4.1.</span> <span class="nav-text">轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长轮询"><span class="nav-number">4.2.</span> <span class="nav-text">长轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长连接"><span class="nav-number">4.3.</span> <span class="nav-text">长连接</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息结构"><span class="nav-number">1.1.</span> <span class="nav-text">消息结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部信息"><span class="nav-number">1.2.</span> <span class="nav-text">头部信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Sent-Events-简称SSE"><span class="nav-number">2.</span> <span class="nav-text">Server-Sent Events(简称SSE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket"><span class="nav-number">3.</span> <span class="nav-text">websocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP状态码"><span class="nav-number">4.</span> <span class="nav-text">HTTP状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">5.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轮询"><span class="nav-number">5.1.</span> <span class="nav-text">轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长轮询"><span class="nav-number">5.2.</span> <span class="nav-text">长轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长连接"><span class="nav-number">5.3.</span> <span class="nav-text">长连接</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -685,7 +685,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

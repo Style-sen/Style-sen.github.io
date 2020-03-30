@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="声明 参考项目用了消息队列，不知道为啥用，有点尴尬  应用场景优点 解耦 异步 削峰  缺点 系统可用性降低，增加了一层消息队列，就增加了一层风险。 系统复杂性增加。  消息队列选型    特性 ActiveMQ RabbitMQ RocketMQ Kafka     单机吞吐量 万级，比RocketMQ\Kafka低一个数量级 同ActiveMQ 10万级，支持高吞吐 10万级，高吞吐，一般配合">
+<meta name="description" content="注意 消息队列的使用，按时间分块，实时计算（少量的批量计算流）。  声明 参考项目用了消息队列，不知道为啥用，有点尴尬  应用场景优点 解耦 异步 削峰  缺点 系统可用性降低，增加了一层消息队列，就增加了一层风险。 系统复杂性增加。  消息队列选型    特性 ActiveMQ RabbitMQ RocketMQ Kafka     单机吞吐量 万级，比RocketMQ\Kafka低一个数量级">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构笔记-中间件-消息队列">
 <meta property="og:url" content="http://yoursite.com/2019/08/22/微服务架构笔记-中间件-消息队列/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="声明 参考项目用了消息队列，不知道为啥用，有点尴尬  应用场景优点 解耦 异步 削峰  缺点 系统可用性降低，增加了一层消息队列，就增加了一层风险。 系统复杂性增加。  消息队列选型    特性 ActiveMQ RabbitMQ RocketMQ Kafka     单机吞吐量 万级，比RocketMQ\Kafka低一个数量级 同ActiveMQ 10万级，支持高吞吐 10万级，高吞吐，一般配合">
+<meta property="og:description" content="注意 消息队列的使用，按时间分块，实时计算（少量的批量计算流）。  声明 参考项目用了消息队列，不知道为啥用，有点尴尬  应用场景优点 解耦 异步 削峰  缺点 系统可用性降低，增加了一层消息队列，就增加了一层风险。 系统复杂性增加。  消息队列选型    特性 ActiveMQ RabbitMQ RocketMQ Kafka     单机吞吐量 万级，比RocketMQ\Kafka低一个数量级">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T05:43:24.431Z">
+<meta property="og:updated_time" content="2020-03-30T04:43:01.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-中间件-消息队列">
-<meta name="twitter:description" content="声明 参考项目用了消息队列，不知道为啥用，有点尴尬  应用场景优点 解耦 异步 削峰  缺点 系统可用性降低，增加了一层消息队列，就增加了一层风险。 系统复杂性增加。  消息队列选型    特性 ActiveMQ RabbitMQ RocketMQ Kafka     单机吞吐量 万级，比RocketMQ\Kafka低一个数量级 同ActiveMQ 10万级，支持高吞吐 10万级，高吞吐，一般配合">
+<meta name="twitter:description" content="注意 消息队列的使用，按时间分块，实时计算（少量的批量计算流）。  声明 参考项目用了消息队列，不知道为啥用，有点尴尬  应用场景优点 解耦 异步 削峰  缺点 系统可用性降低，增加了一层消息队列，就增加了一层风险。 系统复杂性增加。  消息队列选型    特性 ActiveMQ RabbitMQ RocketMQ Kafka     单机吞吐量 万级，比RocketMQ\Kafka低一个数量级">
 
 
 
@@ -395,7 +395,10 @@
       
 
       
-        <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ol>
+        <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li>消息队列的使用，按时间分块，实时计算（少量的批量计算流）。</li>
+</ol>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ol>
 <li>参考<a href="https://mp.weixin.qq.com/s/PG29Ig3ttBEznI7oG0nimw" target="_blank" rel="noopener">项目用了消息队列，不知道为啥用，有点尴尬</a></li>
 </ol>
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
@@ -626,7 +629,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">155</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -648,7 +651,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -681,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列选型"><span class="nav-number">3.</span> <span class="nav-text">消息队列选型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ"><span class="nav-number">3.1.</span> <span class="nav-text">RabbitMQ    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RocketMQ"><span class="nav-number">3.2.</span> <span class="nav-text">RocketMQ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息队列是高可用的"><span class="nav-number">4.</span> <span class="nav-text">如何保证消息队列是高可用的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以rcoketMQ为例，他的集群就有多master-模式、多master多slave异步复制模式、多-master多slave同步双写模式。"><span class="nav-number">4.1.</span> <span class="nav-text">以rcoketMQ为例，他的集群就有多master 模式、多master多slave异步复制模式、多 master多slave同步双写模式。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rabbitMQ-也有普通集群和镜像集群模式"><span class="nav-number">4.2.</span> <span class="nav-text">rabbitMQ,也有普通集群和镜像集群模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息不被重复消费"><span class="nav-number">5.</span> <span class="nav-text">如何保证消息不被重复消费</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">5.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消费的可靠性传输"><span class="nav-number">6.</span> <span class="nav-text">如何保证消费的可靠性传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ-1"><span class="nav-number">6.1.</span> <span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者丢数据"><span class="nav-number">6.1.1.</span> <span class="nav-text">生产者丢数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息队列丢数据"><span class="nav-number">6.1.2.</span> <span class="nav-text">消息队列丢数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者丢数据"><span class="nav-number">6.1.3.</span> <span class="nav-text">消费者丢数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息队列的顺序性"><span class="nav-number">7.</span> <span class="nav-text">如何保证消息队列的顺序性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">2.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列选型"><span class="nav-number">4.</span> <span class="nav-text">消息队列选型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ"><span class="nav-number">4.1.</span> <span class="nav-text">RabbitMQ    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RocketMQ"><span class="nav-number">4.2.</span> <span class="nav-text">RocketMQ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息队列是高可用的"><span class="nav-number">5.</span> <span class="nav-text">如何保证消息队列是高可用的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以rcoketMQ为例，他的集群就有多master-模式、多master多slave异步复制模式、多-master多slave同步双写模式。"><span class="nav-number">5.1.</span> <span class="nav-text">以rcoketMQ为例，他的集群就有多master 模式、多master多slave异步复制模式、多 master多slave同步双写模式。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rabbitMQ-也有普通集群和镜像集群模式"><span class="nav-number">5.2.</span> <span class="nav-text">rabbitMQ,也有普通集群和镜像集群模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息不被重复消费"><span class="nav-number">6.</span> <span class="nav-text">如何保证消息不被重复消费</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">6.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消费的可靠性传输"><span class="nav-number">7.</span> <span class="nav-text">如何保证消费的可靠性传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ-1"><span class="nav-number">7.1.</span> <span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者丢数据"><span class="nav-number">7.1.1.</span> <span class="nav-text">生产者丢数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息队列丢数据"><span class="nav-number">7.1.2.</span> <span class="nav-text">消息队列丢数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者丢数据"><span class="nav-number">7.1.3.</span> <span class="nav-text">消费者丢数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证消息队列的顺序性"><span class="nav-number">8.</span> <span class="nav-text">如何保证消息队列的顺序性</span></a></li></ol></div>
             
 
           </div>
@@ -701,7 +704,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
