@@ -6,7 +6,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七) 概述 Redis 是一个基于内存的高性能key-value数据库。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。 主要缺点是数据库容量受到物理内存的限">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-30T04:43:01.923Z">
+<meta property="og:updated_time" content="2020-04-01T08:55:05.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-中间件-redis">
 <meta name="twitter:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七) 概述 Redis 是一个基于内存的高性能key-value数据库。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。 主要缺点是数据库容量受到物理内存的限">
@@ -399,10 +399,15 @@
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
 <li>Redis 是一个基于内存的高性能key-value数据库。</li>
 <li>整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写操作，是已知性能最快的Key-Value DB。</li>
-<li>主要缺点是数据库容量受到物理内存的限制，不能用作海量数据的高性能读写，因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。</li>
-</ol>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ol>
-<li>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</li>
+<li>主要缺点是数据库容量受到物理内存的限制，不能用作海量数据的高性能读写，因此Redis适合的场景主要局限在<code>较小数据量的高性能操作和运算</code>上。</li>
+<li>Redis为单进程单线程模式，采用队列模式将并发访问变为串行访问。</li>
+<li>CS模式。</li>
+<li>a.IO能不能读取:使用<code>多路复用器（epoll）</code>解决更有效率地获取哪个client可以读取。b.有了，worker自己得去读取。c.计算。</li>
+<li>单worker线程，串行执行读客户端-计算-写客户端。原子执行。<code>串行之后，就会变的快</code>。</li>
+<li><p>redis 6.0增加了IO thread.IO变成多线程，计算是单线程。</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3></li>
+<li><p>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
+</li>
 <li>不同的数据类型使用命令不同。</li>
 <li>单个value的最大限制是1GB。</li>
 </ol>
@@ -669,7 +674,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">154</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
