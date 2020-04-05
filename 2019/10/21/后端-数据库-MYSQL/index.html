@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="MYSQL基本教程 面试必备（原理）事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔离级别 脏读 不可重复读 幻读">
+<meta name="description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔离级">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后端-数据库-MYSQL">
 <meta property="og:url" content="http://yoursite.com/2019/10/21/后端-数据库-MYSQL/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="MYSQL基本教程 面试必备（原理）事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔离级别 脏读 不可重复读 幻读">
+<meta property="og:description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔离级">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-01T08:55:05.181Z">
+<meta property="og:updated_time" content="2020-04-05T12:43:29.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-数据库-MYSQL">
-<meta name="twitter:description" content="MYSQL基本教程 面试必备（原理）事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔离级别 脏读 不可重复读 幻读">
+<meta name="twitter:description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔离级">
 
 
 
@@ -396,7 +396,8 @@
 
       
         <p><a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">MYSQL基本教程</a></p>
-<h2 id="面试必备（原理）"><a href="#面试必备（原理）" class="headerlink" title="面试必备（原理）"></a>面试必备（原理）</h2><h3 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h3><ol>
+<h2 id="面试必备（原理）"><a href="#面试必备（原理）" class="headerlink" title="面试必备（原理）"></a>面试必备（原理）</h2><ol>
+<li>数据库解决<code>全量IO</code>的问题。<h3 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h3></li>
 <li>在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。</li>
 </ol>
 <div class="table-container">
@@ -439,6 +440,18 @@
 </div>
 <ol>
 <li>脏读(dirty read)是指一个事务可以读到其他事务还未提交的数据。不可重复读(non-repeatable read)是指在一个事务中同一行被读取了多次，可以读到不同的值。幻读(phantom read)是指在一个事务中执行同一个语句多次，读到的数据行发生了改变，即可能行数增加了或减少了。对于MySQL来说，默认的事务隔离级别是RR，通过上表我们可知RR是可重复读的，因此可以解释这个现象。</li>
+</ol>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ol>
+<li>数据存在磁盘上的data page（默认4K）中。（分治）</li>
+<li>建表之前创建schema，指定字段类型（实际上是空间），是为了确定表中每一行的长度。方便查找。</li>
+<li>MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。</li>
+<li>建立索引的字段<code>必须是</code>数据表中最常用来查询（where）的字段。</li>
+<li>索引分单列索引和组合索引。单列索引，即一个索引只包含单个列，一个表可以有多个单列索引，但这不是组合索引。组合索引，即一个索引包含多个列。</li>
+<li>创建索引时，你需要确保该索引是应用在 SQL 查询语句的条件(一般作为 WHERE 子句的条件)。</li>
+<li>实际上，<code>索引也是一张表</code>，该表保存了主键与索引字段，并指向实体表的记录。</li>
+<li><code>缺点</code>过多的使用索引将会造成滥用。因此索引也会有它的缺点：虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行INSERT、UPDATE和DELETE。因为更新表时，MySQL不仅要保存数据，还要保存一下索引文件。建立索引会占用磁盘空间的索引文件。</li>
+<li>索引也是数据，也需要查询，大了之后也需要提高速度。这个时候有一个<code>B+</code>数。树干在内存，树叶在磁盘。</li>
+<li><code>因为有了索引</code>，数据表变大了，查询不一定会变慢。<code>WHERE</code>只有索引，是不会慢的。但是并发量比较大，查询比较复杂，速度还是比较慢的（磁盘IO影响）。</li>
 </ol>
 <h2 id="MYSQL配置"><a href="#MYSQL配置" class="headerlink" title="MYSQL配置"></a>MYSQL配置</h2><div class="table-container">
 <table>
@@ -695,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试必备（原理）"><span class="nav-number">1.</span> <span class="nav-text">面试必备（原理）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离"><span class="nav-number">1.1.</span> <span class="nav-text">事务隔离</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL配置"><span class="nav-number">2.</span> <span class="nav-text">MYSQL配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL性能优化"><span class="nav-number">3.</span> <span class="nav-text">MYSQL性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库云"><span class="nav-number">4.</span> <span class="nav-text">数据库云</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDS-Aliyun"><span class="nav-number">4.1.</span> <span class="nav-text">RDS(Aliyun)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句"><span class="nav-number">5.</span> <span class="nav-text">SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">5.1.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联查JOIN"><span class="nav-number">5.2.</span> <span class="nav-text">联查JOIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊查询"><span class="nav-number">5.3.</span> <span class="nav-text">模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件"><span class="nav-number">5.3.1.</span> <span class="nav-text">条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAVING子句"><span class="nav-number">5.4.</span> <span class="nav-text">HAVING子句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答疑解惑"><span class="nav-number">6.</span> <span class="nav-text">答疑解惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计规范"><span class="nav-number">7.</span> <span class="nav-text">设计规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表结构"><span class="nav-number">7.1.</span> <span class="nav-text">表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上禁止使用的SQL语句"><span class="nav-number">7.2.</span> <span class="nav-text">线上禁止使用的SQL语句</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试必备（原理）"><span class="nav-number">1.</span> <span class="nav-text">面试必备（原理）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离"><span class="nav-number">1.1.</span> <span class="nav-text">事务隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">1.2.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL配置"><span class="nav-number">2.</span> <span class="nav-text">MYSQL配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL性能优化"><span class="nav-number">3.</span> <span class="nav-text">MYSQL性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库云"><span class="nav-number">4.</span> <span class="nav-text">数据库云</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDS-Aliyun"><span class="nav-number">4.1.</span> <span class="nav-text">RDS(Aliyun)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句"><span class="nav-number">5.</span> <span class="nav-text">SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">5.1.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联查JOIN"><span class="nav-number">5.2.</span> <span class="nav-text">联查JOIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊查询"><span class="nav-number">5.3.</span> <span class="nav-text">模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件"><span class="nav-number">5.3.1.</span> <span class="nav-text">条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAVING子句"><span class="nav-number">5.4.</span> <span class="nav-text">HAVING子句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答疑解惑"><span class="nav-number">6.</span> <span class="nav-text">答疑解惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计规范"><span class="nav-number">7.</span> <span class="nav-text">设计规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表结构"><span class="nav-number">7.1.</span> <span class="nav-text">表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上禁止使用的SQL语句"><span class="nav-number">7.2.</span> <span class="nav-text">线上禁止使用的SQL语句</span></a></li></ol></li></ol></div>
             
 
           </div>

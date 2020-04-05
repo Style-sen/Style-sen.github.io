@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="K8s入门">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-06T01:27:06.348Z">
+<meta property="og:updated_time" content="2020-04-05T12:43:29.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetes实战">
 <meta name="twitter:description" content="K8s入门">
@@ -474,6 +474,17 @@ Ingress Controller
 <li>使用私有仓库的镜像。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一步：创建secret</span><br><span class="line">kubectl create secret docker-registry regcred --docker-server=&lt;your-registry-server&gt; --docker-username=&lt;your-name&gt; --docker-password=&lt;your-pword&gt; --docker-email=&lt;your-email&gt;</span><br><span class="line"></span><br><span class="line">第二步：在yml文件中指定secret</span><br><span class="line">在spec.template.spec.imagePullSecrets段内填入SECRET名称。</span><br></pre></td></tr></table></figure>
+<h2 id="K8S开源项目"><a href="#K8S开源项目" class="headerlink" title="K8S开源项目"></a>K8S开源项目</h2><h3 id="KubeOperator"><a href="#KubeOperator" class="headerlink" title="KubeOperator"></a><a href="https://github.com/KubeOperator/KubeOperator" target="_blank" rel="noopener">KubeOperator</a></h3><ol>
+<li>KubeOperator 是一个开源项目，在离线网络环境下，通过可视化 Web UI 在 VMware、Openstack 或者物理机上规划、部署和运营生产级别的 Kubernetes 集群。</li>
+<li>KubeOperator 内置 KubeApps Plus 应用商店，以支撑各种基于 K8s 的应用场景，如：</li>
+</ol>
+<ul>
+<li>CI / CD 应用场景：GitLab、Jenkins、Harbor、Sonarqube、Argo CD 等；</li>
+<li>GPU / AI 应用场景：Tensorflow、PyTorch 等;</li>
+<li>Serverless 应用场景：Knative 等；</li>
+<li>数据库应用场景：MySQL、Redis 等;</li>
+</ul>
+
       
     </div>
     
@@ -505,8 +516,8 @@ Ingress Controller
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/运维-自动化运维学习/" rel="next" title="自动化运维学习（AutoDevOps实践）">
-                <i class="fa fa-chevron-left"></i> 自动化运维学习（AutoDevOps实践）
+              <a href="/2018/12/18/运维-Kubernetes实战-服务网格（ServiceMesh）选择/" rel="next" title="Kubernetes-服务网格">
+                <i class="fa fa-chevron-left"></i> Kubernetes-服务网格
               </a>
             
           </div>
@@ -515,8 +526,8 @@ Ingress Controller
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/18/运维-Kubernetes实战-服务网格（ServiceMesh）选择/" rel="prev" title="Kubernetes-服务网格">
-                Kubernetes-服务网格 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/20/JS-NODEJS/" rel="prev" title="NodeJS概览及开发框架">
+                NodeJS概览及开发框架 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +660,7 @@ Ingress Controller
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建集群"><span class="nav-number">1.</span> <span class="nav-text">创建集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Minikube"><span class="nav-number">1.1.</span> <span class="nav-text">使用Minikube</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署应用"><span class="nav-number">2.</span> <span class="nav-text">部署应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个Kubernetes-Deployment"><span class="nav-number">2.1.</span> <span class="nav-text">创建一个Kubernetes  Deployment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#replication-controller（RC）与deployment的区别"><span class="nav-number">2.1.1.</span> <span class="nav-text">replication controller（RC）与deployment的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除Deployment"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除Deployment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">2.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用外部可见-变成一个service"><span class="nav-number">2.2.</span> <span class="nav-text">应用外部可见(变成一个service)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伸缩部署"><span class="nav-number">2.3.</span> <span class="nav-text">伸缩部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新镜像"><span class="nav-number">2.4.</span> <span class="nav-text">更新镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ingress"><span class="nav-number">3.</span> <span class="nav-text">Ingress</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-1"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建集群"><span class="nav-number">1.</span> <span class="nav-text">创建集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Minikube"><span class="nav-number">1.1.</span> <span class="nav-text">使用Minikube</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署应用"><span class="nav-number">2.</span> <span class="nav-text">部署应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个Kubernetes-Deployment"><span class="nav-number">2.1.</span> <span class="nav-text">创建一个Kubernetes  Deployment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#replication-controller（RC）与deployment的区别"><span class="nav-number">2.1.1.</span> <span class="nav-text">replication controller（RC）与deployment的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除Deployment"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除Deployment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">2.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用外部可见-变成一个service"><span class="nav-number">2.2.</span> <span class="nav-text">应用外部可见(变成一个service)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伸缩部署"><span class="nav-number">2.3.</span> <span class="nav-text">伸缩部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新镜像"><span class="nav-number">2.4.</span> <span class="nav-text">更新镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ingress"><span class="nav-number">3.</span> <span class="nav-text">Ingress</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-1"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K8S开源项目"><span class="nav-number">5.</span> <span class="nav-text">K8S开源项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KubeOperator"><span class="nav-number">5.1.</span> <span class="nav-text">KubeOperator</span></a></li></ol></li></ol></div>
             
 
           </div>
