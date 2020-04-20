@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="参考阿里巴巴为什么不用 ZooKeeper 做服务发现？ 优点 阿里巴巴中间件内部也维护了一个面向大规模生产的、高可用、更易监控和运维的 ZooKeeper 的代码分支 TaoKeeper，如果以我们近 10 年在各个业务线和生产上使用 ZooKeeper 的实践，给 ZooKeeper 用一个短语评价的话，那么我们认为 ZooKeeper 应该是 “The King Of Coordinatio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构笔记-分布式-ZooKeeper">
 <meta property="og:url" content="http://yoursite.com/2019/10/11/微服务架构笔记-分布式-ZooKeeper/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="参考阿里巴巴为什么不用 ZooKeeper 做服务发现？ 优点 阿里巴巴中间件内部也维护了一个面向大规模生产的、高可用、更易监控和运维的 ZooKeeper 的代码分支 TaoKeeper，如果以我们近 10 年在各个业务线和生产上使用 ZooKeeper 的实践，给 ZooKeeper 用一个短语评价的话，那么我们认为 ZooKeeper 应该是 “The King Of Coordinatio">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-11T09:58:40.623Z">
+<meta property="og:updated_time" content="2020-04-18T03:50:26.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-分布式-ZooKeeper">
+<meta name="twitter:description" content="参考阿里巴巴为什么不用 ZooKeeper 做服务发现？ 优点 阿里巴巴中间件内部也维护了一个面向大规模生产的、高可用、更易监控和运维的 ZooKeeper 的代码分支 TaoKeeper，如果以我们近 10 年在各个业务线和生产上使用 ZooKeeper 的实践，给 ZooKeeper 用一个短语评价的话，那么我们认为 ZooKeeper 应该是 “The King Of Coordinatio">
 
 
 
@@ -392,7 +395,12 @@
       
 
       
-        
+        <p>参考<a href="https://mp.weixin.qq.com/s/HTZcM-6NIOfxLunvdj2yaQ" target="_blank" rel="noopener">阿里巴巴为什么不用 ZooKeeper 做服务发现？</a></p>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ol>
+<li>阿里巴巴中间件内部也维护了一个面向大规模生产的、高可用、更易监控和运维的 ZooKeeper 的代码分支 TaoKeeper，如果以我们近 10 年在各个业务线和生产上使用 ZooKeeper 的实践，给 ZooKeeper 用一个短语评价的话，那么我们认为 ZooKeeper 应该是 “The King Of Coordination for Big Data”！</li>
+<li>可以使用 ZooKeeper，但是大数据请向左，而交易则向右，分布式协调向左，服务发现向右。</li>
+</ol>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1>
       
     </div>
     
@@ -480,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,7 +513,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -541,6 +558,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#优点"><span class="nav-number">1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺点"><span class="nav-number">2.</span> <span class="nav-text">缺点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

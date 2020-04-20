@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-30T04:43:01.907Z">
+<meta property="og:updated_time" content="2020-04-18T03:50:26.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-web框架-node-egg">
 <meta name="twitter:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
@@ -588,7 +588,7 @@
 <li>router: 统一了 socket.io 的 event 与 框架路由的处理配置方式</li>
 </ul>
 <ol>
-<li>egg-socket.io 内置了 socket.io-redis，在 cluster 模式下，使用 redis 可以较为简单的实现 clients/rooms 等信息共享。</li>
+<li><code>egg-socket.io 内置了 socket.io-redis，在 cluster 模式下，使用 redis 可以较为简单的实现 clients/rooms 等信息共享</code>。</li>
 <li>开启 redis 后，程序在启动时会尝试连接到 redis 服务器 此处 redis 仅用于存储连接实例信息，参见 #server.adapter。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">chat</span><br><span class="line">├── app</span><br><span class="line">│   ├── extend</span><br><span class="line">│   │   └── helper.js</span><br><span class="line">│   ├── io</span><br><span class="line">│   │   ├── controller</span><br><span class="line">│   │   │   └── default.js    //对连接之后的数据交互调用此，对socket.id独立</span><br><span class="line">│   │   └── middleware</span><br><span class="line">│   │       ├── connection.js    //处理链接的时候调用，每次新建连接的时候处理（连接或断开）在配置中`connectionMiddleware`设置</span><br><span class="line">│   │       └── packet.js    //针对消息的处理</span><br><span class="line">│   └── router.js</span><br><span class="line">├── config</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
@@ -600,13 +600,18 @@
 </ol>
 <h4 id="Room"><a href="#Room" class="headerlink" title="Room"></a>Room</h4><ol>
 <li>room 存在于 nsp 中，通过 join/leave 方法来加入或者离开; 框架中使用方法相同；</li>
-<li>注意： 每一个 socket 连接都会拥有一个随机且不可预测的唯一 id Socket#id，并且会自动加入到以这个 id 命名的 room 中</li>
+<li>注意： <code>每一个 socket 连接都会拥有一个随机且不可预测的唯一 id Socket#id，并且会自动加入到以这个 id 命名的 room 中</code></li>
 </ol>
 <h4 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h4><ol>
 <li>在连接中间件中，使用<code>await next()</code>来分别处理连接和断开连接。需要注意的是，断开连接响应发生在断开连接超时的时候，所以可能断开连接响应发生在建立连接之后。</li>
 <li><code>一种方案</code>：此时需要判断old_id和current_id是否一致的情况；只需要连接时判断有无C_id,没有C_id更新C_id和O_id；有C_id,只更新C_id；超时回调判断C_id和O_id是否一致，一致删除C-id和O_id;不一致，更新O_id.</li>
 <li>上述方案有一个问题，在异步的时候，会出现超时回调距离时间很近，会导致更新缓存里的值出问题。</li>
 <li>采用<code>第二种方案</code>：将socket id也作为缓存key值，value值为时间，这要每次取value值最大的情况。</li>
+<li><p>在cluster模式下，socket只是连接到其中一个进程，所以需要使用<a href="https://github.com/socketio/socket.io-redis" target="_blank" rel="noopener">socketio/socket.io-redis</a>共享连接信息，但是限制有方法调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">By running socket.io with the socket.io-redis adapter you can run multiple socket.io instances in different processes or servers that can all broadcast and emit events to and from each other.</span><br><span class="line"></span><br><span class="line">So any of the following commands:</span><br><span class="line"></span><br><span class="line">io.emit(&apos;hello&apos;, &apos;to all clients&apos;);</span><br><span class="line">io.to(&apos;room42&apos;).emit(&apos;hello&apos;, &quot;to all clients in &apos;room42&apos; room&quot;);</span><br><span class="line"></span><br><span class="line">io.on(&apos;connection&apos;, (socket) =&gt; &#123;</span><br><span class="line">  socket.broadcast.emit(&apos;hello&apos;, &apos;to all clients except sender&apos;);</span><br><span class="line">  socket.to(&apos;room42&apos;).emit(&apos;hello&apos;, &quot;to all clients in &apos;room42&apos; room except sender&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">will properly be broadcast to the clients through the Redis Pub/Sub mechanism.</span><br><span class="line"></span><br><span class="line">If you need to emit events to socket.io instances from a non-socket.io process, you should use socket.io-emitter.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>app.io.sockets.connected[socketId]</code>和<code>const nsp = app.io.of(&#39;/&#39;);nsp.sockets[id]</code>两种方法在cluster之下不能发送数据,因为和进程有关，只能用上述方法。</p>
+</li>
 </ol>
 <h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h2 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h2><h2 id="生产部署"><a href="#生产部署" class="headerlink" title="生产部署"></a>生产部署</h2><h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><ol>
 <li>只安装 dependencies 的依赖.</li>
@@ -817,7 +822,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

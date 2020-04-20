@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-01T07:40:25.083Z">
+<meta property="og:updated_time" content="2020-04-20T07:36:31.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJS概览及开发框架">
 <meta name="twitter:description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
@@ -507,22 +507,21 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">安装github工程</span><br><span class="line">npm install https://github.com/huixisheng/zepto-lazyload.git#branch</span><br></pre></td></tr></table></figure>
 <h4 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h4><p>参考<a href="http://www.ruanyifeng.com/blog/2019/02/npx.html" target="_blank" rel="noopener">npx 使用教程</a></p>
 <ol>
-<li>调用项目内部安装的模块.一般来说，调用 Mocha ，只能在项目脚本<code>node-modules/.bin/mocha --version</code>和 package.json 的scripts字段里面。<code>npx macha --version</code></li>
+<li>调用项目内部安装的模块.一般来说，调用 <code>Mocha</code> ，只能在项目脚本<code>node-modules/.bin/mocha --version</code>和 package.json 的scripts字段里面。<code>npx macha --version</code></li>
 <li>原理很简单，就是运行的时候，会到node_modules/.bin路径和环境变量$PATH里面，检查命令是否存在。<code>也可以调用系统命令</code>。</li>
 <li>除了调用项目内部模块，npx 还能避免全局安装的模块。</li>
 <li>如果想让 npx 强制使用本地模块，不下载远程模块，可以使用—no-install参数。如果本地不存在该模块，就会报错。</li>
 <li>如果忽略本地的同名模块，强制安装使用远程模块，可以使用—ignore-existing参数。</li>
 <li>例: 当前目录起一个http服务。</li>
 </ol>
-<h1 id="项目的根目录下执行"><a href="#项目的根目录下执行" class="headerlink" title="项目的根目录下执行"></a>项目的根目录下执行</h1><p>$ node-modules/.bin/mocha —version</p>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><pre><code>作为描述文件，描述你的项目依赖哪些包。
-
-
-文件内容：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name              # 【必须】</span><br><span class="line">version           # 【必须】</span><br><span class="line">description       # 描述信息，有助于搜索</span><br><span class="line">main              # 入口文件，一般都是 index.js</span><br><span class="line">scripts           # 支持的脚本，默认是一个空的 test</span><br><span class="line">keywords          # 关键字，有助于在人们使用 npm search 搜索时发现你的项目</span><br><span class="line">author            # 作者信息</span><br><span class="line">license           # 默认是 MIT</span><br><span class="line">bugs              # 当前项目的一些错误信息，如果有的话</span><br><span class="line">dependencies      # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="npm问题"><a href="#npm问题" class="headerlink" title="npm问题"></a>npm问题</h3><ol>
+<h5 id="项目的根目录下执行"><a href="#项目的根目录下执行" class="headerlink" title="项目的根目录下执行"></a>项目的根目录下执行</h5><p>$ node-modules/.bin/mocha —version</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><ol>
+<li>作为描述文件，描述你的项目依赖哪些包。</li>
+<li>文件内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name              # 【必须】</span><br><span class="line">version           # 【必须】</span><br><span class="line">description       # 描述信息，有助于搜索</span><br><span class="line">main              # 入口文件，一般都是 index.js</span><br><span class="line">scripts           # 支持的脚本，默认是一个空的 test</span><br><span class="line">keywords          # 关键字，有助于在人们使用 npm search 搜索时发现你的项目</span><br><span class="line">author            # 作者信息</span><br><span class="line">license           # 默认是 MIT</span><br><span class="line">bugs              # 当前项目的一些错误信息，如果有的话</span><br><span class="line">dependencies      # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="npm问题"><a href="#npm问题" class="headerlink" title="npm问题"></a>npm问题</h3><ol>
 <li><a href="https://newsn.net/say/sudo-npm-install-permission.html" target="_blank" rel="noopener">sudo npm install 时，报错 permission denied 的解决方案</a></li>
-<li></li>
 </ol>
 <h2 id="PM2"><a href="#PM2" class="headerlink" title="PM2"></a>PM2</h2><p>pm2是一个内置负载均衡的node.js应用进程管理器</p>
 <p><code>npm install -g pm2</code></p>
@@ -566,7 +565,9 @@
 </tbody>
 </table>
 </div>
-<h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><h3 id="process"><a href="#process" class="headerlink" title="process"></a><a href="http://javascript.ruanyifeng.com/nodejs/process.html" target="_blank" rel="noopener">process</a></h3><p>process对象是 Node 的一个全局对象，提供当前 Node 进程的信息。它可以在脚本的任意位置使用，不必通过require命令加载。该对象部署了EventEmitter接口。</p>
+<h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><h3 id="process"><a href="#process" class="headerlink" title="process"></a><a href="http://javascript.ruanyifeng.com/nodejs/process.html" target="_blank" rel="noopener">process</a></h3><ol>
+<li>process对象是 Node 的一个全局对象，提供当前 Node 进程的信息。它可以在脚本的任意位置使用，不必通过require命令加载。该对象部署了EventEmitter接口。</li>
+</ol>
 <div class="table-container">
 <table>
 <thead>
@@ -588,8 +589,31 @@
 </table>
 </div>
 <h3 id="Node-js-EventEmitter"><a href="#Node-js-EventEmitter" class="headerlink" title="Node.js EventEmitter"></a><a href="http://www.runoob.com/nodejs/nodejs-event.html" target="_blank" rel="noopener">Node.js EventEmitter</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">创建一个模块</span><br><span class="line">import EventEmitter from &apos;events&apos;;</span><br><span class="line">class someThing extends EventEmitter&#123;</span><br><span class="line">    a=null</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        //初始化</span><br><span class="line">        super()</span><br><span class="line"></span><br><span class="line">        this.a = new b();</span><br><span class="line">        this.a.on(&quot;&quot;, ()=&gt;&#123;</span><br><span class="line">            this.emit(&quot;&quot;,c);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    method ()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default someThing;</span><br></pre></td></tr></table></figure>
-<h3 id="http"><a href="#http" class="headerlink" title="[http]"></a>[http]</h3><h2 id="NODEJS工程"><a href="#NODEJS工程" class="headerlink" title="NODEJS工程"></a>NODEJS工程</h2><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init          # 可在当前目录下创建一个package.json文件</span><br><span class="line">npm init --yes    # 可跳过回答问题步骤</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>index.js<br>main<br>|——config.js</p>
+<h3 id="http"><a href="#http" class="headerlink" title="http"></a><a href>http</a></h3><h2 id="NODEJS工程"><a href="#NODEJS工程" class="headerlink" title="NODEJS工程"></a>NODEJS工程</h2><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init          # 可在当前目录下创建一个package.json文件</span><br><span class="line">npm init --yes    # 可跳过回答问题步骤</span><br></pre></td></tr></table></figure>
+<h4 id="自定义npm-init行为"><a href="#自定义npm-init行为" class="headerlink" title="自定义npm init行为"></a>自定义npm init行为</h4><ol>
+<li>参考<a href="https://juejin.im/post/5ab3f77df265da2392364341#heading-0" target="_blank" rel="noopener">2018 年了，你还是只会 npm install 吗？</a></li>
+<li>定制 npm init 命令的实现方式也很简单，在 Home 目录创建一个 <code>.npm-init.js</code> 即可，该文件的 module.exports 即为 package.json 配置内容，需要获取用户输入时候，使用 prompt() 方法即可。</li>
+<li>.npm-init.js 是一个常规的模块，意味着我们可以执行随便什么 node 脚本可以执行的任务。例如通过 fs 创建 README, .eslintrc 等项目必需文件，实现<code>项目脚手架</code>的作用。</li>
+</ol>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>index.js<br>main<br>|——config.js</p>
+<h3 id="npm-install安装依赖"><a href="#npm-install安装依赖" class="headerlink" title="npm install安装依赖"></a><code>npm install</code>安装依赖</h3><ol>
+<li>npm install <package> 除了简单的指定包名, package 还可以是一个指向有效包名的 <code>http url</code>、<code>git url</code>和<code>文件夹路径</code>。</package></li>
+<li><a href="https://docs.npmjs.com/files/package.json#git-urls-as-dependencies" target="_blank" rel="noopener">npm支持的git url格式</a><code>&lt;protocol&gt;://[&lt;user&gt;[:&lt;password&gt;]@]&lt;hostname&gt;[:&lt;port&gt;][:][/]&lt;path&gt;[#&lt;commit-ish&gt; | #semver:&lt;semver&gt;]</code></li>
+</ol>
+<h3 id="最佳实践参考"><a href="#最佳实践参考" class="headerlink" title="最佳实践参考"></a>最佳实践<a href="https://juejin.im/post/5ab3f77df265da2392364341#heading-0" target="_blank" rel="noopener">参考</a></h3><ol>
+<li>使用 npm: &gt;=5.1 版本, 保持 package-lock.json 文件默认开启配置</li>
+<li>初始化：第一作者初始化项目时使用 npm install <package> 安装依赖包, 默认保存 ^X.Y.Z 依赖 range 到 package.json中; 提交 package.json, package-lock.json, 不要提交 node_modules 目录</package></li>
+<li>初始化：项目成员首次 checkout/clone 项目代码后，执行一次 npm install 安装依赖包</li>
+<li>不要手动修改 package-lock.json</li>
+<li>升级依赖包:<br> 升级小版本: 本地执行 npm update 升级到新的小版本<br> 升级大版本: 本地执行 npm install <package-name>@<version> 升级到新的大版本<br> 也可手动修改 package.json 中版本号为要升级的版本(大于现有版本号)并指定所需的 semver, 然后执行 npm install<br> 本地验证升级后新版本无问题后，提交新的 package.json, package-lock.json 文件</version></package-name></li>
+<li>降级依赖包:<br> 正确: npm install <package-name>@<old-version> 验证无问题后，提交 package.json 和 package-lock.json 文件<br> 错误: 手动修改 package.json 中的版本号为更低版本的 semver, 这样修改并不会生效，因为再次执行 npm install 依然会安装 package-lock.json 中的锁定版本</old-version></package-name></li>
+<li>删除依赖包:<br> Plan A: npm uninstall <package> 并提交 package.json 和 package-lock.json<br> Plan B: 把要卸载的包从 package.json 中 dependencies 字段删除, 然后执行 npm install 并提交 package.json 和 package-lock.json</package></li>
+<li>任何时候有人提交了 package.json, package-lock.json 更新后，团队其他成员应在 svn update/git pull 拉取更新后执行 npm install 脚本安装更新后的依赖包</li>
+</ol>
+<h3 id="语义化版本控制"><a href="#语义化版本控制" class="headerlink" title="语义化版本控制"></a>语义化版本控制</h3><ol>
+<li>官方文档适用于任何软件管理<a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本 2.0.0</a></li>
+<li><a href="https://segmentfault.com/a/1190000018714929" target="_blank" rel="noopener">npm 语义化版本控制</a></li>
+</ol>
 <h2 id="框架集合"><a href="#框架集合" class="headerlink" title="框架集合"></a>框架集合</h2><p>查看流行框架，参考<a href="http://nodeframework.com/" target="_blank" rel="noopener">nodeframework</a></p>
 <h3 id="Express"><a href="#Express" class="headerlink" title="Express    *"></a><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Express</a>    <em>*</em></h3><ol>
 <li>Express是一个最小且灵活的Web应用程序框架，为Web和移动应用程序提供了一组强大的功能，它的行为就像一个中间件，可以帮助管理服务器和路由.</li>
@@ -642,15 +666,15 @@
 <h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><ol>
 <li>Koa本身是一个非常轻量级的框架,可以构建具有出色性能的Web应用程序。代码可读性和维护性都相对较高</li>
 <li>当然一些性能的最佳实践也是必不可少的，例如：</li>
-</ol>
-<ul>
 <li>集群</li>
 <li>并行运行</li>
 <li>在代码中使用异步API</li>
 <li>保持代码小而轻</li>
 <li>以及使用gzip压缩 等等</li>
-</ul>
-<h4 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h4><p>Koa有大量的中间件，提供相应的功能.</p>
+</ol>
+<h4 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h4><ol>
+<li>Koa有大量的中间件，提供相应的功能.</li>
+</ol>
 <h3 id="Sails"><a href="#Sails" class="headerlink" title="Sails    **"></a><a href>Sails</a>    <em>**</em></h3><ol>
 <li>企业级框架</li>
 <li>Sails 是基于 exrpess 的<code>大而全</code>的框架，MVC框架，旨在模拟熟悉的Ruby on Rails框架的MVC模式，但支持现代应用程序的需求。</li>
@@ -691,7 +715,9 @@
 <li>端点是手动创建的，必须手动测试</li>
 <li>重构是手动的</li>
 </ul>
-<h4 id="性能-1"><a href="#性能-1" class="headerlink" title="性能"></a>性能</h4><p>2017年对Node框架的研究表明hapi相对于其他框架的表现最差</p>
+<h4 id="性能-1"><a href="#性能-1" class="headerlink" title="性能"></a>性能</h4><ol>
+<li>2017年对Node框架的研究表明hapi相对于其他框架的表现最差</li>
+</ol>
 <h4 id="安全-1"><a href="#安全-1" class="headerlink" title="安全"></a>安全</h4><ol>
 <li>hapi安全性主要依赖于插件</li>
 <li>插件选择</li>
@@ -713,7 +739,7 @@
 <li>Node.js 版的 spring</li>
 <li>构建微服务应用</li>
 </ol>
-<h3 id="egg"><a href="#egg" class="headerlink" title="egg"></a><a href>egg</a></h3>
+
       
     </div>
     
@@ -743,8 +769,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/运维-Kubernetes实战/" rel="next" title="Kubernetes实战">
-                <i class="fa fa-chevron-left"></i> Kubernetes实战
+              <a href="/2018/12/18/运维-Kubernetes实战-服务网格（ServiceMesh）选择/" rel="next" title="Kubernetes-服务网格">
+                <i class="fa fa-chevron-left"></i> Kubernetes-服务网格
               </a>
             
           </div>
@@ -832,7 +858,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -887,7 +913,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先安装NVM"><span class="nav-number">1.1.</span> <span class="nav-text">首先安装NVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.1.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#win8及以上"><span class="nav-number">1.1.2.</span> <span class="nav-text">(win8及以上)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后安装NODE-会自动安装npm"><span class="nav-number">1.2.</span> <span class="nav-text">然后安装NODE(会自动安装npm)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用yarn替换npm"><span class="nav-number">1.3.</span> <span class="nav-text">使用yarn替换npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用"><span class="nav-number">1.4.</span> <span class="nav-text">安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.5.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM和YARN使用"><span class="nav-number">2.</span> <span class="nav-text">NPM和YARN使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">2.1.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npx"><span class="nav-number">2.1.1.</span> <span class="nav-text">npx</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#项目的根目录下执行"><span class="nav-number"></span> <span class="nav-text">项目的根目录下执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">0.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm问题"><span class="nav-number">0.2.</span> <span class="nav-text">npm问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PM2"><span class="nav-number">1.</span> <span class="nav-text">PM2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置对象"><span class="nav-number">2.</span> <span class="nav-text">内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#process"><span class="nav-number">2.1.</span> <span class="nav-text">process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-EventEmitter"><span class="nav-number">2.2.</span> <span class="nav-text">Node.js EventEmitter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">2.3.</span> <span class="nav-text">[http]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NODEJS工程"><span class="nav-number">3.</span> <span class="nav-text">NODEJS工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">3.1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">3.2.</span> <span class="nav-text">目录结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架集合"><span class="nav-number">4.</span> <span class="nav-text">框架集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Express"><span class="nav-number">4.1.</span> <span class="nav-text">Express    *</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">4.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">4.1.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能的最佳实践"><span class="nav-number">4.1.3.</span> <span class="nav-text">性能的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全的最佳实践"><span class="nav-number">4.1.4.</span> <span class="nav-text">安全的最佳实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KOA"><span class="nav-number">4.2.</span> <span class="nav-text">KOA    *</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能"><span class="nav-number">4.2.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全"><span class="nav-number">4.2.4.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sails"><span class="nav-number">4.3.</span> <span class="nav-text">Sails    **</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LoopBack"><span class="nav-number">4.4.</span> <span class="nav-text">[LoopBack]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThinkJS"><span class="nav-number">4.5.</span> <span class="nav-text">[ThinkJS]    **</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eggjs"><span class="nav-number">4.6.</span> <span class="nav-text">[Eggjs]    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hapi"><span class="nav-number">4.7.</span> <span class="nav-text">[Hapi]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#好处"><span class="nav-number">4.7.1.</span> <span class="nav-text">好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-2"><span class="nav-number">4.7.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能-1"><span class="nav-number">4.7.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全-1"><span class="nav-number">4.7.4.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nest"><span class="nav-number">4.8.</span> <span class="nav-text">nest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg"><span class="nav-number">4.9.</span> <span class="nav-text">egg</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先安装NVM"><span class="nav-number">1.1.</span> <span class="nav-text">首先安装NVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.1.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#win8及以上"><span class="nav-number">1.1.2.</span> <span class="nav-text">(win8及以上)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后安装NODE-会自动安装npm"><span class="nav-number">1.2.</span> <span class="nav-text">然后安装NODE(会自动安装npm)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用yarn替换npm"><span class="nav-number">1.3.</span> <span class="nav-text">使用yarn替换npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用"><span class="nav-number">1.4.</span> <span class="nav-text">安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.5.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM和YARN使用"><span class="nav-number">2.</span> <span class="nav-text">NPM和YARN使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">2.1.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npx"><span class="nav-number">2.1.1.</span> <span class="nav-text">npx</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#项目的根目录下执行"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">项目的根目录下执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">2.2.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm问题"><span class="nav-number">2.3.</span> <span class="nav-text">npm问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PM2"><span class="nav-number">3.</span> <span class="nav-text">PM2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置对象"><span class="nav-number">4.</span> <span class="nav-text">内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#process"><span class="nav-number">4.1.</span> <span class="nav-text">process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-EventEmitter"><span class="nav-number">4.2.</span> <span class="nav-text">Node.js EventEmitter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">4.3.</span> <span class="nav-text">http</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NODEJS工程"><span class="nav-number">5.</span> <span class="nav-text">NODEJS工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">5.1.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义npm-init行为"><span class="nav-number">5.1.1.</span> <span class="nav-text">自定义npm init行为</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">5.2.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-install安装依赖"><span class="nav-number">5.3.</span> <span class="nav-text">npm install安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最佳实践参考"><span class="nav-number">5.4.</span> <span class="nav-text">最佳实践参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义化版本控制"><span class="nav-number">5.5.</span> <span class="nav-text">语义化版本控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架集合"><span class="nav-number">6.</span> <span class="nav-text">框架集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Express"><span class="nav-number">6.1.</span> <span class="nav-text">Express    *</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">6.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">6.1.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能的最佳实践"><span class="nav-number">6.1.3.</span> <span class="nav-text">性能的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全的最佳实践"><span class="nav-number">6.1.4.</span> <span class="nav-text">安全的最佳实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KOA"><span class="nav-number">6.2.</span> <span class="nav-text">KOA    *</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点-1"><span class="nav-number">6.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-1"><span class="nav-number">6.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能"><span class="nav-number">6.2.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全"><span class="nav-number">6.2.4.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sails"><span class="nav-number">6.3.</span> <span class="nav-text">Sails    **</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LoopBack"><span class="nav-number">6.4.</span> <span class="nav-text">[LoopBack]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThinkJS"><span class="nav-number">6.5.</span> <span class="nav-text">[ThinkJS]    **</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eggjs"><span class="nav-number">6.6.</span> <span class="nav-text">[Eggjs]    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hapi"><span class="nav-number">6.7.</span> <span class="nav-text">[Hapi]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#好处"><span class="nav-number">6.7.1.</span> <span class="nav-text">好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-2"><span class="nav-number">6.7.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能-1"><span class="nav-number">6.7.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全-1"><span class="nav-number">6.7.4.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nest"><span class="nav-number">6.8.</span> <span class="nav-text">nest</span></a></li></ol></li></ol></div>
             
 
           </div>
