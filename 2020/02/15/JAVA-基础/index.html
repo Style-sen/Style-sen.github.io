@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-30T04:43:01.903Z">
+<meta property="og:updated_time" content="2020-04-24T08:59:37.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA-基础">
 <meta name="twitter:description" content="JVM">
@@ -415,10 +415,18 @@
 <li>大小写敏感：Java是大小写敏感的，这就意味着标识符Hello与hello是不同的。</li>
 <li>类名：对于所有的类来说，类名的首字母应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写，例如 MyFirstJavaClass 。</li>
 <li>方法名：所有的方法名都应该以小写字母开头。如果方法名含有若干单词，则后面的每个单词首字母大写。</li>
-<li>源文件名：源文件名必须和类名相同。当保存文件的时候，你应该使用类名作为文件名保存（切记Java是大小写敏感的），文件名的后缀为.java。（如果文件名和类名不相同则会导致编译错误）。</li>
+<li>源文件名：<code>源文件名必须和类名相同</code>。当保存文件的时候，你应该使用类名作为文件名保存（切记Java是大小写敏感的），文件名的后缀为.java。（如果文件名和类名不相同则会导致编译错误）。</li>
 <li>主方法入口：所有的Java 程序由public static void main(String args[])方法开始执行。</li>
 </ol>
-
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><ol>
+<li>浮点常量默认是double的，单精度保存小数点7位；</li>
+<li>浮点数是不精确的，避免浮点数之间的比较。</li>
+<li>使用高精度，可使用java.math中的类 BigDecimal（不可变的、任意精度的有符号十进制数。）和类 BigInteger（不可变的任意精度的整数。）</li>
+</ol>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><ol>
+<li>按bit位占内存.</li>
+</ol>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2>
       
     </div>
     
@@ -592,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.2.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">2.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例变量"><span class="nav-number">2.4.</span> <span class="nav-text">实例变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.2.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">2.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例变量"><span class="nav-number">2.4.</span> <span class="nav-text">实例变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型"><span class="nav-number">4.1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">4.1.1.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">Boolean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型"><span class="nav-number">4.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li></ol></div>
             
 
           </div>
