@@ -1,1 +1,0 @@
-Generated automatically by [HexoBlog](https://github.com/Style-sen/HexoBlog)
