@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端-web框架-node-egg">
+<meta property="og:url" content="http://yoursite.com/2019/07/31/后端-web框架-node-egg/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-04T08:15:33.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="后端-web框架-node-egg">
+<meta name="twitter:description" content="Egg 奉行『约定优于配置』 渐进式开发框架内置基础对象Application Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件  123456789101112131415161718// app.jsmodule.exports = app =&amp;gt; &amp;#123;  app.once(&apos;server&apos;, server =&amp;g">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/31/后端-web框架-node-egg/">
+
+
+
+
+
+  <title>后端-web框架-node-egg | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/后端-web框架-node-egg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">后端-web框架-node-egg</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T14:16:49+08:00">
+                2019-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/31/后端-web框架-node-egg/" class="leancloud_visitors" data-flag-title="后端-web框架-node-egg">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Egg 奉行『约定优于配置』</p>
+<h2 id="渐进式开发"><a href="#渐进式开发" class="headerlink" title="渐进式开发"></a>渐进式开发</h2><h2 id="框架内置基础对象"><a href="#框架内置基础对象" class="headerlink" title="框架内置基础对象"></a>框架内置基础对象</h2><h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><ol>
+<li>Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  app.once(<span class="string">'server'</span>, server =&gt; &#123;    <span class="comment">//该事件一个 worker 进程只会触发一次，在 HTTP 服务完成启动后，会将 HTTP server 通过这个事件暴露出来给开发者</span></span><br><span class="line">    <span class="comment">// websocket</span></span><br><span class="line">  &#125;);</span><br><span class="line">  app.on(<span class="string">'error'</span>, (err, ctx) =&gt; &#123;    <span class="comment">//运行时有任何的异常被 onerror 插件捕获后，都会触发 error 事件，将错误对象和关联的上下文（如果有）暴露给开发者，可以进行自定义的日志记录上报等处理</span></span><br><span class="line">    <span class="comment">// report error</span></span><br><span class="line">  &#125;);</span><br><span class="line">  app.on(<span class="string">'request'</span>, ctx =&gt; &#123;    <span class="comment">//应用收到请求和响应请求时，分别会触发 request 和 response 事件，并将当前请求上下文暴露出来，开发者可以监听这两个事件来进行日志记录</span></span><br><span class="line">    <span class="comment">// log receive request</span></span><br><span class="line">  &#125;);</span><br><span class="line">  app.on(<span class="string">'response'</span>, ctx =&gt; &#123;</span><br><span class="line">    <span class="comment">// ctx.starttime is set by framework</span></span><br><span class="line">    <span class="keyword">const</span> used = <span class="built_in">Date</span>.now() - ctx.starttime;</span><br><span class="line">    <span class="comment">// log total cost</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h4><ol>
+<li>Application 对象几乎可以在编写应用时的任何一个地方获取到.</li>
+<li>和 Koa 一样，在 Context 对象上，可以通过 ctx.app 访问到 Application 对象 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 使用egg-socket之后，关闭连接</span><br><span class="line">app.io.of(&apos;/&apos;).adapter.remoteDisconnect(id, true, err =&gt; &#123;</span><br><span class="line">    logger.error(err);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>Context 是一个请求级别的对象，继承自 Koa.Context。在每一次收到用户请求时，框架会实例化一个 Context 对象，这个对象封装了这次用户请求的信息，并提供了许多便捷的方法来获取请求参数或者设置响应信息。框架会将所有的 Service 挂载到 Context 实例上，一些插件也会将一些其他的方法和对象挂载到它上面（egg-sequelize 会将所有的 model 挂载在 Context 上）。</p>
+<h4 id="获取方式-1"><a href="#获取方式-1" class="headerlink" title="获取方式"></a>获取方式</h4><ol>
+<li>最常见的 Context 实例获取方式是在 Middleware, Controller 以及 Service 中.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ctx 作为函数参数</span><br><span class="line">    .query    //请求url中的参数</span><br><span class="line">    .request </span><br><span class="line">        .body    //获取post请求的body.请求内容类型必须为为`application/json`</span><br><span class="line">        .header</span><br><span class="line">          .host</span><br><span class="line">          .connection</span><br><span class="line">          .content-length</span><br><span class="line">        .method    // 请求方法</span><br><span class="line">        .url    // 路由</span><br><span class="line">        .query  //参数</span><br><span class="line">    .res</span><br><span class="line">    .response</span><br><span class="line">    .socket    //使用egg-socket插件之后</span><br><span class="line">        .emit(&apos;res&apos;, &apos;connected!&apos;);    // </span><br><span class="line">        .id //socket连接ID</span><br><span class="line">    .app</span><br><span class="line">    .params    // URL中的参数，定义router时会定义</span><br></pre></td></tr></table></figure>
+<h3 id="Request-amp-Response"><a href="#Request-amp-Response" class="headerlink" title="Request &amp; Response"></a>Request &amp; Response</h3><p>Request 是一个请求级别的对象，继承自 Koa.Request。封装了 Node.js 原生的 HTTP Request 对象，提供了一系列辅助方法获取 HTTP 请求常用参数。<br>Response 是一个请求级别的对象，继承自 Koa.Response。封装了 Node.js 原生的 HTTP Response 对象，提供了一系列辅助方法设置 HTTP 响应。</p>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><ol>
+<li>框架提供了一个 Controller 基类，并推荐所有的 Controller 都继承于该基类实现。这个 Controller 基类有下列属性：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx - 当前请求的 Context 实例。</span><br><span class="line">app - 应用的 Application 实例。</span><br><span class="line">config - 应用的配置。</span><br><span class="line">service - 应用所有的 service。</span><br><span class="line">logger - 为当前 controller 封装的 logger 对象。</span><br></pre></td></tr></table></figure>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><ol>
+<li>框架提供了一个 Service 基类，并推荐所有的 Service 都继承于该基类实现。</li>
+<li>Service 基类的属性和 Controller 基类属性一致<h3 id="Helper"><a href="#Helper" class="headerlink" title="Helper"></a>Helper</h3></li>
+<li>Helper 用来提供一些实用的 utility 函数。它的作用在于我们可以将一些常用的动作抽离在 helper.js 里面成为一个独立的函数，这样可以用 JavaScript 来写复杂的逻辑，避免逻辑分散各处，同时可以更好的编写测试用例。</li>
+<li>Helper 自身是一个类，有和 Controller 基类一样的属性，它也会在每次请求时进行实例化，因此 Helper 上的所有函数也能获取到当前请求相关的上下文信息。</li>
+</ol>
+<h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><p>7.1. 获取方式</p>
+<h3 id="Logger"><a href="#Logger" class="headerlink" title="Logger"></a>Logger</h3><p>8.1. App Logger<br>8.2. App CoreLogger<br>8.3. Context Logger<br>8.4. Context CoreLogger<br>8.5. Controller Logger &amp; Service Logger</p>
+<h3 id="Subscription"><a href="#Subscription" class="headerlink" title="Subscription"></a>Subscription</h3><h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a><a href="https://eggjs.org/zh-cn/basics/structure.html" target="_blank" rel="noopener">目录结构</a></h2><ol>
+<li>文件名不能用下划线，有可能识别不了。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">egg-project</span><br><span class="line">├── package.json</span><br><span class="line">├── app.js (可选)    <span class="comment">//自定义启动时的初始化工作，可选</span></span><br><span class="line">├── agent.js (可选)</span><br><span class="line">├── app</span><br><span class="line">  |   ├── router.js    <span class="comment">//配置 URL 路由规则</span></span><br><span class="line">│  ├── controller    <span class="comment">//解析用户的输入，处理后返回相应的结果,注意，这个下边的文件必须以小写字母开头</span></span><br><span class="line">│    |   └── home.js</span><br><span class="line">│  ├── service (可选)    <span class="comment">//编写业务逻辑层，可选，建议使用，*注意，此目录下还可再建一级目录，不可建二级目录*</span></span><br><span class="line">│    |   └── user.js</span><br><span class="line">│  ├── middleware (可选)    <span class="comment">//编写中间件，可选（例如同意错误处理）</span></span><br><span class="line">│    |   └── response_time.js</span><br><span class="line">│  ├── schedule (可选)    <span class="comment">//定时任务，可选</span></span><br><span class="line">│    |   └── my_task.js</span><br><span class="line">│  ├── public (可选)    <span class="comment">//放置静态资源，可选</span></span><br><span class="line">│    |   └── reset.css</span><br><span class="line">│  ├── view (可选)    <span class="comment">//放置模板文件，可选，由模板插件约定，具体参见模板渲染</span></span><br><span class="line">│    |   └── home.tpl</span><br><span class="line">  |   ├── model    <span class="comment">//放置领域模型，可选，由领域类相关插件约定，如 egg-sequelize.   不能存在子目录，而且模型名必须要和模型文件名字符相同（可以不区分大小写）</span></span><br><span class="line">│  └── extend (可选)    <span class="comment">//框架的扩展，可选</span></span><br><span class="line">│       ├── helper.js (可选)</span><br><span class="line">│       ├── request.js (可选)</span><br><span class="line">│       ├── response.js (可选)</span><br><span class="line">│       ├── context.js (可选)</span><br><span class="line">│       ├── application.js (可选)</span><br><span class="line">│       └── agent.js (可选)</span><br><span class="line">├── config    <span class="comment">//编写配置文件</span></span><br><span class="line">  |   ├── plugin.js    <span class="comment">//配置需要加载的插件</span></span><br><span class="line">  |   ├── config.default.js</span><br><span class="line">│  ├── config.prod.js</span><br><span class="line">  |   ├── config.test.js (可选)</span><br><span class="line">  |   ├── config.local.js (可选)</span><br><span class="line">  |   └── config.unittest.js (可选)</span><br><span class="line">└── test    <span class="comment">//单元测试</span></span><br><span class="line">    ├── middleware</span><br><span class="line">    |   └── response_time.test.js</span><br><span class="line">    └── controller</span><br><span class="line">        └── home.test.js</span><br></pre></td></tr></table></figure>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class UserController extends Controller &#123;</span><br><span class="line">  async info() &#123;</span><br><span class="line">    const &#123; ctx &#125; = this;</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      name: `hello $&#123;ctx.params.id&#125;`,  // params获取url中的参数。</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="router"><a href="#router" class="headerlink" title="router"></a>router</h3><ol>
+<li>Router 主要用来描述请求 URL 和具体承担执行动作的 Controller 的对应关系， 框架约定了 app/router.js 文件用于统一所有路由规则。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// app/router.js</span><br><span class="line">module.exports = app =&gt; &#123;</span><br><span class="line">  const &#123; router, controller &#125; = app;</span><br><span class="line">  router.get(&apos;/user/:id&apos;, controller.user.info);    // 定义/user/1</span><br><span class="line">  router.get(&apos;/home&apos;, controller.home);</span><br><span class="line">  router.get(&apos;/user/:id&apos;, controller.user.page);</span><br><span class="line">  router.post(&apos;/admin&apos;, isAdmin, controller.admin);</span><br><span class="line">  router.post(&apos;/user&apos;, isLoginUser, hasAdminPermission, controller.user.create);</span><br><span class="line">  router.post(&apos;/api/v1/comments&apos;, controller.v1.comments.create); // app/controller/v1/comments.js</span><br><span class="line">  router.resources(&apos;topics&apos;, &apos;/api/v2/topics&apos;, app.controller.topics);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="路由完整定义主要包括5个主要部分"><a href="#路由完整定义主要包括5个主要部分" class="headerlink" title="路由完整定义主要包括5个主要部分:"></a>路由完整定义主要包括5个主要部分:</h4><p><code>router.verb(&#39;router-name&#39;, &#39;path-match&#39;, middleware1, ..., middlewareN, app.controller.action);</code></p>
+<ol>
+<li>verb - 用户触发动作，支持 get，post 等所有 HTTP 方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">router.head - HEAD</span><br><span class="line">router.options - OPTIONS</span><br><span class="line">router.get - GET</span><br><span class="line">router.put - PUT</span><br><span class="line">router.post - POST</span><br><span class="line">router.patch - PATCH</span><br><span class="line">router.delete - DELETE</span><br><span class="line">router.del - 由于 delete 是一个保留字，所以提供了一个 delete 方法的别名。</span><br><span class="line">router.redirect - 可以对 URL 进行重定向处理，比如我们最经常使用的可以把用户访问的根目录路由到某个主页。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>router-name 给路由设定一个别名，可以通过 Helper 提供的辅助函数 pathFor 和 urlFor 来生成 URL。(可选)</li>
+<li>path-match - 路由 URL 路径。</li>
+<li>middleware1 - 在 Router 里面可以配置多个 Middleware。(可选)</li>
+<li>controller - 指定路由映射到的具体的 controller 上，controller 可以有两种写法：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.controller.user.fetch - 直接指定一个具体的 controller</span><br><span class="line">&apos;user.fetch&apos; - 可以简写为字符串形式</span><br></pre></td></tr></table></figure>
+<h4 id="RESTful-风格的-URL-定义"><a href="#RESTful-风格的-URL-定义" class="headerlink" title="RESTful 风格的 URL 定义"></a>RESTful 风格的 URL 定义</h4><p>通过 app.resources 方法，我们将 posts 这个资源的增删改查接口映射到了 app/controller/posts.js 文件。</p>
+<p>只需要在 posts.js 里面实现对应的函数就可以了。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>RouteName</th>
+<th>Controller.Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/posts</td>
+<td>posts</td>
+<td>app.controllers.posts.index</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/new</td>
+<td>new_post</td>
+<td>app.controllers.posts.new</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.show</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/:id/edit</td>
+<td>edit_post</td>
+<td>app.controllers.posts.edit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/posts</td>
+<td>posts</td>
+<td>app.controllers.posts.create</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.update</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.destroy</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h4><ol>
+<li>我们约定 test 目录为存放所有测试脚本的目录，测试所使用到的 fixtures 和相关辅助脚本都应该放在此目录下。</li>
+<li>测试脚本文件统一按 ${filename}.test.js 命名，必须以 .test.js 作为文件后缀。</li>
+</ol>
+<p>一个应用的测试目录示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test</span><br><span class="line">├── controller</span><br><span class="line">│   └── home.test.js</span><br><span class="line">├── hello.test.js</span><br><span class="line">└── service</span><br><span class="line">    └── user.test.js</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>框架提供了强大且可扩展的配置功能，可以自动合并应用、插件、框架的配置，按顺序覆盖，且可以根据环境维护不同的配置。合并后的配置可直接从 app.config 获取。</li>
+</ol>
+<h2 id="启动自定义"><a href="#启动自定义" class="headerlink" title="启动自定义"></a>启动自定义</h2><ol>
+<li>我们常常需要在应用启动期间进行一些初始化工作，等初始化完成后应用才可以启动成功，并开始对外提供服务。</li>
+<li>框架提供了统一的入口文件（app.js）进行启动过程自定义，这个文件返回一个 Boot 类，我们可以通过定义 Boot 类中的生命周期方法来执行启动应用过程中的初始化工作。</li>
+<li>框架提供了这些 生命周期函数供开发人员处理：</li>
+</ol>
+<ul>
+<li>配置文件即将加载，这是最后动态修改配置的时机（configWillLoad）</li>
+<li>配置文件加载完成（configDidLoad）</li>
+<li>文件加载完成（didLoad）</li>
+<li>插件启动完毕（willReady）</li>
+<li>worker 准备就绪（didReady）</li>
+<li>应用启动完成（serverDidReady）</li>
+<li>应用即将关闭（beforeClose）</li>
+</ul>
+<ol>
+<li>我们可以在 app.js 中定义这个 Boot 类，下面我们抽取几个在应用开发中常用的生命周期函数来举例：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppBootHook</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(app) &#123;</span><br><span class="line">    <span class="keyword">this</span>.app = app;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  configWillLoad() &#123;</span><br><span class="line">    <span class="comment">// 此时 config 文件已经被读取并合并，但是还并未生效</span></span><br><span class="line">    <span class="comment">// 这是应用层修改配置的最后时机</span></span><br><span class="line">    <span class="comment">// 注意：此函数只支持同步调用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 例如：参数中的密码是加密的，在此处进行解密</span></span><br><span class="line">    <span class="keyword">this</span>.app.config.mysql.password = decrypt(<span class="keyword">this</span>.app.config.mysql.password);</span><br><span class="line">    <span class="comment">// 例如：插入一个中间件到框架的 coreMiddleware 之间</span></span><br><span class="line">    <span class="keyword">const</span> statusIdx = <span class="keyword">this</span>.app.config.coreMiddleware.indexOf(<span class="string">'status'</span>);</span><br><span class="line">    <span class="keyword">this</span>.app.config.coreMiddleware.splice(statusIdx + <span class="number">1</span>, <span class="number">0</span>, <span class="string">'limit'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> didLoad() &#123;</span><br><span class="line">    <span class="comment">// 所有的配置已经加载完毕</span></span><br><span class="line">    <span class="comment">// 可以用来加载应用自定义的文件，启动自定义的服务</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 例如：创建自定义应用的示例</span></span><br><span class="line">    <span class="keyword">this</span>.app.queue = <span class="keyword">new</span> Queue(<span class="keyword">this</span>.app.config.queue);</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.app.queue.init();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 例如：加载自定义的目录</span></span><br><span class="line">    <span class="keyword">this</span>.app.loader.loadToContext(path.join(__dirname, <span class="string">'app/tasks'</span>), <span class="string">'tasks'</span>, &#123;</span><br><span class="line">      fieldClass: <span class="string">'tasksClasses'</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> willReady() &#123;</span><br><span class="line">    <span class="comment">// 所有的插件都已启动完毕，但是应用整体还未 ready</span></span><br><span class="line">    <span class="comment">// 可以做一些数据初始化等操作，这些操作成功才会启动应用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 例如：从数据库加载数据到内存缓存</span></span><br><span class="line">    <span class="keyword">this</span>.app.cacheData = <span class="keyword">await</span> <span class="keyword">this</span>.app.model.query(QUERY_CACHE_SQL);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> didReady() &#123;</span><br><span class="line">    <span class="comment">// 应用已经启动完毕</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> ctx = <span class="keyword">await</span> <span class="keyword">this</span>.app.createAnonymousContext();</span><br><span class="line">    <span class="keyword">await</span> ctx.service.Biz.request();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> serverDidReady() &#123;</span><br><span class="line">    <span class="comment">// http / https server 已启动，开始接受外部请求</span></span><br><span class="line">    <span class="comment">// 此时可以从 app.server 拿到 server 的实例</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.app.server.on(<span class="string">'timeout'</span>, socket =&gt; &#123;</span><br><span class="line">      <span class="comment">// handle socket timeout</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = AppBootHook;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：在自定义生命周期函数中不建议做太耗时的操作，框架会有启动的超时检测。</strong></p>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a><a href="https://eggjs.org/zh-cn/basics/middleware.html" target="_blank" rel="noopener">中间件</a></h2><ol>
+<li>Egg 是基于 Koa 实现的，所以 Egg 的中间件形式和 Koa 的中间件形式是一样的，都是基于洋葱圈模型。每次我们编写一个中间件，就相当于在洋葱外面包了一层。</li>
+</ol>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p><a href="https://github.com/eggjs/awesome-egg" target="_blank" rel="noopener">eggjs/awesome-egg</a></p>
+<h3 id="egg-cors"><a href="#egg-cors" class="headerlink" title="egg-cors"></a><a href="https://github.com/eggjs/egg-cors" target="_blank" rel="noopener">egg-cors</a></h3><ol>
+<li><a href="https://blog.csdn.net/Cappuccino200/article/details/82535201" target="_blank" rel="noopener">egg.js作为服务端接受post跨域请求</a></li>
+</ol>
+<h3 id="egg-redis"><a href="#egg-redis" class="headerlink" title="[egg-redis]"></a>[egg-redis]</h3><p>基于ioredis。</p>
+<h3 id="egg-Sequelize"><a href="#egg-Sequelize" class="headerlink" title="egg-Sequelize"></a><a href="https://github.com/eggjs/egg-sequelize" target="_blank" rel="noopener">egg-Sequelize</a></h3><ol>
+<li><strong>model定义文件在model目录下，不能存在子目录，而且模型名必须要和模型文件名字符相同（可以不区分大小写）</strong></li>
+<li><strong>外键需要定义在model中</strong></li>
+<li><code>const Op = app.Sequelize.Op;</code></li>
+<li>不需要多个关联关系并存，比如使用了<code>belongsTo</code>不用再使用<code>hasMany</code>。但是<code>belongsTo</code>只能用源model联查目标model，如果需要反过来的话，还需要hasOne或者hasMany。</li>
+<li><code>一个model定义中只能出现一个Model.associate=function(){},多条关联关系都写在其中</code>。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; STRING, INTEGER, DATE &#125; = app.Sequelize;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> User = app.model.define(<span class="string">'user'</span>, &#123;</span><br><span class="line">    id: &#123;</span><br><span class="line">      type: INTEGER,</span><br><span class="line">      primaryKey: <span class="literal">true</span>,</span><br><span class="line">      autoIncrement: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    name: STRING(<span class="number">30</span>),</span><br><span class="line">    age: INTEGER,</span><br><span class="line">    created_at: DATE,</span><br><span class="line">    updated_at: DATE,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  User.associate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;    <span class="comment">// 不能使用prototype</span></span><br><span class="line">    app.model.User.hasMany(app.model.Post, &#123; <span class="attr">as</span>: <span class="string">'posts'</span> &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> User;</span><br><span class="line">&#125;;  </span><br><span class="line"></span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; STRING, INTEGER, DATE &#125; = app.Sequelize;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> Post = app.model.define(<span class="string">'post'</span>, &#123;  <span class="comment">// model名称</span></span><br><span class="line">    id: &#123;</span><br><span class="line">      type: INTEGER,</span><br><span class="line">      primaryKey: <span class="literal">true</span>,</span><br><span class="line">      autoIncrement: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    title: STRING(<span class="number">30</span>),</span><br><span class="line">    content: STRING(<span class="number">255</span>),</span><br><span class="line">    user_id: INTEGER,</span><br><span class="line">    created_at: DATE,</span><br><span class="line">    updated_at: DATE,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// model 配置</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//关联</span></span><br><span class="line">  Post.associate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    app.model.Post.belongsTo(app.model.User, &#123; <span class="attr">as</span>: <span class="string">'user'</span>, <span class="attr">foreignKey</span>: <span class="string">'user_id'</span> &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//方法</span></span><br><span class="line">  Post.findByIdWithUser = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">id, userId</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.findOne(&#123;</span><br><span class="line">      where: &#123; id, <span class="attr">user_id</span>: userId &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> Post;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="egg-jwt"><a href="#egg-jwt" class="headerlink" title="egg-jwt"></a><a href="https://github.com/okoala/egg-jwt" target="_blank" rel="noopener">egg-jwt</a></h3><h3 id="brickyang-egg-bull"><a href="#brickyang-egg-bull" class="headerlink" title="brickyang/egg-bull"></a><a href="https://github.com/brickyang/egg-bull" target="_blank" rel="noopener">brickyang/egg-bull</a></h3><ol>
+<li>增加任务队列。</li>
+<li>将process方法放进app.js中。</li>
+</ol>
+<h3 id="egg-validate"><a href="#egg-validate" class="headerlink" title="egg-validate"></a><a href>egg-validate</a></h3><ol>
+<li>作用：对参数进行检验。</li>
+<li>对API接口参数进行校验。</li>
+<li>rules参考<a href="https://github.com/yiminghe/async-validator" target="_blank" rel="noopener">yiminghe/async-validator</a></li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>Required</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="egg-socket"><a href="#egg-socket" class="headerlink" title="egg-socket"></a><a href="https://github.com/eggjs/egg-socket.io" target="_blank" rel="noopener">egg-socket</a></h3><ol>
+<li>框架提供了 egg-socket.io 插件，增加了以下开发规约：</li>
+</ol>
+<ul>
+<li>namespace: 通过配置的方式定义 namespace（命名空间）</li>
+<li>middleware: 对每一次 socket 连接的建立/断开、每一次消息/数据传递进行预处理</li>
+<li>controller: 响应 socket.io 的 event 事件</li>
+<li>router: 统一了 socket.io 的 event 与 框架路由的处理配置方式</li>
+</ul>
+<ol>
+<li><code>egg-socket.io 内置了 socket.io-redis，在 cluster 模式下，使用 redis 可以较为简单的实现 clients/rooms 等信息共享</code>。</li>
+<li>开启 redis 后，程序在启动时会尝试连接到 redis 服务器 此处 redis 仅用于存储连接实例信息，参见 #server.adapter。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">chat</span><br><span class="line">├── app</span><br><span class="line">│   ├── extend</span><br><span class="line">│   │   └── helper.js</span><br><span class="line">│   ├── io</span><br><span class="line">│   │   ├── controller</span><br><span class="line">│   │   │   └── default.js    //对连接之后的数据交互调用此，对socket.id独立</span><br><span class="line">│   │   └── middleware</span><br><span class="line">│   │       ├── connection.js    //处理链接的时候调用，每次新建连接的时候处理（连接或断开）在配置中`connectionMiddleware`设置</span><br><span class="line">│   │       └── packet.js    //针对消息的处理</span><br><span class="line">│   └── router.js</span><br><span class="line">├── config</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<p>对应的文件都在 app/io 目录下</p>
+<h4 id="router（加入router）"><a href="#router（加入router）" class="headerlink" title="router（加入router）"></a>router（加入router）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = app =&gt; &#123;</span><br><span class="line">  // app.io.of(&apos;/&apos;)</span><br><span class="line">  app.io.route(&apos;chat&apos;, app.io.controller.chat.index);</span><br><span class="line"></span><br><span class="line">  // app.io.of(&apos;/chat&apos;)</span><br><span class="line">  app.io.of(&apos;/chat&apos;).route(&apos;chat&apos;, app.io.controller.chat.index);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="Namespace-nsp"><a href="#Namespace-nsp" class="headerlink" title="Namespace (nsp)"></a>Namespace (nsp)</h4><ol>
+<li>namespace 通常意味分配到不同的接入点或者路径，如果客户端没有指定 nsp，则默认分配到 “/“ 这个默认的命名空间。</li>
+<li>在 socket.io 中我们通过 of 来划分命名空间；鉴于 nsp 通常是预定义且相对固定的存在，框架将其进行了封装，采用配置的方式来划分不同的命名空间。</li>
+</ol>
+<h4 id="Room"><a href="#Room" class="headerlink" title="Room"></a>Room</h4><ol>
+<li>room 存在于 nsp 中，通过 join/leave 方法来加入或者离开; 框架中使用方法相同；</li>
+<li>注意： <code>每一个 socket 连接都会拥有一个随机且不可预测的唯一 id Socket#id，并且会自动加入到以这个 id 命名的 room 中</code></li>
+</ol>
+<h4 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h4><ol>
+<li>在连接中间件中，使用<code>await next()</code>来分别处理连接和断开连接。需要注意的是，断开连接响应发生在断开连接超时的时候，所以可能断开连接响应发生在建立连接之后。</li>
+<li><code>一种方案</code>：此时需要判断old_id和current_id是否一致的情况；只需要连接时判断有无C_id,没有C_id更新C_id和O_id；有C_id,只更新C_id；超时回调判断C_id和O_id是否一致，一致删除C-id和O_id;不一致，更新O_id.</li>
+<li>上述方案有一个问题，在异步的时候，会出现超时回调距离时间很近，会导致更新缓存里的值出问题。</li>
+<li>采用<code>第二种方案</code>：将socket id也作为缓存key值，value值为时间，这要每次取value值最大的情况。</li>
+<li><p>在cluster模式下，socket只是连接到其中一个进程，所以需要使用<a href="https://github.com/socketio/socket.io-redis" target="_blank" rel="noopener">socketio/socket.io-redis</a>共享连接信息，但是限制有方法调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">By running socket.io with the socket.io-redis adapter you can run multiple socket.io instances in different processes or servers that can all broadcast and emit events to and from each other.</span><br><span class="line"></span><br><span class="line">So any of the following commands:</span><br><span class="line"></span><br><span class="line">io.emit(&apos;hello&apos;, &apos;to all clients&apos;);</span><br><span class="line">io.to(&apos;room42&apos;).emit(&apos;hello&apos;, &quot;to all clients in &apos;room42&apos; room&quot;);</span><br><span class="line"></span><br><span class="line">io.on(&apos;connection&apos;, (socket) =&gt; &#123;</span><br><span class="line">  socket.broadcast.emit(&apos;hello&apos;, &apos;to all clients except sender&apos;);</span><br><span class="line">  socket.to(&apos;room42&apos;).emit(&apos;hello&apos;, &quot;to all clients in &apos;room42&apos; room except sender&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">will properly be broadcast to the clients through the Redis Pub/Sub mechanism.</span><br><span class="line"></span><br><span class="line">If you need to emit events to socket.io instances from a non-socket.io process, you should use socket.io-emitter.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>app.io.sockets.connected[socketId]</code>和<code>const nsp = app.io.of(&#39;/&#39;);nsp.sockets[id]</code>两种方法在cluster之下不能发送数据,因为和进程有关，只能用上述方法。</p>
+</li>
+</ol>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h2 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h2><h2 id="生产部署"><a href="#生产部署" class="headerlink" title="生产部署"></a>生产部署</h2><h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><ol>
+<li>只安装 dependencies 的依赖.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install --production</span><br></pre></td></tr></table></figure>
+<ol>
+<li>打包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zcvf ../release.tgz .</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ol>
+<li>框架内置了 egg-cluster 来启动 Master 进程，Master 有足够的稳定性，不再需要使用 pm2 等进程守护模块。</li>
+<li>框架也提供了 egg-scripts 来支持线上环境的运行和停止。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ npm i egg-scripts --save</span><br><span class="line">添加 npm scripts 到 package.json：</span><br><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;egg-scripts start --daemon&quot;,</span><br><span class="line">    &quot;stop&quot;: &quot;egg-scripts stop&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>启动应用<code>$ egg-scripts start --port=7001 --daemon --title=egg-server-showcase</code></li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—port=7001</td>
+<td>端口号，默认会读取环境变量 process.env.PORT，如未传递将使用框架内置端口 7001。</td>
+</tr>
+<tr>
+<td>—daemon</td>
+<td>是否允许在后台模式，无需 nohup。<code>若使用 Docker 建议直接前台运行</code>。</td>
+</tr>
+<tr>
+<td>—env=prod</td>
+<td>框架运行环境，默认会读取环境变量 process.env.EGG_SERVER_ENV， 如未传递将使用框架内置环境 prod。</td>
+</tr>
+<tr>
+<td>—workers=2</td>
+<td>框架 worker 线程数，默认会创建和 CPU 核数相当的 app worker 数，可以充分的利用 CPU 资源。</td>
+</tr>
+<tr>
+<td>—title=egg-server-showcase</td>
+<td>用于方便 ps 进程时 grep 用，默认为 egg-server-${appname}。</td>
+</tr>
+<tr>
+<td>—framework=yadan</td>
+<td>如果应用使用了自定义框架，可以配置 package.json 的 egg.framework 或指定该参数。</td>
+</tr>
+<tr>
+<td>—ignore-stderr</td>
+<td>忽略启动期的报错。</td>
+</tr>
+<tr>
+<td>—https.key</td>
+<td>指定 HTTPS 所需密钥文件的完整路径。</td>
+</tr>
+<tr>
+<td>—https.cert</td>
+<td>指定 HTTPS 所需证书文件的完整路径。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>所有 egg-cluster 的 Options 都支持透传，如 —port 等。</li>
+<li>更多参数可查看 egg-scripts 和 egg-cluster 文档。</li>
+<li>启动配置项也可以在config.{env}.js 中配置指定启动配置。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// config/config.default.js</span><br><span class="line"></span><br><span class="line">exports.cluster = &#123;</span><br><span class="line">  listen: &#123;</span><br><span class="line">    port: 7001,</span><br><span class="line">    hostname: &apos;127.0.0.1&apos;,</span><br><span class="line">    // path: &apos;/var/run/egg.sock&apos;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">path，port，hostname 均为 server.listen 的参数，egg-scripts 和 egg.startCluster 方法传入的 port 优先级高于此配置。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>停止命令<code>$ egg-scripts stop [--title=egg-server]</code>，该命令将杀死 master 进程，并通知 worker 和 agent 优雅退出。<br>支持以下参数：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--title=egg-server 用于杀死指定的 egg 应用，未传递则会终止所有的 Egg 应用。</span><br><span class="line">你也可以直接通过 ps -eo &quot;pid,command&quot; | grep -- &quot;--title=egg-server&quot; 来找到 master 进程，并 kill 掉，无需 kill -9。</span><br></pre></td></tr></table></figure>
+<h3 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h3><h4 id="Node-js-性能平台（alinode）"><a href="#Node-js-性能平台（alinode）" class="headerlink" title="Node.js 性能平台（alinode）"></a>Node.js 性能平台（alinode）</h4><ol>
+<li>Node.js 性能平台全部功能免费提供给用户使用。</li>
+<li>AliNode Runtime 可以直接替换掉 Node.js Runtime。</li>
+</ol>
+<h4 id="NSolid"><a href="#NSolid" class="headerlink" title="NSolid"></a>NSolid</h4><h3 id="前置代理模式（一般都需要反向代理）"><a href="#前置代理模式（一般都需要反向代理）" class="headerlink" title="前置代理模式（一般都需要反向代理）"></a>前置代理模式（一般都需要反向代理）</h3><ol>
+<li><code>一般来说我们的服务都不会直接接受外部的请求，而会将服务部署在接入层之后，从而实现多台机器的负载均衡和服务的平滑发布，保证高可用。</code></li>
+<li>在这个场景下，我们无法直接获取到真实用户请求的连接，从而无法确认用户的真实 IP，请求协议，甚至请求的域名。为了解决这个问题，框架默认提供了一系列配置项来让开发者配置，以便基于和接入层的约定（事实标准）来让应用层获取到真实的用户请求信息。</li>
+</ol>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><ol>
+<li>基于eggjs修改增加<code>alinode</code>和nginx、https的支持。</li>
+<li>[<code>直接在node镜像之上安装alinode，运行时一直不能选择alinode</code>].</li>
+<li>考虑基于<a href="https://github.com/toomeefed/docker-alinode/blob/master/4/slim/Dockerfile" target="_blank" rel="noopener">toomeefed/docker-alinode</a>进行更改：增加eggjs支持和nginx支持。</li>
+</ol>
+<h4 id="eggjs-docker"><a href="#eggjs-docker" class="headerlink" title="eggjs/docker"></a><a href="https://github.com/eggjs/docker" target="_blank" rel="noopener">eggjs/docker</a></h4><ol>
+<li>官方Docker。</li>
+<li>没有使用alinode。</li>
+<li>没有nginx。</li>
+</ol>
+<h4 id="aliyun-node-alinode-docker"><a href="#aliyun-node-alinode-docker" class="headerlink" title="aliyun-node/alinode-docker"></a><a href="https://github.com/aliyun-node/alinode-docker" target="_blank" rel="noopener">aliyun-node/alinode-docker</a></h4><ol>
+<li>非egg。</li>
+<li>没有nginx。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/30/编程-UML/" rel="next" title="编码-UML">
+                <i class="fa fa-chevron-left"></i> 编码-UML
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/02/后端-web框架-基础件-socket-io/" rel="prev" title="后端-web框架-基础件-socket.io">
+                后端-web框架-基础件-socket.io <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#渐进式开发"><span class="nav-number">1.</span> <span class="nav-text">渐进式开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架内置基础对象"><span class="nav-number">2.</span> <span class="nav-text">框架内置基础对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">2.1.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件"><span class="nav-number">2.1.1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取方式"><span class="nav-number">2.1.2.</span> <span class="nav-text">获取方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Context"><span class="nav-number">2.2.</span> <span class="nav-text">Context</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取方式-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">获取方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-amp-Response"><span class="nav-number">2.3.</span> <span class="nav-text">Request &amp; Response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller"><span class="nav-number">2.4.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service"><span class="nav-number">2.5.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Helper"><span class="nav-number">2.6.</span> <span class="nav-text">Helper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Config"><span class="nav-number">2.7.</span> <span class="nav-text">Config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logger"><span class="nav-number">2.8.</span> <span class="nav-text">Logger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subscription"><span class="nav-number">2.9.</span> <span class="nav-text">Subscription</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">3.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#controller"><span class="nav-number">3.1.</span> <span class="nav-text">controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router"><span class="nav-number">3.2.</span> <span class="nav-text">router</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#路由完整定义主要包括5个主要部分"><span class="nav-number">3.2.1.</span> <span class="nav-text">路由完整定义主要包括5个主要部分:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RESTful-风格的-URL-定义"><span class="nav-number">3.2.2.</span> <span class="nav-text">RESTful 风格的 URL 定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试"><span class="nav-number">3.3.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约定"><span class="nav-number">3.3.1.</span> <span class="nav-text">约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">3.4.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动自定义"><span class="nav-number">4.</span> <span class="nav-text">启动自定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件"><span class="nav-number">5.</span> <span class="nav-text">中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件"><span class="nav-number">6.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-cors"><span class="nav-number">6.1.</span> <span class="nav-text">egg-cors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-redis"><span class="nav-number">6.2.</span> <span class="nav-text">[egg-redis]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-Sequelize"><span class="nav-number">6.3.</span> <span class="nav-text">egg-Sequelize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-jwt"><span class="nav-number">6.4.</span> <span class="nav-text">egg-jwt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brickyang-egg-bull"><span class="nav-number">6.5.</span> <span class="nav-text">brickyang/egg-bull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-validate"><span class="nav-number">6.6.</span> <span class="nav-text">egg-validate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#egg-socket"><span class="nav-number">6.7.</span> <span class="nav-text">egg-socket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#router（加入router）"><span class="nav-number">6.7.1.</span> <span class="nav-text">router（加入router）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Namespace-nsp"><span class="nav-number">6.7.2.</span> <span class="nav-text">Namespace (nsp)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Room"><span class="nav-number">6.7.3.</span> <span class="nav-text">Room</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#踩过的坑"><span class="nav-number">6.7.4.</span> <span class="nav-text">踩过的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架"><span class="nav-number">7.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Restful-API"><span class="nav-number">8.</span> <span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生产部署"><span class="nav-number">9.</span> <span class="nav-text">生产部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建"><span class="nav-number">9.1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">9.2.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控"><span class="nav-number">9.3.</span> <span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Node-js-性能平台（alinode）"><span class="nav-number">9.3.1.</span> <span class="nav-text">Node.js 性能平台（alinode）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSolid"><span class="nav-number">9.3.2.</span> <span class="nav-text">NSolid</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前置代理模式（一般都需要反向代理）"><span class="nav-number">9.4.</span> <span class="nav-text">前置代理模式（一般都需要反向代理）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker"><span class="nav-number">9.5.</span> <span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eggjs-docker"><span class="nav-number">9.5.1.</span> <span class="nav-text">eggjs/docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#aliyun-node-alinode-docker"><span class="nav-number">9.5.2.</span> <span class="nav-text">aliyun-node/alinode-docker</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

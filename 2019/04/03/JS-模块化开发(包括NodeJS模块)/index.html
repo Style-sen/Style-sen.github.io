@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS,NODE,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JS模块化开发规范及常用插件">
+<meta name="keywords" content="JS,NODE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块化开发及常用模块">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/JS-模块化开发(包括NodeJS模块)/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="JS模块化开发规范及常用插件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-04T08:15:33.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模块化开发及常用模块">
+<meta name="twitter:description" content="JS模块化开发规范及常用插件">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/03/JS-模块化开发(包括NodeJS模块)/">
+
+
+
+
+
+  <title>模块化开发及常用模块 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/JS-模块化开发(包括NodeJS模块)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">模块化开发及常用模块</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T14:36:52+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/03/JS-模块化开发(包括NodeJS模块)/" class="leancloud_visitors" data-flag-title="模块化开发及常用模块">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  JS模块化开发规范及常用插件
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>参考<a href="https://segmentfault.com/a/1190000000733959#articleHeader5" target="_blank" rel="noopener">详解JavaScript模块化开发</a><br>参考<a href="https://www.jianshu.com/p/3832c00a44a7" target="_blank" rel="noopener">JavaScript中的模块化开发</a></p>
+<p>一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块。模块开发需要遵循一定的规范，否则就都乱套了。</p>
+<p>AMD规范的实现主要有RequireJS，CMD规范的主要实现有SeaJS。RequireJS在国外用的比较多，SeaJS在国内用的比较多，并且SeaJS的创始人为阿里的玉伯，所以SeaJS在阿里系用的非常广泛，包括京东等大厂也在用SeaJS，我们详细介绍的也是SeaJS。但是SeaJS已经停止维护了，因为在ES6中已经有了模块化的实现，随着ES6的普及，第三方的模块化实现将会慢慢的淘汰（但是这个在国内可能还要很多年）。</p>
+<h2 id="Commonjs"><a href="#Commonjs" class="headerlink" title="Commonjs"></a>Commonjs</h2><ol>
+<li>服务器端规范,<code>node.js用的就是CommonJS规范</code>.</li>
+<li>根据CommonJS规范，<code>一个单独的文件就是一个模块</code>。每一个模块都是一个单独的作用域，也就是说，在该模块内部定义的变量，无法被其他模块读取，除非定义为global对象的属性。</li>
+<li>在node.js中直接使用<code>require</code>引包，直接使用<code>exports</code>和<code>module.exports</code>暴露公开成员，并且npm基于CommonJs实现了自动加载和安装依赖。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> max = <span class="number">30</span>;</span><br><span class="line"><span class="comment">// module指的就是当前文件</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (i -= <span class="number">1</span>; i++ &lt; max; ) &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;</span><br><span class="line">  max *= 1.1;</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  [插件名]:&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//与下方一致</span><br><span class="line">exports.[插件名] = &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Promises-A"><a href="#Promises-A" class="headerlink" title="Promises/A"></a>Promises/A</h3><ol>
+<li>Promises/A是由CommonJS组织制定的异步模式编程规范，有不少库已根据该规范及后来经改进的<code>Promises/A+</code>规范提供了实现.</li>
+<li>参考<a href="https://imququ.com/post/promises-when-js.html" target="_blank" rel="noopener">JS魔法堂：剖析源码理解Promises/A规范</a><h4 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h4></li>
+<li>有限状态机<br>Promise（中文：承诺）其实为一个有限状态机，共有三种状态：pending（执行中）、fulfilled（执行成功）和rejected（执行失败）。<br>其中pending为初始状态，fulfilled和rejected为结束状态（结束状态表示promise的生命周期已结束）。<br>状态转换关系为：pending-&gt;fulfilled，pending-&gt;rejected。<br>随着状态的转换将触发各种事件（如执行成功事件、执行失败事件等）。  </li>
+<li>构造函数<br>Promise({Function} factory/<em>({Function} resolve, {Function} reject)</em>/) ，构造函数存在一个Function类型的入参factory，作为唯一一个修改promise对象状态的地方，其中factory函数的入参resolve的作用是将promise对象的状态从pending转换为fulfilled，而reject的作用是将promise对象的状态从pending转换为rejected。<br>入参 void resolve({Any} val)  ，当val为非thenable对象和promise对象时则会将val作为执行成功事件处理函数的入参，若val为thenable对象时则会执行thenable.then方法，若val为Promise对象时则会将该Promise对象添加到Promise对象单向链表中。<br>入参 void reject({Any} reason) ，reason不管是哪种内容均直接作为执行失败事件处理函数的入参。<br>注意：关于抛异常的做法，同步模式为 throw new Error(“I’m synchronous way!”) ，而Promise规范的做法是 reject(new Error(“I’m asynchronous way!”)); </li>
+<li>实例方法<br>Promise then([{Function} onFulfilled[, {Function} onRejected]]) ，用于订阅Promise对象状态转换事件，入参onFulfilled为执行成功的事件处理函数，入参onRejected为执行失败的事件处理函数。两者的返回值均作为Promise对象单向链表中下一个Promise对象的状态转换事件处理函数的入参。而then方法的返回值是一个新的Promise对象并且已添加到Promise对象单向链表的末尾。<br>Promise catch({Function} onRejected) ，相当于 then(null, onRejected) 。</li>
+<li>类方法<br>Promise Promise.resolve({Any} obj) ，用于将非Promise类型的入参封装为Promise对象，若obj为非thenable对象则返回状态为fulfilled的Promise对象，对于非若入参为Promise对象则直接返回。<br>Promise Promise.reject({Any} obj) ，用于将非Promise类型的入参封装为状态为rejected的Promise对象。<br>Promise Promise.all({Array} array) ，当array中所有Promise实例的状态均为fulfilled时，该方法返回的Promise对象的状态也转为fulfilled（执行成功事件处理函数的入参为array数组中所有Promise实例执行成功事件处理函数的返回值），否则转换为rejected。<br>Promise Promise.race({Array} array) ，当array中有一个Promise实例的状态出现fulfilled或rejected时，该方法返回的Promise对象的状态也转为fulfilled或rejected。</li>
+<li>thenable对象<br>拥有 then方法 的对象均称为thenable对象，并且thenable对象将作为Promise对象被处理。</li>
+</ol>
+<h2 id="AMD-Asynchronous-Module-Definition"><a href="#AMD-Asynchronous-Module-Definition" class="headerlink" title="AMD(Asynchronous Module Definition)"></a>AMD(Asynchronous Module Definition)</h2><ol>
+<li>在浏览器端模块化开发的规范</li>
+<li>模块将被异步加载，模块加载不影响后面语句的运行。所有依赖某些模块的语句均放置在回调函数中。</li>
+<li>AMD规范的实现主要有RequireJS</li>
+</ol>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><ol>
+<li>CMD规范的主要实现有SeaJS</li>
+</ol>
+<h1 id="常用模块"><a href="#常用模块" class="headerlink" title="常用模块"></a>常用模块</h1><h2 id="Browser和Nodejs共同支持"><a href="#Browser和Nodejs共同支持" class="headerlink" title="Browser和Nodejs共同支持"></a>Browser和Nodejs共同支持</h2><h3 id="AXIOS（HTTP客户端）"><a href="#AXIOS（HTTP客户端）" class="headerlink" title="AXIOS（HTTP客户端）"></a>AXIOS（HTTP客户端）</h3><ol>
+<li><p>基于promise用于浏览器和node.js的http客户端；</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4></li>
+<li><p>支持浏览器和node.js</p>
+</li>
+<li>支持promise</li>
+<li>能拦截请求和响应</li>
+<li>能转换请求和响应数据</li>
+<li>能取消请求</li>
+<li>自动转换JSON数据</li>
+<li>浏览器端支持防止CSRF(跨站请求伪造)</li>
+</ol>
+<h4 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h4><ol>
+<li>你可以在then和catch之前拦截请求和响应。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个请求拦截器</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something before request is sent</span></span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something with request error</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加一个响应拦截器</span></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something with response data</span></span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something with response error</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>如果之后想移除拦截器你可以这么做</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var myInterceptor = axios.interceptors.request.use(function () &#123;/*...*/&#125;);</span><br><span class="line">axios.interceptors.request.eject(myInterceptor);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>你也可以为axios实例添加一个拦截器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var instance = axios.create();</span><br><span class="line">instance.interceptors.request.use(function () &#123;/*...*/&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="bezier-js"><a href="#bezier-js" class="headerlink" title="bezier-js"></a><a href="https://www.npmjs.com/package/bezier-js" target="_blank" rel="noopener">bezier-js</a></h3><ol>
+<li>一个Node.js和客户端库，用于（二次和三次）贝塞尔曲线工作。</li>
+<li>用于执行Bezier曲线操作</li>
+<li>参考<a href="https://www.cnblogs.com/hnfxs/p/3148743.html" target="_blank" rel="noopener">贝塞尔曲线应用（贝塞尔插值）</a>使用两个点作为顶点，利用相邻的点生成2个控制点。</li>
+</ol>
+<h3 id="caolan-async-Async-utilities-for-node-and-the-browser"><a href="#caolan-async-Async-utilities-for-node-and-the-browser" class="headerlink" title="caolan/async  Async utilities for node and the browser   *"></a><a href="https://github.com/caolan/async" target="_blank" rel="noopener">caolan/async</a>  Async utilities for node and the browser   <strong>*</strong></h3><ol>
+<li>async模块是为了解决嵌套金字塔,和异步流程控制而生.</li>
+</ol>
+<h3 id="form-data"><a href="#form-data" class="headerlink" title="form-data"></a><a href="https://github.com/form-data/form-data" target="_blank" rel="noopener">form-data</a></h3><ol>
+<li>A module to create readable <code>&quot;multipart/form-data&quot;</code> streams. Can be used to submit forms and file uploads to other web applications.</li>
+</ol>
+<h3 id="js-spline"><a href="#js-spline" class="headerlink" title="js-spline"></a><a href="https://www.npmjs.com/package/js-spline" target="_blank" rel="noopener">js-spline</a></h3><ol>
+<li>程序包提供了JavaScript的算法实现，这些算法可从一组控制方式点生成各种类型的样条。</li>
+<li>插值之后的曲线经过样本点，拟合的曲线不一定经过样本点。</li>
+<li><a href="http://blog.sina.com.cn/s/blog_6316e2af0101l548.html" target="_blank" rel="noopener">插值算法比较</a>:1. 反距离加权法（Inverse Distance Weighted）两个物体相似性随他们间的距离增大而减少。2. 样条插值法（Spline）样条插值是使用一种数学函数，对一些限定的点值，通过控制估计方差，利用一些特征节点，用多项式拟合的方法来产生平滑的插值曲线。这种方法适用于逐渐变化的曲面，如温度、高程、地下水位高度或污染浓度等。3、克里金法（Kriging）这种方法认为在空间连续变化的属性是非常不规则的，用简单的平滑函数进行模拟将出现误差，用随机表面函数给予描述会比较恰当。4、离散平滑插值（Discrete Smooth Interpolation）欲在一个离散化数据点间建立相互联络的网络，如果网络上的已知节点值满足某种约束条件，则未知节点上的值可以通过解线性方程而得到。5、趋势面光滑插值（Trend Surface）作为一个非精确的插值方法，趋势面插值用多项式表示的线或面按最小二乘法原理对数据点进行拟合.6.贝塞尔插值。</li>
+</ol>
+<h3 id="kennethjiang-js-file-download保存数据到文件中"><a href="#kennethjiang-js-file-download保存数据到文件中" class="headerlink" title="kennethjiang/js-file-download保存数据到文件中"></a><a href="https://github.com/kennethjiang/js-file-download" target="_blank" rel="noopener">kennethjiang/js-file-download</a>保存数据到文件中</h3><h3 id="Lodash是一个一致性、模块化、高性能的-JavaScript-实用工具库"><a href="#Lodash是一个一致性、模块化、高性能的-JavaScript-实用工具库" class="headerlink" title="Lodash是一个一致性、模块化、高性能的 JavaScript 实用工具库 *"></a><a href="https://www.lodashjs.com/" target="_blank" rel="noopener">Lodash</a>是一个一致性、模块化、高性能的 JavaScript 实用工具库 <strong>*</strong></h3><h3 id="smartprocure-futil-js-Lodash的补充"><a href="#smartprocure-futil-js-Lodash的补充" class="headerlink" title="smartprocure/futil-js Lodash的补充  *"></a><a href="https://github.com/smartprocure/futil-js" target="_blank" rel="noopener">smartprocure/futil-js</a> Lodash的补充  <strong>*</strong></h3><h3 id="moment-格式化分析日期和时间"><a href="#moment-格式化分析日期和时间" class="headerlink" title="moment 格式化分析日期和时间   *"></a><a href="https://momentjs.com/docs/" target="_blank" rel="noopener">moment</a> 格式化分析日期和时间   <strong>*</strong></h3><h3 id="moment-luxon-A-library-for-working-with-dates-and-times-in-JS"><a href="#moment-luxon-A-library-for-working-with-dates-and-times-in-JS" class="headerlink" title="moment/luxon A library for working with dates and times in JS  *"></a><a href="https://github.com/moment/luxon" target="_blank" rel="noopener">moment/luxon</a> A library for working with dates and times in JS  <strong>*</strong></h3><h3 id="moment-timezone-分析和格式化日期时间在各个时区"><a href="#moment-timezone-分析和格式化日期时间在各个时区" class="headerlink" title="moment-timezone  分析和格式化日期时间在各个时区   *"></a><a href="https://momentjs.com/timezone/" target="_blank" rel="noopener">moment-timezone</a>  分析和格式化日期时间在各个时区   <strong>*</strong></h3><h3 id="range-类似python的range"><a href="#range-类似python的range" class="headerlink" title="range  类似python的range"></a><a href>range</a>  类似python的range</h3><h3 id="Simplify-js-压缩点数（轨迹不失真）"><a href="#Simplify-js-压缩点数（轨迹不失真）" class="headerlink" title="Simplify.js  压缩点数（轨迹不失真）"></a><a href="https://mourner.github.io/simplify-js/" target="_blank" rel="noopener">Simplify.js</a>  压缩点数（轨迹不失真）</h3><h3 id="Underscore-js-一个-JavaScript-工具库"><a href="#Underscore-js-一个-JavaScript-工具库" class="headerlink" title="Underscore.js  一个 JavaScript 工具库    *"></a><a href="https://underscorejs.bootcss.com/" target="_blank" rel="noopener">Underscore.js</a>  一个 JavaScript 工具库    <strong>*</strong></h3><ol>
+<li>它提供了一整套函数式编程的实用功能，但是没有扩展任何 JavaScript 内置对象.</li>
+</ol>
+<h3 id="when-js-promise-async"><a href="#when-js-promise-async" class="headerlink" title="when.js promise + async   **"></a><a href="https://github.com/cujojs/when" target="_blank" rel="noopener">when.js</a> promise + async   <strong>**</strong></h3><ol>
+<li>A solid, fast Promises/A+ and when() implementation, plus other async goodies.</li>
+<li>参考<a href="https://imququ.com/post/promises-when-js.html" target="_blank" rel="noopener">异步编程：When.js快速上手</a>.</li>
+<li>优化promise.</li>
+</ol>
+<h2 id="NodeJs支持"><a href="#NodeJs支持" class="headerlink" title="NodeJs支持"></a>NodeJs支持</h2><h3 id="Automattic-node-canvas-在node中实现canvas渲染"><a href="#Automattic-node-canvas-在node中实现canvas渲染" class="headerlink" title="Automattic/node-canvas 在node中实现canvas渲染"></a><a href="https://github.com/Automattic/node-canvas" target="_blank" rel="noopener">Automattic/node-canvas</a> 在node中实现canvas渲染</h3><h3 id="BULL"><a href="#BULL" class="headerlink" title="BULL"></a><a href="https://github.com/OptimalBits/bull" target="_blank" rel="noopener">BULL</a></h3><ol>
+<li>KUE不再维护。</li>
+</ol>
+<h4 id="简单队列"><a href="#简单队列" class="headerlink" title="简单队列"></a>简单队列</h4><ol>
+<li><p>简单创建一个队列实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个简单队列大致有3个主要角色： A job producer, a job consumer or/and an events listener.</p>
+</li>
+<li>虽然一个给定的实例可以用于3个角色，但通常将生产者和消费者分成几个实例。 一个给定的队列，总是由其实例化名称（上例中的my-first-queue）引用，可以有许多生产者，许多消费者和许多听众。 一个重要的方面是，即使当时没有可用的消费者，生产者也可以将作业添加到队列中：队列提供异步通信，这是使它们如此强大的功能之一。</li>
+<li>相反，您可以让一个或多个worker从队列中消费作业，它将按照给定的顺序消费这些作业:FIFO(缺省值)、LIFO或根据优先级。</li>
+</ol>
+<h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br><span class="line">const job = await myFirstQueue.add(&#123;</span><br><span class="line">  foo: &apos;bar&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br><span class="line">myFirstQueue.process(async (job, data) =&gt; &#123;</span><br><span class="line">  return doSomething(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>有时您需要向外部侦听器提供作业的进度信息，这可以通过在作业对象上使用progress方法轻松完成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myFirstQueue.process( async (job, data) =&gt; &#123;</span><br><span class="line">  let progress = 0;</span><br><span class="line">  for(i = 0; i &lt; 100; i++)&#123;</span><br><span class="line">    await doSomething(data);</span><br><span class="line">    progress += 10;</span><br><span class="line">    job.progress(progress);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><h5 id="速率限制"><a href="#速率限制" class="headerlink" title="速率限制"></a>速率限制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Limit queue to max 1.000 jobs per 5 seconds.</span><br><span class="line">const myRateLimitedQueue = new Queue(&apos;rateLimited&apos;, &#123;</span><br><span class="line">  limiter: &#123;</span><br><span class="line">    max: 1000,</span><br><span class="line">    duration: 5000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="Named-jobs"><a href="#Named-jobs" class="headerlink" title="Named jobs"></a>Named jobs</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// Jobs producer</span><br><span class="line">const myJob = await transcoderQueue.add(&apos;image&apos;, &#123; input: &apos;myimagefile&apos; &#125;);</span><br><span class="line">const myJob = await transcoderQueue.add(&apos;audio&apos;, &#123; input: &apos;myaudiofile&apos; &#125;);</span><br><span class="line">const myJob = await transcoderQueue.add(&apos;video&apos;, &#123; input: &apos;myvideofile&apos; &#125;);</span><br><span class="line">// Worker</span><br><span class="line">transcoderQueue.process(&apos;image&apos;, processImage);</span><br><span class="line">transcoderQueue.process(&apos;audio&apos;, processAudio);</span><br><span class="line">transcoderQueue.process(&apos;video&apos;, processVideo);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>每一个命名的JOB必须有一个对应的processer。<h5 id="Sandboxed-Processors"><a href="#Sandboxed-Processors" class="headerlink" title="Sandboxed Processors"></a>Sandboxed Processors</h5></li>
+</ol>
+<h4 id="JOB类型"><a href="#JOB类型" class="headerlink" title="JOB类型"></a>JOB类型</h4><h5 id="LIFO"><a href="#LIFO" class="headerlink" title="LIFO"></a>LIFO</h5><p>后进先出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const myJob = await myqueue.add(&#123; foo: &apos;bar&apos; &#125;, &#123; lifo: true &#125;);</span><br></pre></td></tr></table></figure></p>
+<h5 id="Delayed"><a href="#Delayed" class="headerlink" title="Delayed"></a>Delayed</h5><ol>
+<li>延时。</li>
+<li>设置的为最小延时，过了这个时间，才放进可执行队列中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Delayed 5 seconds</span><br><span class="line">const myJob = await myqueue.add(&#123; foo: &apos;bar&apos; &#125;, &#123; delay: 5000 &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><h5 id="可重复"><a href="#可重复" class="headerlink" title="可重复"></a>可重复</h5><h3 id="generic-pool-连接池"><a href="#generic-pool-连接池" class="headerlink" title="generic-pool 连接池     *"></a><a href="https://github.com/coopernurse/node-pool" target="_blank" rel="noopener">generic-pool</a> 连接池     <strong>*</strong></h3><ol>
+<li>NNODEJS的一般链接池模块。</li>
+</ol>
+<h3 id="ioredis"><a href="#ioredis" class="headerlink" title="ioredis *"></a><a href="https://github.com/luin/ioredis#basic-usage" target="_blank" rel="noopener">ioredis</a> <strong>*</strong></h3><p>一个健壮的、以性能为中心的、功能全面的Redis Node.js客户端.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">redis.set(&quot;foo&quot;, &quot;bar&quot;);</span><br><span class="line">redis.set(&quot;dir:key&quot;,value);  //可以创建dir文件夹，归类key</span><br><span class="line">redis.get(&quot;foo&quot;, function(err, result) &#123;    // get value</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;);</span><br><span class="line">redis.del(&quot;foo&quot;);  // 删除键</span><br><span class="line"></span><br><span class="line">// Or using a promise if the last argument isn&apos;t a function</span><br><span class="line">redis.get(&quot;foo&quot;).then(function(result) &#123;</span><br><span class="line">  console.log(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">redis.keys(&apos;course*&apos;); // 列出匹配到给定字符串的key的列表</span><br><span class="line"></span><br><span class="line">// Arguments to commands are flattened, so the following are the same:</span><br><span class="line">redis.sadd(&quot;set&quot;, 1, 3, 5, 7);</span><br><span class="line">redis.sadd(&quot;set&quot;, [1, 3, 5, 7]);</span><br><span class="line"></span><br><span class="line">// All arguments are passed directly to the redis server:</span><br><span class="line">redis.set(&quot;key&quot;, 100, &quot;EX&quot;, 10);</span><br><span class="line">redis.setex(&quot;key&quot;, time, &quot;msg&quot;);//存进redis中，并设置超时时间。</span><br></pre></td></tr></table></figure></p>
+<h3 id="JsonWebToken-JWT"><a href="#JsonWebToken-JWT" class="headerlink" title="JsonWebToken JWT"></a><a href="https://github.com/auth0/node-jsonwebtoken" target="_blank" rel="noopener">JsonWebToken</a> JWT</h3><h4 id="jwt-sign-payload-secretOrPrivateKey-options-callback-生成Token"><a href="#jwt-sign-payload-secretOrPrivateKey-options-callback-生成Token" class="headerlink" title="jwt.sign(payload, secretOrPrivateKey, [options, callback]) 生成Token"></a>jwt.sign(payload, secretOrPrivateKey, [options, callback]) 生成Token</h4><ol>
+<li><code>secretOrPrivateKey</code> is a string, buffer, or object 包含secret(for HMAC algorithms)或者the PEM encoded private key(for RSA and ECDSA). In case of a private key with passphrase an object { key, passphrase } can be used (based on crypto documentation), in this case be sure you pass the algorithm option.</li>
+<li><a href="https://www.jianshu.com/p/7575f7976dad" target="_blank" rel="noopener">OpenSSL生成pem，der文件</a><h4 id="jwt-verify-token-secretOrPublicKey-options-callback-校验Token"><a href="#jwt-verify-token-secretOrPublicKey-options-callback-校验Token" class="headerlink" title="jwt.verify(token, secretOrPublicKey, [options, callback])  校验Token"></a>jwt.verify(token, secretOrPublicKey, [options, callback])  校验Token</h4></li>
+</ol>
+<h3 id="StratoDem-pandas-js"><a href="#StratoDem-pandas-js" class="headerlink" title="StratoDem/pandas-js"></a><a href="https://stratodem.github.io/pandas.js-docs/#introduction" target="_blank" rel="noopener">StratoDem/pandas-js</a></h3><h4 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h4><p>支持常用的统计。</p>
+<h3 id="puppeteer"><a href="#puppeteer" class="headerlink" title="puppeteer"></a><a href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#/" target="_blank" rel="noopener">puppeteer</a></h3><h3 id="request"><a href="#request" class="headerlink" title="request    *"></a><a href="https://github.com/request/request" target="_blank" rel="noopener">request</a>    <strong>*</strong></h3><ol>
+<li>业务不复杂的情况下，使用Nodejs的原生http模块的客户端功能可满足需求，但在业务较复杂时使用http模块工作量会比较大，使用第三方request模块会让http请求变的简单。</li>
+<li>Request模块封装了http请求，使你可以用很简单的方式处理http请求，同时也支持HTTPS和请求重定向.</li>
+</ol>
+<h3 id="Request-Promise"><a href="#Request-Promise" class="headerlink" title="Request-Promise    **"></a><a href="https://github.com/request/request-promise" target="_blank" rel="noopener">Request-Promise</a>    <strong>**</strong></h3><ol>
+<li>request增加promise的支持。<h4 id="流操作"><a href="#流操作" class="headerlink" title="流操作"></a>流操作</h4><h4 id="form相关"><a href="#form相关" class="headerlink" title="form相关"></a>form相关</h4></li>
+</ol>
+<h2 id="Browser支持"><a href="#Browser支持" class="headerlink" title="Browser支持"></a>Browser支持</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"><i class="fa fa-tag"></i>JS</a>
+          
+            <a href="/tags/NODE/" rel="tag"><i class="fa fa-tag"></i>NODE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/03/前端-web-api/" rel="next" title="前端-web api">
+                <i class="fa fa-chevron-left"></i> 前端-web api
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/04/嵌入式-NFC/" rel="prev" title="嵌入式-NFC">
+                嵌入式-NFC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Commonjs"><span class="nav-number">1.1.</span> <span class="nav-text">Commonjs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises-A"><span class="nav-number">1.1.1.</span> <span class="nav-text">Promises/A</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#规范"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD-Asynchronous-Module-Definition"><span class="nav-number">1.2.</span> <span class="nav-text">AMD(Asynchronous Module Definition)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMD"><span class="nav-number">1.3.</span> <span class="nav-text">CMD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用模块"><span class="nav-number">2.</span> <span class="nav-text">常用模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser和Nodejs共同支持"><span class="nav-number">2.1.</span> <span class="nav-text">Browser和Nodejs共同支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AXIOS（HTTP客户端）"><span class="nav-number">2.1.1.</span> <span class="nav-text">AXIOS（HTTP客户端）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拦截器"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">拦截器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bezier-js"><span class="nav-number">2.1.2.</span> <span class="nav-text">bezier-js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caolan-async-Async-utilities-for-node-and-the-browser"><span class="nav-number">2.1.3.</span> <span class="nav-text">caolan/async  Async utilities for node and the browser   *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#form-data"><span class="nav-number">2.1.4.</span> <span class="nav-text">form-data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js-spline"><span class="nav-number">2.1.5.</span> <span class="nav-text">js-spline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kennethjiang-js-file-download保存数据到文件中"><span class="nav-number">2.1.6.</span> <span class="nav-text">kennethjiang/js-file-download保存数据到文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lodash是一个一致性、模块化、高性能的-JavaScript-实用工具库"><span class="nav-number">2.1.7.</span> <span class="nav-text">Lodash是一个一致性、模块化、高性能的 JavaScript 实用工具库 *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#smartprocure-futil-js-Lodash的补充"><span class="nav-number">2.1.8.</span> <span class="nav-text">smartprocure/futil-js Lodash的补充  *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#moment-格式化分析日期和时间"><span class="nav-number">2.1.9.</span> <span class="nav-text">moment 格式化分析日期和时间   *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#moment-luxon-A-library-for-working-with-dates-and-times-in-JS"><span class="nav-number">2.1.10.</span> <span class="nav-text">moment/luxon A library for working with dates and times in JS  *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#moment-timezone-分析和格式化日期时间在各个时区"><span class="nav-number">2.1.11.</span> <span class="nav-text">moment-timezone  分析和格式化日期时间在各个时区   *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#range-类似python的range"><span class="nav-number">2.1.12.</span> <span class="nav-text">range  类似python的range</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simplify-js-压缩点数（轨迹不失真）"><span class="nav-number">2.1.13.</span> <span class="nav-text">Simplify.js  压缩点数（轨迹不失真）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Underscore-js-一个-JavaScript-工具库"><span class="nav-number">2.1.14.</span> <span class="nav-text">Underscore.js  一个 JavaScript 工具库    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#when-js-promise-async"><span class="nav-number">2.1.15.</span> <span class="nav-text">when.js promise + async   **</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJs支持"><span class="nav-number">2.2.</span> <span class="nav-text">NodeJs支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Automattic-node-canvas-在node中实现canvas渲染"><span class="nav-number">2.2.1.</span> <span class="nav-text">Automattic/node-canvas 在node中实现canvas渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BULL"><span class="nav-number">2.2.2.</span> <span class="nav-text">BULL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单队列"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">简单队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">生产者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">消费者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选项"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#速率限制"><span class="nav-number">2.2.2.4.1.</span> <span class="nav-text">速率限制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Named-jobs"><span class="nav-number">2.2.2.4.2.</span> <span class="nav-text">Named jobs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sandboxed-Processors"><span class="nav-number">2.2.2.4.3.</span> <span class="nav-text">Sandboxed Processors</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JOB类型"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">JOB类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LIFO"><span class="nav-number">2.2.2.5.1.</span> <span class="nav-text">LIFO</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Delayed"><span class="nav-number">2.2.2.5.2.</span> <span class="nav-text">Delayed</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优先级"><span class="nav-number">2.2.2.5.3.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可重复"><span class="nav-number">2.2.2.5.4.</span> <span class="nav-text">可重复</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generic-pool-连接池"><span class="nav-number">2.2.3.</span> <span class="nav-text">generic-pool 连接池     *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ioredis"><span class="nav-number">2.2.4.</span> <span class="nav-text">ioredis *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JsonWebToken-JWT"><span class="nav-number">2.2.5.</span> <span class="nav-text">JsonWebToken JWT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jwt-sign-payload-secretOrPrivateKey-options-callback-生成Token"><span class="nav-number">2.2.5.1.</span> <span class="nav-text">jwt.sign(payload, secretOrPrivateKey, [options, callback]) 生成Token</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jwt-verify-token-secretOrPublicKey-options-callback-校验Token"><span class="nav-number">2.2.5.2.</span> <span class="nav-text">jwt.verify(token, secretOrPublicKey, [options, callback])  校验Token</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StratoDem-pandas-js"><span class="nav-number">2.2.6.</span> <span class="nav-text">StratoDem/pandas-js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DataFrame"><span class="nav-number">2.2.6.1.</span> <span class="nav-text">DataFrame</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#puppeteer"><span class="nav-number">2.2.7.</span> <span class="nav-text">puppeteer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request"><span class="nav-number">2.2.8.</span> <span class="nav-text">request    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-Promise"><span class="nav-number">2.2.9.</span> <span class="nav-text">Request-Promise    **</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流操作"><span class="nav-number">2.2.9.1.</span> <span class="nav-text">流操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#form相关"><span class="nav-number">2.2.9.2.</span> <span class="nav-text">form相关</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser支持"><span class="nav-number">2.3.</span> <span class="nav-text">Browser支持</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
