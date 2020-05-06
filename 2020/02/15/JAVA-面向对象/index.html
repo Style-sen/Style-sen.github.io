@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-30T04:43:01.903Z">
+<meta property="og:updated_time" content="2020-04-30T08:20:39.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA-面向对象">
 <meta name="twitter:description" content="JVM">
@@ -400,7 +400,84 @@
       
 
       
-        <h1 id="Java-继承"><a href="#Java-继承" class="headerlink" title="Java 继承"></a>Java 继承</h1><h1 id="Java-重写-Override-与重载-Overload"><a href="#Java-重写-Override-与重载-Overload" class="headerlink" title="Java 重写(Override)与重载(Overload)"></a>Java 重写(Override)与重载(Overload)</h1><h1 id="Java-多态"><a href="#Java-多态" class="headerlink" title="Java 多态"></a>Java 多态</h1><h1 id="Java-抽象类"><a href="#Java-抽象类" class="headerlink" title="Java 抽象类"></a>Java 抽象类</h1><h1 id="Java-封装"><a href="#Java-封装" class="headerlink" title="Java 封装"></a>Java 封装</h1><h1 id="Java-接口"><a href="#Java-接口" class="headerlink" title="Java 接口"></a>Java 接口</h1><h1 id="Java-包-package"><a href="#Java-包-package" class="headerlink" title="Java 包(package)"></a>Java 包(package)</h1>
+        <p>部分内容摘自<a href="https://www.sxt.cn/Java_jQuery_in_action" target="_blank" rel="noopener">速学堂</a></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ol>
+<li>对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。</li>
+</ol>
+<h4 id="对象创建的过程"><a href="#对象创建的过程" class="headerlink" title="对象创建的过程"></a>对象创建的过程</h4><ol>
+<li>分配对象空间，并将对象成员变量初始化为0或空</li>
+<li>执行属性值的显示初始化</li>
+<li>执行构造方法</li>
+<li>返回对象的地址给相关的变量</li>
+</ol>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ol>
+<li>类是一个模板，它描述一类对象的行为和状态。</li>
+<li>一个JAVA文件只能有一个public类，而且类名和文件名相同。可以有多个非public类。</li>
+</ol>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><ol>
+<li><code>构造方法名和类名相同</code>，虽然有返回值（对象的地址），不能定义返回值类型，不能在构造器中使用return返回某个值。</li>
+<li>用于对象的初始化。</li>
+<li>Java通过new关键词来调用构造器，从而返回该类的实例。</li>
+<li>没有定义构造器的话，编译器会自动定义一个无参的构造函数。</li>
+<li>构造方法也是方法，也可以重载。</li>
+<li>如果方法构造中形参名与属性名相同时，需要使用this关键字区分属性与形参。</li>
+</ol>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。</li>
+</ol>
+<h3 id="实例变量"><a href="#实例变量" class="headerlink" title="实例变量"></a>实例变量</h3><ol>
+<li>每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。</li>
+</ol>
+<h3 id="this-static关键字-在方法区"><a href="#this-static关键字-在方法区" class="headerlink" title="this\static关键字(在方法区)"></a>this\static关键字(在方法区)</h3><ol>
+<li>this的本质就是“创建好的对象的地址”! <code>在构造方法调用前，对象已经创建</code>。因此，<code>在构造方法中也可以使用this代表“当前对象”</code> 。</li>
+<li>在类中，用static声明的成员变量为静态成员变量，也称为类变量。 类变量的生命周期和类相同，在整个应用程序执行期间都有效。它有如下特点：<pre><code>  a. 为该类的公用变量，属于类，被该类的所有实例共享，在类被载入时被显式初始化。
+  b. 对于该类的所有对象来说，static成员变量只有一份。被该类的所有对象共享!!
+  c. 一般用“类名.类属性/方法”来调用。(也可以通过对象引用或类名(不需要实例化)访问静态成员。)
+  d. 在static方法中不可直接访问非static的成员。
+</code></pre></li>
+<li><code>类方法引用在方法区、对象中的方法引用在堆，都指向方法区中类信息的方法代码。</code></li>
+</ol>
+<h4 id="this的使用场景"><a href="#this的使用场景" class="headerlink" title="this的使用场景"></a>this的使用场景</h4><ol>
+<li>在程序中产生二义性之处，应使用this来指明当前对象;普通方法中，this总是指向调用该方法的对象。构造方法中，this总是指向正要初始化的对象。</li>
+<li><code>使用this关键字调用重载的构造方法</code>，避免相同的初始化代码。但<code>只能在构造方法中用，并且必须位于构造方法的第一句</code>。</li>
+<li>this不能用于static方法中。</li>
+</ol>
+<h2 id="内存底层"><a href="#内存底层" class="headerlink" title="内存底层"></a>内存底层</h2><h3 id="虚拟机内存模型"><a href="#虚拟机内存模型" class="headerlink" title="虚拟机内存模型"></a>虚拟机内存模型</h3><ol>
+<li>每执行一个方法，都会创建一个栈帧；堆存放对象；方法区存放类信息和常量和字符串等。</li>
+</ol>
+<h3 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h3><ol>
+<li>主要是堆中对象的管理回收。</li>
+<li>JVM优化主要是垃圾回收机制优化。</li>
+<li>对象创建new。</li>
+<li>发现无用的对象（没有任何变量引用的对象）；回收无用对象占用的内存空间。</li>
+</ol>
+<h4 id="相关算法"><a href="#相关算法" class="headerlink" title="相关算法"></a>相关算法</h4><h5 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h5><ol>
+<li>每个对象有一个引用计数器，有变量引用加1，无变量引用减1.</li>
+<li>优点：算法简单。缺点是循环引用的无用对象无法识别。</li>
+</ol>
+<h5 id="引用可达法（跟搜索算法）"><a href="#引用可达法（跟搜索算法）" class="headerlink" title="引用可达法（跟搜索算法）"></a>引用可达法（跟搜索算法）</h5><ol>
+<li>所有引用关系使用图。</li>
+</ol>
+<h4 id="通用的分代垃圾回收机制"><a href="#通用的分代垃圾回收机制" class="headerlink" title="通用的分代垃圾回收机制"></a>通用的分代垃圾回收机制</h4><ol>
+<li>按生命周期长短划分年轻代、年老代、永久代。将处于不同状态的对象放到堆中不同的区域。</li>
+<li>JVM将堆内存分为Eden、Survivor和Tenured/Old空间。</li>
+<li>按照存活时间，往时间更长的区域移动。</li>
+<li>JDK8之后没有永久代了。</li>
+<li>MinorGC(清理年轻代，满了触发);Major（年老代）GC;Full GC（年轻代和年老代）.</li>
+</ol>
+<h4 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h4><ol>
+<li>很大一部分工作就是对于Full GC的<code>调节</code>。</li>
+<li>触发Full GC的原因：<br> a. 年老代被写满；<br> b. 永久代被写满；<br> c. System.gc()被显式调用，只是通知JVM（建议），尽量少用；<br> d. 上一次GC之后Heap的各域分配策略动态变化。</li>
+<li>程序员无权调用垃圾回收器。</li>
+<li>finalize方法，是java提供给程序员用来释放对象或资源的方法，尽量少用。</li>
+</ol>
+<h4 id="以下四种情况容易造成内存泄漏"><a href="#以下四种情况容易造成内存泄漏" class="headerlink" title="以下四种情况容易造成内存泄漏"></a>以下四种情况容易造成内存泄漏</h4><ol>
+<li>创建大量无用的对象（比如大量拼接字符串，使用了string而不是stringBuilder）；</li>
+<li>静态集合类（HashMap\Vector\List）的使用；</li>
+<li>各种连接对象（IO流对象、数据库连接对象、网络连接对象）未关闭；</li>
+<li>监听器的使用。</li>
+</ol>
+<h2 id="三大特征"><a href="#三大特征" class="headerlink" title="三大特征"></a>三大特征</h2><h2 id="特殊类"><a href="#特殊类" class="headerlink" title="特殊类"></a>特殊类</h2><h1 id="Java-继承"><a href="#Java-继承" class="headerlink" title="Java 继承"></a>Java 继承</h1><h1 id="Java-重写-Override-与重载-Overload"><a href="#Java-重写-Override-与重载-Overload" class="headerlink" title="Java 重写(Override)与重载(Overload)"></a>Java 重写(Override)与重载(Overload)</h1><h1 id="Java-多态"><a href="#Java-多态" class="headerlink" title="Java 多态"></a>Java 多态</h1><h1 id="Java-抽象类"><a href="#Java-抽象类" class="headerlink" title="Java 抽象类"></a>Java 抽象类</h1><h1 id="Java-封装"><a href="#Java-封装" class="headerlink" title="Java 封装"></a>Java 封装</h1><h1 id="Java-接口"><a href="#Java-接口" class="headerlink" title="Java 接口"></a>Java 接口</h1><h1 id="Java-包-package"><a href="#Java-包-package" class="headerlink" title="Java 包(package)"></a>Java 包(package)</h1>
       
     </div>
     
@@ -430,8 +507,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/15/JAVA-JUC/" rel="next" title="JAVA-JUC并发">
-                <i class="fa fa-chevron-left"></i> JAVA-JUC并发
+              <a href="/2020/02/15/JAVA-基础/" rel="next" title="JAVA-基础">
+                <i class="fa fa-chevron-left"></i> JAVA-基础
               </a>
             
           </div>
@@ -440,8 +517,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/15/JAVA-基础/" rel="prev" title="JAVA-基础">
-                JAVA-基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/15/JAVA-JVM底层原理与性能/" rel="prev" title="JAVA-JVM底层原理与性能">
+                JAVA-JVM底层原理与性能 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -519,7 +596,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -541,7 +618,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-继承"><span class="nav-number">1.</span> <span class="nav-text">Java 继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-重写-Override-与重载-Overload"><span class="nav-number">2.</span> <span class="nav-text">Java 重写(Override)与重载(Overload)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-多态"><span class="nav-number">3.</span> <span class="nav-text">Java 多态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-抽象类"><span class="nav-number">4.</span> <span class="nav-text">Java 抽象类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-封装"><span class="nav-number">5.</span> <span class="nav-text">Java 封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-接口"><span class="nav-number">6.</span> <span class="nav-text">Java 接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-包-package"><span class="nav-number">7.</span> <span class="nav-text">Java 包(package)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">1.1.</span> <span class="nav-text">类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.1.1.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象创建的过程"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">对象创建的过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.1.2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">构造方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例变量"><span class="nav-number">1.1.4.</span> <span class="nav-text">实例变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-static关键字-在方法区"><span class="nav-number">1.1.5.</span> <span class="nav-text">this\static关键字(在方法区)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this的使用场景"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">this的使用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存底层"><span class="nav-number">1.2.</span> <span class="nav-text">内存底层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机内存模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">1.2.2.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关算法"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">相关算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用计数法"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#引用可达法（跟搜索算法）"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">引用可达法（跟搜索算法）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用的分代垃圾回收机制"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">通用的分代垃圾回收机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM调优"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">JVM调优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以下四种情况容易造成内存泄漏"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">以下四种情况容易造成内存泄漏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三大特征"><span class="nav-number">1.3.</span> <span class="nav-text">三大特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊类"><span class="nav-number">1.4.</span> <span class="nav-text">特殊类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-继承"><span class="nav-number">2.</span> <span class="nav-text">Java 继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-重写-Override-与重载-Overload"><span class="nav-number">3.</span> <span class="nav-text">Java 重写(Override)与重载(Overload)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-多态"><span class="nav-number">4.</span> <span class="nav-text">Java 多态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-抽象类"><span class="nav-number">5.</span> <span class="nav-text">Java 抽象类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-封装"><span class="nav-number">6.</span> <span class="nav-text">Java 封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-接口"><span class="nav-number">7.</span> <span class="nav-text">Java 接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-包-package"><span class="nav-number">8.</span> <span class="nav-text">Java 包(package)</span></a></li></ol></div>
             
 
           </div>

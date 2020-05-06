@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-24T08:59:37.916Z">
+<meta property="og:updated_time" content="2020-04-30T08:20:39.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA-基础">
 <meta name="twitter:description" content="JVM">
@@ -405,13 +405,7 @@
 <li><em>核心：将物理事物用代码抽象出来，拟物化编程</em>。</li>
 <li>一个Java程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。</li>
 </ol>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><ol>
-<li>对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2></li>
-<li>类是一个模板，它描述一类对象的行为和状态。<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2></li>
-<li>方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。<h2 id="实例变量"><a href="#实例变量" class="headerlink" title="实例变量"></a>实例变量</h2></li>
-<li>每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。</li>
-</ol>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><ol>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><ol>
 <li>大小写敏感：Java是大小写敏感的，这就意味着标识符Hello与hello是不同的。</li>
 <li>类名：对于所有的类来说，类名的首字母应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写，例如 MyFirstJavaClass 。</li>
 <li>方法名：所有的方法名都应该以小写字母开头。如果方法名含有若干单词，则后面的每个单词首字母大写。</li>
@@ -426,7 +420,18 @@
 <h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><ol>
 <li>按bit位占内存.</li>
 </ol>
-<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><ol>
+<li>字符串是对象。</li>
+</ol>
+<h1 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h1><ol>
+<li><p>带标签的break和continue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Test18 &#123;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        outer: for (int i = 101; i &lt; 150; i++) &#123;</span><br><span class="line">            for (int j = 2; j &lt; i / 2; j++) &#123;</span><br><span class="line">                if (i % j == 0)&#123;</span><br><span class="line">                    continue outer;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(i + &quot;  &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>方法重载</code>（方法名称相同，形式参数类型不同，形式参数个数不同，形式参数顺序不同，可以重载）。</p>
+</li>
+<li>递归（递归头和递归体），尽量避免使用递归，效率低下。一般都可以使用循环或if替代。</li>
+</ol>
+<h1 id="面向对象-1"><a href="#面向对象-1" class="headerlink" title="面向对象"></a>面向对象</h1>
       
     </div>
     
@@ -456,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/15/JAVA-面向对象/" rel="next" title="JAVA-面向对象">
-                <i class="fa fa-chevron-left"></i> JAVA-面向对象
+              <a href="/2019/12/27/日常-罗振宇-时间的朋友/" rel="next" title="日常-罗振宇-时间的朋友">
+                <i class="fa fa-chevron-left"></i> 日常-罗振宇-时间的朋友
               </a>
             
           </div>
@@ -466,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/15/JAVA-JVM底层原理与性能/" rel="prev" title="JAVA-JVM底层原理与性能">
-                JAVA-JVM底层原理与性能 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/15/JAVA-面向对象/" rel="prev" title="JAVA-面向对象">
+                JAVA-面向对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -545,7 +550,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +572,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -600,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.2.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">2.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例变量"><span class="nav-number">2.4.</span> <span class="nav-text">实例变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型"><span class="nav-number">4.1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">4.1.1.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">Boolean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型"><span class="nav-number">4.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型"><span class="nav-number">4.1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">4.1.1.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">Boolean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型"><span class="nav-number">4.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制语句"><span class="nav-number">5.</span> <span class="nav-text">控制语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象-1"><span class="nav-number">6.</span> <span class="nav-text">面向对象</span></a></li></ol></div>
             
 
           </div>

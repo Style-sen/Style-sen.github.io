@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JS,">
+  <meta name="keywords" content="JS,NODE,">
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="JS模块化开发规范及常用插件">
-<meta name="keywords" content="JS">
+<meta name="keywords" content="JS,NODE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模块化开发及常用模块">
 <meta property="og:url" content="http://yoursite.com/2019/04/03/JS-模块化开发(包括NodeJS模块)/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JS模块化开发规范及常用插件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-18T03:50:26.852Z">
+<meta property="og:updated_time" content="2020-04-27T00:51:26.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模块化开发及常用模块">
 <meta name="twitter:description" content="JS模块化开发规范及常用插件">
@@ -475,16 +475,18 @@
 <li>优化promise.</li>
 </ol>
 <h2 id="NodeJs支持"><a href="#NodeJs支持" class="headerlink" title="NodeJs支持"></a>NodeJs支持</h2><h3 id="Automattic-node-canvas-在node中实现canvas渲染"><a href="#Automattic-node-canvas-在node中实现canvas渲染" class="headerlink" title="Automattic/node-canvas 在node中实现canvas渲染"></a><a href="https://github.com/Automattic/node-canvas" target="_blank" rel="noopener">Automattic/node-canvas</a> 在node中实现canvas渲染</h3><h3 id="BULL"><a href="#BULL" class="headerlink" title="BULL"></a><a href="https://github.com/OptimalBits/bull" target="_blank" rel="noopener">BULL</a></h3><ol>
-<li>KUE不再维护。<h4 id="简单队列"><a href="#简单队列" class="headerlink" title="简单队列"></a>简单队列</h4></li>
+<li>KUE不再维护。</li>
+</ol>
+<h4 id="简单队列"><a href="#简单队列" class="headerlink" title="简单队列"></a>简单队列</h4><ol>
 <li><p>简单创建一个队列实例。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>一个简单队列大致有3个主要角色： A job producer, a job consumer or/and an events listener.</p>
 </li>
 <li>虽然一个给定的实例可以用于3个角色，但通常将生产者和消费者分成几个实例。 一个给定的队列，总是由其实例化名称（上例中的my-first-queue）引用，可以有许多生产者，许多消费者和许多听众。 一个重要的方面是，即使当时没有可用的消费者，生产者也可以将作业添加到队列中：队列提供异步通信，这是使它们如此强大的功能之一。</li>
-<li>相反，您可以让一个或多个worker从队列中消费作业，它将按照给定的顺序消费这些作业:FIFO(缺省值)、LIFO或根据优先级。<h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br><span class="line">const job = await myFirstQueue.add(&#123;</span><br><span class="line">  foo: &apos;bar&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
+<li>相反，您可以让一个或多个worker从队列中消费作业，它将按照给定的顺序消费这些作业:FIFO(缺省值)、LIFO或根据优先级。</li>
 </ol>
+<h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br><span class="line">const job = await myFirstQueue.add(&#123;</span><br><span class="line">  foo: &apos;bar&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const myFirstQueue = new Bull(&apos;my-first-queue&apos;);</span><br><span class="line">myFirstQueue.process(async (job, data) =&gt; &#123;</span><br><span class="line">  return doSomething(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <ol>
 <li>有时您需要向外部侦听器提供作业的进度信息，这可以通过在作业对象上使用progress方法轻松完成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myFirstQueue.process( async (job, data) =&gt; &#123;</span><br><span class="line">  let progress = 0;</span><br><span class="line">  for(i = 0; i &lt; 100; i++)&#123;</span><br><span class="line">    await doSomething(data);</span><br><span class="line">    progress += 10;</span><br><span class="line">    job.progress(progress);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -493,9 +495,9 @@
 <h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><h5 id="速率限制"><a href="#速率限制" class="headerlink" title="速率限制"></a>速率限制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Limit queue to max 1.000 jobs per 5 seconds.</span><br><span class="line">const myRateLimitedQueue = new Queue(&apos;rateLimited&apos;, &#123;</span><br><span class="line">  limiter: &#123;</span><br><span class="line">    max: 1000,</span><br><span class="line">    duration: 5000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h5 id="Named-jobs"><a href="#Named-jobs" class="headerlink" title="Named jobs"></a>Named jobs</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// Jobs producer</span><br><span class="line">const myJob = await transcoderQueue.add(&apos;image&apos;, &#123; input: &apos;myimagefile&apos; &#125;);</span><br><span class="line">const myJob = await transcoderQueue.add(&apos;audio&apos;, &#123; input: &apos;myaudiofile&apos; &#125;);</span><br><span class="line">const myJob = await transcoderQueue.add(&apos;video&apos;, &#123; input: &apos;myvideofile&apos; &#125;);</span><br><span class="line">// Worker</span><br><span class="line">transcoderQueue.process(&apos;image&apos;, processImage);</span><br><span class="line">transcoderQueue.process(&apos;audio&apos;, processAudio);</span><br><span class="line">transcoderQueue.process(&apos;video&apos;, processVideo);</span><br></pre></td></tr></table></figure>
 <ol>
-<li>每一个命名的JOB必须有一个对应的processer。<h5 id="Sandboxed-Processors"><a href="#Sandboxed-Processors" class="headerlink" title="Sandboxed Processors"></a>Sandboxed Processors</h5><h4 id="JOB类型"><a href="#JOB类型" class="headerlink" title="JOB类型"></a>JOB类型</h4><h5 id="LIFO"><a href="#LIFO" class="headerlink" title="LIFO"></a>LIFO</h5>后进先出<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const myJob = await myqueue.add(&#123; foo: &apos;bar&apos; &#125;, &#123; lifo: true &#125;);</span><br></pre></td></tr></table></figure>
-</li>
+<li>每一个命名的JOB必须有一个对应的processer。<h5 id="Sandboxed-Processors"><a href="#Sandboxed-Processors" class="headerlink" title="Sandboxed Processors"></a>Sandboxed Processors</h5></li>
 </ol>
+<h4 id="JOB类型"><a href="#JOB类型" class="headerlink" title="JOB类型"></a>JOB类型</h4><h5 id="LIFO"><a href="#LIFO" class="headerlink" title="LIFO"></a>LIFO</h5><p>后进先出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const myJob = await myqueue.add(&#123; foo: &apos;bar&apos; &#125;, &#123; lifo: true &#125;);</span><br></pre></td></tr></table></figure></p>
 <h5 id="Delayed"><a href="#Delayed" class="headerlink" title="Delayed"></a>Delayed</h5><ol>
 <li>延时。</li>
 <li>设置的为最小延时，过了这个时间，才放进可执行队列中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Delayed 5 seconds</span><br><span class="line">const myJob = await myqueue.add(&#123; foo: &apos;bar&apos; &#125;, &#123; delay: 5000 &#125;);</span><br></pre></td></tr></table></figure>
@@ -535,6 +537,8 @@
         <div class="post-tags">
           
             <a href="/tags/JS/" rel="tag"><i class="fa fa-tag"></i>JS</a>
+          
+            <a href="/tags/NODE/" rel="tag"><i class="fa fa-tag"></i>NODE</a>
           
         </div>
       
@@ -636,7 +640,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -658,7 +662,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
