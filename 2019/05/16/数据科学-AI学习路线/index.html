@@ -6,7 +6,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="开始机器学习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-04T08:15:33.993Z">
+<meta property="og:updated_time" content="2019-10-30T09:05:16.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据科学-机器学习">
 <meta name="twitter:description" content="开始机器学习">
@@ -580,7 +580,7 @@
 <li>当有一个分类问题的时候，我们要用哪个方程来表示我们的假设。</li>
 <li>（对y进行归一化）logistics函数：$g(z)=\frac{1}{1+e^{-z}}$。</li>
 <li>逻辑回归本质上是线性回归，只是在特征到结果的映射中加入了一层函数映射，即先把特征线性求和，然后使用函数g(z)将最为假设函数来预测。g(z)可以将连续值映射到0到1之间。线性回归模型的表达式带入g(z)，就得到逻辑回归的表达式:$h_{\theta}(x)=g\left(\theta^{T} x\right)=\frac{1}{1+e^{-\theta^{T} x}}$。</li>
-<li>假设函数输出的y是x对应的分类问题的概率估计：$P(y=1 | x ; \theta)=h<em>{\theta}(x)$和$P(y=0 | x ; \theta)=1-h</em>{\theta}(x)$。</li>
+<li>假设函数输出的y是x对应的分类问题的概率估计：$P(y=1 | x ; \theta)=h_{\theta}(x)$和$P(y=0 | x ; \theta)=1-h_{\theta}(x)$。</li>
 </ol>
 <h4 id="决策界限"><a href="#决策界限" class="headerlink" title="决策界限"></a>决策界限</h4><ol>
 <li>决策边界是假设函数的属性。只要假设函数及其参数确定，此边界也确定。（首先会预测在什么范围下分类）</li>
@@ -588,10 +588,10 @@
 </ol>
 <h4 id="代价函数-1"><a href="#代价函数-1" class="headerlink" title="代价函数"></a>代价函数</h4><ol>
 <li>如果还是用线性回归时的代价函数，会发现此函数是非凸函数，有很多个局部最小值。我们需要其他形式的代价函数来保证逻辑回归的代价函数是凸函数。</li>
-<li>这里我们先对线性回归模型中的代价函数J(θ)进行简单的改写：$J(\theta)=\frac{1}{m} \sum<em>{i=1}^{m} \frac{1}{2}\left(h</em>{\theta}\left(x^{(i)}\right)-y^{(i)}\right)^{2}$；</li>
-<li>用Cost(h(x), y) = 1/2(h(x) - y)^2 代替：$J(\theta)=\frac{1}{m} \sum<em>{i=1}^{m} \operatorname{cost}\left(h</em>{\theta}\left(x^{(i)}\right), y^{(i)}\right)$；</li>
+<li>这里我们先对线性回归模型中的代价函数J(θ)进行简单的改写：$J(\theta)=\frac{1}{m} \sum_{i=1}^{m} \frac{1}{2}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right)^{2}$；</li>
+<li>用Cost(h(x), y) = 1/2(h(x) - y)^2 代替：$J(\theta)=\frac{1}{m} \sum_{i=1}^{m} \operatorname{cost}\left(h_{\theta}\left(x^{(i)}\right), y^{(i)}\right)$；</li>
 <li>在这里我们选择对数似然损失函数做为逻辑回归模型的代价函数，Cost函数可以表示如下：<script type="math/tex">\operatorname{cost}\left(h_{\theta}(x), y\right)=\left\{\begin{aligned}-\log \left(h_{\theta}(x)\right) & \text { if } y=1 \\-\log \left(1-h_{\theta}(x)\right) & \text { if } y=0 \end{aligned}\right.</script>；</li>
-<li>为了统一表示，可以把Cost(h(x), y)表达成统一的式子，根据前面J(θ)的定义，J(θ)等于：<br>$J(\theta)=-\frac{1}{m}\left[\sum<em>{i=1}^{m} y^{(i)} \operatorname{logh}</em>{\theta}\left(x^{(i)}\right)+\left(1-y^{(i)}\right) \log \left(1-h_{\theta}\left(x^{(i)}\right)\right)\right]$</li>
+<li>为了统一表示，可以把Cost(h(x), y)表达成统一的式子，根据前面J(θ)的定义，J(θ)等于：<br>$J(\theta)=-\frac{1}{m}\left[\sum_{i=1}^{m} y^{(i)} \operatorname{logh}_{\theta}\left(x^{(i)}\right)+\left(1-y^{(i)}\right) \log \left(1-h_{\theta}\left(x^{(i)}\right)\right)\right]$</li>
 <li>特别说明: 1. 当y=1的时候，第二项(1-y)log(1-h(x))等于0 ；2. 当y=0的时候，ylog(h(x))等于0。</li>
 <li>根据线性回归求代价函数的方法，可以用梯度下降算法求解参数θ。</li>
 </ol>
