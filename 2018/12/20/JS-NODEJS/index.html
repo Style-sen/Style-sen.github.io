@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-24T08:59:37.916Z">
+<meta property="og:updated_time" content="2020-05-06T03:01:35.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJS概览及开发框架">
 <meta name="twitter:description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
@@ -596,7 +596,7 @@
 <h4 id="自定义npm-init行为"><a href="#自定义npm-init行为" class="headerlink" title="自定义npm init行为"></a>自定义npm init行为</h4><ol>
 <li>参考<a href="https://juejin.im/post/5ab3f77df265da2392364341#heading-0" target="_blank" rel="noopener">2018 年了，你还是只会 npm install 吗？</a></li>
 <li>定制 npm init 命令的实现方式也很简单，在 Home 目录创建一个 <code>.npm-init.js</code> 即可，该文件的 module.exports 即为 package.json 配置内容，需要获取用户输入时候，使用 prompt() 方法即可。</li>
-<li>.npm-init.js 是一个常规的模块，意味着我们可以执行随便什么 node 脚本可以执行的任务。例如通过 fs 创建 README, .eslintrc 等项目必需文件，实现<code>项目脚手架</code>的作用。</li>
+<li>.npm-init.js 是一个常规的模块，意味着我们可以执行随便什么 node 脚本可以执行的任务。例如通过 fs 创建 README, .eslintrc 等项目必需文件，实现<code>项目脚手架</code>的作用。</li>
 </ol>
 <h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>index.js<br>main<br>|——config.js</p>
 <h3 id="npm-install安装依赖"><a href="#npm-install安装依赖" class="headerlink" title="npm install安装依赖"></a><code>npm install</code>安装依赖</h3><ol>
