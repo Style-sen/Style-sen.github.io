@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,VUE,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &amp;apos;My App&amp;apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&amp;#">
+<meta name="keywords" content="前端,VUE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/前端-VUE/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &amp;apos;My App&amp;apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&amp;#">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/vue/lifecycle.png">
+<meta property="og:updated_time" content="2019-11-21T02:56:43.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VUE">
+<meta name="twitter:description" content="VUE实例的生命周期 VUE实例的特殊属性和方法$refs一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性12345678910Vue.prototype.$appName = &amp;apos;My App&amp;apos;这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：new Vue(&amp;#">
+<meta name="twitter:image" content="http://yoursite.com/images/vue/lifecycle.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/14/前端-VUE/">
+
+
+
+
+
+  <title>VUE | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/前端-VUE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VUE</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T11:58:24+08:00">
+                2019-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/14/前端-VUE/" class="leancloud_visitors" data-flag-title="VUE">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="VUE实例的生命周期"><a href="#VUE实例的生命周期" class="headerlink" title="VUE实例的生命周期"></a>VUE实例的生命周期</h2><p><img src="/images/vue/lifecycle.png" alt="生命周期"></p>
+<h2 id="VUE实例的特殊属性和方法"><a href="#VUE实例的特殊属性和方法" class="headerlink" title="VUE实例的特殊属性和方法"></a>VUE实例的特殊属性和方法</h2><h3 id="refs"><a href="#refs" class="headerlink" title="$refs"></a>$refs</h3><p>一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。</p>
+<h2 id="VUE实例属性"><a href="#VUE实例属性" class="headerlink" title="VUE实例属性"></a>VUE实例属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$appName = &apos;My App&apos;</span><br><span class="line"></span><br><span class="line">这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  beforeCreate: function () &#123;</span><br><span class="line">    console.log(this.$appName)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">则控制台会打印出 My App。就这么简单！</span><br></pre></td></tr></table></figure>
+<h2 id="实战技巧"><a href="#实战技巧" class="headerlink" title="实战技巧"></a>实战技巧</h2><ol>
+<li><a href="https://blog.csdn.net/akon_vm/article/details/8494579" target="_blank" rel="noopener">防止浏览器缓存css,js静态文件</a><br>使用此方法可以在程序运行过程中，重新下载同名的静态文件。</li>
+<li><a href="https://blog.csdn.net/pratise/article/details/79249943" target="_blank" rel="noopener">Vue导出页面为PDF格式</a></li>
+<li><a href="https://segmentfault.com/a/1190000012117303" target="_blank" rel="noopener">Vue导出json数据到Excel电子表格</a></li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="使用Vue-CLI"><a href="#使用Vue-CLI" class="headerlink" title="使用Vue CLI"></a>使用<a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener">Vue CLI</a></h3><ol>
+<li>可图形界面创建VUE项目(vue ci)。</li>
+<li>关于source map,在生产环境下，一定要关闭source map选项，这样在chrome的调试窗口source选项卡下，就不会看到项目源码。否则，在build的dist/js目录下有map文件。</li>
+<li>使用vue cli使用的配置文件为 vue.config.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  productionSourceMap: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="VUE插件"><a href="#VUE插件" class="headerlink" title="VUE插件"></a>VUE插件</h2><h3 id="VUEX"><a href="#VUEX" class="headerlink" title="VUEX"></a><a href="https://vuex.vuejs.org/zh/" target="_blank" rel="noopener">VUEX</a></h3><ol>
+<li>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。</li>
+<li>参考<a href="https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart" target="_blank" rel="noopener">购物车项目</a></li>
+<li>store对象中的key值按照约定，不可随意更改。</li>
+<li>参考<a href="https://www.cnblogs.com/jsanntq/p/9288144.html" target="_blank" rel="noopener">vuex存储和本地存储(localstorage、sessionstorage)的区别</a>.</li>
+</ol>
+<h4 id="cookie-HTML4"><a href="#cookie-HTML4" class="headerlink" title="cookie(HTML4)"></a>cookie(HTML4)</h4><ol>
+<li>4K</li>
+</ol>
+<h4 id="WebStorage-HTML5"><a href="#WebStorage-HTML5" class="headerlink" title="WebStorage(HTML5)"></a>WebStorage(HTML5)</h4><ol>
+<li>5M或更大；</li>
+<li>使用方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.运算符</span><br><span class="line">[]运算符</span><br><span class="line">setItem (key, value) ——  保存数据，以键值对的方式储存信息。</span><br><span class="line">getItem (key) ——  获取数据，将键值传入，即可获取到对应的value值。</span><br><span class="line">removeItem (key) ——  删除单个数据，根据键值移除对应的信息。</span><br><span class="line">clear () ——  删除所有的数据</span><br><span class="line">key (index) —— 获取某个索引的key</span><br></pre></td></tr></table></figure>
+<h5 id="sessionStorage-HTML5-回话存储"><a href="#sessionStorage-HTML5-回话存储" class="headerlink" title="sessionStorage(HTML5) 回话存储"></a>sessionStorage(HTML5) 回话存储</h5><ol>
+<li>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</li>
+</ol>
+<h5 id="localStorage-HTML5-本地存储"><a href="#localStorage-HTML5-本地存储" class="headerlink" title="localStorage(HTML5) 本地存储"></a>localStorage(HTML5) 本地存储</h5><ol>
+<li>localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>1.区别：vuex存储在内存，localstorage（本地存储）则以文件的方式存储在本地,永久保存；sessionstorage( 会话存储 ) ,临时保存。localStorage和sessionStorage只能存储字符串类型，对于复杂的对象可以使用ECMAScript提供的JSON对象的stringify和parse来处理<br>2.应用场景：vuex用于组件之间的传值，localstorage，sessionstorage则主要用于不同页面之间的传值。<br>3.永久性：当刷新页面（这里的刷新页面指的是 —&gt; F5刷新,属于清除内存了）时vuex存储的值会丢失，sessionstorage页面关闭后就清除掉了，localstorage不会。<br><strong>注：很多同学觉得用localstorage可以代替vuex, 对于不变的数据确实可以，但是当两个组件共用一个数据源（对象或数组）时，如果其中一个组件改变了该数据源，希望另一个组件响应该变化时，localstorage，sessionstorage无法做到，原因就是区别1。</strong></p>
+<h3 id="VUE-ROUTER"><a href="#VUE-ROUTER" class="headerlink" title="VUE-ROUTER"></a>VUE-ROUTER</h3><ol>
+<li><a href="https://blog.csdn.net/bluefish_flying/article/details/81011230" target="_blank" rel="noopener">vue router带参数页面刷新或者回退参数消失的解决方法</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;path:&apos;&apos;,params:&#123;&#125;,query:&#123;&#125;&#125;)</span><br><span class="line">patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="vue-json-excel"><a href="#vue-json-excel" class="headerlink" title="vue-json-excel"></a><a href="https://www.npmjs.com/package/vue-json-excel" target="_blank" rel="noopener">vue-json-excel</a></h3><h2 id="基于VUE的扩展"><a href="#基于VUE的扩展" class="headerlink" title="基于VUE的扩展"></a>基于VUE的扩展</h2><h3 id="IVIEW一套基于Vue-js的高质量UI-组件库"><a href="#IVIEW一套基于Vue-js的高质量UI-组件库" class="headerlink" title="IVIEW一套基于Vue.js的高质量UI 组件库"></a><a href="https://iviewui.com/" target="_blank" rel="noopener">IVIEW</a>一套基于Vue.js的高质量UI 组件库</h3><p>组件多于element-ui</p>
+<h3 id="Element一套为开发者、设计师和产品经理准备的基于-Vue-2-0-的桌面端组件库"><a href="#Element一套为开发者、设计师和产品经理准备的基于-Vue-2-0-的桌面端组件库" class="headerlink" title="Element一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库"></a><a href="https://element.eleme.cn/#/zh-CN" target="_blank" rel="noopener">Element</a>一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库</h3><ol>
+<li><a href="https://panjiachen.github.io/vue-element-admin-site/zh/" target="_blank" rel="noopener">vue-element-admin</a>基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。</li>
+</ol>
+<h3 id="Ant-Design-of-Vue"><a href="#Ant-Design-of-Vue" class="headerlink" title="Ant Design of Vue"></a><a href="https://vue.ant.design/docs/vue/introduce/" target="_blank" rel="noopener">Ant Design of Vue</a></h3><h3 id="vue-beauty基于-vue-js-和-ant-design样式-的PC端-UI-组件库"><a href="#vue-beauty基于-vue-js-和-ant-design样式-的PC端-UI-组件库" class="headerlink" title="vue-beauty基于 vue.js 和 ant-design样式 的PC端 UI 组件库"></a><a href="https://fe-driver.github.io/vue-beauty/#/components/start" target="_blank" rel="noopener">vue-beauty</a>基于 vue.js 和 ant-design样式 的PC端 UI 组件库</h3><h3 id="ANTUE"><a href="#ANTUE" class="headerlink" title="ANTUE"></a><a href="https://zzuu666.github.io/antue/#/docs/development/first/zh" target="_blank" rel="noopener">ANTUE</a></h3><h3 id="fengyuanchen-vue-barcode"><a href="#fengyuanchen-vue-barcode" class="headerlink" title="fengyuanchen/vue-barcode"></a><a href="https://github.com/fengyuanchen/vue-barcode" target="_blank" rel="noopener">fengyuanchen/vue-barcode</a></h3><h2 id="基于VUE的框架"><a href="#基于VUE的框架" class="headerlink" title="基于VUE的框架"></a>基于VUE的框架</h2><h3 id="vue-element-admin"><a href="#vue-element-admin" class="headerlink" title="vue-element-admin"></a><a href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/#%E5%8A%9F%E8%83%BD" target="_blank" rel="noopener">vue-element-admin</a></h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i>前端</a>
+          
+            <a href="/tags/VUE/" rel="tag"><i class="fa fa-tag"></i>VUE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/09/小程序-UNIAPP/" rel="next" title="UNIAPP">
+                <i class="fa fa-chevron-left"></i> UNIAPP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/JS-NODEJS-Electron-桌面应用/" rel="prev" title="使用Electron创建桌面应用">
+                使用Electron创建桌面应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VUE实例的生命周期"><span class="nav-number">1.</span> <span class="nav-text">VUE实例的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VUE实例的特殊属性和方法"><span class="nav-number">2.</span> <span class="nav-text">VUE实例的特殊属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#refs"><span class="nav-number">2.1.</span> <span class="nav-text">$refs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VUE实例属性"><span class="nav-number">3.</span> <span class="nav-text">VUE实例属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战技巧"><span class="nav-number">4.</span> <span class="nav-text">实战技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">5.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Vue-CLI"><span class="nav-number">5.1.</span> <span class="nav-text">使用Vue CLI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VUE插件"><span class="nav-number">6.</span> <span class="nav-text">VUE插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VUEX"><span class="nav-number">6.1.</span> <span class="nav-text">VUEX</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie-HTML4"><span class="nav-number">6.1.1.</span> <span class="nav-text">cookie(HTML4)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebStorage-HTML5"><span class="nav-number">6.1.2.</span> <span class="nav-text">WebStorage(HTML5)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sessionStorage-HTML5-回话存储"><span class="nav-number">6.1.2.1.</span> <span class="nav-text">sessionStorage(HTML5) 回话存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#localStorage-HTML5-本地存储"><span class="nav-number">6.1.2.2.</span> <span class="nav-text">localStorage(HTML5) 本地存储</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">6.1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VUE-ROUTER"><span class="nav-number">6.2.</span> <span class="nav-text">VUE-ROUTER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-json-excel"><span class="nav-number">6.3.</span> <span class="nav-text">vue-json-excel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于VUE的扩展"><span class="nav-number">7.</span> <span class="nav-text">基于VUE的扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IVIEW一套基于Vue-js的高质量UI-组件库"><span class="nav-number">7.1.</span> <span class="nav-text">IVIEW一套基于Vue.js的高质量UI 组件库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Element一套为开发者、设计师和产品经理准备的基于-Vue-2-0-的桌面端组件库"><span class="nav-number">7.2.</span> <span class="nav-text">Element一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ant-Design-of-Vue"><span class="nav-number">7.3.</span> <span class="nav-text">Ant Design of Vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-beauty基于-vue-js-和-ant-design样式-的PC端-UI-组件库"><span class="nav-number">7.4.</span> <span class="nav-text">vue-beauty基于 vue.js 和 ant-design样式 的PC端 UI 组件库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANTUE"><span class="nav-number">7.5.</span> <span class="nav-text">ANTUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fengyuanchen-vue-barcode"><span class="nav-number">7.6.</span> <span class="nav-text">fengyuanchen/vue-barcode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于VUE的框架"><span class="nav-number">8.</span> <span class="nav-text">基于VUE的框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-element-admin"><span class="nav-number">8.1.</span> <span class="nav-text">vue-element-admin</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

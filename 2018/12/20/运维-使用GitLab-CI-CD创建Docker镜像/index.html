@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,Deploy,CI/CD,Gitlab,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="翻译自Building Docker images with GitLab CI/CD  GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。  Tip:允许使用docker-compose和其他Docker编排工具。  持续集成/部署的趋势之一:  创建应用镜像 对所创建的镜像进行测试 将镜像推到远程registry 部署到服务器   应用中可包含Dockerfil">
+<meta name="keywords" content="Docker,Deploy,CI&#x2F;CD,Gitlab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用GitLab CI&#x2F;CD创建Docker镜像">
+<meta property="og:url" content="http://yoursite.com/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="翻译自Building Docker images with GitLab CI/CD  GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。  Tip:允许使用docker-compose和其他Docker编排工具。  持续集成/部署的趋势之一:  创建应用镜像 对所创建的镜像进行测试 将镜像推到远程registry 部署到服务器   应用中可包含Dockerfil">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-16T06:11:19.444Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用GitLab CI&#x2F;CD创建Docker镜像">
+<meta name="twitter:description" content="翻译自Building Docker images with GitLab CI/CD  GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。  Tip:允许使用docker-compose和其他Docker编排工具。  持续集成/部署的趋势之一:  创建应用镜像 对所创建的镜像进行测试 将镜像推到远程registry 部署到服务器   应用中可包含Dockerfil">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/">
+
+
+
+
+
+  <title>使用GitLab CI/CD创建Docker镜像 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用GitLab CI/CD创建Docker镜像</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T16:08:27+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/" class="leancloud_visitors" data-flag-title="使用GitLab CI/CD创建Docker镜像">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>翻译自<a href="https://docs.gitlab.com/ce/ci/docker/using_docker_build.html" target="_blank" rel="noopener">Building Docker images with GitLab CI/CD</a></p>
+<ol>
+<li>GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。</li>
+</ol>
+<p><strong>Tip:</strong>允许使用<code>docker-compose</code>和其他Docker编排工具。</p>
+<ol>
+<li><p>持续集成/部署的趋势之一:</p>
+<ol>
+<li>创建应用镜像</li>
+<li>对所创建的镜像进行测试</li>
+<li>将镜像推到远程registry</li>
+<li>部署到服务器</li>
+</ol>
+</li>
+<li><p>应用中可包含<code>Dockerfile</code>用来创建和测试镜像:</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker build -t my-image dockerfiles/</span><br><span class="line">docker run my-docker-image /script/to/run/tests</span><br><span class="line">docker tag my-image my-registry:5000/my-image</span><br><span class="line">docker push my-registry:5000/my-image</span><br></pre></td></tr></table></figure>
+<ol>
+<li>GitLab Runner需要一些特别的配置使jobs中支持<code>docker</code>。</li>
+</ol>
+<h2 id="Runner配置"><a href="#Runner配置" class="headerlink" title="Runner配置"></a>Runner配置</h2><ol>
+<li>有三种方法在jobs中使用<code>docker build</code>和<code>docker run</code>，各有利弊。</li>
+</ol>
+<h3 id="使用shell执行器"><a href="#使用shell执行器" class="headerlink" title="使用shell执行器"></a>使用shell执行器</h3><ol>
+<li>最简单的方法是将GitLab Runner安装成shell执行器模式。</li>
+<li><code>GitLab Runner</code>将以<code>gitlab-runner</code>用户执行jobs中的脚本.</li>
+</ol>
+<h4 id="安装-GitLab-Runner"><a href="#安装-GitLab-Runner" class="headerlink" title="安装 GitLab Runner"></a>安装 <a href="https://gitlab.com/gitlab-org/gitlab-runner/#installation" target="_blank" rel="noopener">GitLab Runner</a></h4><ol>
+<li><p>在安装过程中选择 <code>shell</code>:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register -n \</span><br><span class="line">  --url https://gitlab.com/ \</span><br><span class="line">  --registration-token REGISTRATION_TOKEN \</span><br><span class="line">  --executor shell \</span><br><span class="line">  --description <span class="string">"My Runner"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在服务器中安装 Docker.</p>
+<p> 更多信息参考<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="noopener">Supported installations</a>.</p>
+</li>
+<li><p>将<code>gitlab-runner</code>用户加入到<code>docker</code>组中:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG docker gitlab-runner</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查<code>gitlab-runner</code>是否可以访问Docker:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u gitlab-runner -H docker info</span><br></pre></td></tr></table></figure>
+<p> 将<code>docker info</code>写入<code>.gitlab-ci.yml</code>来检测一切是否OK:</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">info</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build_image:</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">my-docker-image</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">my-docker-image</span> <span class="string">/script/to/run/tests</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>现在，可以使用<code>docker</code>命令和安装<code>docker-compose</code>.</p>
+</li>
+</ol>
+<p><strong>Note:</strong>通过将<code>gitlab-runner</code>添加到<code>docker</code>组，可以有效地授予<code>gitlab-runner</code>完全的根用户权限。更多信息可参考<a href="https://www.andreas-jung.com/contents/on-docker-security-docker-group-considered-harmful" target="_blank" rel="noopener">On Docker security: <code>docker</code> group considered harmful</a>.</p>
+<h3 id="使用docker-in-docker执行器"><a href="#使用docker-in-docker执行器" class="headerlink" title="使用docker-in-docker执行器"></a>使用docker-in-docker执行器</h3><ol>
+<li>第二种方法是使用docker-in-docker (dind)<a href="https://hub.docker.com/_/docker/" target="_blank" rel="noopener">Docker image</a> 安装有(<code>docker</code> and <code>docker-compose</code>)，以特权模式在镜像的上下文中执行jobs脚本或命令。</li>
+</ol>
+<h4 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h4><ol>
+<li><p>安装<a href="https://docs.gitlab.com/runner/install" target="_blank" rel="noopener">GitLab Runner</a>.</p>
+</li>
+<li><p>命令行注册<code>GitLab Runner</code> 使用 <code>docker</code> and <code>privileged</code>模式:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register -n \</span><br><span class="line">  --url https://gitlab.com/ \</span><br><span class="line">  --registration-token REGISTRATION_TOKEN \</span><br><span class="line">  --executor docker \</span><br><span class="line">  --description <span class="string">"My Docker Runner"</span> \</span><br><span class="line">  --docker-image <span class="string">"docker:stable"</span> \</span><br><span class="line">  --docker-privileged</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上边的命令将注册一个新的Runner使用<code>docker:stable</code>镜像（Docker提供）.<br> <strong>注意：使用<code>privileged</code>模式来执行build和service容器.</strong> 如果要使用<a href="https://blog.docker.com/2013/09/docker-can-now-run-within-docker/" target="_blank" rel="noopener">docker-in-docker</a>模式, 必须在你的Docker容器中使用<code>privileged = true</code>。</p>
+</li>
+<li><p>上边的命令将创建<code>config.toml</code>如下:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[[runners]]</span><br><span class="line">  url = &quot;https://gitlab.com/&quot;</span><br><span class="line">  token = TOKEN</span><br><span class="line">  executor = &quot;docker&quot;</span><br><span class="line">  [runners.docker]</span><br><span class="line">    tls_verify = false</span><br><span class="line">    image = &quot;docker:stable&quot;</span><br><span class="line">    privileged = true</span><br><span class="line">    disable_cache = false</span><br><span class="line">    volumes = [&quot;/cache&quot;]</span><br><span class="line">  [runners.cache]</span><br><span class="line">    Insecure = false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>现在可以在构建脚本中使用 <code>docker</code> 命令 (注意需要包含<code>docker:dind</code>服务):</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="attr">docker:stable</span></span><br><span class="line"></span><br><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="comment"># When using dind service we need to instruct docker, to talk with the</span></span><br><span class="line">  <span class="comment"># daemon started inside of the service. The daemon is available with</span></span><br><span class="line">  <span class="comment"># a network connection instead of the default /var/run/docker.sock socket.</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment"># The 'docker' hostname is the alias of the service container as described at</span></span><br><span class="line">  <span class="comment"># https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment"># Note that if you're using Kubernetes executor, the variable should be set to</span></span><br><span class="line">  <span class="comment"># tcp://localhost:2375 because of how Kubernetes executor connects services</span></span><br><span class="line">  <span class="comment"># to the job container</span></span><br><span class="line"><span class="attr">  DOCKER_HOST:</span> <span class="attr">tcp://docker:2375/</span></span><br><span class="line">  <span class="comment"># When using dind, it's wise to use the overlayfs driver for</span></span><br><span class="line">  <span class="comment"># improved performance.</span></span><br><span class="line"><span class="attr">  DOCKER_DRIVER:</span> <span class="string">overlay2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  - docker:</span><span class="string">dind</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">info</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">my-docker-image</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">my-docker-image</span> <span class="string">/script/to/run/tests</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Docker-in-Docker以上为推荐的配置，工作OK。还有一些额外的配置:</p>
+<ul>
+<li>By enabling <code>--docker-privileged</code>, you are effectively disabling all of<br>the security mechanisms of containers and exposing your host to privilege<br>escalation which can lead to container breakout. For more information, check<br>out the official Docker documentation on<br><a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities" target="_blank" rel="noopener">Runtime privilege and Linux capabilities</a>.</li>
+<li>当使用docker-in-docker, 每一个job都运行在干净的环境中不包含历史. 并行jobs也会工作得很好因为每一个构建都会获得他们自己的Docker引擎实例，彼此之间不会冲突。但是，这也意味着jobs会运行<br>很慢，没有layers的缓存。</li>
+<li>默认情况下， <code>docker:dind</code> 使用 <code>--storage-driver vfs</code> 是最慢. 可以使用另外一种storage driver<a href="#using-the-overlayfs-driver">Using the overlayfs driver</a>.</li>
+<li><p>因为<code>docker:dind</code>容器和runner容器没有共享他们的root文件系统, job的工作目录会被挂载在子容器中。 For example, if you have files you want to share with a<br>child container, you may create a subdirectory under <code>/builds/$CI_PROJECT_PATH</code><br>and use it as your mount point (for a more thorough explanation, check <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/41227" target="_blank" rel="noopener">issue#41227</a>):</p>
+  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  MOUNT_POINT:</span> <span class="string">/builds/$CI_PROJECT_PATH/mnt</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">mkdir</span> <span class="bullet">-p</span> <span class="string">"$MOUNT_POINT"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">run</span> <span class="bullet">-v</span> <span class="string">"$MOUNT_POINT:/mnt"</span> <span class="string">my-docker-image</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这种方法的一个样例: <a href="https://gitlab.com/gitlab-examples/docker" target="_blank" rel="noopener">https://gitlab.com/gitlab-examples/docker</a>.</p>
+<h3 id="使用-Docker-socket-绑定"><a href="#使用-Docker-socket-绑定" class="headerlink" title="使用 Docker socket 绑定"></a>使用 Docker socket 绑定</h3><p>第三种方法将 <code>/var/run/docker.sock</code> 绑定到容器，这样在image中就可以使用docker了.</p>
+<p>步骤如下:</p>
+<ol>
+<li><p>安装 <a href="https://docs.gitlab.com/runner/install" target="_blank" rel="noopener">GitLab Runner</a>.</p>
+</li>
+<li><p>命令行注册 GitLab Runner 使用 <code>docker</code> 和分享 <code>/var/run/docker.sock</code>:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register -n \</span><br><span class="line">  --url https://gitlab.com/ \</span><br><span class="line">  --registration-token REGISTRATION_TOKEN \</span><br><span class="line">  --executor docker \</span><br><span class="line">  --description <span class="string">"My Docker Runner"</span> \</span><br><span class="line">  --docker-image <span class="string">"docker:stable"</span> \</span><br><span class="line">  --docker-volumes /var/run/docker.sock:/var/run/docker.sock</span><br></pre></td></tr></table></figure>
+<p> The above command will register a new Runner to use the special<br> <code>docker:stable</code> image which is provided by Docker. <strong>Notice that it’s using<br> the Docker daemon of the Runner itself, and any containers spawned by docker<br> commands will be siblings of the Runner rather than children of the runner.</strong><br> This may have complications and limitations that are unsuitable for your workflow.</p>
+<p> The above command will create a <code>config.toml</code> entry similar to this:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[[runners]]</span><br><span class="line">  url = &quot;https://gitlab.com/&quot;</span><br><span class="line">  token = REGISTRATION_TOKEN</span><br><span class="line">  executor = &quot;docker&quot;</span><br><span class="line">  [runners.docker]</span><br><span class="line">    tls_verify = false</span><br><span class="line">    image = &quot;docker:stable&quot;</span><br><span class="line">    privileged = false</span><br><span class="line">    disable_cache = false</span><br><span class="line">    volumes = [&quot;/var/run/docker.sock:/var/run/docker.sock&quot;, &quot;/cache&quot;]</span><br><span class="line">  [runners.cache]</span><br><span class="line">    Insecure = false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You can now use <code>docker</code> in the build script (note that you don’t need to<br>include the <code>docker:dind</code> service as when using the Docker in Docker executor):</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="attr">docker:stable</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">info</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">my-docker-image</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">my-docker-image</span> <span class="string">/script/to/run/tests</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>While the above method avoids using Docker in privileged mode, you should be<br>aware of the following implications:</p>
+<ul>
+<li>By sharing the docker daemon, you are effectively disabling all<br>the security mechanisms of containers and exposing your host to privilege<br>escalation which can lead to container breakout. For example, if a project<br>ran <code>docker rm -f $(docker ps -a -q)</code> it would remove the GitLab Runner<br>containers.</li>
+<li>Concurrent jobs may not work; if your tests<br>create containers with specific names, they may conflict with each other.</li>
+<li><p>Sharing files and directories from the source repo into containers may not<br>work as expected since volume mounting is done in the context of the host<br>machine, not the build container, e.g.:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -t -i -v $(pwd)/src:/home/app/src test-image:latest run_app_tests</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Making-docker-in-docker-builds-faster-with-Docker-layer-caching"><a href="#Making-docker-in-docker-builds-faster-with-Docker-layer-caching" class="headerlink" title="Making docker-in-docker builds faster with Docker layer caching"></a>Making docker-in-docker builds faster with Docker layer caching</h2><p>When using docker-in-docker, Docker will download all layers of your image every<br>time you create a build. Recent versions of Docker (Docker 1.13 and above) can<br>use a pre-existing image as a cache during the <code>docker build</code> step, considerably<br>speeding up the build process.</p>
+<h3 id="How-Docker-caching-works"><a href="#How-Docker-caching-works" class="headerlink" title="How Docker caching works"></a>How Docker caching works</h3><p>When running <code>docker build</code>, each command in <code>Dockerfile</code> results in a layer.<br>These layers are kept around as a cache and can be reused if there haven’t been<br>any changes. Change in one layer causes all subsequent layers to be recreated.</p>
+<p>You can specify a tagged image to be used as a cache source for the <code>docker build</code><br>command by using the <code>--cache-from</code> argument. Multiple images can be specified<br>as a cache source by using multiple <code>--cache-from</code> arguments. Keep in mind that<br>any image that’s used with the <code>--cache-from</code> argument must first be pulled<br>(using <code>docker pull</code>) before it can be used as a cache source.</p>
+<h3 id="Using-Docker-caching"><a href="#Using-Docker-caching" class="headerlink" title="Using Docker caching"></a>Using Docker caching</h3><p>Here’s a simple <code>.gitlab-ci.yml</code> file showing how Docker caching can be utilized:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="attr">docker:stable</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  - docker:</span><span class="string">dind</span></span><br><span class="line"></span><br><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  CONTAINER_IMAGE:</span> <span class="string">registry.gitlab.com/$CI_PROJECT_PATH</span></span><br><span class="line"><span class="attr">  DOCKER_HOST:</span> <span class="attr">tcp://docker:2375</span></span><br><span class="line"><span class="attr">  DOCKER_DRIVER:</span> <span class="string">overlay2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">login</span> <span class="bullet">-u</span> <span class="string">gitlab-ci-token</span> <span class="bullet">-p</span> <span class="string">$CI_JOB_TOKEN</span> <span class="string">registry.gitlab.com</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">pull</span> <span class="string">$CONTAINER_IMAGE:latest</span> <span class="string">||</span> <span class="literal">true</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">--cache-from</span> <span class="string">$CONTAINER_IMAGE:latest</span> <span class="bullet">--tag</span> <span class="string">$CONTAINER_IMAGE:$CI_COMMIT_SHA</span> <span class="bullet">--tag</span> <span class="string">$CONTAINER_IMAGE:latest</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">push</span> <span class="string">$CONTAINER_IMAGE:$CI_COMMIT_SHA</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">push</span> <span class="string">$CONTAINER_IMAGE:latest</span></span><br></pre></td></tr></table></figure>
+<p>The steps in the <code>script</code> section for the <code>build</code> stage can be summed up to:</p>
+<ol>
+<li>The first command tries to pull the image from the registry so that it can be<br>used as a cache for the <code>docker build</code> command.</li>
+<li>The second command builds a Docker image using the pulled image as a<br>cache (notice the <code>--cache-from $CONTAINER_IMAGE:latest</code> argument) if<br>available, and tags it.</li>
+<li>The last two commands push the tagged Docker images to the container registry<br>so that they may also be used as cache for subsequent builds.</li>
+</ol>
+<h2 id="Using-the-OverlayFS-driver"><a href="#Using-the-OverlayFS-driver" class="headerlink" title="Using the OverlayFS driver"></a>Using the OverlayFS driver</h2><p>NOTE: <strong>Note:</strong><br>The shared Runners on GitLab.com use the <code>overlay2</code> driver by default.</p>
+<p>By default, when using <code>docker:dind</code>, Docker uses the <code>vfs</code> storage driver which<br>copies the filesystem on every run. This is a very disk-intensive operation<br>which can be avoided if a different driver is used, for example <code>overlay2</code>.</p>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><ol>
+<li>Make sure a recent kernel is used, preferably <code>&gt;= 4.2</code>.</li>
+<li><p>Check whether the <code>overlay</code> module is loaded:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo lsmod | grep overlay</span><br></pre></td></tr></table></figure>
+<p> If you see no result, then it isn’t loaded. To load it use:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe overlay</span><br></pre></td></tr></table></figure>
+<p> If everything went fine, you need to make sure module is loaded on reboot.<br> On Ubuntu systems, this is done by editing <code>/etc/modules</code>. Just add the<br> following line into it:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overlay</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Use-driver-per-project"><a href="#Use-driver-per-project" class="headerlink" title="Use driver per project"></a>Use driver per project</h3><p>You can enable the driver for each project individually by editing the project’s <code>.gitlab-ci.yml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">variables:</span><br><span class="line">  DOCKER_DRIVER: overlay2</span><br></pre></td></tr></table></figure>
+<h3 id="Use-driver-for-every-project"><a href="#Use-driver-for-every-project" class="headerlink" title="Use driver for every project"></a>Use driver for every project</h3><p>To enable the driver for every project, you can set the environment variable for every build by adding <code>environment</code> in the <code>[[runners]]</code> section of <code>config.toml</code>:</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">environment</span> = [<span class="string">"DOCKER_DRIVER=overlay2"</span>]</span><br></pre></td></tr></table></figure>
+<p>If you’re running multiple Runners you will have to modify all configuration files.</p>
+<blockquote>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>More information about the Runner configuration is available in the <a href="https://docs.gitlab.com/runner/configuration/" target="_blank" rel="noopener">Runner documentation</a>.</li>
+<li>For more information about using OverlayFS with Docker, you can read<br><a href="https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/" target="_blank" rel="noopener">Use the OverlayFS storage driver</a>.</li>
+</ul>
+</blockquote>
+<h2 id="Using-the-GitLab-Container-Registry"><a href="#Using-the-GitLab-Container-Registry" class="headerlink" title="Using the GitLab Container Registry"></a>Using the GitLab Container Registry</h2><blockquote>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>This feature requires GitLab 8.8 and GitLab Runner 1.2.</li>
+<li>Starting from GitLab 8.12, if you have <a href="../../user/profile/account/two_factor_authentication.md">2FA</a> enabled in your account, you need<br>to pass a <a href="../../user/profile/personal_access_tokens.md">personal access token</a> instead of your password in order to<br>login to GitLab’s Container Registry.</li>
+</ul>
+</blockquote>
+<p>Once you’ve built a Docker image, you can push it up to the built-in<br><a href="../../user/project/container_registry.md">GitLab Container Registry</a>.<br>Some things you should be aware of:</p>
+<ul>
+<li>You must <a href="#authenticating-to-the-container-registry">log in to the container registry</a><br>before running commands. You can do this in the <code>before_script</code> if multiple<br>jobs depend on it.</li>
+<li>Using <code>docker build --pull</code> fetches any changes to base<br>images before building just in case your cache is stale. It takes slightly<br>longer, but means you don’t get stuck without security patches to base images.</li>
+<li>Doing an explicit <code>docker pull</code> before each <code>docker run</code> fetches<br>the latest image that was just built. This is especially important if you are<br>using multiple runners that cache images locally. Using the git SHA in your<br>image tag makes this less necessary since each job will be unique and you<br>shouldn’t ever have a stale image. However, it’s still possible to have a<br>stale image if you re-build a given commit after a dependency has changed.</li>
+<li>You don’t want to build directly to <code>latest</code> tag in case there are multiple jobs<br>happening simultaneously.</li>
+</ul>
+<h3 id="Authenticating-to-the-Container-Registry"><a href="#Authenticating-to-the-Container-Registry" class="headerlink" title="Authenticating to the Container Registry"></a>Authenticating to the Container Registry</h3><p>There are three ways to authenticate to the Container Registry via GitLab CI/CD<br>and depend on the visibility of your project.</p>
+<p>For all projects, mostly suitable for public ones:</p>
+<ul>
+<li><p><strong>Using the special <code>gitlab-ci-token</code> user</strong>: This user is created for you in order to<br>push to the Registry connected to your project. Its password is automatically<br>set with the <code>$CI_JOB_TOKEN</code> variable. This allows you to automate building and deploying<br>your Docker images and has read/write access to the Registry. This is ephemeral,<br>so it’s only valid for one job. You can use the following example as-is:</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u gitlab-ci-token -p <span class="variable">$CI_JOB_TOKEN</span> <span class="variable">$CI_REGISTRY</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>For private and internal projects:</p>
+<ul>
+<li><p><strong>Using a personal access token</strong>: You can create and use a<br><a href="../../user/profile/personal_access_tokens.md">personal access token</a><br>in case your project is private:</p>
+<ul>
+<li>For read (pull) access, the scope should be <code>read_registry</code>.</li>
+<li><p>For read/write (pull/push) access, use <code>api</code>.<br>Replace the <code>&lt;username&gt;</code> and <code>&lt;access_token&gt;</code> in the following example:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u &lt;username&gt; -p &lt;access_token&gt; <span class="variable">$CI_REGISTRY</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>Using the GitLab Deploy Token</strong>: You can create and use a<br><a href="../../user/project/deploy_tokens/index.md#gitlab-deploy-token">special deploy token</a><br>with your private projects. It provides read-only (pull) access to the Registry.<br>Once created, you can use the special environment variables, and GitLab CI/CD<br>will fill them in for you. You can use the following example as-is:</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u <span class="variable">$CI_DEPLOY_USER</span> -p <span class="variable">$CI_DEPLOY_PASSWORD</span> <span class="variable">$CI_REGISTRY</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Container-Registry-examples"><a href="#Container-Registry-examples" class="headerlink" title="Container Registry examples"></a>Container Registry examples</h3><p>If you’re using docker-in-docker on your Runners, this is how your <code>.gitlab-ci.yml</code><br>could look like:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="attr">docker:stable</span></span><br><span class="line"><span class="attr">  services:</span></span><br><span class="line"><span class="attr">    - docker:</span><span class="string">dind</span></span><br><span class="line"><span class="attr">  variables:</span></span><br><span class="line"><span class="attr">    DOCKER_HOST:</span> <span class="attr">tcp://docker:2375</span></span><br><span class="line"><span class="attr">    DOCKER_DRIVER:</span> <span class="string">overlay2</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">login</span> <span class="bullet">-u</span> <span class="string">gitlab-ci-token</span> <span class="bullet">-p</span> <span class="string">$CI_JOB_TOKEN</span> <span class="string">registry.example.com</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">registry.example.com/group/project/image:latest</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">push</span> <span class="string">registry.example.com/group/project/image:latest</span></span><br></pre></td></tr></table></figure>
+<p>You can also make use of <a href="../variables/README.md">other variables</a> to avoid hardcoding:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  - docker:</span><span class="string">dind</span></span><br><span class="line"></span><br><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  DOCKER_HOST:</span> <span class="attr">tcp://docker:2375</span></span><br><span class="line"><span class="attr">  DOCKER_DRIVER:</span> <span class="string">overlay2</span></span><br><span class="line"><span class="attr">  IMAGE_TAG:</span> <span class="string">$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">login</span> <span class="bullet">-u</span> <span class="string">gitlab-ci-token</span> <span class="bullet">-p</span> <span class="string">$CI_JOB_TOKEN</span> <span class="string">$CI_REGISTRY</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">-t</span> <span class="string">$IMAGE_TAG</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">push</span> <span class="string">$IMAGE_TAG</span></span><br></pre></td></tr></table></figure>
+<p>Here, <code>$CI_REGISTRY_IMAGE</code> would be resolved to the address of the registry tied<br>to this project. Since <code>$CI_COMMIT_REF_NAME</code> resolves to the branch or tag name,<br>and your branch-name can contain forward slashes (e.g., feature/my-feature), it is<br>safer to use <code>$CI_COMMIT_REF_SLUG</code> as the image tag. This is due to that image tags<br>cannot contain forward slashes. We also declare our own variable, <code>$IMAGE_TAG</code>,<br>combining the two to save us some typing in the <code>script</code> section.</p>
+<p>Here’s a more elaborate example that splits up the tasks into 4 pipeline stages,<br>including two tests that run in parallel. The <code>build</code> is stored in the container<br>registry and used by subsequent stages, downloading the image<br>when needed. Changes to <code>master</code> also get tagged as <code>latest</code> and deployed using<br>an application-specific deploy script:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="attr">docker:stable</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  - docker:</span><span class="string">dind</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">build</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">test</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">release</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">variables:</span></span><br><span class="line"><span class="attr">  DOCKER_HOST:</span> <span class="attr">tcp://docker:2375</span></span><br><span class="line"><span class="attr">  DOCKER_DRIVER:</span> <span class="string">overlay2</span></span><br><span class="line"><span class="attr">  CONTAINER_TEST_IMAGE:</span> <span class="string">registry.example.com/my-group/my-project/my-image:$CI_COMMIT_REF_SLUG</span></span><br><span class="line"><span class="attr">  CONTAINER_RELEASE_IMAGE:</span> <span class="string">registry.example.com/my-group/my-project/my-image:latest</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">docker</span> <span class="string">login</span> <span class="bullet">-u</span> <span class="string">gitlab-ci-token</span> <span class="bullet">-p</span> <span class="string">$CI_JOB_TOKEN</span> <span class="string">registry.example.com</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">build</span> <span class="bullet">--pull</span> <span class="bullet">-t</span> <span class="string">$CONTAINER_TEST_IMAGE</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">push</span> <span class="string">$CONTAINER_TEST_IMAGE</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test1:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">pull</span> <span class="string">$CONTAINER_TEST_IMAGE</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">$CONTAINER_TEST_IMAGE</span> <span class="string">/script/to/run/tests</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test2:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">pull</span> <span class="string">$CONTAINER_TEST_IMAGE</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">$CONTAINER_TEST_IMAGE</span> <span class="string">/script/to/run/another/test</span></span><br><span class="line"></span><br><span class="line"><span class="attr">release-image:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">release</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">pull</span> <span class="string">$CONTAINER_TEST_IMAGE</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">tag</span> <span class="string">$CONTAINER_TEST_IMAGE</span> <span class="string">$CONTAINER_RELEASE_IMAGE</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">docker</span> <span class="string">push</span> <span class="string">$CONTAINER_RELEASE_IMAGE</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  stage:</span> <span class="string">deploy</span></span><br><span class="line"><span class="attr">  script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">./deploy.sh</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i>Docker</a>
+          
+            <a href="/tags/Deploy/" rel="tag"><i class="fa fa-tag"></i>Deploy</a>
+          
+            <a href="/tags/CI-CD/" rel="tag"><i class="fa fa-tag"></i>CI/CD</a>
+          
+            <a href="/tags/Gitlab/" rel="tag"><i class="fa fa-tag"></i>Gitlab</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/20/JS-NODEJS/" rel="next" title="NodeJS概览及开发框架">
+                <i class="fa fa-chevron-left"></i> NodeJS概览及开发框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/21/运维-容器镜像服务/" rel="prev" title="容器镜像服务">
+                容器镜像服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Runner配置"><span class="nav-number">1.</span> <span class="nav-text">Runner配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用shell执行器"><span class="nav-number">1.1.</span> <span class="nav-text">使用shell执行器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-GitLab-Runner"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装 GitLab Runner</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用docker-in-docker执行器"><span class="nav-number">1.2.</span> <span class="nav-text">使用docker-in-docker执行器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤如下"><span class="nav-number">1.2.1.</span> <span class="nav-text">步骤如下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Docker-socket-绑定"><span class="nav-number">1.3.</span> <span class="nav-text">使用 Docker socket 绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Making-docker-in-docker-builds-faster-with-Docker-layer-caching"><span class="nav-number">2.</span> <span class="nav-text">Making docker-in-docker builds faster with Docker layer caching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Docker-caching-works"><span class="nav-number">2.1.</span> <span class="nav-text">How Docker caching works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Docker-caching"><span class="nav-number">2.2.</span> <span class="nav-text">Using Docker caching</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-OverlayFS-driver"><span class="nav-number">3.</span> <span class="nav-text">Using the OverlayFS driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">3.1.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-driver-per-project"><span class="nav-number">3.2.</span> <span class="nav-text">Use driver per project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-driver-for-every-project"><span class="nav-number">3.3.</span> <span class="nav-text">Use driver for every project</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-GitLab-Container-Registry"><span class="nav-number">4.</span> <span class="nav-text">Using the GitLab Container Registry</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authenticating-to-the-Container-Registry"><span class="nav-number">4.1.</span> <span class="nav-text">Authenticating to the Container Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Container-Registry-examples"><span class="nav-number">4.2.</span> <span class="nav-text">Container Registry examples</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

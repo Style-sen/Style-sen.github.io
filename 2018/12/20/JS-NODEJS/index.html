@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NODE,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
+<meta name="keywords" content="NODE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS概览及开发框架">
+<meta property="og:url" content="http://yoursite.com/2018/12/20/JS-NODEJS/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-24T08:59:37.916Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS概览及开发框架">
+<meta name="twitter:description" content="安装、NPM命令、PM2使用、内置对象、工程结构、框架集合">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/20/JS-NODEJS/">
+
+
+
+
+
+  <title>NodeJS概览及开发框架 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/JS-NODEJS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NodeJS概览及开发框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T10:52:11+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/20/JS-NODEJS/" class="leancloud_visitors" data-flag-title="NodeJS概览及开发框架">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  安装、NPM命令、PM2使用、内置对象、工程结构、框架集合
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="首先安装NVM"><a href="#首先安装NVM" class="headerlink" title="首先安装NVM"></a>首先安装NVM</h3><h4 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h4><ol>
+<li><a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">creationix/nvm</a></li>
+</ol>
+<h4 id="win8及以上"><a href="#win8及以上" class="headerlink" title="(win8及以上)"></a>(win8及以上)</h4><ol>
+<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="noopener">coreybutler/nvm-windows</a></li>
+<li>win8以下系统<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Windows的系统变量和用户变量中，均添加NVM_HOME和NVM_SYMLINK这两个名称的变量，前一个变量的值为nvm的安装路径，如C:\Dev\nvm，后一个变量的值为node.js的安装路径，如C:\Dev\nodejs。除此之外，还要确保系统变量PATH中，有%NVM_HOME%和%NVM_SYMLINK%这两个值，每个值的后面要加上英文的分号;。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node_mirror: http://npm.taobao.org/mirrors/node/ </span><br><span class="line">npm_mirror: https://npm.taobao.org/mirrors/npm/</span><br></pre></td></tr></table></figure>
+<p>将上边两行放入settings.txt文件中。</p>
+<h3 id="然后安装NODE-会自动安装npm"><a href="#然后安装NODE-会自动安装npm" class="headerlink" title="然后安装NODE(会自动安装npm)"></a>然后安装NODE(会自动安装npm)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvm --version</span><br><span class="line">nvm install 10.15.3</span><br><span class="line">nvm use 10.15.3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 源管理</span><br><span class="line">npm install -g nrm</span><br><span class="line">nrm list</span><br><span class="line">nrm use taobao //尽量不适用taobao源</span><br></pre></td></tr></table></figure>
+<p>注：windows还需安装<a href="https://github.com/nodejs/node-gyp#installation" target="_blank" rel="noopener">npm install -g node-gyp</a>和<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">npm install —global windows-build-tools</a></p>
+<h3 id="使用yarn替换npm"><a href="#使用yarn替换npm" class="headerlink" title="使用yarn替换npm"></a>使用yarn替换npm</h3><p><code>npm install yarn -g</code></p>
+<p>或者<a href="https://yarnpkg.com/en/docs/install#debian-stable" target="_blank" rel="noopener">Installation</a></p>
+<h3 id="安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用"><a href="#安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用" class="headerlink" title="安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)"></a>安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cnpm -g --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li><a href="https://blog.csdn.net/gaoxuaiguoyi/article/details/80708815" target="_blank" rel="noopener">electron打包出现 Error: Unresolved node modules: vue</a></li>
+</ol>
+<h2 id="NPM和YARN使用"><a href="#NPM和YARN使用" class="headerlink" title="NPM和YARN使用"></a>NPM和YARN使用</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><a href="https://juejin.im/entry/590fcd02a22b9d0058036856" target="_blank" rel="noopener">npm - 参考手册</a></li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>NPM命令</th>
+<th>选项</th>
+<th>功能</th>
+<th>YARN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>npm info</td>
+<td>[name]</td>
+<td>查看包所有的版本信息</td>
+</tr>
+<tr>
+<td>npm ls</td>
+<td>[name]</td>
+<td>查看已安装的包的版本信息</td>
+</tr>
+<tr>
+<td></td>
+<td>[name] -g</td>
+<td>查看全局安装的包的版本信息</td>
+</tr>
+<tr>
+<td>npm view</td>
+<td>[name] versions</td>
+<td>查看包所有的版本信息</td>
+</tr>
+<tr>
+<td></td>
+<td>[name] version</td>
+<td>查看包最新的版本信息</td>
+</tr>
+<tr>
+<td>npm install -g</td>
+<td>升级全局的本地包</td>
+<td>yarn global add</td>
+</tr>
+<tr>
+<td>npm update [name]</td>
+<td>升级某一个包</td>
+</tr>
+<tr>
+<td>npm install —unsafe-perm</td>
+<td>设置为true以在运行程序包脚本时禁止UID / GID切换</td>
+</tr>
+<tr>
+<td>npm install —save [—save-dev]</td>
+<td>-S, —save: Package will appear in your dependencies;-D, —save-dev: Package will appear in your devDependencies;-O, —save-optional: Package will appear in your optionalDependencies.</td>
+</tr>
+<tr>
+<td>npm install —production</td>
+<td>添加了production  参数后将仅仅  安装  package.json 中dependencies 里面的包，不会安装devDependencies 里面的</td>
+<td></td>
+</tr>
+<tr>
+<td>npm audit</td>
+<td>允许开发人员分析复杂的代码，并查明特定的漏洞和缺陷</td>
+</tr>
+<tr>
+<td>npm audit fix</td>
+<td>检测项目依赖中的漏洞并自动安装需要更新的有漏洞的依赖，而不必再自己进行跟踪和修复</td>
+</tr>
+<tr>
+<td>npm audit fix —package-lock-only</td>
+<td>运行audit fix，但是只更新pkglock， 不更新node_modules</td>
+</tr>
+<tr>
+<td>npm audit fix —only=prod</td>
+<td>只更新dependencies中安装的包，跳过devDependencies中的包</td>
+</tr>
+<tr>
+<td>npm audit fix —dry-run —json</td>
+<td>运行命令，得到audit fix将会更新的内容，并且输出json格式的安装信息，但是并不真的安装更新</td>
+</tr>
+<tr>
+<td>npm audit —json</td>
+<td>得到json格式的详细检测报告</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">安装github工程</span><br><span class="line">npm install https://github.com/huixisheng/zepto-lazyload.git#branch</span><br></pre></td></tr></table></figure>
+<h4 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h4><p>参考<a href="http://www.ruanyifeng.com/blog/2019/02/npx.html" target="_blank" rel="noopener">npx 使用教程</a></p>
+<ol>
+<li>调用项目内部安装的模块.一般来说，调用 <code>Mocha</code> ，只能在项目脚本<code>node-modules/.bin/mocha --version</code>和 package.json 的scripts字段里面。<code>npx macha --version</code></li>
+<li>原理很简单，就是运行的时候，会到node_modules/.bin路径和环境变量$PATH里面，检查命令是否存在。<code>也可以调用系统命令</code>。</li>
+<li>除了调用项目内部模块，npx 还能避免全局安装的模块。</li>
+<li>如果想让 npx 强制使用本地模块，不下载远程模块，可以使用—no-install参数。如果本地不存在该模块，就会报错。</li>
+<li>如果忽略本地的同名模块，强制安装使用远程模块，可以使用—ignore-existing参数。</li>
+<li>例: 当前目录起一个http服务。</li>
+</ol>
+<h5 id="项目的根目录下执行"><a href="#项目的根目录下执行" class="headerlink" title="项目的根目录下执行"></a>项目的根目录下执行</h5><p>$ node-modules/.bin/mocha —version</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><ol>
+<li>作为描述文件，描述你的项目依赖哪些包。</li>
+<li>文件内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name              # 【必须】</span><br><span class="line">version           # 【必须】</span><br><span class="line">description       # 描述信息，有助于搜索</span><br><span class="line">main              # 入口文件，一般都是 index.js</span><br><span class="line">scripts           # 支持的脚本，默认是一个空的 test</span><br><span class="line">keywords          # 关键字，有助于在人们使用 npm search 搜索时发现你的项目</span><br><span class="line">author            # 作者信息</span><br><span class="line">license           # 默认是 MIT</span><br><span class="line">bugs              # 当前项目的一些错误信息，如果有的话</span><br><span class="line">dependencies      # 是一个对象，配置模块依赖的模块列表，key是模块名称，value是版本范围，版本范围是一个字符，可以被一个或多个空格分割</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="npm问题"><a href="#npm问题" class="headerlink" title="npm问题"></a>npm问题</h3><ol>
+<li><a href="https://newsn.net/say/sudo-npm-install-permission.html" target="_blank" rel="noopener">sudo npm install 时，报错 permission denied 的解决方案</a></li>
+</ol>
+<h2 id="PM2"><a href="#PM2" class="headerlink" title="PM2"></a>PM2</h2><p>pm2是一个内置负载均衡的node.js应用进程管理器</p>
+<p><code>npm install -g pm2</code></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pm2 start server.js —name</td>
+<td>启动一个应用，并指定名称</td>
+</tr>
+<tr>
+<td>pm2 list</td>
+<td>列出正在运行的应用</td>
+</tr>
+<tr>
+<td>pm2 stop [id/name]</td>
+<td>停止对应的应用</td>
+</tr>
+<tr>
+<td>pm2 delete [name]</td>
+<td>删除对应的应用</td>
+</tr>
+<tr>
+<td>pm2 reload [name]</td>
+<td>代码有更新，重载应用</td>
+</tr>
+<tr>
+<td>pm2 restart [name]</td>
+<td>重启应用</td>
+</tr>
+<tr>
+<td>pm2 show [name]</td>
+<td>查看相应的应用详情</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><h3 id="process"><a href="#process" class="headerlink" title="process"></a><a href="http://javascript.ruanyifeng.com/nodejs/process.html" target="_blank" rel="noopener">process</a></h3><ol>
+<li>process对象是 Node 的一个全局对象，提供当前 Node 进程的信息。它可以在脚本的任意位置使用，不必通过require命令加载。该对象部署了EventEmitter接口。</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>process.version</td>
+<td>返回一个字符串，表示当前使用的 Node 版本，比如v7.10.0</td>
+</tr>
+<tr>
+<td>process.env</td>
+<td>获取系统环境变量</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Node-js-EventEmitter"><a href="#Node-js-EventEmitter" class="headerlink" title="Node.js EventEmitter"></a><a href="http://www.runoob.com/nodejs/nodejs-event.html" target="_blank" rel="noopener">Node.js EventEmitter</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">创建一个模块</span><br><span class="line">import EventEmitter from &apos;events&apos;;</span><br><span class="line">class someThing extends EventEmitter&#123;</span><br><span class="line">    a=null</span><br><span class="line">    constructor ()&#123;</span><br><span class="line">        //初始化</span><br><span class="line">        super()</span><br><span class="line"></span><br><span class="line">        this.a = new b();</span><br><span class="line">        this.a.on(&quot;&quot;, ()=&gt;&#123;</span><br><span class="line">            this.emit(&quot;&quot;,c);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    method ()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default someThing;</span><br></pre></td></tr></table></figure>
+<h3 id="http"><a href="#http" class="headerlink" title="http"></a><a href>http</a></h3><h2 id="NODEJS工程"><a href="#NODEJS工程" class="headerlink" title="NODEJS工程"></a>NODEJS工程</h2><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init          # 可在当前目录下创建一个package.json文件</span><br><span class="line">npm init --yes    # 可跳过回答问题步骤</span><br></pre></td></tr></table></figure>
+<h4 id="自定义npm-init行为"><a href="#自定义npm-init行为" class="headerlink" title="自定义npm init行为"></a>自定义npm init行为</h4><ol>
+<li>参考<a href="https://juejin.im/post/5ab3f77df265da2392364341#heading-0" target="_blank" rel="noopener">2018 年了，你还是只会 npm install 吗？</a></li>
+<li>定制 npm init 命令的实现方式也很简单，在 Home 目录创建一个 <code>.npm-init.js</code> 即可，该文件的 module.exports 即为 package.json 配置内容，需要获取用户输入时候，使用 prompt() 方法即可。</li>
+<li>.npm-init.js 是一个常规的模块，意味着我们可以执行随便什么 node 脚本可以执行的任务。例如通过 fs 创建 README, .eslintrc 等项目必需文件，实现<code>项目脚手架</code>的作用。</li>
+</ol>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>index.js<br>main<br>|——config.js</p>
+<h3 id="npm-install安装依赖"><a href="#npm-install安装依赖" class="headerlink" title="npm install安装依赖"></a><code>npm install</code>安装依赖</h3><ol>
+<li>npm install <package> 除了简单的指定包名, package 还可以是一个指向有效包名的 <code>http url</code>、<code>git url</code>和<code>文件夹路径</code>。</package></li>
+<li><a href="https://docs.npmjs.com/files/package.json#git-urls-as-dependencies" target="_blank" rel="noopener">npm支持的git url格式</a><code>&lt;protocol&gt;://[&lt;user&gt;[:&lt;password&gt;]@]&lt;hostname&gt;[:&lt;port&gt;][:][/]&lt;path&gt;[#&lt;commit-ish&gt; | #semver:&lt;semver&gt;]</code></li>
+</ol>
+<h3 id="编写npm模块"><a href="#编写npm模块" class="headerlink" title="编写npm模块"></a>编写npm模块</h3><ol>
+<li>初始化<code>npm init</code>；</li>
+<li>创建入口文件;</li>
+<li>在<code>src</code>中编写源代码。</li>
+<li>在<code>examples</code>中编写示例。</li>
+<li>通过.npmignore来在npm publish的时候，忽略自己不想要的文件。</li>
+<li>放进git仓库中.</li>
+<li><code>注意</code>:<a href="https://www.imooc.com/wenda/detail/409466" target="_blank" rel="noopener">使用module.exports导出模块，内部定义的函数之间如何相互调用</a>.第一种方法：所在文件就是一个模块，定义function之后，其作用域就是整个模块。最后再module.exports={}.第二种方法：若一开始就module.exports={}中写方法，不能用this,只能用exports。全局的this就是module.exports.</li>
+<li><code>注意</code>:<a href="https://gywbd.github.io/posts/2014/11/using-exports-nodejs-interface-design-pattern.html" target="_blank" rel="noopener">exports的用法：Node.js模块的接口设计模式 </a></li>
+</ol>
+<h4 id="私有registry"><a href="#私有registry" class="headerlink" title="私有registry"></a>私有registry</h4><ol>
+<li>将自己的私有模块放在私有registry中。</li>
+<li><a href="https://verdaccio.org/" target="_blank" rel="noopener">Verdaccio:A lightweight open source private npm proxy registry</a>。</li>
+<li>可使用docker安装。</li>
+</ol>
+<h3 id="最佳实践参考"><a href="#最佳实践参考" class="headerlink" title="最佳实践参考"></a>最佳实践<a href="https://juejin.im/post/5ab3f77df265da2392364341#heading-0" target="_blank" rel="noopener">参考</a></h3><ol>
+<li>使用 npm: &gt;=5.1 版本, 保持 package-lock.json 文件默认开启配置</li>
+<li>初始化：第一作者初始化项目时使用 npm install <package> 安装依赖包, 默认保存 ^X.Y.Z 依赖 range 到 package.json中; 提交 package.json, package-lock.json, 不要提交 node_modules 目录</package></li>
+<li>初始化：项目成员首次 checkout/clone 项目代码后，执行一次 npm install 安装依赖包</li>
+<li>不要手动修改 package-lock.json</li>
+<li>升级依赖包:<br> 升级小版本: 本地执行 npm update 升级到新的小版本<br> 升级大版本: 本地执行 npm install <package-name>@<version> 升级到新的大版本<br> 也可手动修改 package.json 中版本号为要升级的版本(大于现有版本号)并指定所需的 semver, 然后执行 npm install<br> 本地验证升级后新版本无问题后，提交新的 package.json, package-lock.json 文件</version></package-name></li>
+<li>降级依赖包:<br> 正确: npm install <package-name>@<old-version> 验证无问题后，提交 package.json 和 package-lock.json 文件<br> 错误: 手动修改 package.json 中的版本号为更低版本的 semver, 这样修改并不会生效，因为再次执行 npm install 依然会安装 package-lock.json 中的锁定版本</old-version></package-name></li>
+<li>删除依赖包:<br> Plan A: npm uninstall <package> 并提交 package.json 和 package-lock.json<br> Plan B: 把要卸载的包从 package.json 中 dependencies 字段删除, 然后执行 npm install 并提交 package.json 和 package-lock.json</package></li>
+<li>任何时候有人提交了 package.json, package-lock.json 更新后，团队其他成员应在 svn update/git pull 拉取更新后执行 npm install 脚本安装更新后的依赖包</li>
+</ol>
+<h3 id="语义化版本控制"><a href="#语义化版本控制" class="headerlink" title="语义化版本控制"></a>语义化版本控制</h3><ol>
+<li>官方文档适用于任何软件管理<a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本 2.0.0</a></li>
+<li><a href="https://segmentfault.com/a/1190000018714929" target="_blank" rel="noopener">npm 语义化版本控制</a></li>
+</ol>
+<h2 id="框架集合"><a href="#框架集合" class="headerlink" title="框架集合"></a>框架集合</h2><p>查看流行框架，参考<a href="http://nodeframework.com/" target="_blank" rel="noopener">nodeframework</a></p>
+<h3 id="Express"><a href="#Express" class="headerlink" title="Express    *"></a><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Express</a>    <em>*</em></h3><ol>
+<li>Express是一个最小且灵活的Web应用程序框架，为Web和移动应用程序提供了一组强大的功能，它的行为就像一个中间件，可以帮助管理服务器和路由.</li>
+<li>express可能是Node.js最流行的框架，还有许多其他流行的框架都是基于Express构建的。</li>
+<li>个人评价，express适合小型项目，不适合大型企业级项目，个人用用还可以，做为快速入门是个很好的选择，用过之后就可以考虑进入 koa 框架的道路.</li>
+</ol>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>几乎是Node.js Web中间件的标准.</li>
+<li>简单，简约，灵活和可扩展.</li>
+<li>快速开发应用程序.</li>
+<li>完全可定制.</li>
+<li>学习曲线低.</li>
+<li>轻松集成第三方服务和中间件.</li>
+<li>主要关注浏览器，模板和渲染集成开箱即用</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>组织需要非常清楚，以避免在维护代码时出现问题</li>
+<li>随着代码库大小的增加，重构变得非常具有挑战性</li>
+<li>需要大量的手工劳动，因为您需要创建所有端点.</li>
+</ul>
+<h4 id="性能的最佳实践"><a href="#性能的最佳实践" class="headerlink" title="性能的最佳实践"></a>性能的最佳实践</h4><ol>
+<li>使用gzip压缩</li>
+<li>不要使用同步功能</li>
+<li>正确记录（用于调试，使用特殊模块，如调试，应用程序活动使用winston或bunyan）</li>
+<li>使用try-catch或promises正确处理异常</li>
+<li>确保您的应用程序使用流程管理器自动重新启动，或使用systemd或upstartinit等系统</li>
+<li>在群集中运行您的应用。您可以通过启动进程集群来大大提高Node.js应用程序的性能</li>
+<li>缓存请求结果，以便您的应用不会重复操作以反复提供相同的请求</li>
+<li>使用负载均衡器运行它的多个实例并分配流量，如Nginx或HAProxy</li>
+<li>对静态资源使用反向代理。它可以处理错误页面，压缩，缓存，提供文件和负载平衡等</li>
+<li>更多<a href="http://www.expressjs.com.cn/advanced/best-practice-performance.html" target="_blank" rel="noopener">性能最佳实践</a>.</li>
+</ol>
+<h4 id="安全的最佳实践"><a href="#安全的最佳实践" class="headerlink" title="安全的最佳实践"></a><a href="http://www.expressjs.com.cn/advanced/best-practice-security.html" target="_blank" rel="noopener">安全的最佳实践</a></h4><h3 id="KOA"><a href="#KOA" class="headerlink" title="KOA    *"></a><a href="https://koa.bootcss.com/" target="_blank" rel="noopener">KOA</a>    <em>*</em></h3><ol>
+<li>Koa 是一个新的 web 框架，由 Express幕后的原班人马打造，致力于成为web应用和API开发领域中的一个更小、更富有表现力、更健壮的基石。 </li>
+<li>通过利用 async 函数，Koa帮你丢弃回调函数，并有力地增强错误处理.</li>
+<li>Koa并没有捆绑任何中间件而是提供了一套优雅的方法，帮助您快速而愉快地编写服务端应用程序</li>
+</ol>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>Koa提高了互操作性，健壮性，使编写中间件变得更加愉快。</li>
+<li>集成了大量的web API，但是没有绑定中间件</li>
+<li>非常轻量，核心的Koa模块只有大约2K行代码</li>
+<li>拥有非常好的用户体验</li>
+<li>通过try / catch更好地处理错误</li>
+<li>异步控制流，代码可读性更高</li>
+</ol>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>Koa社区相对较小</li>
+<li>与Express风格的中间件不兼容(目前还有遇到与其他框架兼容的中间件)</li>
+</ol>
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><ol>
+<li>Koa本身是一个非常轻量级的框架,可以构建具有出色性能的Web应用程序。代码可读性和维护性都相对较高</li>
+<li>当然一些性能的最佳实践也是必不可少的，例如：</li>
+<li>集群</li>
+<li>并行运行</li>
+<li>在代码中使用异步API</li>
+<li>保持代码小而轻</li>
+<li>以及使用gzip压缩 等等</li>
+</ol>
+<h4 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h4><ol>
+<li>Koa有大量的中间件，提供相应的功能.</li>
+</ol>
+<h3 id="Sails"><a href="#Sails" class="headerlink" title="Sails    **"></a><a href>Sails</a>    <em>**</em></h3><ol>
+<li>企业级框架</li>
+<li>Sails 是基于 exrpess 的<code>大而全</code>的框架，MVC框架，旨在模拟熟悉的Ruby on Rails框架的MVC模式，但支持现代应用程序的需求。</li>
+<li>捆绑了一个<code>强大的ORM</code>，即Waterline。自动生成的REST API.</li>
+</ol>
+<h3 id="LoopBack"><a href="#LoopBack" class="headerlink" title="[LoopBack]"></a>[LoopBack]</h3><ol>
+<li>建立在 Express 基础上的企业级 Node.js 框架，只需编写少量代码就能创建动态端到端的 REST API，一致化的模型关系和对 API 访问的权限控制.</li>
+</ol>
+<h3 id="ThinkJS"><a href="#ThinkJS" class="headerlink" title="[ThinkJS]    **"></a>[ThinkJS]    <em>**</em></h3><ol>
+<li>是国内360团队推出的一款面向未来开发的 Node.js 框架，整合了大量的项目最佳实践，让企业级开发变得如此简单、高效。框架底层基于 Koa 2.x 实现，兼容 Koa 的所有功能.</li>
+</ol>
+<h3 id="Eggjs"><a href="#Eggjs" class="headerlink" title="[Eggjs]    *"></a>[Eggjs]    <strong>*</strong></h3><ol>
+<li>是《阿里旗下产品》基于Node.js 和 Koa的一个Nodejs的企业级应用开发框架，它可以帮助开发团队及开发人员降低开发和维护成本。</li>
+<li>Egg.js则是按照约定进行开发，奉行『约定优于配置』，具备提供基于Egg定制上层框架的能力、</li>
+<li>高度可扩展的插件机制、内置多进程管理、基于Koa开发，性能优异、框架稳定，测试覆盖率高、渐进式开发、开发成本和维护成本低等特点。</li>
+</ol>
+<h3 id="Hapi"><a href="#Hapi" class="headerlink" title="[Hapi]"></a>[Hapi]</h3><ol>
+<li>Hapi是基础功能相对丰富的框架。开发人员更专注于业务，而不是花时间构建基础架构。</li>
+<li>配置驱动的模式，区别于传统的web服务器操作。</li>
+<li>他还有比一个独特功能，能够在特定的IP上创建服务器，具有类似的功能onPreHandler。再需要的时候你可以拦截特地的请求做一些必要的操作</li>
+</ol>
+<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul>
+<li>提供了一个强大的插件系统，允许您快速添加新功能和修复错误</li>
+<li>可扩展的API</li>
+<li>对请求处理有更深层次的控制。</li>
+<li><code>创建(REST)api的最佳选择，提供了路由、输入、输出验证和缓存</code></li>
+<li>一次编写适配各端</li>
+<li>详细的API参考和对文档生成的良好支持</li>
+<li>与任何前端框架（如React，Angular和Vue.js）一起使用来创建单页面应用程序</li>
+<li>基于配置的伪中间件</li>
+<li>提供缓存，身份验证和输入验证</li>
+<li>提供基于插件的扩展架构</li>
+<li>提供非常好的企业插件，如joi，yar，catbox，boom，tv和travelogue</li>
+</ul>
+<h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>代码结构复杂</li>
+<li>插件不兼容，只能使用指定的插件如：catbox joi boom tv good travelogue等</li>
+<li>端点是手动创建的，必须手动测试</li>
+<li>重构是手动的</li>
+</ul>
+<h4 id="性能-1"><a href="#性能-1" class="headerlink" title="性能"></a>性能</h4><ol>
+<li>2017年对Node框架的研究表明hapi相对于其他框架的表现最差</li>
+</ol>
+<h4 id="安全-1"><a href="#安全-1" class="headerlink" title="安全"></a>安全</h4><ol>
+<li>hapi安全性主要依赖于插件</li>
+<li>插件选择</li>
+</ol>
+<ul>
+<li>Crumb反（XCSRF）验证插件。它适用于常规请求和CORS请求</li>
+<li>Joi：JavaScript对象的对象模式描述语言和验证器</li>
+<li>Hapi-rbac 用户的访问权限控制</li>
+<li>Blankie 足够灵活的白名单作机制</li>
+<li>Cryptiles 加密库</li>
+</ul>
+<h3 id="nest"><a href="#nest" class="headerlink" title="nest"></a><a href="https://github.com/nestjs/nest" target="_blank" rel="noopener">nest</a></h3><ol>
+<li>Nest是构建高效，可扩展的 Node.js Web 应用程序的框架。 它使用现代的 JavaScript 或 TypeScript（保留与纯 JavaScript 的兼容性），并结合 OOP（面向对象编程），FP（函数式编程）和FRP（函数响应式编程）的元素。</li>
+<li>在底层，Nest 使用了 Express，但也提供了与其他各种库的兼容，例如Fastify，可以方便地使用各种可用的第三方插件。</li>
+<li>近几年，由于 Node.js，JavaScript 已经成为 Web 前端和后端应用程序的「通用语言」，从而产生了像Angular、React、Vue等令人耳目一新的项目，这些项目提高了开发人员的生产力，使得可以快速构建可测试的且可扩展的前端应用程序。 然而，在服务器端，虽然有很多优秀的库、helper 和 Node 工具，但是它们都没有有效地解决主要问题 - 架构。</li>
+<li>Nest 旨在提供一个开箱即用的应用程序体系结构，允许轻松创建高度可测试，可扩展，松散耦合且易于维护的应用程序。</li>
+<li>面向 AOP 编程</li>
+<li>支持 typeorm</li>
+<li>Node.js 版的 spring</li>
+<li>构建微服务应用</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NODE/" rel="tag"><i class="fa fa-tag"></i>NODE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/18/运维-Kubernetes实战-服务网格（ServiceMesh）选择/" rel="next" title="Kubernetes-服务网格">
+                <i class="fa fa-chevron-left"></i> Kubernetes-服务网格
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/20/运维-使用GitLab-CI-CD创建Docker镜像/" rel="prev" title="使用GitLab CI/CD创建Docker镜像">
+                使用GitLab CI/CD创建Docker镜像 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先安装NVM"><span class="nav-number">1.1.</span> <span class="nav-text">首先安装NVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.1.1.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#win8及以上"><span class="nav-number">1.1.2.</span> <span class="nav-text">(win8及以上)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后安装NODE-会自动安装npm"><span class="nav-number">1.2.</span> <span class="nav-text">然后安装NODE(会自动安装npm)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用yarn替换npm"><span class="nav-number">1.3.</span> <span class="nav-text">使用yarn替换npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装cnmp完全替代nmp-使用国外的项目不要使用cnpm，尽量不用"><span class="nav-number">1.4.</span> <span class="nav-text">安装cnmp完全替代nmp(使用国外的项目不要使用cnpm，尽量不用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.5.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM和YARN使用"><span class="nav-number">2.</span> <span class="nav-text">NPM和YARN使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">2.1.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npx"><span class="nav-number">2.1.1.</span> <span class="nav-text">npx</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#项目的根目录下执行"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">项目的根目录下执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">2.2.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm问题"><span class="nav-number">2.3.</span> <span class="nav-text">npm问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PM2"><span class="nav-number">3.</span> <span class="nav-text">PM2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置对象"><span class="nav-number">4.</span> <span class="nav-text">内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#process"><span class="nav-number">4.1.</span> <span class="nav-text">process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-EventEmitter"><span class="nav-number">4.2.</span> <span class="nav-text">Node.js EventEmitter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">4.3.</span> <span class="nav-text">http</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NODEJS工程"><span class="nav-number">5.</span> <span class="nav-text">NODEJS工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">5.1.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义npm-init行为"><span class="nav-number">5.1.1.</span> <span class="nav-text">自定义npm init行为</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">5.2.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-install安装依赖"><span class="nav-number">5.3.</span> <span class="nav-text">npm install安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写npm模块"><span class="nav-number">5.4.</span> <span class="nav-text">编写npm模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#私有registry"><span class="nav-number">5.4.1.</span> <span class="nav-text">私有registry</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最佳实践参考"><span class="nav-number">5.5.</span> <span class="nav-text">最佳实践参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义化版本控制"><span class="nav-number">5.6.</span> <span class="nav-text">语义化版本控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架集合"><span class="nav-number">6.</span> <span class="nav-text">框架集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Express"><span class="nav-number">6.1.</span> <span class="nav-text">Express    *</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">6.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">6.1.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能的最佳实践"><span class="nav-number">6.1.3.</span> <span class="nav-text">性能的最佳实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全的最佳实践"><span class="nav-number">6.1.4.</span> <span class="nav-text">安全的最佳实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KOA"><span class="nav-number">6.2.</span> <span class="nav-text">KOA    *</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点-1"><span class="nav-number">6.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-1"><span class="nav-number">6.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能"><span class="nav-number">6.2.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全"><span class="nav-number">6.2.4.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sails"><span class="nav-number">6.3.</span> <span class="nav-text">Sails    **</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LoopBack"><span class="nav-number">6.4.</span> <span class="nav-text">[LoopBack]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThinkJS"><span class="nav-number">6.5.</span> <span class="nav-text">[ThinkJS]    **</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eggjs"><span class="nav-number">6.6.</span> <span class="nav-text">[Eggjs]    *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hapi"><span class="nav-number">6.7.</span> <span class="nav-text">[Hapi]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#好处"><span class="nav-number">6.7.1.</span> <span class="nav-text">好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点-2"><span class="nav-number">6.7.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能-1"><span class="nav-number">6.7.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全-1"><span class="nav-number">6.7.4.</span> <span class="nav-text">安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nest"><span class="nav-number">6.8.</span> <span class="nav-text">nest</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
