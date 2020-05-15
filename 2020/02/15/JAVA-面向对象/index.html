@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-07T06:51:20.756Z">
+<meta property="og:updated_time" content="2020-05-15T07:20:12.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA-面向对象">
 <meta name="twitter:description" content="JVM">
@@ -422,7 +422,7 @@
 <li>构造方法也是方法，也可以重载。</li>
 <li>如果方法构造中形参名与属性名相同时，需要使用this关键字区分属性与形参。</li>
 </ol>
-<h4 id="静态初始化块，用于类的初始化操作"><a href="#静态初始化块，用于类的初始化操作" class="headerlink" title="静态初始化块，用于类的初始化操作"></a>静态初始化块，用于类的初始化操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class User3 &#123;</span><br><span class="line">    int id;        //id</span><br><span class="line">    String name;   //账户名</span><br><span class="line">    String pwd;   //密码</span><br><span class="line">    static String company; //公司名称</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;执行类的初始化工作&quot;);</span><br><span class="line">        company = &quot;北京尚学堂&quot;;</span><br><span class="line">        printCompany();</span><br><span class="line">    &#125;  </span><br><span class="line">    public static void printCompany()&#123;</span><br><span class="line">        System.out.println(company);</span><br><span class="line">    &#125;  </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        User3  u3 = new User3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="静态初始化块，用于类的初始化操作"><a href="#静态初始化块，用于类的初始化操作" class="headerlink" title="静态初始化块，用于类的初始化操作"></a>静态初始化块，用于类的初始化操作</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> id;        <span class="comment">//id</span></span><br><span class="line">    String name;   <span class="comment">//账户名</span></span><br><span class="line">    String pwd;   <span class="comment">//密码</span></span><br><span class="line">    <span class="keyword">static</span> String company; <span class="comment">//公司名称</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"执行类的初始化工作"</span>);</span><br><span class="line">        company = <span class="string">"北京尚学堂"</span>;</span><br><span class="line">        printCompany();</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCompany</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(company);</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        User3  u3 = <span class="keyword">new</span> User3();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
 <li>方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。</li>
 </ol>
@@ -432,7 +432,7 @@
 <h3 id="this-static关键字-在方法区"><a href="#this-static关键字-在方法区" class="headerlink" title="this\static关键字(在方法区)"></a>this\static关键字(在方法区)</h3><ol>
 <li>this的本质就是“创建好的对象的地址”! <code>在构造方法调用前，对象已经创建</code>。因此，<code>在构造方法中也可以使用this代表“当前对象”</code> 。</li>
 <li>在类中，用static声明的成员变量为静态成员变量，也称为类变量。 类变量的生命周期和类相同，在整个应用程序执行期间都有效。它有如下特点：<pre><code>  a. 为该类的公用变量，属于类，被该类的所有实例共享，在类被载入时被显式初始化。
-  b. 对于该类的所有对象来说，static成员变量只有一份。被该类的所有对象共享!!
+  b. 对于该类的所有对象来说，static成员变量只有一份。`被该类的所有对象共享`!!
   c. 一般用“类名.类属性/方法”来调用。(也可以通过对象引用或类名(不需要实例化)访问静态成员。)
   d. 在static方法中不可直接访问非static的成员。
 </code></pre></li>
@@ -450,7 +450,38 @@
 <li>如果导入两个同名的类，只能用包名+类名来显示调用相关类。</li>
 <li><code>静态导入(static import)是在JDK1.5新增加的功能，其作用是用于导入指定类的静态属性，这样我们可以直接使用静态属性</code>。</li>
 </ol>
-<h4 id="常用的包"><a href="#常用的包" class="headerlink" title="常用的包"></a>常用的包</h4><p>java.lang|包含一些Java语言的核心类，如String、Math、Integer、System和Thread，提供常用功能。<br>java.awt|包含了构成抽象窗口工具集（abstract window toolkits）的多个类，这些类被用来构建和管理应用程序的图形用户界面(GUI)。<br>java.net|包含执行与网络相关的操作的类。<br>java.io|包含能提供多种输入/输出功能的类。<br>java.util|包含一些实用工具类，如定义系统特性、使用与日期日历相关的函数。</p>
+<h4 id="常用的包"><a href="#常用的包" class="headerlink" title="常用的包"></a>常用的包</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.lang\</td>
+<td>包含一些Java语言的核心类，如String、Math、Integer、System和Thread，提供常用功能。</td>
+</tr>
+<tr>
+<td>java.awt\</td>
+<td>包含了构成抽象窗口工具集（abstract window toolkits）的多个类，这些类被用来构建和管理应用程序的图形用户界面(GUI)。</td>
+</tr>
+<tr>
+<td>java.net\</td>
+<td>包含执行与网络相关的操作的类。</td>
+</tr>
+<tr>
+<td>java.io\</td>
+<td>包含能提供多种输入/输出功能的类。</td>
+</tr>
+<tr>
+<td>java.util\</td>
+<td>包含一些实用工具类，如定义系统特性、使用与日期日历相关的函数。</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="内存底层"><a href="#内存底层" class="headerlink" title="内存底层"></a>内存底层</h2><h3 id="虚拟机内存模型"><a href="#虚拟机内存模型" class="headerlink" title="虚拟机内存模型"></a>虚拟机内存模型</h3><ol>
 <li>每执行一个方法，都会创建一个栈帧；堆存放对象；方法区存放类信息和常量和字符串等。</li>
 </ol>
@@ -486,7 +517,139 @@
 <li>各种连接对象（IO流对象、数据库连接对象、网络连接对象）未关闭；</li>
 <li>监听器的使用。</li>
 </ol>
-<h2 id="三大特征"><a href="#三大特征" class="headerlink" title="三大特征"></a>三大特征</h2><h2 id="特殊类"><a href="#特殊类" class="headerlink" title="特殊类"></a>特殊类</h2><h1 id="Java-继承"><a href="#Java-继承" class="headerlink" title="Java 继承"></a>Java 继承</h1><h1 id="Java-重写-Override-与重载-Overload"><a href="#Java-重写-Override-与重载-Overload" class="headerlink" title="Java 重写(Override)与重载(Overload)"></a>Java 重写(Override)与重载(Overload)</h1><h1 id="Java-多态"><a href="#Java-多态" class="headerlink" title="Java 多态"></a>Java 多态</h1><h1 id="Java-抽象类"><a href="#Java-抽象类" class="headerlink" title="Java 抽象类"></a>Java 抽象类</h1><h1 id="Java-封装"><a href="#Java-封装" class="headerlink" title="Java 封装"></a>Java 封装</h1><h1 id="Java-接口"><a href="#Java-接口" class="headerlink" title="Java 接口"></a>Java 接口</h1><h1 id="Java-包-package"><a href="#Java-包-package" class="headerlink" title="Java 包(package)"></a>Java 包(package)</h1>
+<h2 id="三大特征"><a href="#三大特征" class="headerlink" title="三大特征"></a>三大特征</h2><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><ol>
+<li>代码复用。</li>
+<li>事物抽象。</li>
+</ol>
+<h4 id="使用要点"><a href="#使用要点" class="headerlink" title="使用要点"></a>使用要点</h4><ol>
+<li>父类也称作超类、基类、派生类等。</li>
+<li>Java中只有单继承，没有像C++那样的多继承。多继承会引起混乱，使得继承链过于复杂，系统难于维护。</li>
+<li>Java中<code>类没有多继承，接口有多继承</code>。</li>
+<li><code>子类继承父类，可以得到父类的全部属性和方法</code> (除了父类的构造方法)，但<code>不见得可以直接访问</code>(比如，父类私有的属性和方法)。</li>
+<li>如果定义一个类时，没有调用extends，则它的父类是：java.lang.Object。</li>
+<li>instanceof是二元运算符，左边是对象，右边是类；<code>当对象是右面类或子类所创建对象时</code>，返回true；否则，返回false。</li>
+</ol>
+<h4 id="方法重写"><a href="#方法重写" class="headerlink" title="方法重写"></a>方法重写</h4><ol>
+<li>子类通过重写父类的方法，可以用自身的行为替换父类的行为。方法的重写是实现多态的必要条件。</li>
+<li>方法的重写需要符合下面的三个要点：<pre><code>  1.“==”： 方法名、形参列表相同。
+  2.“≤”：返回值类型和声明异常类型，`子类小于等于父类`。
+  3.“≥”： 访问权限，`子类大于等于父类`。
+</code></pre></li>
+</ol>
+<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><ol>
+<li>修饰变量: 被他修饰的变量不可改变。一旦赋了初值，就不能被重新赋值。</li>
+<li>修饰方法：该方法不可被子类重写。但是可以被重载!</li>
+<li>修饰类: 修饰的类不能被继承。<code>比如：Math、String等</code>。</li>
+</ol>
+<h4 id="继承和组合"><a href="#继承和组合" class="headerlink" title="继承和组合"></a>继承和组合</h4><ol>
+<li><code>is a</code>使用继承，<code>has a</code>使用组合。</li>
+<li>组合模式是将对象组合成树形结构（<code>定义一个类属性为一个类的实例</code>）以表示“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
+</ol>
+<h4 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h4><ol>
+<li>Object类是所有Java类的根基类，也就意味着所有的Java对象都拥有Object类的属性和方法。</li>
+<li><code>toString()</code>方法.</li>
+<li>“==”代表比较双方是否相同。如果是基本类型则表示值相等，如果是引用类型则表示地址相等即是同一个对象。</li>
+<li>Object类中定义有：public boolean equals(Object obj)方法，提供定义“对象内容相等”的逻辑。</li>
+<li>Object 的 equals 方法默认就是比较两个对象的hashcode，是同一个对象的引用时返回 true 否则返回 false。但是，我们可以根据我们自己的要求重写equals方法。</li>
+<li>JDK提供的一些类，如String、Date、包装类等，重写了Object的equals方法，调用这些类的equals方法， x.equals (y) ，当x和y所引用的对象是同一类对象且属性内容相等时（并不一定是相同对象），返回 true 否则返回 false。</li>
+</ol>
+<h4 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h4><ol>
+<li>super是直接父类对象的引用。可以通过super来访问父类中被子类覆盖的方法或属性。</li>
+<li>使用super调用普通方法，语句没有位置限制，可以在子类中随便调用。</li>
+<li>若是构造方法的<code>第一行代码没有显式的调用super(...)或者this(...)</code>;那么Java默认都会调用super(),含义是调用父类的无参数构造方法。这里的super()可以省略。</li>
+</ol>
+<h4 id="继承树追溯"><a href="#继承树追溯" class="headerlink" title="继承树追溯"></a>继承树追溯</h4><ol>
+<li>依次上溯每个父类，查看每个父类中是否有h，直到Object；</li>
+<li>构造方法第一句总是：super(…)来调用父类对应的构造方法。所以，流程就是：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止。注：静态初始化块调用顺序，与构造方法调用顺序一样，不再重复。</li>
+</ol>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><ol>
+<li>需要让用户知道的才暴露出来，不需要让用户知道的全部隐藏起来，这就是封装。</li>
+<li>“高内聚，低耦合”。</li>
+<li>高内聚就是类的内部数据操作细节自己完成，不允许外部干涉;低耦合是仅暴露少量的方法给外部使用，尽量方便外部调用。</li>
+</ol>
+<h4 id="访问控制符"><a href="#访问控制符" class="headerlink" title="访问控制符"></a>访问控制符</h4><ol>
+<li>使用“访问控制符”来控制哪些细节需要封装，哪些细节需要暴露的。 Java中4种“访问控制符”分别为private、default、protected、public，它们说明了面向对象的封装性，所以我们要利用它们尽可能的让访问权限降到最低，从而提高安全性。</li>
+<li><code>private</code> 表示私有，只有自己类能访问</li>
+<li>default表示没有修饰符修饰，只有同一个包的类能访问</li>
+<li>protected表示可以被同一个包的类以及其他包中的子类访问</li>
+<li><code>public</code>表示可以被该项目的所有包中的所有类访问</li>
+</ol>
+<h5 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h5><ol>
+<li>若父类和子类在同一个包中，子类可访问父类的protected成员，也可以访问父类对象的protected成员；</li>
+<li><code>若父类和子类不在同一个包中，子类可访问父类的protected成员，不能访问父类对象的protected成员</code>。</li>
+</ol>
+<h5 id="使用细节-使用private和public最多"><a href="#使用细节-使用private和public最多" class="headerlink" title="使用细节(使用private和public最多)"></a>使用细节(使用private和public最多)</h5><ol>
+<li>类的属性的处理:<ol>
+<li>一般使用<code>private</code>访问权限。</li>
+<li>提供相应的get/set方法来访问相关属性，这些方法通常是public修饰的，以提供对属性的赋值与读取操作(注意：boolean变量的get方法是is开头!)。</li>
+<li>一些只用于本类的辅助性方法可以用private修饰，希望其他类调用的方法用public修饰。</li>
+</ol>
+</li>
+<li><code>这个约定就是javabean</code>.</li>
+</ol>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><ol>
+<li>多态指的是同一个方法调用，由于对象不同可能会有不同的行为。</li>
+<li>多态是方法的多态，不是属性的多态(多态与属性无关)。</li>
+<li>多态的存在要有3个必要条件：<code>继承</code>，<code>方法重写</code>，<code>父类引用指向子类对象</code>。</li>
+<li><code>父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了</code>。</li>
+<li>多态的主要优势是提高了代码的可扩展性(避免大量的重载)，符合开闭原则。但是多态也有弊端，就是<code>无法调用子类特有的功能</code>.</li>
+</ol>
+<h4 id="类型的转换"><a href="#类型的转换" class="headerlink" title="类型的转换"></a>类型的转换</h4><ol>
+<li>父类引用指向子类对象，我们称这个过程为<code>向上转型，属于自动类型转换</code>。</li>
+<li>向上转型后的<code>父类引用变量只能调用它编译类型的方法，不能调用它运行时类型的方法</code>。这时，我们就需要进行类型的<code>强制转换</code>，我们称之为向下转型!</li>
+<li>在向下转型过程中，必须将引用变量转成<code>真实的子类类型</code>(运行时类型)否则会出现类型转换异常ClassCastException。为了避免出现这种异常，我们可以使用instanceof运算符进行判断</li>
+</ol>
+<h2 id="特殊类"><a href="#特殊类" class="headerlink" title="特殊类"></a>特殊类</h2><h3 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h3><ol>
+<li>使用abstract修饰的方法，<code>没有方法体，只有声明</code>。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体的实现。</li>
+<li><code>包含抽象方法的类就是抽象类</code>。通过abstract方法定义规范，然后要求子类必须定义具体实现。通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。</li>
+</ol>
+<h4 id="使用要点-1"><a href="#使用要点-1" class="headerlink" title="使用要点"></a>使用要点</h4><ol>
+<li>有抽象方法的类只能定义成抽象类</li>
+<li><code>抽象类不能实例化</code>，即不能用new来实例化抽象类。</li>
+<li><code>抽象类可以包含属性、方法、构造方法。但是构造方法不能用来new实例，只能用来被子类调用</code>。</li>
+<li><code>抽象类只能用来被继承</code>。</li>
+<li><code>抽象方法必须被子类实现</code>。</li>
+</ol>
+<h3 id="Java-接口"><a href="#Java-接口" class="headerlink" title="Java 接口"></a>Java 接口</h3><ol>
+<li>接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束。全面地专业地实现了：规范和具体实现的分离。</li>
+<li><code>抽象类还提供某些具体实现，接口不提供任何实现</code>，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。</li>
+<li>从接口的实现者角度看，接口定义了可以向外部提供的服务。</li>
+<li>从接口的调用者角度看，接口定义了实现者能提供那些服务。</li>
+<li>接口是两个模块之间通信的标准，通信的规范。如果能把你要设计的模块之间的接口定义好，就相当于完成了系统的设计大纲，剩下的就是添砖加瓦的具体实现了。大家在工作以后，<code>做系统时往往就是使用“面向接口”的思想来设计系统</code>。</li>
+<li><code>接口和实现类不是父子关系，是实现规则的关系</code>。</li>
+<li>接口就是规范，定义的是一组规则，体现了现实世界中“如果你是…则必须能…”的思想。</li>
+<li><code>面向对象的精髓，是对对象的抽象，最能体现这一点的就是接口</code>。为什么我们讨论设计模式都只针对具备了抽象能力的语言(比如C++、Java、C#等)，就是因为<code>设计模式所研究的，实际上就是如何合理的去抽象</code>。</li>
+<li>普通类：具体实现;抽象类：具体实现，规范(抽象方法);接口：规范!</li>
+</ol>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[访问修饰符]  interface 接口名   [extends  父接口1，父接口2…]  &#123;</span><br><span class="line">    常量定义；  </span><br><span class="line">    方法定义；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>访问修饰符：只能是public或默认。</li>
+<li>接口名：和类名采用相同命名机制。</li>
+<li>extends：<code>接口可以多继承</code>。</li>
+<li>常量：<code>接口中的属性只能是常量</code>，总是：public static final 修饰。不写也是。</li>
+<li>方法：<code>接口中的方法只能是：public abstract。</code> 省略的话，也是public abstract。</li>
+</ol>
+<h4 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h4><ol>
+<li>子类通过implements来实现接口中的规范。</li>
+<li>接口不能创建实例，但是<code>可用于声明引用变量类型</code>。</li>
+<li>一个类实现了接口，必须实现接口中所有的方法，并且<code>这些方法只能是public的</code>。</li>
+<li>JDK7之前，接口中只能包含静态常量、抽象方法，不能有普通属性、构造方法、普通方法。</li>
+<li><code>JDK8后，接口中也包含普通的静态方法和default（必须写default）方法</code>。</li>
+</ol>
+<h4 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h4><ol>
+<li>我们必须围绕某种稳定的东西开展，才能以静制动，实现规范的高质量的项目。</li>
+<li><code>接口就是规范，就是项目中最稳定的东东! 面向接口编程可以让我们把握住真正核心的东西，使实现复杂多变的需求成为可能</code>。</li>
+<li>面向接口编程的概念比接口本身的概念要大得多。设计阶段相对比较困难，在你没有写实现时就要想好接口，接口一变就乱套了，所以<code>设计要比实现难</code>!</li>
+</ol>
+<h4 id="java8新特性"><a href="#java8新特性" class="headerlink" title="java8新特性"></a>java8新特性</h4><ol>
+<li>默认方法（普通方法）必须加default。</li>
+<li>静态方法。</li>
+<li>默认方法可以调用静态方法。</li>
+</ol>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><ol>
+<li>不是很常用。</li>
+</ol>
+
       
     </div>
     
@@ -516,8 +679,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/15/JAVA-基础/" rel="next" title="JAVA-基础">
-                <i class="fa fa-chevron-left"></i> JAVA-基础
+              <a href="/2020/02/15/JAVA-JUC/" rel="next" title="JAVA-JUC并发">
+                <i class="fa fa-chevron-left"></i> JAVA-JUC并发
               </a>
             
           </div>
@@ -526,8 +689,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/15/JAVA-JUC/" rel="prev" title="JAVA-JUC并发">
-                JAVA-JUC并发 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/15/JAVA-基础/" rel="prev" title="JAVA-基础">
+                JAVA-基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">1.1.</span> <span class="nav-text">类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.1.1.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象创建的过程"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">对象创建的过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.1.2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态初始化块，用于类的初始化操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">静态初始化块，用于类的初始化操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例变量"><span class="nav-number">1.1.4.</span> <span class="nav-text">实例变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-static关键字-在方法区"><span class="nav-number">1.1.5.</span> <span class="nav-text">this\static关键字(在方法区)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this的使用场景"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">this的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包"><span class="nav-number">1.1.6.</span> <span class="nav-text">包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的包"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">常用的包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存底层"><span class="nav-number">1.2.</span> <span class="nav-text">内存底层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机内存模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">1.2.2.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关算法"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">相关算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用计数法"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#引用可达法（跟搜索算法）"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">引用可达法（跟搜索算法）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用的分代垃圾回收机制"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">通用的分代垃圾回收机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM调优"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">JVM调优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以下四种情况容易造成内存泄漏"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">以下四种情况容易造成内存泄漏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三大特征"><span class="nav-number">1.3.</span> <span class="nav-text">三大特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊类"><span class="nav-number">1.4.</span> <span class="nav-text">特殊类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-继承"><span class="nav-number">2.</span> <span class="nav-text">Java 继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-重写-Override-与重载-Overload"><span class="nav-number">3.</span> <span class="nav-text">Java 重写(Override)与重载(Overload)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-多态"><span class="nav-number">4.</span> <span class="nav-text">Java 多态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-抽象类"><span class="nav-number">5.</span> <span class="nav-text">Java 抽象类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-封装"><span class="nav-number">6.</span> <span class="nav-text">Java 封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-接口"><span class="nav-number">7.</span> <span class="nav-text">Java 接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-包-package"><span class="nav-number">8.</span> <span class="nav-text">Java 包(package)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">1.1.</span> <span class="nav-text">类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.1.1.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象创建的过程"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">对象创建的过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.1.2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态初始化块，用于类的初始化操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">静态初始化块，用于类的初始化操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例变量"><span class="nav-number">1.1.4.</span> <span class="nav-text">实例变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-static关键字-在方法区"><span class="nav-number">1.1.5.</span> <span class="nav-text">this\static关键字(在方法区)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this的使用场景"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">this的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包"><span class="nav-number">1.1.6.</span> <span class="nav-text">包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的包"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">常用的包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存底层"><span class="nav-number">1.2.</span> <span class="nav-text">内存底层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机内存模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">1.2.2.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关算法"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">相关算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用计数法"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#引用可达法（跟搜索算法）"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">引用可达法（跟搜索算法）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用的分代垃圾回收机制"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">通用的分代垃圾回收机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM调优"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">JVM调优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以下四种情况容易造成内存泄漏"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">以下四种情况容易造成内存泄漏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三大特征"><span class="nav-number">1.3.</span> <span class="nav-text">三大特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">1.3.1.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用要点"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">使用要点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法重写"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">方法重写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#final关键字"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">final关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承和组合"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">继承和组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object类"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">Object类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#super关键字"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">super关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承树追溯"><span class="nav-number">1.3.1.8.</span> <span class="nav-text">继承树追溯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装"><span class="nav-number">1.3.2.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问控制符"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">访问控制符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#protected"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">protected</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用细节-使用private和public最多"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">使用细节(使用private和public最多)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多态"><span class="nav-number">1.3.3.</span> <span class="nav-text">多态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型的转换"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">类型的转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊类"><span class="nav-number">1.4.</span> <span class="nav-text">特殊类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类和抽象方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">抽象类和抽象方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用要点-1"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">使用要点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-接口"><span class="nav-number">1.4.2.</span> <span class="nav-text">Java 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#要点"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">要点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向接口"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">面向接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java8新特性"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">java8新特性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类"><span class="nav-number">1.4.3.</span> <span class="nav-text">内部类</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

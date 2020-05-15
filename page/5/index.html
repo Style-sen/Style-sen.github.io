@@ -1842,10 +1842,7 @@ MODEL定义时间戳延时Getters &amp; setters - 访问器&amp;设置器
         
           
           Egg 奉行『约定优于配置』
-渐进式开发框架内置基础对象Application
-Application 是全局应用对象，在一个应用中，只会实例化一个，它继承自 Koa.Application。事件
-
-123456789101112131415161718// app.jsmodule.exports
+渐进式开发123451. 最初始的状态：直接在框架中写业务代码。2. 插件的雏形：发现业务代码具有通用性，可以写成插件。3. 抽成独立插件： 插件稳定之后，做成node module。4. 沉淀到框架：重复上述的过程，很快我们会积累了好几个插件和配置，并且我们会发现，在
           ...
           <!--noindex-->
           <div class="post-button text-center">
