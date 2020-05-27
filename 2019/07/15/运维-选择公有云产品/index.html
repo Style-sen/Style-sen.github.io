@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="UCLOUDALIYUN公共云架构及解决方案  web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务，需要收集各种日志、业务服务数据，存进大数据分析系统中。 服务中间件：消息队列，日志服务，开放搜索等。  网络架构定义云上网络环境专有网络VPC（私有） 一个VPC是网络容器，相当于是一个无限扩容的私有机房。 飞天洛神系统。 管理">
+<meta name="description" content="UCLOUDALIYUN公共云架构及解决方案  web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务，需要收集各种日志、业务服务数据，存进大数据分析系统中。 服务中间件：消息队列，日志服务，开放搜索等。  网络架构定义云上网络环境专有网络VPC（私有） 一个VPC是网络容器，相当于是一个无限扩容的私有机房。 飞天洛神系统。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运维-选择公有云产品">
 <meta property="og:url" content="http://yoursite.com/2019/07/15/运维-选择公有云产品/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="UCLOUDALIYUN公共云架构及解决方案  web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务，需要收集各种日志、业务服务数据，存进大数据分析系统中。 服务中间件：消息队列，日志服务，开放搜索等。  网络架构定义云上网络环境专有网络VPC（私有） 一个VPC是网络容器，相当于是一个无限扩容的私有机房。 飞天洛神系统。 管理">
+<meta property="og:description" content="UCLOUDALIYUN公共云架构及解决方案  web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务，需要收集各种日志、业务服务数据，存进大数据分析系统中。 服务中间件：消息队列，日志服务，开放搜索等。  网络架构定义云上网络环境专有网络VPC（私有） 一个VPC是网络容器，相当于是一个无限扩容的私有机房。 飞天洛神系统。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/public_cloud/share.png">
-<meta property="og:updated_time" content="2020-03-30T04:43:01.927Z">
+<meta property="og:updated_time" content="2020-05-27T01:18:16.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维-选择公有云产品">
-<meta name="twitter:description" content="UCLOUDALIYUN公共云架构及解决方案  web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务，需要收集各种日志、业务服务数据，存进大数据分析系统中。 服务中间件：消息队列，日志服务，开放搜索等。  网络架构定义云上网络环境专有网络VPC（私有） 一个VPC是网络容器，相当于是一个无限扩容的私有机房。 飞天洛神系统。 管理">
+<meta name="twitter:description" content="UCLOUDALIYUN公共云架构及解决方案  web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务，需要收集各种日志、业务服务数据，存进大数据分析系统中。 服务中间件：消息队列，日志服务，开放搜索等。  网络架构定义云上网络环境专有网络VPC（私有） 一个VPC是网络容器，相当于是一个无限扩容的私有机房。 飞天洛神系统。">
 <meta name="twitter:image" content="http://yoursite.com/images/public_cloud/share.png">
 
 
@@ -407,43 +407,55 @@
 </ol>
 <h4 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h4><h5 id="定义云上网络环境"><a href="#定义云上网络环境" class="headerlink" title="定义云上网络环境"></a>定义云上网络环境</h5><h6 id="专有网络VPC（私有）"><a href="#专有网络VPC（私有）" class="headerlink" title="专有网络VPC（私有）"></a>专有网络VPC（私有）</h6><ol>
 <li>一个VPC是网络容器，相当于是一个无限扩容的私有机房。</li>
-<li>飞天洛神系统。 <h5 id="管理公网流量"><a href="#管理公网流量" class="headerlink" title="管理公网流量"></a>管理公网流量</h5></li>
+<li>飞天洛神系统。 </li>
 </ol>
-<h6 id="弹性公网EIP"><a href="#弹性公网EIP" class="headerlink" title="弹性公网EIP"></a>弹性公网EIP</h6><ol>
+<h5 id="管理公网流量"><a href="#管理公网流量" class="headerlink" title="管理公网流量"></a>管理公网流量</h5><h6 id="弹性公网EIP"><a href="#弹性公网EIP" class="headerlink" title="弹性公网EIP"></a>弹性公网EIP</h6><ol>
 <li>支持SNAT/DNAT，既可以让VPC ECS访问Internet，也可以让外部用户从Internet访问。</li>
 <li>一个EIP智能绑定一个云产品资源。</li>
 <li>多线BGP能力。</li>
-<li>一个公网IP。<h6 id="负载均衡SLB"><a href="#负载均衡SLB" class="headerlink" title="负载均衡SLB"></a>负载均衡SLB</h6></li>
+<li>一个公网IP。</li>
+</ol>
+<h6 id="负载均衡SLB"><a href="#负载均衡SLB" class="headerlink" title="负载均衡SLB"></a>负载均衡SLB</h6><ol>
 <li>基于端口的负载均衡；</li>
 <li>支持TCP/UDP/HTTP/HTTPS；</li>
 <li>用户可自定义健康检查。</li>
 <li>没有SNAT功能。</li>
-<li>原则：需要两台ECS，而且这两个ECS分在两个可用区。<h6 id="NAT网关"><a href="#NAT网关" class="headerlink" title="NAT网关"></a>NAT网关</h6></li>
+<li>原则：需要两台ECS，而且这两个ECS分在两个可用区。</li>
+</ol>
+<h6 id="NAT网关"><a href="#NAT网关" class="headerlink" title="NAT网关"></a>NAT网关</h6><ol>
 <li>支持SNAT/DNAT，可以让多台VPC ECS同时访问Internet，并让外部用户从Internet访问。</li>
 </ol>
 <h5 id="节约公网成本"><a href="#节约公网成本" class="headerlink" title="节约公网成本"></a>节约公网成本</h5><h6 id="共享流量包"><a href="#共享流量包" class="headerlink" title="共享流量包"></a>共享流量包</h6><p>1.一份公网带宽，一份公网流量，充分共享。</p>
 <ol>
-<li>闲时流量包，可用于从公网同步数据到云下。<h6 id="共享带宽"><a href="#共享带宽" class="headerlink" title="共享带宽"></a>共享带宽</h6></li>
-<li>一个公网IP，一份流量包。</li>
-<li>增强95计费。<h5 id="构建混合云"><a href="#构建混合云" class="headerlink" title="构建混合云"></a>构建混合云</h5></li>
+<li>闲时流量包，可用于从公网同步数据到云下。</li>
 </ol>
-<h6 id="高速通道"><a href="#高速通道" class="headerlink" title="高速通道"></a>高速通道</h6><ol>
-<li>物理专线，较麻烦。<h6 id="云托付"><a href="#云托付" class="headerlink" title="云托付"></a>云托付</h6></li>
-<li>托管物理主机。<h6 id="VPN网关"><a href="#VPN网关" class="headerlink" title="VPN网关"></a>VPN网关</h6></li>
+<h6 id="共享带宽"><a href="#共享带宽" class="headerlink" title="共享带宽"></a>共享带宽</h6><ol>
+<li>一个公网IP，一份流量包。</li>
+<li>增强95计费。</li>
+</ol>
+<h5 id="构建混合云"><a href="#构建混合云" class="headerlink" title="构建混合云"></a>构建混合云</h5><h6 id="高速通道"><a href="#高速通道" class="headerlink" title="高速通道"></a>高速通道</h6><ol>
+<li>物理专线，较麻烦。</li>
+</ol>
+<h6 id="云托付"><a href="#云托付" class="headerlink" title="云托付"></a>云托付</h6><ol>
+<li>托管物理主机。</li>
+</ol>
+<h6 id="VPN网关"><a href="#VPN网关" class="headerlink" title="VPN网关"></a>VPN网关</h6><ol>
 <li>SSL—VPN</li>
-<li>IPsec-VPN<h6 id="智能接入网关"><a href="#智能接入网关" class="headerlink" title="智能接入网关"></a>智能接入网关</h6></li>
+<li>IPsec-VPN</li>
+</ol>
+<h6 id="智能接入网关"><a href="#智能接入网关" class="headerlink" title="智能接入网关"></a>智能接入网关</h6><ol>
 <li>提供设备（包含VPN网关）。</li>
 <li>或提供SDK。</li>
-<li>全网。<h5 id="连接全球网络"><a href="#连接全球网络" class="headerlink" title="连接全球网络"></a>连接全球网络</h5></li>
+<li>全网。</li>
 </ol>
-<h6 id="云企业网"><a href="#云企业网" class="headerlink" title="云企业网"></a>云企业网</h6><ol>
+<h5 id="连接全球网络"><a href="#连接全球网络" class="headerlink" title="连接全球网络"></a>连接全球网络</h5><h6 id="云企业网"><a href="#云企业网" class="headerlink" title="云企业网"></a>云企业网</h6><ol>
 <li>星形。</li>
-<li>打通私网。<h6 id="全球加速"><a href="#全球加速" class="headerlink" title="全球加速"></a>全球加速</h6></li>
+<li>打通私网。</li>
 </ol>
-<h4 id="数据库架构"><a href="#数据库架构" class="headerlink" title="数据库架构"></a>数据库架构</h4><ol>
-<li>各种数据库产品适应不同产品。不要自建数据库。<h4 id="存储架构"><a href="#存储架构" class="headerlink" title="存储架构"></a>存储架构</h4></li>
+<h6 id="全球加速"><a href="#全球加速" class="headerlink" title="全球加速"></a>全球加速</h6><h4 id="数据库架构"><a href="#数据库架构" class="headerlink" title="数据库架构"></a>数据库架构</h4><ol>
+<li>各种数据库产品适应不同产品。不要自建数据库。</li>
 </ol>
-<h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><h4 id="重启之后（注意事项）"><a href="#重启之后（注意事项）" class="headerlink" title="重启之后（注意事项）"></a>重启之后（注意事项）</h4><ol>
+<h4 id="存储架构"><a href="#存储架构" class="headerlink" title="存储架构"></a>存储架构</h4><h3 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h3><h4 id="重启之后（注意事项）"><a href="#重启之后（注意事项）" class="headerlink" title="重启之后（注意事项）"></a>重启之后（注意事项）</h4><ol>
 <li>挂载硬盘；</li>
 <li>配置权限；</li>
 <li>实际业务测试。</li>
@@ -453,7 +465,23 @@
 <li>规则方向：<br> 出方向：是指ECS实例访问内网中其他ECS实例或者公网上的资源。<br> 入方向：是指内网中的其他ECS实例或公网上的资源访问ECS实例。</li>
 <li>不通安全组之间的ECS实例是内网不互通的，但是可以设置互通权限。</li>
 </ol>
-<h5 id="默认安全组"><a href="#默认安全组" class="headerlink" title="默认安全组"></a>默认安全组</h5><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h4 id="SSL证书"><a href="#SSL证书" class="headerlink" title="SSL证书"></a>SSL证书</h4><h5 id="免费型-DV-SSL-证书"><a href="#免费型-DV-SSL-证书" class="headerlink" title="免费型 DV SSL 证书"></a>免费型 DV SSL 证书</h5><ol>
+<h5 id="默认安全组"><a href="#默认安全组" class="headerlink" title="默认安全组"></a>默认安全组</h5><h5 id="内网互联"><a href="#内网互联" class="headerlink" title="内网互联"></a>内网互联</h5><h6 id="使用IP地址互联"><a href="#使用IP地址互联" class="headerlink" title="使用IP地址互联"></a>使用IP地址互联</h6><ol>
+<li>内网互联的实例数量较少。</li>
+<li>直接添加一条内网的安全组规则。</li>
+</ol>
+<h6 id="加入到同一个安全组"><a href="#加入到同一个安全组" class="headerlink" title="加入到同一个安全组"></a>加入到同一个安全组</h6><ol>
+<li>如果您的网络架构比较简单，实例中部署的业务相同，您就可以为所有的实例选择相同的安全组，绑定<code>同一安全组的实例之间不用设置特殊规则、默认是网络互通的</code>。</li>
+<li>也可以<code>将不同安全组加入到一个安全组</code>。</li>
+<li>缺点：适用于单一的应用架构，网络架构变更时需要做调整。</li>
+</ol>
+<h6 id="绑定互通安全组"><a href="#绑定互通安全组" class="headerlink" title="绑定互通安全组"></a>绑定互通安全组</h6><ol>
+<li>为需要互通的实例新添加绑定一个<code>专门互通用的安全组</code>，适用于较为复杂的网络架构。</li>
+<li>新建一个安全组，命名为“互通安全组”，<code>不用给新建的安全组添加任何规则</code>。将需要互通的实例都添加绑定新建的“互通安全组”，利用同一安全组的实例之间默认互通的特性，达到内网实例互通的效果。</li>
+</ol>
+<h6 id="安全组互信授权"><a href="#安全组互信授权" class="headerlink" title="安全组互信授权"></a>安全组互信授权</h6><ol>
+<li>添加安全组规则时，使用安全组访问。</li>
+</ol>
+<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h4 id="SSL证书"><a href="#SSL证书" class="headerlink" title="SSL证书"></a>SSL证书</h4><h5 id="免费型-DV-SSL-证书"><a href="#免费型-DV-SSL-证书" class="headerlink" title="免费型 DV SSL 证书"></a>免费型 DV SSL 证书</h5><ol>
 <li>填写证书绑定的域名，这里的域名是子域名，不能写顶级域名；</li>
 <li>域名验证方式，如果域名使用的是阿里云的 DNS ，那么就可以直接用“自动 DNS验证”，只要这个域名是在账号名下，那么就自动添加 DNS 记录用于验证，否则就手动修改域名的 DNS 记录，或者上传验证文件到网站对应目录；CSR 生成方式默认选择系统生成。</li>
 </ol>
@@ -639,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UCLOUD"><span class="nav-number">1.</span> <span class="nav-text">UCLOUD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALIYUN"><span class="nav-number">2.</span> <span class="nav-text">ALIYUN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公共云架构及解决方案"><span class="nav-number">2.1.</span> <span class="nav-text">公共云架构及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络架构"><span class="nav-number">2.1.1.</span> <span class="nav-text">网络架构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义云上网络环境"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">定义云上网络环境</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#专有网络VPC（私有）"><span class="nav-number">2.1.1.1.1.</span> <span class="nav-text">专有网络VPC（私有）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#管理公网流量"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">管理公网流量</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#弹性公网EIP"><span class="nav-number">2.1.1.2.1.</span> <span class="nav-text">弹性公网EIP</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#负载均衡SLB"><span class="nav-number">2.1.1.2.2.</span> <span class="nav-text">负载均衡SLB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#NAT网关"><span class="nav-number">2.1.1.2.3.</span> <span class="nav-text">NAT网关</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#节约公网成本"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">节约公网成本</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#共享流量包"><span class="nav-number">2.1.1.3.1.</span> <span class="nav-text">共享流量包</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#共享带宽"><span class="nav-number">2.1.1.3.2.</span> <span class="nav-text">共享带宽</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构建混合云"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">构建混合云</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#高速通道"><span class="nav-number">2.1.1.4.1.</span> <span class="nav-text">高速通道</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#云托付"><span class="nav-number">2.1.1.4.2.</span> <span class="nav-text">云托付</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#VPN网关"><span class="nav-number">2.1.1.4.3.</span> <span class="nav-text">VPN网关</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#智能接入网关"><span class="nav-number">2.1.1.4.4.</span> <span class="nav-text">智能接入网关</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接全球网络"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">连接全球网络</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#云企业网"><span class="nav-number">2.1.1.5.1.</span> <span class="nav-text">云企业网</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#全球加速"><span class="nav-number">2.1.1.5.2.</span> <span class="nav-text">全球加速</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库架构"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据库架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储架构"><span class="nav-number">2.1.3.</span> <span class="nav-text">存储架构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ECS"><span class="nav-number">2.2.</span> <span class="nav-text">ECS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重启之后（注意事项）"><span class="nav-number">2.2.1.</span> <span class="nav-text">重启之后（注意事项）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全组"><span class="nav-number">2.2.2.</span> <span class="nav-text">安全组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认安全组"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">默认安全组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">2.3.</span> <span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书"><span class="nav-number">2.3.1.</span> <span class="nav-text">SSL证书</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#免费型-DV-SSL-证书"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">免费型 DV SSL 证书</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备案"><span class="nav-number">2.4.</span> <span class="nav-text">备案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ICP备案流程（APP端）"><span class="nav-number">2.4.1.</span> <span class="nav-text">ICP备案流程（APP端）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理查看ICP备案信息"><span class="nav-number">2.4.2.</span> <span class="nav-text">管理查看ICP备案信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#备案信息核查"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">备案信息核查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#域名核验"><span class="nav-number">2.4.2.1.1.</span> <span class="nav-text">域名核验</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变更备案"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">变更备案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#可变更备案信息"><span class="nav-number">2.4.2.2.1.</span> <span class="nav-text">可变更备案信息</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#阿里云备案账号维护"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">阿里云备案账号维护</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#找回备案账号"><span class="nav-number">2.4.2.3.1.</span> <span class="nav-text">找回备案账号</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原万网ICP备案信息导入阿里云"><span class="nav-number">2.4.2.4.</span> <span class="nav-text">原万网ICP备案信息导入阿里云</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#导入原万网备案信息"><span class="nav-number">2.4.2.4.1.</span> <span class="nav-text">导入原万网备案信息</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UCLOUD"><span class="nav-number">1.</span> <span class="nav-text">UCLOUD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALIYUN"><span class="nav-number">2.</span> <span class="nav-text">ALIYUN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公共云架构及解决方案"><span class="nav-number">2.1.</span> <span class="nav-text">公共云架构及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络架构"><span class="nav-number">2.1.1.</span> <span class="nav-text">网络架构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义云上网络环境"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">定义云上网络环境</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#专有网络VPC（私有）"><span class="nav-number">2.1.1.1.1.</span> <span class="nav-text">专有网络VPC（私有）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#管理公网流量"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">管理公网流量</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#弹性公网EIP"><span class="nav-number">2.1.1.2.1.</span> <span class="nav-text">弹性公网EIP</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#负载均衡SLB"><span class="nav-number">2.1.1.2.2.</span> <span class="nav-text">负载均衡SLB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#NAT网关"><span class="nav-number">2.1.1.2.3.</span> <span class="nav-text">NAT网关</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#节约公网成本"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">节约公网成本</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#共享流量包"><span class="nav-number">2.1.1.3.1.</span> <span class="nav-text">共享流量包</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#共享带宽"><span class="nav-number">2.1.1.3.2.</span> <span class="nav-text">共享带宽</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构建混合云"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">构建混合云</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#高速通道"><span class="nav-number">2.1.1.4.1.</span> <span class="nav-text">高速通道</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#云托付"><span class="nav-number">2.1.1.4.2.</span> <span class="nav-text">云托付</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#VPN网关"><span class="nav-number">2.1.1.4.3.</span> <span class="nav-text">VPN网关</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#智能接入网关"><span class="nav-number">2.1.1.4.4.</span> <span class="nav-text">智能接入网关</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接全球网络"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">连接全球网络</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#云企业网"><span class="nav-number">2.1.1.5.1.</span> <span class="nav-text">云企业网</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#全球加速"><span class="nav-number">2.1.1.5.2.</span> <span class="nav-text">全球加速</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库架构"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据库架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储架构"><span class="nav-number">2.1.3.</span> <span class="nav-text">存储架构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ECS"><span class="nav-number">2.2.</span> <span class="nav-text">ECS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重启之后（注意事项）"><span class="nav-number">2.2.1.</span> <span class="nav-text">重启之后（注意事项）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全组"><span class="nav-number">2.2.2.</span> <span class="nav-text">安全组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认安全组"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">默认安全组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内网互联"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">内网互联</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用IP地址互联"><span class="nav-number">2.2.2.3.1.</span> <span class="nav-text">使用IP地址互联</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#加入到同一个安全组"><span class="nav-number">2.2.2.3.2.</span> <span class="nav-text">加入到同一个安全组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#绑定互通安全组"><span class="nav-number">2.2.2.3.3.</span> <span class="nav-text">绑定互通安全组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#安全组互信授权"><span class="nav-number">2.2.2.3.4.</span> <span class="nav-text">安全组互信授权</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全"><span class="nav-number">2.3.</span> <span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL证书"><span class="nav-number">2.3.1.</span> <span class="nav-text">SSL证书</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#免费型-DV-SSL-证书"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">免费型 DV SSL 证书</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备案"><span class="nav-number">2.4.</span> <span class="nav-text">备案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ICP备案流程（APP端）"><span class="nav-number">2.4.1.</span> <span class="nav-text">ICP备案流程（APP端）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理查看ICP备案信息"><span class="nav-number">2.4.2.</span> <span class="nav-text">管理查看ICP备案信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#备案信息核查"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">备案信息核查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#域名核验"><span class="nav-number">2.4.2.1.1.</span> <span class="nav-text">域名核验</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变更备案"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">变更备案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#可变更备案信息"><span class="nav-number">2.4.2.2.1.</span> <span class="nav-text">可变更备案信息</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#阿里云备案账号维护"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">阿里云备案账号维护</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#找回备案账号"><span class="nav-number">2.4.2.3.1.</span> <span class="nav-text">找回备案账号</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原万网ICP备案信息导入阿里云"><span class="nav-number">2.4.2.4.</span> <span class="nav-text">原万网ICP备案信息导入阿里云</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#导入原万网备案信息"><span class="nav-number">2.4.2.4.1.</span> <span class="nav-text">导入原万网备案信息</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

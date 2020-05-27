@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考JavaScript 标准内置对象 感谢 1234作者：小黎也链接：https://juejin.im/post/5e523e726fb9a07c9a195a95来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 值属性 这些全局属性返回一个简单值，这些值没有自己的属性和方法，就是一个常数。  InfinityNaNundefinednull 字面量globalTh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-09T08:12:24.004Z">
+<meta property="og:updated_time" content="2020-05-22T02:55:43.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS标准内置对象(全局作用域里的对象)">
 <meta name="twitter:description" content="参考JavaScript 标准内置对象 感谢 1234作者：小黎也链接：https://juejin.im/post/5e523e726fb9a07c9a195a95来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 值属性 这些全局属性返回一个简单值，这些值没有自己的属性和方法，就是一个常数。  InfinityNaNundefinednull 字面量globalTh">
@@ -443,7 +443,10 @@
 <h4 id="Object-values"><a href="#Object-values" class="headerlink" title="Object.values()"></a>Object.values()</h4><p>返回给定对象自身可枚举值的数组。</p>
 <h3 id="Object-实例的方法"><a href="#Object-实例的方法" class="headerlink" title="Object 实例的方法"></a>Object 实例的方法</h3><h4 id="Object-prototype-hasOwnProperty"><a href="#Object-prototype-hasOwnProperty" class="headerlink" title="Object.prototype.hasOwnProperty()"></a>Object.prototype.hasOwnProperty()</h4><p>返回一个布尔值 ，表示某个对象是否含有指定的属性，而且此属性非原型链继承的。</p>
 <h4 id="Object-prototype-isPrototypeOf"><a href="#Object-prototype-isPrototypeOf" class="headerlink" title="Object.prototype.isPrototypeOf()"></a>Object.prototype.isPrototypeOf()</h4><p>返回一个布尔值，表示指定的对象是否在本对象的原型链中。</p>
-<h4 id="Object-prototype-propertyIsEnumerable"><a href="#Object-prototype-propertyIsEnumerable" class="headerlink" title="Object.prototype.propertyIsEnumerable()"></a>Object.prototype.propertyIsEnumerable()</h4><p>判断指定属性是否可枚举，内部属性设置参见 ECMAScript [[Enumerable]] attribute 。</p>
+<h4 id="Object-prototype-propertyIsEnumerable"><a href="#Object-prototype-propertyIsEnumerable" class="headerlink" title="Object.prototype.propertyIsEnumerable()"></a>Object.prototype.propertyIsEnumerable()</h4><ol>
+<li>判断指定属性是否可枚举，内部属性设置参见 ECMAScript [[Enumerable]] attribute 。</li>
+<li>如果判断的属性<code>存在于Object对象的原型内</code>，不管它是否可枚举都会返回false。</li>
+</ol>
 <h4 id="Object-prototype-toLocaleString"><a href="#Object-prototype-toLocaleString" class="headerlink" title="Object.prototype.toLocaleString()"></a>Object.prototype.toLocaleString()</h4><p>直接调用 toString()方法。</p>
 <h4 id="Object-prototype-toString"><a href="#Object-prototype-toString" class="headerlink" title="Object.prototype.toString()"></a>Object.prototype.toString()</h4><p>返回对象的字符串表示。</p>
 <h4 id="Object-prototype-valueOf"><a href="#Object-prototype-valueOf" class="headerlink" title="Object.prototype.valueOf()"></a>Object.prototype.valueOf()</h4><p>返回指定对象的原始值。</p>

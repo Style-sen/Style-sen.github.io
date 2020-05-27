@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-15T07:20:12.411Z">
+<meta property="og:updated_time" content="2020-05-20T06:08:43.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA-基础">
 <meta name="twitter:description" content="JVM">
@@ -400,7 +400,7 @@
       
 
       
-        <p><a href="https://www.w3cschool.cn/java/java-basic-syntax.html" target="_blank" rel="noopener">JAVA基本语法</a></p>
+        <p><a href="https://www.w3cschool.cn/java/java-basic-syntax.html" target="_blank" rel="noopener">JAVA基本语法</a><br><a href="https://www.sxt.cn/Java_jQuery_in_action/seven-array-declaration.html" target="_blank" rel="noopener">参考速学堂</a></p>
 <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><ol>
 <li><em>核心：将物理事物用代码抽象出来，拟物化编程</em>。</li>
 <li>一个Java程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。</li>
@@ -433,6 +433,61 @@
 </ol>
 <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><ol>
 <li>最常用。</li>
+<li>String类又称作不可变字符序列。</li>
+<li>Java没有内置的字符串类型，而是在标准Java类库中提供了一个预定义的类String，<code>每个用双引号括起来的字符串都是String类的一个实例</code>。</li>
+</ol>
+<h2 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h2><ol>
+<li>全局字符串常量池(<code>String Pool</code>)<br> 全局字符串常量池中存放的内容是在类加载完成后存到String Pool中的，<code>在每个VM中只有一份</code>，存放的是字符串常量的引用值(在堆中生成字符串对象实例)。</li>
+<li>class文件常量池(<code>Class Constant Poo</code>l)<br> <code>class常量池是在编译的时候每个class都有的，在编译阶段，存放的是常量(文本字符串、final常量等)和符号引用</code>。</li>
+<li>运行时常量池(<code>Runtime Constant Pool</code>)<br> 运行时常量池是在类加载完成之后，将每个class常量池中的符号引用值转存到运行时常量池中，也就是说，<code>每个class都有一个运行时常量池</code>，类在解析之后，将符号引用替换成直接引用，与全局常量池中的引用值保持一致。</li>
+</ol>
+<h2 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h2><ol>
+<li><code>String str1 = &quot;abc&quot;;在堆中会有一个“abc”实例，全局String Pool中存放着“abc”的一个引用值</code>.</li>
+<li><code>String str2 = new String(&quot;def&quot;);``生成两个实例</code>，一个是“def”的实例对象，并且String Pool中存储一个“def”的引用值，还有一个是new出来的一个“def”的实例对象，与前边那个是不同的实例;<code>str2.intern();</code>返回String Pool中“def”的引用值，如果没有就将str2的引用值添加进去.</li>
+</ol>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><ol>
+<li>数组是相同类型数据的有序集合。</li>
+<li>长度是确定的。数组一旦被创建，它的大小就是不可以改变的。</li>
+<li>其元素必须是相同类型，不允许出现混合类型。</li>
+<li>数组类型可以是任何数据类型，包括基本类型和引用类型。</li>
+<li>数组变量属引用类型，数组也可以看成是对象，<code>数组中的每个元素相当于该对象的成员变量</code>。数组本身就是对象，Java中对象是在堆中的，因此数组无论保存原始类型还是其他对象类型，<code>数组对象本身是在堆中存储的</code>。</li>
+</ol>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type[]   arr_name; <span class="comment">//（推荐使用这种方式）</span></span><br><span class="line">type    arr_name[];</span><br></pre></td></tr></table></figure>
+<ol>
+<li>声明的时候并没有实例化任何对象，只有在实例化数组对象时，JVM才分配空间，这时才与长度有关。</li>
+<li>声明一个数组的时候并没有数组真正被创建。</li>
+<li>构造一个数组，必须指定长度。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int[] s = <span class="literal">null</span>; <span class="comment">// 声明数组；</span></span><br><span class="line">s = <span class="keyword">new</span> int[<span class="number">10</span>]; <span class="comment">// 给数组分配空间；</span></span><br><span class="line"></span><br><span class="line">Man[] mans;  <span class="comment">//声明引用类型数组； </span></span><br><span class="line">mans = <span class="keyword">new</span> Man[<span class="number">10</span>];  <span class="comment">//给引用类型数组分配空间；</span></span><br></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h4 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int[] a = &#123; 1, 2, 3 &#125;;// 静态初始化基本类型数组；</span><br><span class="line">Man[] mans = &#123; new Man(1, 1), new Man(2, 2) &#125;;// 静态初始化引用类型数组；</span><br></pre></td></tr></table></figure>
+<h4 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h4><h4 id="默认初始化"><a href="#默认初始化" class="headerlink" title="默认初始化"></a>默认初始化</h4><ol>
+<li>数组是引用类型，它的元素相当于类的实例变量，因此数组一经分配空间，其中的每个元素也被按照实例变量同样的方式被隐式初始化。</li>
+</ol>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><ol>
+<li>通过for和下标进行遍历（读取或修改）。</li>
+<li>增强for循环for-each是JDK1.5新增加的功能，<code>专门用于读取数组或集合中所有的元素</code>，即对数组进行遍历，不能修改。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String[] ss = &#123; &quot;aa&quot;, &quot;bbb&quot;, &quot;ccc&quot;, &quot;ddd&quot; &#125;;</span><br><span class="line">for (String temp : ss) &#123;</span><br><span class="line">    System.out.println(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h2><ol>
+<li><code>System类里也包含了一个static void arraycopy(object src，int srcpos，object dest， int destpos，int length)方法</code>，该方法可以将src数组里的元素值赋给dest数组的元素，其中srcpos指定从src数组的第几个元素开始赋值，length参数指定将src数组的多少个元素赋给dest数组的元素。</li>
+</ol>
+<h2 id="java-util-Arrays类"><a href="#java-util-Arrays类" class="headerlink" title="java.util.Arrays类"></a>java.util.Arrays类</h2><ol>
+<li><p>包含了常用的数组操作，方便我们日常开发。Arrays类包含了：排序、查找、填充、打印内容等常见的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Arrays.toString()    // 打印</span><br><span class="line">Arrays.sort()    // 排序</span><br><span class="line">Arrays.binarySearch(a, 12)    // 返回元素索引</span><br><span class="line">Arrays.fill(a, 2, 4, 100);  //将2到4索引的元素替换为100;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过实现Comparable接口的compareTo方法，可以自定义排序规则。</p>
+</li>
+</ol>
+<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><ol>
+<li>实际开发中用的非常少。最多到二维数组(学习容器后，<code>我们一般使用容器</code>，二维数组用的都很少)。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // Java中多维数组的声明和初始化应按从低维到高维的顺序进行</span><br><span class="line">        int[][] a = new int[3][];</span><br><span class="line">        a[0] = new int[2];</span><br><span class="line">        a[1] = new int[4];</span><br><span class="line">        a[2] = new int[3];</span><br><span class="line">        // int a1[][]=new int[][4];//非法</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">        int[][] a = new int[3][];</span><br><span class="line">        // a[0] = &#123;1,2,5&#125;; //错误，没有声明类型就初始化</span><br><span class="line">        a[0] = new int[] &#123; 1, 2 &#125;;</span><br><span class="line">        a[1] = new int[] &#123; 2, 2 &#125;;</span><br><span class="line">        a[2] = new int[] &#123; 2, 2, 3, 4 &#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="数组存对象"><a href="#数组存对象" class="headerlink" title="数组存对象"></a>数组存对象</h2><ol>
+<li><p>此处基本数据类型”1001”，本质不是Object对象。<code>JAVA编译器会自动把基本数据类型“自动装箱”成包装类对象（需要对象的场合）</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object[] a1 = &#123;1001,&quot;高淇&quot;,18,&quot;讲师&quot;,&quot;2006-2-14&quot;&#125;;</span><br><span class="line">Object[] a2 = &#123;1002,&quot;高小七&quot;,19,&quot;助教&quot;,&quot;2007-10-10&quot;&#125;;</span><br><span class="line">Object[] a3 = &#123;1003,&quot;高小琴&quot;,20,&quot;班主任&quot;,&quot;2008-5-5&quot;&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通常情况下，我们<code>使用javabean</code>实现对象数组。</p>
+</li>
 </ol>
 
       
@@ -464,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/15/JAVA-面向对象/" rel="next" title="JAVA-面向对象">
-                <i class="fa fa-chevron-left"></i> JAVA-面向对象
+              <a href="/2019/12/27/日常-罗振宇-时间的朋友/" rel="next" title="日常-罗振宇-时间的朋友">
+                <i class="fa fa-chevron-left"></i> 日常-罗振宇-时间的朋友
               </a>
             
           </div>
@@ -474,8 +529,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/26/微服务架构笔记-数据库-跨服务数据库设计/" rel="prev" title="微服务架构笔记-数据库-跨服务数据库设计">
-                微服务架构笔记-数据库-跨服务数据库设计 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/15/JAVA-面向对象/" rel="prev" title="JAVA-面向对象">
+                JAVA-面向对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型"><span class="nav-number">4.1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">4.1.1.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">Boolean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型"><span class="nav-number">4.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制语句"><span class="nav-number">5.</span> <span class="nav-text">控制语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">6.</span> <span class="nav-text">String</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型"><span class="nav-number">4.1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">4.1.1.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">4.1.2.</span> <span class="nav-text">Boolean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型"><span class="nav-number">4.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制语句"><span class="nav-number">5.</span> <span class="nav-text">控制语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">6.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常量池"><span class="nav-number">6.1.</span> <span class="nav-text">常量池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分析"><span class="nav-number">6.2.</span> <span class="nav-text">内存分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">7.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">7.1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">7.2.</span> <span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态初始化"><span class="nav-number">7.2.0.1.</span> <span class="nav-text">静态初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态初始化"><span class="nav-number">7.2.0.2.</span> <span class="nav-text">动态初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认初始化"><span class="nav-number">7.2.0.3.</span> <span class="nav-text">默认初始化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历"><span class="nav-number">7.3.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝"><span class="nav-number">7.4.</span> <span class="nav-text">拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-util-Arrays类"><span class="nav-number">7.5.</span> <span class="nav-text">java.util.Arrays类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多维数组"><span class="nav-number">7.6.</span> <span class="nav-text">多维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组存对象"><span class="nav-number">7.7.</span> <span class="nav-text">数组存对象</span></a></li></ol></div>
             
 
           </div>
