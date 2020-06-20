@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考JavaScript 标准内置对象 感谢 1234作者：小黎也链接：https://juejin.im/post/5e523e726fb9a07c9a195a95来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 值属性 这些全局属性返回一个简单值，这些值没有自己的属性和方法，就是一个常数。  InfinityNaNundefinednull 字面量globalTh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-22T02:55:43.205Z">
+<meta property="og:updated_time" content="2020-06-06T03:19:46.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS标准内置对象(全局作用域里的对象)">
 <meta name="twitter:description" content="参考JavaScript 标准内置对象 感谢 1234作者：小黎也链接：https://juejin.im/post/5e523e726fb9a07c9a195a95来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 值属性 这些全局属性返回一个简单值，这些值没有自己的属性和方法，就是一个常数。  InfinityNaNundefinednull 字面量globalTh">
@@ -489,7 +489,10 @@
 <h5 id="Array-prototype-indexOf"><a href="#Array-prototype-indexOf" class="headerlink" title="Array.prototype.indexOf()"></a>Array.prototype.indexOf()</h5><p>返回数组中第一个与指定值相等的元素的索引，如果找不到这样的元素，则返回 -1。</p>
 <h5 id="Array-prototype-lastIndexOf"><a href="#Array-prototype-lastIndexOf" class="headerlink" title="Array.prototype.lastIndexOf()"></a>Array.prototype.lastIndexOf()</h5><p>返回数组中最后一个（从右边数第一个）与指定值相等的元素的索引，如果找不到这样的元素，则返回 -1。</p>
 <h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p>在下面的众多遍历方法中，有很多方法都需要指定一个回调函数作为参数。在每一个数组元素都分别执行完回调函数之前，数组的 length 属性会被缓存在某个地方，所以，如果你在回调函数中为当前数组添加了新的元素，那么那些新添加的元素是不会被遍历到的。此外，如果在回调函数中对当前数组进行了其它修改，比如改变某个元素的值或者删掉某个元素，那么随后的遍历操作可能会受到未预期的影响。总之，不要尝试在遍历过程中对原数组进行任何修改，虽然规范对这样的操作进行了详细的定义，但为了可读性和可维护性，请不要这样做。</p>
-<h5 id="Array-prototype-forEach"><a href="#Array-prototype-forEach" class="headerlink" title="Array.prototype.forEach()"></a>Array.prototype.forEach()</h5><p>为数组中的每个元素执行一次回调函数。</p>
+<h5 id="Array-prototype-forEach"><a href="#Array-prototype-forEach" class="headerlink" title="Array.prototype.forEach()"></a>Array.prototype.forEach()</h5><ol>
+<li>为数组中的每个元素执行一次回调函数。</li>
+<li><code>回调函数是异步执行的，但是整个forEach是同步的</code>。</li>
+</ol>
 <h5 id="Array-prototype-every"><a href="#Array-prototype-every" class="headerlink" title="Array.prototype.every()"></a>Array.prototype.every()</h5><p>如果数组中的每个元素都满足测试函数，则返回 true，否则返回 false。</p>
 <h5 id="Array-prototype-some"><a href="#Array-prototype-some" class="headerlink" title="Array.prototype.some()"></a>Array.prototype.some()</h5><p>如果数组中至少有一个元素满足测试函数，则返回 true，否则返回 false。</p>
 <h5 id="Array-prototype-filter"><a href="#Array-prototype-filter" class="headerlink" title="Array.prototype.filter()"></a>Array.prototype.filter()</h5><p>将所有在过滤函数中返回 true 的数组元素放进一个新数组中并返回。</p>
@@ -854,7 +857,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-count">169</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

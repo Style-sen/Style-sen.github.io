@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文以3.2.1版本为主 hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式  1231. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。3. 全分布式部署。  参考hadoop 生态圈介绍124. HA Cluster，即高可用集群模式5. HA + Federat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据架构笔记-1-hadoop安装与配置">
+<meta property="og:url" content="http://yoursite.com/2020/06/17/大数据架构笔记-1-hadoop安装与配置/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="本文以3.2.1版本为主 hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式  1231. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。3. 全分布式部署。  参考hadoop 生态圈介绍124. HA Cluster，即高可用集群模式5. HA + Federat">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-20T01:57:10.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据架构笔记-1-hadoop安装与配置">
+<meta name="twitter:description" content="本文以3.2.1版本为主 hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式  1231. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。3. 全分布式部署。  参考hadoop 生态圈介绍124. HA Cluster，即高可用集群模式5. HA + Federat">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/17/大数据架构笔记-1-hadoop安装与配置/">
+
+
+
+
+
+  <title>大数据架构笔记-1-hadoop安装与配置 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/17/大数据架构笔记-1-hadoop安装与配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">大数据架构笔记-1-hadoop安装与配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-17T10:27:25+08:00">
+                2020-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/06/17/大数据架构笔记-1-hadoop安装与配置/" class="leancloud_visitors" data-flag-title="大数据架构笔记-1-hadoop安装与配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文以3.2.1版本为主</p>
+<h1 id="hadoop搭建"><a href="#hadoop搭建" class="headerlink" title="hadoop搭建"></a>hadoop搭建</h1><ol>
+<li>参考官方文档<a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Prepare_to_Start_the_Hadoop_Cluster" target="_blank" rel="noopener">开始集群</a></li>
+<li>官方文档支持5种搭建方式</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。</span><br><span class="line">2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。</span><br><span class="line">3. 全分布式部署。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>参考<a href="https://www.jianshu.com/p/c3a834e45ae3" target="_blank" rel="noopener">hadoop 生态圈介绍</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4. HA Cluster，即高可用集群模式</span><br><span class="line">5. HA + Federation Cluster，即高可用联邦集群模式</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="全分布式集群搭建"><a href="#全分布式集群搭建" class="headerlink" title="全分布式集群搭建"></a>全分布式集群搭建</h2><ol>
+<li>参考<a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html" target="_blank" rel="noopener">官方文档</a>从若干节点到千级节点。</li>
+<li><code>官方文档并不涉及安全和高可用</code>。</li>
+<li>将硬件划分为功能。</li>
+<li>通常，集群中的一台机器被指定为<code>NameNode</code>(hadoop文件系统的管家)，而另一台机器被指定为<code>ResourceManager</code>(yarn的管家，主要管理任务的执行，例如MapReduce任务)。这些是主节点。</li>
+<li>其他服务(如Web App Proxy Server和MapReduce Job History Server)通常在专用硬件或共享基础设施上运行，这取决于负载。</li>
+<li>集群中的其他机器同时充当DataNode和NodeManager。这些是workers(从节点)。</li>
+<li>视业务、资金等情况而定，因为该模式日后也可以安全升级成高可用模式。</li>
+</ol>
+<h3 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装<code>java</code></h3><p><a href="https://www.jianshu.com/p/9b987388a518" target="_blank" rel="noopener">Linux安装JDK完整步骤</a></p>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><ol>
+<li>JAVA_HOME</li>
+<li>CLASSPATH</li>
+<li>PATH</li>
+</ol>
+<h3 id="安装hadoop"><a href="#安装hadoop" class="headerlink" title="安装hadoop"></a>安装<code>hadoop</code></h3><h4 id="下载获取二进制压缩包。"><a href="#下载获取二进制压缩包。" class="headerlink" title="下载获取二进制压缩包。"></a><a href="http://hadoop.apache.org/" target="_blank" rel="noopener">下载</a>获取二进制压缩包。</h4><h4 id="解压到指定目录并新建tmp目录-设置环境变量（PATH）即可。"><a href="#解压到指定目录并新建tmp目录-设置环境变量（PATH）即可。" class="headerlink" title="解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。"></a>解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。</h4><h3 id="hadoop集群配置（非安全）"><a href="#hadoop集群配置（非安全）" class="headerlink" title="hadoop集群配置（非安全）"></a>hadoop集群配置（<code>非安全</code>）</h3><ol>
+<li>Hadoop的Java配置由两种类型的重要配置文件驱动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">只读默认配置 - core-default.xml, hdfs-default.xml, yarn-default.xml and mapred-default.xml.</span><br><span class="line">特定站点的配置 - etc/hadoop/core-site.xml, etc/hadoop/hdfs-site.xml, etc/hadoop/yarn-site.xml and etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
+<ol>
+<li>另外，您可以通过在<code>etc/hadoop/hadoop-env.sh</code>和<code>etc/hadoop/ yarn-env.sh</code>中设置站点特定的值来控制在发行版的bin目录中找到的Hadoop脚本。</li>
+<li>HDFS守护进程是NameNode、SecondaryNameNode（<code>主要做文件的合并工作</code>）和DataNode。YARN守护进程是ResourceManager、NodeManager和WebAppProxy。如果要使用MapReduce，那么MapReduceJobHistoryServer也将运行。对于大型安装，它们通常运行在不同的主机上。</li>
+</ol>
+<h4 id="特定站点的配置"><a href="#特定站点的配置" class="headerlink" title="特定站点的配置"></a>特定站点的配置</h4><h5 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h5><ol>
+<li>使用etc/hadoop/hadoop-env.sh以及可选的etc/hadoop/mapred-env.sh和etc/hadoop/yarn-env.sh脚本对Hadoop守护进程的处理环境进行特定于站点的自定义。</li>
+<li>至少配置一下<code>JAVA_HOME</code>.（<code>还可配一下user</code>）</li>
+<li>可以使用下表中显示的配置选项来配置各个守护程序:</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>守护进程</th>
+<th>环境变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NameNode</td>
+<td>HDFS_NAMENODE_OPTS</td>
+<td>例如<code>export HDFS_NAMENODE_OPTS=&quot;-XX:+UseParallelGC -Xmx4g&quot;</code></td>
+</tr>
+<tr>
+<td>NameNode</td>
+<td>HDFS_NAMENODE_USER</td>
+<td>默认为hdfs，可以设置为root</td>
+</tr>
+<tr>
+<td>DataNode</td>
+<td>HDFS_DATANODE_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>DataNode</td>
+<td>HDFS_DATANODE_USER</td>
+<td>默认为hdfs，可以设置为root</td>
+</tr>
+<tr>
+<td>Secondary NameNode</td>
+<td>HDFS_SECONDARYNAMENODE_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>Secondary NameNode</td>
+<td>HDFS_SECONDARYNAMENODE_USER</td>
+<td>默认为hdfs，可以设置为root</td>
+</tr>
+<tr>
+<td>ResourceManager</td>
+<td>YARN_RESOURCEMANAGER_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>NodeManager</td>
+<td>YARN_NODEMANAGER_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>WebAppProxy</td>
+<td>YARN_PROXYSERVER_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>Map Reduce Job History Server</td>
+<td>MAPRED_HISTORYSERVER_OPTS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>其他有用的参数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HADOOP_PID_DIR - 目录 the daemons’ process id files are stored.</span><br><span class="line">HADOOP_LOG_DIR - 目录 the daemons’ log files are stored. Log files are automatically created if they don’t exist.</span><br><span class="line">HADOOP_HEAPSIZE_MAX - The maximum amount of memory to use for the Java heapsize. Units supported by the JVM are also supported here. If no unit is present, it will be assumed the number is in megabytes. By default, Hadoop will let the JVM determine how much to use. This value can be overriden on a per-daemon basis using the appropriate _OPTS variable listed above. For example, setting HADOOP_HEAPSIZE_MAX=1g and HADOOP_NAMENODE_OPTS=&quot;-Xmx5g&quot; will configure the NameNode with 5GB heap.</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在大多数情况下，您应该指定HADOOP PID DIR和HADOOP LOG DIR目录，以便它们只能由将要运行HADOOP守护进程的用户写入。否则，可能会出现符号链接攻击。</li>
+<li>在/etc/profile.d配置HADOOP_HOME</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HADOOP_HOME=/path/to/hadoop</span><br><span class="line">export HADOOP_HOME</span><br></pre></td></tr></table></figure>
+<h5 id="配置Hadoop守护进程"><a href="#配置Hadoop守护进程" class="headerlink" title="配置Hadoop守护进程"></a>配置Hadoop守护进程</h5><h6 id="etc-hadoop-core-site-xml（）"><a href="#etc-hadoop-core-site-xml（）" class="headerlink" title="etc/hadoop/core-site.xml（）"></a>etc/hadoop/core-site.xml（）</h6><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fs.defaultFS</td>
+<td>NameNode URI</td>
+<td>hdfs://host:port/ 主节点</td>
+</tr>
+<tr>
+<td>io.file.buffer.size</td>
+<td>131072</td>
+<td>Size of read/write buffer used in SequenceFiles.</td>
+</tr>
+<tr>
+<td>hadoop.tmp.dir</td>
+<td></td>
+<td>默认为<code>/tmp/hadoop-${user.name}</code>,最好不要定义在/tmp中，默认namenode和datanode会用到</td>
+</tr>
+<tr>
+<td>hadoop.http.staticuser.user</td>
+<td>dr.who</td>
+<td>The user name to filter as, on static web filters while rendering content. An example use is the HDFS web UI (user to be used for browsing files).</td>
+</tr>
+<tr>
+<td>io.compression.codecs</td>
+<td></td>
+<td>逗号分隔的压缩编解码器类列表，可用于压缩/解压缩</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="etc-hadoop-hdfs-site-xml"><a href="#etc-hadoop-hdfs-site-xml" class="headerlink" title="etc/hadoop/hdfs-site.xml"></a>etc/hadoop/hdfs-site.xml</h6><ol>
+<li>NameNode配置</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dfs.namenode.name.dir</td>
+<td>本地文件系统路径用于存放（元数据信息） namespace and transactions logs persistently.</td>
+<td>如果这是一个以逗号分隔的目录列表，那么为了冗余，名称表将复制到所有目录中。默认为 <code>file://${hadoop.tmp.dir}/dfs/name</code>，一般都改一下</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dfs.hosts / dfs.hosts.exclude    List of permitted/excluded DataNodes.    If necessary, use these files to control the list of allowable datanodes.<br>dfs.blocksize    268435456    HDFS blocksize of 256MB for large file-systems.<br>dfs.namenode.handler.count    100    More NameNode server threads to handle RPCs from large number of DataNodes.<br>dfs.replication | 默认为3| 数据副本数<br>dfs.namenode.secondary.http-address    |默认0.0.0.0:9868 | The secondary namenode http server address and port.</p>
+<ol>
+<li>DataNode配置</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dfs.datanode.data.dir</td>
+<td>Comma separated list of paths on the local filesystem of a DataNode 用于存放数据的blocks.</td>
+<td>如果这是一个以逗号分隔的目录列表，那么为了冗余，数据将复制到所有目录中。默认为 <code>file://${hadoop.tmp.dir}/dfs/data</code>，一般都改一下</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="etc-hadoop-yarn-site-xml"><a href="#etc-hadoop-yarn-site-xml" class="headerlink" title="etc/hadoop/yarn-site.xml"></a>etc/hadoop/yarn-site.xml</h6><ol>
+<li>ResourceManager和NodeManager配置。</li>
+</ol>
+<p>Parameter    Value    Notes<br>yarn.acl.enable    true / false    Enable ACLs? Defaults to false.<br>yarn.admin.acl    Admin ACL    ACL to set admins on the cluster. ACLs are of for comma-separated-usersspacecomma-separated-groups. Defaults to special value of * which means anyone. Special value of just space means no one has access.<br>yarn.log-aggregation-enable    false    Configuration to enable or disable log aggregation</p>
+<ol>
+<li>ResourceManager单独配置</li>
+</ol>
+<p>Parameter    Value    Notes<br>yarn.resourcemanager.address    ResourceManager host:port for clients to submit jobs.    host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.<br>yarn.resourcemanager.scheduler.address    ResourceManager host:port for ApplicationMasters to talk to Scheduler to obtain resources.    host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.<br>yarn.resourcemanager.resource-tracker.address    ResourceManager host:port for NodeManagers.    host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.<br>yarn.resourcemanager.admin.address    ResourceManager host:port for administrative commands.    host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.<br>yarn.resourcemanager.webapp.address    ResourceManager web-ui host:port.    host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.<br>yarn.resourcemanager.hostname    ResourceManager host.    host Single hostname that can be set in place of setting all yarn.resourcemanager*address resources. Results in default ports for ResourceManager components.<br>yarn.resourcemanager.scheduler.class    ResourceManager Scheduler class.    CapacityScheduler (recommended), FairScheduler (also recommended), or FifoScheduler. Use a fully qualified class name, e.g., org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler.<br>yarn.scheduler.minimum-allocation-mb    Minimum limit of memory to allocate to each container request at the Resource Manager.    In MBs<br>yarn.scheduler.maximum-allocation-mb    Maximum limit of memory to allocate to each container request at the Resource Manager.    In MBs<br>yarn.resourcemanager.nodes.include-path / yarn.resourcemanager.nodes.exclude-path    List of permitted/excluded NodeManagers.    If necessary, use these files to control the list of allowable NodeManagers.</p>
+<ol>
+<li>NodeManager单独配置</li>
+</ol>
+<p>Parameter    Value    Notes<br>yarn.nodemanager.resource.memory-mb    Resource i.e. available physical memory, in MB, for given NodeManager    Defines total available resources on the NodeManager to be made available to running containers<br>yarn.nodemanager.vmem-pmem-ratio    Maximum ratio by which virtual memory usage of tasks may exceed physical memory    The virtual memory usage of each task may exceed its physical memory limit by this ratio. The total amount of virtual memory used by tasks on the NodeManager may exceed its physical memory usage by this ratio.<br>yarn.nodemanager.local-dirs    Comma-separated list of paths on the local filesystem where intermediate data is written.    Multiple paths help spread disk i/o.<br>yarn.nodemanager.log-dirs    Comma-separated list of paths on the local filesystem where logs are written.    Multiple paths help spread disk i/o.<br>yarn.nodemanager.log.retain-seconds    10800    Default time (in seconds) to retain log files on the NodeManager Only applicable if log-aggregation is disabled.<br>yarn.nodemanager.remote-app-log-dir    /logs    HDFS directory where the application logs are moved on application completion. Need to set appropriate permissions. Only applicable if log-aggregation is enabled.<br>yarn.nodemanager.remote-app-log-dir-suffix    logs    Suffix appended to the remote log dir. Logs will be aggregated to ${yarn.nodemanager.remote-app-log-dir}/${user}/${thisParam} Only applicable if log-aggregation is enabled.<br>yarn.nodemanager.aux-services    mapreduce_shuffle    Shuffle service that needs to be set for Map Reduce applications.<br>yarn.nodemanager.env-whitelist    Environment properties to be inherited by containers from NodeManagers    For mapreduce application in addition to the default values HADOOP_MAPRED_HOME should to be added. Property value should JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPAT</p>
+<ol>
+<li>Configurations for History Server (Needs to be moved elsewhere)</li>
+</ol>
+<p>Parameter    Value    Notes<br>yarn.log-aggregation.retain-seconds    -1    How long to keep aggregation logs before deleting them. -1 disables. Be careful, set this too small and you will spam the name node.<br>yarn.log-aggregation.retain-check-interval-seconds    -1    Time between checks for aggregated log retention. If set to 0 or a negative value then the value is computed as one-tenth of the aggregated log retention time. Be careful, set this too small and you will spam the name node.</p>
+<h6 id="etc-hadoop-mapred-site-xml"><a href="#etc-hadoop-mapred-site-xml" class="headerlink" title="etc/hadoop/mapred-site.xml"></a>etc/hadoop/mapred-site.xml</h6><ol>
+<li>MapReduce Applications配置</li>
+</ol>
+<p>Parameter    Value    Notes<br>mapreduce.framework.name    yarn    Execution framework set to Hadoop YARN.<br>mapreduce.map.memory.mb    1536    Larger resource limit for maps.<br>mapreduce.map.java.opts    -Xmx1024M    Larger heap-size for child jvms of maps.<br>mapreduce.reduce.memory.mb    3072    Larger resource limit for reduces.<br>mapreduce.reduce.java.opts    -Xmx2560M    Larger heap-size for child jvms of reduces.<br>mapreduce.task.io.sort.mb    512    Higher memory-limit while sorting data for efficiency.<br>mapreduce.task.io.sort.factor    100    More streams merged at once while sorting files.<br>mapreduce.reduce.shuffle.parallelcopies    50    Higher number of parallel copies run by reduces to fetch outputs from very large number of maps.</p>
+<ol>
+<li>MapReduce JobHistory Serve</li>
+</ol>
+<p>Parameter    Value    Notes<br>mapreduce.jobhistory.address    MapReduce JobHistory Server host:port    Default port is 10020.<br>mapreduce.jobhistory.webapp.address    MapReduce JobHistory Server Web UI host:port    Default port is 19888.<br>mapreduce.jobhistory.intermediate-done-dir    /mr-history/tmp    Directory where history files are written by MapReduce jobs.<br>mapreduce.jobhistory.done-dir    /mr-history/done    Directory where history files are managed by the MR JobHistory Server.</p>
+<h6 id="健康检查配置"><a href="#健康检查配置" class="headerlink" title="健康检查配置"></a>健康检查配置</h6><ol>
+<li>Hadoop提供了一种机制，管理员可以通过这种机制配置NodeManager，以便定期运行管理员提供的脚本，以确定节点是否健康。</li>
+</ol>
+<p><code>etc/hadoop/yarn-site.xml</code></p>
+<p>Parameter    Value    Notes<br>yarn.nodemanager.health-checker.script.path    Node health script    Script to check for node’s health status.<br>yarn.nodemanager.health-checker.script.opts    Node health script options    Options for script to check for node’s health status.<br>yarn.nodemanager.health-checker.interval-ms    Node health script interval    Time interval for running health script.<br>yarn.nodemanager.health-checker.script.timeout-ms    Node health script timeout interval    Timeout for health script execution.</p>
+<h6 id="修改etc-hadoop-workers"><a href="#修改etc-hadoop-workers" class="headerlink" title="修改etc/hadoop/workers"></a>修改etc/hadoop/workers</h6><p><code>将从机主机名（IP的映射）写进去</code></p>
+<ol>
+<li>它不用于任何基于java的Hadoop配置。为了使用此功能，必须为用于运行Hadoop的帐户建立ssh信任(通过无密码的ssh或其他方法，如Kerberos)。</li>
+</ol>
+<h6 id="配置机架感知"><a href="#配置机架感知" class="headerlink" title="配置机架感知"></a>配置机架感知</h6><ol>
+<li>强烈建议在启动HDFS之前配置机架感知。</li>
+</ol>
+<h6 id="hadoop日志配置"><a href="#hadoop日志配置" class="headerlink" title="hadoop日志配置"></a>hadoop日志配置</h6><ol>
+<li>Hadoop通过Apache Commons Logging框架使用Apache log4j进行日志记录。 编辑etc / hadoop / log4j.properties文件以自定义Hadoop守护程序的日志配置（日志格式等）。</li>
+</ol>
+<h4 id="配置本地网络-etc-hosts，主机名和IP的映射"><a href="#配置本地网络-etc-hosts，主机名和IP的映射" class="headerlink" title="配置本地网络/etc/hosts，主机名和IP的映射"></a>配置本地网络/etc/hosts，主机名和IP的映射</h4><h4 id="使主机名生效-etc-sysconfig-network中的hostname"><a href="#使主机名生效-etc-sysconfig-network中的hostname" class="headerlink" title="使主机名生效/etc/sysconfig/network中的hostname"></a>使主机名生效<code>/etc/sysconfig/network</code>中的hostname</h4><h4 id="关闭防火墙（iptables）。"><a href="#关闭防火墙（iptables）。" class="headerlink" title="关闭防火墙（iptables）。"></a>关闭防火墙（iptables）。</h4><p><code>/etc/init.d/iptables stop</code></p>
+<h4 id="关闭SELinux。"><a href="#关闭SELinux。" class="headerlink" title="关闭SELinux。"></a>关闭SELinux。</h4><p><code>setenforce 0</code><br><code>getenforce</code></p>
+<h4 id="主从相互之间ssh免密登录"><a href="#主从相互之间ssh免密登录" class="headerlink" title="主从相互之间ssh免密登录"></a>主从相互之间ssh免密登录</h4><p><code>相同的私钥和公钥</code></p>
+<h2 id="HA-Cluster，即高可用集群模式"><a href="#HA-Cluster，即高可用集群模式" class="headerlink" title="HA Cluster，即高可用集群模式"></a>HA Cluster，即高可用集群模式</h2><ol>
+<li>一般来说，分为NN的高可用和RM的高可用。在完全分布式的基础上，增加备用NN和RM节点。</li>
+<li>NN高可用，也就是集群里面会部署两台NN（最多也只能两台），以形成主备NN节点，达到高可用的目的。RM高可用与NN高可用类似，也是在集群里部署备用RM节点。</li>
+<li>主备模式。当Active的NN/RM出现问题无法工作时，Standby的那台则立即无缝切入，继续保障集群正常运转。</li>
+<li>这种模式是很多企业都使用的，但是依然有缺陷。性能瓶颈依然存在——仅有一台NN/RM，由于无法横向扩展，其很可能会超负载运行。</li>
+</ol>
+<h2 id="HA-Federation-Cluster，即高可用联邦集群模式"><a href="#HA-Federation-Cluster，即高可用联邦集群模式" class="headerlink" title="HA + Federation Cluster，即高可用联邦集群模式"></a>HA + Federation Cluster，即高可用联邦集群模式</h2><ol>
+<li>解决了单纯HA模式的性能瓶颈。</li>
+<li>整个HA集群再划分为两个以上的集群，不同的集群之间通过Federation进行连接。</li>
+<li>不同集群间可以共享数据节点，也可以不共享，可以互相访问和操作数据，也可以不。<code>集群之间的数据相互独立，不能不经过NN访问DN的数据</code></li>
+<li>这样便做到了HA集群的横向扩展，从而移除了单纯HA模式同时仅有1台NN/RM工作所带来的性能瓶颈。</li>
+<li>Federation模式，相当于在多个集群之上又构建了一个集群层次。</li>
+<li>从数据访问的角度看，也可以简单的将其理解为一台路由器，而每一个HA集群则是单独的网络，不同网络间通过<code>Federation路由器进行沟通</code>。</li>
+<li>此模式是目前hadoop生态中最高的一种模式，适用于规模较大的企业。</li>
+</ol>
+<p>作者：mtide_net<br>链接：<a href="https://www.jianshu.com/p/c3a834e45ae3" target="_blank" rel="noopener">https://www.jianshu.com/p/c3a834e45ae3</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><ol>
+<li>完成所有必要的配置后，将文件分发到所有机器上的HADOOP CONF DIR目录。这应该是所有机器上的相同目录。</li>
+<li>通常，建议HDFS和YARN作为单独的用户运行。在大多数安装中，HDFS进程作为HDFS执行。YARN通常使用YARN帐户。</li>
+</ol>
+<h3 id="第一次启动"><a href="#第一次启动" class="headerlink" title="第一次启动"></a>第一次启动</h3><ol>
+<li><p>必须格式化namenode。生成集群元数据，生成fsimage(持久化)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$HADOOP_HOME/bin/hdfs namenode -format &lt;cluster_name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动集群。<code>./start-all.sh</code></p>
+</li>
+</ol>
+<h2 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a>查看集群状态</h2><ol>
+<li><code>jps</code>查看进程。</li>
+<li><code>./hadoop fs -ls /</code></li>
+</ol>
+<h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><h2 id="hadoop命令"><a href="#hadoop命令" class="headerlink" title="hadoop命令"></a>hadoop命令</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/10/JAVA-多线程/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/20/运维-linux-命令/" rel="prev" title="运维-linux-命令">
+                运维-linux-命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">169</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop搭建"><span class="nav-number">1.</span> <span class="nav-text">hadoop搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全分布式集群搭建"><span class="nav-number">1.1.</span> <span class="nav-text">全分布式集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装java"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装java</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置环境变量"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hadoop"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载获取二进制压缩包。"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">下载获取二进制压缩包。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压到指定目录并新建tmp目录-设置环境变量（PATH）即可。"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop集群配置（非安全）"><span class="nav-number">1.1.3.</span> <span class="nav-text">hadoop集群配置（非安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特定站点的配置"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">特定站点的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#环境变量"><span class="nav-number">1.1.3.1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置Hadoop守护进程"><span class="nav-number">1.1.3.1.2.</span> <span class="nav-text">配置Hadoop守护进程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-core-site-xml（）"><span class="nav-number">1.1.3.1.2.1.</span> <span class="nav-text">etc/hadoop/core-site.xml（）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-hdfs-site-xml"><span class="nav-number">1.1.3.1.2.2.</span> <span class="nav-text">etc/hadoop/hdfs-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-yarn-site-xml"><span class="nav-number">1.1.3.1.2.3.</span> <span class="nav-text">etc/hadoop/yarn-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-mapred-site-xml"><span class="nav-number">1.1.3.1.2.4.</span> <span class="nav-text">etc/hadoop/mapred-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#健康检查配置"><span class="nav-number">1.1.3.1.2.5.</span> <span class="nav-text">健康检查配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#修改etc-hadoop-workers"><span class="nav-number">1.1.3.1.2.6.</span> <span class="nav-text">修改etc/hadoop/workers</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置机架感知"><span class="nav-number">1.1.3.1.2.7.</span> <span class="nav-text">配置机架感知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#hadoop日志配置"><span class="nav-number">1.1.3.1.2.8.</span> <span class="nav-text">hadoop日志配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置本地网络-etc-hosts，主机名和IP的映射"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">配置本地网络/etc/hosts，主机名和IP的映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使主机名生效-etc-sysconfig-network中的hostname"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">使主机名生效/etc/sysconfig/network中的hostname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭防火墙（iptables）。"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">关闭防火墙（iptables）。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭SELinux。"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">关闭SELinux。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主从相互之间ssh免密登录"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">主从相互之间ssh免密登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-Cluster，即高可用集群模式"><span class="nav-number">1.2.</span> <span class="nav-text">HA Cluster，即高可用集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-Federation-Cluster，即高可用联邦集群模式"><span class="nav-number">1.3.</span> <span class="nav-text">HA + Federation Cluster，即高可用联邦集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">1.4.</span> <span class="nav-text">启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次启动"><span class="nav-number">1.4.1.</span> <span class="nav-text">第一次启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看集群状态"><span class="nav-number">1.5.</span> <span class="nav-text">查看集群状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看端口"><span class="nav-number">1.6.</span> <span class="nav-text">查看端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hadoop命令"><span class="nav-number">1.7.</span> <span class="nav-text">hadoop命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
