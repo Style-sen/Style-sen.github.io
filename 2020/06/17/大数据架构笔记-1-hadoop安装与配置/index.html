@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="本文以3.2.1版本为主 hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式  1231. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。3. 全分布式部署。  参考hadoop 生态圈介绍124. HA Cluster，即高可用集群模式5. HA + Federat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-20T01:57:10.291Z">
+<meta property="og:updated_time" content="2020-06-23T07:27:58.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据架构笔记-1-hadoop安装与配置">
 <meta name="twitter:description" content="本文以3.2.1版本为主 hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式  1231. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。3. 全分布式部署。  参考hadoop 生态圈介绍124. HA Cluster，即高可用集群模式5. HA + Federat">
@@ -658,7 +658,104 @@
 <li><code>jps</code>查看进程。</li>
 <li><code>./hadoop fs -ls /</code></li>
 </ol>
-<h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><h2 id="hadoop命令"><a href="#hadoop命令" class="headerlink" title="hadoop命令"></a>hadoop命令</h2>
+<h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>端口</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>namenode</td>
+<td>9870</td>
+<td></td>
+</tr>
+<tr>
+<td>namenode</td>
+<td>9000</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>9864</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>9866</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>9867</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>40599</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8030</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8031</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8032</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8033</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8088</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>8040</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>8042</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>13562</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>39547</td>
+<td></td>
+</tr>
+<tr>
+<td>historyserver</td>
+<td>8188</td>
+<td></td>
+</tr>
+<tr>
+<td>historyserver</td>
+<td>10200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="hadoop命令"><a href="#hadoop命令" class="headerlink" title="hadoop命令"></a>hadoop命令</h2>
       
     </div>
     
@@ -682,7 +779,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/10/JAVA-多线程/" rel="next" title>
+              <a href="/2020/06/10/JAVA-容器/" rel="next" title>
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -771,7 +868,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">169</span>
+                  <span class="site-state-item-count">173</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
