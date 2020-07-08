@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Ubuntu服务系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-30T05:52:16.214Z">
+<meta property="og:updated_time" content="2020-07-08T07:51:48.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu服务器系统及基础设施">
 <meta name="twitter:description" content="Ubuntu服务系统">
@@ -527,7 +527,7 @@
 <li>server服务器。输入tmux命令时就开启了一个服务器。</li>
 <li>session会话。一个服务器可以包含多个会话</li>
 <li>window窗口。一个会话可以包含多个窗口。</li>
-<li>panel面板。一个窗口可以包含多个面板。<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># panel</span><br><span class="line">Ctrl+b &quot;                     - 水平分割当前panel</span><br><span class="line">Ctrl+b %                     - 竖直分割当前panel</span><br><span class="line">Ctrl+b 方向键                 - 在各窗格间切换</span><br><span class="line">Ctrl+b；Ctrl+方向键           - 调整窗格大小</span><br><span class="line">Ctrl+b q                     - 显示分隔panel的编号</span><br><span class="line">Ctrl+b o                     - 跳到下一个分隔panel </span><br><span class="line">Ctrl+b x                     - 关闭当前panel</span><br><span class="line">Ctrl+b 空格键                 - 采用下一个内置panel布局 </span><br><span class="line"># window</span><br><span class="line">Ctrl+b c                     - (c)reate 生成一个新的窗口</span><br><span class="line">Ctrl+b n                     - (n)ext 移动到下一个窗口</span><br><span class="line">Ctrl+b p                     - (p)revious 移动到前一个窗口.</span><br><span class="line">Ctrl+b &amp; - 确认后退出 tmux</span><br></pre></td></tr></table></figure>
+<li>panel面板。一个窗口可以包含多个面板。<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># server</span><br><span class="line">tmux ls（Ctrl+b s）                      列出所有会话</span><br><span class="line">tmux new -s &lt;session-name&gt;      新增一个会话</span><br><span class="line">tmux rename-session -t 0 &lt;new-name&gt;（Ctrl+b $）     重命名会话</span><br><span class="line">tmux detach  或者使用  exit（Ctrl+b d）    分离会话</span><br><span class="line">tmux attach -t &lt;session-name&gt;  或者使用 tmux at -t &lt;session-name&gt;    重新连接会话</span><br><span class="line">tmux kill-session -t &lt;session-name&gt;    杀死会话</span><br><span class="line">tmux switch -t &lt;session-name&gt;     切换会话</span><br><span class="line"># window</span><br><span class="line">Ctrl+b c                     - (c)reate 生成一个新的窗口</span><br><span class="line">Ctrl+b n                     - (n)ext 移动到下一个窗口</span><br><span class="line">Ctrl+b p                     - (p)revious 移动到前一个窗口.</span><br><span class="line">Ctrl+b &amp; - 确认后退出 tmux </span><br><span class="line"># panel</span><br><span class="line">Ctrl+b &quot;                     - 水平分割当前panel</span><br><span class="line">Ctrl+b %                     - 竖直分割当前panel</span><br><span class="line">Ctrl+b 方向键                 - 在各窗格间切换</span><br><span class="line">Ctrl+b；Ctrl+方向键           - 调整窗格大小</span><br><span class="line">Ctrl+b q                     - 显示分隔panel的编号</span><br><span class="line">Ctrl+b o                     - 跳到下一个分隔panel </span><br><span class="line">Ctrl+b x                     - 关闭当前panel</span><br><span class="line">Ctrl+b 空格键                 - 采用下一个内置panel布局</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="STRACE"><a href="#STRACE" class="headerlink" title="STRACE"></a>STRACE</h3><ol>
@@ -641,8 +641,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/22/python-面向对象-内部方法/" rel="next" title="Python-面向对象">
-                <i class="fa fa-chevron-left"></i> Python-面向对象
+              <a href="/2019/01/23/运维-supervisord/" rel="next" title="supervisord">
+                <i class="fa fa-chevron-left"></i> supervisord
               </a>
             
           </div>
@@ -651,8 +651,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/运维-supervisord/" rel="prev" title="supervisord">
-                supervisord <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/23/运维-服务器硬件/" rel="prev" title="服务器硬件">
+                服务器硬件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -730,7 +730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">173</span>
+                  <span class="site-state-item-count">174</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
