@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Ansible参考Ansible中文权威指南参考拉勾教育  Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。 Ansible 是基于 SSH 远程管理，而 Linux 服务器基本都开启了 SSH 服务，所以 Ansible 不需要为配置工作添加额外的支持。  配置(/etc/ansible)hosts文件 定义主机列表  12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维-自动化运维管理工具">
+<meta property="og:url" content="http://yoursite.com/2020/07/27/运维-自动化运维管理工具/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="Ansible参考Ansible中文权威指南参考拉勾教育  Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。 Ansible 是基于 SSH 远程管理，而 Linux 服务器基本都开启了 SSH 服务，所以 Ansible 不需要为配置工作添加额外的支持。  配置(/etc/ansible)hosts文件 定义主机列表  12">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-28T09:49:45.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运维-自动化运维管理工具">
+<meta name="twitter:description" content="Ansible参考Ansible中文权威指南参考拉勾教育  Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。 Ansible 是基于 SSH 远程管理，而 Linux 服务器基本都开启了 SSH 服务，所以 Ansible 不需要为配置工作添加额外的支持。  配置(/etc/ansible)hosts文件 定义主机列表  12">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/27/运维-自动化运维管理工具/">
+
+
+
+
+
+  <title>运维-自动化运维管理工具 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/27/运维-自动化运维管理工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">运维-自动化运维管理工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-27T17:59:26+08:00">
+                2020-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/07/27/运维-自动化运维管理工具/" class="leancloud_visitors" data-flag-title="运维-自动化运维管理工具">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Ansible"><a href="#Ansible" class="headerlink" title="Ansible"></a>Ansible</h1><p>参考<a href="http://ansible.com.cn/index.html" target="_blank" rel="noopener">Ansible中文权威指南</a><br>参考<a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=144#/detail/pc?id=3078" target="_blank" rel="noopener">拉勾教育</a></p>
+<ol>
+<li>Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。</li>
+<li>Ansible 是基于 SSH 远程管理，而 Linux 服务器基本都开启了 SSH 服务，所以 Ansible 不需要为配置工作添加额外的支持。</li>
+</ol>
+<h2 id="配置-etc-ansible"><a href="#配置-etc-ansible" class="headerlink" title="配置(/etc/ansible)"></a>配置(/etc/ansible)</h2><h3 id="hosts文件"><a href="#hosts文件" class="headerlink" title="hosts文件"></a>hosts文件</h3><ol>
+<li>定义主机列表</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">                // 未分组的机器保留在顶部</span><br><span class="line">[webservers]    // 组名</span><br><span class="line">ixdba1.net      // 可以使用域名、主机名、IP（一般用IP）</span><br><span class="line">ixdba2.net     // 其后还可以用空格跟变量</span><br><span class="line">192.168.1.2 ansible_ssh_user=breeze ansible_ssh_pass=&apos;123456&apos;</span><br><span class="line"></span><br><span class="line">[dbservers]</span><br><span class="line">db.ixdba1.net</span><br><span class="line">db.ixdba2.net</span><br><span class="line">www[01:50].ixdba.net  // 可以使用数字范围</span><br><span class="line">db[a:f].ixdba.ent   // 可以使用字母范围</span><br></pre></td></tr></table></figure>
+<ol>
+<li>变量</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ansible_ssh_host 被管理主机的真实IP</span><br><span class="line">ansible_ssh_port 被管理主机的端口</span><br><span class="line">ansible_ssh_user 被管理主机的用户名</span><br><span class="line">ansible_ssh_pass 被管理主机的密码</span><br><span class="line">ansible_ssh_private_key_file 密钥文件路径</span><br><span class="line"></span><br><span class="line">ansible_sudo_pass    使用sudo连接时的密码</span><br><span class="line">ansible_sudo_exec    指定sudo命令的路径</span><br><span class="line"></span><br><span class="line">ansible_shell_type    shell的类型，默认sh</span><br><span class="line"></span><br><span class="line">ansible_connection    ssh连接的类型</span><br><span class="line"></span><br><span class="line">ansible_[python/perl/ruby]_interpreter    解释器的路径</span><br></pre></td></tr></table></figure>
+<h3 id="ansible-cfg"><a href="#ansible-cfg" class="headerlink" title="ansible.cfg"></a>ansible.cfg</h3><ol>
+<li>默认配置，保持默认即可。</li>
+<li>一般将<code>host_key_checking</code>设置为false，关闭yes/no的确认。</li>
+</ol>
+<h2 id="执行模式"><a href="#执行模式" class="headerlink" title="执行模式"></a>执行模式</h2><ol>
+<li><code>管理机</code>是安装 Ansible 的机器，<code>远程主机</code>是 Ansible 批量操作的对象，可以是一个或一组主机.</li>
+</ol>
+<h3 id="命令行模式（ad-hoc）"><a href="#命令行模式（ad-hoc）" class="headerlink" title="命令行模式（ad-hoc）"></a>命令行模式（ad-hoc）</h3><ol>
+<li>一般用于测试、临时应用等场景。</li>
+<li>常用参数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible 主机或组(在 /etc/ansible/hosts 里进行指定)  -m 模块名(默认是command模块) -a &apos;模块参数（要在远程机器上执行的命令）&apos;  ansible参数</span><br></pre></td></tr></table></figure>
+<h3 id="playbook（多个想要执行的任务-上下关联-放到一个-playbook-中）"><a href="#playbook（多个想要执行的任务-上下关联-放到一个-playbook-中）" class="headerlink" title="playbook（多个想要执行的任务[上下关联]放到一个 playbook 中）"></a>playbook（多个想要执行的任务[上下关联]放到一个 playbook 中）</h3><ol>
+<li>主用用于正式环境，通过编写 playbook 文件，可实现固定的、批量的对系统或服务进行配置以及维护工作。</li>
+</ol>
+<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><ol>
+<li>由 YMAL 语言编写。通过 <code>ansible-playbook</code> 命令进行解析。</li>
+<li>文件的第一行应该以“—-”（三个连字符）开始，表明 YMAL 文件的开始；</li>
+<li>在同一行中，# 之后的内容表示注释，类似于 shell 、Python 和 Ruby；</li>
+<li>YMAL 中的列表元素以“-”开头，然后紧跟着一个空格，后面为元素内容；</li>
+<li>同一个列表中的元素应该保持相同的缩进，否则会被当作错误处理；</li>
+<li>play 中的 hosts、variables、roles、tasks 等对象的表示方法都是键值中间以“:”分隔表示，“:”后面还要增加一个空格。</li>
+</ol>
+<h4 id="文件组成"><a href="#文件组成" class="headerlink" title="文件组成"></a>文件组成</h4><ol>
+<li>playbook 是由一个或多个“play”组成的列表。</li>
+<li>playbooks 主要有以下四部分构成，分别如下：<ul>
+<li>Target 部分，定义将要执行 playbook 的远程主机组；</li>
+<li>Variable 部分，定义 playbook 运行时需要使用的变量；</li>
+<li>Task 部分，定义将要在远程主机上执行的任务列表；</li>
+<li>Handler 部分，定义 task 执行完成以后需要调用的任务。</li>
+</ul>
+</li>
+<li>示例</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">- name: create user    // 功能概述</span><br><span class="line">  hosts: [ip]    // 指定主机</span><br><span class="line">  remote_user: root    // 指定登陆远程主机的用户</span><br><span class="line">  gather_facts: false</span><br><span class="line">  vars:</span><br><span class="line">    user1: testuser    // 定义了一个变量</span><br><span class="line">  tasks:    // 指定了一个任务</span><br><span class="line">   - name: start createuser    // 人物描述</span><br><span class="line">     user: name=&quot;&#123;&#123;user1&#125;&#125;&quot;    // 模块： 模块参数</span><br><span class="line"></span><br><span class="line">- hosts: hadoophosts</span><br><span class="line">  remote_user: root</span><br><span class="line">  tasks:</span><br><span class="line">   - name: create hadoop user</span><br><span class="line">     user: name=hadoop state=present</span><br><span class="line">   - name: create hadoop directory and chmod/chown</span><br><span class="line">     file: path=/opt/hadoop state=directory mode=0755 owner=hadoop group=hadoop</span><br><span class="line">   - name: synchronize hadoop program</span><br><span class="line">     synchronize: src=/data/hadoop/ dest=/opt/hadoop</span><br><span class="line">   - name: Setting environment variables</span><br><span class="line">     shell: echo &quot;export JAVA_HOME=/usr/jdk&quot; &gt;&gt; /etc/profile</span><br><span class="line"></span><br><span class="line">- hosts: 172.16.213.231</span><br><span class="line">  remote_user: root</span><br><span class="line">  tasks:</span><br><span class="line">   - name: modify selinux    // 关闭远程主机的SELINUX</span><br><span class="line">     replace: path=/etc/selinux/config regexp=&quot;enforcing&quot; replace=disabled backup=yes</span><br><span class="line"></span><br><span class="line">- hosts: 172.16.213.231</span><br><span class="line">  remote_user: root</span><br><span class="line">  tasks:</span><br><span class="line">   - lineinfile: dest=/etc/profile insertafter=&apos;ulimit(.*)&apos; line=&quot;ulimit -c unlimited&quot;    // 在 /etc/profile 文件中找到以 ulimit 开头的行，并在后面添加一行内容“ulimit -c unlimited”</span><br><span class="line">   - lineinfile: dest=/etc/profile line=&quot;export JAVA_HOME=/usr/jdk&quot;    在 /etc/profile 文件的最后添加一个 JAVA_HOME 路径；</span><br><span class="line">   - lineinfile: dest=/etc/selinux/config regexp=&apos;SELINUX=(.*)&apos; line=&apos;SELINUX=disabled&apos;    修改 /etc/selinux/config 文件中以“SELINUX=”开头的行，将其替换为“SELINUX=disabled”，其实就是关闭 selinux</span><br><span class="line">   - lineinfile: dest=/etc/resolv.conf regexp=&apos;search(.*)&apos; state=absent    //  /etc/resolv.conf 文件找查找以 search 开头的行，然后将其删除掉。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- hosts: 172.16.213.231</span><br><span class="line">  remote_user: root</span><br><span class="line">  tasks:</span><br><span class="line">   - name: ps command</span><br><span class="line">     shell: hostname</span><br><span class="line">     register: host_result</span><br><span class="line">   - debug: var=host_result</span><br><span class="line">   - debug: var=host_result.stdout</span><br><span class="line">   - debug: &apos;msg=&quot;output: &#123;&#123;host_result.stdout&#125;&#125;&quot;&apos;</span><br><span class="line">   - set_fact: var1=&quot;&#123;&#123;host_result.stdout&#125;&#125;&quot;</span><br><span class="line">   - set_fact: var2=&quot;This is a string&quot;</span><br><span class="line">   - debug: msg=&quot;&#123;&#123;var1&#125;&#125;  &#123;&#123;var2&#125;&#125;&quot;</span><br><span class="line"></span><br><span class="line">- hosts: 172.16.213.231</span><br><span class="line">  remote_user: root</span><br><span class="line">  gather_facts: true</span><br><span class="line">  tasks:</span><br><span class="line">   - name: connection</span><br><span class="line">     shell: echo &quot;connection . &#123;&#123;inventory_hostname&#125;&#125; $(hostname) .&quot; &gt;&gt; /tmp/local.log</span><br><span class="line">     connection: local</span><br><span class="line">   - name: delegate_to</span><br><span class="line">     shell: echo &quot;delegate_to . &#123;&#123;inventory_hostname&#125;&#125; $(hostname) .&quot; &gt;&gt; /tmp/local.log</span><br><span class="line">     delegate_to: localhost</span><br><span class="line">   - name: local_action</span><br><span class="line">     local_action: shell echo &quot;local_action. &#123;&#123;inventory_hostname&#125;&#125; $(hostname)&quot; &gt;&gt; /tmp/local.log</span><br></pre></td></tr></table></figure>
+<h5 id="Target-Hosts-和-Users"><a href="#Target-Hosts-和-Users" class="headerlink" title="Target(Hosts 和 Users)"></a>Target(Hosts 和 Users)</h5><ol>
+<li>hosts：用于指定要执行任务的远程主机.</li>
+<li>remote_user：用于指定在远程主机上执行任务的用户.</li>
+</ol>
+<h5 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h5><ol>
+<li>各任务<code>按次序</code>逐个在 hosts 中指定所有远程主机上的执行，即在所有远程主机上完成第一个任务后再开始第二个。</li>
+<li>在运行自上而下某 playbook 时，如果中途发生错误，则所有已执行任务都将<code>回滚</code>，因此在更正 playbook 后需要重新执行一次。</li>
+</ol>
+<h5 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h5><ol>
+<li>handlers 和“notify”配合使用.</li>
+</ol>
+<h5 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h5><ol>
+<li>Ansible 具有幂等性，因此会自动跳过没有变化的部分；但是当一个 playbook 任务比较多时，一个个的判断每个部分是否发生了变化，也需要很长时间。因此，如果确定某些部分没有发生变化，就可以通过 tags 跳过这些代码片断。</li>
+</ol>
+<h4 id="playbook模块"><a href="#playbook模块" class="headerlink" title="playbook模块"></a>playbook模块</h4><h5 id="unarchive-模块"><a href="#unarchive-模块" class="headerlink" title="unarchive 模块"></a>unarchive 模块</h5><ol>
+<li>实现解压缩，也就是将压缩文件解压分发到远程不同节点上。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src，源文件路径，这个源文件在管理机上；</span><br><span class="line">dest，指定远程主机的文件路径；</span><br><span class="line">mode，设置远程主机上文件权限。</span><br></pre></td></tr></table></figure>
+<h5 id="lineinfile、replace-模块"><a href="#lineinfile、replace-模块" class="headerlink" title="lineinfile、replace 模块"></a>lineinfile、replace 模块</h5><ol>
+<li>替换模块为 replace 和 lineinfile。</li>
+<li>replace 模块可以根据指定的正则表达式替换远程主机下某个文件中的内容</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">path</span><br><span class="line">regexp</span><br><span class="line">replace</span><br><span class="line">backup</span><br></pre></td></tr></table></figure>
+<ol>
+<li>lineinfile，此模块也可以实现 replace 的功能，但 lineinfile 功能更加强大</li>
+</ol>
+<h5 id="register、set-fact、debug-模块"><a href="#register、set-fact、debug-模块" class="headerlink" title="register、set_fact、debug 模块"></a>register、set_fact、debug 模块</h5><ol>
+<li>使用 register 选项，可以将当前 task 的输出结果赋值给一个变量.</li>
+<li>debug 模块，此模块用于在调试中输出信息。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msg 可以输出自定义信息，并且变量需要双大括号包含起来；</span><br><span class="line">var 参数只能输出变量，并且不需要双大括号。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>set_fact 和 register 的功能很类似，它也可以将 task 输出赋值给变量。set_fact 更像 shell 中变量的赋值方式，可以将某个变量的值赋值给另一个变量，也可以将字符串赋值给变量。</li>
+</ol>
+<h5 id="delegate-to、connection-和-local-action-模块-管理机本地执行"><a href="#delegate-to、connection-和-local-action-模块-管理机本地执行" class="headerlink" title="delegate_to、connection 和 local_action 模块(管理机本地执行)"></a>delegate_to、connection 和 local_action 模块(管理机本地执行)</h5><ol>
+<li>在管理机本机上执行一些操作，该如何实现呢？其实现的方法有很多，可以通过 delegate_to（任务委派）来实现，也可通过 connection:local 方法，还可通过 local_action 关键字来实现。</li>
+</ol>
+<h3 id="Ansible模块"><a href="#Ansible模块" class="headerlink" title="Ansible模块"></a>Ansible模块</h3><h4 id="commands"><a href="#commands" class="headerlink" title="commands"></a>commands</h4><p><code>-m command -a &#39;模块参数&#39;</code></p>
+<h5 id="模块参数（常用的shell命令）"><a href="#模块参数（常用的shell命令）" class="headerlink" title="模块参数（常用的shell命令）"></a>模块参数（常用的shell命令）</h5><ol>
+<li>creates，后跟一个文件名，当远程主机上存在这个文件时，该命令不执行，否则执行；</li>
+<li>chdir，在执行指令之前，先切换到该指定的目录；</li>
+<li>removes，后跟一个文件名，当该文件存在时，该选项执行，否则不执行。</li>
+<li>commands 模块不支持这些特殊字符（“&lt;”、“&gt;”、“|”、“&amp;”等）</li>
+</ol>
+<h4 id="shell-模块"><a href="#shell-模块" class="headerlink" title="shell 模块"></a>shell 模块</h4><ol>
+<li>功能和用法与 command 模块一样，不过 shell 模块执行命令的时候使用的是 /bin/sh，该模块可以执行任何命令。</li>
+</ol>
+<h4 id="raw-模块和-script-模块"><a href="#raw-模块和-script-模块" class="headerlink" title="raw 模块和 script 模块"></a>raw 模块和 script 模块</h4><ol>
+<li>raw 模块功能与 command 和 shell 模块类似，shell 能够完成的操作，raw 也都能完成。不同的是，<code>raw 模块不需要远程主机上的 Python 环境</code>。</li>
+<li>可以使用 raw 模块来装 Python、python-simplejson 等,来支持其他模块。</li>
+<li>script 模块是将管理端的 <code>shell 脚本</code>拷贝到被管理的远程主机上执行，其原理是先将 shell 复制到远程主机，再在远程主机上执行。此模块的执行，不需要远程主机上的 Python 环境。</li>
+</ol>
+<h4 id="file-模块、copy-模块与-synchronize-模块"><a href="#file-模块、copy-模块与-synchronize-模块" class="headerlink" title="file 模块、copy 模块与 synchronize 模块"></a>file 模块、copy 模块与 synchronize 模块</h4><ol>
+<li><code>file 模块功能强大，主要用于远程主机上的文件或目录操作</code>.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">force</span><br><span class="line">group</span><br><span class="line">mode</span><br><span class="line">owner</span><br><span class="line">path</span><br><span class="line">recurse</span><br><span class="line">scr</span><br><span class="line">dest</span><br><span class="line">state</span><br></pre></td></tr></table></figure>
+<ol>
+<li>copy 模块，此模块用来复制文件到远程主机。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">owner</span><br><span class="line">group</span><br><span class="line">backup</span><br><span class="line">content</span><br><span class="line">dest</span><br><span class="line">directory_mode</span><br><span class="line">force</span><br><span class="line">src  如果用&quot;/&quot;结尾，只复制目录里边的内容</span><br><span class="line">validate 参数，表示在复制之前验证要拷贝的文件是否正确</span><br></pre></td></tr></table></figure>
+<ol>
+<li>copy 模块<code>拷贝小文件</code>还可以，如果拷贝大文件或者目录的话，速度很慢，不建议使用。</li>
+<li>synchronize 模块，此模块通过调用 rsync 进行文件或目录同步，同步速度很快，还支持增量同步</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">compress</span><br><span class="line">copy_links</span><br><span class="line">delete</span><br><span class="line">src</span><br><span class="line">dest</span><br><span class="line">dest_port</span><br><span class="line">mode  远程主机必须要有rsync命令</span><br></pre></td></tr></table></figure>
+<h4 id="cron-模块、yum-模块与-service-模块"><a href="#cron-模块、yum-模块与-service-模块" class="headerlink" title="cron 模块、yum 模块与 service 模块"></a>cron 模块、yum 模块与 service 模块</h4><ol>
+<li>cron 模块用于管理计划任务</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ansible 172.16.213.233  -m cron -a &apos;name=&quot;job for reboot&quot; special_time=reboot  job=&quot;/data/bootservice.sh&quot; &apos;    此命令执行后，会在 172.16.213.233 的 crontab 中写入“@reboot /data/bootservice.sh”，通过“crontab -l ”可以查看到</span><br><span class="line">ansible 172.16.213.233  -m cron -a &apos;name=&quot;yum autoupdate&quot; weekday=&quot;6&quot; minute=20 hour=1 user=&quot;root&quot; job=&quot;yum -y update&quot;&apos;    每周六的 1:20 分执行&quot;yum -y update&quot;操作</span><br><span class="line">ansible 172.16.213.233  -m cron -a  &apos;backup=&quot;True&quot; name=&quot;autobackup&quot; weekday=&quot;6&quot; minute=30  hour=1 user=&quot;root&quot; job=&quot;/home/ixdba/backup.sh&quot;&apos;    每周六的 1:30 分以 root 用户执行 &quot;/home/ixdba/backup.sh&quot; 脚本</span><br><span class="line">ansible 172.16.213.233  -m cron -a  &apos;name=&quot;checkhttp&quot; minute=30 hour=12 user=&quot;root&quot; job=&quot;/home/ixdba/check_http.sh&quot; cron_file=&quot;check_http_for_ansible&quot; &apos;    会在 /etc/cron.d 创建一个 check_http_for_ansible 文件，表示每天的 12：30 分通过 root 用户执行 /home/ixdba/check_http.sh 脚本</span><br><span class="line">ansible 172.16.213.233  -m cron  -a  &apos;name=&quot;yum  update&quot; state=absent&apos;    删除一个计划任务</span><br></pre></td></tr></table></figure>
+<ol>
+<li>yum 模块的使用，此模块用来通过 <code>yum 包管理器</code>来管理软件包.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">config_file    yum的配置文件</span><br><span class="line">disable_gpg_check    关闭gpg_check</span><br><span class="line">disablerepo    不启用某个源</span><br><span class="line">enablerepo    启用某个源</span><br><span class="line">name    软件包的名字2url3本地的rpm包的路径</span><br><span class="line">state    present\installed\latest\absent\removed</span><br></pre></td></tr></table></figure>
+<ol>
+<li>service 模块，此模块用于管理远程主机上的服务，</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enabled</span><br><span class="line">name</span><br><span class="line">sleep</span><br><span class="line">state    started\stopped\restarted\reloaded</span><br></pre></td></tr></table></figure>
+<h4 id="setup-模块获取-Ansible-facts-信息"><a href="#setup-模块获取-Ansible-facts-信息" class="headerlink" title="setup 模块获取 Ansible facts 信息"></a>setup 模块获取 Ansible facts 信息</h4><ol>
+<li>setup 模块来收集远程主机的系统信息，这些 facts 信息可以直接以变量的形式使用。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ansible 172.16.213.77 -m setup -a &apos;filter=ansible_*_mb&apos;    查看主机内存信息</span><br><span class="line">ansible 172.16.213.77 -m setup -a &apos;filter=ansible_em[1-2]&apos;    查看接口为 eth0-2 的网卡信息</span><br></pre></td></tr></table></figure>
+<ol>
+<li>playbooks 脚本中，经常会用到一个参数 gather_facts，其与该模块相关。gather_facts 默认值为 yes，也就是说，在使用 Ansible 对远程主机执行任何一个 playbook 之前，总会先<code>通过 setup 模块获取 facts，并将信息暂存在内存中</code>，直到该 playbook 执行结束为止。</li>
+</ol>
+<h4 id="user-模块与-group-模块"><a href="#user-模块与-group-模块" class="headerlink" title="user 模块与 group 模块"></a>user 模块与 group 模块</h4><ol>
+<li>user 模块请求的是 useradd、userdel、usermod 三个指令；group 模块请求的是 groupadd、groupdel、groupmod 三个指令。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ansible 172.16.213.77 -m user -a &quot;name=usertest1&quot;    创建一个用户 usertest1</span><br><span class="line">ansible 172.16.213.77 -m user -a &quot;name=usertest2 groups=admins,developers&quot;    创建用户 usertest2，并设置附加组。</span><br><span class="line">ansible 172.16.213.77 -m user -a &quot;name=usertest1 state=absent remove=yes&quot;    删除用户 usertest1 的同时，删除用户根目录</span><br><span class="line">ansible 172.16.213.77 -m user -a &apos;name=usertest2 password=&quot;$1$yjJ74Wid$x0QUaaHzA8EwWU2kG6SRB1&quot; &apos; 批量修改用户密码</span><br></pre></td></tr></table></figure>
+<h2 id="大数据运维实战"><a href="#大数据运维实战" class="headerlink" title="大数据运维实战"></a>大数据运维实战</h2><h3 id="hosts"><a href="#hosts" class="headerlink" title="hosts"></a>hosts</h3><h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><h3 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h3><h1 id="Puppet"><a href="#Puppet" class="headerlink" title="Puppet"></a>Puppet</h1><h1 id="Saltstack"><a href="#Saltstack" class="headerlink" title="Saltstack"></a>Saltstack</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/20/大数据架构笔记-6-推荐系统/" rel="next" title="大数据架构笔记-6-推荐系统">
+                <i class="fa fa-chevron-left"></i> 大数据架构笔记-6-推荐系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">183</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ansible"><span class="nav-number">1.</span> <span class="nav-text">Ansible</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-etc-ansible"><span class="nav-number">1.1.</span> <span class="nav-text">配置(/etc/ansible)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hosts文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ansible-cfg"><span class="nav-number">1.1.2.</span> <span class="nav-text">ansible.cfg</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行模式"><span class="nav-number">1.2.</span> <span class="nav-text">执行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行模式（ad-hoc）"><span class="nav-number">1.2.1.</span> <span class="nav-text">命令行模式（ad-hoc）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#playbook（多个想要执行的任务-上下关联-放到一个-playbook-中）"><span class="nav-number">1.2.2.</span> <span class="nav-text">playbook（多个想要执行的任务[上下关联]放到一个 playbook 中）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件格式"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">文件格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件组成"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">文件组成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Target-Hosts-和-Users"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">Target(Hosts 和 Users)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Task"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Handler"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">Handler</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tags"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">tags</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#playbook模块"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">playbook模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#unarchive-模块"><span class="nav-number">1.2.2.3.1.</span> <span class="nav-text">unarchive 模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lineinfile、replace-模块"><span class="nav-number">1.2.2.3.2.</span> <span class="nav-text">lineinfile、replace 模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#register、set-fact、debug-模块"><span class="nav-number">1.2.2.3.3.</span> <span class="nav-text">register、set_fact、debug 模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#delegate-to、connection-和-local-action-模块-管理机本地执行"><span class="nav-number">1.2.2.3.4.</span> <span class="nav-text">delegate_to、connection 和 local_action 模块(管理机本地执行)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ansible模块"><span class="nav-number">1.2.3.</span> <span class="nav-text">Ansible模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#commands"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">commands</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模块参数（常用的shell命令）"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">模块参数（常用的shell命令）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shell-模块"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">shell 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#raw-模块和-script-模块"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">raw 模块和 script 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#file-模块、copy-模块与-synchronize-模块"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">file 模块、copy 模块与 synchronize 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cron-模块、yum-模块与-service-模块"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">cron 模块、yum 模块与 service 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setup-模块获取-Ansible-facts-信息"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">setup 模块获取 Ansible facts 信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-模块与-group-模块"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">user 模块与 group 模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据运维实战"><span class="nav-number">1.3.</span> <span class="nav-text">大数据运维实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hosts"><span class="nav-number">1.3.1.</span> <span class="nav-text">hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh"><span class="nav-number">1.3.2.</span> <span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jdk"><span class="nav-number">1.3.3.</span> <span class="nav-text">jdk</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Puppet"><span class="nav-number">2.</span> <span class="nav-text">Puppet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Saltstack"><span class="nav-number">3.</span> <span class="nav-text">Saltstack</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

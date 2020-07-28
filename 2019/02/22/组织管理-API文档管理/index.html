@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 API概述重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前端开发人员就可以基于API文档产生模拟数据（mock），然后使用mock的数据完成页面样式和页面交互；有了API文档，后端开发人员就可以基于API文档完成请求的处理以及返回响应数据。  API文档服务器（通常为WEB服务器）是一个可以动态生成最新版本API文档">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-28T06:55:25.978Z">
+<meta property="og:updated_time" content="2020-07-23T03:11:41.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记(4)API文档服务器">
 <meta name="twitter:description" content="参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 API概述重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前端开发人员就可以基于API文档产生模拟数据（mock），然后使用mock的数据完成页面样式和页面交互；有了API文档，后端开发人员就可以基于API文档完成请求的处理以及返回响应数据。  API文档服务器（通常为WEB服务器）是一个可以动态生成最新版本API文档">
@@ -408,7 +408,11 @@
 <p>wagger的这些缺点其实综合来讲，其主要的问题就在于它让API编写/修改太过容易，让软件开发过程和管理过程太容易出错。如果你们团队建立了严格的管理机制，那还是可以将swagger用的很和谐的，但这不是笔者，作为一个架构师，可以撇开责任的理由。</p>
 <p>如何让开发人员更不容易写出错误的代码是评价一个架构师能力的重要标准。</p>
 <p><code>笔者在写代码或做架构的时候有一个思维习惯，就是不管某个问题多么复杂具体解决方案是什么，我会先去想想这个问题的最佳的处理方式应该是什么样子，然后再去想这些最佳的处理方式哪些可以实现，哪些实现不了而只能用次一点的方案，然后次一点的方案是否可以接受。</code></p>
-<h2 id="API工具"><a href="#API工具" class="headerlink" title="API工具"></a>API工具</h2><h3 id="POSTMAN工具"><a href="#POSTMAN工具" class="headerlink" title="POSTMAN工具"></a>POSTMAN工具</h3><div class="table-container">
+<h2 id="API工具"><a href="#API工具" class="headerlink" title="API工具"></a>API工具</h2><h3 id="Apifox"><a href="#Apifox" class="headerlink" title="Apifox**"></a><a href="https://www.apifox.cn/" target="_blank" rel="noopener">Apifox</a><strong>**</strong></h3><ol>
+<li>Apifox = Postman + Swagger + Mock</li>
+<li>接口文档、调试、Mock、自动化测试，提升 10 倍效率！</li>
+</ol>
+<h3 id="POSTMAN工具"><a href="#POSTMAN工具" class="headerlink" title="POSTMAN工具"></a>POSTMAN工具</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -624,7 +628,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">174</span>
+                  <span class="site-state-item-count">183</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -679,7 +683,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#API概述"><span class="nav-number">1.</span> <span class="nav-text">API概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要性"><span class="nav-number">2.</span> <span class="nav-text">重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API工具"><span class="nav-number">3.</span> <span class="nav-text">API工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POSTMAN工具"><span class="nav-number">3.1.</span> <span class="nav-text">POSTMAN工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rap2"><span class="nav-number">3.2.</span> <span class="nav-text">rap2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Showdoc"><span class="nav-number">3.3.</span> <span class="nav-text">Showdoc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Crapapi"><span class="nav-number">3.4.</span> <span class="nav-text">Crapapi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apiDoc"><span class="nav-number">3.5.</span> <span class="nav-text">apiDoc</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#API概述"><span class="nav-number">1.</span> <span class="nav-text">API概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要性"><span class="nav-number">2.</span> <span class="nav-text">重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API工具"><span class="nav-number">3.</span> <span class="nav-text">API工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apifox"><span class="nav-number">3.1.</span> <span class="nav-text">Apifox**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POSTMAN工具"><span class="nav-number">3.2.</span> <span class="nav-text">POSTMAN工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rap2"><span class="nav-number">3.3.</span> <span class="nav-text">rap2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Showdoc"><span class="nav-number">3.4.</span> <span class="nav-text">Showdoc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Crapapi"><span class="nav-number">3.5.</span> <span class="nav-text">Crapapi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apiDoc"><span class="nav-number">3.6.</span> <span class="nav-text">apiDoc</span></a></li></ol></li></ol></div>
             
 
           </div>
