@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="摘自《极客时间x王争|设计模式之美》 解决的问题提高代码质量 解决命名不规范、类设计不合理、分层不清晰、没有模块化概念、代码结构混乱、高度耦合等等问题。  提高复杂代码的设计和开发能力 如何分层、分模块？应该怎么划分类？每个类应该具有哪些属性、方法？怎么设计类之间的交互？该用继承还是组合？该使用接口还是抽象类？怎样做到解耦、高内聚低耦合？该用单例模式还是静态方法？用工厂模式创建对象还是直接 new">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python-设计模式">
+<meta property="og:url" content="http://yoursite.com/2019/07/15/编程-设计模式/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="摘自《极客时间x王争|设计模式之美》 解决的问题提高代码质量 解决命名不规范、类设计不合理、分层不清晰、没有模块化概念、代码结构混乱、高度耦合等等问题。  提高复杂代码的设计和开发能力 如何分层、分模块？应该怎么划分类？每个类应该具有哪些属性、方法？怎么设计类之间的交互？该用继承还是组合？该使用接口还是抽象类？怎样做到解耦、高内聚低耦合？该用单例模式还是静态方法？用工厂模式创建对象还是直接 new">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-10T09:11:56.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python-设计模式">
+<meta name="twitter:description" content="摘自《极客时间x王争|设计模式之美》 解决的问题提高代码质量 解决命名不规范、类设计不合理、分层不清晰、没有模块化概念、代码结构混乱、高度耦合等等问题。  提高复杂代码的设计和开发能力 如何分层、分模块？应该怎么划分类？每个类应该具有哪些属性、方法？怎么设计类之间的交互？该用继承还是组合？该使用接口还是抽象类？怎样做到解耦、高内聚低耦合？该用单例模式还是静态方法？用工厂模式创建对象还是直接 new">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/15/编程-设计模式/">
+
+
+
+
+
+  <title>python-设计模式 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/编程-设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python-设计模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T14:25:07+08:00">
+                2019-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/15/编程-设计模式/" class="leancloud_visitors" data-flag-title="python-设计模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>摘自《极客时间x王争|设计模式之美》</p>
+<h1 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h1><h2 id="提高代码质量"><a href="#提高代码质量" class="headerlink" title="提高代码质量"></a>提高代码质量</h2><ol>
+<li>解决命名不规范、类设计不合理、分层不清晰、没有模块化概念、代码结构混乱、高度耦合等等问题。</li>
+</ol>
+<h2 id="提高复杂代码的设计和开发能力"><a href="#提高复杂代码的设计和开发能力" class="headerlink" title="提高复杂代码的设计和开发能力"></a>提高复杂代码的设计和开发能力</h2><ol>
+<li>如何分层、分模块？应该怎么划分类？每个类应该具有哪些属性、方法？怎么设计类之间的交互？该用继承还是组合？该使用接口还是抽象类？怎样做到解耦、高内聚低耦合？该用单例模式还是静态方法？用工厂模式创建对象还是直接 new 出来？如何避免引入设计模式提高扩展性的同时带来的降低可读性问题？等等问题。</li>
+</ol>
+<h2 id="提高阅读源码的能力"><a href="#提高阅读源码的能力" class="headerlink" title="提高阅读源码的能力"></a>提高阅读源码的能力</h2><h2 id="提高Leader相关能力"><a href="#提高Leader相关能力" class="headerlink" title="提高Leader相关能力"></a>提高Leader相关能力</h2><h1 id="评价代码质量"><a href="#评价代码质量" class="headerlink" title="评价代码质量"></a>评价代码质量</h1><ol>
+<li>代码质量的评价具有很强的主观性。</li>
+</ol>
+<h2 id="可维护性"><a href="#可维护性" class="headerlink" title="可维护性*"></a>可维护性*</h2><ol>
+<li>对于一个项目来说，维护代码的时间远远大于编写代码的时间。</li>
+<li>在不破坏原有代码设计、不引入新的 bug 的情况下，<code>能够快速地修改或者添加代码</code>(可读性、可扩展性)。</li>
+</ol>
+<h2 id="可读性"><a href="#可读性" class="headerlink" title="可读性*"></a>可读性*</h2><ol>
+<li>Any fool can write code that a computer can understand. Good programmers write code that humans can understand.</li>
+<li><code>编码规范</code>尤其重要。</li>
+<li>代码是否符合编码规范、命名是否达意、注释是否详尽、函数是否长短合适、模块划分是否清晰、是否符合高内聚低耦合等等.</li>
+<li><code>code review</code>是一个很好的测验代码可读性的手段。</li>
+</ol>
+<h2 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性*"></a>可扩展性*</h2><ol>
+<li>在不修改或少量修改原有代码的情况下，通过扩展的方式<code>添加新的功能代码</code>。</li>
+<li>代码预留了一些功能扩展点，你可以把新功能代码，直接插到扩展点上，而不需要因为要添加一个功能而大动干戈，改动大量的原始代码。</li>
+<li>涉及到后边的设计原则<code>对修改关闭，对扩展开放</code>.</li>
+</ol>
+<h2 id="灵活性"><a href="#灵活性" class="headerlink" title="灵活性"></a>灵活性</h2><ol>
+<li><code>易扩展</code>也可以说灵活性好。</li>
+<li>原有代码中，已经抽象出了很多底层可以复用的模块、类等代码，我们可以拿来直接使用。<code>易复用</code>。</li>
+<li>接口易用。</li>
+</ol>
+<h2 id="简洁性（简单、复杂）"><a href="#简洁性（简单、复杂）" class="headerlink" title="简洁性（简单、复杂）"></a>简洁性（简单、复杂）</h2><ol>
+<li><code>思从深而行从简</code>，真正的高手能云淡风轻地用最简单的方法解决最复杂的问题。这也是一个编程老手跟编程新手的本质区别之一。</li>
+<li>KISS.</li>
+</ol>
+<h2 id="可复用性"><a href="#可复用性" class="headerlink" title="可复用性"></a>可复用性</h2><ol>
+<li>当讲到面向对象特性的时候，我们会讲到继承、多态存在的目的之一，就是为了提高代码的可复用性；</li>
+<li>当讲到设计原则的时候，我们会讲到单一职责原则也跟代码的可复用性相关；</li>
+<li>当讲到重构技巧的时候，我们会讲到解耦、高内聚、模块化等都能提高代码的可复用性。</li>
+<li>DRY</li>
+</ol>
+<h2 id="可测试性"><a href="#可测试性" class="headerlink" title="可测试性"></a>可测试性</h2><ol>
+<li>代码的可测试性差，比较难写单元测试，那基本上就能说明代码设计得有问题。</li>
+</ol>
+<h1 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h1><h2 id="面向对象（思想）"><a href="#面向对象（思想）" class="headerlink" title="面向对象（思想）"></a>面向对象（思想）</h2><ol>
+<li>面向对象编程因为其具有丰富的特性（封装、抽象、继承、多态），可以实现很多复杂的设计思路，是很多设计原则、设计模式编码实现的基础。</li>
+<li>面向对象编程是一种编程范式或编程风格。它<code>以类或对象作为组织代码的基本单元</code>，并将封装、抽象、继承、多态四个特性，作为代码设计和实现的基石 。</li>
+<li>面向对象编程语言是支持类或对象的语法机制，并有现成的语法机制，能方便地实现面向对象编程四大特性（封装、抽象、继承、多态）的编程语言。</li>
+</ol>
+<h3 id="面向对象的四大特性：封装、抽象、继承、多态"><a href="#面向对象的四大特性：封装、抽象、继承、多态" class="headerlink" title="面向对象的四大特性：封装、抽象、继承、多态"></a>面向对象的四大特性：封装、抽象、继承、多态</h3><h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><ol>
+<li>封装也叫作信息隐藏或者数据访问保护。类通过暴露有限的访问接口，授权外部仅能通过类提供的方式（或者叫函数）来访问内部信息或者数据。</li>
+<li>对于封装这个特性，我们需要<code>编程语言本身提供一定的语法机制来支持</code>。<code>这个语法机制就是访问权限控制</code>。</li>
+<li>【解决问题】提高可读性，防止误操作。</li>
+<li>【解决问题】将属性封装起来，暴露少许的几个必要的方法给调用者使用，调用者就不需要了解太多背后的业务细节，用错的概率就减少很多。</li>
+</ol>
+<h4 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h4><ol>
+<li>如何隐藏方法的具体实现，让调用者<code>只需要关心方法提供了哪些功能</code>，并不需要知道这些功能是如何实现的。</li>
+<li>常借助编程语言提供的接口类（比如 Java 中的 interface 关键字语法）或者抽象类（比如 Java 中的 abstract 关键字语法）这两种语法机制，来实现抽象这一特性。</li>
+<li>类的方法是通过编程语言中的“函数”这一语法机制来实现的。<code>通过函数包裹具体的实现逻辑，这本身就是一种抽象</code>。调用者在使用函数的时候，并不需要去研究函数内部的实现逻辑，只需要通过函数的命名、注释或者文档，了解其提供了什么功能，就可以直接使用了。</li>
+<li>【意义】而抽象作为一种只关注功能点不关注实现的设计思路，正好帮我们的大脑过滤掉许多非必要的信息。</li>
+<li>【解决问题】在定义（或者叫命名）类的方法的时候，也要有抽象思维，<code>不要在方法定义中，暴露太多的实现细节</code>，以保证在某个时间点需要改变方法的实现逻辑的时候，不用去修改其定义。</li>
+</ol>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><ol>
+<li>is-a.</li>
+<li><code>单继承</code>表示一个子类只继承一个父类，<code>多继承</code>表示一个子类可以继承多个父类，</li>
+<li>有些编程语言只支持单继承，不支持多重继承，比如 Java、PHP、C#、Ruby 等，而有些编程语言既支持单重继承，也支持多重继承，比如 C++、Python、Perl 等。</li>
+<li>【意义】代码复用。</li>
+<li>【意义】反应真实世界中的关系，非常符合人类的认知。</li>
+<li>【但是】过度使用继承，继承层次过深过复杂，就会导致代码可读性、可维护性变差。</li>
+</ol>
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><ol>
+<li>多态是指，子类可以替换父类，在实际的代码运行过程中，调用子类的方法实现。</li>
+<li>多态这种特性也需要编程语言提供特殊的语法机制来实现。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一个语法机制是编程语言要支持父类对象可以引用子类对象，也就是可以将 SortedDynamicArray 传递给 DynamicArray。</span><br><span class="line">第二个语法机制是编程语言要支持继承，也就是 SortedDynamicArray 继承了 DynamicArray，才能将 SortedDyamicArray 传递给 DynamicArray。</span><br><span class="line">第三个语法机制是编程语言要支持子类可以重写（override）父类中的方法，也就是 SortedDyamicArray 重写了 DynamicArray 中的 add() 方法。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>除了利用“继承加方法重写”这种实现方式之外，我们还有其他两种比较常见的的实现方式，一个是利用<code>接口类语法</code>，另一个是利用 <code>duck-typing 语法</code>[两个对象有相同的方法]。不过，并不是每种编程语言都支持接口类或者 duck-typing 这两种语法机制，比如 C++ 就不支持接口类语法，而 duck-typing 只有一些动态语言才支持，比如 Python、JavaScript 等。</li>
+<li>【duck-typing】只要两个类具有相同的方法，就可以实现多态，并不要求两个类之间有任何关系，这就是所谓的 duck-typing，是一些动态语言所特有的语法机制。而像 Java 这样的静态语言，通过继承实现多态特性，必须要求两个类之间有继承关系，通过接口实现多态特性，类必须实现对应的接口。</li>
+<li>【意义】多态特性能提高代码的可扩展性和复用性。</li>
+</ol>
+<h3 id="面向对象编程与面向过程编程的区别和联系"><a href="#面向对象编程与面向过程编程的区别和联系" class="headerlink" title="面向对象编程与面向过程编程的区别和联系"></a>面向对象编程与面向过程编程的区别和联系</h3><ol>
+<li>面向过程编程也是一种编程范式或编程风格。它以过程（可以理解为方法、函数、操作）作为组织代码的基本单元，以<code>数据（可以理解为成员变量、属性）与方法相分离</code>为最主要的特点。面向过程风格是一种流程化的编程风格，通过拼接一组顺序执行的方法来操作数据完成一项功能。</li>
+<li>OOP 更加能够应对大规模复杂程序的开发.</li>
+<li>OOP 风格的代码更易复用、易扩展、易维护。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 基于多态这个特性，我们在需要修改一个功能实现的时候，可以通过实现一个新的子类的方式，在子类中重写原来的功能逻辑，用子类替换父类。在实际的代码运行过程中，调用子类新的功能逻辑，而不是在原有代码上做修改。这就遵从了“对修改关闭、对扩展开放”的设计原则，提高代码的扩展性。</span><br><span class="line">2. 除此之外，利用多态特性，不同的类对象可以传递给相同的方法，执行不同的代码逻辑，提高了代码的复用性。</span><br></pre></td></tr></table></figure>
+<h3 id="面向对象分析、面向对象设计、面向对象编程（哪些代码设计看似是面向对象，实际是面向过程的）"><a href="#面向对象分析、面向对象设计、面向对象编程（哪些代码设计看似是面向对象，实际是面向过程的）" class="headerlink" title="面向对象分析、面向对象设计、面向对象编程（哪些代码设计看似是面向对象，实际是面向过程的）"></a>面向对象分析、面向对象设计、面向对象编程（哪些代码设计看似是面向对象，实际是面向过程的）</h3><ol>
+<li>围绕着对象或类来做需求分析和设计.</li>
+<li>分析和设计两个阶段最终的产出是类的设计，包括程序被拆解为哪些类，每个类有哪些属性方法，类与类之间如何交互等等。</li>
+<li>面向对象分析就是要搞清楚做什么，面向对象设计就是要搞清楚怎么做，面向对象编程就是将分析和设计的的结果翻译成代码的过程.</li>
+<li>不管使用面向过程还是面向对象哪种风格来写代码，我们最终的目的还是写出易维护、易读、易复用、易扩展的高质量代码。</li>
+</ol>
+<h4 id="滥用-getter、setter-方法"><a href="#滥用-getter、setter-方法" class="headerlink" title="滥用 getter、setter 方法"></a>滥用 getter、setter 方法</h4><ol>
+<li>提供了 public 的 getter、setter 方法，这就跟将这两个属性定义为 public 公有属性，没有什么两样了。</li>
+<li>违反了面向对象编程的封装特性（通过访问权限控制，隐藏内部数据，外部仅能通过类提供的有限的接口访问、修改内部数据）。</li>
+<li>在设计实现类的时候，除非真的需要，否则，尽量不要给属性定义 setter 方法。</li>
+<li>除此之外，尽管 getter 方法相对 setter 方法要安全些，但是如果返回的是集合容器（比如例子中的 List 容器），也要防范集合内部数据被修改的危险。</li>
+</ol>
+<h4 id="滥用全局变量和全局方法"><a href="#滥用全局变量和全局方法" class="headerlink" title="滥用全局变量和全局方法"></a>滥用全局变量和全局方法</h4><ol>
+<li>在面向对象编程中，常见的全局变量有单例类对象（单例类对象在全局代码中只有一份它相当于一个全局变量）、静态成员变量（被所有的实例化对象所共享）、常量（一些代码中的配置参数，一般都设置为常量，放到一个 <code>Constants</code> 类）等，常见的全局方法有静态方法（一般用来操作静态变量或者外部数据，各种 <code>Utils</code>类，里面的方法一般都会定义成静态方法）。</li>
+<li>定义一个如此大而全的 Constants 类，并不是一种很好的设计思路.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 在开发过程中，可能都要涉及修改这个类,影响代码的可维护性。</span><br><span class="line">2. 增加代码的编译时间(单元测试)。</span><br><span class="line">3. 影响代码的复用性。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>【优化】<code>将 Constants 类拆解为功能更加单一的多个类</code>；并不单独地设计 Constants 常量类，而是哪个类用到了某个常量，我们就把这个常量定义到这个类中。</li>
+<li>只包含静态方法不包含任何属性的 Utils 类，是彻彻底底的面向过程的编程风格。</li>
+<li>【优化】确实有必要去定义这样一个 Utils 类，那就大胆地去定义它；<code>针对不同的功能，设计不同的 Utils 类</code>。</li>
+</ol>
+<h4 id="定义数据和方法分离的类"><a href="#定义数据和方法分离的类" class="headerlink" title="定义数据和方法分离的类"></a>定义数据和方法分离的类</h4><ol>
+<li>传统的 MVC 结构分为 Model 层、Controller 层、View 层这三层。不过，在做前后端分离之后，三层结构在后端开发中，会稍微有些调整，被分为 Controller 层、Service 层、Repository 层。Controller 层负责暴露接口给前端调用，Service 层负责核心业务逻辑，Repository 层负责数据读写。而在每一层中，我们又会定义相应的 VO（View Object）、BO（Business Object）、Entity。一般情况下，VO、BO、Entity 中只会定义数据，不会定义方法，所有操作这些数据的业务逻辑都定义在对应的 Controller 类、Service 类、Repository 类中。这就是典型的面向过程的编程风格。</li>
+<li>这种开发模式叫作<code>基于贫血模型的开发模式</code>，也是我们现在非常常用的一种 Web 项目的开发模式。</li>
+</ol>
+<h3 id="接口和抽象类的区别以及各自的应用场景"><a href="#接口和抽象类的区别以及各自的应用场景" class="headerlink" title="接口和抽象类的区别以及各自的应用场景"></a>接口和抽象类的区别以及各自的应用场景</h3><ol>
+<li>从类的继承层次上来看，抽象类是一种自下而上的设计思路，先有子类的代码重复，然后再抽象成上层的父类（也就是抽象类）。而接口正好相反，它是一种自上而下的设计思路。我们在编程的时候，一般都是先设计接口，再去考虑具体的实现。</li>
+</ol>
+<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><ol>
+<li>抽象类不允许被实例化，只能被继承。</li>
+<li>抽象类可以包含属性和方法。方法既可以包含代码实现，也可以不包含代码实现。不包含代码实现的方法叫作抽象方法。</li>
+<li>子类继承抽象类，必须实现抽象类中的所有抽象方法。</li>
+<li>抽象类实际上就是类，只不过是一种特殊的类，这种类不能被实例化为对象，只能被子类继承。（is-A）</li>
+</ol>
+<h5 id="存在的意义"><a href="#存在的意义" class="headerlink" title="存在的意义"></a>存在的意义</h5><ol>
+<li>代码复用。</li>
+<li>【如果用普通类】达到多态必须要有方法定义，但是方法有子类实现。如果父类定义一个空的方法，影响可读性；其次子类会忘记重写；可以被实例化，会被误用。<code>所以要有抽象类</code>。</li>
+</ol>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><ol>
+<li>接口不能包含属性（也就是成员变量）。</li>
+<li>接口只能声明方法，方法不能包含代码实现。</li>
+<li>类实现接口的时候，必须实现接口中声明的所有方法。</li>
+<li>接口可以表示一种（has-A）功能的关系。（<code>功能协议</code>）</li>
+</ol>
+<h5 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h5><ol>
+<li>更侧重于解耦。对行为的一种抽象，相当于一组<code>协议或者契约</code>。</li>
+<li>调用者只需要关注抽象的接口，不需要了解具体的实现，具体的实现代码对调用者透明。接口实现了约定和实现相分离，可以降低代码间的耦合性，提高代码的可扩展性。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通类模拟接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockInteface</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="title">MockInteface</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">//避免这个类被实例化</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> MethodUnSupportedException();<span class="comment">//强迫子类在继承这个父类的时候，都去主动实现父类的方法，否则就会在运行时抛出异常</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>【其他不支持抽象类和接口的语言（python），可以使用普通类模拟抽象类和接口,或使用duck-typing】。</li>
+</ol>
+<h3 id="【基于接口而非实现编程的设计思想】"><a href="#【基于接口而非实现编程的设计思想】" class="headerlink" title="【基于接口而非实现编程的设计思想】"></a>【基于接口而非实现编程的设计思想】</h3><ol>
+<li>应用这条原则，可以<code>将接口和实现相分离，封装不稳定的实现，暴露稳定的接口</code>。<code>上游系统面向接口而非实现编程</code>，不依赖不稳定的实现细节，这样当实现发生变化的时候，上游系统的代码基本上不需要做改动，以此来降低耦合性，提高扩展性。</li>
+<li>在软件开发中，最大的挑战之一就是需求的不断变化，这也是考验代码设计好坏的一个标准。</li>
+<li>越抽象、越顶层、越脱离具体某一实现的设计，越能提高代码的灵活性，越能应对未来的需求变化。好的代码设计，不仅能应对当下的需求，而且在将来需求发生变化的时候，仍然能够在不破坏原有代码设计的情况下灵活应对。</li>
+<li>“细节是魔鬼”。这句话在软件开发中特别适用。</li>
+<li>“基于接口而非实现编程”这条原则，不仅仅可以指导非常细节的编程开发，还能指导更加上层的架构设计、系统设计等。比如，服务端与客户端之间的“接口”设计、类库的“接口”设计。</li>
+</ol>
+<h4 id="具体的做法"><a href="#具体的做法" class="headerlink" title="具体的做法"></a>具体的做法</h4><ol>
+<li>函数的命名不能暴露任何实现细节。</li>
+<li>封装具体的实现细节。</li>
+<li>为实现类定义抽象的接口。具体的实现类都依赖统一的接口定义，遵从一致的功能协议。使用者依赖接口，而不是具体的实现类来编程。</li>
+<li>【注意】在定义接口的时候，不要暴露任何实现细节。接口的定义只表明做什么，而不是怎么做。要多思考一下，这样的接口设计是否足够通用，是否能够做到在替换具体的接口实现的时候，不需要任何接口定义的改动。</li>
+<li>如果在我们的业务场景中，某个功能只有一种实现方式，未来也不可能被其他实现方式替换，那我们就没有必要为其设计接口，也没有必要基于接口编程，直接使用实现类就可以了。</li>
+</ol>
+<h3 id="【多用组合少用继承的设计思想】"><a href="#【多用组合少用继承的设计思想】" class="headerlink" title="【多用组合少用继承的设计思想】"></a>【多用组合少用继承的设计思想】</h3><h4 id="继承的问题和可替代"><a href="#继承的问题和可替代" class="headerlink" title="继承的问题和可替代"></a>继承的问题和可替代</h4><ol>
+<li>组合优于继承，多用组合少用继承。</li>
+<li>【问题】继承最大的问题就在于：继承层次过深、继承关系过于复杂会影响到代码的可读性和可维护性。（鸟类的例子[会不会飞，会不会下蛋，会不会叫]）</li>
+<li>我们可以利用组合（composition）、接口、委托（delegation）三个技术手段，一块儿来解决刚刚继承存在的问题。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">第一步：使用接口实现方法的声明。【由于接口没有实现，会造成代码重复】</span><br><span class="line">第二步：定义接口对应的类，来实现接口。</span><br><span class="line">第三步：具体的类通过组合和委托技术来消除代码重复。</span><br><span class="line"></span><br><span class="line">public interface Flyable &#123;</span><br><span class="line">  void fly()；</span><br><span class="line">&#125;</span><br><span class="line">public class FlyAbility implements Flyable &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void fly() &#123; //... &#125;</span><br><span class="line">&#125;</span><br><span class="line">//省略Tweetable/TweetAbility/EggLayable/EggLayAbility</span><br><span class="line"></span><br><span class="line">public class Ostrich implements Tweetable, EggLayable &#123;//鸵鸟</span><br><span class="line">  private TweetAbility tweetAbility = new TweetAbility(); //组合</span><br><span class="line">  private EggLayAbility eggLayAbility = new EggLayAbility(); //组合</span><br><span class="line">  //... 省略其他属性和方法...</span><br><span class="line">  @Override</span><br><span class="line">  public void tweet() &#123;</span><br><span class="line">    tweetAbility.tweet(); // 委托</span><br><span class="line">  &#125;</span><br><span class="line">  @Override</span><br><span class="line">  public void layEgg() &#123;</span><br><span class="line">    eggLayAbility.layEgg(); // 委托</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>继承主要有三个作用：表示 is-a 关系，支持多态特性，代码复用。而这三个作用都可以通过其他技术手段来达成。比如 is-a 关系，我们可以通过组合和接口的 has-a 关系来替代；多态特性我们可以利用接口来实现；代码复用我们可以通过组合和委托来实现。所以，从理论上讲，通过组合、接口、委托三个技术手段，我们完全可以替换掉继承，在项目中不用或者少用继承关系，特别是一些复杂的继承关系。</li>
+</ol>
+<h4 id="选择继承还是组合"><a href="#选择继承还是组合" class="headerlink" title="选择继承还是组合"></a>选择继承还是组合</h4><ol>
+<li>【问题】组合的问题：要做更细粒度的类的拆分。这也就意味着，我们要定义更多的类和接口。</li>
+<li>如果类之间的继承<code>结构稳定（不会轻易改变），继承层次比较浅（比如，最多有两层继承关系），继承关系不复杂</code>，我们就可以大胆地使用继承。反之，系统越不稳定，继承层次很深，继承关系复杂，我们就尽量使用组合来替代继承。</li>
+<li>有一些设计模式会固定使用继承或者组合。</li>
+<li>如果你不能改变一个函数的入参类型，而入参又非接口(是类)，为了支持多态，只能采用继承来实现。</li>
+</ol>
+<h3 id="面向过程的贫血模型和面向对象的充血模型"><a href="#面向过程的贫血模型和面向对象的充血模型" class="headerlink" title="面向过程的贫血模型和面向对象的充血模型"></a>面向过程的贫血模型和面向对象的充血模型</h3><h4 id="贫血模式"><a href="#贫血模式" class="headerlink" title="贫血模式"></a>贫血模式</h4><ol>
+<li>MVC三层架构（数据（有一个数据类只有数据）和方法分离）（Repository 层负责数据访问，Service 层负责业务逻辑，Controller 层负责暴露接口）。</li>
+</ol>
+<h4 id="充血模式：领域驱动设计（DDD）"><a href="#充血模式：领域驱动设计（DDD）" class="headerlink" title="充血模式：领域驱动设计（DDD）"></a>充血模式：领域驱动设计（DDD）</h4><ol>
+<li>数据和对应的业务逻辑被封装到同一个类中。</li>
+<li>跟基于贫血模型的传统开发模式的<code>区别主要在 Service 层</code>（Service 层包含 Service 类和 Domain 类两部分）。</li>
+<li>基于贫血模型的传统的开发模式，比较适合业务比较简单的系统开发。相对应的，基于充血模型的 DDD 开发模式，更适合业务复杂的系统开发。比如，包含各种利息计算模型、还款模型等复杂业务的金融系统。</li>
+<li>【两种不同的开发模式会导致不同的开发流程。】SQL 驱动（SQL-Driven）的开发模式；和需要事先理清楚所有的业务，定义领域模型所包含的属性和方法。领域模型相当于可复用的<code>业务中间层</code>。新功能需求的开发，都基于之前定义好的这些领域模型来完成；</li>
+<li>而基于充血模型的 DDD 开发模式，正好需要我们<code>前期做大量的业务调研、领域模型设计</code>，所以它更加适合这种复杂系统的开发。</li>
+</ol>
+<h4 id="实战（虚拟钱包）要点"><a href="#实战（虚拟钱包）要点" class="headerlink" title="实战（虚拟钱包）要点"></a>实战（虚拟钱包）要点</h4><h5 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h5><ol>
+<li>充值：第一个操作是从用户的银行卡账户转账到<code>应用的公共银行卡账户</code>；第二个操作是将用户的充值金额加到虚拟钱包余额上；第三个操作是记录刚刚这笔交易流水。</li>
+<li>支付：从用户的虚拟钱包账户划钱到商家的虚拟钱包账户上。除此之外，我们也需要记录这笔支付的交易流水信息。</li>
+<li>提现：扣减用户虚拟钱包中的余额，并且触发真正的银行转账操作，从应用的公共银行账户转钱到用户的银行账户。同样，我们也需要记录这笔提现的交易流水信息。</li>
+<li>查询余额和交易流水。</li>
+<li>虚拟钱包系统和三方支付系统。</li>
+</ol>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><ol>
+<li>【最终一致性】对于支付这样的类似转账的操作，我们在操作两个钱包账户余额之前，先记录交易流水，并且标记为“待执行”，当两个钱包的加减金额都完成之后，我们再回过头来，将交易流水标记为“成功”。在给两个钱包加减金额的过程中，如果有任意一个操作失败，我们就将交易记录的状态标记为“失败”。我们通过后台补漏 Job，拉取状态为“失败”或者长时间处于“待执行”状态的交易记录，重新执行或者人工介入处理。</li>
+<li>虚拟钱包系统不应该感知具体的业务交易类型。通过记录<code>两条交易流水信息的方式</code>来解决。整个钱包系统分为两个子系统，<code>上层钱包系统的实现，依赖底层虚拟钱包系统和三方支付系统</code>。对于钱包系统来说，它可以感知充值、支付、提现等业务概念，所以，我们在钱包系统这一层额外再记录一条包含交易类型的交易流水信息，而在底层的虚拟钱包系统中记录不包含交易类型的交易流水信息。</li>
+</ol>
+<h5 id="在基于充血模型的-DDD-开发模式中，将业务逻辑移动到-Domain-中，Service-类变得很薄"><a href="#在基于充血模型的-DDD-开发模式中，将业务逻辑移动到-Domain-中，Service-类变得很薄" class="headerlink" title="在基于充血模型的 DDD 开发模式中，将业务逻辑移动到 Domain 中，Service 类变得很薄"></a>在基于充血模型的 DDD 开发模式中，将业务逻辑移动到 Domain 中，Service 类变得很薄</h5><ol>
+<li>Service 类负责与 Repository 交流。保持领域模型的独立性，不与任何其他层的代码（Repository 层的代码）或开发框架（比如 Spring、MyBatis）耦合在一起，将流程性的代码逻辑（比如从 DB 中取数据、映射数据）与领域模型的业务逻辑解耦，让领域模型更加可复用。</li>
+<li>Service 类负责跨领域模型的业务聚合功能。(转账，后期成长为转账领域模型)</li>
+<li>Service 类负责一些非功能性及与三方系统交互的工作。</li>
+</ol>
+<h5 id="在基于充血模型的-DDD-开发模式中，尽管-Service-层被改造成了充血模型，但是-Controller-层和-Repository-层还是贫血模型"><a href="#在基于充血模型的-DDD-开发模式中，尽管-Service-层被改造成了充血模型，但是-Controller-层和-Repository-层还是贫血模型" class="headerlink" title="在基于充血模型的 DDD 开发模式中，尽管 Service 层被改造成了充血模型，但是 Controller 层和 Repository 层还是贫血模型"></a>在基于充血模型的 DDD 开发模式中，尽管 Service 层被改造成了充血模型，但是 Controller 层和 Repository 层还是贫血模型</h5><ol>
+<li>没有必要改造。（业务逻辑简单）</li>
+<li>Repository 的 Entity 来说，即便它被设计成贫血模型，违反面向对象编程的封装特性，有被任意代码修改数据的风险，但 Entity 的生命周期是有限的。一般来讲，我们把它传递到 Service 层之后，就会转化成 BO 或者 Domain 来继续后面的业务逻辑。Entity 的生命周期到此就结束了，所以也并不会被到处任意修改。</li>
+<li>Controller 层的 VO。实际上 VO 是一种 DTO（Data Transfer Object，数据传输对象）。它主要是作为接口的数据传输承载体，将数据发送给其他系统。从功能上来讲，它理应不包含业务逻辑、只包含数据。</li>
+</ol>
+<h3 id="实战-接口鉴权"><a href="#实战-接口鉴权" class="headerlink" title="实战(接口鉴权)"></a>实战(接口鉴权)</h3><ol>
+<li>针对框架、组件、类库等非业务系统的开发，我们一定要有组件化意识、框架意识、抽象意识，开发出来的东西要足够通用，不能局限于单一的某个业务需求。</li>
+</ol>
+<h4 id="面向对象分析"><a href="#面向对象分析" class="headerlink" title="面向对象分析"></a>面向对象分析</h4><ol>
+<li>先从最简单的方案想起，然后再优化（提出问题，解决问题）。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 第一轮：通过用户名加密码来做认证（最简单）。重放攻击（截获用户名和密码）。</span><br><span class="line">2. 第二轮：将请求接口的 URL 跟 AppID、密码拼接在一起，然后进行加密，生成一个 token。将这个 token 及 AppID，随 URL 一块传递给微服务端。仍然存在重放攻击的风险，还是不够安全。</span><br><span class="line">3. 第三轮：优化 token 生成算法，引入一个随机变量，让每次接口请求生成的 token 都不一样。微服务端在收到这些数据之后，会验证当前时间戳跟传递过来的时间戳，是否在一定的时间窗口内（比如一分钟）。如果超过一分钟，则判定 token 过期，拒绝接口请求。如果没有超过一分钟，则说明 token 没有过期，就再通过同样的 token 生成算法，在服务端生成新的 token，与调用方传递过来的 token 比对。还是可以有1分钟重放风险。权衡安全性、开发成本、对系统性能的影响，这个方案算是比较折中、比较合理的了。</span><br><span class="line">4. 第四轮：针对 AppID 和密码的存储，我们最好能灵活地支持各种不同的存储方式，比如 ZooKeeper、本地配置文件、自研配置中心、MySQL、Redis 等。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>需求定义是否清晰、合理，直接影响了后续的设计、编码实现是否顺畅。</li>
+</ol>
+<h4 id="面向对象设计"><a href="#面向对象设计" class="headerlink" title="面向对象设计"></a>面向对象设计</h4><ol>
+<li>面向对象分析的产出是详细的需求描述，那面向对象设计的产出就是<code>类</code>。在面向对象设计环节，我们将需求描述转化为<code>具体的类的设计</code>。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">划分职责进而识别出有哪些类；</span><br><span class="line">定义类及其属性和方法；</span><br><span class="line">定义类与类之间的交互关系；</span><br><span class="line">将类组装起来并提供执行入口。</span><br></pre></td></tr></table></figure>
+<h5 id="划分职责进而识别出有哪些类"><a href="#划分职责进而识别出有哪些类" class="headerlink" title="划分职责进而识别出有哪些类"></a>划分职责进而识别出有哪些类</h5><ol>
+<li>类是现实世界中事物的一个建模。但是，并不是每个需求都能映射到现实世界，也并不是每个类都与现实世界中的事物一一对应。</li>
+<li>【方法】<code>把需求描述中的名词罗列出来，作为可能的候选类，然后再进行筛选</code>。</li>
+<li>【另外一种方法】那就是根据需求描述，把其中涉及的功能点，一个一个罗列出来，然后再去看哪些功能点职责相近，操作同样的属性，可否应该归为同一个类。</li>
+</ol>
+<h4 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h4><h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ol>
+<li>对于每一种设计原则，我们需要掌握它的设计初衷，能<code>解决哪些编程问题</code>，<code>有哪些应用场景</code>。</li>
+<li>是其他的指导原则。</li>
+</ol>
+<h3 id="SOLID-原则-SRP-单一职责原则"><a href="#SOLID-原则-SRP-单一职责原则" class="headerlink" title="SOLID 原则 -SRP 单一职责原则"></a>SOLID 原则 -SRP 单一职责原则</h3><h3 id="SOLID-原则-OCP-开闭原则"><a href="#SOLID-原则-OCP-开闭原则" class="headerlink" title="SOLID 原则 -OCP 开闭原则"></a>SOLID 原则 -OCP 开闭原则</h3><h3 id="SOLID-原则-LSP-里式替换原则"><a href="#SOLID-原则-LSP-里式替换原则" class="headerlink" title="SOLID 原则 -LSP 里式替换原则"></a>SOLID 原则 -LSP 里式替换原则</h3><h3 id="SOLID-原则-ISP-接口隔离原则"><a href="#SOLID-原则-ISP-接口隔离原则" class="headerlink" title="SOLID 原则 -ISP 接口隔离原则"></a>SOLID 原则 -ISP 接口隔离原则</h3><h3 id="SOLID-原则-DIP-依赖倒置原则"><a href="#SOLID-原则-DIP-依赖倒置原则" class="headerlink" title="SOLID 原则 -DIP 依赖倒置原则"></a>SOLID 原则 -DIP 依赖倒置原则</h3><h3 id="DRY-原则、KISS-原则、YAGNI-原则、LOD-法则"><a href="#DRY-原则、KISS-原则、YAGNI-原则、LOD-法则" class="headerlink" title="DRY 原则、KISS 原则、YAGNI 原则、LOD 法则"></a>DRY 原则、KISS 原则、YAGNI 原则、LOD 法则</h3><h2 id="编程规范"><a href="#编程规范" class="headerlink" title="编程规范"></a>编程规范</h2><ol>
+<li>解决可读性的问题。</li>
+<li>比较偏向于记忆，你只要照着来做可以。</li>
+</ol>
+<h2 id="重构技巧"><a href="#重构技巧" class="headerlink" title="重构技巧"></a>重构技巧</h2><ol>
+<li>设计思想、设计原则、设计模式一个最重要的应用场景就是在重构的时候。重构作为保持代码质量不下降的有效手段，利用的就是面向对象、设计原则、设计模式、编码规范这些理论。</li>
+<li>在<code>开发初期，除非特别必须，我们一定不要过度设计，应用复杂的设计模式</code>。而是当代码<code>出现问题的时候，我们再针对问题，应用原则和模式进行重构</code>。这样就能有效避免前期的过度设计。</li>
+</ol>
+<h3 id="重构的目的（why）、对象（what）、时机（when）、方法（how）"><a href="#重构的目的（why）、对象（what）、时机（when）、方法（how）" class="headerlink" title="重构的目的（why）、对象（what）、时机（when）、方法（how）"></a>重构的目的（why）、对象（what）、时机（when）、方法（how）</h3><h3 id="保证重构不出错的技术手段：单元测试和代码的可测试性"><a href="#保证重构不出错的技术手段：单元测试和代码的可测试性" class="headerlink" title="保证重构不出错的技术手段：单元测试和代码的可测试性"></a>保证重构不出错的技术手段：单元测试和代码的可测试性</h3><h3 id="两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）"><a href="#两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）" class="headerlink" title="两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）"></a>两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）</h3><ol>
+<li>持续的小重构依赖的理论基础主要就是编程规范。</li>
+</ol>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ol>
+<li>从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。</li>
+<li>大部分设计模式要解决的都是代码的可扩展性问题。</li>
+<li>了解它们都能<code>解决哪些问题</code>，掌握<code>典型的应用场景</code>，并且懂得<code>不过度应用</code>。</li>
+</ol>
+<h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><p>常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。</p>
+<h3 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h3><p>常用的有：代理模式、桥接模式、装饰者模式、适配器模式。不常用的有：门面模式、组合模式、享元模式。</p>
+<h3 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h3><p>常用的有：观察者模式、模板模式、策略模式、职责链模式、迭代器模式、状态模式。不常用的有：访问者模式、备忘录模式、命令模式、解释器模式、中介模式。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i>设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/12/微服务架构笔记-7-开源框架/" rel="next" title="为服务架构笔记-7-开源框架">
+                <i class="fa fa-chevron-left"></i> 为服务架构笔记-7-开源框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/15/运维-选择公有云产品/" rel="prev" title="运维-选择公有云产品">
+                运维-选择公有云产品 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">183</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解决的问题"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提高代码质量"><span class="nav-number">1.1.</span> <span class="nav-text">提高代码质量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提高复杂代码的设计和开发能力"><span class="nav-number">1.2.</span> <span class="nav-text">提高复杂代码的设计和开发能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提高阅读源码的能力"><span class="nav-number">1.3.</span> <span class="nav-text">提高阅读源码的能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提高Leader相关能力"><span class="nav-number">1.4.</span> <span class="nav-text">提高Leader相关能力</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评价代码质量"><span class="nav-number">2.</span> <span class="nav-text">评价代码质量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可维护性"><span class="nav-number">2.1.</span> <span class="nav-text">可维护性*</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可读性"><span class="nav-number">2.2.</span> <span class="nav-text">可读性*</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可扩展性"><span class="nav-number">2.3.</span> <span class="nav-text">可扩展性*</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灵活性"><span class="nav-number">2.4.</span> <span class="nav-text">灵活性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简洁性（简单、复杂）"><span class="nav-number">2.5.</span> <span class="nav-text">简洁性（简单、复杂）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可复用性"><span class="nav-number">2.6.</span> <span class="nav-text">可复用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性"><span class="nav-number">2.7.</span> <span class="nav-text">可测试性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法论"><span class="nav-number">3.</span> <span class="nav-text">方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象（思想）"><span class="nav-number">3.1.</span> <span class="nav-text">面向对象（思想）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的四大特性：封装、抽象、继承、多态"><span class="nav-number">3.1.1.</span> <span class="nav-text">面向对象的四大特性：封装、抽象、继承、多态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">抽象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象编程与面向过程编程的区别和联系"><span class="nav-number">3.1.2.</span> <span class="nav-text">面向对象编程与面向过程编程的区别和联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象分析、面向对象设计、面向对象编程（哪些代码设计看似是面向对象，实际是面向过程的）"><span class="nav-number">3.1.3.</span> <span class="nav-text">面向对象分析、面向对象设计、面向对象编程（哪些代码设计看似是面向对象，实际是面向过程的）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#滥用-getter、setter-方法"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">滥用 getter、setter 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滥用全局变量和全局方法"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">滥用全局变量和全局方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义数据和方法分离的类"><span class="nav-number">3.1.3.3.</span> <span class="nav-text">定义数据和方法分离的类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口和抽象类的区别以及各自的应用场景"><span class="nav-number">3.1.4.</span> <span class="nav-text">接口和抽象类的区别以及各自的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象类"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#存在的意义"><span class="nav-number">3.1.4.1.1.</span> <span class="nav-text">存在的意义</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#意义"><span class="nav-number">3.1.4.2.1.</span> <span class="nav-text">意义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【基于接口而非实现编程的设计思想】"><span class="nav-number">3.1.5.</span> <span class="nav-text">【基于接口而非实现编程的设计思想】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的做法"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">具体的做法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【多用组合少用继承的设计思想】"><span class="nav-number">3.1.6.</span> <span class="nav-text">【多用组合少用继承的设计思想】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承的问题和可替代"><span class="nav-number">3.1.6.1.</span> <span class="nav-text">继承的问题和可替代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择继承还是组合"><span class="nav-number">3.1.6.2.</span> <span class="nav-text">选择继承还是组合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向过程的贫血模型和面向对象的充血模型"><span class="nav-number">3.1.7.</span> <span class="nav-text">面向过程的贫血模型和面向对象的充血模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#贫血模式"><span class="nav-number">3.1.7.1.</span> <span class="nav-text">贫血模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#充血模式：领域驱动设计（DDD）"><span class="nav-number">3.1.7.2.</span> <span class="nav-text">充血模式：领域驱动设计（DDD）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战（虚拟钱包）要点"><span class="nav-number">3.1.7.3.</span> <span class="nav-text">实战（虚拟钱包）要点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#功能"><span class="nav-number">3.1.7.3.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现"><span class="nav-number">3.1.7.3.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在基于充血模型的-DDD-开发模式中，将业务逻辑移动到-Domain-中，Service-类变得很薄"><span class="nav-number">3.1.7.3.3.</span> <span class="nav-text">在基于充血模型的 DDD 开发模式中，将业务逻辑移动到 Domain 中，Service 类变得很薄</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在基于充血模型的-DDD-开发模式中，尽管-Service-层被改造成了充血模型，但是-Controller-层和-Repository-层还是贫血模型"><span class="nav-number">3.1.7.3.4.</span> <span class="nav-text">在基于充血模型的 DDD 开发模式中，尽管 Service 层被改造成了充血模型，但是 Controller 层和 Repository 层还是贫血模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战-接口鉴权"><span class="nav-number">3.1.8.</span> <span class="nav-text">实战(接口鉴权)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象分析"><span class="nav-number">3.1.8.1.</span> <span class="nav-text">面向对象分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象设计"><span class="nav-number">3.1.8.2.</span> <span class="nav-text">面向对象设计</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#划分职责进而识别出有哪些类"><span class="nav-number">3.1.8.2.1.</span> <span class="nav-text">划分职责进而识别出有哪些类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象编程"><span class="nav-number">3.1.8.3.</span> <span class="nav-text">面向对象编程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则"><span class="nav-number">3.2.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLID-原则-SRP-单一职责原则"><span class="nav-number">3.2.1.</span> <span class="nav-text">SOLID 原则 -SRP 单一职责原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLID-原则-OCP-开闭原则"><span class="nav-number">3.2.2.</span> <span class="nav-text">SOLID 原则 -OCP 开闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLID-原则-LSP-里式替换原则"><span class="nav-number">3.2.3.</span> <span class="nav-text">SOLID 原则 -LSP 里式替换原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLID-原则-ISP-接口隔离原则"><span class="nav-number">3.2.4.</span> <span class="nav-text">SOLID 原则 -ISP 接口隔离原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLID-原则-DIP-依赖倒置原则"><span class="nav-number">3.2.5.</span> <span class="nav-text">SOLID 原则 -DIP 依赖倒置原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DRY-原则、KISS-原则、YAGNI-原则、LOD-法则"><span class="nav-number">3.2.6.</span> <span class="nav-text">DRY 原则、KISS 原则、YAGNI 原则、LOD 法则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编程规范"><span class="nav-number">3.3.</span> <span class="nav-text">编程规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构技巧"><span class="nav-number">3.4.</span> <span class="nav-text">重构技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重构的目的（why）、对象（what）、时机（when）、方法（how）"><span class="nav-number">3.4.1.</span> <span class="nav-text">重构的目的（why）、对象（what）、时机（when）、方法（how）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保证重构不出错的技术手段：单元测试和代码的可测试性"><span class="nav-number">3.4.2.</span> <span class="nav-text">保证重构不出错的技术手段：单元测试和代码的可测试性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）"><span class="nav-number">3.4.3.</span> <span class="nav-text">两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">3.5.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建型"><span class="nav-number">3.5.1.</span> <span class="nav-text">创建型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构型"><span class="nav-number">3.5.2.</span> <span class="nav-text">结构型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行为型"><span class="nav-number">3.5.3.</span> <span class="nav-text">行为型</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
