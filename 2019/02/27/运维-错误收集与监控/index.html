@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="SENTRY使用docker安装 Installation with Docker  ZABBIX一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。 Rollbar实时收集分析Web应用抛出的错误.免费版一个月5000次错误事件。">
+<meta name="description" content="Grafana * Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。  核心特点展示方式：快速灵活的客户端图表，面板插件有许多不同方式的可视化指标和日志，官方库中具有丰富的仪表盘插件，比如热图、折线图、图表等多种展示方式；数据源：Graphite，InfluxDB，OpenTSDB，Prometheus，Elasticsearch，Cl">
 <meta name="keywords" content="运维">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运维-监控">
 <meta property="og:url" content="http://yoursite.com/2019/02/27/运维-错误收集与监控/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="SENTRY使用docker安装 Installation with Docker  ZABBIX一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。 Rollbar实时收集分析Web应用抛出的错误.免费版一个月5000次错误事件。">
+<meta property="og:description" content="Grafana * Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。  核心特点展示方式：快速灵活的客户端图表，面板插件有许多不同方式的可视化指标和日志，官方库中具有丰富的仪表盘插件，比如热图、折线图、图表等多种展示方式；数据源：Graphite，InfluxDB，OpenTSDB，Prometheus，Elasticsearch，Cl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-21T06:06:00.148Z">
+<meta property="og:updated_time" content="2020-08-28T07:56:09.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维-监控">
-<meta name="twitter:description" content="SENTRY使用docker安装 Installation with Docker  ZABBIX一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。 Rollbar实时收集分析Web应用抛出的错误.免费版一个月5000次错误事件。">
+<meta name="twitter:description" content="Grafana * Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。  核心特点展示方式：快速灵活的客户端图表，面板插件有许多不同方式的可视化指标和日志，官方库中具有丰富的仪表盘插件，比如热图、折线图、图表等多种展示方式；数据源：Graphite，InfluxDB，OpenTSDB，Prometheus，Elasticsearch，Cl">
 
 
 
@@ -396,12 +396,110 @@
       
 
       
-        <h2 id="SENTRY"><a href="#SENTRY" class="headerlink" title="SENTRY"></a>SENTRY</h2><h3 id="使用docker安装"><a href="#使用docker安装" class="headerlink" title="使用docker安装"></a>使用docker安装</h3><ol>
+        <h2 id="Grafana"><a href="#Grafana" class="headerlink" title="Grafana *"></a><a href>Grafana</a> <strong>*</strong></h2><ol>
+<li>Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。</li>
+</ol>
+<h3 id="核心特点"><a href="#核心特点" class="headerlink" title="核心特点"></a>核心特点</h3><p>展示方式：快速灵活的客户端图表，面板插件有许多不同方式的可视化指标和日志，官方库中具有丰富的仪表盘插件，比如热图、折线图、图表等多种展示方式；<br>数据源：Graphite，InfluxDB，OpenTSDB，Prometheus，Elasticsearch，CloudWatch和KairosDB等；<br>通知提醒：以可视方式定义最重要指标的警报规则，Grafana将不断计算并发送通知，在数据达到阈值时通过Slack、PagerDuty等获得通知；<br>混合展示：在同一图表中混合使用不同的数据源，可以基于每个查询指定数据源，甚至自定义数据源；<br>注释：使用来自不同数据源的丰富事件注释图表，将鼠标悬停在事件上会显示完整的事件元数据和标记；<br>过滤器：Ad-hoc过滤器允许动态创建新的键/值过滤器，这些过滤器会自动应用于使用该数据源的所有查询。</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ol>
+<li><a href="https://hub.docker.com/r/grafana/grafana" target="_blank" rel="noopener">官方镜像grafana/grafana</a></li>
+<li><p>环境变量</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">GF_INSTALL_PLUGINS</span>  <span class="comment"># 指定插件版本</span></span><br><span class="line"><span class="string">GF_SECURITY_ADMIN_PASSWORD</span> <span class="comment"># admin的密码</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>挂载Volumns</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">$PWD/extra/grafana_db:/var/lib/grafana</span> <span class="string">grafana/grafana</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署完之后，需要登录进去创建<code>数据源</code>和创建<code>DashBoard</code>。</p>
+</li>
+</ol>
+<h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><ol>
+<li>Grafana存储的配置以及图表在自己生成的sqlit数据库中长期存储，并不友好。</li>
+<li>可以使用mysql</li>
+</ol>
+<h2 id="prometheus"><a href="#prometheus" class="headerlink" title="prometheus *"></a><a href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener">prometheus</a> <strong>*</strong></h2><ol>
+<li>2012年，2016年加入CNCF；</li>
+<li>参考<a href="https://legacy.gitbook.com/book/songjiayang/prometheus" target="_blank" rel="noopener">Prometheus实战</a></li>
+</ol>
+<h3 id="核心特点-1"><a href="#核心特点-1" class="headerlink" title="核心特点"></a>核心特点</h3><ol>
+<li>提供包含时间序列的强大的多维数据模型，identified by metric name and key/value pairs，如Counter、Gauge、Histogram、Summary；</li>
+<li><code>PromQL</code>，自研一套<code>高性能的时序数据库</code>，在V3版本可以达到每秒千万级别的数据存储；</li>
+<li>不依赖分布式存储；</li>
+<li>提供pull模式、push gateway方式实现时间序列数据的采集；</li>
+<li>通过服务发现或静态配置发现目标；</li>
+<li>多种图形和仪表板支持模式,还支持导出（Grafana、Web UI、API clients）；</li>
+<li>通过中间网关支持推送时间序列。</li>
+<li>【优点】不仅支持SWAM原生集群；还支持K8S集群的监控；是目前容器监控最好的解决方案。</li>
+<li>【优点】Go凭借简洁的语法和优雅的并发，在Java占据业务开发，C占领底层开发的情况下，准确定位中间件开发需求，在当前开源中间件产品中被广泛应用。</li>
+<li>【优点】Prometheus开始成为主导及容器监控方面的标配，并且在未来可见的时间内被广泛应用。</li>
+</ol>
+<h3 id="组件（可选）"><a href="#组件（可选）" class="headerlink" title="组件（可选）"></a>组件（可选）</h3><ol>
+<li>Main Server，负责<code>抓取pull（周期性）和存储</code>时间序列数据。</li>
+<li>客户端代码库，集成在业务代码中。</li>
+<li>Push gateway;</li>
+<li>special-purpose exporters;</li>
+<li>an alertmanager to handle alerts;</li>
+<li>various support tools.</li>
+</ol>
+<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><h3 id="架构及生态组件"><a href="#架构及生态组件" class="headerlink" title="架构及生态组件"></a>架构及生态组件</h3><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h3 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h3><ol>
+<li><a href="https://hub.docker.com/r/prom/prometheus" target="_blank" rel="noopener">官方镜像prom/prometheus</a></li>
+</ol>
+<h4 id="配置文件-etc-prometheus-prometheus-yml-docker-运行时挂载"><a href="#配置文件-etc-prometheus-prometheus-yml-docker-运行时挂载" class="headerlink" title="配置文件(/etc/prometheus/prometheus.yml)docker 运行时挂载"></a>配置文件(/etc/prometheus/prometheus.yml)docker 运行时挂载</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">global:</span></span><br><span class="line"><span class="attr">    scrape_interval:</span> <span class="number">15</span><span class="string">s</span></span><br><span class="line">    <span class="comment"># evaluation_interval: 15s    # Evaluate rules every 15 seconds. The default is every 1 minute.</span></span><br><span class="line">    <span class="comment"># scrape_timeout is set to the global default (10s).</span></span><br><span class="line"><span class="attr">    external_labels:</span>    <span class="comment"># 与外部通信时的附加标签</span></span><br><span class="line"><span class="attr">      monitor:</span> <span class="string">'raysonxin-monitor'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">scrape_configs:</span>  <span class="comment"># 抓取配置 </span></span><br><span class="line"><span class="attr">  - job_name:</span> <span class="string">'prometheus'</span></span><br><span class="line"><span class="attr">    scrape_interval:</span> <span class="number">5</span><span class="string">s</span></span><br><span class="line"><span class="attr">    static_configs:</span></span><br><span class="line"><span class="attr">      - targets:</span> <span class="string">['localhost:9090']</span>    <span class="comment"># 目标主机(本地server)</span></span><br><span class="line"><span class="attr">        labels:</span></span><br><span class="line"><span class="attr">          group:</span> <span class="string">'local'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  - job_name:</span> <span class="string">'bn'</span></span><br><span class="line"><span class="attr">    scrape_interval:</span> <span class="number">5</span><span class="string">s</span></span><br><span class="line"><span class="attr">    static_configs:</span></span><br><span class="line"><span class="attr">      - targets:</span> <span class="string">['api_host:9000']</span> <span class="comment"># 目标主机（业务主机）</span></span><br><span class="line"><span class="attr">        labels:</span></span><br><span class="line"><span class="attr">          group:</span> <span class="string">'arithmetic'</span></span><br></pre></td></tr></table></figure>
+<h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/prometheus/prometheus/config:/etc/prometheus</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/prometheus/prometheus/data:/prometheus</span></span><br><span class="line"><span class="attr">command:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--config.file=/etc/prometheus/prometheus.yml‘</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--log.level=info‘</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--web.listen-address=0.0.0.0:9090‘</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--storage.tsdb.path=/prometheus‘</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--storage.tsdb.retention=15d‘</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--query.max-concurrency=50‘</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">‘--web.enable-lifecycle‘</span></span><br></pre></td></tr></table></figure>
+<h4 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h4><ol>
+<li>Prometheus的存储数据库默认只保留15天的数据.</li>
+<li>可以使用InfluxDB</li>
+</ol>
+<h2 id="Rollbar"><a href="#Rollbar" class="headerlink" title="Rollbar"></a><a href="https://rollbar.com/" target="_blank" rel="noopener">Rollbar</a></h2><pre><code>实时收集分析Web应用抛出的错误.免费版一个月5000次错误事件。
+</code></pre><h2 id="SENTRY"><a href="#SENTRY" class="headerlink" title="SENTRY"></a>SENTRY</h2><h3 id="使用docker安装"><a href="#使用docker安装" class="headerlink" title="使用docker安装"></a>使用docker安装</h3><ol>
 <li><a href="https://docs.sentry.io/server/installation/docker/" target="_blank" rel="noopener">Installation with Docker</a></li>
 </ol>
-<h2 id="ZABBIX"><a href="#ZABBIX" class="headerlink" title="ZABBIX"></a>ZABBIX</h2><p>一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。</p>
-<h2 id="Rollbar"><a href="#Rollbar" class="headerlink" title="Rollbar"></a><a href="https://rollbar.com/" target="_blank" rel="noopener">Rollbar</a></h2><pre><code>实时收集分析Web应用抛出的错误.免费版一个月5000次错误事件。
-</code></pre>
+<h2 id="ZABBIX"><a href="#ZABBIX" class="headerlink" title="ZABBIX"></a>ZABBIX</h2><ol>
+<li>一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。</li>
+<li>2012年；</li>
+</ol>
+<h3 id="核心特点-2"><a href="#核心特点-2" class="headerlink" title="核心特点"></a>核心特点</h3><ol>
+<li>可以运行在Linux，Solaris，HP-UX，AIX，Free BSD，Open BSD，OS X等平台上；</li>
+<li>【缺点】Zabbix由于使用了关系型数据存储时序数据，所以在监控大规模集群时常常在数据存储方面捉襟见肘。所以从Zabbix 4.2版本后开始支持TimescaleDB时序数据库，不过目前成熟度还不高。</li>
+<li>【缺点】对容器支持不是很好。</li>
+</ol>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><ol>
+<li>zabbix由2部分构成，zabbix server与可选组件zabbix agent。</li>
+<li>zabbix server可以通过SNMP，zabbix agent，ping，端口监视等方法提供对远程服务器/网络状态的监视，数据收集等功能；</li>
+<li>Zabbix Server将收集的监控数据存储到Zabbix Database中。Zabbix Database支持常用的关系型数据库，如果MySQL、PostgreSQL、Oracle等，默认是MySQL，并提供Zabbix Web页面（PHP编写）数据查询。</li>
+<li>Agent主要负责采集数据并通过<code>主动或者被动</code>的方式采集数据发送到Server/Proxy，除此之外，为了扩展监控项，Agent还支持执行自定义脚本。</li>
+</ol>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">作者：徐亮偉</span><br><span class="line">链接：https://www.zhihu.com/question/19973178/answer/154424211</span><br><span class="line">来源：知乎</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<h4 id="硬件监控"><a href="#硬件监控" class="headerlink" title="硬件监控"></a>硬件监控</h4><ol>
+<li>通过SNMP来进行路由器交换机的监控(这些可以跟一些厂商沟通来了解如何做)、服务器的温度以及其他，可以通过IPMI来实现。当然如果没有<code>硬件全都是云，直接跳过这一步骤</code>。</li>
+</ol>
+<h4 id="系统监控。"><a href="#系统监控。" class="headerlink" title="系统监控。"></a>系统监控。</h4><ol>
+<li>如CPU的负载，上下文切换、内存使用率、磁盘读写、磁盘使用率、磁盘inode节点。当然这些都是<code>需要配置触发器</code>，因为默认太低会频繁报警。</li>
+</ol>
+<h4 id="服务监控。"><a href="#服务监控。" class="headerlink" title="服务监控。"></a>服务监控。</h4><ol>
+<li>比如用LNMP nginx自带Status模块、PHP也有相关的Status、MySQL的话可以通过percona来进行监控。Redis这些通过自身的info获信息进行过滤等。方法都类似。要么服务自带。要么通过脚本来实现想监控的内容，以及报警和图形功能。</li>
+</ol>
+<h4 id="网络监控。"><a href="#网络监控。" class="headerlink" title="网络监控。"></a>网络监控。</h4><ol>
+<li>如果<code>是云主机又不是跨机房，那么可以选择不监控网络</code>。当然你说我们是跨机房以及如何如何。推荐使用smokeping来做网络相关的监控。或者直接交给你们的网络工程师来做。因为术业有专攻。</li>
+</ol>
+<h4 id="安全监控。"><a href="#安全监控。" class="headerlink" title="安全监控。"></a>安全监控。</h4><ol>
+<li>如果是<code>云主机可以考虑使用自带的安全防护</code>。当然也可以使用iptables。如果是硬件，那么推荐使用硬件防火墙。使用云可以购买防DDOS，避免出现故障导致down机一天。如果是系统，那么权限、密码、备份、恢复基础的方案要做好。web同时也可以使用nginx+waf来实现一个web层面的防火墙。当然也可以使用集成好的openresty。</li>
+</ol>
+<h4 id="Web监控。"><a href="#Web监控。" class="headerlink" title="Web监控。"></a>Web监控。</h4><ol>
+<li>web监控的话题其实还是很多。比如可以使用自带的web监控来监控<code>页面</code>相关的延迟、js响应时间、下载时间、等等。这里我推荐使用专业的商业软件，听云来做这一块。毕竟人家全国各地都有机房。（如果本身是多机房那就另说了）</li>
+</ol>
+<h4 id="日志监控。"><a href="#日志监控。" class="headerlink" title="日志监控。"></a>日志监控。</h4><ol>
+<li>如果是web的话可以使用监控Nginx的500x日志。PHP的ERROR日志。其实这些需求无非是，收集、存储、查询、展示，我们其实可以使用开源的ELKstack来实现。ogstash（收集）、elasticsearch（存储+搜索）、kibana（展示）</li>
+</ol>
+<h4 id="业务监控-API"><a href="#业务监控-API" class="headerlink" title="业务监控(API) **"></a>业务监控(API) <strong>**</strong></h4><ol>
+<li>所以业务层面这块的监控需要和开发以及总监开会讨论，监控比较重要，如API、等。通过简单的脚本就可以实现，最后设置触发器即可</li>
+</ol>
+<h4 id="流量分析。"><a href="#流量分析。" class="headerlink" title="流量分析。"></a>流量分析。</h4><ol>
+<li>平时我们分析日志都是拿awk sed  xxx一堆工具来实现。这样对我们统计ip、pv、uv不是很方便。那么可以使用百度统计、google统计、商业，让开发嵌入代码即可。当然避免隐私也可以使用piwiki来做相关的流量分析。</li>
+</ol>
+<h4 id="可视化。"><a href="#可视化。" class="headerlink" title="可视化。"></a>可视化。</h4><p>通过screen以及引入一些第三方的库来美化界面，同时我们也需要知道、订单量突然增加、突然减少。或者说突然来了一大波流量，这流量从哪儿来，是不是推广了，还是被攻击了。可以结合监控平来来梳理各个系统之间的业务关系。</p>
+<h4 id="自动化监控。"><a href="#自动化监控。" class="headerlink" title="自动化监控。"></a>自动化监控。</h4><ol>
+<li>可以通过Zabbix的主动模式以及被动模式来实现。当然最好还是通过API来实现。</li>
+</ol>
+
       
     </div>
     
@@ -520,7 +618,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">183</span>
+                  <span class="site-state-item-count">185</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -542,7 +640,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -575,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SENTRY"><span class="nav-number">1.</span> <span class="nav-text">SENTRY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用docker安装"><span class="nav-number">1.1.</span> <span class="nav-text">使用docker安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZABBIX"><span class="nav-number">2.</span> <span class="nav-text">ZABBIX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rollbar"><span class="nav-number">3.</span> <span class="nav-text">Rollbar</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Grafana"><span class="nav-number">1.</span> <span class="nav-text">Grafana *</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心特点"><span class="nav-number">1.1.</span> <span class="nav-text">核心特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#持久化"><span class="nav-number">1.2.1.</span> <span class="nav-text">持久化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prometheus"><span class="nav-number">2.</span> <span class="nav-text">prometheus *</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心特点-1"><span class="nav-number">2.1.</span> <span class="nav-text">核心特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件（可选）"><span class="nav-number">2.2.</span> <span class="nav-text">组件（可选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">2.3.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构及生态组件"><span class="nav-number">2.4.</span> <span class="nav-text">架构及生态组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.5.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署-1"><span class="nav-number">2.6.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件-etc-prometheus-prometheus-yml-docker-运行时挂载"><span class="nav-number">2.6.1.</span> <span class="nav-text">配置文件(/etc/prometheus/prometheus.yml)docker 运行时挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-compose"><span class="nav-number">2.6.2.</span> <span class="nav-text">docker-compose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据持久化"><span class="nav-number">2.6.3.</span> <span class="nav-text">数据持久化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rollbar"><span class="nav-number">3.</span> <span class="nav-text">Rollbar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SENTRY"><span class="nav-number">4.</span> <span class="nav-text">SENTRY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用docker安装"><span class="nav-number">4.1.</span> <span class="nav-text">使用docker安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZABBIX"><span class="nav-number">5.</span> <span class="nav-text">ZABBIX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心特点-2"><span class="nav-number">5.1.</span> <span class="nav-text">核心特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件"><span class="nav-number">5.2.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-1"><span class="nav-number">5.3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件监控"><span class="nav-number">5.3.1.</span> <span class="nav-text">硬件监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统监控。"><span class="nav-number">5.3.2.</span> <span class="nav-text">系统监控。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务监控。"><span class="nav-number">5.3.3.</span> <span class="nav-text">服务监控。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络监控。"><span class="nav-number">5.3.4.</span> <span class="nav-text">网络监控。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全监控。"><span class="nav-number">5.3.5.</span> <span class="nav-text">安全监控。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web监控。"><span class="nav-number">5.3.6.</span> <span class="nav-text">Web监控。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志监控。"><span class="nav-number">5.3.7.</span> <span class="nav-text">日志监控。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务监控-API"><span class="nav-number">5.3.8.</span> <span class="nav-text">业务监控(API) **</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流量分析。"><span class="nav-number">5.3.9.</span> <span class="nav-text">流量分析。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可视化。"><span class="nav-number">5.3.10.</span> <span class="nav-text">可视化。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动化监控。"><span class="nav-number">5.3.11.</span> <span class="nav-text">自动化监控。</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

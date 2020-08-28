@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-10T08:45:56.140Z">
+<meta property="og:updated_time" content="2020-08-24T07:14:51.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA-面向对象">
 <meta name="twitter:description" content="JVM">
@@ -658,7 +658,9 @@
 </code></pre><h4 id="内部类的使用场合："><a href="#内部类的使用场合：" class="headerlink" title="内部类的使用场合："></a>内部类的使用场合：</h4><pre><code>1. 由于内部类提供了更好的封装特性，并且可以很方便的访问外部类的属性。所以，在`只为外部类提供服务的情况下`可以优先考虑使用内部类。
 2. 使用内部类`间接实现多继承`：每个内部类都能独立地继承一个类或者实现某些接口，所以无论外部类是否已经继承了某个类或者实现了某些接口，对于内部类没有任何影响。
 </code></pre><h4 id="内部类的分类"><a href="#内部类的分类" class="headerlink" title="内部类的分类"></a>内部类的分类</h4><h5 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h5><ol>
-<li>可以使用private、default、protected、public任意进行修饰。<h6 id="非静态内部类"><a href="#非静态内部类" class="headerlink" title="非静态内部类"></a>非静态内部类</h6></li>
+<li>可以使用private、default、protected、public任意进行修饰。</li>
+</ol>
+<h6 id="非静态内部类"><a href="#非静态内部类" class="headerlink" title="非静态内部类"></a>非静态内部类</h6><ol>
 <li>外部类里使用非静态内部类和平时使用其他类没什么不同</li>
 <li>非静态内部类对象单独属于外部类的某个对象。</li>
 <li>非静态内部类可以直接访问外部类的成员，但是外部类不能直接访问非静态内部类成员。</li>
@@ -672,11 +674,15 @@
 </li>
 <li>内部类的访问：<ol>
 <li>外部类中定义内部类：<code>new Inner()</code></li>
-<li>外部类以外的地方使用非静态内部类：<code>Outer.Inner  varname = new Outer().new Inner()</code>。<h6 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h6></li>
+<li>外部类以外的地方使用非静态内部类：<code>Outer.Inner  varname = new Outer().new Inner()</code>。</li>
 </ol>
 </li>
+</ol>
+<h6 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h6><ol>
 <li><code>当一个静态内部类对象存在，并不一定存在对应的外部类对象</code>。 因此，静态内部类的实例方法不能直接访问外部类的实例方法。</li>
-<li><code>静态内部类看做外部类的一个静态成员</code>。 因此，外部类的方法中可以通过：“静态内部类.名字”的方式访问静态内部类的静态成员，通过 new 静态内部类()访问静态内部类的实例。<h5 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h5></li>
+<li><code>静态内部类看做外部类的一个静态成员</code>。 因此，外部类的方法中可以通过：“静态内部类.名字”的方式访问静态内部类的静态成员，通过 new 静态内部类()访问静态内部类的实例。</li>
+</ol>
+<h5 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h5><ol>
 <li>适合那种只需要使用一次的类。比如：键盘监听操作等等。·形参·</li>
 <li>匿名内部类没有访问修饰符。</li>
 <li>匿名内部类没有构造方法。因为它连名字都没有那又何来构造方法呢。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new 父类构造器（参数列表）|实现接口（）  </span><br><span class="line">    &#123;  </span><br><span class="line">     //匿名内部类的类体部分  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -695,15 +701,15 @@
 </ol>
 <h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><ol>
 <li>作为和基本数据类型对应的类型存在，方便涉及到对象的操作，如Object[]、集合等的操作。</li>
-<li>包含每种基本数据类型的<code>相关属性</code>如最大值、最小值等，以及<code>相关的操作方法</code>(这些操作方法的作用是在<code>基本数据类型、包装类对象、字符串</code>之间提供相互之间的转化!)。</li>
+<li>包含每种基本数据类型的<code>相关属性</code>如最大值、最小值等，以及<code>相关的操作方法</code>(这些操作方法的作用是在<code>基本数据类型、包装类对象、字符串</code>之间提供相互之间的转化!)。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** 测试Integer的用法，其他包装类与Integer类似 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testInteger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 基本类型转化成Integer对象</span></span><br><span class="line">        Integer int1 = <span class="keyword">new</span> Integer(<span class="number">10</span>);</span><br><span class="line">        Integer int2 = Integer.valueOf(<span class="number">20</span>); <span class="comment">// 官方推荐这种写法</span></span><br><span class="line">        <span class="comment">// Integer对象转化成int</span></span><br><span class="line">        <span class="keyword">int</span> a = int1.intValue();</span><br><span class="line">        <span class="comment">// 字符串转化成Integer对象</span></span><br><span class="line">        Integer int3 = Integer.parseInt(<span class="string">"334"</span>);</span><br><span class="line">        Integer int4 = <span class="keyword">new</span> Integer(<span class="string">"999"</span>);</span><br><span class="line">        <span class="comment">// Integer对象转化成字符串</span></span><br><span class="line">        String str1 = int3.toString();</span><br><span class="line">        <span class="comment">// 一些常见int类型相关的常量</span></span><br><span class="line">        System.out.println(<span class="string">"int能表示的最大整数："</span> + Integer.MAX_VALUE); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test test  = <span class="keyword">new</span> Test();</span><br><span class="line">        test.testInteger();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** 测试Integer的用法，其他包装类与Integer类似 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testInteger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 基本类型转化成Integer对象</span></span><br><span class="line">        Integer int1 = <span class="keyword">new</span> Integer(<span class="number">10</span>);</span><br><span class="line">        Integer int2 = Integer.valueOf(<span class="number">20</span>); <span class="comment">// 官方推荐这种写法</span></span><br><span class="line">        <span class="comment">// Integer对象转化成int</span></span><br><span class="line">        <span class="keyword">int</span> a = int1.intValue();</span><br><span class="line">        <span class="comment">// 字符串转化成Integer对象</span></span><br><span class="line">        Integer int3 = Integer.parseInt(<span class="string">"334"</span>);</span><br><span class="line">        Integer int4 = <span class="keyword">new</span> Integer(<span class="string">"999"</span>);</span><br><span class="line">        <span class="comment">// Integer对象转化成字符串</span></span><br><span class="line">        String str1 = int3.toString();</span><br><span class="line">        <span class="comment">// 一些常见int类型相关的常量</span></span><br><span class="line">        System.out.println(<span class="string">"int能表示的最大整数："</span> + Integer.MAX_VALUE); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test test  = <span class="keyword">new</span> Test();</span><br><span class="line">        test.testInteger();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="自动装箱和拆箱-编译器实现"><a href="#自动装箱和拆箱-编译器实现" class="headerlink" title="自动装箱和拆箱(编译器实现)"></a>自动装箱和拆箱(编译器实现)</h4><ol>
-<li>自动装箱和拆箱就是将<code>基本数据类型和包装类</code>之间进行自动的互相转换。</li>
-</ol>
+<li><p>自动装箱和拆箱就是将<code>基本数据类型和包装类</code>之间进行自动的互相转换。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer i = 5  自动执行了 Integer i = Integer.valueOf(5)</span><br><span class="line">Integer i = 5;int j = i; 这样的过程就是自动拆箱。</span><br></pre></td></tr></table></figure>
-<ol>
-<li>自动装箱过程是通过调用包装类的valueOf()方法实现的，而自动拆箱过程是通过调用包装类的 xxxValue()方法实现的(xxx代表对应的基本数据类型，如intValue()、doubleValue()等)。</li>
+</li>
+<li><p>自动装箱过程是通过调用包装类的valueOf()方法实现的，而自动拆箱过程是通过调用包装类的 xxxValue()方法实现的(xxx代表对应的基本数据类型，如intValue()、doubleValue()等)。</p>
+</li>
 <li>所以自动装箱与拆箱的功能是所谓的“编译器蜜糖(Compiler Sugar)”，虽然使用这个功能很方便，但在程序运行阶段您得了解Java的语义。</li>
 </ol>
 <h4 id="包装类的缓存"><a href="#包装类的缓存" class="headerlink" title="包装类的缓存"></a>包装类的缓存</h4><ol>
@@ -776,11 +782,11 @@
 <li>mkdirs()</li>
 </ol>
 <h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><ol>
-<li>枚举类型的定义包括枚举声明和枚举体。</li>
-</ol>
+<li><p>枚举类型的定义包括枚举声明和枚举体。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum  枚举名 &#123;</span><br><span class="line">      枚举体（常量列表）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>枚举体就是放置一些常量。</li>
+</li>
+<li><p>枚举体就是放置一些常量。</p>
+</li>
 <li><code>所有的枚举类型隐性地继承自 java.lang.Enum</code>。</li>
 <li>枚举实质上还是类!而每个被枚举的成员实质就是一个枚举类型的实例，他们默认都是public static final修饰的。</li>
 <li>可以直接通过枚举类型名使用它们。</li>
@@ -821,8 +827,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/15/JAVA-JUC/" rel="next" title="JAVA-JUC并发">
-                <i class="fa fa-chevron-left"></i> JAVA-JUC并发
+              <a href="/2020/02/15/JAVA-02-基础/" rel="next" title="JAVA-基础">
+                <i class="fa fa-chevron-left"></i> JAVA-基础
               </a>
             
           </div>
@@ -910,7 +916,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">183</span>
+                  <span class="site-state-item-count">185</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -932,7 +938,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

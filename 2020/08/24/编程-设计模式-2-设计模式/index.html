@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程-设计模式-2">
+<meta property="og:url" content="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-26T07:17:08.679Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编程-设计模式-2">
+<meta name="twitter:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式/">
+
+
+
+
+
+  <title>编程-设计模式-2 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编程-设计模式-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-24T15:16:22+08:00">
+                2020-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/08/24/编程-设计模式-2-设计模式/" class="leancloud_visitors" data-flag-title="编程-设计模式-2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ol>
+<li>从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。</li>
+<li>大部分设计模式要解决的都是代码的可扩展性问题。</li>
+<li>了解它们都能<code>解决哪些问题</code>，掌握<code>典型的应用场景</code>，并且懂得<code>不过度应用</code>。</li>
+</ol>
+<h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><ol>
+<li>常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。</li>
+</ol>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><h5 id="为什么使用单例模式"><a href="#为什么使用单例模式" class="headerlink" title="为什么使用单例模式"></a>为什么使用单例模式</h5><h6 id="处理资源冲突（多线程环境下）"><a href="#处理资源冲突（多线程环境下）" class="headerlink" title="处理资源冲突（多线程环境下）"></a>处理资源冲突（多线程环境下）</h6><p>如何解决：</p>
+<pre><code>1. 对象级别的锁(只能解决同一个对象在不同的线程下顺序执行，不同对象之间并不共享同一把锁)
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> FileWriter writer;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Logger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"/Users/wangzheng/log.txt"</span>);</span><br><span class="line">    writer = <span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>); <span class="comment">//true表示追加写入(FileWriter 本身就是线程安全的，它的内部实现中本身就加了对象级别的锁)</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</span><br><span class="line">      writer.write(mesasge);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>2. 把对象级别的锁，换成类级别的锁(可以解决问题)
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> FileWriter writer;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Logger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"/Users/wangzheng/log.txt"</span>);</span><br><span class="line">    writer = <span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>); <span class="comment">//true表示追加写入</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(Logger.class) &#123; <span class="comment">// 类级别的锁</span></span><br><span class="line">      writer.write(mesasge);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>3. 分布式锁（实现一个安全可靠、无 bug、高性能的分布式锁，并不是件容易的事情）
+4. 并发队列（比如 Java 中的 BlockingQueue）：多个线程同时往并发队列里写日志，一个单独的线程负责将并发队列中的数据，写入到日志文件。这种方式实现起来也稍微有点复杂。
+5. 使用单例模式（思路简单一些）：不用创建那么多 Logger 对象，一方面节省内存空间，另一方面节省系统文件句柄（对于操作系统来说，文件句柄也是一种资源，不能随便浪费）。
+</code></pre><h6 id="表示全局唯一类（有些数据在系统中只应保存一份）"><a href="#表示全局唯一类（有些数据在系统中只应保存一份）" class="headerlink" title="表示全局唯一类（有些数据在系统中只应保存一份）"></a>表示全局唯一类（有些数据在系统中只应保存一份）</h6><ol>
+<li>配置信息类。</li>
+<li>唯一递增 ID 号码生成器。</li>
+</ol>
+<h5 id="如何实现一个单例"><a href="#如何实现一个单例" class="headerlink" title="如何实现一个单例"></a>如何实现一个单例</h5><ol>
+<li>构造函数需要是 private 访问权限的，这样才能避免外部通过 new 创建实例；</li>
+<li>考虑对象创建时的线程安全问题；</li>
+<li>考虑是否支持延迟加载；</li>
+<li>考虑 getInstance() 性能是否高（是否加锁）。</li>
+</ol>
+<h6 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IdGenerator instance = <span class="keyword">new</span> IdGenerator();<span class="comment">//在类加载的时候，instance 静态实例就已经创建并初始化好了，所以，instance 实例的创建过程是线程安全的,这样的实现方式不支持延迟加载（在真正用到 IdGenerator 的时候，再创建实例）</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果初始化耗时长，那我们最好不要等到真正要用它的时候，才去执行这个耗时长的初始化过程</span></span><br><span class="line"><span class="comment">// 如果实例占用资源多，按照 fail-fast 的设计原则（有问题及早暴露），那我们也希望在程序启动时就将这个实例初始化好</span></span><br></pre></td></tr></table></figure>
+<h6 id="懒汉式-相对于饿汉式的优势是支持延迟加载-但是不支持高并发"><a href="#懒汉式-相对于饿汉式的优势是支持延迟加载-但是不支持高并发" class="headerlink" title="懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)"></a>懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> IdGenerator instance;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;<span class="comment">//getInstance() 这个方法加了一把大锁（synchronzed），导致这个函数的并发度很低。如果频繁地用到，那频繁加锁、释放锁及并发度低等问题，会导致性能瓶颈，这种实现方式就不可取了.偶尔用到可以接受</span></span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">      instance = <span class="keyword">new</span> IdGenerator();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="双重检测"><a href="#双重检测" class="headerlink" title="双重检测"></a>双重检测</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> IdGenerator instance;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">synchronized</span>(IdGenerator.class) &#123; <span class="comment">// 此处为类级别的锁</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">          instance = <span class="keyword">new</span> IdGenerator();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//解决的方法很简单，只要把对象 new 操作和初始化操作设计为原子操作，就自然能禁止重排序</span></span><br></pre></td></tr></table></figure>
+<h6 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IdGenerator instance = <span class="keyword">new</span> IdGenerator();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> SingletonHolder.instance;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//SingletonHolder 是一个静态内部类，当外部类 IdGenerator 被加载的时候，并不会创建 SingletonHolder 实例对象。只有当调用 getInstance() 方法时，SingletonHolder 才会被加载，这个时候才会创建 instance。instance 的唯一性、创建过程的线程安全性，都由 JVM 来保证。所以，这种实现方法既保证了线程安全，又能做到延迟加载。</span></span><br></pre></td></tr></table></figure>
+<h6 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> IdGenerator &#123;</span><br><span class="line">  INSTANCE;</span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="单例存在哪些问题"><a href="#单例存在哪些问题" class="headerlink" title="单例存在哪些问题"></a>单例存在哪些问题</h5><ol>
+<li>大部分情况下，我们在项目中使用单例，都是用它来表示一些全局唯一类，比如配置信息类、连接池类、ID 生成器类。</li>
+</ol>
+<h6 id="单例对-OOP-特性的支持不友好"><a href="#单例对-OOP-特性的支持不友好" class="headerlink" title="单例对 OOP 特性的支持不友好"></a>单例对 OOP 特性的支持不友好</h6><ol>
+<li>IdGenerator 的使用方式违背了基于接口而非实现的设计原则。</li>
+<li>从理论上来讲，单例类也可以被继承、也可以实现多态，只是实现起来会非常奇怪，会导致代码的可读性变差。</li>
+</ol>
+<h6 id="单例会隐藏类之间的依赖关系"><a href="#单例会隐藏类之间的依赖关系" class="headerlink" title="单例会隐藏类之间的依赖关系"></a>单例会隐藏类之间的依赖关系</h6><ol>
+<li>单例类不需要显示创建、不需要依赖参数传递，在函数中直接调用就可以了。如果代码比较复杂，这种调用关系就会非常隐蔽。</li>
+</ol>
+<h6 id="单例对代码的扩展性不友好"><a href="#单例对代码的扩展性不友好" class="headerlink" title="单例对代码的扩展性不友好"></a>单例对代码的扩展性不友好</h6><ol>
+<li><code>单例类在某些情况下会影响代码的扩展性、灵活性。所以，数据库连接池、线程池这类的资源池，最好还是不要设计成单例类。实际上，一些开源的数据库连接池、线程池也确实没有设计成单例类</code>。</li>
+</ol>
+<h6 id="单例对代码的可测试性不友好"><a href="#单例对代码的可测试性不友好" class="headerlink" title="单例对代码的可测试性不友好"></a>单例对代码的可测试性不友好</h6><ol>
+<li>单例类这种硬编码式的使用方式，导致无法实现 mock 替换。</li>
+<li>成员变量相当于一种全局变量。</li>
+</ol>
+<h6 id="单例不支持有参数的构造函数（参数只有在new-instance的时候有用）"><a href="#单例不支持有参数的构造函数（参数只有在new-instance的时候有用）" class="headerlink" title="单例不支持有参数的构造函数（参数只有在new instance的时候有用）"></a>单例不支持有参数的构造函数（参数只有在new instance的时候有用）</h6><ol>
+<li>第一种解决思路：在使用这个单例类的时候，要先调用 init() 方法，然后才能调用 getInstance() 方法，否则代码会抛出异常。</li>
+<li>第二种解决思路是：将参数放到 getIntance() 方法中。</li>
+<li>第三种解决思路是：将参数放到另外一个全局变量（配置对象）中。</li>
+</ol>
+<h5 id="替代方案"><a href="#替代方案" class="headerlink" title="替代方案"></a>替代方案</h5><ol>
+<li>为了保证全局唯一，除了使用单例，我们还可以用<code>静态方法</code>（操作静态变量）来实现。</li>
+<li>静态方法这种实现思路，并不能解决我们之前提到的问题。实际上，它比单例更加不灵活，比如，它无法支持延迟加载。</li>
+<li><p>第2中方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 1. 老的使用方式</span><br><span class="line">public demofunction() &#123;</span><br><span class="line">  //...</span><br><span class="line">  long id = IdGenerator.getInstance().getId();</span><br><span class="line">  //...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 2. 新的使用方式：依赖注入</span><br><span class="line">public demofunction(IdGenerator idGenerator) &#123;</span><br><span class="line">  long id = idGenerator.getId();</span><br><span class="line">&#125;</span><br><span class="line">// 外部调用demofunction()的时候，传入idGenerator</span><br><span class="line">IdGenerator idGenerator = IdGenerator.getInsance();</span><br><span class="line">demofunction(idGenerator);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类对象的全局唯一性可以通过多种不同的方式来保证。我们既可以通过单例模式来强制保证，也可以通过工厂模式、IOC 容器（比如 Spring IOC 容器）来保证，还可以通过程序员自己来保证（自己在编写代码的时候自己保证不要创建两个类对象）。</p>
+</li>
+</ol>
+<h5 id="如何理解单例模式中的唯一性？"><a href="#如何理解单例模式中的唯一性？" class="headerlink" title="如何理解单例模式中的唯一性？"></a>如何理解单例模式中的唯一性？</h5><ol>
+<li>单例模式创建的对象是进程唯一的。在进程间是不唯一的.</li>
+<li>进程之间是不共享地址空间的，如果我们在一个进程中创建另外一个进程（比如，代码中有一个 fork() 语句，进程执行到这条语句的时候会创建一个新的进程），操作系统会给新进程分配新的地址空间，并且将老进程地址空间的所有内容，重新拷贝一份到新进程的地址空间中，这些内容包括代码、数据（比如 user 临时变量、User 对象）。</li>
+<li><p>线程唯一</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ConcurrentHashMap&lt;Long, IdGenerator&gt; instances</span><br><span class="line">          = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Long currentThreadId = Thread.currentThread().getId();</span><br><span class="line">    instances.putIfAbsent(currentThreadId, <span class="keyword">new</span> IdGenerator());</span><br><span class="line">    <span class="keyword">return</span> instances.get(currentThreadId);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java 语言本身提供了 ThreadLocal 并发工具类，可以更加轻松地实现线程唯一单例。</p>
+</li>
+<li>对于 Java 语言来说，单例类对象的唯一性的作用范围并非进程，而是类加载器（Class Loader）</li>
+</ol>
+<h5 id="如何实现集群环境下的单例？"><a href="#如何实现集群环境下的单例？" class="headerlink" title="如何实现集群环境下的单例？"></a>如何实现集群环境下的单例？</h5><ol>
+<li>具体来说，我们需要把这个单例对象序列化并存储到外部共享存储区（比如文件）.进程在使用这个单例对象的时候，需要先从外部共享存储区中将它读取到内存，并反序列化成对象，然后再使用，使用完成之后还需要再存储回外部共享存储区。</li>
+<li>为了保证任何时刻，在进程间都只有一份对象存在，一个进程在获取到对象之后，需要对对象加锁，避免其他进程再将其获取。在进程使用完这个对象之后，还需要显式地将对象从内存中删除，并且释放对对象的加锁。</li>
+</ol>
+<h5 id="如何实现一个多例模式？"><a href="#如何实现一个多例模式？" class="headerlink" title="如何实现一个多例模式？"></a>如何实现一个多例模式？</h5><ol>
+<li>“多例”指的就是，一个类可以创建多个对象，但是个数是有限制的，比如只能创建 3 个对象.多例的实现也比较简单，通过一个 Map 来存储对象类型和对象之间的对应关系，来控制对象的个数。</li>
+<li>对于多例模式，还有一种理解方式：同一类型的只能创建一个对象，不同类型的可以创建多个对象。这种多例模式的理解方式有点类似工厂模式。它跟工厂模式的不同之处是，多例模式创建的对象都是同一个类的对象，而工厂模式创建的是不同子类的对象。</li>
+<li>枚举类型也相当于多例模式，一个类型只能对应一个对象，一个类可以创建多个对象。</li>
+</ol>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><h5 id="简单工厂（工厂方法模式的一种特例）"><a href="#简单工厂（工厂方法模式的一种特例）" class="headerlink" title="简单工厂（工厂方法模式的一种特例）"></a>简单工厂（工厂方法模式的一种特例）</h5><h5 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h5><h5 id="抽象工厂（了解）"><a href="#抽象工厂（了解）" class="headerlink" title="抽象工厂（了解）"></a>抽象工厂（了解）</h5><h4 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h4><h3 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h3><ol>
+<li>常用的有：代理模式、桥接模式、装饰者模式、适配器模式。不常用的有：门面模式、组合模式、享元模式。</li>
+</ol>
+<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><h4 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h4><h4 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h4><h4 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h4><h4 id="门面模式"><a href="#门面模式" class="headerlink" title="门面模式"></a>门面模式</h4><h4 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h4><h4 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h4><h3 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h3><ol>
+<li>常用的有：观察者模式、模板模式、策略模式、职责链模式、迭代器模式、状态模式。不常用的有：访问者模式、备忘录模式、命令模式、解释器模式、中介模式。</li>
+</ol>
+<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><h4 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h4><h4 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h4><h4 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h4><h4 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h4><h4 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h4><h4 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h4><h4 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h4><h4 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h4><h4 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h4><h4 id="中介模式"><a href="#中介模式" class="headerlink" title="中介模式"></a>中介模式</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i>设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/10/JAVA-06-spring-cloud/" rel="next" title="JAVA-06-spring-cloud">
+                <i class="fa fa-chevron-left"></i> JAVA-06-spring-cloud
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/26/后端-数据库-CLICKHOUSE/" rel="prev" title="后端-数据库-CLICKHOUSE">
+                后端-数据库-CLICKHOUSE <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">185</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建型"><span class="nav-number">1.1.</span> <span class="nav-text">创建型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么使用单例模式"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">为什么使用单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#处理资源冲突（多线程环境下）"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">处理资源冲突（多线程环境下）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#表示全局唯一类（有些数据在系统中只应保存一份）"><span class="nav-number">1.1.1.1.2.</span> <span class="nav-text">表示全局唯一类（有些数据在系统中只应保存一份）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何实现一个单例"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">如何实现一个单例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#饿汉式"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#懒汉式-相对于饿汉式的优势是支持延迟加载-但是不支持高并发"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#双重检测"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">双重检测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#静态内部类"><span class="nav-number">1.1.1.2.4.</span> <span class="nav-text">静态内部类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#枚举"><span class="nav-number">1.1.1.2.5.</span> <span class="nav-text">枚举</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单例存在哪些问题"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">单例存在哪些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#单例对-OOP-特性的支持不友好"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">单例对 OOP 特性的支持不友好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例会隐藏类之间的依赖关系"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">单例会隐藏类之间的依赖关系</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例对代码的扩展性不友好"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">单例对代码的扩展性不友好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例对代码的可测试性不友好"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">单例对代码的可测试性不友好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例不支持有参数的构造函数（参数只有在new-instance的时候有用）"><span class="nav-number">1.1.1.3.5.</span> <span class="nav-text">单例不支持有参数的构造函数（参数只有在new instance的时候有用）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替代方案"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">替代方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何理解单例模式中的唯一性？"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">如何理解单例模式中的唯一性？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何实现集群环境下的单例？"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">如何实现集群环境下的单例？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何实现一个多例模式？"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">如何实现一个多例模式？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂模式"><span class="nav-number">1.1.2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单工厂（工厂方法模式的一种特例）"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">简单工厂（工厂方法模式的一种特例）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#抽象工厂（了解）"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">抽象工厂（了解）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建造者模式"><span class="nav-number">1.1.3.</span> <span class="nav-text">建造者模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构型"><span class="nav-number">1.2.</span> <span class="nav-text">结构型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代理模式"><span class="nav-number">1.2.1.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#桥接模式"><span class="nav-number">1.2.2.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装饰者模式"><span class="nav-number">1.2.3.</span> <span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.2.4.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#门面模式"><span class="nav-number">1.2.5.</span> <span class="nav-text">门面模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合模式"><span class="nav-number">1.2.6.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#享元模式"><span class="nav-number">1.2.7.</span> <span class="nav-text">享元模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行为型"><span class="nav-number">1.3.</span> <span class="nav-text">行为型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#观察者模式"><span class="nav-number">1.3.1.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板模式"><span class="nav-number">1.3.2.</span> <span class="nav-text">模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#策略模式"><span class="nav-number">1.3.3.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#职责链模式"><span class="nav-number">1.3.4.</span> <span class="nav-text">职责链模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代器模式"><span class="nav-number">1.3.5.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态模式"><span class="nav-number">1.3.6.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问者模式"><span class="nav-number">1.3.7.</span> <span class="nav-text">访问者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备忘录模式"><span class="nav-number">1.3.8.</span> <span class="nav-text">备忘录模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令模式"><span class="nav-number">1.3.9.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解释器模式"><span class="nav-number">1.3.10.</span> <span class="nav-text">解释器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中介模式"><span class="nav-number">1.3.11.</span> <span class="nav-text">中介模式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
