@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程-设计模式-2">
+<meta property="og:url" content="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式-创建型/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-29T08:20:57.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编程-设计模式-2">
+<meta name="twitter:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式-创建型/">
+
+
+
+
+
+  <title>编程-设计模式-2 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式-创建型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编程-设计模式-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-24T15:16:22+08:00">
+                2020-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/08/24/编程-设计模式-2-设计模式-创建型/" class="leancloud_visitors" data-flag-title="编程-设计模式-2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ol>
+<li>从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。</li>
+<li>大部分设计模式要解决的都是代码的可扩展性问题。</li>
+<li>了解它们都能<code>解决哪些问题</code>，掌握<code>典型的应用场景</code>，并且懂得<code>不过度应用</code>。</li>
+</ol>
+<h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><ol>
+<li>常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。</li>
+</ol>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><h5 id="为什么使用单例模式"><a href="#为什么使用单例模式" class="headerlink" title="为什么使用单例模式"></a>为什么使用单例模式</h5><h6 id="处理资源冲突（多线程环境下）"><a href="#处理资源冲突（多线程环境下）" class="headerlink" title="处理资源冲突（多线程环境下）"></a>处理资源冲突（多线程环境下）</h6><p>如何解决：</p>
+<pre><code>1. 对象级别的锁(只能解决同一个对象在不同的线程下顺序执行，不同对象之间并不共享同一把锁)
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> FileWriter writer;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Logger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"/Users/wangzheng/log.txt"</span>);</span><br><span class="line">    writer = <span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>); <span class="comment">//true表示追加写入(FileWriter 本身就是线程安全的，它的内部实现中本身就加了对象级别的锁)</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</span><br><span class="line">      writer.write(mesasge);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>2. 把对象级别的锁，换成类级别的锁(可以解决问题)
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> FileWriter writer;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Logger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"/Users/wangzheng/log.txt"</span>);</span><br><span class="line">    writer = <span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>); <span class="comment">//true表示追加写入</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(Logger.class) &#123; <span class="comment">// 类级别的锁</span></span><br><span class="line">      writer.write(mesasge);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>3. 分布式锁（实现一个安全可靠、无 bug、高性能的分布式锁，并不是件容易的事情）
+4. 并发队列（比如 Java 中的 BlockingQueue）：多个线程同时往并发队列里写日志，一个单独的线程负责将并发队列中的数据，写入到日志文件。这种方式实现起来也稍微有点复杂。
+5. 使用单例模式（思路简单一些）：不用创建那么多 Logger 对象，一方面节省内存空间，另一方面节省系统文件句柄（对于操作系统来说，文件句柄也是一种资源，不能随便浪费）。
+</code></pre><h6 id="表示全局唯一类（有些数据在系统中只应保存一份）"><a href="#表示全局唯一类（有些数据在系统中只应保存一份）" class="headerlink" title="表示全局唯一类（有些数据在系统中只应保存一份）"></a>表示全局唯一类（有些数据在系统中只应保存一份）</h6><ol>
+<li>配置信息类。</li>
+<li>唯一递增 ID 号码生成器。</li>
+</ol>
+<h5 id="如何实现一个单例"><a href="#如何实现一个单例" class="headerlink" title="如何实现一个单例"></a>如何实现一个单例</h5><ol>
+<li>构造函数需要是 private 访问权限的，这样才能避免外部通过 new 创建实例；</li>
+<li>考虑对象创建时的线程安全问题；</li>
+<li>考虑是否支持延迟加载；</li>
+<li>考虑 getInstance() 性能是否高（是否加锁）。</li>
+</ol>
+<h6 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IdGenerator instance = <span class="keyword">new</span> IdGenerator();<span class="comment">//在类加载的时候，instance 静态实例就已经创建并初始化好了，所以，instance 实例的创建过程是线程安全的,这样的实现方式不支持延迟加载（在真正用到 IdGenerator 的时候，再创建实例）</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果初始化耗时长，那我们最好不要等到真正要用它的时候，才去执行这个耗时长的初始化过程</span></span><br><span class="line"><span class="comment">// 如果实例占用资源多，按照 fail-fast 的设计原则（有问题及早暴露），那我们也希望在程序启动时就将这个实例初始化好</span></span><br></pre></td></tr></table></figure>
+<h6 id="懒汉式-相对于饿汉式的优势是支持延迟加载-但是不支持高并发"><a href="#懒汉式-相对于饿汉式的优势是支持延迟加载-但是不支持高并发" class="headerlink" title="懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)"></a>懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> IdGenerator instance;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;<span class="comment">//getInstance() 这个方法加了一把大锁（synchronzed），导致这个函数的并发度很低。如果频繁地用到，那频繁加锁、释放锁及并发度低等问题，会导致性能瓶颈，这种实现方式就不可取了.偶尔用到可以接受</span></span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">      instance = <span class="keyword">new</span> IdGenerator();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="双重检测"><a href="#双重检测" class="headerlink" title="双重检测"></a>双重检测</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> IdGenerator instance;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">synchronized</span>(IdGenerator.class) &#123; <span class="comment">// 此处为类级别的锁</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">          instance = <span class="keyword">new</span> IdGenerator();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//解决的方法很简单，只要把对象 new 操作和初始化操作设计为原子操作，就自然能禁止重排序</span></span><br></pre></td></tr></table></figure>
+<h6 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IdGenerator instance = <span class="keyword">new</span> IdGenerator();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> SingletonHolder.instance;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//SingletonHolder 是一个静态内部类，当外部类 IdGenerator 被加载的时候，并不会创建 SingletonHolder 实例对象。只有当调用 getInstance() 方法时，SingletonHolder 才会被加载，这个时候才会创建 instance。instance 的唯一性、创建过程的线程安全性，都由 JVM 来保证。所以，这种实现方法既保证了线程安全，又能做到延迟加载。</span></span><br></pre></td></tr></table></figure>
+<h6 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> IdGenerator &#123;</span><br><span class="line">  INSTANCE;</span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="单例存在哪些问题"><a href="#单例存在哪些问题" class="headerlink" title="单例存在哪些问题"></a>单例存在哪些问题</h5><ol>
+<li>大部分情况下，我们在项目中使用单例，都是用它来表示一些全局唯一类，比如配置信息类、连接池类、ID 生成器类。</li>
+</ol>
+<h6 id="单例对-OOP-特性的支持不友好"><a href="#单例对-OOP-特性的支持不友好" class="headerlink" title="单例对 OOP 特性的支持不友好"></a>单例对 OOP 特性的支持不友好</h6><ol>
+<li>IdGenerator 的使用方式违背了基于接口而非实现的设计原则。</li>
+<li>从理论上来讲，单例类也可以被继承、也可以实现多态，只是实现起来会非常奇怪，会导致代码的可读性变差。</li>
+</ol>
+<h6 id="单例会隐藏类之间的依赖关系"><a href="#单例会隐藏类之间的依赖关系" class="headerlink" title="单例会隐藏类之间的依赖关系"></a>单例会隐藏类之间的依赖关系</h6><ol>
+<li>单例类不需要显示创建、不需要依赖参数传递，在函数中直接调用就可以了。如果代码比较复杂，这种调用关系就会非常隐蔽。</li>
+</ol>
+<h6 id="单例对代码的扩展性不友好"><a href="#单例对代码的扩展性不友好" class="headerlink" title="单例对代码的扩展性不友好"></a>单例对代码的扩展性不友好</h6><ol>
+<li><code>单例类在某些情况下会影响代码的扩展性、灵活性。所以，数据库连接池、线程池这类的资源池，最好还是不要设计成单例类。实际上，一些开源的数据库连接池、线程池也确实没有设计成单例类</code>。</li>
+</ol>
+<h6 id="单例对代码的可测试性不友好"><a href="#单例对代码的可测试性不友好" class="headerlink" title="单例对代码的可测试性不友好"></a>单例对代码的可测试性不友好</h6><ol>
+<li>单例类这种硬编码式的使用方式，导致无法实现 mock 替换。</li>
+<li>成员变量相当于一种全局变量。</li>
+</ol>
+<h6 id="单例不支持有参数的构造函数（参数只有在new-instance的时候有用）"><a href="#单例不支持有参数的构造函数（参数只有在new-instance的时候有用）" class="headerlink" title="单例不支持有参数的构造函数（参数只有在new instance的时候有用）"></a>单例不支持有参数的构造函数（参数只有在new instance的时候有用）</h6><ol>
+<li>第一种解决思路：在使用这个单例类的时候，要先调用 init() 方法，然后才能调用 getInstance() 方法，否则代码会抛出异常。</li>
+<li>第二种解决思路是：将参数放到 getIntance() 方法中。</li>
+<li>第三种解决思路是：将参数放到另外一个全局变量（配置对象）中。</li>
+</ol>
+<h5 id="替代方案"><a href="#替代方案" class="headerlink" title="替代方案"></a>替代方案</h5><ol>
+<li>为了保证全局唯一，除了使用单例，我们还可以用<code>静态方法</code>（操作静态变量）来实现。</li>
+<li>静态方法这种实现思路，并不能解决我们之前提到的问题。实际上，它比单例更加不灵活，比如，它无法支持延迟加载。</li>
+<li><p>第2中方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 1. 老的使用方式</span><br><span class="line">public demofunction() &#123;</span><br><span class="line">  //...</span><br><span class="line">  long id = IdGenerator.getInstance().getId();</span><br><span class="line">  //...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 2. 新的使用方式：依赖注入</span><br><span class="line">public demofunction(IdGenerator idGenerator) &#123;</span><br><span class="line">  long id = idGenerator.getId();</span><br><span class="line">&#125;</span><br><span class="line">// 外部调用demofunction()的时候，传入idGenerator</span><br><span class="line">IdGenerator idGenerator = IdGenerator.getInsance();</span><br><span class="line">demofunction(idGenerator);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类对象的全局唯一性可以通过多种不同的方式来保证。我们既可以通过单例模式来强制保证，也可以通过工厂模式、IOC 容器（比如 Spring IOC 容器）来保证，还可以通过程序员自己来保证（自己在编写代码的时候自己保证不要创建两个类对象）。</p>
+</li>
+</ol>
+<h5 id="如何理解单例模式中的唯一性？"><a href="#如何理解单例模式中的唯一性？" class="headerlink" title="如何理解单例模式中的唯一性？"></a>如何理解单例模式中的唯一性？</h5><ol>
+<li>单例模式创建的对象是进程唯一的。在进程间是不唯一的.</li>
+<li>进程之间是不共享地址空间的，如果我们在一个进程中创建另外一个进程（比如，代码中有一个 fork() 语句，进程执行到这条语句的时候会创建一个新的进程），操作系统会给新进程分配新的地址空间，并且将老进程地址空间的所有内容，重新拷贝一份到新进程的地址空间中，这些内容包括代码、数据（比如 user 临时变量、User 对象）。</li>
+<li><p>线程唯一</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> AtomicLong id = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ConcurrentHashMap&lt;Long, IdGenerator&gt; instances</span><br><span class="line">          = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IdGenerator</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdGenerator <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Long currentThreadId = Thread.currentThread().getId();</span><br><span class="line">    instances.putIfAbsent(currentThreadId, <span class="keyword">new</span> IdGenerator());</span><br><span class="line">    <span class="keyword">return</span> instances.get(currentThreadId);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id.incrementAndGet();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java 语言本身提供了 ThreadLocal 并发工具类，可以更加轻松地实现线程唯一单例。</p>
+</li>
+<li>对于 Java 语言来说，单例类对象的唯一性的作用范围并非进程，而是类加载器（Class Loader）</li>
+</ol>
+<h5 id="如何实现集群环境下的单例？"><a href="#如何实现集群环境下的单例？" class="headerlink" title="如何实现集群环境下的单例？"></a>如何实现集群环境下的单例？</h5><ol>
+<li>具体来说，我们需要把这个单例对象序列化并存储到外部共享存储区（比如文件）.进程在使用这个单例对象的时候，需要先从外部共享存储区中将它读取到内存，并反序列化成对象，然后再使用，使用完成之后还需要再存储回外部共享存储区。</li>
+<li>为了保证任何时刻，在进程间都只有一份对象存在，一个进程在获取到对象之后，需要对对象加锁，避免其他进程再将其获取。在进程使用完这个对象之后，还需要显式地将对象从内存中删除，并且释放对对象的加锁。</li>
+</ol>
+<h5 id="如何实现一个多例模式？"><a href="#如何实现一个多例模式？" class="headerlink" title="如何实现一个多例模式？"></a>如何实现一个多例模式？</h5><ol>
+<li>“多例”指的就是，一个类可以创建多个对象，但是个数是有限制的，比如只能创建 3 个对象.多例的实现也比较简单，通过一个 Map 来存储对象类型和对象之间的对应关系，来控制对象的个数。</li>
+<li>对于多例模式，还有一种理解方式：同一类型的只能创建一个对象，不同类型的可以创建多个对象。这种多例模式的理解方式有点类似工厂模式。它跟工厂模式的不同之处是，多例模式创建的对象都是同一个类的对象，而工厂模式创建的是不同子类的对象。</li>
+<li>枚举类型也相当于多例模式，一个类型只能对应一个对象，一个类可以创建多个对象。</li>
+</ol>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><ol>
+<li>当创建逻辑比较复杂（if-else 分支判断，组合其他类对象，做各种初始化操作），是一个“大工程”的时候，我们就考虑使用工厂模式，封装对象的创建过程，将对象的创建和使用相分离。</li>
+<li>封装变化：创建逻辑有可能变化，封装成工厂类之后，创建逻辑的变更对调用者透明。代码复用：创建代码抽离到独立的工厂类之后可以复用。隔离复杂性：封装复杂的创建逻辑，调用者无需了解如何创建对象。控制复杂度：将创建代码抽离出来，让原本的函数或类职责更单一，代码更简洁。</li>
+</ol>
+<h5 id="简单工厂（工厂方法模式的一种特例）"><a href="#简单工厂（工厂方法模式的一种特例）" class="headerlink" title="简单工厂（工厂方法模式的一种特例）"></a>简单工厂（工厂方法模式的一种特例）</h5><ol>
+<li><p>根据不同的特性，创建不同的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span>&#123;</span><br><span class="line">    String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line">    IRuleConfigParser parser = RuleConfigParserFactory.createParser(ruleConfigFileExtension);</span><br><span class="line">    <span class="keyword">if</span> (parser == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(</span><br><span class="line">              <span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String configText = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">//从ruleConfigFilePath文件中读取配置文本到configText中</span></span><br><span class="line">    RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">    <span class="keyword">return</span> ruleConfig;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...解析文件名获取扩展名，比如rule.json，返回json</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 为了让类的职责更加单一、代码更加清晰，我们还可以进一步将 createParser() 函数剥离到一个独立的类中，让这个类只负责对象的创建。</span></span><br><span class="line"><span class="comment">// 大部分工厂类都是以“Factory”这个单词结尾的，但也不是必须的</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 工厂类中创建对象的方法一般都是 create 开头（静态的方法）</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IRuleConfigParser <span class="title">createParser</span><span class="params">(String configFormat)</span> </span>&#123;</span><br><span class="line">    IRuleConfigParser parser = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(configFormat)) &#123;</span><br><span class="line">      parser = <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(configFormat)) &#123;</span><br><span class="line">      parser = <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(configFormat)) &#123;</span><br><span class="line">      parser = <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(configFormat)) &#123;</span><br><span class="line">      parser = <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> parser;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种方式，工厂模式和单例模式的结合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, RuleConfigParser&gt; cachedParsers = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    cachedParsers.put(<span class="string">"json"</span>, <span class="keyword">new</span> JsonRuleConfigParser());</span><br><span class="line">    cachedParsers.put(<span class="string">"xml"</span>, <span class="keyword">new</span> XmlRuleConfigParser());</span><br><span class="line">    cachedParsers.put(<span class="string">"yaml"</span>, <span class="keyword">new</span> YamlRuleConfigParser());</span><br><span class="line">    cachedParsers.put(<span class="string">"properties"</span>, <span class="keyword">new</span> PropertiesRuleConfigParser());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IRuleConfigParser <span class="title">createParser</span><span class="params">(String configFormat)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (configFormat == <span class="keyword">null</span> || configFormat.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;<span class="comment">//返回null还是IllegalArgumentException全凭你自己说了算</span></span><br><span class="line">    &#125;</span><br><span class="line">    IRuleConfigParser parser = cachedParsers.get(configFormat.toLowerCase());</span><br><span class="line">    <span class="keyword">return</span> parser;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h5><ol>
+<li><p>工厂方法模式比起简单工厂模式更加符合开闭原则。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IRuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="function">IRuleConfigParser <span class="title">createParser</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YamlRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertiesRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>【使用】可以为工厂类再创建一个<code>简单工厂</code>(第二种)，也就是工厂的工厂，用来创建工厂类对象。</p>
+</li>
+<li>需要添加新的规则配置解析器的时候，我们只需要创建新的 parser 类和 parser factory 类，并且在 RuleConfigParserFactoryMap 类中，将新的 parser factory 对象添加到 cachedFactories 中即可。代码的改动非常少，基本上符合开闭原则。</li>
+</ol>
+<h6 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h6><ol>
+<li>当对象的创建逻辑比较复杂，不只是简单的 new 一下就可以，而是要组合其他类对象，做各种初始化操作的时候，我们推荐使用工厂方法模式，将复杂的创建逻辑拆分到多个工厂类中，让每个工厂类都不至于过于复杂。而使用简单工厂模式，将所有的创建逻辑都放到一个工厂类中，会导致这个工厂类变得很复杂。</li>
+<li>避免烦人的 if-else 分支逻辑，这个时候，我们就推荐使用工厂方法模式。</li>
+<li>【本质】<code>简单工厂是将不同创建逻辑放到一个工厂类中，if-else 逻辑在这个工厂类中</code>,<code>工厂方法是将不同创建逻辑放到不同工厂类中，先用一个工厂类的工厂来来得到某个工厂，再用这个工厂来创建，if-else 逻辑在工厂类的工厂中</code>.</li>
+</ol>
+<h5 id="抽象工厂（了解）"><a href="#抽象工厂（了解）" class="headerlink" title="抽象工厂（了解）"></a>抽象工厂（了解）</h5><ol>
+<li>【解决的问题】在简单工厂和工厂方法中，类只有一种分类方式。如果有多种分类方法，就需要抽象工厂模式。让一个工厂负责创建多个不同类型的对象（IRuleConfigParser、ISystemConfigParser 等），而不是只创建一种 parser 对象。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="function">IRuleConfigParser <span class="title">createRuleParser</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">ISystemConfigParser <span class="title">createSystemParser</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="comment">//此处可以扩展新的parser类型，比如IBizConfigParser</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createRuleParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ISystemConfigParser <span class="title">createSystemParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> JsonSystemConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IConfigParserFactory</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createRuleParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ISystemConfigParser <span class="title">createSystemParser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> XmlSystemConfigParser();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 省略YamlConfigParserFactory和PropertiesConfigParserFactory代码</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="设计一个依赖注入框架（DI容器）"><a href="#设计一个依赖注入框架（DI容器）" class="headerlink" title="设计一个依赖注入框架（DI容器）"></a>设计一个依赖注入框架（DI容器）</h5><ol>
+<li>DI 容器底层最基本的设计思路就是基于工厂模式的。DI 容器相当于一个大的工厂类，负责在程序启动的时候，<code>根据配置（要创建哪些类对象，每个类对象的创建需要依赖哪些其他类对象）事先创建好对象</code>。当应用程序需要<code>使用某个类对象的时候，直接从容器中获取即可</code>。正是因为它持有一堆对象，所以这个框架才被称为“容器”。</li>
+<li>一个工厂类只负责某个类对象或者某一组相关类对象（继承自同一抽象类或者接口的子类）的创建，而 DI 容器负责的是整个应用中所有类对象的创建。</li>
+<li>DI 容器负责的事情要比单纯的工厂模式要多。比如，它还包括配置的解析、对象生命周期的管理。</li>
+<li>DI 容器在一些软件开发中已经成为了标配，比如 Spring IOC、Google Guice。但是，大部分人可能只是把它当作一个黑盒子来使用，并未真正去了解它的底层是如何实现的。当然，如果只是做一些简单的小项目，简单会用就足够了，但是，如果我们面对的是非常复杂的系统，当系统出现问题的时候，对底层原理的掌握程度，决定了我们排查问题的能力，直接影响到我们排查问题的效率。</li>
+</ol>
+<h6 id="配置解析"><a href="#配置解析" class="headerlink" title="配置解析"></a>配置解析</h6><ol>
+<li>将需要由 DI 容器来创建的类对象和创建类对象的必要信息（使用哪个构造函数以及对应的构造函数参数都是什么等等），放到配置文件中。容器读取配置文件，根据配置文件提供的信息来创建对象。</li>
+<li>例如spring的配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">配置文件beans.xml：</span><br><span class="line">&lt;beans&gt;</span><br><span class="line">   &lt;bean id=&quot;rateLimiter&quot; class=&quot;com.xzg.RateLimiter&quot;&gt;</span><br><span class="line">      &lt;constructor-arg ref=&quot;redisCounter&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"> </span><br><span class="line">   &lt;bean id=&quot;redisCounter&quot; class=&quot;com.xzg.redisCounter&quot;&gt;</span><br><span class="line">     &lt;constructor-arg type=&quot;String&quot; value=&quot;127.0.0.1&quot;&gt;</span><br><span class="line">     &lt;constructor-arg type=&quot;int&quot; value=1234&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h6 id="创建对象-反射语法"><a href="#创建对象-反射语法" class="headerlink" title="创建对象(反射语法)"></a>创建对象(反射语法)</h6><ol>
+<li>只需要<code>将所有类对象的创建都放到一个工厂类中完成</code>就可以了，比如 BeansFactory。</li>
+<li>使用<code>反射</code>(一种动态加载类和创建对象的机制)机制，不管是创建一个对象还是十个对象，BeansFactory 工厂类代码都是一样的。</li>
+</ol>
+<h6 id="对象的生命周期管理"><a href="#对象的生命周期管理" class="headerlink" title="对象的生命周期管理"></a>对象的生命周期管理</h6><ol>
+<li>例如spring框架</li>
+<li>scope=prototype 表示返回新创建的对象，scope=singleton 表示返回单例对象。</li>
+<li>lazy-init=true，对象在真正被使用到的时候（比如：BeansFactory.getBean(“userService”)）才被被创建；如果 lazy-init=false，对象在应用启动的时候就事先创建好。</li>
+<li>还可以配置对象的 init-method 和 destroy-method 方法，比如 init-method=loadProperties()，destroy-method=updateConfigFile()。</li>
+</ol>
+<h6 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h6><h6 id="spring的循环依赖"><a href="#spring的循环依赖" class="headerlink" title="spring的循环依赖"></a>spring的循环依赖</h6><h4 id="建造者模式（Builder）"><a href="#建造者模式（Builder）" class="headerlink" title="建造者模式（Builder）"></a>建造者模式（Builder）</h4><ol>
+<li>【问题】构造方法的参数过多，容易搞错各参数的顺序，传递进错误的参数值，导致非常隐蔽的 bug。</li>
+<li>可以使用set解决上边的问题，必须的参数放在构造方法中，非必须的使用set。</li>
+<li>【问题升级 合法校验（Preconditions）】必填的配置项有很多。如果我们把必填项也通过 set() 方法设置，那校验这些必填项是否已经填写的逻辑就无处安放了。</li>
+<li>【问题升级2 依赖关系（Dependencies）】假设配置项之间有一定的依赖关系。</li>
+<li>【问题升级3 不可变（Immutable）】希望 ResourcePoolConfig 类对象是<code>不可变对象</code>，也就是说，对象在创建好之后，就不能再修改内部的属性值。要实现这个功能，我们就不能在 ResourcePoolConfig 类中暴露 set() 方法。</li>
+</ol>
+<h5 id="使用建造者模式"><a href="#使用建造者模式" class="headerlink" title="使用建造者模式"></a>使用建造者模式</h5><ol>
+<li>把校验逻辑放置到 Builder 类中，先创建建造者，并且通过 set() 方法设置建造者的变量值，然后在使用 build() 方法真正创建对象之前，做集中的校验，校验通过之后才会创建对象。</li>
+<li>ResourcePoolConfig 的构造函数改为 private 私有权限。这样我们就只能通过建造者来创建 ResourcePoolConfig 类对象。</li>
+<li><p>ResourcePoolConfig 没有提供任何 set() 方法，这样我们创建出来的对象就是不可变对象了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ResourcePoolConfig &#123;</span><br><span class="line">  private String name;</span><br><span class="line">  private int maxTotal;</span><br><span class="line">  private int maxIdle;</span><br><span class="line">  private int minIdle;</span><br><span class="line"></span><br><span class="line">  private ResourcePoolConfig(Builder builder) &#123;</span><br><span class="line">    this.name = builder.name;</span><br><span class="line">    this.maxTotal = builder.maxTotal;</span><br><span class="line">    this.maxIdle = builder.maxIdle;</span><br><span class="line">    this.minIdle = builder.minIdle;</span><br><span class="line">  &#125;</span><br><span class="line">  //...省略getter方法...</span><br><span class="line"></span><br><span class="line">  //我们将Builder类设计成了ResourcePoolConfig的内部类。</span><br><span class="line">  //我们也可以将Builder类设计成独立的非内部类ResourcePoolConfigBuilder。</span><br><span class="line">  public static class Builder &#123;</span><br><span class="line">    private static final int DEFAULT_MAX_TOTAL = 8;</span><br><span class="line">    private static final int DEFAULT_MAX_IDLE = 8;</span><br><span class="line">    private static final int DEFAULT_MIN_IDLE = 0;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private int maxTotal = DEFAULT_MAX_TOTAL;</span><br><span class="line">    private int maxIdle = DEFAULT_MAX_IDLE;</span><br><span class="line">    private int minIdle = DEFAULT_MIN_IDLE;</span><br><span class="line"></span><br><span class="line">    public ResourcePoolConfig build() &#123;</span><br><span class="line">      // 校验逻辑放到这里来做，包括必填项校验、依赖关系校验、约束条件校验等</span><br><span class="line">      if (StringUtils.isBlank(name)) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      if (maxIdle &gt; maxTotal) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      if (minIdle &gt; maxTotal || minIdle &gt; maxIdle) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return new ResourcePoolConfig(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder setName(String name) &#123;</span><br><span class="line">      if (StringUtils.isBlank(name)) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      this.name = name;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder setMaxTotal(int maxTotal) &#123;</span><br><span class="line">      if (maxTotal &lt;= 0) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      this.maxTotal = maxTotal;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder setMaxIdle(int maxIdle) &#123;</span><br><span class="line">      if (maxIdle &lt; 0) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      this.maxIdle = maxIdle;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder setMinIdle(int minIdle) &#123;</span><br><span class="line">      if (minIdle &lt; 0) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;...&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      this.minIdle = minIdle;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这段代码会抛出IllegalArgumentException，因为minIdle&gt;maxIdle</span><br><span class="line">ResourcePoolConfig config = new ResourcePoolConfig.Builder()</span><br><span class="line">        .setName(&quot;dbconnectionpool&quot;)</span><br><span class="line">        .setMaxTotal(16)</span><br><span class="line">        .setMaxIdle(10)</span><br><span class="line">        .setMinIdle(12)</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>【缺点】如果我们并不是很关心对象是否有短暂的无效状态，也不是太在意对象是否是可变的，可以不使用此模式。另外，使用建造者模式来构建对象，代码实际上是有点重复的，ResourcePoolConfig 类中的成员变量，要在 Builder 类中重新再定义一遍。</p>
+</li>
+<li>工厂模式是用来创建<code>不同但是相关类型</code>的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象。建造者模式是用来创建<code>一种类型的复杂对象</code>，通过设置不同的可选参数，“定制化”地创建不同的对象。</li>
+</ol>
+<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><ol>
+<li>【问题】如果对象的创建成本比较大，而同一个类的不同对象之间差别不大（大部分字段都相同），在这种情况下，我们可以利用对已有对象（原型）进行复制（或者叫拷贝）的方式来创建新对象，以达到节省创建时间的目的。</li>
+<li>如果对象中的数据需要经过复杂的计算才能得到（比如排序、计算哈希值），或者需要从 RPC、网络、数据库、文件系统等非常慢速的 IO 中读取，这种情况下，我们就可以利用原型模式，从其他已有对象中直接拷贝得到。</li>
+<li>我们把正在使用的数据的版本定义为“服务版本”，当我们要更新内存中的数据的时候，我们并不是直接在服务版本（假设是版本 a 数据）上更新，而是重新创建另一个版本数据（假设是版本 b 数据），等新的版本数据建好之后，再一次性地将服务版本从版本 a 切换到版本 b。这样既保证了数据一直可用，又避免了中间状态的存在。</li>
+</ol>
+<h5 id="使用原型模式"><a href="#使用原型模式" class="headerlink" title="使用原型模式"></a>使用原型模式</h5><ol>
+<li>拷贝 currentKeywords 数据到 newKeywords 中，然后从数据库中只捞出新增或者有更新的关键词，更新到 newKeywords 中。相对于数据库的 IO 操作来说，内存操作和 CPU 计算的耗时都是可以忽略的。</li>
+</ol>
+<h5 id="原型模式的实现方式：深拷贝和浅拷贝"><a href="#原型模式的实现方式：深拷贝和浅拷贝" class="headerlink" title="原型模式的实现方式：深拷贝和浅拷贝"></a>原型模式的实现方式：深拷贝和浅拷贝</h5><ol>
+<li>浅拷贝只会复制图中的索引（散列表），不会复制数据（SearchWord 对象）本身。相反，深拷贝不仅仅会复制索引，还会复制数据本身。</li>
+<li>在 Java 语言中，Object 类的 clone() 方法执行的就是我们刚刚说的浅拷贝。它只会拷贝对象中的基本数据类型的数据（比如，int、long），以及引用对象（SearchWord）的内存地址，不会递归地拷贝引用对象本身。</li>
+<li>【实现1】递归拷贝对象、对象的引用对象以及引用对象的引用对象……直到要拷贝的对象只包含基本数据类型数据，没有引用对象为止。</li>
+<li>【实现2】先将对象序列化，然后再反序列化成新的对象。</li>
+<li>【实现3】先采用浅拷贝的方式创建 newKeywords。对于需要更新的 SearchWord 对象，我们再使用深度拷贝的方式创建一份新的对象，替换 newKeywords 中的老对象。毕竟需要更新的数据是很少的。这种方式即利用了浅拷贝节省时间、空间的优点，又能保证 currentKeywords 中的中数据都是老版本的数据。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i>设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/10/JAVA-06-spring-cloud/" rel="next" title="JAVA-06-spring-cloud">
+                <i class="fa fa-chevron-left"></i> JAVA-06-spring-cloud
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/26/后端-数据库-CLICKHOUSE/" rel="prev" title="后端-数据库-CLICKHOUSE">
+                后端-数据库-CLICKHOUSE <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">188</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建型"><span class="nav-number">1.1.</span> <span class="nav-text">创建型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么使用单例模式"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">为什么使用单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#处理资源冲突（多线程环境下）"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">处理资源冲突（多线程环境下）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#表示全局唯一类（有些数据在系统中只应保存一份）"><span class="nav-number">1.1.1.1.2.</span> <span class="nav-text">表示全局唯一类（有些数据在系统中只应保存一份）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何实现一个单例"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">如何实现一个单例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#饿汉式"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#懒汉式-相对于饿汉式的优势是支持延迟加载-但是不支持高并发"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#双重检测"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">双重检测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#静态内部类"><span class="nav-number">1.1.1.2.4.</span> <span class="nav-text">静态内部类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#枚举"><span class="nav-number">1.1.1.2.5.</span> <span class="nav-text">枚举</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单例存在哪些问题"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">单例存在哪些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#单例对-OOP-特性的支持不友好"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">单例对 OOP 特性的支持不友好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例会隐藏类之间的依赖关系"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">单例会隐藏类之间的依赖关系</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例对代码的扩展性不友好"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">单例对代码的扩展性不友好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例对代码的可测试性不友好"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">单例对代码的可测试性不友好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单例不支持有参数的构造函数（参数只有在new-instance的时候有用）"><span class="nav-number">1.1.1.3.5.</span> <span class="nav-text">单例不支持有参数的构造函数（参数只有在new instance的时候有用）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替代方案"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">替代方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何理解单例模式中的唯一性？"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">如何理解单例模式中的唯一性？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何实现集群环境下的单例？"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">如何实现集群环境下的单例？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何实现一个多例模式？"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">如何实现一个多例模式？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂模式"><span class="nav-number">1.1.2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单工厂（工厂方法模式的一种特例）"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">简单工厂（工厂方法模式的一种特例）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">工厂方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用场景"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#抽象工厂（了解）"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">抽象工厂（了解）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计一个依赖注入框架（DI容器）"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">设计一个依赖注入框架（DI容器）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#配置解析"><span class="nav-number">1.1.2.4.1.</span> <span class="nav-text">配置解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#创建对象-反射语法"><span class="nav-number">1.1.2.4.2.</span> <span class="nav-text">创建对象(反射语法)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对象的生命周期管理"><span class="nav-number">1.1.2.4.3.</span> <span class="nav-text">对象的生命周期管理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如何实现"><span class="nav-number">1.1.2.4.4.</span> <span class="nav-text">如何实现</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#spring的循环依赖"><span class="nav-number">1.1.2.4.5.</span> <span class="nav-text">spring的循环依赖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建造者模式（Builder）"><span class="nav-number">1.1.3.</span> <span class="nav-text">建造者模式（Builder）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用建造者模式"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">使用建造者模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">1.1.4.</span> <span class="nav-text">原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用原型模式"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">使用原型模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原型模式的实现方式：深拷贝和浅拷贝"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">原型模式的实现方式：深拷贝和浅拷贝</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
