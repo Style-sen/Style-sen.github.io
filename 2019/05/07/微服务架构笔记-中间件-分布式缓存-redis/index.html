@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写">
+<meta name="description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)参考Redis 命令参考  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构笔记-中间件-redis">
 <meta property="og:url" content="http://yoursite.com/2019/05/07/微服务架构笔记-中间件-分布式缓存-redis/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写">
+<meta property="og:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)参考Redis 命令参考  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-29T08:20:57.792Z">
+<meta property="og:updated_time" content="2020-09-01T09:46:28.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-中间件-redis">
-<meta name="twitter:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可以处理超过 10万次读写">
+<meta name="twitter:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)参考Redis 命令参考  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可">
 
 
 
@@ -395,7 +395,7 @@
       
 
       
-        <p>参考<a href="https://www.cnblogs.com/Young111/p/11518346.html" target="_blank" rel="noopener">Redis的最常被问到知识点总结</a><br>参考<a href="https://www.cnblogs.com/mushroom/p/4738170.html" target="_blank" rel="noopener">Redis性能问题排查解决手册(七)</a></p>
+        <p>参考<a href="https://www.cnblogs.com/Young111/p/11518346.html" target="_blank" rel="noopener">Redis的最常被问到知识点总结</a><br>参考<a href="https://www.cnblogs.com/mushroom/p/4738170.html" target="_blank" rel="noopener">Redis性能问题排查解决手册(七)</a><br>参考<a href="http://redisdoc.com/list/ltrim.html" target="_blank" rel="noopener">Redis 命令参考</a></p>
 <ol>
 <li>解决的问题：<code>数据库受磁盘IO的影响</code>。把比较热的数据放在内存中。</li>
 </ol>
@@ -489,12 +489,12 @@
 <li>用户统计值（好友数、点赞数）。</li>
 </ol>
 <h5 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h5><h4 id="list"><a href="#list" class="headerlink" title="list"></a>list</h4><ol>
-<li>双向链表。</li>
+<li>双向链表。Redis 列表是简单的<code>字符串</code>列表，按照插入顺序排序。</li>
 </ol>
 <h5 id="常用命令-2"><a href="#常用命令-2" class="headerlink" title="常用命令"></a>常用命令</h5><ol>
-<li>LPUSH 将一个或多个值 value 插入到列表 key 的表头</li>
+<li>LPUSH 将一个或多个值 value 插入到列表 key 的<code>表头</code>。</li>
 <li>LPUSHX 将值 value 插入到列表 key 的表头，当且仅当 key 存在并且是一个列表。</li>
-<li>RPUSH 将一个或多个值 value 插入到列表 key 的表尾(最右边)。</li>
+<li>RPUSH 将一个或多个值 value 插入到列表 key 的<code>表尾(最右边)</code>。</li>
 <li>RPUSHX 将值 value 插入到列表 key 的表尾，当且仅当 key 存在并且是一个列表。</li>
 <li>LPOP 移除并返回列表 key 的头元素。</li>
 <li>RPOP 移除并返回列表 key 的尾元素。</li>
@@ -913,7 +913,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">188</span>
+                  <span class="site-state-item-count">191</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -935,7 +935,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

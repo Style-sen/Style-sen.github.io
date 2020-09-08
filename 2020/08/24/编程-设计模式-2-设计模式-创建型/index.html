@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta name="description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。 创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模式为什">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编程-设计模式-2">
 <meta property="og:url" content="http://yoursite.com/2020/08/24/编程-设计模式-2-设计模式-创建型/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta property="og:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。 创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模式为什">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-29T08:20:57.792Z">
+<meta property="og:updated_time" content="2020-09-01T09:46:28.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编程-设计模式-2">
-<meta name="twitter:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。  单例模式为什么使用单例模式处理资源冲突（多线程环境下）如何解决： 1. 对象级别的锁(只能解决同一">
+<meta name="twitter:description" content="设计模式 从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。  创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。 创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。  单例模式为什">
 
 
 
@@ -403,6 +403,7 @@
 </ol>
 <h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><ol>
 <li>常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。</li>
+<li>创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。</li>
 </ol>
 <h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><h5 id="为什么使用单例模式"><a href="#为什么使用单例模式" class="headerlink" title="为什么使用单例模式"></a>为什么使用单例模式</h5><h6 id="处理资源冲突（多线程环境下）"><a href="#处理资源冲突（多线程环境下）" class="headerlink" title="处理资源冲突（多线程环境下）"></a>处理资源冲突（多线程环境下）</h6><p>如何解决：</p>
 <pre><code>1. 对象级别的锁(只能解决同一个对象在不同的线程下顺序执行，不同对象之间并不共享同一把锁)
@@ -599,7 +600,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/26/后端-数据库-CLICKHOUSE/" rel="prev" title="后端-数据库-CLICKHOUSE">
+              <a href="/2020/08/26/后端-数据库-列式-CLICKHOUSE/" rel="prev" title="后端-数据库-CLICKHOUSE">
                 后端-数据库-CLICKHOUSE <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -678,7 +679,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">188</span>
+                  <span class="site-state-item-count">191</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -700,7 +701,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
