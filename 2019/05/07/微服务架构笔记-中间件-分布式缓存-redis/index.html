@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)参考Redis 命令参考  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-11T06:50:42.243Z">
+<meta property="og:updated_time" content="2020-09-21T01:15:22.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构笔记-中间件-redis">
 <meta name="twitter:description" content="参考Redis的最常被问到知识点总结参考Redis性能问题排查解决手册(七)参考Redis 命令参考  解决的问题：数据库受磁盘IO的影响。把比较热的数据放在内存中。  概述 Redis 是一个基于内存的高性能key-value数据库。SQL约束比较强。 整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。因为是纯内存操作，Redis的性能非常出色，每秒可">
@@ -407,7 +407,7 @@
 <li>Redis业务处理为单线程模式，采用队列模式将并发访问变为串行访问。但是，其他功能也会fork或clone出一个线程执行。</li>
 <li>CS模式。</li>
 <li>a.IO能不能读取:使用<code>多路复用器（epoll）</code>解决更有效率地获取哪个client可以读取。b.有了，worker自己得去读取。c.计算。</li>
-<li>单worker线程，串行执行读客户端-计算-写客户端。原子执行。<code>串行之后，就会变的快</code>。</li>
+<li><code>单worker线程，串行执行读客户端-计算-写客户端。原子执行</code>【这样多个服务访问一个redis，不用加锁】。<code>串行之后，就会变的快</code>。</li>
 <li>redis 6.0增加了IO thread.IO变成多线程，计算是单线程。</li>
 <li>memcache的key和value都为字符串。redis的value有类型，不同类型调用不同的方法。</li>
 <li>redis hbase kafka都是二进制安全（只存字符数组，没有类型）。</li>
@@ -746,7 +746,9 @@
 <h3 id="键值设计"><a href="#键值设计" class="headerlink" title="键值设计"></a>键值设计</h3><h4 id="key名设计"><a href="#key名设计" class="headerlink" title="key名设计"></a>key名设计</h4><ol>
 <li>以业务名(或数据库名)为前缀(防止key冲突)，<code>用冒号分隔</code>，比如业务名:表名:id；</li>
 <li>保证语义的前提下，控制key的长度，当key较多时，内存占用也不容忽视；</li>
-<li>不要包含特殊字符。<h4 id="value设计"><a href="#value设计" class="headerlink" title="value设计"></a>value设计</h4></li>
+<li>不要包含特殊字符。</li>
+</ol>
+<h4 id="value设计"><a href="#value设计" class="headerlink" title="value设计"></a>value设计</h4><ol>
 <li>【拒绝bigkey】防止网卡流量、慢查询，string类型控制在10KB以内，hash、list、set、zset元素个数不要超过5000;</li>
 <li>非字符串的bigkey，不要使用del删除，使用hscan、sscan、zscan方式渐进式删除，同时要注意防止bigkey过期时间自动删除问题(例如一个200万的zset设置1小时过期，会触发del操作，造成阻塞，而且该操作不会不出现在慢查询中(latency可查)).</li>
 <li>【选择适合的数据类型】</li>
@@ -950,7 +952,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -961,7 +963,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -972,7 +974,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

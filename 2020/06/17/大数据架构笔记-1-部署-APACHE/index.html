@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="本文以3.2.1版本为主 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。 企业环境：在国内大型互联网企业中，使用较多的是 CDH 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。  hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式,参考hadoop 生态圈介绍  123451. 单机模">
+<meta name="description" content="本文以3.2.1版本为主 参考大数据运维实战参考尚硅谷大数据资料 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。 企业环境：在国内大型互联网企业中，使用较多的是 CDH【收费】 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。  版本兼容选择    组件 old new     Hadoop 2.7.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据架构笔记-1-hadoop安装配置命令">
 <meta property="og:url" content="http://yoursite.com/2020/06/17/大数据架构笔记-1-部署-APACHE/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
-<meta property="og:description" content="本文以3.2.1版本为主 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。 企业环境：在国内大型互联网企业中，使用较多的是 CDH 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。  hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式,参考hadoop 生态圈介绍  123451. 单机模">
+<meta property="og:description" content="本文以3.2.1版本为主 参考大数据运维实战参考尚硅谷大数据资料 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。 企业环境：在国内大型互联网企业中，使用较多的是 CDH【收费】 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。  版本兼容选择    组件 old new     Hadoop 2.7.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-27T09:58:46.225Z">
+<meta property="og:updated_time" content="2020-09-28T05:02:34.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据架构笔记-1-hadoop安装配置命令">
-<meta name="twitter:description" content="本文以3.2.1版本为主 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。 企业环境：在国内大型互联网企业中，使用较多的是 CDH 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。  hadoop搭建 参考官方文档开始集群 官方文档支持5种搭建方式,参考hadoop 生态圈介绍  123451. 单机模">
+<meta name="twitter:description" content="本文以3.2.1版本为主 参考大数据运维实战参考尚硅谷大数据资料 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。 企业环境：在国内大型互联网企业中，使用较多的是 CDH【收费】 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。  版本兼容选择    组件 old new     Hadoop 2.7.">
 
 
 
@@ -396,10 +396,109 @@
 
       
         <p>本文以3.2.1版本为主</p>
+<p>参考<a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=144#/detail/pc?id=3079" target="_blank" rel="noopener">大数据运维实战</a><br>参考<a href>尚硅谷大数据资料</a></p>
 <h1 id="选择发行版"><a href="#选择发行版" class="headerlink" title="选择发行版"></a>选择发行版</h1><ol>
 <li>对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。</li>
-<li>企业环境：在国内大型互联网企业中，使用较多的是 CDH 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。</li>
+<li>企业环境：在国内大型互联网企业中，使用较多的是 CDH【收费】 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。</li>
 </ol>
+<h1 id="版本兼容选择"><a href="#版本兼容选择" class="headerlink" title="版本兼容选择"></a>版本兼容选择</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>old</th>
+<th>new</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hadoop</td>
+<td>2.7.2</td>
+<td>3.1.3</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>3.4.10</td>
+<td>3.5.7</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>5.6.24</td>
+<td>5.7.16</td>
+</tr>
+<tr>
+<td>Hive</td>
+<td>1.2.1</td>
+<td>3.1.2</td>
+</tr>
+<tr>
+<td>Flume</td>
+<td>1.7.0</td>
+<td>1.9.0</td>
+</tr>
+<tr>
+<td>Kafka</td>
+<td>0.11-0.2</td>
+<td>2.11-2.4.1</td>
+</tr>
+<tr>
+<td>Kafka Eagle</td>
+<td>1.3.7</td>
+<td>1.4.5</td>
+</tr>
+<tr>
+<td>Azkaban</td>
+<td>2.5.0</td>
+<td>3.84.4</td>
+</tr>
+<tr>
+<td>Spark</td>
+<td>2.1.1</td>
+<td>3.0.0</td>
+</tr>
+<tr>
+<td>Hbase</td>
+<td>1.3.1</td>
+<td>2.0.5</td>
+</tr>
+<tr>
+<td>Phoenix</td>
+<td>4.14.1</td>
+<td>5.0.0</td>
+</tr>
+<tr>
+<td>Sqoop</td>
+<td>1.4.6</td>
+<td>1.4.6</td>
+</tr>
+<tr>
+<td>Presto</td>
+<td>0.189</td>
+<td>0.189</td>
+</tr>
+<tr>
+<td>Kylin</td>
+<td>2.5.1</td>
+<td>3.0.1</td>
+</tr>
+<tr>
+<td>Atlas</td>
+<td>0.8.4</td>
+<td>2.0.0</td>
+</tr>
+<tr>
+<td>Ranger</td>
+<td>2.0.0</td>
+<td>2.0.0</td>
+</tr>
+<tr>
+<td>Solr</td>
+<td>5.2.1</td>
+<td>7.7.0</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h1 id="hadoop搭建"><a href="#hadoop搭建" class="headerlink" title="hadoop搭建"></a>hadoop搭建</h1><ol>
 <li>参考官方文档<a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Prepare_to_Start_the_Hadoop_Cluster" target="_blank" rel="noopener">开始集群</a></li>
 <li>官方文档支持5种搭建方式,参考<a href="https://www.jianshu.com/p/c3a834e45ae3" target="_blank" rel="noopener">hadoop 生态圈介绍</a></li>
@@ -520,7 +619,7 @@
 <tbody>
 <tr>
 <td>fs.defaultFS</td>
-<td>NameNode URI</td>
+<td>访问HDFS文件系统的URI,默认端口是8020</td>
 <td>hdfs://host:port/ 主节点</td>
 <td>1</td>
 </tr>
@@ -536,7 +635,7 @@
 </tr>
 <tr>
 <td>hadoop.http.staticuser.user</td>
-<td>dr.who</td>
+<td>静态用户，默认dr.who</td>
 <td>The user name to filter as, on static web filters while rendering content. An example use is the HDFS web UI (user to be used for browsing files).</td>
 </tr>
 <tr>
@@ -923,7 +1022,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -934,7 +1033,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -945,7 +1044,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -978,7 +1077,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择发行版"><span class="nav-number">1.</span> <span class="nav-text">选择发行版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop搭建"><span class="nav-number">2.</span> <span class="nav-text">hadoop搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#伪分布式部署"><span class="nav-number">2.1.</span> <span class="nav-text">伪分布式部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全分布式集群搭建"><span class="nav-number">2.2.</span> <span class="nav-text">全分布式集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装java"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装java</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置环境变量"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hadoop"><span class="nav-number">2.2.2.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载获取二进制压缩包。"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">下载获取二进制压缩包。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压到指定目录并新建tmp目录-设置环境变量（PATH）即可。"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop集群配置（非安全）"><span class="nav-number">2.2.3.</span> <span class="nav-text">hadoop集群配置（非安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特定站点的配置"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">特定站点的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#环境变量"><span class="nav-number">2.2.3.1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置Hadoop守护进程"><span class="nav-number">2.2.3.1.2.</span> <span class="nav-text">配置Hadoop守护进程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-core-site-xml（）"><span class="nav-number">2.2.3.1.2.1.</span> <span class="nav-text">etc/hadoop/core-site.xml（）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-hdfs-site-xml"><span class="nav-number">2.2.3.1.2.2.</span> <span class="nav-text">etc/hadoop/hdfs-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-yarn-site-xml"><span class="nav-number">2.2.3.1.2.3.</span> <span class="nav-text">etc/hadoop/yarn-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-mapred-site-xml"><span class="nav-number">2.2.3.1.2.4.</span> <span class="nav-text">etc/hadoop/mapred-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#健康检查配置"><span class="nav-number">2.2.3.1.2.5.</span> <span class="nav-text">健康检查配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#修改etc-hadoop-workers"><span class="nav-number">2.2.3.1.2.6.</span> <span class="nav-text">修改etc/hadoop/workers</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置机架感知"><span class="nav-number">2.2.3.1.2.7.</span> <span class="nav-text">配置机架感知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#hadoop日志配置"><span class="nav-number">2.2.3.1.2.8.</span> <span class="nav-text">hadoop日志配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置本地网络-etc-hosts，主机名和IP的映射"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">配置本地网络/etc/hosts，主机名和IP的映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使主机名生效-etc-sysconfig-network中的hostname"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">使主机名生效/etc/sysconfig/network中的hostname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭防火墙（iptables）。"><span class="nav-number">2.2.3.4.</span> <span class="nav-text">关闭防火墙（iptables）。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭SELinux。"><span class="nav-number">2.2.3.5.</span> <span class="nav-text">关闭SELinux。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主从相互之间ssh免密登录"><span class="nav-number">2.2.3.6.</span> <span class="nav-text">主从相互之间ssh免密登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-Cluster，即高可用集群模式"><span class="nav-number">2.3.</span> <span class="nav-text">HA Cluster，即高可用集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-Federation-Cluster，即高可用联邦集群模式"><span class="nav-number">2.4.</span> <span class="nav-text">HA + Federation Cluster，即高可用联邦集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">2.5.</span> <span class="nav-text">启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次启动"><span class="nav-number">2.5.1.</span> <span class="nav-text">第一次启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看集群状态"><span class="nav-number">2.6.</span> <span class="nav-text">查看集群状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看端口"><span class="nav-number">2.7.</span> <span class="nav-text">查看端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hadoop命令"><span class="nav-number">2.8.</span> <span class="nav-text">hadoop命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hdfs"><span class="nav-number">2.8.1.</span> <span class="nav-text">hdfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mapreduce"><span class="nav-number">2.8.2.</span> <span class="nav-text">Mapreduce</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择发行版"><span class="nav-number">1.</span> <span class="nav-text">选择发行版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本兼容选择"><span class="nav-number">2.</span> <span class="nav-text">版本兼容选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop搭建"><span class="nav-number">3.</span> <span class="nav-text">hadoop搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#伪分布式部署"><span class="nav-number">3.1.</span> <span class="nav-text">伪分布式部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全分布式集群搭建"><span class="nav-number">3.2.</span> <span class="nav-text">全分布式集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装java"><span class="nav-number">3.2.1.</span> <span class="nav-text">安装java</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置环境变量"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hadoop"><span class="nav-number">3.2.2.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载获取二进制压缩包。"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">下载获取二进制压缩包。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压到指定目录并新建tmp目录-设置环境变量（PATH）即可。"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop集群配置（非安全）"><span class="nav-number">3.2.3.</span> <span class="nav-text">hadoop集群配置（非安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特定站点的配置"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">特定站点的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#环境变量"><span class="nav-number">3.2.3.1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置Hadoop守护进程"><span class="nav-number">3.2.3.1.2.</span> <span class="nav-text">配置Hadoop守护进程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-core-site-xml（）"><span class="nav-number">3.2.3.1.2.1.</span> <span class="nav-text">etc/hadoop/core-site.xml（）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-hdfs-site-xml"><span class="nav-number">3.2.3.1.2.2.</span> <span class="nav-text">etc/hadoop/hdfs-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-yarn-site-xml"><span class="nav-number">3.2.3.1.2.3.</span> <span class="nav-text">etc/hadoop/yarn-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#etc-hadoop-mapred-site-xml"><span class="nav-number">3.2.3.1.2.4.</span> <span class="nav-text">etc/hadoop/mapred-site.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#健康检查配置"><span class="nav-number">3.2.3.1.2.5.</span> <span class="nav-text">健康检查配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#修改etc-hadoop-workers"><span class="nav-number">3.2.3.1.2.6.</span> <span class="nav-text">修改etc/hadoop/workers</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置机架感知"><span class="nav-number">3.2.3.1.2.7.</span> <span class="nav-text">配置机架感知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#hadoop日志配置"><span class="nav-number">3.2.3.1.2.8.</span> <span class="nav-text">hadoop日志配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置本地网络-etc-hosts，主机名和IP的映射"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">配置本地网络/etc/hosts，主机名和IP的映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使主机名生效-etc-sysconfig-network中的hostname"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">使主机名生效/etc/sysconfig/network中的hostname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭防火墙（iptables）。"><span class="nav-number">3.2.3.4.</span> <span class="nav-text">关闭防火墙（iptables）。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭SELinux。"><span class="nav-number">3.2.3.5.</span> <span class="nav-text">关闭SELinux。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主从相互之间ssh免密登录"><span class="nav-number">3.2.3.6.</span> <span class="nav-text">主从相互之间ssh免密登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-Cluster，即高可用集群模式"><span class="nav-number">3.3.</span> <span class="nav-text">HA Cluster，即高可用集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-Federation-Cluster，即高可用联邦集群模式"><span class="nav-number">3.4.</span> <span class="nav-text">HA + Federation Cluster，即高可用联邦集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">3.5.</span> <span class="nav-text">启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次启动"><span class="nav-number">3.5.1.</span> <span class="nav-text">第一次启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看集群状态"><span class="nav-number">3.6.</span> <span class="nav-text">查看集群状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看端口"><span class="nav-number">3.7.</span> <span class="nav-text">查看端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hadoop命令"><span class="nav-number">3.8.</span> <span class="nav-text">hadoop命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hdfs"><span class="nav-number">3.8.1.</span> <span class="nav-text">hdfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mapreduce"><span class="nav-number">3.8.2.</span> <span class="nav-text">Mapreduce</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大数据,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。  hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserver提供服务。  hadoop3.0 新特性 Classpath isolation:增加此配置，防止不同版本jar包冲突。 Shell重写了。 支持HDFS中的擦除编码（Erasure Encoding）默认的EC策略可以节省50%的存储空间，同时">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据架构笔记-hadoop生态圈-学习路线">
+<meta property="og:url" content="http://yoursite.com/2019/12/10/大数据架构笔记-0-hadoop概览及生态圈及学习路线/index.html">
+<meta property="og:site_name" content="锦枫紫兰">
+<meta property="og:description" content="求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。  hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserver提供服务。  hadoop3.0 新特性 Classpath isolation:增加此配置，防止不同版本jar包冲突。 Shell重写了。 支持HDFS中的擦除编码（Erasure Encoding）默认的EC策略可以节省50%的存储空间，同时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-28T05:02:34.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据架构笔记-hadoop生态圈-学习路线">
+<meta name="twitter:description" content="求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。  hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserver提供服务。  hadoop3.0 新特性 Classpath isolation:增加此配置，防止不同版本jar包冲突。 Shell重写了。 支持HDFS中的擦除编码（Erasure Encoding）默认的EC策略可以节省50%的存储空间，同时">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/10/大数据架构笔记-0-hadoop概览及生态圈及学习路线/">
+
+
+
+
+
+  <title>大数据架构笔记-hadoop生态圈-学习路线 | 锦枫紫兰</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">锦枫紫兰</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/大数据架构笔记-0-hadoop概览及生态圈及学习路线/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="锦枫紫兰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="锦枫紫兰">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">大数据架构笔记-hadoop生态圈-学习路线</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T18:16:38+08:00">
+                2019-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/12/10/大数据架构笔记-0-hadoop概览及生态圈及学习路线/" class="leancloud_visitors" data-flag-title="大数据架构笔记-hadoop生态圈-学习路线">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="求职"><a href="#求职" class="headerlink" title="求职"></a>求职</h1><ol>
+<li>简历要好好准备；</li>
+<li>准备面试：先讲框架，再谈细节。优化细节，框架演化。</li>
+</ol>
+<h1 id="hadoop生态圈"><a href="#hadoop生态圈" class="headerlink" title="hadoop生态圈"></a>hadoop生态圈</h1><ol>
+<li>从上往下，从底层往上层。</li>
+<li>所有需要通过webserver提供服务。</li>
+</ol>
+<h2 id="hadoop"><a href="#hadoop" class="headerlink" title="hadoop"></a>hadoop</h2><h3 id="3-0-新特性"><a href="#3-0-新特性" class="headerlink" title="3.0 新特性"></a>3.0 新特性</h3><ol>
+<li>Classpath isolation:增加此配置，防止不同版本jar包冲突。</li>
+<li>Shell重写了。</li>
+<li>支持HDFS中的擦除编码（Erasure Encoding）默认的EC策略可以节省50%的存储空间，同时还可以承受更多的存储故障。</li>
+<li>DataNode内部添加了负载均衡（Disk Balancer）。</li>
+<li>MapReduce任务级本地优化。</li>
+<li>MapReduce内存参数自动推断。</li>
+<li>基于cgroup的内存隔离和IO Disk隔离。</li>
+<li>支持更改分配容器的资源Container resizing（内存和磁盘）。</li>
+</ol>
+<h3 id="3-0默认端口发生变化（）"><a href="#3-0默认端口发生变化（）" class="headerlink" title="3.0默认端口发生变化（）"></a>3.0默认端口发生变化（）</h3><h3 id="Hadoop-Common"><a href="#Hadoop-Common" class="headerlink" title="Hadoop Common"></a>Hadoop Common</h3><h3 id="HDFS（分布式文件系统）-最底层-【存储】"><a href="#HDFS（分布式文件系统）-最底层-【存储】" class="headerlink" title="HDFS（分布式文件系统） 最底层  【存储】"></a>HDFS（分布式文件系统） 最底层  【存储】</h3><h3 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h3><h3 id="MapReduce-【计算框架】"><a href="#MapReduce-【计算框架】" class="headerlink" title="MapReduce 【计算框架】"></a>MapReduce 【计算框架】</h3><ol>
+<li>适用于离线的批量的数据计算。</li>
+</ol>
+<h2 id="其他相关组件（独立项目）"><a href="#其他相关组件（独立项目）" class="headerlink" title="其他相关组件（独立项目）"></a>其他相关组件（独立项目）</h2><h3 id="Flume【日志收集工具】"><a href="#Flume【日志收集工具】" class="headerlink" title="Flume【日志收集工具】"></a>Flume【日志收集工具】</h3><ol>
+<li>Flume 是将数据从产生、传输、处理并最终写入目标路径的过程抽象为数据流，在具体的数据流中，数据源支持在 Flume 中定制数据发送方，从而支持收集各种不同协议数据。</li>
+<li>Flume 数据流提供对日志数据进行简单处理的能力，如过滤、格式转换等。</li>
+<li>Flume 还具有能够将日志写往各种数据目标（文件、HDFS、网络）的能力。在 Hadoop 平台，我们主要使用的是通过 Flume 将数据从源服务器写入 Hadoop 的 HDFS 上。</li>
+</ol>
+<h3 id="Hbase（分布式数据库）【存储】"><a href="#Hbase（分布式数据库）【存储】" class="headerlink" title="Hbase（分布式数据库）【存储】"></a>Hbase（分布式数据库）【存储】</h3><ol>
+<li>基于HDFS，数据还是存在于HDFS。</li>
+<li>列存储。</li>
+<li>最大优点是查询速度快，这对数据完整性要求不高的大数据处理领域，比如互联网，犹为重要。</li>
+<li>非常适合需对数据进行随机读、写操作、比如每秒对PB级数据进行几千次读、写访问是非常简单的操作。 其次，Hbase构建在HDFS之上，其内部管理的文件全部存储在HDFS中。这使它具有高度容错性和可扩展性，并支持Hadoop mapreduce程序设计模型。</li>
+<li>如果你的应用是<code>交易历史查询系统</code>、查询场景简单，检索条件较少、每天有<code>千万行数据更新</code>、那么Hbase将是一个很好的选择。</li>
+</ol>
+<h3 id="Hive【SQL引擎】"><a href="#Hive【SQL引擎】" class="headerlink" title="Hive【SQL引擎】"></a>Hive【SQL引擎】</h3><ol>
+<li>本质是mapreduce。</li>
+<li>将SQL转换到MapReduce上执行。</li>
+<li>哪怕你不熟悉 MapReduce 程序，只要会写标准的 SQL 语句，也能对 HDFS 上的海量数据进行分析和计算。<code>通常做统计</code>。</li>
+</ol>
+<h3 id="Kafka【分布式消息队列】"><a href="#Kafka【分布式消息队列】" class="headerlink" title="Kafka【分布式消息队列】"></a>Kafka【分布式消息队列】</h3><ol>
+<li>最大特性就是可以实时的处理大量数据以满足各种需求场景：比如基于 Hadoop 平台的数据分析、低时延的实时系统、Storm/Spark 流式处理引擎等。</li>
+<li>Kafka 现在它已被多家大型公司作为多种类型的数据管道和消息系统使用。</li>
+</ol>
+<h3 id="mahout【机器学习】"><a href="#mahout【机器学习】" class="headerlink" title="mahout【机器学习】"></a>mahout【机器学习】</h3><h3 id="Oozie【工作流调度器】"><a href="#Oozie【工作流调度器】" class="headerlink" title="Oozie【工作流调度器】"></a>Oozie【工作流调度器】</h3><ol>
+<li>Oozie 是一个基于工作流引擎的调度器，它其实就是一个运行在 Java Servlet 容器（如 Tomcat）中的 Javas Web 应用，你可以在它上面运行 Hadoop 的 Map Reduce 和 Pig 等任务，。</li>
+<li>对于 Oozie 来说，工作流就是一系列的操作（如 Hadoop 的 MR，Pig 的任务、Shell 任务等），通过 Oozie 可以实现多个任务的依赖性。也就是说，一个操作的输入依赖于前一个任务的输出，只有前一个操作完全完成后，才能开始第二个。</li>
+<li>Oozie 工作流通过 hPDL 定义（hPDL 是一种 XML 的流程定义语言），工作流操作通过远程系统启动任务。当任务完成后，远程系统会进行回调来通知任务已经结束，然后再开始下一个操作。</li>
+</ol>
+<h3 id="pig"><a href="#pig" class="headerlink" title="pig"></a>pig</h3><ol>
+<li>Hive 可以把脚本和 SQL 语言翻译成 MapReduce 程序，扔给计算引擎去计算。Pig 与 Hive 类似，它定义了一种数据流语言，即 Pig Latin，它是 <code>MapReduce 编程的复杂性的抽象</code>.</li>
+<li>Pig Latin 可以完成排序、过滤、求和、关联等操作，支持自定义函数。Pig 自动把 Pig Latin 映射为 MapReduce 作业，上传到集群运行，减少用户编写 Java 程序的苦恼。</li>
+</ol>
+<h3 id="Spark【计算框架】"><a href="#Spark【计算框架】" class="headerlink" title="Spark【计算框架】"></a>Spark【计算框架】</h3><ol>
+<li>Spark 提供了内存中的分布式计算能力，相比传统的 MapReduce 大数据分析效率更高、运行速度更快。总结一句话：以内存换效率。</li>
+<li>批量计算，spark core</li>
+<li>实时计算， stream</li>
+<li>还可以机器学习， mllib</li>
+<li>还可以SQL</li>
+</ol>
+<h3 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h3><ol>
+<li>通过 Sqoop（SQL-to-Hadoop）主要用于传统数据库和 Hadoop 之间传输数据。数据的导入和导出本质上是 MapreDuce 程序，充分利用了 MR 的并行化和容错性。</li>
+</ol>
+<h3 id="Storm【计算框架】【渐渐过时】"><a href="#Storm【计算框架】【渐渐过时】" class="headerlink" title="Storm【计算框架】【渐渐过时】"></a>Storm【计算框架】【渐渐过时】</h3><ol>
+<li>实时计算。</li>
+</ol>
+<h3 id="zookeeper-集群管理，分布式锁服务"><a href="#zookeeper-集群管理，分布式锁服务" class="headerlink" title="zookeeper 集群管理，分布式锁服务"></a>zookeeper 集群管理，分布式锁服务</h3><ol>
+<li>ZooKeeper 相当于一个和事佬的角色，如果两人之间发生了一些矛盾或者冲突，无法自行解决的话，这个时候就需要 ZooKeeper 这个和事佬从中进行调解，而和事佬调解的方式是站在第三方客观的角度，根据一些规则（如道德规则、法律规则），客观的对冲突双方做出合理、合规的判决。</li>
+<li>节点丢失或重启，都会发起<code>选举</code>。</li>
+</ol>
+<h1 id="常见业务"><a href="#常见业务" class="headerlink" title="常见业务"></a>常见业务</h1><h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><ol>
+<li>搜索内容；</li>
+<li>提供服务。</li>
+</ol>
+<h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><h2 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h2><h1 id="职业方向"><a href="#职业方向" class="headerlink" title="职业方向"></a>职业方向</h1><h1 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h1><ol>
+<li><a href="https://www.yuque.com/sunzanfeng/weovci/hy3i5c" target="_blank" rel="noopener">雨雀文档</a></li>
+</ol>
+<h2 id="Java-SE核心知识（第一阶段）"><a href="#Java-SE核心知识（第一阶段）" class="headerlink" title="Java SE核心知识（第一阶段）"></a>Java SE核心知识（第一阶段）</h2><h3 id="Java编程概述及基本语法"><a href="#Java编程概述及基本语法" class="headerlink" title="Java编程概述及基本语法"></a>Java编程概述及基本语法</h3><ol>
+<li>Java技术体系平台</li>
+<li>Java核心机制与JVM运行原理</li>
+<li>Java开发环境搭建</li>
+<li>Java变量、数据类型、数组及运算符</li>
+<li>Java流程控制结构</li>
+<li>面向对象编程</li>
+<li>高级类特性</li>
+<li>Java API、异常机制、反射及IO流</li>
+<li>Lambda表达式</li>
+<li>函数式接口</li>
+</ol>
+<h3 id="Java集合与泛型"><a href="#Java集合与泛型" class="headerlink" title="Java集合与泛型"></a>Java集合与泛型</h3><p>集合框架概述<br>Collection 系列集合<br>List系列集合与Set系列集合<br>Iterator 与 ListIterator<br>Collections 工具类<br>集合中使用泛型<br>自定义泛型</p>
+<h3 id="Java多线程技术"><a href="#Java多线程技术" class="headerlink" title="Java多线程技术"></a>Java多线程技术</h3><p>线程的原理<br>线程的创建与启动<br>创建线程的几种方式对比<br>继承 Thread 类与实现 Runnable 接口<br>创建线程方式对比<br>线程的控制<br>线程的调度<br>线程的优先级<br>线程的生命周期<br>多线程的安全问题与解决办法<br>线程的同步<br>互斥锁<br>线程的死锁问题<br>线程通信<br>生产者与消费者案例</p>
+<h3 id="Java-SE网路编程"><a href="#Java-SE网路编程" class="headerlink" title="Java SE网路编程"></a>Java SE网路编程</h3><p>网络编程基础知识<br>网络编程的主要问题<br>如何实现网络中主机的相互通讯<br>网络通讯要素<br>网络通信协议<br>OSI参考模型<br>TCP/IP参考模型(或TCP/IP协议)<br>数据的封装与拆封<br>Java.net.InetAddress 类<br>TCP 协议与UDP协议<br>基于TCP协议的网络编程<br>Socket 的TCP编程<br>基于UDP协议的网络编程<br>URL编程<br>针对HTTP协议的URLConnection</p>
+<h2 id="Java-Web数据可视化（第二阶段）"><a href="#Java-Web数据可视化（第二阶段）" class="headerlink" title="Java Web数据可视化（第二阶段）"></a>Java Web数据可视化（第二阶段）</h2><h3 id="Java-Web-后端技术"><a href="#Java-Web-后端技术" class="headerlink" title="Java Web 后端技术"></a>Java Web 后端技术</h3><p>Tomcat&amp;Nginx服务器中间件<br>Servlet规范组件<br>Ajax&amp;Json轻量级数据交互<br>Maven项目构建工具<br>Preformance 工具的使用及注意事项<br>Git项目协作工具<br>Spring依赖管理框架<br>SpringMVC表现层框架<br>Mybatis持久层框架<br>分布式架构理论</p>
+<h3 id="前端可视化技术"><a href="#前端可视化技术" class="headerlink" title="前端可视化技术"></a>前端可视化技术</h3><p>XML可扩展标记语言<br>HTML、CSS、JavaScript静态化技术<br>Jquery、Vue脚本框架<br>ECharts可视化组件<br>FusionCharts可视化组件</p>
+<h3 id="关系型数据库MySQL高级应用"><a href="#关系型数据库MySQL高级应用" class="headerlink" title="关系型数据库MySQL高级应用"></a>关系型数据库MySQL高级应用</h3><p>MySQL基础<br>MySQL数据库对象<br>SQL结构化查询语言<br>JDBC操作<br>MySQL查询和慢查询日志分析<br>MySQL调优之索引优化<br>MySQL调优之存储引擎优化<br>MySQL调优之锁机制优化<br>MySQL高可用</p>
+<h3 id="Linux-服务器应用实战"><a href="#Linux-服务器应用实战" class="headerlink" title="Linux 服务器应用实战"></a>Linux 服务器应用实战</h3><p>Linux系统基础<br>Linux网络基础<br>Linux安全策略<br>Shell编程基础及应用<br>Linux运维技巧</p>
+<h3 id="拉勾网招聘行业报表数据可视化项目实战"><a href="#拉勾网招聘行业报表数据可视化项目实战" class="headerlink" title="拉勾网招聘行业报表数据可视化项目实战"></a>拉勾网招聘行业报表数据可视化项目实战</h3><h2 id="Hadoop核心及生态圈技术栈（第三阶段）"><a href="#Hadoop核心及生态圈技术栈（第三阶段）" class="headerlink" title="Hadoop核心及生态圈技术栈（第三阶段）"></a>Hadoop核心及生态圈技术栈（第三阶段）</h2><h3 id="Hadoop核心之分布式文件系统HDFS"><a href="#Hadoop核心之分布式文件系统HDFS" class="headerlink" title="Hadoop核心之分布式文件系统HDFS"></a>Hadoop核心之分布式文件系统HDFS</h3><p>大数据概述<br>Hadoop概述<br>Apache Hadoop完全分布式集群部署<br>HDFS简介及应用场景<br>HDFS原理详解<br>HDFS Shell 操作<br>HDFS Java API 操作<br>HDFS原理输入及调优<br>双缓冲机制<br>HDFS源码剖析、设计模式及二次开发</p>
+<h3 id="Hadoop核心之分布式计算框架MapReduce"><a href="#Hadoop核心之分布式计算框架MapReduce" class="headerlink" title="Hadoop核心之分布式计算框架MapReduce"></a>Hadoop核心之分布式计算框架MapReduce</h3><p>MapReduce设计目标及核心思想<br>MapReduce主要功能<br>MapReduce处理流程<br>MapReduce入门案例<br>Mapper抽象类与Reducer抽象类<br>MapReduce内置数据类型及自定义数据类型<br>如何确定Map和Reduce个数<br>MapReduce Shuffle过程之Combine合并机制<br>MapReduce Shuffle过程之Partition分区机制、自定义分区<br>MapReduce Shuffle之序列化<br>MapReduce Shuffle过程之自定义排序及二次排序<br>MapReduce Shuffle过程之数据压缩机制<br>自定义InputFormat及OutputFormat<br>MapReduce生产级调优<br>MapReduce案例实战</p>
+<h3 id="Hadoop核心之分布式资源调度框架Yarn"><a href="#Hadoop核心之分布式资源调度框架Yarn" class="headerlink" title="Hadoop核心之分布式资源调度框架Yarn"></a>Hadoop核心之分布式资源调度框架Yarn</h3><p>分布式资源调度及Yarn简介<br>Yarn架构及原理<br>Yarn核心组件之ResourceManager 资源管理器<br>Yarn核心组件之NodeManager 节点管理器<br>Yarn核心组件之Application Master 任务专员<br>Yarn核心组件之Container 容器<br>Yarn资源调度FIFO策略和应用<br>Yarn资源调度Fair策略和应用<br>Yarn资源调度Capacity策略和应用<br>Yarn多租户资源调度配置<br>Yarn生产级调优</p>
+<h3 id="Hadoop生态圈技术栈（上）"><a href="#Hadoop生态圈技术栈（上）" class="headerlink" title="Hadoop生态圈技术栈（上）"></a>Hadoop生态圈技术栈（上）</h3><p>数据仓库Hive高级应用<br>ETL转换抽取工具Sqoop<br>ETL转换抽取工具CDC<br>ETL转换抽取工具DataX<br>数据采集工具Flume<br>分布式协调服务组件ZooKeeper<br>海量列式非关系型数据库HBase</p>
+<h3 id="Hadoop生态圈技术栈（下）"><a href="#Hadoop生态圈技术栈（下）" class="headerlink" title="Hadoop生态圈技术栈（下）"></a>Hadoop生态圈技术栈（下）</h3><p>海量列式非关系型数据库HBase<br>SQL语义级查询系统Impala<br>任务调度组件Oozie<br>任务调度组件Azkaban<br>任务调度组件airflow</p>
+<h2 id="分布式缓存Redis及Kafka消息中间件（第四阶段）"><a href="#分布式缓存Redis及Kafka消息中间件（第四阶段）" class="headerlink" title="分布式缓存Redis及Kafka消息中间件（第四阶段）"></a>分布式缓存Redis及Kafka消息中间件（第四阶段）</h2><h3 id="高性能分布式缓存Redis"><a href="#高性能分布式缓存Redis" class="headerlink" title="高性能分布式缓存Redis"></a>高性能分布式缓存Redis</h3><p>NoSQL&amp;Redis入门<br>分布式数据库CAP原理<br>Redis五大数据类型和基本操作命令<br>Redis总体配置Redis.conf<br>Redis持久化（RDB和AOF）<br>Redis事务控制<br>Redis发布和订阅<br>Redis（Master/Slave）主从复制<br>Java客户端Jedis<br>通讯协议及事件处理机制<br>Redis + Lua环境协作组件<br>Redis慢查询及监视器</p>
+<h3 id="高吞吐消息中间件Kafka"><a href="#高吞吐消息中间件Kafka" class="headerlink" title="高吞吐消息中间件Kafka"></a>高吞吐消息中间件Kafka</h3><p>Kafka架构<br>Kafka安装及高级应用<br>Kafka生产者原理<br>Kafka broker端原理<br>Kafka 集群<br>Kafka消费者源码剖析<br>Kafka深度调优<br>Flume+Kafka整合应用</p>
+<h2 id="PB级电商离线数仓项目实战（第五阶段）"><a href="#PB级电商离线数仓项目实战（第五阶段）" class="headerlink" title="PB级电商离线数仓项目实战（第五阶段）"></a>PB级电商离线数仓项目实战（第五阶段）</h2><p><a href="https://www.bilibili.com/video/BV1dD4y1d7wL" target="_blank" rel="noopener">大数据数据仓库实战项目-电商数仓教程V3.0最新版</a></p>
+<ol>
+<li>数仓分层建设及理论梳理</li>
+<li>数仓建设痛点剖析</li>
+<li>数据血缘管理机制</li>
+<li>质量监控策略</li>
+<li>离线数仓全流程性能优化方案</li>
+<li>电商行业离线数仓业务真实级源码构建与剖析</li>
+</ol>
+<h2 id="内存级快速计算引擎Spark（第六阶段）"><a href="#内存级快速计算引擎Spark（第六阶段）" class="headerlink" title="内存级快速计算引擎Spark（第六阶段）"></a>内存级快速计算引擎Spark（第六阶段）</h2><h3 id="Scala编程"><a href="#Scala编程" class="headerlink" title="Scala编程"></a>Scala编程</h3><p>Scala基础<br>Scala控制结构和函数<br>Scala数组相关操作<br>Scala映射和元组<br>Scala继承、特质、高阶函数<br>Scala集合<br>Scala模式匹配和样例类<br>Scala偏函数<br>Scala Future及类型参数<br>Scala 高级类型<br>Scala 隐式转换和隐式参数</p>
+<h3 id="Spark实战应用"><a href="#Spark实战应用" class="headerlink" title="Spark实战应用"></a>Spark实战应用</h3><p>Spark Core核心<br>Spark SQL结构化处理<br>Spark Streaming流处理<br>Spark GraphX图挖掘<br>Spark MLib机器学习<br>Spark综合案例实战</p>
+<h2 id="智慧物流项目（第七阶段）"><a href="#智慧物流项目（第七阶段）" class="headerlink" title="智慧物流项目（第七阶段）"></a>智慧物流项目（第七阶段）</h2><h3 id="数据采集"><a href="#数据采集" class="headerlink" title="数据采集"></a>数据采集</h3><p>Flume/Maxwell</p>
+<h3 id="仓库缺货-销量预测"><a href="#仓库缺货-销量预测" class="headerlink" title="仓库缺货-销量预测"></a>仓库缺货-销量预测</h3><p>LigthGBM模型算法</p>
+<h3 id="运输车辆调度"><a href="#运输车辆调度" class="headerlink" title="运输车辆调度"></a>运输车辆调度</h3><p>动态规划算法</p>
+<h3 id="车辆位置-指标实时监控"><a href="#车辆位置-指标实时监控" class="headerlink" title="车辆位置/指标实时监控"></a>车辆位置/指标实时监控</h3><p>实时指标Redis存储<br>SparkStreaming消费一致性，Exactly Once解决方案</p>
+<h3 id="轨迹回放"><a href="#轨迹回放" class="headerlink" title="轨迹回放"></a>轨迹回放</h3><p>HBase海量历史数据存储<br>HBase应用及优化</p>
+<h3 id="多维度业务指标看板"><a href="#多维度业务指标看板" class="headerlink" title="多维度业务指标看板"></a>多维度业务指标看板</h3><h2 id="实时计算领域最锋利的武器Flink（第八阶段）"><a href="#实时计算领域最锋利的武器Flink（第八阶段）" class="headerlink" title="实时计算领域最锋利的武器Flink（第八阶段）"></a>实时计算领域最锋利的武器Flink（第八阶段）</h2><h3 id="Flink基础"><a href="#Flink基础" class="headerlink" title="Flink基础"></a>Flink基础</h3><p>Flink 的应用场景和架构模型<br>Flink 入门程序 WordCount 和 SQL 实现<br>Flink 的编程模型与其他框架比较<br>Flink 常用的 DataSet 和 DataStream API<br>Flink SQL &amp; Table 编程和案例<br>Flink 集群安装部署和 HA 配置</p>
+<h3 id="Flink进阶"><a href="#Flink进阶" class="headerlink" title="Flink进阶"></a>Flink进阶</h3><p>Flink 常见核心概念分析<br>Flink 窗口、时间和水印<br>Flink 状态与容错<br>Flink Side OutPut 分流<br>Flink CEP 复杂事件处理<br>Flink 常用的 Source 和 Connector</p>
+<h3 id="Flink高级实践及调优"><a href="#Flink高级实践及调优" class="headerlink" title="Flink高级实践及调优"></a>Flink高级实践及调优</h3><p>Flink 高可用配置<br>Flink Exactly-once 实现原理解析<br>Flink反压问题排查<br>Flink数据倾斜问题处理<br>Flink并行度和资源设置<br>Flink生产环境作业监控<br>Flink维表关联方案<br>Flink海量数据高效去重<br>Flink与Kafka的整合<br>Flink 中 watermark 的定义和使用<br>Flink 中的聚合函数和累加器的设计和使用<br>自定义消息事件及Pattern</p>
+<h3 id="Flink综合案例实战"><a href="#Flink综合案例实战" class="headerlink" title="Flink综合案例实战"></a>Flink综合案例实战</h3><h2 id="大数据新技术实践（第九阶段）"><a href="#大数据新技术实践（第九阶段）" class="headerlink" title="大数据新技术实践（第九阶段）"></a>大数据新技术实践（第九阶段）</h2><h3 id="OLAP列式数据库管理系统ClickHouse"><a href="#OLAP列式数据库管理系统ClickHouse" class="headerlink" title="OLAP列式数据库管理系统ClickHouse"></a>OLAP列式数据库管理系统ClickHouse</h3><p>ClickHouse简介及应用场景<br>ClickHouse架构及原理<br>ClickHouse数据类型<br>ClickHouse列设计<br>ClickHouse物化列&amp;表达式列<br>ClickHouse实战案例</p>
+<h3 id="新型列式存储分布式数据库Kudu"><a href="#新型列式存储分布式数据库Kudu" class="headerlink" title="新型列式存储分布式数据库Kudu"></a>新型列式存储分布式数据库Kudu</h3><p>Kudu 简介及应用场景<br>Kudu 的高层设计<br>Kudu 中的角色<br>Kudu 中的概念与机制<br>Kudu 安装部署<br>Kudu 管理<br>Kudu操作接口<br>Kudu性能调优<br>Kudu实战案例</p>
+<h3 id="开源的分布式分析引擎Kylin"><a href="#开源的分布式分析引擎Kylin" class="headerlink" title="开源的分布式分析引擎Kylin"></a>开源的分布式分析引擎Kylin</h3><p>Kylin的工作原理<br>Kylin的技术架构<br>Kylin的主要特点<br>Kylin快速入门<br>Cube优化<br>增量构建<br>查询和可视化<br>Cube Planner及仪表盘<br>流式构建<br>Kylin实战案例</p>
+<h3 id="实时统计分析开源数据存储Druid"><a href="#实时统计分析开源数据存储Druid" class="headerlink" title="实时统计分析开源数据存储Druid"></a>实时统计分析开源数据存储Druid</h3><p>Druid原理及部署<br>Druid数据摄入<br>Druid客户端<br>Druid实战案例</p>
+<h2 id="Elastic-Stack-日志搜索、挖掘及可视化解决方案（第十阶段）"><a href="#Elastic-Stack-日志搜索、挖掘及可视化解决方案（第十阶段）" class="headerlink" title="Elastic Stack 日志搜索、挖掘及可视化解决方案（第十阶段）"></a>Elastic Stack 日志搜索、挖掘及可视化解决方案（第十阶段）</h2><h3 id="Elasticsearch全文搜索引擎"><a href="#Elasticsearch全文搜索引擎" class="headerlink" title="Elasticsearch全文搜索引擎"></a>Elasticsearch全文搜索引擎</h3><p>认识全文搜索引擎<br>倒排索引机制<br>全文搜索引擎Elasticsearch介绍<br>Elasticsearch Single-Node Mode快速部署<br>Elasticsearch之入门使用<br>Elasticsearch之高级应用<br>Elasticsearch之企业级高可用分布式集群<br>Elasticsearch之数据模型构建<br>Elasticsearch之拉勾网亿级数据量搜索实战<br>Elasticsearch之深度应用及原理剖析<br>Elasticsearch 7.x分布式集群调优策略</p>
+<h3 id="Logstash采集、Kibana展示方案"><a href="#Logstash采集、Kibana展示方案" class="headerlink" title="Logstash采集、Kibana展示方案"></a>Logstash采集、Kibana展示方案</h3><p>Intput插件应用及原理<br>自定义Intput插件<br>Filter插件<br>自定义Filter过滤插件<br>Output插件应用及原理<br>自定义Output插件<br>Kibana可视化组件</p>
+<h2 id="电商行业实时数仓项目（第十一阶段）"><a href="#电商行业实时数仓项目（第十一阶段）" class="headerlink" title="电商行业实时数仓项目（第十一阶段）"></a>电商行业实时数仓项目（第十一阶段）</h2><p>Flink流式处理技术构建复杂的电商订单指标<br>ClickHouse快速电商业务查询<br>数据完整处理链条展现<br>电商大促峰值数据大数据解决方案</p>
+<h2 id="Hadoop-Spark大数据处理算法及案例（第十二阶段）"><a href="#Hadoop-Spark大数据处理算法及案例（第十二阶段）" class="headerlink" title="Hadoop/Spark大数据处理算法及案例（第十二阶段）"></a>Hadoop/Spark大数据处理算法及案例（第十二阶段）</h2><h3 id="大数据处理算法及案例（上）"><a href="#大数据处理算法及案例（上）" class="headerlink" title="大数据处理算法及案例（上）"></a>大数据处理算法及案例（上）</h3><p>K-均值算法<br>KNN算法<br>朴素贝叶斯<br>马尔可夫链<br>推荐算法<br>成对文档相似性<br>算法案例实战应用</p>
+<h3 id="大数据处理算法及案例（下）"><a href="#大数据处理算法及案例（下）" class="headerlink" title="大数据处理算法及案例（下）"></a>大数据处理算法及案例（下）</h3><p>线性回归<br>Cox回归<br>皮尔逊（Pearson）相关分析<br>社交网络分析之推荐系统<br>社交网络分析之三角形计数<br>社交网络分析之情感分析<br>算法案例实战应用</p>
+<h2 id="机器学习（第十三阶段）"><a href="#机器学习（第十三阶段）" class="headerlink" title="机器学习（第十三阶段）"></a>机器学习（第十三阶段）</h2><h3 id="Python-编程核心"><a href="#Python-编程核心" class="headerlink" title="Python 编程核心"></a>Python 编程核心</h3><p>交互式解释器<br>Python基础语法<br>Python面向对象<br>Python数据结构<br>Anaconda工具使用</p>
+<h3 id="Python编程实战"><a href="#Python编程实战" class="headerlink" title="Python编程实战"></a>Python编程实战</h3><p>PySpark<br>Python与SparkSql整合<br>Python与SparkStreaming整合<br>Python+SparkMllib机器学习实战项目</p>
+<h2 id="人才用户画像匹配系统（第十四阶段）"><a href="#人才用户画像匹配系统（第十四阶段）" class="headerlink" title="人才用户画像匹配系统（第十四阶段）"></a>人才用户画像匹配系统（第十四阶段）</h2><p>用户建模确定特征维度<br>标签分类及标签库设计<br>ETL计算<br>特征处理<br>推荐算法模型处理，人才和企业精准对接</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大数据/" rel="tag"><i class="fa fa-tag"></i>大数据</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/10/大数据架构笔记-0-大数据架构的需求和演进实例/" rel="next" title="大数据架构笔记-hadoop生态圈">
+                <i class="fa fa-chevron-left"></i> 大数据架构笔记-hadoop生态圈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/11/产品设计-SAAS/" rel="prev" title="产品设计-SAAS">
+                产品设计-SAAS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">锦枫紫兰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#求职"><span class="nav-number">1.</span> <span class="nav-text">求职</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop生态圈"><span class="nav-number">2.</span> <span class="nav-text">hadoop生态圈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hadoop"><span class="nav-number">2.1.</span> <span class="nav-text">hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-0-新特性"><span class="nav-number">2.1.1.</span> <span class="nav-text">3.0 新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-0默认端口发生变化（）"><span class="nav-number">2.1.2.</span> <span class="nav-text">3.0默认端口发生变化（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-Common"><span class="nav-number">2.1.3.</span> <span class="nav-text">Hadoop Common</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS（分布式文件系统）-最底层-【存储】"><span class="nav-number">2.1.4.</span> <span class="nav-text">HDFS（分布式文件系统） 最底层  【存储】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YARN"><span class="nav-number">2.1.5.</span> <span class="nav-text">YARN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MapReduce-【计算框架】"><span class="nav-number">2.1.6.</span> <span class="nav-text">MapReduce 【计算框架】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他相关组件（独立项目）"><span class="nav-number">2.2.</span> <span class="nav-text">其他相关组件（独立项目）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Flume【日志收集工具】"><span class="nav-number">2.2.1.</span> <span class="nav-text">Flume【日志收集工具】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hbase（分布式数据库）【存储】"><span class="nav-number">2.2.2.</span> <span class="nav-text">Hbase（分布式数据库）【存储】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hive【SQL引擎】"><span class="nav-number">2.2.3.</span> <span class="nav-text">Hive【SQL引擎】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka【分布式消息队列】"><span class="nav-number">2.2.4.</span> <span class="nav-text">Kafka【分布式消息队列】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mahout【机器学习】"><span class="nav-number">2.2.5.</span> <span class="nav-text">mahout【机器学习】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oozie【工作流调度器】"><span class="nav-number">2.2.6.</span> <span class="nav-text">Oozie【工作流调度器】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pig"><span class="nav-number">2.2.7.</span> <span class="nav-text">pig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark【计算框架】"><span class="nav-number">2.2.8.</span> <span class="nav-text">Spark【计算框架】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqoop"><span class="nav-number">2.2.9.</span> <span class="nav-text">Sqoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Storm【计算框架】【渐渐过时】"><span class="nav-number">2.2.10.</span> <span class="nav-text">Storm【计算框架】【渐渐过时】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper-集群管理，分布式锁服务"><span class="nav-number">2.2.11.</span> <span class="nav-text">zookeeper 集群管理，分布式锁服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见业务"><span class="nav-number">3.</span> <span class="nav-text">常见业务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索"><span class="nav-number">3.1.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广告"><span class="nav-number">3.2.</span> <span class="nav-text">广告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐"><span class="nav-number">3.3.</span> <span class="nav-text">推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#职业方向"><span class="nav-number">4.</span> <span class="nav-text">职业方向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#学习路线"><span class="nav-number">5.</span> <span class="nav-text">学习路线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-SE核心知识（第一阶段）"><span class="nav-number">5.1.</span> <span class="nav-text">Java SE核心知识（第一阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java编程概述及基本语法"><span class="nav-number">5.1.1.</span> <span class="nav-text">Java编程概述及基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java集合与泛型"><span class="nav-number">5.1.2.</span> <span class="nav-text">Java集合与泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java多线程技术"><span class="nav-number">5.1.3.</span> <span class="nav-text">Java多线程技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-SE网路编程"><span class="nav-number">5.1.4.</span> <span class="nav-text">Java SE网路编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Web数据可视化（第二阶段）"><span class="nav-number">5.2.</span> <span class="nav-text">Java Web数据可视化（第二阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Web-后端技术"><span class="nav-number">5.2.1.</span> <span class="nav-text">Java Web 后端技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端可视化技术"><span class="nav-number">5.2.2.</span> <span class="nav-text">前端可视化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系型数据库MySQL高级应用"><span class="nav-number">5.2.3.</span> <span class="nav-text">关系型数据库MySQL高级应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-服务器应用实战"><span class="nav-number">5.2.4.</span> <span class="nav-text">Linux 服务器应用实战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉勾网招聘行业报表数据可视化项目实战"><span class="nav-number">5.2.5.</span> <span class="nav-text">拉勾网招聘行业报表数据可视化项目实战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop核心及生态圈技术栈（第三阶段）"><span class="nav-number">5.3.</span> <span class="nav-text">Hadoop核心及生态圈技术栈（第三阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop核心之分布式文件系统HDFS"><span class="nav-number">5.3.1.</span> <span class="nav-text">Hadoop核心之分布式文件系统HDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop核心之分布式计算框架MapReduce"><span class="nav-number">5.3.2.</span> <span class="nav-text">Hadoop核心之分布式计算框架MapReduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop核心之分布式资源调度框架Yarn"><span class="nav-number">5.3.3.</span> <span class="nav-text">Hadoop核心之分布式资源调度框架Yarn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop生态圈技术栈（上）"><span class="nav-number">5.3.4.</span> <span class="nav-text">Hadoop生态圈技术栈（上）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop生态圈技术栈（下）"><span class="nav-number">5.3.5.</span> <span class="nav-text">Hadoop生态圈技术栈（下）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式缓存Redis及Kafka消息中间件（第四阶段）"><span class="nav-number">5.4.</span> <span class="nav-text">分布式缓存Redis及Kafka消息中间件（第四阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高性能分布式缓存Redis"><span class="nav-number">5.4.1.</span> <span class="nav-text">高性能分布式缓存Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高吞吐消息中间件Kafka"><span class="nav-number">5.4.2.</span> <span class="nav-text">高吞吐消息中间件Kafka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PB级电商离线数仓项目实战（第五阶段）"><span class="nav-number">5.5.</span> <span class="nav-text">PB级电商离线数仓项目实战（第五阶段）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存级快速计算引擎Spark（第六阶段）"><span class="nav-number">5.6.</span> <span class="nav-text">内存级快速计算引擎Spark（第六阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala编程"><span class="nav-number">5.6.1.</span> <span class="nav-text">Scala编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark实战应用"><span class="nav-number">5.6.2.</span> <span class="nav-text">Spark实战应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智慧物流项目（第七阶段）"><span class="nav-number">5.7.</span> <span class="nav-text">智慧物流项目（第七阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据采集"><span class="nav-number">5.7.1.</span> <span class="nav-text">数据采集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仓库缺货-销量预测"><span class="nav-number">5.7.2.</span> <span class="nav-text">仓库缺货-销量预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运输车辆调度"><span class="nav-number">5.7.3.</span> <span class="nav-text">运输车辆调度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#车辆位置-指标实时监控"><span class="nav-number">5.7.4.</span> <span class="nav-text">车辆位置/指标实时监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轨迹回放"><span class="nav-number">5.7.5.</span> <span class="nav-text">轨迹回放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多维度业务指标看板"><span class="nav-number">5.7.6.</span> <span class="nav-text">多维度业务指标看板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实时计算领域最锋利的武器Flink（第八阶段）"><span class="nav-number">5.8.</span> <span class="nav-text">实时计算领域最锋利的武器Flink（第八阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Flink基础"><span class="nav-number">5.8.1.</span> <span class="nav-text">Flink基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flink进阶"><span class="nav-number">5.8.2.</span> <span class="nav-text">Flink进阶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flink高级实践及调优"><span class="nav-number">5.8.3.</span> <span class="nav-text">Flink高级实践及调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flink综合案例实战"><span class="nav-number">5.8.4.</span> <span class="nav-text">Flink综合案例实战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据新技术实践（第九阶段）"><span class="nav-number">5.9.</span> <span class="nav-text">大数据新技术实践（第九阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OLAP列式数据库管理系统ClickHouse"><span class="nav-number">5.9.1.</span> <span class="nav-text">OLAP列式数据库管理系统ClickHouse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新型列式存储分布式数据库Kudu"><span class="nav-number">5.9.2.</span> <span class="nav-text">新型列式存储分布式数据库Kudu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源的分布式分析引擎Kylin"><span class="nav-number">5.9.3.</span> <span class="nav-text">开源的分布式分析引擎Kylin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实时统计分析开源数据存储Druid"><span class="nav-number">5.9.4.</span> <span class="nav-text">实时统计分析开源数据存储Druid</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elastic-Stack-日志搜索、挖掘及可视化解决方案（第十阶段）"><span class="nav-number">5.10.</span> <span class="nav-text">Elastic Stack 日志搜索、挖掘及可视化解决方案（第十阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elasticsearch全文搜索引擎"><span class="nav-number">5.10.1.</span> <span class="nav-text">Elasticsearch全文搜索引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logstash采集、Kibana展示方案"><span class="nav-number">5.10.2.</span> <span class="nav-text">Logstash采集、Kibana展示方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电商行业实时数仓项目（第十一阶段）"><span class="nav-number">5.11.</span> <span class="nav-text">电商行业实时数仓项目（第十一阶段）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop-Spark大数据处理算法及案例（第十二阶段）"><span class="nav-number">5.12.</span> <span class="nav-text">Hadoop/Spark大数据处理算法及案例（第十二阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据处理算法及案例（上）"><span class="nav-number">5.12.1.</span> <span class="nav-text">大数据处理算法及案例（上）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据处理算法及案例（下）"><span class="nav-number">5.12.2.</span> <span class="nav-text">大数据处理算法及案例（下）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习（第十三阶段）"><span class="nav-number">5.13.</span> <span class="nav-text">机器学习（第十三阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-编程核心"><span class="nav-number">5.13.1.</span> <span class="nav-text">Python 编程核心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python编程实战"><span class="nav-number">5.13.2.</span> <span class="nav-text">Python编程实战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人才用户画像匹配系统（第十四阶段）"><span class="nav-number">5.14.</span> <span class="nav-text">人才用户画像匹配系统（第十四阶段）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">锦枫紫兰</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f0hvc0kBtk8KnUT9FKT9n3fw-gzGzoHsz", "t2Sv4n1FSWFazfq669xM984s");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

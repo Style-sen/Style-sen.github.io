@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="分布式,">
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="CAP 分布式系统的核心是可扩展性，通过对服务、存储的扩展，来提高系统的处理能力，通过对多台服务器协同工作，来完成单台服务器无法处理的任务，尤其是高并发或者大数据量的任务。 除了对可扩展性的需求，分布式系统还有不出现单点故障、服务或者存储无状态等特点。 CAP 理论可以表述为，一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容忍性（Parti">
+<meta name="keywords" content="分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式-01-基础">
 <meta property="og:url" content="http://yoursite.com/2020/07/15/分布式-01-基础/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="CAP 分布式系统的核心是可扩展性，通过对服务、存储的扩展，来提高系统的处理能力，通过对多台服务器协同工作，来完成单台服务器无法处理的任务，尤其是高并发或者大数据量的任务。 除了对可扩展性的需求，分布式系统还有不出现单点故障、服务或者存储无状态等特点。 CAP 理论可以表述为，一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容忍性（Parti">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-23T07:09:28.293Z">
+<meta property="og:updated_time" content="2020-09-21T01:15:22.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式-01-基础">
 <meta name="twitter:description" content="CAP 分布式系统的核心是可扩展性，通过对服务、存储的扩展，来提高系统的处理能力，通过对多台服务器协同工作，来完成单台服务器无法处理的任务，尤其是高并发或者大数据量的任务。 除了对可扩展性的需求，分布式系统还有不出现单点故障、服务或者存储无状态等特点。 CAP 理论可以表述为，一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容忍性（Parti">
@@ -453,7 +454,15 @@
 <li>约定了系统能保证在同一个有效的会话中实现“读己之所写”的一致性，就是在你的一次访问中，执行更新操作之后，客户端能够在同一个会话中始终读取到该数据项的最新值。</li>
 <li>分布式的 Session 一致性问题。</li>
 </ol>
-<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2>
+<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><ol>
+<li>开源分布式锁组件 Google Chubby 的作者 Mike Burrows 说过，这个世界上只有一种一致性算法，那就是 Paxos 算法，其他的算法都是残次品。</li>
+</ol>
+<h3 id="Quorum-机制"><a href="#Quorum-机制" class="headerlink" title="Quorum 机制"></a>Quorum 机制</h3><ol>
+<li>在各种一致性算法中都可以看到Quorum 机制的身影，主要数学思想来源于抽屉原理。</li>
+<li>用一句话解释那就是，在 N 个副本中，一次更新成功的如果有 W 个，那么我在读取数据时是要从大于 N－W 个副本中读取，这样就能至少读到一个更新的数据了。</li>
+<li>和 Quorum 机制对应的是 WARO，也就是Write All Read one，是一种简单的副本控制协议，当 Client 请求向某副本写数据时（更新数据），只有当所有的副本都更新成功之后，这次写操作才算成功，否则视为失败。</li>
+</ol>
+
       
     </div>
     
@@ -467,6 +476,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i>分布式</a>
+          
+        </div>
       
 
       
@@ -566,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +592,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -588,7 +603,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -621,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP"><span class="nav-number">1.</span> <span class="nav-text">CAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.1.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AP和CP的取舍"><span class="nav-number">1.2.</span> <span class="nav-text">AP和CP的取舍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BASE"><span class="nav-number">2.</span> <span class="nav-text">BASE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本可用"><span class="nav-number">2.1.</span> <span class="nav-text">基本可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软状态"><span class="nav-number">2.2.</span> <span class="nav-text">软状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终一致性"><span class="nav-number">2.3.</span> <span class="nav-text">最终一致性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">3.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局时钟和逻辑时钟"><span class="nav-number">4.</span> <span class="nav-text">全局时钟和逻辑时钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据一致性模型-外部一致性"><span class="nav-number">5.</span> <span class="nav-text">数据一致性模型(外部一致性)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强一致性"><span class="nav-number">5.1.</span> <span class="nav-text">强一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱一致性"><span class="nav-number">5.2.</span> <span class="nav-text">弱一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终一致性-1"><span class="nav-number">5.3.</span> <span class="nav-text">最终一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#因果一致性"><span class="nav-number">5.3.1.</span> <span class="nav-text">因果一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话一致性"><span class="nav-number">5.3.2.</span> <span class="nav-text">会话一致性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paxos"><span class="nav-number">6.</span> <span class="nav-text">Paxos</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP"><span class="nav-number">1.</span> <span class="nav-text">CAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.1.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AP和CP的取舍"><span class="nav-number">1.2.</span> <span class="nav-text">AP和CP的取舍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BASE"><span class="nav-number">2.</span> <span class="nav-text">BASE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本可用"><span class="nav-number">2.1.</span> <span class="nav-text">基本可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软状态"><span class="nav-number">2.2.</span> <span class="nav-text">软状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终一致性"><span class="nav-number">2.3.</span> <span class="nav-text">最终一致性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">3.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局时钟和逻辑时钟"><span class="nav-number">4.</span> <span class="nav-text">全局时钟和逻辑时钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据一致性模型-外部一致性"><span class="nav-number">5.</span> <span class="nav-text">数据一致性模型(外部一致性)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强一致性"><span class="nav-number">5.1.</span> <span class="nav-text">强一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱一致性"><span class="nav-number">5.2.</span> <span class="nav-text">弱一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终一致性-1"><span class="nav-number">5.3.</span> <span class="nav-text">最终一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#因果一致性"><span class="nav-number">5.3.1.</span> <span class="nav-text">因果一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话一致性"><span class="nav-number">5.3.2.</span> <span class="nav-text">会话一致性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paxos"><span class="nav-number">6.</span> <span class="nav-text">Paxos</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Quorum-机制"><span class="nav-number">6.1.</span> <span class="nav-text">Quorum 机制</span></a></li></ol></li></ol></div>
             
 
           </div>

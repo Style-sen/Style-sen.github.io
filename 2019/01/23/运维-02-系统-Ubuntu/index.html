@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="Ubuntu服务系统">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-10T09:00:16.647Z">
+<meta property="og:updated_time" content="2020-09-28T05:02:34.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu服务器系统及基础设施">
 <meta name="twitter:description" content="Ubuntu服务系统">
@@ -570,10 +570,10 @@
 <li><p>上传目录到服务器<br><code>scp  -r /tmp/local_dir username@servername:remote_dir</code></p>
 </li>
 <li><p>免密登录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#客户端配置</span><br><span class="line">ssh-keygen -t rsa  //（会有提示输入密码，直接回车即可）</span><br><span class="line"># 之后会在家目录下建立 .ssh 文件夹，内有id_rsa（私钥）和id_rsa.pub（公钥）两个文件</span><br><span class="line"># 将公钥文件上传到服务器上server的家目录</span><br><span class="line">scp ~/.ssh/id_rsa.pub server@192.168.0.10:~</span><br><span class="line"></span><br><span class="line"># 服务器端配置</span><br><span class="line"># 使用server用户登录并进入家目录</span><br><span class="line"># cd /home/server</span><br><span class="line"># 建立 .ssh 文件夹</span><br><span class="line">mkdir .ssh;</span><br><span class="line"># 修改文件夹权限</span><br><span class="line">chmod 700 .ssh</span><br><span class="line"># 将客户端传过来的id_rsa.pub文件中的内容加入到authorized_keys中</span><br><span class="line">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</span><br><span class="line">chmod 644 .ssh/authorized_keys</span><br><span class="line">#之后你从客户端使用 client 用户登录服务器的server用户时就不需要再输入密码了，但是第一次连接时还是会提示你进行远程主机公钥指纹核对并将其存入 ~/.ssh/known_hosts 文件。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#客户端配置</span><br><span class="line">ssh-keygen -t rsa  //（会有提示输入密码，直接回车即可）</span><br><span class="line"># 之后会在家目录下建立 .ssh 文件夹，内有id_rsa（私钥）和id_rsa.pub（公钥）两个文件</span><br><span class="line"># 将公钥文件上传到服务器上server的家目录</span><br><span class="line">scp ~/.ssh/id_rsa.pub server@192.168.0.10:~</span><br><span class="line"></span><br><span class="line"># 服务器端配置</span><br><span class="line"># 使用server用户登录并进入家目录</span><br><span class="line"># cd /home/server</span><br><span class="line"># 建立 .ssh 文件夹</span><br><span class="line">mkdir .ssh;</span><br><span class="line"># 修改文件夹权限【Ubuntu和Centos一样】</span><br><span class="line">chmod 700 .ssh</span><br><span class="line"># 将客户端传过来的id_rsa.pub文件中的内容加入到authorized_keys中</span><br><span class="line">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</span><br><span class="line">chmod 644 .ssh/authorized_keys 【Ubuntu和Centos不一样】</span><br><span class="line">#之后你从客户端使用 client 用户登录服务器的server用户时就不需要再输入密码了，但是第一次连接时还是会提示你进行远程主机公钥指纹核对并将其存入 ~/.ssh/known_hosts 文件。</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>免密登录之后，还<code>需要输入密码</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">首先我们就要去查看系统的日志文件</span><br><span class="line">tail /var/log/secure -n 20</span><br><span class="line">发现问题的所在：Authentication refused: bad ownership or modes for file</span><br><span class="line">从字面上可以看出是目录的属主和权限配置不当，查找资料得知：SSH不希望home目录和~/.ssh目录对组有写权限，通过下面几条命令改下</span><br><span class="line">chmod g-w /home/zhangming</span><br><span class="line">chmod 700 /home/zhangming/.ssh</span><br><span class="line">chmod 600 /home/zhangming/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>免密登录之后，还<code>需要输入密码</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">【Centos】</span><br><span class="line">首先我们就要去查看系统的日志文件</span><br><span class="line">tail /var/log/secure -n 20 【tail /var/log/auth.log】</span><br><span class="line">发现问题的所在：Authentication refused: bad ownership or modes for file</span><br><span class="line">从字面上可以看出是目录的属主和权限配置不当，查找资料得知：SSH不希望home目录和~/.ssh目录对组有写权限，通过下面几条命令改下</span><br><span class="line">chmod g-w /home/zhangming</span><br><span class="line">chmod 700 /home/zhangming/.ssh</span><br><span class="line">chmod 600 /home/zhangming/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>多个私钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">临时生效</span><br><span class="line">ssh-agent bash</span><br><span class="line"># ssh-add 私钥名称</span><br><span class="line">ssh-add id_rsa</span><br><span class="line"></span><br><span class="line">修改配置文件</span><br><span class="line">cd  ~/.ssh</span><br><span class="line">touch  config</span><br><span class="line">chmod  600  ~/.ssh/config</span><br><span class="line"></span><br><span class="line">#主机服务器  , </span><br><span class="line">Host         别名</span><br><span class="line">HostName     填入云服务器ip</span><br><span class="line">Port         22</span><br><span class="line">User    用户名</span><br><span class="line">IdentityFile ~/.ssh/私钥文件名</span><br></pre></td></tr></table></figure>
 </li>
@@ -661,8 +661,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/22/python-03-面向对象-内部方法/" rel="next" title="Python-面向对象">
-                <i class="fa fa-chevron-left"></i> Python-面向对象
+              <a href="/2019/01/23/运维-04-系统维护-supervisord/" rel="next" title="supervisord">
+                <i class="fa fa-chevron-left"></i> supervisord
               </a>
             
           </div>
@@ -671,8 +671,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/运维-04-系统维护-supervisord/" rel="prev" title="supervisord">
-                supervisord <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/23/运维-01-硬件/" rel="prev" title="服务器硬件">
+                服务器硬件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -750,7 +750,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -761,7 +761,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -772,7 +772,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

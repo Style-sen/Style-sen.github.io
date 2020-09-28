@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="数据库，MYSQL,">
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。  事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔">
+<meta name="keywords" content="数据库，MYSQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后端-数据库-MYSQL">
 <meta property="og:url" content="http://yoursite.com/2019/10/21/后端-数据库-行式-MYSQL/index.html">
 <meta property="og:site_name" content="锦枫紫兰">
 <meta property="og:description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。  事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-08T04:22:36.701Z">
+<meta property="og:updated_time" content="2020-09-16T08:14:31.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后端-数据库-MYSQL">
 <meta name="twitter:description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。  事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。      隔">
@@ -485,6 +486,9 @@
 </div>
 <h2 id="MYSQL优化"><a href="#MYSQL优化" class="headerlink" title="MYSQL优化"></a>MYSQL优化</h2><h2 id="数据库云"><a href="#数据库云" class="headerlink" title="数据库云"></a>数据库云</h2><h3 id="RDS-Aliyun"><a href="#RDS-Aliyun" class="headerlink" title="RDS(Aliyun)"></a>RDS(Aliyun)</h3><ol>
 <li><a href="https://help.aliyun.com/knowledge_detail/41817.html" target="_blank" rel="noopener">RDS for MySQL 物理备份文件恢复到自建数据库</a>;</li>
+<li><a href="https://help.aliyun.com/document_detail/157518.html" target="_blank" rel="noopener">数据同步方案概览</a></li>
+<li><a href="https://help.aliyun.com/document_detail/26652.html?spm=a2c4g.11186623.2.56.230251c1ONvmDR#concept-xng-n1b-mhb" target="_blank" rel="noopener">跨阿里云账号迁移RDS实例</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如需执行增量数据迁移(或者数据同步)，需开启Binlog并满足以下要求：</span><br><span class="line">binlog_format设置为row。</span><br><span class="line">binlog_row_image设置为full。</span><br><span class="line">Binlog日志应至少保留24小时（建议3天以上）。</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><ol>
 <li>mysql的创建表的语句后面有auto_increment=4.AUTO_INCREMENT=n命令来重设自增的起始值。但是如果设置的n比目前的数值小的话，执行的sql不会报错，但是不会生效！</li>
@@ -590,6 +594,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数据库，MYSQL/" rel="tag"><i class="fa fa-tag"></i>数据库，MYSQL</a>
+          
+        </div>
+      
 
       
       
@@ -688,7 +698,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -699,7 +709,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -710,7 +720,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
