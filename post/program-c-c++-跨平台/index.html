@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>PROGRAM C C&#43;&#43; 跨平台 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="PROGRAM C C&#43;&#43; 跨平台" />
+<meta property="og:description" content="用C&#43;&#43;进行跨平台和可移植开发的注意事项 1. 需求 2. 跨平台的注意事项 下面总结的是底层代码，如果要移植C/C&#43;&#43;的界面，先找到一套跨平台的界面框架" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-c-c&#43;&#43;-%E8%B7%A8%E5%B9%B3%E5%8F%B0/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-12-03T10:41:50+08:00" />
+<meta property="article:modified_time" content="2021-12-03T10:41:50+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="PROGRAM C C&#43;&#43; 跨平台"/>
+<meta name="twitter:description" content="用C&#43;&#43;进行跨平台和可移植开发的注意事项 1. 需求 2. 跨平台的注意事项 下面总结的是底层代码，如果要移植C/C&#43;&#43;的界面，先找到一套跨平台的界面框架"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-c-c&#43;&#43;-%E8%B7%A8%E5%B9%B3%E5%8F%B0/" /><link rel="prev" href="/post/program-c-c&#43;&#43;-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/" /><link rel="next" href="/post/plat-qt-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PROGRAM C C++ 跨平台",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-c-c\x2b\x2b-%E8%B7%A8%E5%B9%B3%E5%8F%B0\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  2333 ,
+        "url": "\/post\/program-c-c\x2b\x2b-%E8%B7%A8%E5%B9%B3%E5%8F%B0\/","datePublished": "2021-12-03T10:41:50+08:00","dateModified": "2021-12-03T10:41:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">PROGRAM C C&#43;&#43; 跨平台</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-需求">1. 需求</a></li>
+    <li><a href="#2-跨平台的注意事项">2. 跨平台的注意事项</a>
+      <ul>
+        <li><a href="#21-编译器">2.1. 编译器</a></li>
+        <li><a href="#22-c语法">2.2. C++语法</a></li>
+        <li><a href="#23-操作系统">2.3. 操作系统</a></li>
+        <li><a href="#24-第三方库">2.4. 第三方库</a></li>
+        <li><a href="#25-辅助工具">2.5. 辅助工具</a></li>
+        <li><a href="#26-开发流程">2.6. 开发流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-跨平台的开源库">3. 跨平台的开源库</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p><a href="https://blog.csdn.net/bzhxuexi/article/details/34846217" target="_blank" rel="noopener noreffer">用C++进行跨平台和可移植开发的注意事项</a></p>
+<h2 id="1-需求">1. 需求</h2>
+<h2 id="2-跨平台的注意事项">2. 跨平台的注意事项</h2>
+<ol>
+<li>下面总结的是底层代码，如果要移植C/C++的<code>界面</code>，先找到一套<code>跨平台的界面框架</code>吧，否则这基本上是不可能变成的任务。</li>
+</ol>
+<h3 id="21-编译器">2.1. 编译器</h3>
+<ol>
+<li>
+<p>使用最适合平台的编译器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">windows：MSVC(推荐)或者MinGW with GCC,【QtCreater都可以使用，所以开发qt库可以使用QtCreater项目】
+linux：GCC
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>把编译器的警告级别调高；</p>
+</li>
+<li>
+<p>不要轻易忽略编译器的警告信息。</p>
+</li>
+<li>
+<p>异常</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">new分配内存失败，有可能三种可能：
+1、返回空指针；
+2、抛出异常；
+3、进程立即终止。
+如果你希望你的代码具有较好的移植性，你就得把这三种情况都考虑到。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>硬件体系相关</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> C++中基本类型的大小（占用的字节数）会随着CPU字长的变化而变化。要表示一个int占用的字节数,应该写“sizeof(int)”.指针的大小。
+<span class="k">2.</span> 【大小端】编写的应用程序中涉及网络通讯，一定要在记得进行主机序和网络序的翻译；如果涉及跨机器传输二进制文件，也要记得进行类似的转换。
+<span class="k">3.</span> 【内存对齐】简单来说，出于CPU处理上的性能考虑，结构体中的数据不是紧挨着的，而是要空开一些间隔。凡是计算结构体大小的地方，都老老实实写上sizeof()。
+<span class="k">4.</span> 【移位操作】对于有符号整数的右移操作，有些系统默认使用算数右移（最高的符号位不变），有些默认使用逻辑右移（最高的符号位补0）。所以，不要对有符号整数进行右移操作。顺便说一下，即使没有移植性问题，代码中也尽量少用移位运算符。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>保证每个代码文件(CPP,H)的结尾都有单独的没有任何内容的一行, 这在CC/GCC/G++编译器下能减少很多警告.</p>
+</li>
+<li>
+<p>使用跨平台的Make系统<code>(Cmake)</code>。</p>
+</li>
+<li>
+<p>源代码文件的编码。<code>一般使用utf-8（without BOM）最好</code>。很多IDE对UTF-8编码的识别不好，可以加上BOM来帮助识别。文件名最好用全小写。</p>
+</li>
+</ol>
+<h3 id="22-c语法">2.2. C++语法</h3>
+<ol>
+<li>尽量使用标准C++的原子数据类型, 避免使用被重新定义过的类型. 或者自己重新重定义一套。</li>
+<li>尽量所有代码都按照C++标准来编写.</li>
+<li><code>char</code>如果考虑跨平台，需要明确指定是signed或者unsigned，因为不同平台直接声明char，会导致signed或者unsigned的不确定性。</li>
+<li>【宽字符】在Windows中，wchar_t占两个字节，Linux中占四个字节。</li>
+<li>Linux里面没有stricmp函数，在Linux下面是strcasecmp函数比较字符串。</li>
+</ol>
+<h3 id="23-操作系统">2.3. 操作系统</h3>
+<ol>
+<li>
+<p>文件系统上的差异：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 目录分隔符的差异；`正斜线“/”（比较通用）而不要使用反斜线“\”（仅在Windows可用）`.
+<span class="k">2.</span> 路径大小写敏感的差异；`linux敏感windows不敏感，都是小写`
+<span class="k">3.</span> 路径中禁用字符的差异;
+<span class="k">4.</span> 文件命名要规范：`尽量只使用字母和数字，不使用保留字，禁止创建大小写不同,但名字相同的代码文件`。
+<span class="k">5.</span> 代码中涉及FS操作，`尽量使用现成的库(boost::filesystem)`.
+<span class="k">6.</span> 换行符的差异：`Windows同时使用CR和LF；Linux和大部分的Unix使用LF；苹果的Mac系列使用CR.`如果涉及跨不同系统传输文本文件，要考虑进行适当的处理。
+<span class="k">7.</span> 文件搜索路径的差异：`在Windows下，如果要执行文件或者加载动态库，一般会搜索当前目录；而Posix系统则不尽然。所以如果你的应用涉及到启动进程或加载动态库，就要小心这个差异。`
+<span class="k">8.</span> 动态库的差异：`如果你的应用程序使用动态库，强烈建议动态库导出标准C风格的函数（尽量不要导出类）。如果在Posix系统中加载动态库，切记慎用RTLD_GLOBAL标志位。这个标志位会Enable全局符号表，有可能会导致多个动态库之间的符号名冲突（一旦碰到这种事，会出现匪夷所思的运行时错误，极难调试）。`
+<span class="k">9.</span>  【默认栈大小】不同的操作系统，栈的默认大小差别很大，从几十KB（据说Symbian只有12K，真抠门）到几MB不等.
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>由于C++开发的模块大部分是后台模块，经常会碰到服务的问题。编写服务需要调用好几个系统相关的API，导致了与操作系统的紧密耦合，很难用一套代码搞定。因此比较好的办法是抽象出一个通用的服务外壳，然后把业务逻辑代码作为动态库挂载到它下面。这样的话，至少保证了业务逻辑的代码只需要一套；服务外壳的代码虽然需要两套（一个用于Windows、一个用于Posix）（<code>单独的文件夹</code>），但他们是业务无关的，可以很方便地重用。</p>
+</li>
+<li>
+<p>多线程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1. C运行库（后面简称CRT：C Run-Time）的配置，要支持多线程。
+2. 【优化选项】以GCC为例：建议用-O2 选项即可（其实-O2 是一堆选项的集合），没必要冒险用-O3 （除非你有很充足的理由）。除了-O2 和-O3 之外，GCC还有一大坨（估计有上百个）其它的优化选项。如果你企图用当中的某个选项，一定要先把它的特性、可能的副作用都摸清楚，否则将来死都不知道怎么死的。
+3. 跨平台的多线程支持还是要依赖第三方库【ACE】【boost::thread】
+4. 【关于volatile】
+5. 【关于原子操作】多个线程的竞争写需要加锁，却不知道多个读单个写也需要保护。数据是否坏掉，取决于对nCount的读和写是否属于原子操作。还是要用第三方库提供的原子操作类/函数（比如ACE的Atomic_Op）来确保安全
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>调试环境最好选择WINDOWS平台, 因为那里的调试是最友好, 特别是WINDOWS的结构化异常非常的好用。</p>
+</li>
+<li>
+<p>与平台相关的调用尽量用宏隔离开来，一般用<code>不同的目录</code>代表不同平台，BOOST、OGRE等是这样做，也可以再一个类或者文件中，这样会导致到处都是操作系统和编译器相关宏的定义。</p>
+</li>
+</ol>
+<h3 id="24-第三方库">2.4. 第三方库</h3>
+<ol>
+<li>ACE</li>
+<li>BOOST</li>
+</ol>
+<h3 id="25-辅助工具">2.5. 辅助工具</h3>
+<h3 id="26-开发流程">2.6. 开发流程</h3>
+<h2 id="3-跨平台的开源库">3. 跨平台的开源库</h2>
+<ol>
+<li><a href="https://github.com/qt-creator/qt-creator" target="_blank" rel="noopener noreffer">qt-creator/qt-creator</a></li>
+<li><a href="" rel="">sqlite</a></li>
+<li><a href="http://rapidjson.org/zh-cn/md_doc_features_8zh-cn.html" target="_blank" rel="noopener noreffer">rapidjson</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-12-03</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-c-c&#43;&#43;-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/" class="prev" rel="prev" title="C/C&#43;&#43;第三方库"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-qt-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/" class="next" rel="next" title="PLAT QT 第三方模块">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

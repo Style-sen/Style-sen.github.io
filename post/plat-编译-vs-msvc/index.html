@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Visual Studio - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="Visual Studio" />
+<meta property="og:description" content="1. 支持QT开发 下载并安装Qt Visual Studio Tools. 在VS的[扩展]中增加QT版本即选中qt安装目录下的qmake.exe。 1.1. 设置 1.1.1. Qt 1.1.1.1. General Qt Designer:Run in detached window" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-03-02T09:54:45+00:00" />
+<meta property="article:modified_time" content="2019-03-02T09:54:45+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="Visual Studio"/>
+<meta name="twitter:description" content="1. 支持QT开发 下载并安装Qt Visual Studio Tools. 在VS的[扩展]中增加QT版本即选中qt安装目录下的qmake.exe。 1.1. 设置 1.1.1. Qt 1.1.1.1. General Qt Designer:Run in detached window"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/" /><link rel="prev" href="/post/tools-vscode/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Visual Studio",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-%E7%BC%96%E8%AF%91-vs-msvc\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "TOOLS, VS","wordcount":  1856 ,
+        "url": "\/post\/plat-%E7%BC%96%E8%AF%91-vs-msvc\/","datePublished": "2019-03-02T09:54:45+00:00","dateModified": "2019-03-02T09:54:45+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">Visual Studio</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-支持qt开发">1. 支持QT开发</a>
+      <ul>
+        <li><a href="#11-设置">1.1. 设置</a>
+          <ul>
+            <li><a href="#111-qt">1.1.1. Qt</a>
+              <ul>
+                <li><a href="#1111-general">1.1.1.1. General</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-导入老项目">2. 导入老项目</a></li>
+    <li><a href="#3-使用">3. 使用</a>
+      <ul>
+        <li><a href="#31-新建项目">3.1. 新建项目</a></li>
+        <li><a href="#32-配置项目">3.2. 配置项目</a>
+          <ul>
+            <li><a href="#321-项目配置文件vcxproj">3.2.1. 项目配置文件<code>*.vcxproj</code></a></li>
+            <li><a href="#322-用户配置文件vcxprojuser">3.2.2. 用户配置文件<code>*.vcxproj.user</code></a></li>
+            <li><a href="#323-项目属性图形化配置">3.2.3. 项目属性图形化配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#33-utf-8">3.3. utf-8</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-问题答疑">4. 问题答疑</a></li>
+    <li><a href="#5-c">5. C++</a>
+      <ul>
+        <li><a href="#51-microsoft-专用的修饰符">5.1. Microsoft 专用的修饰符</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-支持qt开发">1. 支持QT开发</h2>
+<ol>
+<li>下载并安装<a href="https://download.qt.io/official_releases/vsaddin/2.7.1/" target="_blank" rel="noopener noreffer">Qt Visual Studio Tools</a>.</li>
+<li>在VS的[扩展]中增加QT版本即选中qt安装目录下的qmake.exe。</li>
+</ol>
+<h3 id="11-设置">1.1. 设置</h3>
+<h4 id="111-qt">1.1.1. Qt</h4>
+<h5 id="1111-general">1.1.1.1. General</h5>
+<ol>
+<li>Qt Designer:Run in detached window：true。 允许在新的窗口打开。</li>
+</ol>
+<h2 id="2-导入老项目">2. 导入老项目</h2>
+<ol>
+<li>打开老的解决方案，会提示<code>重定向解决方案</code>，选择最新的生成工具。</li>
+</ol>
+<h2 id="3-使用">3. 使用</h2>
+<h3 id="31-新建项目">3.1. 新建项目</h3>
+<ol>
+<li>【win32 项目】用于创建Win32应用程序、控制台应用程序、DLL或其他静态库的项目。</li>
+<li>【生成的动态链接库并不能直接修改库文件的名称，而是需要重新编译】。</li>
+</ol>
+<h3 id="32-配置项目">3.2. 配置项目</h3>
+<h4 id="321-项目配置文件vcxproj">3.2.1. 项目配置文件<code>*.vcxproj</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Keyword&gt;&lt;/Keyword&gt;</span> # vs2013+qt5.6+addin1.2.5 Qt4VSv1.0 就转变为为qt项目 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="322-用户配置文件vcxprojuser">3.2.2. 用户配置文件<code>*.vcxproj.user</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;QTDIR&gt;&lt;QTDIR&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="323-项目属性图形化配置">3.2.3. 项目属性图形化配置</h4>
+<ol>
+<li>
+<p>我们一般不会修改解决方案的属性，而是设置每个项目各自的属性.</p>
+</li>
+<li>
+<p>一个项目有release和debug两套【独立】属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//1.Debug 通常称为调试版本，它包含调试信息，并且不作任何优化，便于程序员调试程序。
+</span><span class="c1">//2.Release 称为发布版本，它往往是进行了各种优化，使得程序在代码大小和运行速度上都是最优的，以便用户很好地使用。
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>路径推荐使用编译器提供给我们的宏变量，而尽量不要使用绝对的名称，这样程序更具有移植性。</p>
+</li>
+<li>
+<p>如果有某些项目是作为导出链接库用的。需要把导出的dll, lib（即输出文件路径）设置到上面的Bin目录下。然后在需要使用导出的dll和lib文件的项目中设置项目依赖项这前者，并设置附加库目录和附加依赖项。这样可以很方便的使用同一解决方案中其他项目导出的链接库了。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml">通用属性<span class="w">
+</span><span class="w">
+</span><span class="w"></span>配置属性<span class="w">
+</span><span class="w">    </span>常规<span class="w">
+</span><span class="w">        </span>输出目录（.exe的目录）<span class="w">
+</span><span class="w">        </span>中间目录（中间文件的目录）<span class="w">
+</span><span class="w">        </span>MFC的使用<span class="w"> </span><span class="c"># [在共享DLL中使用MFC]</span><span class="w">
+</span><span class="w">        </span>字符集<span class="w">
+</span><span class="w">    </span>调试<span class="w">
+</span><span class="w">        </span>工作目录<span class="w">    </span><span class="c"># $(OutDir)</span><span class="w">
+</span><span class="w">    </span>C/C+<span class="sd">+
+</span><span class="sd">        常规</span><span class="w">
+</span><span class="w">            </span>附加包含目录<span class="w">    </span><span class="c"># 设置其他库的头文件的目录 $(ProjectDir)项目配置文件所在的目录；$(SolutionDir)解决方案配置文件所在的目录</span><span class="w">
+</span><span class="w">            </span>SDL检查<span class="w">
+</span><span class="w">        </span>代码生成<span class="w">
+</span><span class="w">            </span>启用最小重新生成<span class="w"> </span><span class="c"># 不用每次都编译整个项目</span><span class="w">
+</span><span class="w">        </span>语言<span class="w">
+</span><span class="w">            </span>符合模式<span class="w"> </span><span class="c"># 设置成否，就不会报const char*等错误</span><span class="w">
+</span><span class="w">        </span>预编译头<span class="w">
+</span><span class="w">            </span>预编译头<span class="w"> </span><span class="c"># 不使用</span><span class="w">
+</span><span class="w">        </span>命令行<span class="w">
+</span><span class="w">            </span>其他选项<span class="w"> </span><span class="c"># /utf-8 设置源文件的编码格式和执行文件的编码格式/source-charset:utf-8或者/execution-charset:utf-8 VS</span><span class="w">
+</span><span class="w">                    </span><span class="c"># /</span><span class="w">
+</span><span class="w">    </span>链接器<span class="w">
+</span><span class="w">        </span>常规<span class="w">
+</span><span class="w">            </span>附加库目录<span class="w">      </span><span class="c"># 设置其他库的.lib以及.dll链接库的目录，程序运行需要将其拷贝到exe的当前目录或者将其放进PATH中</span><span class="w">
+</span><span class="w">        </span>输入<span class="w">
+</span><span class="w">            </span>附加依赖项<span class="w">      </span><span class="c"># 设置的就是xx.lib静态链接库的名称，qt项目（debug输入xxd.lib,release输入xx.lib）</span><span class="w">
+</span><span class="w">    </span>生成事件<span class="w">
+</span><span class="w">        </span>后期生成事件<span class="w">    </span><span class="c"># 重新生成程序之后执行的命令</span><span class="w">
+</span><span class="w">        </span>命令行<span class="w">          </span><span class="c"># 具体的命令，可以在这里使用copy命令，来将程序需要的.dll文件自动拷贝到.exe文件所在的目录。当然，在这里你可以做更多的事情，比如如果你的程序需要读取配置文件，你也可以把配置文件拷贝过来</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-utf-8">3.3. utf-8</h3>
+<ol>
+<li>参考<a href="VS2017%e4%bf%ae%e6%94%b9%e7%bc%96%e7%a0%81%e6%a0%bc%e5%bc%8f%e4%b8%bautf-8%ef%bc%8c%e5%86%8d%e4%b9%9f%e4%b8%8d%e7%94%a8%e6%8b%85%e5%bf%83%e4%b9%b1%e7%a0%81%e4%ba%86" rel="">VS2017修改编码格式为utf-8，再也不用担心乱码了</a></li>
+<li>使用<code>ForceUTF8（No BOM）</code>插件。</li>
+</ol>
+<h2 id="4-问题答疑">4. 问题答疑</h2>
+<ol>
+<li><a href="https://blog.csdn.net/u012043391/article/details/71107724" target="_blank" rel="noopener noreffer">could not find or load the Qt platform plugin windows的解决方法</a>.</li>
+<li><a href="https://blog.csdn.net/ermzdy2/article/details/99692954" target="_blank" rel="noopener noreffer">VS工程 转 Qt 工程时 Qt VS Tools 功能键是灰色的问题</a></li>
+<li><a href="https://blog.csdn.net/weixin_40948750/article/details/85001480" target="_blank" rel="noopener noreffer">解决错误：error MSB8031: Building an MFC project for a non-Unicode character set is deprecated.</a></li>
+<li><a href="https://blog.csdn.net/weixin_37900004/article/details/112359253" target="_blank" rel="noopener noreffer">QSqlDatabase::drivers() 输出为空解决方案</a></li>
+<li>VS+Qt链接出现错误<code>LNK2001</code>，因为没有生成moc文件，需要按照其他h文件修改自己头文件的属性【其他执行方法】。</li>
+<li><a href="https://blog.csdn.net/qq_15698613/article/details/97285812" target="_blank" rel="noopener noreffer">【MFC】fatal error C1189: #error :  Building MFC application with /MD[d] (CRT dll version) requires MF</a>.</li>
+<li><a href="https://blog.csdn.net/myruo/article/details/82145960" target="_blank" rel="noopener noreffer">error C2440: “static_cast”</a></li>
+<li><a href="https://blog.csdn.net/gaofeidongdong/article/details/7781345" target="_blank" rel="noopener noreffer">error C2491</a></li>
+<li><a href="https://blog.csdn.net/lljss1980/article/details/108547332" target="_blank" rel="noopener noreffer">error C2664</a></li>
+<li><a href="https://blog.csdn.net/guqiwei/article/details/4535445" target="_blank" rel="noopener noreffer">error C3867</a></li>
+<li><a href="https://blog.csdn.net/qq_38721302/article/details/82850292" target="_blank" rel="noopener noreffer">error C4996: &lsquo;strcpy&rsquo;: This function or variable may be unsafe. Consider using strcpy_s instead.</a></li>
+<li><a href="https://blog.csdn.net/Baker_221b/article/details/107197285" target="_blank" rel="noopener noreffer">error C4996 ‘stricmp‘</a></li>
+<li><a href="https://www.jianshu.com/p/d66356fd2eaa" target="_blank" rel="noopener noreffer">error LNK2019: 无法解析的外部符号 _Netbios@4</a></li>
+<li><a href="https://blog.csdn.net/qinbaby/article/details/83107345" target="_blank" rel="noopener noreffer">Windows 下 由SQLite3.def文件生成SQLite3.LIB文件</a></li>
+<li><a href="https://blog.csdn.net/jfwzy109127/article/details/84190137" target="_blank" rel="noopener noreffer">vs2017无法打开“stdio.h”等源文件</a></li>
+<li><a href="https://blog.csdn.net/qq_40737025/article/details/106984714" target="_blank" rel="noopener noreffer">VS2017出现无法使用stdlib.h，string.h等SDK中的头文件</a>选择windows sdk然后重定向项目。</li>
+</ol>
+<h2 id="5-c">5. C++</h2>
+<ol>
+<li><code>MFC</code>不能跨平台。</li>
+<li>使用自己的MSVC编译器，与其他编译器不兼容，甚至不同版本兼容性也不是很好。</li>
+<li>编码问题：MSVC使用GBK编码。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 对于 MBCS 编码，字符变量用 char 定义。
+<span class="k">2.</span> 对于 Unicode 编码中，字符变量用 wchar_t 定义。
+<span class="k">3.</span> 在程序中使用 <span class="ni">#include</span> &lt;tchar.h&gt; 添加对 TCHAR 的支持。（我在vs里没加也编译通过了，不过还是加上的保险）
+<span class="k">4.</span> 对于字符串，例如 &#34;abc&#34; 用 _T(&#34;abc&#34;) 表示。就是加上 _T(&#34;&#34;)。
+<span class="k">5.</span> 定义字符变量时，将 char 换成 TCHAR。
+<span class="k">6.</span> 【尽量不要在源码中使用中文】。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="51-microsoft-专用的修饰符">5.1. Microsoft 专用的修饰符</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#define DllExport   __declspec( dllexport ) </span><span class="c1">//定义了可导出类，导出其所有成员函数和静态数据
+</span><span class="c1"></span><span class="cp">#define DllImport   __declspec( dllimport ) </span><span class="c1">//定义了可导入类，导入其所有成员函数和静态数据，一个程序中不能既是导出又是导入
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/tools/">TOOLS</a>
+                </span><span><a href="/tags/vs/">VS</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-03-02</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/tools-vscode/" class="prev" rel="prev" title="VSCODE"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/" class="next" rel="next" title="后端-ORM-PYTHON">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

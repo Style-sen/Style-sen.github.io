@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>运维-监控系统-问题排查 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="运维-监控系统-问题排查" />
+<meta property="og:description" content="监控系统 Grafana ***** Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。 核心特点 展示方式：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-02-27T12:14:16+00:00" />
+<meta property="article:modified_time" content="2019-02-27T12:14:16+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="运维-监控系统-问题排查"/>
+<meta name="twitter:description" content="监控系统 Grafana ***** Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。 核心特点 展示方式："/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" /><link rel="prev" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" /><link rel="next" href="/post/tools-vscode/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "运维-监控系统-问题排查",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "运维","wordcount":  4074 ,
+        "url": "\/post\/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5\/","datePublished": "2019-02-27T12:14:16+00:00","dateModified": "2019-02-27T12:14:16+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">运维-监控系统-问题排查</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#grafana-"><a href="">Grafana</a> *****</a>
+      <ul>
+        <li><a href="#核心特点">核心特点</a></li>
+        <li><a href="#部署">部署</a>
+          <ul>
+            <li><a href="#持久化">持久化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#prometheushttpsprometheusiodocsintroductionoverview-"><a href="https://prometheus.io/docs/introduction/overview/">prometheus</a> *****</a>
+      <ul>
+        <li><a href="#核心特点-1">核心特点</a></li>
+        <li><a href="#组件可选">组件（可选）</a></li>
+        <li><a href="#数据模型">数据模型</a></li>
+        <li><a href="#架构及生态组件">架构及生态组件</a></li>
+        <li><a href="#应用场景">应用场景</a></li>
+        <li><a href="#部署-1">部署</a>
+          <ul>
+            <li><a href="#配置文件etcprometheusprometheusymldocker-运行时挂载">配置文件(/etc/prometheus/prometheus.yml)docker 运行时挂载</a></li>
+            <li><a href="#docker-compose">docker-compose</a></li>
+            <li><a href="#数据持久化">数据持久化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#rollbarhttpsrollbarcom"><a href="https://rollbar.com/">Rollbar</a></a></li>
+    <li><a href="#sentry">SENTRY</a>
+      <ul>
+        <li><a href="#使用docker安装">使用docker安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#zabbix">ZABBIX</a>
+      <ul>
+        <li><a href="#核心特点-2">核心特点</a></li>
+        <li><a href="#组件">组件</a></li>
+        <li><a href="#应用场景-1">应用场景</a>
+          <ul>
+            <li><a href="#硬件监控">硬件监控</a></li>
+            <li><a href="#系统监控">系统监控。</a></li>
+            <li><a href="#服务监控">服务监控。</a></li>
+            <li><a href="#网络监控">网络监控。</a></li>
+            <li><a href="#安全监控">安全监控。</a></li>
+            <li><a href="#web监控">Web监控。</a></li>
+            <li><a href="#日志监控">日志监控。</a></li>
+            <li><a href="#业务监控api-">业务监控(API) ******</a></li>
+            <li><a href="#流量分析">流量分析。</a></li>
+            <li><a href="#可视化">可视化。</a></li>
+            <li><a href="#自动化监控">自动化监控。</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#服务器变慢">服务器变慢</a>
+      <ul>
+        <li><a href="#vmstatcpu使用情况">vmstat(CPU使用情况)</a></li>
+        <li><a href="#free内存使用情况">free（内存使用情况）</a></li>
+        <li><a href="#df磁盘使用情况">df（磁盘使用情况）</a></li>
+        <li><a href="#iostat磁盘io">iostat（磁盘IO）</a></li>
+        <li><a href="#sar网络io">sar（网络IO）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="监控系统">监控系统</h1>
+<h2 id="grafana-"><a href="" rel="">Grafana</a> *****</h2>
+<ol>
+<li>Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。</li>
+</ol>
+<h3 id="核心特点">核心特点</h3>
+<p>展示方式：快速灵活的客户端图表，面板插件有许多不同方式的可视化指标和日志，官方库中具有丰富的仪表盘插件，比如热图、折线图、图表等多种展示方式；
+数据源：Graphite，InfluxDB，OpenTSDB，Prometheus，Elasticsearch，CloudWatch和KairosDB等；
+通知提醒：以可视方式定义最重要指标的警报规则，Grafana将不断计算并发送通知，在数据达到阈值时通过Slack、PagerDuty等获得通知；
+混合展示：在同一图表中混合使用不同的数据源，可以基于每个查询指定数据源，甚至自定义数据源；
+注释：使用来自不同数据源的丰富事件注释图表，将鼠标悬停在事件上会显示完整的事件元数据和标记；
+过滤器：Ad-hoc过滤器允许动态创建新的键/值过滤器，这些过滤器会自动应用于使用该数据源的所有查询。</p>
+<h3 id="部署">部署</h3>
+<ol>
+<li><a href="https://hub.docker.com/r/grafana/grafana" target="_blank" rel="noopener noreffer">官方镜像grafana/grafana</a></li>
+<li>环境变量</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml">GF_INSTALL_PLUGINS<span class="w">  </span><span class="c"># 指定插件版本</span><span class="w">
+</span><span class="w"></span>GF_SECURITY_ADMIN_PASSWORD<span class="w"> </span><span class="c"># admin的密码</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>挂载Volumns</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- $PWD/extra/grafana_db<span class="p">:</span>/var/lib/grafana<span class="w"> </span>grafana/grafana<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>部署完之后，需要登录进去创建<code>数据源</code>和创建<code>DashBoard</code>。</li>
+</ol>
+<h4 id="持久化">持久化</h4>
+<ol>
+<li>Grafana存储的配置以及图表在自己生成的sqlit数据库中长期存储，并不友好。</li>
+<li>可以使用mysql</li>
+</ol>
+<h2 id="prometheushttpsprometheusiodocsintroductionoverview-"><a href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener noreffer">prometheus</a> *****</h2>
+<ol>
+<li>2012年，2016年加入CNCF；</li>
+<li>参考<a href="https://legacy.gitbook.com/book/songjiayang/prometheus" target="_blank" rel="noopener noreffer">Prometheus实战</a></li>
+</ol>
+<h3 id="核心特点-1">核心特点</h3>
+<ol>
+<li>提供包含时间序列的强大的多维数据模型，identified by metric name and key/value pairs，如Counter、Gauge、Histogram、Summary；</li>
+<li><code>PromQL</code>，自研一套<code>高性能的时序数据库</code>，在V3版本可以达到每秒千万级别的数据存储；</li>
+<li>不依赖分布式存储；</li>
+<li>提供pull模式、push gateway方式实现时间序列数据的采集；</li>
+<li>通过服务发现或静态配置发现目标；</li>
+<li>多种图形和仪表板支持模式,还支持导出（Grafana、Web UI、API clients）；</li>
+<li>通过中间网关支持推送时间序列。</li>
+<li>【优点】不仅支持SWAM原生集群；还支持K8S集群的监控；是目前容器监控最好的解决方案。</li>
+<li>【优点】Go凭借简洁的语法和优雅的并发，在Java占据业务开发，C占领底层开发的情况下，准确定位中间件开发需求，在当前开源中间件产品中被广泛应用。</li>
+<li>【优点】Prometheus开始成为主导及容器监控方面的标配，并且在未来可见的时间内被广泛应用。</li>
+</ol>
+<h3 id="组件可选">组件（可选）</h3>
+<ol>
+<li>Main Server，负责<code>抓取pull（周期性）和存储</code>时间序列数据。</li>
+<li>客户端代码库，集成在业务代码中。</li>
+<li>Push gateway;</li>
+<li>special-purpose exporters;</li>
+<li>an alertmanager to handle alerts;</li>
+<li>various support tools.</li>
+</ol>
+<h3 id="数据模型">数据模型</h3>
+<h3 id="架构及生态组件">架构及生态组件</h3>
+<h3 id="应用场景">应用场景</h3>
+<h3 id="部署-1">部署</h3>
+<ol>
+<li><a href="https://hub.docker.com/r/prom/prometheus" target="_blank" rel="noopener noreffer">官方镜像prom/prometheus</a></li>
+</ol>
+<h4 id="配置文件etcprometheusprometheusymldocker-运行时挂载">配置文件(/etc/prometheus/prometheus.yml)docker 运行时挂载</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="k">global</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">scrape_interval</span><span class="p">:</span><span class="w"> </span>15s<span class="w">
+</span><span class="w">    </span><span class="c"># evaluation_interval: 15s    # Evaluate rules every 15 seconds. The default is every 1 minute.</span><span class="w">
+</span><span class="w">    </span><span class="c"># scrape_timeout is set to the global default (10s).</span><span class="w">
+</span><span class="w">    </span><span class="k">external_labels</span><span class="p">:</span><span class="w">    </span><span class="c"># 与外部通信时的附加标签</span><span class="w">
+</span><span class="w">      </span><span class="k">monitor</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;raysonxin-monitor&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">scrape_configs</span><span class="p">:</span><span class="w">  </span><span class="c"># 抓取配置 </span><span class="w">
+</span><span class="w">  </span>- <span class="k">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;prometheus&#39;</span><span class="w">
+</span><span class="w">    </span><span class="k">scrape_interval</span><span class="p">:</span><span class="w"> </span>5s<span class="w">
+</span><span class="w">    </span><span class="k">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;localhost:9090&#39;</span><span class="p">]</span><span class="w">    </span><span class="c"># 目标主机(本地server)</span><span class="w">
+</span><span class="w">        </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="k">group</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;local&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span>- <span class="k">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;bn&#39;</span><span class="w">
+</span><span class="w">    </span><span class="k">scrape_interval</span><span class="p">:</span><span class="w"> </span>5s<span class="w">
+</span><span class="w">    </span><span class="k">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;api_host:9000&#39;</span><span class="p">]</span><span class="w"> </span><span class="c"># 目标主机（业务主机）</span><span class="w">
+</span><span class="w">        </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="k">group</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;arithmetic&#39;</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="docker-compose">docker-compose</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- /prometheus/prometheus/config<span class="p">:</span>/etc/prometheus<span class="w">
+</span><span class="w">      </span>- /prometheus/prometheus/data<span class="p">:</span>/prometheus<span class="w">
+</span><span class="w">    </span><span class="k">command</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- ‘--config.file=/etc/prometheus/prometheus.yml‘<span class="w">
+</span><span class="w">      </span>- ‘--log.level=info‘<span class="w">
+</span><span class="w">      </span>- ‘--web.listen-address=<span class="m">0.0.0.0</span><span class="p">:</span><span class="m">9090</span>‘<span class="w">
+</span><span class="w">      </span>- ‘--storage.tsdb.path=/prometheus‘<span class="w">
+</span><span class="w">      </span>- ‘--storage.tsdb.retention=15d‘<span class="w">
+</span><span class="w">      </span>- ‘--query.max-concurrency=<span class="m">50</span>‘<span class="w">
+</span><span class="w">      </span>- ‘--web.enable-lifecycle‘<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="数据持久化">数据持久化</h4>
+<ol>
+<li>Prometheus的存储数据库默认只保留15天的数据.</li>
+<li>可以使用InfluxDB</li>
+</ol>
+<h2 id="rollbarhttpsrollbarcom"><a href="https://rollbar.com/" target="_blank" rel="noopener noreffer">Rollbar</a></h2>
+<pre><code>实时收集分析Web应用抛出的错误.免费版一个月5000次错误事件。
+</code></pre>
+<h2 id="sentry">SENTRY</h2>
+<h3 id="使用docker安装">使用docker安装</h3>
+<ol>
+<li><a href="https://docs.sentry.io/server/installation/docker/" target="_blank" rel="noopener noreffer">Installation with Docker</a></li>
+</ol>
+<h2 id="zabbix">ZABBIX</h2>
+<ol>
+<li>一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。</li>
+<li>2012年；</li>
+</ol>
+<h3 id="核心特点-2">核心特点</h3>
+<ol start="2">
+<li>可以运行在Linux，Solaris，HP-UX，AIX，Free BSD，Open BSD，OS X等平台上；</li>
+<li>【缺点】Zabbix由于使用了关系型数据存储时序数据，所以在监控大规模集群时常常在数据存储方面捉襟见肘。所以从Zabbix 4.2版本后开始支持TimescaleDB时序数据库，不过目前成熟度还不高。</li>
+<li>【缺点】对容器支持不是很好。</li>
+</ol>
+<h3 id="组件">组件</h3>
+<ol>
+<li>zabbix由2部分构成，zabbix server与可选组件zabbix agent。</li>
+<li>zabbix server可以通过SNMP，zabbix agent，ping，端口监视等方法提供对远程服务器/网络状态的监视，数据收集等功能；</li>
+<li>Zabbix Server将收集的监控数据存储到Zabbix Database中。Zabbix Database支持常用的关系型数据库，如果MySQL、PostgreSQL、Oracle等，默认是MySQL，并提供Zabbix Web页面（PHP编写）数据查询。</li>
+<li>Agent主要负责采集数据并通过<code>主动或者被动</code>的方式采集数据发送到Server/Proxy，除此之外，为了扩展监控项，Agent还支持执行自定义脚本。</li>
+</ol>
+<h3 id="应用场景-1">应用场景</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">作者：徐亮偉
+链接：https://www.zhihu.com/question/19973178/answer/154424211
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="硬件监控">硬件监控</h4>
+<ol>
+<li>通过SNMP来进行路由器交换机的监控(这些可以跟一些厂商沟通来了解如何做)、服务器的温度以及其他，可以通过IPMI来实现。当然如果没有<code>硬件全都是云，直接跳过这一步骤</code>。</li>
+</ol>
+<h4 id="系统监控">系统监控。</h4>
+<ol>
+<li>如CPU的负载，上下文切换、内存使用率、磁盘读写、磁盘使用率、磁盘inode节点。当然这些都是<code>需要配置触发器</code>，因为默认太低会频繁报警。</li>
+</ol>
+<h4 id="服务监控">服务监控。</h4>
+<ol>
+<li>比如用LNMP nginx自带Status模块、PHP也有相关的Status、MySQL的话可以通过percona来进行监控。Redis这些通过自身的info获信息进行过滤等。方法都类似。要么服务自带。要么通过脚本来实现想监控的内容，以及报警和图形功能。</li>
+</ol>
+<h4 id="网络监控">网络监控。</h4>
+<ol>
+<li>如果<code>是云主机又不是跨机房，那么可以选择不监控网络</code>。当然你说我们是跨机房以及如何如何。推荐使用smokeping来做网络相关的监控。或者直接交给你们的网络工程师来做。因为术业有专攻。</li>
+</ol>
+<h4 id="安全监控">安全监控。</h4>
+<ol>
+<li>如果是<code>云主机可以考虑使用自带的安全防护</code>。当然也可以使用iptables。如果是硬件，那么推荐使用硬件防火墙。使用云可以购买防DDOS，避免出现故障导致down机一天。如果是系统，那么权限、密码、备份、恢复基础的方案要做好。web同时也可以使用nginx+waf来实现一个web层面的防火墙。当然也可以使用集成好的openresty。</li>
+</ol>
+<h4 id="web监控">Web监控。</h4>
+<ol>
+<li>web监控的话题其实还是很多。比如可以使用自带的web监控来监控<code>页面</code>相关的延迟、js响应时间、下载时间、等等。这里我推荐使用专业的商业软件，听云来做这一块。毕竟人家全国各地都有机房。（如果本身是多机房那就另说了）</li>
+</ol>
+<h4 id="日志监控">日志监控。</h4>
+<ol>
+<li>如果是web的话可以使用监控Nginx的500x日志。PHP的ERROR日志。其实这些需求无非是，收集、存储、查询、展示，我们其实可以使用开源的ELKstack来实现。ogstash（收集）、elasticsearch（存储+搜索）、kibana（展示）</li>
+</ol>
+<h4 id="业务监控api-">业务监控(API) ******</h4>
+<ol>
+<li>所以业务层面这块的监控需要和开发以及总监开会讨论，监控比较重要，如API、等。通过简单的脚本就可以实现，最后设置触发器即可</li>
+</ol>
+<h4 id="流量分析">流量分析。</h4>
+<ol>
+<li>平时我们分析日志都是拿awk sed  xxx一堆工具来实现。这样对我们统计ip、pv、uv不是很方便。那么可以使用百度统计、google统计、商业，让开发嵌入代码即可。当然避免隐私也可以使用piwiki来做相关的流量分析。</li>
+</ol>
+<h4 id="可视化">可视化。</h4>
+<p>通过screen以及引入一些第三方的库来美化界面，同时我们也需要知道、订单量突然增加、突然减少。或者说突然来了一大波流量，这流量从哪儿来，是不是推广了，还是被攻击了。可以结合监控平来来梳理各个系统之间的业务关系。</p>
+<h4 id="自动化监控">自动化监控。</h4>
+<ol>
+<li>可以通过Zabbix的主动模式以及被动模式来实现。当然最好还是通过API来实现。</li>
+</ol>
+<h1 id="问题排查">问题排查</h1>
+<h2 id="服务器变慢">服务器变慢</h2>
+<ol>
+<li>服务器整体情况、CPU使用情况、内存、磁盘、磁盘IO、网络IO。</li>
+</ol>
+<h3 id="vmstatcpu使用情况">vmstat(CPU使用情况)</h3>
+<ol>
+<li>其中主要关注 procs 和 cpu 这两个参数</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">procs ：
+r ：运行和等待 CPU 时间片的进程数，一般来说整个系统的运行队列不要超过总核数的 2 倍，要不然系统压力太大了
+b : 等待资源的进程数，比如正在等待磁盘 IO ，网络 IO 这种
+cpu ：
+us  ：用户进程消耗 CPU 时间百分比， us 值高的话，说明用户进程消耗 CPU 时间比较长，如果长期大于 50% 的话，那就说明程序还有需要优化的地方
+sy ：内核进程消耗的 CPU 时间百分比
+us + sy 参考值为 80% ，如果大于 80% 的话，说明可能存在 CPU 不足
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="free内存使用情况">free（内存使用情况）</h3>
+<ol>
+<li><code>free</code>、<code>free -g</code>、<code>free -m</code>；</li>
+<li>如果应用程序可用内存/系统物理内存大于 70% 的话，说明内存是充足的，没啥问题，但是如果小于 20% 的话，就要考虑增加内存了。</li>
+</ol>
+<h3 id="df磁盘使用情况">df（磁盘使用情况）</h3>
+<h3 id="iostat磁盘io">iostat（磁盘IO）</h3>
+<ol>
+<li><code>iostat -xdk 3 2 </code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">rkB/s ：每秒读取数据量 kB ；
+wkB/s ：每秒写入数据量 kB ；
+svctm ：I/O 请求的平均服务时间，单位毫秒；
+util ：一秒中有百分之几的时间用于 I/O 操作，如果接近 100% 说明磁盘带宽跑满了，这个时候就要优化程序或者增加磁盘了
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="sar网络io">sar（网络IO）</h3>
+<ol>
+<li><code>sar -n DEV 3 2</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">IFACE ：LAN 接口
+rxpck/s ：每秒钟接收的数据包
+txpck/s ：每秒钟发送的数据包
+rxKB/s ：每秒接收的数据量，单位 KByte
+txKB/s ：每秒发出的数据量，单位 KByte
+rxcmp/s ：每秒钟接收的压缩数据包
+txcmp/s ：每秒钟发送的压缩数据包
+rxmcst/s：每秒钟接收的多播数据包
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-02-27</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="prev" rel="prev" title="负载均衡\反向代理"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/tools-vscode/" class="next" rel="next" title="VSCODE">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

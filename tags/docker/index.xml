@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Docker - 标签 - 锦枫紫兰</title>
+        <link>/tags/docker/</link>
+        <description>Docker - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Jan 2019 18:04:46 &#43;0000</lastBuildDate><atom:link href="/tags/docker/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker笔记</title>
+    <link>/post/%E8%BF%90%E7%BB%B4-5-docker%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Wed, 23 Jan 2019 18:04:46 &#43;0000</pubDate><guid>/post/%E8%BF%90%E7%BB%B4-5-docker%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[Docker进程管理 参考从一个实例，一窥docker进程管理 在Docker中，进程管理的基础是Linux内核的PID命名空间技术。在不同的P]]></description>
+</item>
+<item>
+    <title>容器镜像服务</title>
+    <link>/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</link>
+    <pubDate>Fri, 21 Dec 2018 09:34:38 &#43;0000</pubDate><guid>/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</guid>
+    <description><![CDATA[容器镜像 镜像中的应用尽量从环境变量获取配置参数； 退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。 阿里云的容器镜像服务 产品]]></description>
+</item>
+<item>
+    <title>Kubernetes-服务网格</title>
+    <link>/post/%E8%BF%90%E7%BB%B4-8-kubernetes%E5%AE%9E%E6%88%98-%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BCservicemesh%E9%80%89%E6%8B%A9/</link>
+    <pubDate>Tue, 18 Dec 2018 17:30:59 &#43;0000</pubDate><guid>/post/%E8%BF%90%E7%BB%B4-8-kubernetes%E5%AE%9E%E6%88%98-%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BCservicemesh%E9%80%89%E6%8B%A9/</guid>
+    <description><![CDATA[阅读Kubernetes 服务网格: Istio, Linkerd 和 Consul 大比较 存在的问题 目前越来越多的容器应用都是基于 Kubernetes 的，Kubernetes 已经成为了容器编排的事实标]]></description>
+</item>
+<item>
+    <title>Kubernetes实战</title>
+    <link>/post/%E8%BF%90%E7%BB%B4-7-kubernetes%E5%AE%9E%E6%88%98/</link>
+    <pubDate>Tue, 18 Dec 2018 17:30:59 &#43;0000</pubDate><guid>/post/%E8%BF%90%E7%BB%B4-7-kubernetes%E5%AE%9E%E6%88%98/</guid>
+    <description><![CDATA[参考杜先生的博客 参考官网 参考k8s Deployment 创建集群 Kubernetes 集群由两种类型的资源组成: 1. 一个 Master 是集群的调度节点 2. Nodes 是应用程序实际运行的工作节点 Master 负责管理集]]></description>
+</item>
+</channel>
+</rss>

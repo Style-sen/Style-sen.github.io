@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>微服务架构-4-OSS对象存储服务(文件服务) - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="微服务架构-4-OSS对象存储服务(文件服务)" />
+<meta property="og:description" content="参考微服务之分布式文件系统 搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-07-27T10:15:55+00:00" />
+<meta property="article:modified_time" content="2019-07-27T10:15:55+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="微服务架构-4-OSS对象存储服务(文件服务)"/>
+<meta name="twitter:description" content="参考微服务之分布式文件系统 搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/" /><link rel="prev" href="/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-%E9%80%89%E6%8B%A9%E5%85%AC%E6%9C%89%E4%BA%91%E4%BA%A7%E5%93%81/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E9%AB%98%E5%B9%B6%E5%8F%91websocket%E6%9C%8D%E5%8A%A1/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "微服务架构-4-OSS对象存储服务(文件服务)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "OSS","wordcount":  2299 ,
+        "url": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1\/","datePublished": "2019-07-27T10:15:55+00:00","dateModified": "2019-07-27T10:15:55+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">微服务架构-4-OSS对象存储服务(文件服务)</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#意义">意义</a></li>
+    <li><a href="#服务选择">服务选择</a>
+      <ul>
+        <li><a href="#miniohttpsminio"><a href="https://min.io/">Minio</a></a>
+          <ul>
+            <li><a href="#原理">原理</a></li>
+            <li><a href="#存储机制">存储机制</a>
+              <ul>
+                <li><a href="#纠删码">纠删码</a></li>
+              </ul>
+            </li>
+            <li><a href="#部署">部署</a>
+              <ul>
+                <li><a href="#单点模式">单点模式</a></li>
+                <li><a href="#集群模式">集群模式</a></li>
+              </ul>
+            </li>
+            <li><a href="#使用">使用</a>
+              <ul>
+                <li><a href="#mc客户端">mc客户端</a></li>
+                <li><a href="#js-api">JS API</a>
+                  <ul>
+                    <li><a href="#构造函数">构造函数</a></li>
+                    <li><a href="#操作存储桶">操作存储桶</a></li>
+                    <li><a href="#操作对象">操作对象</a></li>
+                    <li><a href="#presigned操作">Presigned操作</a></li>
+                    <li><a href="#存储桶策略通知">存储桶策略/通知</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://www.cnblogs.com/heishao/p/10371363.html" target="_blank" rel="noopener noreffer">微服务之分布式文件系统</a></p>
+<p>搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage Service)，提供的海量、安全、低成本、高可靠的云存储服务。它具有与平台无关的RESTful API接口，能够提供数据可靠性和服务可用性。</p>
+<h2 id="意义">意义</h2>
+<ol>
+<li>降低WEB服务器压力</li>
+<li>独立服务易扩展</li>
+<li>统一访问格式</li>
+<li>安全认证</li>
+</ol>
+<h2 id="服务选择">服务选择</h2>
+<p><a href="https://selfhosted.libhunt.com/categories/1685-file-sharing-and-synchronization" target="_blank" rel="noopener noreffer">Self Hosted File Sharing and Synchronization</a></p>
+<h3 id="miniohttpsminio"><a href="https://min.io/" target="_blank" rel="noopener noreffer">Minio</a></h3>
+<ol>
+<li>Minio是Apache License v2.0下发布的对象存储服务器。它与Amazon S3云存储服务兼容。<code>它最适合存储非结构化数据</code>，如照片，视频，日志文件，备份和容器/ VM映像。对象的大小可以从几KB到最大5TB。</li>
+<li>Minio服务器足够轻，可以与应用程序堆栈捆绑在一起，类似于NodeJS，Redis和MySQL。</li>
+<li>因为与Amazon S3云存储服务兼容，所以可以被很多框架访问。</li>
+</ol>
+<h4 id="原理">原理</h4>
+<h4 id="存储机制">存储机制</h4>
+<ol>
+<li>Minio使用纠删码erasure code和校验和checksum来保护数据免受硬件故障和无声数据损坏。 即便丢失一半数量（N/2）的硬盘，仍然可以恢复数据。</li>
+</ol>
+<h5 id="纠删码">纠删码</h5>
+<ol>
+<li>纠删码是一种恢复丢失和损坏数据的数学算法，目前，纠删码技术在分布式存储系统中的应用主要有三类，阵列纠删码（Array Code: RAID5、RAID6等）、RS(Reed-Solomon)里德-所罗门类纠删码和LDPC(LowDensity Parity Check Code)低密度奇偶校验纠删码。</li>
+<li>Erasure Code是一种编码技术，它可以将n份原始数据，增加m份数据，并能通过n+m份中的任意n份数据，还原为原始数据。即如果有任意小于等于m份的数据失效，仍然能通过剩下的数据还原出来。</li>
+</ol>
+<h4 id="部署">部署</h4>
+<h5 id="单点模式">单点模式</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run -p 9000:9000 --name minio1 \
+  -v /mnt/data:/data \
+  -v /mnt/config:/root/.minio \
+  minio/minio server /data
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="集群模式">集群模式</h5>
+<ol>
+<li>参考<a href="https://www.zengxi.net/articles/2018/docker-mino-cluster/" target="_blank" rel="noopener noreffer">Docker Compose创建minio集群</a>;</li>
+<li>分布式的Minio服务至少需要4个节点，所以在docker-compose.yml文件中，至少要配置4个服务。每个服务的command配置必须一样，保证集群环境正常运行。最多共16个。</li>
+<li>添加一个服务：
+a. 复制服务定义并适当地更改新服务的名称。
+b. 更新每个服务中的命令部分。
+c. 更新要为新服务公开的端口号。 另外，请确保分配给新服务的端口尚未使用。</li>
+<li>创建集群之后，使用负载均衡。</li>
+</ol>
+<h4 id="使用">使用</h4>
+<h5 id="mc客户端">mc客户端</h5>
+<h5 id="js-api">JS API</h5>
+<h6 id="构造函数">构造函数</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var Minio = require(&#39;minio&#39;)
+
+var minioClient = new Minio.Client({
+    endPoint: &#39;play.min.io&#39;,
+    port: 9000,
+    useSSL: true,
+    accessKey: &#39;Q3AM3UQ867SPQQA43P2F&#39;,
+    secretKey: &#39;zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG&#39;
+});
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="操作存储桶">操作存储桶</h6>
+<ol>
+<li>
+<p><code>makeBucket(名称，区域[,回调函数])</code>创建一个新的存储桶。<em>名称不能是路径</em>。</p>
+</li>
+<li>
+<p><code>listBuckets</code>列出所有存储桶。</p>
+</li>
+<li>
+<p><code>bucketExists</code>验证存储桶是否存在。</p>
+</li>
+<li>
+<p><code>removeBucket</code>删除存储桶。</p>
+</li>
+<li>
+<p><code>listObjects</code>列出存储桶中所有对象。</p>
+</li>
+<li>
+<p><code>listObjectsV2</code>使用S3 listing objects V2版本API列出所有对象。</p>
+</li>
+<li>
+<p><code>listIncompleteUploads</code>列出存储桶中未完整上传的对象。</p>
+</li>
+</ol>
+<h6 id="操作对象">操作对象</h6>
+<ol>
+<li>
+<p><code>getObject</code>下载对象。</p>
+</li>
+<li>
+<p><code>getPartialObject</code>下载对象中指定区间的字节数组，并返回流。</p>
+</li>
+<li>
+<p><code>fGetObject</code>下载并将对象保存成本地文件。</p>
+</li>
+<li>
+<p><code>putObject(bucketName, objectName, stream, size, metaData[, callback])</code>从一个stream/Buffer中上传一个对象。<em>bucketName相当于根目录，objectName可以包含相对根目录的路径，同名的objectName直接覆盖掉</em></p>
+</li>
+<li>
+<p><code>fPutObject</code>上传文件。<code>会覆盖掉以前的同名文件，即更新</code></p>
+</li>
+<li>
+<p><code>copyObject</code>将源对象拷贝到指定存储桶的新对象中。</p>
+</li>
+<li>
+<p><code>statObject</code>获取对象的元数据。</p>
+</li>
+<li>
+<p><code>removeObject</code>删除一个对象。</p>
+</li>
+<li>
+<p><code>removeIncompleteUpload</code>删除一个未完整上传的对象。</p>
+</li>
+</ol>
+<h6 id="presigned操作">Presigned操作</h6>
+<p>Presigned URLs用于对私有对象提供临时的上传/下载功能。</p>
+<ol>
+<li>
+<p><code>presignedUrl</code>生成一个给指定HTTP方法（&lsquo;httpMethod&rsquo;）请求用的presigned URL。浏览器/移动端的客户端可以用这个URL进行下载，即使其所在的存储桶是私有的。这个presigned URL可以设置一个失效时间，默认值是7天。</p>
+</li>
+<li>
+<p><code>presignedGetObject</code>生成一个给HTTP GET请求用的presigned URL。浏览器/移动端的客户端可以用这个URL进行下载，即使其所在的存储桶是私有的。这个presigned URL可以设置一个失效时间，默认值是7天。</p>
+</li>
+<li>
+<p><code>presignedPutObject</code>生成一个给HTTP PUT请求用的presigned URL。浏览器/移动端的客户端可以用这个URL进行上传，即使其所在的存储桶是私有的。这个presigned URL可以设置一个失效时间，默认值是7天。</p>
+</li>
+<li>
+<p><code>presignedPostPolicy</code>允许给POST请求的presigned URL设置条件策略。比如接收上传的存储桶名称、名称前缀、过期策略。</p>
+</li>
+</ol>
+<h6 id="存储桶策略通知">存储桶策略/通知</h6>
+<p>存储桶可以配置在指定事件类型和相应路径上触发通知。</p>
+<ol>
+<li>
+<p><code>getBucketNotification</code>	获取指定存储桶名称的通知配置。</p>
+</li>
+<li>
+<p><code>setBucketNotification</code>	上传一个用户创建的通知配置，并绑定到指定的存储桶上。</p>
+</li>
+<li>
+<p><code>removeAllBucketNotification</code>	删除指定存储桶上的通知配置。</p>
+</li>
+<li>
+<p><code>getBucketPolicy</code>获取指定存储桶的访问策略，如果objectPrefix不为空，则会取相应对象前缀上的访问策略。</p>
+</li>
+<li>
+<p><code>setBucketPolicy</code>设置指定存储桶的策略。如果objectPrefix不为空，则会给符合该前缀的对象（们）设置策略。</p>
+</li>
+<li>
+<p><code>listenBucketNotification</code>	监听存储桶上的通知，可通过前缀、后缀、事件类型进行过滤。使用本API并不需要预先设置存储桶通知。这是Minio的一个扩展API，服务端基于过来的请求使用唯一ID自动注册或者取消注册。返回一个EventEmitter对象，它可以广播一个通知事件。停止监听，调用EventEmitter的stop()方法。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/oss/">OSS</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-07-27</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-%E9%80%89%E6%8B%A9%E5%85%AC%E6%9C%89%E4%BA%91%E4%BA%A7%E5%93%81/" class="prev" rel="prev" title="运维-选择公有云产品"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E9%AB%98%E5%B9%B6%E5%8F%91websocket%E6%9C%8D%E5%8A%A1/" class="next" rel="next" title="后端-web框架-高并发websocket服务">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ORM-Sequelize - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="ORM-Sequelize" />
+<meta property="og:description" content="摘自Sequelize 中文API文档 MODEL定义 时间戳 延时 Getters &amp; setters - 访问器&amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-08-02T20:10:26+00:00" />
+<meta property="article:modified_time" content="2019-08-02T20:10:26+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="ORM-Sequelize"/>
+<meta name="twitter:description" content="摘自Sequelize 中文API文档 MODEL定义 时间戳 延时 Getters &amp; setters - 访问器&amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-neo4j/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ORM-Sequelize",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "后端, ORM","wordcount":  8529 ,
+        "url": "\/post\/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize\/","datePublished": "2019-08-02T20:10:26+00:00","dateModified": "2019-08-02T20:10:26+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">ORM-Sequelize</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#model定义">MODEL定义</a>
+      <ul>
+        <li><a href="#时间戳">时间戳</a></li>
+        <li><a href="#延时">延时</a></li>
+        <li><a href="#getters--setters---访问器设置器">Getters &amp; setters - 访问器&amp;设置器</a>
+          <ul>
+            <li><a href="#做为一个属性定义">做为一个属性定义</a></li>
+            <li><a href="#做为模型选项">做为模型选项</a></li>
+          </ul>
+        </li>
+        <li><a href="#定义字段的配置">定义字段的配置</a></li>
+        <li><a href="#字段类型">字段类型</a></li>
+        <li><a href="#validations---验证">Validations - 验证</a></li>
+        <li><a href="#model配置">model配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#model的使用">Model的使用</a>
+      <ul>
+        <li><a href="#基本操作">基本操作</a>
+          <ul>
+            <li><a href="#增create操作">增：create操作</a></li>
+            <li><a href="#改update操作">改：update操作</a></li>
+            <li><a href="#查find操作">查：find操作</a></li>
+            <li><a href="#删destroy操作">删：destroy操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#model的api">model的API</a>
+          <ul>
+            <li><a href="#removeattribute---移除属性">removeAttribute() - 移除属性</a></li>
+            <li><a href="#sync---同步模型到数据库">sync() - 同步模型到数据库</a></li>
+            <li><a href="#drop---删除数据库中的表">drop() - 删除数据库中的表</a></li>
+            <li><a href="#schema---指定schema">schema() - 指定schema</a></li>
+            <li><a href="#gettablename---获取表名">getTableName() - 获取表名</a></li>
+            <li><a href="#addscope---添加限制范围">addScope() - 添加限制范围</a></li>
+            <li><a href="#scope---应用限制范围">scope() - 应用限制范围</a></li>
+            <li><a href="#findall---查询多条数据">findAll() - 查询多条数据</a></li>
+            <li><a href="#findbyid---通过id查询单条数据">findById() - 通过Id查询单条数据</a></li>
+            <li><a href="#findone---查询单条数据">findOne() - 查询单条数据</a></li>
+            <li><a href="#aggregate---聚合查询">aggregate() - 聚合查询</a></li>
+            <li><a href="#count---统计查询结果数">count() - 统计查询结果数</a></li>
+            <li><a href="#findandcount---分页查询">findAndCount() - 分页查询</a></li>
+            <li><a href="#max---查询最大值">max() - 查询最大值</a></li>
+            <li><a href="#min---查询最大值">min() - 查询最大值</a></li>
+            <li><a href="#sum---求和">sum() - 求和</a></li>
+            <li><a href="#build---创建新实例">build() - 创建新实例</a></li>
+            <li><a href="#create---创建保存新实例">create() - 创建保存新实例</a></li>
+            <li><a href="#findorinitialize---查找或初始化">findOrInitialize() - 查找或初始化</a></li>
+            <li><a href="#findorcreate---查找或创建">findOrCreate() - 查找或创建</a></li>
+            <li><a href="#findcreatefind---查找或创建">findCreateFind() - 查找或创建</a></li>
+            <li><a href="#upsert---创建或更新">upsert() - 创建或更新</a></li>
+            <li><a href="#bulkcreate---创建多条记录">bulkCreate() - 创建多条记录</a></li>
+            <li><a href="#truncate---截断模型">truncate() - 截断模型</a></li>
+            <li><a href="#destroy---删除记录">destroy() - 删除记录</a></li>
+            <li><a href="#restore---恢复记录">restore() - 恢复记录</a></li>
+            <li><a href="#update---更新记录">update() - 更新记录</a></li>
+            <li><a href="#describe---查询表信息">describe() - 查询表信息</a></li>
+          </ul>
+        </li>
+        <li><a href="#data-retrieval--finders---数据索引查找">Data retrieval / Finders - 数据索引/查找</a>
+          <ul>
+            <li><a href="#findorcreate---从数据库中查找一个指定元素如果不存在则创建记录">findOrCreate - 从数据库中查找一个指定元素如果不存在则创建记录</a></li>
+            <li><a href="#findandcountall---从数据库中查找多个元素返回数据与记录总数">findAndCountAll - 从数据库中查找多个元素，返回数据与记录总数</a></li>
+            <li><a href="#findall---从数据库中查找多个元素">findAll - 从数据库中查找多个元素</a></li>
+            <li><a href="#inor-等复合筛选">IN/OR 等复合筛选</a></li>
+            <li><a href="#对数据集使用limitoffsetorder-和-group">对数据集使用limit、offset、order 和 group</a></li>
+            <li><a href="#原始查询">原始查询</a></li>
+          </ul>
+        </li>
+        <li><a href="#eager-loading---预加载">Eager loading - 预加载</a></li>
+        <li><a href="#api">API</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#build---创建新实例-1">build() - 创建新实例</a></li>
+                <li><a href="#create---创建保存新实例-1">create() - 创建保存新实例</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#关联">关联</a>
+      <ul>
+        <li><a href="#基本概念">基本概念</a>
+          <ul>
+            <li><a href="#源模型和目标模型">源模型和目标模型</a></li>
+            <li><a href="#外键">外键</a></li>
+          </ul>
+        </li>
+        <li><a href="#一对一">一对一</a>
+          <ul>
+            <li><a href="#belongsto---属于">BelongsTo - 属于</a>
+              <ul>
+                <li><a href="#外键-1">外键</a></li>
+              </ul>
+            </li>
+            <li><a href="#hasone---拥有一个">HasOne - 拥有一个</a></li>
+            <li><a href="#hasone-与belongsto-的不同">HasOne 与BelongsTo 的不同</a></li>
+          </ul>
+        </li>
+        <li><a href="#一对多one-to-many关联">一对多(One-To-Many)关联</a></li>
+        <li><a href="#多对多belongs-to-many关联">多对多(Belongs-To-Many)关联</a></li>
+      </ul>
+    </li>
+    <li><a href="#踩过的坑">踩过的坑</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>摘自<a href="https://itbilu.com/nodejs/npm/V1PExztfb.html#definition-define" target="_blank" rel="noopener noreffer">Sequelize 中文API文档</a></p>
+<h2 id="model定义">MODEL定义</h2>
+<h3 id="时间戳">时间戳</h3>
+<h3 id="延时">延时</h3>
+<h3 id="getters--setters---访问器设置器">Getters &amp; setters - 访问器&amp;设置器</h3>
+<ol>
+<li>可以在你的模型中将对象属性定义为访问/设置函数</li>
+<li>访问器&amp;设置器有以下两种定义方式：</li>
+</ol>
+<h4 id="做为一个属性定义">做为一个属性定义</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">class Employee extends Model {}
+Employee.init({
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    get() {
+      const title = this.getDataValue(&#39;title&#39;);
+      // &#39;this&#39; allows you to access attributes of the instance
+      return this.getDataValue(&#39;name&#39;) + &#39; (&#39; + title + &#39;)&#39;;
+    },
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    set(val) {
+      this.setDataValue(&#39;title&#39;, val.toUpperCase());
+    }
+  }
+}, { sequelize, modelName: &#39;employee&#39; });
+
+Employee
+  .create({ name: &#39;John Doe&#39;, title: &#39;senior engineer&#39; })
+  .then(employee =&gt; {
+    console.log(employee.get(&#39;name&#39;)); // John Doe (SENIOR ENGINEER)
+    console.log(employee.get(&#39;title&#39;)); // SENIOR ENGINEER
+  })
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="做为模型选项">做为模型选项</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//在下面的示例中，定义了一个名为fullName的访问器，它是对this.firstname和this.lastname两个属性引用，这个属性的一个假属性它并不是数据库中的一部分。定义假属性可以使用访问器或定义为VIRTUAL类型两种方式，Virtual类型可以验证而访问器则不能。
+
+class Foo extends Model {
+  get fullName() {
+    return this.firstname + &#39; &#39; + this.lastname;
+  }
+
+  set fullName(value) {
+    const names = value.split(&#39; &#39;);
+    this.setDataValue(&#39;firstname&#39;, names.slice(0, -1).join(&#39; &#39;));
+    this.setDataValue(&#39;lastname&#39;, names.slice(-1).join(&#39; &#39;));
+  }
+}
+Foo.init({
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING
+}, {
+  sequelize,
+  modelName: &#39;foo&#39;
+});
+
+// Or with `sequelize.define`
+sequelize.define(&#39;Foo&#39;, {
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING
+}, {
+  getterMethods: {
+    fullName() {
+      return this.firstname + &#39; &#39; + this.lastname;
+    }
+  },
+
+  setterMethods: {
+    fullName(value) {
+      const names = value.split(&#39; &#39;);
+
+      this.setDataValue(&#39;firstname&#39;, names.slice(0, -1).join(&#39; &#39;));
+      this.setDataValue(&#39;lastname&#39;, names.slice(-1).join(&#39; &#39;));
+    }
+  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="定义字段的配置">定义字段的配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Foo</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">flag</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BOOLEAN</span><span class="p">,</span> <span class="nx">allowNull</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">defaultValue</span><span class="o">:</span> <span class="kc">true</span><span class="p">},</span>    <span class="c1">// 实例化时在没有显式设置属性值时，会自动设置为 true.设置 allowNull 选项为 false 后，会为列添加  NOT NULL 非空限制, 这意味着当执行查询（插入/更新）时相关字段为空会从数据库层抛出错误
+</span><span class="c1"></span>  <span class="nx">myDate</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">,</span> <span class="nx">defaultValue</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">NOW</span> <span class="p">},</span>    <span class="c1">// 日期默认值 =&gt; 当前时间
+</span><span class="c1"></span>  <span class="nx">title</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span> <span class="nx">allowNull</span><span class="o">:</span> <span class="kc">false</span><span class="p">},</span>
+  <span class="nx">someUnique</span><span class="o">:</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span> <span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span><span class="p">},</span>    <span class="c1">// 添加唯一（unique）约束后插入重复值会报错
+</span><span class="c1"></span>  <span class="nx">uniqueOne</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>  <span class="nx">unique</span><span class="o">:</span> <span class="s1">&#39;compositeIndex&#39;</span><span class="p">},</span>    <span class="c1">// unique属性可以是boolean 或 string类型
+</span><span class="c1"></span>  <span class="nx">uniqueTwo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span> <span class="nx">unique</span><span class="o">:</span> <span class="s1">&#39;compositeIndex&#39;</span><span class="p">}</span>   <span class="c1">// 如果为多个字段添加了相同的字符串那么将会是一个符合唯一键
+</span><span class="c1"></span>  <span class="nx">someUnique</span><span class="o">:</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span> <span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>     <span class="c1">// unique属性以一个简单的简写方式创建唯一索引
+</span><span class="c1"></span>  <span class="p">{</span><span class="nx">someUnique</span><span class="o">:</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">}},</span>    <span class="c1">// 同样的，也可以模型的选项中创建索引
+</span><span class="c1"></span>  <span class="p">{</span><span class="nx">indexes</span><span class="o">:</span> <span class="p">[{</span><span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">fields</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;someUnique&#39;</span><span class="p">]}]}</span>
+  <span class="nx">identifier</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span> <span class="nx">primaryKey</span><span class="o">:</span> <span class="kc">true</span><span class="p">},</span>    <span class="c1">// 定义一个主键
+</span><span class="c1"></span>  <span class="nx">incrementMe</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span> <span class="nx">autoIncrement</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>    <span class="c1">//// autoIncrement 选项用于创建一个自增的整型列
+</span><span class="c1"></span>  <span class="nx">hasComment</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span> <span class="nx">comment</span><span class="o">:</span> <span class="s2">&#34;I&#39;m a comment!&#34;</span> <span class="p">},</span>    <span class="c1">// Comments 可以在MySQL 和 PG中指定定段描述
+</span><span class="c1"></span>  <span class="nx">fieldWithUnderscores</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span> <span class="nx">field</span><span class="o">:</span> <span class="s2">&#34;field_with_underscores&#34;</span> <span class="p">},</span>   <span class="c1">// 可以通过 &#34;field&#34; 属性来指定数据库中的字段名
+</span><span class="c1"></span>  <span class="c1">// 通过references选项可以创建外键:
+</span><span class="c1"></span>  <span class="nx">bar_id</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span>
+    <span class="nx">references</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// 引用另一个模型
+</span><span class="c1"></span>      <span class="nx">model</span><span class="o">:</span> <span class="nx">Bar</span><span class="p">,</span>
+      <span class="c1">// 连接模型的列表
+</span><span class="c1"></span>      <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+      <span class="c1">// 强制使用外键约束，仅适用于 PostgreSQL
+</span><span class="c1"></span>      <span class="nx">deferrable</span><span class="o">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">Deferrable</span><span class="p">.</span><span class="nx">INITIALLY_IMMEDIATE</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="字段类型">字段类型</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>                      <span class="c1">// VARCHAR(255)
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>                <span class="c1">// VARCHAR(1234)
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">.</span><span class="nx">BINARY</span>               <span class="c1">// VARCHAR BINARY
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">TEXT</span>                        <span class="c1">// TEXT
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">TEXT</span><span class="p">(</span><span class="s1">&#39;tiny&#39;</span><span class="p">)</span>                <span class="c1">// TINYTEXT
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span>                     <span class="c1">// INTEGER
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BIGINT</span>                      <span class="c1">// BIGINT
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BIGINT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>                  <span class="c1">// BIGINT(11)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">FLOAT</span>                       <span class="c1">// FLOAT
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">FLOAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>                   <span class="c1">// FLOAT(11)
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">FLOAT</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>               <span class="c1">// FLOAT(11,12)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">REAL</span>                        <span class="c1">// REAL        PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">REAL</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>                    <span class="c1">// REAL(11)    PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">REAL</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>                <span class="c1">// REAL(11,12) PostgreSQL only.
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DOUBLE</span>                      <span class="c1">// DOUBLE
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DOUBLE</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>                  <span class="c1">// DOUBLE(11)
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DOUBLE</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>              <span class="c1">// DOUBLE(11,12)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DECIMAL</span>                     <span class="c1">// DECIMAL
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>              <span class="c1">// DECIMAL(10,2)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span>                        <span class="c1">// DATETIME for mysql / sqlite, TIMESTAMP WITH TIME ZONE for postgres
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>                     <span class="c1">// DATETIME(6) for mysql 5.6.4+. Fractional seconds support with up to 6 digits of precision 
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATEONLY</span>                    <span class="c1">// DATE without time.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BOOLEAN</span>                     <span class="c1">// TINYINT(1)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">ENUM</span><span class="p">(</span><span class="s1">&#39;value 1&#39;</span><span class="p">,</span> <span class="s1">&#39;value 2&#39;</span><span class="p">)</span>  <span class="c1">// An ENUM with allowed values &#39;value 1&#39; and &#39;value 2&#39;
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">ARRAY</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">TEXT</span><span class="p">)</span>       <span class="c1">// Defines an array. PostgreSQL only.
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">JSON</span>                        <span class="c1">// JSON column. PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">JSONB</span>                       <span class="c1">// JSONB column. PostgreSQL only.
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BLOB</span>                        <span class="c1">// BLOB (bytea for PostgreSQL)
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BLOB</span><span class="p">(</span><span class="s1">&#39;tiny&#39;</span><span class="p">)</span>                <span class="c1">// TINYBLOB (bytea for PostgreSQL. Other options are medium and long)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">UUID</span>                        <span class="c1">//   PostgreSQL 和 SQLite 中为 UUID, MySQL 中为CHAR(36) BINARY (使用 defaultValue: Sequelize.UUIDV1 或 Sequelize.UUIDV4 生成默认值)
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">RANGE</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">)</span>    <span class="c1">// Defines int4range range. PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">RANGE</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">BIGINT</span><span class="p">)</span>     <span class="c1">// Defined int8range range. PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">RANGE</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">)</span>       <span class="c1">// Defines tstzrange range. PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">RANGE</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATEONLY</span><span class="p">)</span>   <span class="c1">// Defines daterange range. PostgreSQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">RANGE</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DECIMAL</span><span class="p">)</span>    <span class="c1">// Defines numrange range. PostgreSQL only.
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">ARRAY</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">RANGE</span><span class="p">(</span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">))</span> <span class="c1">// Defines array of tstzrange ranges. PostgreSQL only.
+</span><span class="c1"></span>
+<span class="nx">Sequelize</span><span class="p">.</span><span class="nx">GEOMETRY</span>                    <span class="c1">// Spatial column.  PostgreSQL (with PostGIS) or MySQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">GEOMETRY</span><span class="p">(</span><span class="s1">&#39;POINT&#39;</span><span class="p">)</span>           <span class="c1">// Spatial column with geomerty type.  PostgreSQL (with PostGIS) or MySQL only.
+</span><span class="c1"></span><span class="nx">Sequelize</span><span class="p">.</span><span class="nx">GEOMETRY</span><span class="p">(</span><span class="s1">&#39;POINT&#39;</span><span class="p">,</span> <span class="mi">4326</span><span class="p">)</span>     <span class="c1">// Spatial column with geomerty type and SRID.  PostgreSQL (with PostGIS) or MySQL only.
+</span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>DATE</code>直接使用JS的<code>DATE()</code>类型的数据写入。</li>
+</ol>
+<h3 id="validations---验证">Validations - 验证</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var ValidateMe = sequelize.define(&#39;foo&#39;, {
+  foo: {
+    type: Sequelize.STRING,
+    validate: {
+      is: [&#34;^[a-z]+$&#34;,&#39;i&#39;],     // 只允许字母
+      is: /^[a-z]+$/i,          // 只允许字母
+      not: [&#34;[a-z]&#34;,&#39;i&#39;],       // 不能使用字母
+      isEmail: true,            // 检测邮箱格式 (foo@bar.com)
+      isUrl: true,              // 检查Url格式 (http://foo.com)
+      isIP: true,               // 检查 IPv4 或 IPv6 格式
+      isIPv4: true,             // 检查 IPv4
+      isIPv6: true,             // 检查 IPv6
+      isAlpha: true,            // 不能使用字母
+      isAlphanumeric: true,     // 只允许字母数字字符
+      isNumeric: true,          // 只能使用数字
+      isInt: true,              // 只能是整数
+      isFloat: true,            // 只能是浮点数
+      isDecimal: true,          // 检查数字
+      isLowercase: true,        // 检查小写字母
+      isUppercase: true,        // 检查大写字母
+      notNull: true,            // 不允许null
+      isNull: true,             // 只能为null
+      notEmpty: true,           // 不能空字符串
+      equals: &#39;specific value&#39;, // 只能使用指定值
+      contains: &#39;foo&#39;,          // 必须包含子字符串
+      notIn: [[&#39;foo&#39;, &#39;bar&#39;]],  // 不能是数组中的任意一个值
+      isIn: [[&#39;foo&#39;, &#39;bar&#39;]],   // 只能是数组中的任意一个值
+      notContains: &#39;bar&#39;,       // 不能包含子字符串
+      len: [2, 10],              // 值的长度必在 2 和 10 之间
+      isUUID: 4,                // 只能是UUID
+      isDate: true,             // 只能是日期字符串
+      isAfter: &#34;2011-11-05&#34;,    // 只能使用指定日期之后的时间
+      isBefore: &#34;2011-11-05&#34;,   // 只能使用指定日期之前的时间
+      max: 23,                  // 允许的最大值
+      min: 23,                  // 允许的最小值
+      isArray: true,            // 不能使用数组
+      isCreditCard: true,       // 检查是有效的信用卡
+
+      // 也可以自定义验证:
+      isEven: function(value) {
+        if(parseInt(value) % 2 != 0) {
+          throw new Error(&#39;Only even values are allowed!&#39;)
+        // we also are in the model&#39;s context here, so this.otherField
+        // would get the value of otherField if it existed
+        }
+      }
+    }
+  }
+});
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="model配置">model配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 不要添加时间戳属性 (updatedAt, createdAt)
+  timestamps: false,
+
+  // 不从数据库中删除数据，而只是增加一个 deletedAt 标识当前时间
+  // paranoid 属性只在启用 timestamps 时适用
+  paranoid: true,
+
+  // 不使用驼峰式命令规则，这样会在使用下划线分隔
+  // 这样 updatedAt 的字段名会是 updated_at
+  underscored: true,
+
+  // 禁止修改表名. 默认情况下
+  // sequelize会自动使用传入的模型名（define的第一个参数）做为表名
+  // 如果你不想使用这种方式你需要进行以下设置
+  freezeTableName: true,
+
+  // 定义表名
+  tableName: &#39;my_very_custom_table_name&#39;
+  // Enable optimistic locking.  When enabled, sequelize will add a version count attribute
+  // to the model and throw an OptimisticLockingError error when stale instances are saved.
+  // Set to true or a string with the attribute name you want to use to enable.
+  version: true,
+
+  // Sequelize instance
+  sequelize,
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="model的使用">Model的使用</h2>
+<h3 id="基本操作">基本操作</h3>
+<p>通过Sequelize获取的模型对象实例列是一个DAO（Data Access Object）对象，这些对象会拥有许多操作数据库表的实例对象方法，这个对象会有create()、find()、update()、destroy()等对象操作方法，这些方法会对应的生成INSERT、SELECT、UPDATE、DELETE等SQL语句。</p>
+<h4 id="增create操作">增：create操作</h4>
+<p>create操作是指创建数据记录，我们可通过Model.create()方法添加一条数据或通过Model.bulkCreate()方法添加多条数据。
+<code>注意 updateOnDuplicate是在插入的时候如果主键冲突就执行更新操作</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.create({
+  firstName: &#39;liu&#39;,
+  lastName: &#39;小明&#39;
+}).then(function (created){
+  // 创建结果
+  console.log(created);
+}).catch(function(err){
+  // 出错了
+  console.log(err);	
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>在这个方法，其实际执行SQL语句类似如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">INSERT INTO `user` (`id`,`first_name`,`lastName`,`createdAt`,`updatedAt`) VALUES (DEFAULT,&#39;liu&#39;,&#39;小明&#39;,&#39;2016-05-03 15:22:06&#39;,&#39;2016-05-03 15:22:06&#39;);
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看出，除了我们在User对象定义时的两个字段外，其还额外处理了id、createdAt、updatedAt三个字段。id是数据表的主键，如果在定义对象时添加了主键，将使用自定义的主键，而没有添加时将自动添加一个名为id的主键。createdAt、updatedAt两个字段同样是自动添加的，如果不需要使用可以在定义模型时进行设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sequelize.define(&#39;user&#39;, {
+  firstName: {
+    type: Sequelize.STRING,
+    field: &#39;first_name&#39;
+  },
+  lastName: {
+    type: Sequelize.STRING
+  }
+}, {
+  freezeTableName: true,
+  &#39;createdAt&#39;: false,
+  &#39;updatedAt&#39;: &#39;utime&#39;
+});
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="改update操作">改：update操作</h4>
+<ol>
+<li>update操作是指修改数据记录，我们可通过Model.update()方法来修改已经存在的数据记录：</li>
+<li><code>可以使用bulkCreate方法，批量更新</code>，当主键冲突时，指定需要更新的字段。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">db_erroressence</span><span class="p">.</span><span class="nx">active_telephone</span><span class="p">.</span><span class="nx">bulkCreate</span><span class="p">(</span><span class="nx">valueArr</span><span class="p">,{</span><span class="nx">updateOnDuplicate</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;age&#34;</span><span class="p">,</span><span class="s2">&#34;sex&#34;</span><span class="p">]});</span>  <span class="c1">// 主键冲突，更新age和sex
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">User</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="nx">firstName</span><span class="o">:</span><span class="s1">&#39;liu&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">where</span><span class="o">:</span><span class="p">{</span><span class="nx">id</span><span class="o">:</span><span class="mi">1</span><span class="p">}}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">){</span>
+  <span class="c1">// 修改结果
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+  <span class="c1">// 出错了
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>	
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在.update()方法中，其实际生成的SQL语句类似如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">UPDATE</span> <span class="sb">`user`</span> <span class="nx">SET</span> <span class="sb">`first_name`</span><span class="o">=</span><span class="s1">&#39;liu&#39;</span><span class="p">,</span><span class="sb">`updatedAt`</span><span class="o">=</span><span class="s1">&#39;2016-05-03 15:43:32&#39;</span> <span class="nx">WHERE</span> <span class="sb">`id`</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="查find操作">查：find操作</h4>
+<p>find操作是指查询已存在的数据记录，我们可通过Model.findOne()方法查找一条数据，或通过Model.findAll()方法查找所有数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 按指定条件查找一条数据
+User.findOne({where:{id:1}}).then(function (result){
+  // 查询结果
+  console.log(result);
+}).catch(function(err){
+  // 出错了
+  console.log(err);	
+})
+
+// 查找所有数据
+User.findAll().then(function (result){
+  // 查询结果
+  console.log(result);
+}).catch(function(err){
+  // 出错了
+  console.log(err);	
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的查询操作中，其实际执行SQL语句分别类似如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 单条数据查询
+SELECT `id`, `first_name` AS `firstName`, `lastName`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1
+
+// 多条数据查询
+SELECT `id`, `first_name` AS `firstName`, `lastName`, `createdAt`, `updatedAt` FROM `user` AS `user`
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>对查询到实例可以执行save方法</strong></p>
+<h4 id="删destroy操作">删：destroy操作</h4>
+<p>destroy操作是指删除已存在的数据记录，我们可通过Model.destroy()方法来删除数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.destroy({where:{id:1}}).then(function (result){
+  // 操作结果
+  console.log(result);
+}).catch(function(err){
+  // 出错了
+  console.log(err);	
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>在以上.destroy()方法中，其实际生成的SQL语句类似如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">DELETE FROM `user` WHERE `id` = 1
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="model的api">model的API</h3>
+<h4 id="removeattribute---移除属性">removeAttribute() - 移除属性</h4>
+<h4 id="sync---同步模型到数据库">sync() - 同步模型到数据库</h4>
+<h4 id="drop---删除数据库中的表">drop() - 删除数据库中的表</h4>
+<h4 id="schema---指定schema">schema() - 指定schema</h4>
+<h4 id="gettablename---获取表名">getTableName() - 获取表名</h4>
+<h4 id="addscope---添加限制范围">addScope() - 添加限制范围</h4>
+<h4 id="scope---应用限制范围">scope() - 应用限制范围</h4>
+<h4 id="findall---查询多条数据">findAll() - 查询多条数据</h4>
+<h4 id="findbyid---通过id查询单条数据">findById() - 通过Id查询单条数据</h4>
+<h4 id="findone---查询单条数据">findOne() - 查询单条数据</h4>
+<h4 id="aggregate---聚合查询">aggregate() - 聚合查询</h4>
+<h4 id="count---统计查询结果数">count() - 统计查询结果数</h4>
+<p>统计符合查询条件的结果总数。
+如果提供了include，将计算匹配关联的数目</p>
+<h4 id="findandcount---分页查询">findAndCount() - 分页查询</h4>
+<h4 id="max---查询最大值">max() - 查询最大值</h4>
+<h4 id="min---查询最大值">min() - 查询最大值</h4>
+<h4 id="sum---求和">sum() - 求和</h4>
+<h4 id="build---创建新实例">build() - 创建新实例</h4>
+<h4 id="create---创建保存新实例">create() - 创建保存新实例</h4>
+<h4 id="findorinitialize---查找或初始化">findOrInitialize() - 查找或初始化</h4>
+<h4 id="findorcreate---查找或创建">findOrCreate() - 查找或创建</h4>
+<h4 id="findcreatefind---查找或创建">findCreateFind() - 查找或创建</h4>
+<h4 id="upsert---创建或更新">upsert() - 创建或更新</h4>
+<h4 id="bulkcreate---创建多条记录">bulkCreate() - 创建多条记录</h4>
+<h4 id="truncate---截断模型">truncate() - 截断模型</h4>
+<h4 id="destroy---删除记录">destroy() - 删除记录</h4>
+<h4 id="restore---恢复记录">restore() - 恢复记录</h4>
+<h4 id="update---更新记录">update() - 更新记录</h4>
+<h4 id="describe---查询表信息">describe() - 查询表信息</h4>
+<h3 id="data-retrieval--finders---数据索引查找">Data retrieval / Finders - 数据索引/查找</h3>
+<ol>
+<li>查找方法是为了从数据库中查询数据，这些方法不是返回原始数据对象，而是<code>返回模型实例</code>。因其返回的是模型实例，所以在文档的查询结果中<code>可以任意调用模型实例的成员、方法</code>等。（更多实例介绍请参考：instance）</li>
+</ol>
+<p>下面是一些常用的查询方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//find - 从数据库中查找一个指定元素
+</span><span class="c1">// 按已知id查找
+</span><span class="c1"></span><span class="nx">Project</span><span class="p">.</span><span class="nx">findByPk</span><span class="p">(</span><span class="mi">123</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">project</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// project 是一个 Project 实例，且包含存储在数据中的数据
+</span><span class="c1"></span>  <span class="c1">// 当不存在 id 为123的记录时 project 为 null
+</span><span class="c1"></span><span class="p">})</span>
+<span class="c1">// 按属性查找
+</span><span class="c1"></span><span class="nx">Project</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;aProject&#39;</span><span class="p">}</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">project</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// project 是匹配到的第一个 title 为 &#39;aProject&#39; 的 Projects 或 null
+</span><span class="c1"></span><span class="p">})</span>
+<span class="nx">Project</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;aProject&#39;</span><span class="p">},</span>
+  <span class="nx">attributes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">]]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">project</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// project 是匹配到的第一个 title 为 &#39;aProject&#39; 的 Projects 或 null
+</span><span class="c1"></span>  <span class="c1">// project 的 project.title 属性中会包含 &#39;name&#39;
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="findorcreate---从数据库中查找一个指定元素如果不存在则创建记录">findOrCreate - 从数据库中查找一个指定元素如果不存在则创建记录</h4>
+<ol>
+<li>findOrCreate可用于检测一个不确定是否存在的元素，如果存在则返回记录，不存在时会使用提供的默认值（<strong>默认值可以为常量，也可以为变量</strong>）新建记录。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//如，当数据不存在时，其执行效果如下：
+</span><span class="c1"></span><span class="nx">User</span>
+  <span class="p">.</span><span class="nx">findOrCreate</span><span class="p">({</span><span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;sdepold&#39;</span><span class="p">},</span> <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span><span class="nx">job</span><span class="o">:</span> <span class="s1">&#39;Technical Lead JavaScript&#39;</span><span class="p">}})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(([</span><span class="nx">user</span><span class="p">,</span> <span class="nx">created</span><span class="p">])=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span>
+      <span class="nx">plain</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}))</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span>
+    <span class="cm">/*
+</span><span class="cm">      [{
+</span><span class="cm">        username: &#39;itbilu.com&#39;,
+</span><span class="cm">        job: &#39;Technical Lead JavaScript&#39;,
+</span><span class="cm">        id: 1,
+</span><span class="cm">        createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),
+</span><span class="cm">        updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)
+</span><span class="cm">      },
+</span><span class="cm">      true]
+</span><span class="cm">    */</span>
+  <span class="p">})</span>
+<span class="c1">//当数据存在时，会返回记录：
+</span><span class="c1"></span><span class="nx">User</span>
+  <span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;fnord&#39;</span><span class="p">,</span> <span class="nx">job</span><span class="o">:</span> <span class="s1">&#39;omnomnom&#39;</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span> <span class="nx">User</span><span class="p">.</span><span class="nx">findOrCreate</span><span class="p">({</span><span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;fnord&#39;</span><span class="p">},</span> <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span><span class="nx">job</span><span class="o">:</span> <span class="s1">&#39;something else&#39;</span><span class="p">}}))</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(([</span><span class="nx">user</span><span class="p">,</span> <span class="nx">created</span><span class="p">])</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span>
+          <span class="nx">plain</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">}))</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span>
+
+        <span class="cm">/*
+</span><span class="cm">          [{
+</span><span class="cm">            username: &#39;fnord&#39;,
+</span><span class="cm">            job: &#39;omnomnom&#39;,
+</span><span class="cm">            id: 2,
+</span><span class="cm">            createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),
+</span><span class="cm">            updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)
+</span><span class="cm">          },
+</span><span class="cm">          created: false]
+</span><span class="cm">        */</span>
+      <span class="p">})</span>
+  <span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="findandcountall---从数据库中查找多个元素返回数据与记录总数">findAndCountAll - 从数据库中查找多个元素，返回数据与记录总数</h4>
+<ol>
+<li>这个方法是findAll和count两个方法的便捷形式，这在你想使用limit和offset进行分页查询时非常有用。</li>
+<li>在返回值中，会包含以下两个属性：
+<ul>
+<li>count - 整数，匹配到的总记录数</li>
+<li>rows - 对象数据，通过 limit 和 offset匹配的当前页数据</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Project</span>
+  <span class="p">.</span><span class="nx">findAndCountAll</span><span class="p">({</span>
+     <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">$like</span><span class="o">:</span> <span class="s1">&#39;foo%&#39;</span>
+        <span class="p">}</span>
+     <span class="p">},</span>
+     <span class="nx">offset</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+     <span class="nx">limit</span><span class="o">:</span> <span class="mi">2</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">);</span>
+  <span class="p">});</span>
+
+<span class="c1">//findAndCountAll同样支持使用include包含，使用包含时只有将required设置为true才会添加到count部分：
+</span><span class="c1"></span><span class="nx">User</span><span class="p">.</span><span class="nx">findAndCountAll</span><span class="p">({</span>
+  <span class="nx">include</span><span class="o">:</span> <span class="p">[</span>
+     <span class="p">{</span> <span class="nx">model</span><span class="o">:</span> <span class="nx">Profile</span><span class="p">,</span> <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nx">limit</span><span class="o">:</span> <span class="mi">3</span>
+<span class="p">});</span>
+<span class="c1">//使用include时，两个模型之间应该存在主/外键关系，如果不存在就应该在include中手工建立连接。
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>在上面的示例中，为Profile设置了required，所以在查询时会使用INNER JOIN内连接。</li>
+</ol>
+<h4 id="findall---从数据库中查找多个元素">findAll - 从数据库中查找多个元素</h4>
+<ol>
+<li>findAndCountAll中使用的查询选项同样适用于findAll方法。</li>
+<li><code>Op = Sequelize.Op</code>;</li>
+<li><code>options</code>都有哪些</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>optional</td>
+<td>描述搜索范围的选项散列</td>
+</tr>
+<tr>
+<td>options.where</td>
+<td>Object</td>
+<td>optional</td>
+<td>A hash of attributes to describe your search. See above for examples.</td>
+</tr>
+<tr>
+<td>options.attributes</td>
+<td>Array<string> / Object</td>
+<td>optional</td>
+<td>A list of the attributes that you want to select, or an object with include and exclude keys. To rename an attribute, you can pass an array, with two elements - the first is the name of the attribute in the DB (or some kind of 表达式 such as <code>Sequelize.literal</code>, <code>Sequelize.fn</code> and so on), and the second is 重命名</td>
+</tr>
+<tr>
+<td>options.attributes.include</td>
+<td>Array<string></td>
+<td>optional</td>
+<td>包含所有属性，并加上一些额外属性. Useful for aggregations, e.g. { attributes: { include: [[sequelize.fn(&lsquo;COUNT&rsquo;, sequelize.col(&lsquo;id&rsquo;)), &lsquo;total&rsquo;]] }</td>
+</tr>
+<tr>
+<td>options.attributes.exclude</td>
+<td>Array<string></td>
+<td>optional</td>
+<td>包含所有属性，除了一些. Useful for security purposes e.g. { attributes: { exclude: [&lsquo;password&rsquo;] } }</td>
+</tr>
+</tbody>
+</table>
+<p>|options.paranoid	boolean
+optional
+default: true
+If true, only non-deleted records will be returned. If false, both deleted and non-deleted records will be returned. Only applies if options.paranoid is true for the model.</p>
+<p>|options.include	Array&lt;Object|Model|string&gt;
+optional
+A list of associations to eagerly load using a left join. Supported is either { include: [ Model1, Model2, &hellip;]} or { include: [{ model: Model1, as: &lsquo;Alias&rsquo; }]} or { include: [&lsquo;Alias&rsquo;]}. If your association are set up with an as (eg. X.hasMany(Y, { as: &lsquo;Z }, you need to specify Z in the as attribute when eager loading Y).</p>
+<p>|options.include[].model	Model
+optional
+The model you want to eagerly load</p>
+<p>|options.include[].as	string
+optional
+The alias of the relation, in case the model you want to eagerly load is aliased. For hasOne / belongsTo, this should be the singular name, and for hasMany, it should be the plural</p>
+<p>|options.include[].association	Association
+optional
+The association you want to eagerly load. (This can be used instead of providing a model/as pair)</p>
+<p>|options.include[].where	Object
+optional
+Where clauses to apply to the child models. Note that this converts the eager load to an inner join, unless you explicitly set required: false</p>
+<p>|options.include[].or	boolean
+optional
+default: false
+Whether to bind the ON and WHERE clause together by OR instead of AND.</p>
+<p>|options.include[].on	Object
+optional
+Supply your own ON condition for the join.</p>
+<p>|options.include[].attributes	Array<string>
+optional
+A list of attributes to select from the child model</p>
+<p>|options.include[].required	boolean
+optional
+If true, converts to an inner join, which means that the parent model will only be loaded if it has any matching children. True if include.where is set, false otherwise.</p>
+<p>|options.include[].separate	boolean
+optional
+If true, runs a separate query to fetch the associated instances, only supported for hasMany associations</p>
+<p>|options.include[].limit	number
+optional
+Limit the joined rows, only supported with include.separate=true</p>
+<p>|options.include[].through.where	Object
+optional
+Filter on the join model for belongsToMany relations</p>
+<p>|options.include[].through.attributes	Array
+optional
+A list of attributes to select from the join model for belongsToMany relations</p>
+<p>|options.include[].include	Array&lt;Object|Model|string&gt;
+optional
+Load further nested related models</p>
+<p>|options.include[].duplicating	boolean
+optional
+Mark the include as duplicating, will prevent a subquery from being used.</p>
+<p>|options.order	Array | fn | col | literal
+optional
+Specifies an ordering. Using an array, you can provide several columns / functions to order by. Each element can be further wrapped in a two-element array. The first element is the column / function to order by, the second is the direction. For example: order: [[&lsquo;name&rsquo;, &lsquo;DESC&rsquo;]]. In this way the column will be escaped, but the direction will not.</p>
+<p>|options.limit	number
+optional
+Limit for result</p>
+<p>|options.offset	number
+optional
+Offset for result</p>
+<p>|options.transaction	Transaction
+optional
+Transaction to run query under</p>
+<p>|options.lock	string | Object
+optional
+Lock the selected rows. Possible options are transaction.LOCK.UPDATE and transaction.LOCK.SHARE. Postgres also supports transaction.LOCK.KEY_SHARE, transaction.LOCK.NO_KEY_UPDATE and specific model locks with joins. See transaction.LOCK for an example</p>
+<p>|options.raw	boolean
+optional
+Return raw result. See sequelize.query for more information.</p>
+<p>|options.logging	Function
+optional
+default: false
+A function that gets executed while running the query to log the sql.</p>
+<p>|options.benchmark	boolean
+optional
+default: false
+Pass query execution time in milliseconds as second argument to logging function (options.logging).</p>
+<p>|options.having	Object
+optional
+Having options</p>
+<p>|options.searchPath	           |string                       |optional    |default: DEFAULT;An optional parameter to specify the schema search_path (Postgres only)
+|options.rejectOnEmpty	   |boolean / Error    |optional    |default: false;Throws an error when no records found</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// find multiple entries
+</span><span class="c1"></span><span class="nx">Project</span><span class="p">.</span><span class="nx">findAll</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">projects</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// projects will be an array of all Project instances
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="c1">// search for specific attributes - hash usage
+</span><span class="c1"></span><span class="nx">Project</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;A Project&#39;</span> <span class="p">}</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">projects</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// projects will be an array of Project instances with the specified name
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="c1">// search within a specific range
+</span><span class="c1"></span><span class="nx">Project</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">}</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">projects</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// projects will be an array of Projects having the id 1, 2 or 3
+</span><span class="c1"></span>  <span class="c1">// this is actually doing an IN query
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="nx">Project</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">and</span><span class="p">]</span><span class="o">:</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span>           <span class="c1">// AND (a = 5)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">or</span><span class="p">]</span><span class="o">:</span> <span class="p">[{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">6</span><span class="p">}],</span>  <span class="c1">// (a = 5 OR a = 6)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">gt</span><span class="p">]</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>                <span class="c1">// id &gt; 6
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">gte</span><span class="p">]</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>               <span class="c1">// id &gt;= 6
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">lt</span><span class="p">]</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>               <span class="c1">// id &lt; 10
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">lte</span><span class="p">]</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>              <span class="c1">// id &lt;= 10
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">ne</span><span class="p">]</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>               <span class="c1">// id != 20
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">between</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>     <span class="c1">// BETWEEN 6 AND 10
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">notBetween</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="c1">// NOT BETWEEN 11 AND 15
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="k">in</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>           <span class="c1">// IN [1, 2]
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">notIn</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>        <span class="c1">// NOT IN [1, 2]
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">like</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span><span class="p">,</span>         <span class="c1">// LIKE &#39;%hat&#39;
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">notLike</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span><span class="p">,</span>       <span class="c1">// NOT LIKE &#39;%hat&#39;
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">iLike</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span><span class="p">,</span>         <span class="c1">// ILIKE &#39;%hat&#39; (case insensitive)  (PG only)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">notILike</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span><span class="p">,</span>      <span class="c1">// NOT ILIKE &#39;%hat&#39;  (PG only)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">overlap</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>       <span class="c1">// &amp;&amp; [1, 2] (PG array overlap operator)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">contains</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>      <span class="c1">// @&gt; [1, 2] (PG array contains operator)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">contained</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>     <span class="c1">// &lt;@ [1, 2] (PG array contained by operator)
+</span><span class="c1"></span>      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">any</span><span class="p">]</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>            <span class="c1">// ANY ARRAY[2, 3]::INTEGER (PG only)
+</span><span class="c1"></span>    <span class="p">},</span>
+    <span class="nx">status</span><span class="o">:</span> <span class="p">{</span>
+      <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">not</span><span class="p">]</span><span class="o">:</span> <span class="kc">false</span>           <span class="c1">// status NOT FALSE
+</span><span class="c1"></span>    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="inor-等复合筛选">IN/OR 等复合筛选</h4>
+<ol>
+<li>如果要在查询中使用AND、OR或DOT等筛选条件，可以查询的where中指定$and、$or或$not等属性：</li>
+<li><code>在egg框架中，没有</code>$<code>运算符，所以需要使用[Op.or],[Op.and],[Op.not]</code>.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Project.findOne({
+  where: {
+    name: &#39;a project&#39;,
+    $or: [
+      { id: [1,2,3] },
+      { id: { $gt: 10 } }
+    ]
+  }
+})
+Project.findOne({
+  where: {
+    name: &#39;a project&#39;,
+    id: {
+      $or: [
+        [1,2,3],
+        { $gt: 10 }
+      ]
+    }
+  }
+})
+
+//这个查询生成的实际SQL语句为：
+SELECT *
+FROM `Projects`
+WHERE (
+  `Projects`.`name` = &#39;a project&#39;
+   AND (`Projects`.`id` IN (1,2,3) OR `Projects`.`id` &gt; 10)
+)
+LIMIT 1;
+$not示例：
+
+Project.findOne({
+  where: {
+    name: &#39;a project&#39;,
+    $not: [
+      { id: [1,2,3] },
+      { array: { $contains: [3,4,5] } }
+    ]
+  }
+});
+将生成以下语句：
+
+SELECT *
+FROM `Projects`
+WHERE (
+  `Projects`.`name` = &#39;a project&#39;
+   AND NOT (`Projects`.`id` IN (1,2,3) OR `Projects`.`array` @&gt; ARRAY[1,2,3]::INTEGER[])
+)
+LIMIT 1;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="对数据集使用limitoffsetorder-和-group">对数据集使用limit、offset、order 和 group</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 使用 limit 限制返回结果数
+Project.findAll({ limit: 10 })
+
+// 跳过前 10 条结果
+Project.findAll({ offset: 10 })
+
+// 跳过前 10 条结果后，返回两条数据
+Project.findAll({ offset: 10, limit: 2 })
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>分组与排序的语法是相似的，所以下边语法适用分组和排序。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Project.findAll({order: [[&#39;title&#39;, &#39;DESC&#39;]]})
+// yields ORDER BY title DESC
+
+Project.findAll({group: &#39;name&#39;})
+// yields GROUP BY name
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>传入简单的字符串时，查询字符串会逐字查询，即列名不转义。如果需要列名转义，可以提供一个数组参数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">something</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
+  <span class="nx">order</span><span class="o">:</span> <span class="p">[</span>
+    <span class="c1">// will return `name`
+</span><span class="c1"></span>    <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+    <span class="c1">// will return `username` DESC
+</span><span class="c1"></span>    <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+    <span class="c1">// will return max(`age`)
+</span><span class="c1"></span>    <span class="nx">sequelize</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)),</span>
+    <span class="c1">// will return max(`age`) DESC
+</span><span class="c1"></span>    <span class="p">[</span><span class="nx">sequelize</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)),</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+    <span class="c1">// will return otherfunction(`col1`, 12, &#39;lalala&#39;) DESC
+</span><span class="c1"></span>    <span class="p">[</span><span class="nx">sequelize</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;otherfunction&#39;</span><span class="p">,</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;col1&#39;</span><span class="p">),</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;lalala&#39;</span><span class="p">),</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+    <span class="c1">// will return otherfunction(awesomefunction(`col`)) DESC, This nesting is potentially infinite!
+</span><span class="c1"></span>    <span class="p">[</span><span class="nx">sequelize</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;otherfunction&#39;</span><span class="p">,</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;awesomefunction&#39;</span><span class="p">,</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;col&#39;</span><span class="p">))),</span> <span class="s1">&#39;DESC&#39;</span><span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li><code>不能在include中使用order，但是在order中可以指定Model</code>。参考<a href="https://github.com/sequelize/sequelize/issues/4553" target="_blank" rel="noopener noreffer">How do I apply order to includes</a></li>
+<li><a href="https://itbilu.com/nodejs/npm/EJcKjQWfM.html" target="_blank" rel="noopener noreffer">在Sequelize中使用group by分组聚合查询</a></li>
+</ol>
+<h4 id="原始查询">原始查询</h4>
+<p>默情况下，Sequlize人为查询结构创建实例，通过这个实例可以进行数据的更新、删除等操作。有时候我只需要显示数据集，而不需要进行处理，这时可以通过设置raw选项来返回原始数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 增加 raw 选项后，会返回数据库中的原始结果
+Project.findAll({ where: { ... }, raw: true })
+count - 统计数据库中的元素数
+
+count可以统计数据库中的元素数：
+
+Project.count().then(function(c) {
+  console.log(&#34;There are &#34; + c + &#34; projects!&#34;)
+})
+
+Project.count({ where: [&#34;id &gt; ?&#34;, 25] }).then(function(c) {
+  console.log(&#34;There are &#34; + c + &#34; projects with an id greater than 25.&#34;)
+})
+max - 查找指定表中最大值
+
+// 数据库中有3条记录，年龄分别是 10, 5, 40
+Project.max(&#39;age&#39;).then(function(max) {
+  // 会返回 40
+})
+
+Project.max(&#39;age&#39;, { where: { age: { lt: 20 } } }).then(function(max) {
+  // 会返回 10
+})
+min - 查找指定表中最小值
+
+// 数据库中有3条记录，年龄分别是 10, 5, 40
+Project.min(&#39;age&#39;).then(function(min) {
+  // 会返回 5
+})
+
+Project.min(&#39;age&#39;, { where: { age: { $gt: 5 } } }).then(function(min) {
+  // 会返回 10
+})
+sum - 对指定属性求和
+
+// 数据库中有3条记录，年龄分别是 10, 5, 40
+Project.sum(&#39;age&#39;).then(function(sum) {
+  // 会返回 55
+})
+
+Project.sum(&#39;age&#39;, { where: { age: { $gt: 5 } } }).then(function(sum) {
+  // 会返回 50
+})
+
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="eager-loading---预加载">Eager loading - 预加载</h3>
+<ol>
+<li>从数据库中加载数据时，除<strong>数据本身外还想得到与之相关联的数据</strong>－这就是所谓的预加载。也就是说，<code>使用find或findAll查询数据时，通过include属性同时加载关联的数据</code>。</li>
+</ol>
+<p>假设有以下数据结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var User = sequelize.define(&#39;user&#39;, { name: Sequelize.STRING })
+  , Task = sequelize.define(&#39;task&#39;, { name: Sequelize.STRING })
+  , Tool = sequelize.define(&#39;tool&#39;, { name: Sequelize.STRING })
+
+Task.belongsTo(User)
+User.hasMany(Task)
+User.hasMany(Tool, { as: &#39;Instruments&#39; })
+
+sequelize.sync().then(function() {
+  // this is where we continue ...
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>通过belongsTo与hasMany建立关系后，就可以像下面这样查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Task.findAll({ include: [ User ] }).then(function(tasks) {
+  console.log(JSON.stringify(tasks))
+
+  /*
+    [{
+      &#34;name&#34;: &#34;A Task&#34;,
+      &#34;id&#34;: 1,
+      &#34;createdAt&#34;: &#34;2013-03-20T20:31:40.000Z&#34;,
+      &#34;updatedAt&#34;: &#34;2013-03-20T20:31:40.000Z&#34;,
+      &#34;userId&#34;: 1,
+      &#34;user&#34;: {
+        &#34;name&#34;: &#34;John Doe&#34;,
+        &#34;id&#34;: 1,
+        &#34;createdAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+        &#34;updatedAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;
+      }
+    }]
+  */
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>由于Task与User是1对多的关系，所在查询时user会做为一个对象属性被同时加载。</p>
+<p>下面我们进行一个多对多的查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.findAll({ include: [ Task ] }).then(function(users) {
+  console.log(JSON.stringify(users))
+
+  /*
+    [{
+      &#34;name&#34;: &#34;John Doe&#34;,
+      &#34;id&#34;: 1,
+      &#34;createdAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+      &#34;updatedAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+      &#34;tasks&#34;: [{
+        &#34;name&#34;: &#34;A Task&#34;,
+        &#34;id&#34;: 1,
+        &#34;createdAt&#34;: &#34;2013-03-20T20:31:40.000Z&#34;,
+        &#34;updatedAt&#34;: &#34;2013-03-20T20:31:40.000Z&#34;,
+        &#34;userId&#34;: 1
+      }]
+    }]
+  */
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>在多对多的关系中，相关数据会做为一个数组属性被同时加载。</p>
+<p>关联查询时，可以使用as选项为关系数据指定别名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.findAll({ include: [{ model: Tool, as: &#39;Instruments&#39; }] }).then(function(users) {
+  console.log(JSON.stringify(users))
+
+  /*
+    [{
+      &#34;name&#34;: &#34;John Doe&#34;,
+      &#34;id&#34;: 1,
+      &#34;createdAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+      &#34;updatedAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+      &#34;Instruments&#34;: [{
+        &#34;name&#34;: &#34;Toothpick&#34;,
+        &#34;id&#34;: 1,
+        &#34;createdAt&#34;: null,
+        &#34;updatedAt&#34;: null,
+        &#34;userId&#34;: 1
+      }]
+    }]
+  */
+})
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>关联查询时，同样可以使用where选项对关联数据进行筛选（所有的where为与的关系）：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.findAll({
+    include: [{
+        model: Tool,
+        as: &#39;Instruments&#39;,
+        where: { name: { $like: &#39;%ooth%&#39; } }
+    }]
+}).then(function(users) {
+    console.log(JSON.stringify(users))
+
+    /*
+      [{
+        &#34;name&#34;: &#34;John Doe&#34;,
+        &#34;id&#34;: 1,
+        &#34;createdAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+        &#34;updatedAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+        &#34;Instruments&#34;: [{
+          &#34;name&#34;: &#34;Toothpick&#34;,
+          &#34;id&#34;: 1,
+          &#34;createdAt&#34;: null,
+          &#34;updatedAt&#34;: null,
+          &#34;userId&#34;: 1
+        }]
+      }],
+
+      [{
+        &#34;name&#34;: &#34;John Smith&#34;,
+        &#34;id&#34;: 2,
+        &#34;createdAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+        &#34;updatedAt&#34;: &#34;2013-03-20T20:31:45.000Z&#34;,
+        &#34;Instruments&#34;: [{
+          &#34;name&#34;: &#34;Toothpick&#34;,
+          &#34;id&#34;: 1,
+          &#34;createdAt&#34;: null,
+          &#34;updatedAt&#34;: null,
+          &#34;userId&#34;: 1
+        }]
+      }],
+    */
+  })
+</code></pre></td></tr></table>
+</div>
+</div><p>注意：<code>使用include.where条件时，include.requied会被隐式的设置为true，即在查询时会使用INNER JOIN内连接</code>可以显性地设为false。</p>
+<p>全关联</p>
+<p>如果多个模型间存在关联关系，而我们在查询时又要查询所有的数据，就可以设置all: true来关联所有模型：</p>
+<p>User.findAll({ include: [{ all: true }]});
+包括软删除的数据</p>
+<p>如果要在结果中包含软删除的数据，请将include.paranoid设置为true：</p>
+<p>User.findAll({
+include: [{
+model: Tool,
+where: { name: { $like: &lsquo;%ooth%&rsquo; } },
+paranoid: true // 查询并加载软删除的数据
+}]
+});
+预加载关联数据的排序</p>
+<p>在1对多（one-to-many）的关系中：</p>
+<p>Company.findAll({ include: [ Division ], order: [ [ Division, &lsquo;name&rsquo; ] ] });
+Company.findAll({ include: [ Division ], order: [ [ Division, &lsquo;name&rsquo;, &lsquo;DESC&rsquo; ] ] });
+Company.findAll({
+include: [ { model: Division, as: &lsquo;Div&rsquo; } ],
+order: [ [ { model: Division, as: &lsquo;Div&rsquo; }, &lsquo;name&rsquo; ] ]
+});
+Company.findAll({
+include: [ { model: Division, as: &lsquo;Div&rsquo; } ],
+order: [ [ { model: Division, as: &lsquo;Div&rsquo; }, &lsquo;name&rsquo;, &lsquo;DESC&rsquo; ] ]
+});
+Company.findAll({
+include: [ { model: Division, include: [ Department ] } ],
+order: [ [ Division, Department, &lsquo;name&rsquo; ] ]
+});
+在多对多（many-to-many）的关系中同样可以使用排序：</p>
+<p>Company.findAll({
+include: [ { model: Division, include: [ Department ] } ],
+order: [ [ Division, DepartmentDivision, &lsquo;name&rsquo; ] ]
+});
+嵌套预加载</p>
+<p>可以在关联模型中嵌套预加载关系模型：</p>
+<p>User.findAll({
+include: [
+{model: Tool, as: &lsquo;Instruments&rsquo;, include: [
+{model: Teacher, include: [ /* etc */]}
+]}
+]
+}).then(function(users) {
+console.log(JSON.stringify(users))</p>
+<p>/*
+[{
+&ldquo;name&rdquo;: &ldquo;John Doe&rdquo;,
+&ldquo;id&rdquo;: 1,
+&ldquo;createdAt&rdquo;: &ldquo;2013-03-20T20:31:45.000Z&rdquo;,
+&ldquo;updatedAt&rdquo;: &ldquo;2013-03-20T20:31:45.000Z&rdquo;,
+&ldquo;Instruments&rdquo;: [{ // 1:M and N:M association
+&ldquo;name&rdquo;: &ldquo;Toothpick&rdquo;,
+&ldquo;id&rdquo;: 1,
+&ldquo;createdAt&rdquo;: null,
+&ldquo;updatedAt&rdquo;: null,
+&ldquo;userId&rdquo;: 1,
+&ldquo;Teacher&rdquo;: { // 1:1 association
+&ldquo;name&rdquo;: &ldquo;Jimi Hendrix&rdquo;
+}
+}]
+}]
+*/
+})
+这会生成一个外连接，但where子句的关系模型会使用内连接并返回唯一一个子句：</p>
+<p>User.findAll({
+include: [{
+model: Tool,
+as: &lsquo;Instruments&rsquo;,
+include: [{
+model: Teacher,
+where: {
+school: &ldquo;Woodstock Music School&rdquo;
+},
+required: false
+}]
+}]
+}).then(function(users) {
+/* &hellip; */
+})
+include同样支持嵌套加载：</p>
+<p>User.findAll({ include: [{ all: true, nested: true }]});</p>
+<h3 id="api">API</h3>
+<h5 id="build---创建新实例-1">build() - 创建新实例</h5>
+<ol>
+<li>参数，为一个字典。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">build(values, [options]) -&gt; Instance
+</code></pre></td></tr></table>
+</div>
+</div><p>创建一个新的模型实例，Values参数为新例指定的键值对对象</p>
+<h5 id="create---创建保存新实例-1">create() - 创建保存新实例</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">create(values, [options]) -&gt; Promise.&lt;Instance&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>构建一个新的模型实例，并进行保存。与build()方法不同的是，此方法除创建新实例外，还会将其保存到对应数据库表中。</p>
+<h2 id="关联">关联</h2>
+<ol>
+<li>有四种关联关系：
+<ul>
+<li>BelongsTo</li>
+<li>HasOne</li>
+<li>HasMany</li>
+<li>BelongsToMany</li>
+</ul>
+</li>
+</ol>
+<h3 id="基本概念">基本概念</h3>
+<h4 id="源模型和目标模型">源模型和目标模型</h4>
+<p><code>User.hasOne(Project);</code> User是源模型，Project是目标模型。</p>
+<h4 id="外键">外键</h4>
+<h3 id="一对一">一对一</h3>
+<h4 id="belongsto---属于">BelongsTo - 属于</h4>
+<ol>
+<li>BelongsTo关联表示一对一关系的外键存在于源模型。</li>
+<li>如，下例中Player是通过外键关联的Team的一部分：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var Player = this.sequelize.define(&#39;player&#39;, {/* attributes */})
+  , Team  = this.sequelize.define(&#39;team&#39;, {/* attributes */});
+
+Player.belongsTo(Team); // 会为Player添加一个teamId 属性以保持与Team 主键的关系
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="外键-1">外键</h5>
+<ol>
+<li>默认情况下，一个属于关系的外键将从目标模型的名称和主键名称生成。</li>
+<li>默认命名使用驼峰式命名，而在源模型中添加了underscored: true配置，将使用蛇型命名。</li>
+<li>在定义中使用as命名时，会将其做为目标模型的名称.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.belongsTo(UserRole, {as: &#39;role&#39;}); // 会为 user添加 roleId 属性而不是 userRoleId
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="hasone---拥有一个">HasOne - 拥有一个</h4>
+<ol>
+<li>HasOne关联表示一对一关系的外键存在于目标模型。</li>
+</ol>
+<h4 id="hasone-与belongsto-的不同">HasOne 与BelongsTo 的不同</h4>
+<ol>
+<li>在1:1 的关系中，可使用HasOne 或BelongsTo来定义。但它们的使用场景有所不同。</li>
+</ol>
+<h3 id="一对多one-to-many关联">一对多(One-To-Many)关联</h3>
+<ol>
+<li>One-To-Many关联是指一个源模型连接多个目标模型。反之目标模型都会有一个明确的源。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var User = sequelize.define(&#39;user&#39;, {/* ... */})
+var Project = sequelize.define(&#39;project&#39;, {/* ... */})
+// 定义 hasMany 关联
+Project.hasMany(User, {as: &#39;Workers&#39;})
+</code></pre></td></tr></table>
+</div>
+</div><p>会向 User 中添加一个projectId或project_id属性。Project 的实例中会有访问器getWorkers 和 setWorkers。这是一种单向关联方式，如果两个模型间还有其它关联方式请参考下面的多对多关系。</p>
+<h3 id="多对多belongs-to-many关联">多对多(Belongs-To-Many)关联</h3>
+<ol>
+<li>Belongs-To-Many 关联是指一个源模型连接多个目标模型。而且，目标模型也可以有多个相关的源。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.belongsToMany(Project, { as: &#39;Tasks&#39;, through: &#39;worker_tasks&#39;, foreignKey: &#39;userId&#39;, otherKey: &#39;projectId&#39;})
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">User.findAll({
+  include: [{
+    model: Project,
+    through: {
+      attributes: [&#39;createdAt&#39;, &#39;startedAt&#39;, &#39;finishedAt&#39;],
+      where: {completed: true}
+    }
+  }]
+});
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="踩过的坑">踩过的坑</h2>
+<ol>
+<li>查询出来的model集，如果使用attributes指定了重命名，不能直接使用对象的访问符获取元素，只能使用dataValues，没有重命名就可以使用<code>.</code>。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+                </span><span><a href="/tags/orm/">ORM</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-08-02</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/" class="prev" rel="prev" title="后端-web框架-基础件-socket.io"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-neo4j/" class="next" rel="next" title="运维-数据库-NEO4J">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

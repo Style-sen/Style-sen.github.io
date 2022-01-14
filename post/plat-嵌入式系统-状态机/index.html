@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>状态机 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="状态机" />
+<meta property="og:description" content="学习状态机的三种骚操作，值得你了解 1. 概念 状态机的实现3个要素：状态、事件、响应； 有限状态机，层次状态机，并行状态机。 2. 实现方法 2.1. switch" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-03-27T10:14:47+08:00" />
+<meta property="article:modified_time" content="2021-03-27T10:14:47+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="状态机"/>
+<meta name="twitter:description" content="学习状态机的三种骚操作，值得你了解 1. 概念 状态机的实现3个要素：状态、事件、响应； 有限状态机，层次状态机，并行状态机。 2. 实现方法 2.1. switch"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA/" /><link rel="prev" href="/post/plat-linux-%E9%A9%B1%E5%8A%A8-%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87/" /><link rel="next" href="/post/plat-linux-03-shell/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "状态机",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT","wordcount":  953 ,
+        "url": "\/post\/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA\/","datePublished": "2021-03-27T10:14:47+08:00","dateModified": "2021-03-27T10:14:47+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">状态机</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-概念">1. 概念</a></li>
+    <li><a href="#2-实现方法">2. 实现方法</a>
+      <ul>
+        <li><a href="#21-switchcase法">2.1. <code>switch—case</code>法</a></li>
+        <li><a href="#22-表格驱动法">2.2. 表格驱动法</a></li>
+        <li><a href="#23-函数指针法">2.3. 函数指针法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>学习<a href="https://mp.weixin.qq.com/s/M4px8oR5M1CgWb4ucfaG9w" target="_blank" rel="noopener noreffer">状态机的三种骚操作，值得你了解</a></p>
+<h2 id="1-概念">1. 概念</h2>
+<ol>
+<li>状态机的实现3个要素：状态、事件、响应；</li>
+<li>有限状态机，层次状态机，并行状态机。</li>
+</ol>
+<h2 id="2-实现方法">2. 实现方法</h2>
+<h3 id="21-switchcase法">2.1. <code>switch—case</code>法</h3>
+<ol>
+<li>比较常用。</li>
+<li><code>状态嵌套事件</code>和<code>事件嵌套状态</code>,自行决断。</li>
+<li>【注】switch—case的原理是从上到下挨个比较，越靠后，查找耗费的时间就越长，所以要注意状态和事件在各自的 switch 语句中的安排顺序；出现频率高或者实时性要求高的状态和事件的位置应该尽量靠前。</li>
+</ol>
+<h3 id="22-表格驱动法">2.2. 表格驱动法</h3>
+<ol>
+<li>
+<p>把事件当做纵轴，把状态当做横轴，交点[Sn , Em]则是系统在 Sn 状态下对事件 Em 的响应</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S0</th>
+<th>S1</th>
+<th>S2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E0</td>
+<td>Node_S0E0</td>
+<td>Node_S1E0</td>
+<td>Node_S2E0</td>
+</tr>
+<tr>
+<td>E1</td>
+<td>Node_S0E1</td>
+<td>Node_S1E1</td>
+<td>Node_S2E1</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Node_S0E2</td>
+<td>Node_S1E2</td>
+<td>Node_S2E2</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Node_S0E3</td>
+<td>Node_S1E3</td>
+<td>Node_S2E3</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Node_SnEm 叫做状态机节点，在 Sn状态下对事件 Em 的响应。这里所说的响应包含两个方面：输出动作和状态迁移。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">fsm_node</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">fpAction</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span> <span class="n">pEvnt</span><span class="p">);</span><span class="c1">//函数指针，pEvent事件的内容
+</span><span class="c1"></span>    <span class="n">INT8U</span> <span class="n">u8NxtStat</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>表格反映在 C 语言代码里就是一个二维数组，第 1 维就是状态机的状态（枚举），第 2维就是统一分类的事件（枚举），而数组的元素则是上述结构体常量。</p>
+</li>
+<li>
+<p>【优点】效率提高，相对于switch-case方法。【缺点】可读性差，而且无法根据条件不同切换到不同的状态。</p>
+</li>
+<li>
+<p><code>压缩表格驱动法</code>压缩表格驱动法使用了一维数组作为驱动表格，数组的下标即是状态机的各个状态。节点函数对所有事件起作用，让动作封装函数返回一个状态， 并把这个状态作为状态机新的状态。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">fsm_node</span> <span class="cm">/*压缩状态机节点结构体*/</span>
+<span class="p">{</span>
+ <span class="n">INT8U</span> <span class="p">(</span><span class="o">*</span><span class="n">fpAction</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span> <span class="n">pEvnt</span><span class="p">);</span> <span class="cm">/*事件处理函数指针（内部就是switch-case）,返回一个状态*/</span>
+ <span class="n">INT8U</span> <span class="n">u8StatChk</span><span class="p">;</span> <span class="cm">/*状态校验， 程序在引用函数指针 fpAction 之前， 先检查当前状态和当前节点成员 u8CurStat 的值是否一致，一致则认为状态合法，事件正常响应，如果不一致，则认为当前状态非法，转至意外处理，最大限度保证程序运行的安全。*/</span>
+<span class="p">};</span>
+<span class="c1">//也可以判断当前状态是否是这个数组的index
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>压缩表格驱动法是相当优秀的，它既有表格驱动法的简洁、高效、标准，又有 switch—case 法的直白、灵活、多变，相互取长补短，相得益彰</code>。</p>
+</li>
+</ol>
+<h3 id="23-函数指针法">2.3. 函数指针法</h3>
+<ol>
+<li>前边方法用一个全局的整型变量来记录状态值，然后再查驱动表格找函数地址，直接用一个全局的函数指针来记录状态。</li>
+<li>函数的返回值不再是整型的状态值， 而是下一个动作封装函数的函数地址， 函数返回后， 框架代码再把这个函数地址存储到全局函数指针变量中。</li>
+<li>不建议使用，很难判断函数指针是否合法。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-03-27</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/plat-linux-%E9%A9%B1%E5%8A%A8-%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87/" class="prev" rel="prev" title="驱动-字符设备"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-linux-03-shell/" class="next" rel="next" title="SHELL">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

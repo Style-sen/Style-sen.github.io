@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>VUE - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="VUE" />
+<meta property="og:description" content="VUE实例的生命周期 VUE实例的特殊属性和方法 $refs 一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性 1 2 3 4 5 6 7 8 9 10 Vue.prototype.$appName = &#39;My App&#39;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%89%8D%E7%AB%AF-vue/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-01-14T11:58:24+00:00" />
+<meta property="article:modified_time" content="2019-01-14T11:58:24+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="VUE"/>
+<meta name="twitter:description" content="VUE实例的生命周期 VUE实例的特殊属性和方法 $refs 一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性 1 2 3 4 5 6 7 8 9 10 Vue.prototype.$appName = &#39;My App&#39;"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%89%8D%E7%AB%AF-vue/" /><link rel="prev" href="/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/" /><link rel="next" href="/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "VUE",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%89%8D%E7%AB%AF-vue\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "VUE, 前端","wordcount":  1518 ,
+        "url": "\/post\/%E5%89%8D%E7%AB%AF-vue\/","datePublished": "2019-01-14T11:58:24+00:00","dateModified": "2019-01-14T11:58:24+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">VUE</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vue实例的生命周期">VUE实例的生命周期</a></li>
+    <li><a href="#vue实例的特殊属性和方法">VUE实例的特殊属性和方法</a>
+      <ul>
+        <li><a href="#refs">$refs</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue实例属性">VUE实例属性</a></li>
+    <li><a href="#实战技巧">实战技巧</a></li>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#使用vue-clihttpsclivuejsorgzh">使用<a href="https://cli.vuejs.org/zh/">Vue CLI</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#vue插件">VUE插件</a>
+      <ul>
+        <li><a href="#vuexhttpsvuexvuejsorgzh"><a href="https://vuex.vuejs.org/zh/">VUEX</a></a>
+          <ul>
+            <li><a href="#cookiehtml4">cookie(HTML4)</a></li>
+            <li><a href="#webstoragehtml5">WebStorage(HTML5)</a>
+              <ul>
+                <li><a href="#sessionstoragehtml5-回话存储">sessionStorage(HTML5) 回话存储</a></li>
+                <li><a href="#localstoragehtml5-本地存储">localStorage(HTML5) 本地存储</a></li>
+              </ul>
+            </li>
+            <li><a href="#总结">总结</a></li>
+          </ul>
+        </li>
+        <li><a href="#vue-router">VUE-ROUTER</a></li>
+        <li><a href="#vue-json-excelhttpswwwnpmjscompackagevue-json-excel"><a href="https://www.npmjs.com/package/vue-json-excel">vue-json-excel</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#基于vue的扩展">基于VUE的扩展</a>
+      <ul>
+        <li><a href="#iviewhttpsiviewuicom一套基于vuejs的高质量ui-组件库"><a href="https://iviewui.com/">IVIEW</a>一套基于Vue.js的高质量UI 组件库</a></li>
+        <li><a href="#elementhttpselementelemecnzh-cn一套为开发者设计师和产品经理准备的基于-vue-20-的桌面端组件库"><a href="https://element.eleme.cn/#/zh-CN">Element</a>一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库</a></li>
+        <li><a href="#ant-design-of-vuehttpsvueantdesigndocsvueintroduce"><a href="https://vue.ant.design/docs/vue/introduce/">Ant Design of Vue</a></a></li>
+        <li><a href="#vue-beautyhttpsfe-drivergithubiovue-beautycomponentsstart基于-vuejs-和-ant-design样式-的pc端-ui-组件库"><a href="https://fe-driver.github.io/vue-beauty/#/components/start">vue-beauty</a>基于 vue.js 和 ant-design样式 的PC端 UI 组件库</a></li>
+        <li><a href="#antuehttpszzuu666githubioantuedocsdevelopmentfirstzh"><a href="https://zzuu666.github.io/antue/#/docs/development/first/zh">ANTUE</a></a></li>
+        <li><a href="#fengyuanchenvue-barcodehttpsgithubcomfengyuanchenvue-barcode"><a href="https://github.com/fengyuanchen/vue-barcode">fengyuanchen/vue-barcode</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#基于vue的框架">基于VUE的框架</a>
+      <ul>
+        <li><a href="#vue-element-adminhttpspanjiachengithubiovue-element-admin-sitezhguidee58a9fe883bd"><a href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/#%E5%8A%9F%E8%83%BD">vue-element-admin</a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="vue实例的生命周期">VUE实例的生命周期</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/vue/lifecycle.png"
+        data-srcset="/images/vue/lifecycle.png, /images/vue/lifecycle.png 1.5x, /images/vue/lifecycle.png 2x"
+        data-sizes="auto"
+        alt="/images/vue/lifecycle.png"
+        title="生命周期" /></p>
+<h2 id="vue实例的特殊属性和方法">VUE实例的特殊属性和方法</h2>
+<h3 id="refs">$refs</h3>
+<p>一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。</p>
+<h2 id="vue实例属性">VUE实例属性</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Vue.prototype.$appName = &#39;My App&#39;
+
+这样 $appName 就在所有的 Vue 实例（每个页面都是一个独立的实例）中可用了，甚至在实例被创建之前就可以。如果我们运行：
+
+new Vue({
+  beforeCreate: function () {
+    console.log(this.$appName)
+  }
+})
+则控制台会打印出 My App。就这么简单！
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="实战技巧">实战技巧</h2>
+<ol>
+<li><a href="https://blog.csdn.net/akon_vm/article/details/8494579" target="_blank" rel="noopener noreffer">防止浏览器缓存css,js静态文件</a> <br>
+使用此方法可以在程序运行过程中，重新下载同名的静态文件。</li>
+<li><a href="https://blog.csdn.net/pratise/article/details/79249943" target="_blank" rel="noopener noreffer">Vue导出页面为PDF格式</a></li>
+<li><a href="https://segmentfault.com/a/1190000012117303" target="_blank" rel="noopener noreffer">Vue导出json数据到Excel电子表格</a></li>
+</ol>
+<h2 id="安装">安装</h2>
+<h3 id="使用vue-clihttpsclivuejsorgzh">使用<a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreffer">Vue CLI</a></h3>
+<ol>
+<li>可图形界面创建VUE项目(vue ci)。</li>
+<li>关于source map,在生产环境下，一定要关闭source map选项，这样在chrome的调试窗口source选项卡下，就不会看到项目源码。否则，在build的dist/js目录下有map文件。</li>
+<li>使用vue cli使用的配置文件为 vue.config.js</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">module.exports = {
+  productionSourceMap: false
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="vue插件">VUE插件</h2>
+<h3 id="vuexhttpsvuexvuejsorgzh"><a href="https://vuex.vuejs.org/zh/" target="_blank" rel="noopener noreffer">VUEX</a></h3>
+<ol>
+<li>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。</li>
+<li>参考<a href="https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart" target="_blank" rel="noopener noreffer">购物车项目</a></li>
+<li>store对象中的key值按照约定，不可随意更改。</li>
+<li>参考<a href="https://www.cnblogs.com/jsanntq/p/9288144.html" target="_blank" rel="noopener noreffer">vuex存储和本地存储(localstorage、sessionstorage)的区别</a>.</li>
+</ol>
+<h4 id="cookiehtml4">cookie(HTML4)</h4>
+<ol>
+<li>4K</li>
+</ol>
+<h4 id="webstoragehtml5">WebStorage(HTML5)</h4>
+<ol>
+<li>5M或更大；</li>
+<li>使用方法</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">.运算符
+[]运算符
+setItem (key, value) ——  保存数据，以键值对的方式储存信息。
+getItem (key) ——  获取数据，将键值传入，即可获取到对应的value值。
+removeItem (key) ——  删除单个数据，根据键值移除对应的信息。
+clear () ——  删除所有的数据
+key (index) —— 获取某个索引的key
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="sessionstoragehtml5-回话存储">sessionStorage(HTML5) 回话存储</h5>
+<ol>
+<li>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</li>
+</ol>
+<h5 id="localstoragehtml5-本地存储">localStorage(HTML5) 本地存储</h5>
+<ol>
+<li>localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</li>
+</ol>
+<h4 id="总结">总结</h4>
+<p>1.区别：vuex存储在内存，localstorage（本地存储）则以文件的方式存储在本地,永久保存；sessionstorage( 会话存储 ) ,临时保存。localStorage和sessionStorage只能存储字符串类型，对于复杂的对象可以使用ECMAScript提供的JSON对象的stringify和parse来处理
+2.应用场景：vuex用于组件之间的传值，localstorage，sessionstorage则主要用于不同页面之间的传值。
+3.永久性：当刷新页面（这里的刷新页面指的是 &ndash;&gt; F5刷新,属于清除内存了）时vuex存储的值会丢失，sessionstorage页面关闭后就清除掉了，localstorage不会。<br>
+<strong>注：很多同学觉得用localstorage可以代替vuex, 对于不变的数据确实可以，但是当两个组件共用一个数据源（对象或数组）时，如果其中一个组件改变了该数据源，希望另一个组件响应该变化时，localstorage，sessionstorage无法做到，原因就是区别1。</strong></p>
+<h3 id="vue-router">VUE-ROUTER</h3>
+<ol>
+<li><a href="https://blog.csdn.net/bluefish_flying/article/details/81011230" target="_blank" rel="noopener noreffer">vue router带参数页面刷新或者回退参数消失的解决方法</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">this.$router.push({path:&#39;&#39;,params:{},query:{}})
+patams传参.路径不能使用path 只能使用name,不然获取不到传的数据.query要用path
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="vue-json-excelhttpswwwnpmjscompackagevue-json-excel"><a href="https://www.npmjs.com/package/vue-json-excel" target="_blank" rel="noopener noreffer">vue-json-excel</a></h3>
+<h2 id="基于vue的扩展">基于VUE的扩展</h2>
+<h3 id="iviewhttpsiviewuicom一套基于vuejs的高质量ui-组件库"><a href="https://iviewui.com/" target="_blank" rel="noopener noreffer">IVIEW</a>一套基于Vue.js的高质量UI 组件库</h3>
+<p>组件多于element-ui</p>
+<h3 id="elementhttpselementelemecnzh-cn一套为开发者设计师和产品经理准备的基于-vue-20-的桌面端组件库"><a href="https://element.eleme.cn/#/zh-CN" target="_blank" rel="noopener noreffer">Element</a>一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库</h3>
+<ol>
+<li><a href="https://panjiachen.github.io/vue-element-admin-site/zh/" target="_blank" rel="noopener noreffer">vue-element-admin</a>基于 Vue2.0，配合使用 Element UI 组件库的一个前端管理后台集成解决方案。</li>
+</ol>
+<h3 id="ant-design-of-vuehttpsvueantdesigndocsvueintroduce"><a href="https://vue.ant.design/docs/vue/introduce/" target="_blank" rel="noopener noreffer">Ant Design of Vue</a></h3>
+<h3 id="vue-beautyhttpsfe-drivergithubiovue-beautycomponentsstart基于-vuejs-和-ant-design样式-的pc端-ui-组件库"><a href="https://fe-driver.github.io/vue-beauty/#/components/start" target="_blank" rel="noopener noreffer">vue-beauty</a>基于 vue.js 和 ant-design样式 的PC端 UI 组件库</h3>
+<h3 id="antuehttpszzuu666githubioantuedocsdevelopmentfirstzh"><a href="https://zzuu666.github.io/antue/#/docs/development/first/zh" target="_blank" rel="noopener noreffer">ANTUE</a></h3>
+<h3 id="fengyuanchenvue-barcodehttpsgithubcomfengyuanchenvue-barcode"><a href="https://github.com/fengyuanchen/vue-barcode" target="_blank" rel="noopener noreffer">fengyuanchen/vue-barcode</a></h3>
+<h2 id="基于vue的框架">基于VUE的框架</h2>
+<h3 id="vue-element-adminhttpspanjiachengithubiovue-element-admin-sitezhguidee58a9fe883bd"><a href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/#%E5%8A%9F%E8%83%BD" target="_blank" rel="noopener noreffer">vue-element-admin</a></h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/vue/">VUE</a>
+                </span><span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-01-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/" class="prev" rel="prev" title="UNIAPP"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/" class="next" rel="next" title="使用Electron创建桌面应用">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>FLASK - 标签 - 锦枫紫兰</title>
+        <link>/tags/flask/</link>
+        <description>FLASK - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Mar 2019 09:55:21 &#43;0000</lastBuildDate><atom:link href="/tags/flask/" rel="self" type="application/rss+xml" /><item>
+    <title>后端-web框架-Flask</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</link>
+    <pubDate>Mon, 11 Mar 2019 09:55:21 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</guid>
+    <description><![CDATA[配置的最佳实践 变量的配置 通过调用自定义config.py文件中config字典，可以得到一个类，这个类里面定义的都是类变量，这些变量就是自定]]></description>
+</item>
+</channel>
+</rss>

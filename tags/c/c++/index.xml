@@ -1,0 +1,37 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>C/C&#43;&#43; - 标签 - 锦枫紫兰</title>
+        <link>/tags/c/c&#43;&#43;/</link>
+        <description>C/C&#43;&#43; - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="/tags/c/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+    <title>C/C&#43;&#43;第三方库</title>
+    <link>/post/program-c-c&#43;&#43;-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</link>
+    <pubDate>Fri, 03 Dec 2021 10:30:22 &#43;0800</pubDate><guid>/post/program-c-c&#43;&#43;-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
+    <description><![CDATA[1. GSL - GNU Scientific Library GNU Scientific库（GSL）是C和C++程序员的数字库。它是GNU通用公共许可下的自由软件。 该库提供了广泛的数学例程，如随]]></description>
+</item>
+<item>
+    <title>PROGRAM C&#43;&#43; 核心准则</title>
+    <link>/post/program-c&#43;&#43;-%E6%A0%B8%E5%BF%83%E5%87%86%E5%88%99/</link>
+    <pubDate>Sat, 17 Apr 2021 11:05:58 &#43;0800</pubDate><guid>/post/program-c&#43;&#43;-%E6%A0%B8%E5%BF%83%E5%87%86%E5%88%99/</guid>
+    <description><![CDATA[C.40 Define a constructor if a class has an invariant R.3: A raw pointer (a T*) is non-owning R.4: A raw reference (a T&amp;) is non-owning R.10: Avoid malloc() and free() 避免使用malloc和free malloc() and free() do not support construction and destruction, and do not mix well with new and delete. E E.28: Avoid error handling based]]></description>
+</item>
+<item>
+    <title>C&#43;&#43;面向对象</title>
+    <link>/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+    <pubDate>Wed, 07 Apr 2021 14:57:16 &#43;0800</pubDate><guid>/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+    <description><![CDATA[1. class 1.1. 规范 类名首字母都大写 1.2. 访问权限 1.2.1. public 在类的外部（定义类的代码之外），只能通过对象访问成员，并且通过对象只能访问 public 属性的成员 1.2.2. privat]]></description>
+</item>
+<item>
+    <title>PROGRAM C C&#43;&#43; 基础知识拾遗</title>
+    <link>/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/</link>
+    <pubDate>Tue, 02 Mar 2021 14:57:50 &#43;0800</pubDate><guid>/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/</guid>
+    <description><![CDATA[1. 语言版本 目前最广泛使用的C语言版本是 ANSI / ISO C(C89,C90)，最经典的C语言教材是《C程序设计语言(The C Programming Language) 第二版》，【几乎所有的开]]></description>
+</item>
+<item>
+    <title>C/C&#43;&#43; 标准库</title>
+    <link>/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/</link>
+    <pubDate>Tue, 02 Mar 2021 13:49:43 &#43;0800</pubDate><guid>/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/</guid>
+    <description><![CDATA[1. &lt;arpa/inet.h&gt; 1.1. 宏 1.2. 结构体 1.3. 函数原型 1 unsigned long int inet_addr(const char *cp)//将一个字符串格式的ip地址转换成一个uint32_t数字格式，&#34;127.0.0.1]]></description>
+</item>
+</channel>
+</rss>

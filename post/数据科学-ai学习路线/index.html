@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数据科学-机器学习 - 锦枫紫兰</title><meta name="description" content="开始机器学习"><meta property="og:title" content="数据科学-机器学习" />
+<meta property="og:description" content="开始机器学习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-05-16T10:16:28+00:00" />
+<meta property="article:modified_time" content="2019-05-16T10:16:28+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="数据科学-机器学习"/>
+<meta name="twitter:description" content="开始机器学习"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" /><link rel="prev" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-saas/" /><link rel="next" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数据科学-机器学习",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "算法, 机器学习","wordcount":  4877 ,
+        "url": "\/post\/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF\/","datePublished": "2019-05-16T10:16:28+00:00","dateModified": "2019-05-16T10:16:28+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "开始机器学习"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">数据科学-机器学习</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#吴恩达的课程">吴恩达的课程</a>
+      <ul>
+        <li><a href="#初识">初识</a>
+          <ul>
+            <li><a href="#什么是机器学习">什么是机器学习</a></li>
+            <li><a href="#监督学习">监督学习</a></li>
+            <li><a href="#无监督学习">无监督学习</a></li>
+          </ul>
+        </li>
+        <li><a href="#单变量线性回归">单变量线性回归</a>
+          <ul>
+            <li><a href="#模型描述">模型描述</a></li>
+            <li><a href="#代价函数">代价函数</a></li>
+            <li><a href="#代价函数一">代价函数（一）</a></li>
+            <li><a href="#代价函数二">代价函数（二）</a></li>
+            <li><a href="#梯度下降">梯度下降</a></li>
+            <li><a href="#梯度下降知识点总结">梯度下降知识点总结</a></li>
+            <li><a href="#线性回归的梯度下降">线性回归的梯度下降</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性代数回顾">线性代数回顾</a>
+          <ul>
+            <li><a href="#矩阵和向量">矩阵和向量</a></li>
+            <li><a href="#加法和标量乘法">加法和标量乘法</a></li>
+            <li><a href="#矩阵向量乘法">矩阵向量乘法</a></li>
+            <li><a href="#矩阵乘法">矩阵乘法</a></li>
+            <li><a href="#矩阵乘法特征">矩阵乘法特征</a></li>
+            <li><a href="#逆和转置">逆和转置</a></li>
+          </ul>
+        </li>
+        <li><a href="#多变量线性回归">多变量线性回归</a>
+          <ul>
+            <li><a href="#多功能">多功能</a></li>
+            <li><a href="#多元梯度下降法">多元梯度下降法</a></li>
+            <li><a href="#多元梯度下降法演练1-特征缩放">多元梯度下降法演练1-特征缩放</a></li>
+            <li><a href="#多元梯度下降法ii-学习率">多元梯度下降法II-学习率</a></li>
+            <li><a href="#特征和多项式回归">特征和多项式回归</a></li>
+            <li><a href="#正规方程区别于迭代方法的直接解法">正规方程（区别于迭代方法的直接解法）</a></li>
+            <li><a href="#正规方程在矩阵不可逆的情况下的解决方法">正规方程在矩阵不可逆的情况下的解决方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#octave教程">Octave教程</a>
+          <ul>
+            <li><a href="#向量化">向量化</a></li>
+          </ul>
+        </li>
+        <li><a href="#logistic回归">Logistic回归</a>
+          <ul>
+            <li><a href="#分类">分类</a></li>
+            <li><a href="#假设陈述">假设陈述</a></li>
+            <li><a href="#决策界限">决策界限</a></li>
+            <li><a href="#代价函数-1">代价函数</a></li>
+            <li><a href="#简化代价函数与梯度下降">简化代价函数与梯度下降</a></li>
+            <li><a href="#高级优化">高级优化</a></li>
+            <li><a href="#多元分类一对多one-vs-allone-vs-rest">多元分类：一对多（one vs all）(one vs rest)</a></li>
+          </ul>
+        </li>
+        <li><a href="#正则化">正则化</a>
+          <ul>
+            <li><a href="#过拟合问题">过拟合问题</a></li>
+            <li><a href="#代价函数-2">代价函数</a></li>
+            <li><a href="#线性回归的正则化">线性回归的正则化</a></li>
+            <li><a href="#逻辑回归的正则化">逻辑回归的正则化</a></li>
+          </ul>
+        </li>
+        <li><a href="#神经网络学习">神经网络学习</a>
+          <ul>
+            <li><a href="#非线性假设">非线性假设</a></li>
+            <li><a href="#神经元与大脑">神经元与大脑</a></li>
+            <li><a href="#模型展示i">模型展示I</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#机器学习实战">《机器学习实战》</a></li>
+    <li><a href="#机器学习周志华">《机器学习》周志华</a></li>
+    <li><a href="#统计学习方法李航">《统计学习方法》李航</a></li>
+    <li><a href="#实际工作">实际工作</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="吴恩达的课程">吴恩达的课程</h2>
+<ol>
+<li><a href="https://study.163.com/note/noteIndex.htm?id=1004570029&amp;type=0" target="_blank" rel="noopener noreffer">网易云课堂</a></li>
+<li><a href="https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes" target="_blank" rel="noopener noreffer">fengdu78/Coursera-ML-AndrewNg-Notes</a></li>
+<li><a href="https://deeplearning-ai.github.io/machine-learning-yearning-cn/" target="_blank" rel="noopener noreffer">Machine Learning Yearning 中文版</a></li>
+</ol>
+<h3 id="初识">初识</h3>
+<h4 id="什么是机器学习">什么是机器学习</h4>
+<ol>
+<li>机器学习最主要的两类是监督学习和无监督学习，也是常用到的。</li>
+<li>监督学习就是我们会教计算机做某件事情；无监督学习中，我们让计算机自己学习。</li>
+<li>其他：强化学习；推荐系统。</li>
+</ol>
+<h4 id="监督学习">监督学习</h4>
+<ol>
+<li>是指我们给算法一个数据集，其中包含了正确答案。算法的目的是给出更多的正确答案。</li>
+<li>也被称为回归问题，回归是指我们设法预测连续值的属性（房价）。</li>
+<li>分类问题（1或者0或更多离散值）（肿瘤），是指我们设法预测一个离散值的属性。</li>
+<li>一个算法可以支持无穷多个特征。</li>
+</ol>
+<h4 id="无监督学习">无监督学习</h4>
+<ol>
+<li>给算法的数据集没有任何标签或有着相同的标签，让其在其中找到某种结构。</li>
+<li>聚类算法等（将数据集分成几簇）：谷歌新闻（抓取新闻分成新闻专题）、分局基因分组、管理大型数据中心、社交网络的分析（圈子和人脉）、市场细分、天文数据分析。</li>
+<li>鸡尾酒会问题 （多人语音分离，语音和背景音乐分离）；</li>
+<li>推荐使用<a href="https://www.gnu.org/software/octave/" target="_blank" rel="noopener noreffer">Octave</a>验证算法，然后再编写其他语言版。</li>
+</ol>
+<h3 id="单变量线性回归">单变量线性回归</h3>
+<h4 id="模型描述">模型描述</h4>
+<ol>
+<li>m 表示训练样本的数量；x 表示输入变量或者特征；y 标识输出变量或目标变量。</li>
+<li>（x,y）表示一个训练样本；（xi,yi）表示第i个训练样本。</li>
+<li>算法输出一个假设函数h（hypothesis）。</li>
+</ol>
+<h4 id="代价函数">代价函数</h4>
+<ol>
+<li>模型参数。</li>
+<li>求线性函数的参数值，尽量使（预测的值和真实值的差的平方）的和最小。</li>
+<li><a href="https://blog.csdn.net/sd9110110/article/details/52863390" target="_blank" rel="noopener noreffer">代价函数</a>最常用的是平方误差代价函数.</li>
+</ol>
+<h4 id="代价函数一">代价函数（一）</h4>
+<ol>
+<li>代价函数可视化。令一个参数为0.</li>
+</ol>
+<h4 id="代价函数二">代价函数（二）</h4>
+<ol>
+<li>代价函数可视化。使用两个参数，使用等高线图。</li>
+</ol>
+<h4 id="梯度下降">梯度下降</h4>
+<ol>
+<li>环顾四周，向下降最快的方向迈出一步。</li>
+<li>可能得到多个局部最优。</li>
+<li>梯度下降算法的定义。</li>
+<li>参数需要同步更新。</li>
+<li><a href="https://www.jianshu.com/p/c7e642877b0e" target="_blank" rel="noopener noreffer">深入浅出&ndash;梯度下降法及其实现</a>.</li>
+</ol>
+<h4 id="梯度下降知识点总结">梯度下降知识点总结</h4>
+<ol>
+<li>合适的阿尔法值，太大有可能会导致发散。</li>
+<li>越接近最低点时，梯度下降法会自动选择更小的梯度。</li>
+<li>本视频使用一维变量。</li>
+</ol>
+<h4 id="线性回归的梯度下降">线性回归的梯度下降</h4>
+<ol>
+<li>线性回归的代价函数总是一个弓状函数（凸convex函数），这个函数没有局部最优解。</li>
+<li>通常会从参数都是0点开始梯度下降。</li>
+<li>batch梯度下降，每一步都遍历了整个训练集的样本。</li>
+<li>还有其他梯度下降算法，不用每次都遍历整个训练集，而是只关注一个小子集。</li>
+<li>求代价函数最小值的其他方法，正规方程组方法。梯度下降，适合比较大的数据集。</li>
+</ol>
+<h3 id="线性代数回顾">线性代数回顾</h3>
+<h4 id="矩阵和向量">矩阵和向量</h4>
+<ol>
+<li>矩阵是由数字组成的矩形阵列，并卸载方括号中。</li>
+<li>矩阵的维数：行数X列数。</li>
+<li>Aij（i行 j列）。</li>
+<li>向量是只有1列的矩阵。4维的向量即是含有四个元素的向量。</li>
+<li>yi， 下标从1开始（表述），下标从0开始。</li>
+</ol>
+<h4 id="加法和标量乘法">加法和标量乘法</h4>
+<ol>
+<li>只有相同维数的矩阵可以求和。将对应的每一个元素逐个求和。</li>
+<li>标量乘以一个矩阵，将这个标量和每一个元素相乘。</li>
+</ol>
+<h4 id="矩阵向量乘法">矩阵向量乘法</h4>
+<ol>
+<li>矩阵（mxn）乘向量（n）（矩阵的列数等于向量的行数）得到一个m维的向量：将矩阵的每一行和向量的列对应元素相乘求和，得到m维向量的对应行的元素。</li>
+<li>矩阵和向量相乘，可以求解线性代数。h(x)=-40+0.25x</li>
+<li>根据一个假设求房子（不同面积）的价格。</li>
+</ol>
+<h4 id="矩阵乘法">矩阵乘法</h4>
+<ol>
+<li>矩阵（mXn）乘矩阵（nXj）得到一个（mXj）维度的矩阵。将第二个矩阵的每一列与第一个矩阵的每一行对应元素相乘并求和，放在对应行与对应列的交叉点上。</li>
+<li>第一个矩阵的列数必须等于第二个矩阵的行数。</li>
+<li>根据多个假设，求房子（不同面积）的价格。</li>
+</ol>
+<h4 id="矩阵乘法特征">矩阵乘法特征</h4>
+<ol>
+<li>NO交换律。</li>
+<li>YES结合律。</li>
+<li>单位矩阵（I）是对角线为1，其他值为0的方阵。</li>
+<li>mXn的矩阵A：IxA=AxI=A。前后I为不同的单位矩阵，前者为mXm的单位矩阵，后者为nXn的单位矩阵。</li>
+</ol>
+<h4 id="逆和转置">逆和转置</h4>
+<ol>
+<li>可逆矩阵一定是方阵。AA-1=A-1A=I</li>
+<li>如果矩阵A是可逆的，其逆矩阵是唯一的。</li>
+<li>A的逆矩阵的逆矩阵还是A。记作（A-1）-1=A。</li>
+<li>可逆矩阵A的转置矩阵AT也可逆，并且（AT）-1=（A-1）T (转置的逆等于逆的转置）</li>
+<li>若矩阵A可逆，则矩阵A满足消去律。AB=AC（或BA=CA），则B=C。</li>
+<li>两个可逆矩阵的乘积依然可逆。</li>
+<li>矩阵可逆当且仅当它是满秩矩阵。</li>
+<li>不可逆的矩阵为奇异矩阵或退化矩阵。</li>
+<li>将矩阵的行列互换得到的新矩阵称为转置矩阵，转置矩阵的行列式不变。</li>
+</ol>
+<h3 id="多变量线性回归">多变量线性回归</h3>
+<h4 id="多功能">多功能</h4>
+<ol>
+<li>比如预测房价有多个变量。n表示特征值的数量。假设函数为多变量线性函数。</li>
+<li>训练数据集可以为一个mX（n+1）维的矩阵，第一列为1.假设函数中的参数为一个（n+1）维的向量，训练数据集乘以向量得到预测的房价。</li>
+</ol>
+<h4 id="多元梯度下降法">多元梯度下降法</h4>
+<ol>
+<li>多元线性回归的代价函数。J</li>
+<li>梯度下降</li>
+</ol>
+<h4 id="多元梯度下降法演练1-特征缩放">多元梯度下降法演练1-特征缩放</h4>
+<ol>
+<li>特征缩放确保所有特征都处在一个相近的范围，这样梯度下降就可以更快的收敛。否则代价函数的等值线可能是狭长的，这样梯度下降会花费更长的时间并且会来回摆动(比较曲折)。</li>
+<li>特征缩放就是将每个特征的取值进行缩放，缩放到-1和1的范围附近，比如除以样本值的最大值。</li>
+<li>均值归一化mean normalization。</li>
+<li>Standardization 又称为 Z-score normalization，量化后的特征将服从标准正态分布.μ ， δ  分别为对应特征  xi  的均值和标准差。量化后的特征将分布在  [−1,1]  区间。</li>
+<li>Min-Max Scaling 又称为 normalization，量化后的特征将分布在  [0,1]  区间。</li>
+<li>大多数机器学习算法中，会选择 Standardization 来进行特征缩放，但是，Min-Max Scaling 也并非会被弃置一地。在数字图像处理中，像素强度通常就会被量化到  [0,1]  区间，在一般的神经网络算法中，也会要求特征被量化到  [0,1]  区间。</li>
+<li>进行了特征缩放以后，代价函数的轮廓会是“偏圆”的，梯度下降过程更加笔直，性能因此也得到提升.</li>
+</ol>
+<h4 id="多元梯度下降法ii-学习率">多元梯度下降法II-学习率</h4>
+<ol>
+<li>绘出代价函数的值与迭代次数的曲线。可以告诉你大致在多少次之后收敛到最小值，并且判断梯度下降是否正常工作。</li>
+<li>通常以3倍的间隔选择合适的学习率，即步长。</li>
+</ol>
+<p>参考<a href="https://yoyoyohamapi.gitbooks.io/mit-ml/content/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/articles/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE.html" target="_blank" rel="noopener noreffer">特征缩放</a></p>
+<h4 id="特征和多项式回归">特征和多项式回归</h4>
+<ol>
+<li>根据已有特征创造新的特征，可能会找到更好的算法模型。</li>
+<li>对于一个非线性的假设函数(二次或 三次 或平方根函数)，可以通过创建新的特征值转换为多元线性回归来解决问题。</li>
+<li>我们可以选择多种多样的特征值，到底该如何选择，后边会有 算法把我们选择合适的特征值。</li>
+</ol>
+<h4 id="正规方程区别于迭代方法的直接解法">正规方程（区别于迭代方法的直接解法）</h4>
+<ol>
+<li>正规方程提供了一次性求解代价函数参数最优解的解析解法。求解导数为零时的参数值。</li>
+<li>对于参数为一个向量，（X的转置乘以X）的逆乘以X的转置再乘以y得到参数的向量值。</li>
+<li><code>pinv(X'*X)*X'*y</code>伪逆</li>
+<li>优点：不需要学习率，不需要迭代。缺点：对于特征值很多（一般多于1万）的情况，还是选用梯度下降。</li>
+<li>正规方程不适用一些复杂的算法，比如逻辑回归 算法。此时需要梯度下降的算法。</li>
+</ol>
+<h4 id="正规方程在矩阵不可逆的情况下的解决方法">正规方程在矩阵不可逆的情况下的解决方法</h4>
+<ol>
+<li>（X的转置乘以X）不可逆的情况，其实很少发生。</li>
+<li>有两个原因：特征中包含了多余特征（比如有两个特征存在线性关系）。解决方法，删除一些特征。</li>
+<li>第二个原因，特征值的数目n大于样本的数目m。解决方法:删除一些特征或使用正则化的方法。</li>
+</ol>
+<h3 id="octave教程">Octave教程</h3>
+<p>见<a href="https://style-sen.github.io/2019/06/20/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-OCTAVE/" target="_blank" rel="noopener noreffer">数据科学-OCTAVE</a></p>
+<h4 id="向量化">向量化</h4>
+<ol>
+<li>重点是梯度下降的向量化，参考<a href="https://blog.csdn.net/the_lastest/article/details/72851635" target="_blank" rel="noopener noreffer">关于梯度下降算法的矢量化过程</a>.</li>
+<li>理解要点在梯度。梯度矩阵的元素分别求值，利用分号创建矩阵。</li>
+</ol>
+<h3 id="logistic回归">Logistic回归</h3>
+<h4 id="分类">分类</h4>
+<ol>
+<li>不能用线性回归处理分类问题，因为线性算法的输出值要么很大或很小，显然对于0和1不是很合适。</li>
+<li>逻辑回归的算法的值一直介于0和1之间，并不会大于1或 小于0.</li>
+</ol>
+<h4 id="假设陈述">假设陈述</h4>
+<ol>
+<li>当有一个分类问题的时候，我们要用哪个方程来表示我们的假设。</li>
+<li>（对y进行归一化）logistics函数：$g(z)=\frac{1}{1+e^{-z}}$。</li>
+<li>逻辑回归本质上是线性回归，只是在特征到结果的映射中加入了一层函数映射，即先把特征线性求和，然后使用函数g(z)将最为假设函数来预测。g(z)可以将连续值映射到0到1之间。线性回归模型的表达式带入g(z)，就得到逻辑回归的表达式:$h_{\theta}(x)=g\left(\theta^{T} x\right)=\frac{1}{1+e^{-\theta^{T} x}}$。</li>
+<li>假设函数输出的y是x对应的分类问题的概率估计：$P(y=1 | x ; \theta)=h_{\theta}(x)$和$P(y=0 | x ; \theta)=1-h_{\theta}(x)$。</li>
+</ol>
+<h4 id="决策界限">决策界限</h4>
+<ol>
+<li>决策边界是假设函数的属性。只要假设函数及其参数确定，此边界也确定。（首先会预测在什么范围下分类）</li>
+<li>我们可以用非常复杂的模型来适应非常复杂形状的判定边界。</li>
+</ol>
+<h4 id="代价函数-1">代价函数</h4>
+<ol>
+<li>如果还是用线性回归时的代价函数，会发现此函数是非凸函数，有很多个局部最小值。我们需要其他形式的代价函数来保证逻辑回归的代价函数是凸函数。</li>
+<li>这里我们先对线性回归模型中的代价函数J(θ)进行简单的改写：$J(\theta)=\frac{1}{m} \sum_{i=1}^{m} \frac{1}{2}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right)^{2}$；</li>
+<li>用Cost(h(x), y) = 1/2(h(x) - y)^2 代替：$J(\theta)=\frac{1}{m} \sum_{i=1}^{m} \operatorname{cost}\left(h_{\theta}\left(x^{(i)}\right), y^{(i)}\right)$；</li>
+<li>在这里我们选择对数似然损失函数做为逻辑回归模型的代价函数，Cost函数可以表示如下：$$
+\operatorname{cost}\left(h_{\theta}(x), y\right)=\left{\begin{aligned}-\log \left(h_{\theta}(x)\right) &amp; \text { if } y=1 \-\log \left(1-h_{\theta}(x)\right) &amp; \text { if } y=0 \end{aligned}\right.
+$$；</li>
+<li>为了统一表示，可以把Cost(h(x), y)表达成统一的式子，根据前面J(θ)的定义，J(θ)等于：
+$J(\theta)=-\frac{1}{m}\left[\sum_{i=1}^{m} y^{(i)} \operatorname{logh}_{\theta}\left(x^{(i)}\right)+\left(1-y^{(i)}\right) \log \left(1-h_{\theta}\left(x^{(i)}\right)\right)\right]$</li>
+<li>特别说明: 1. 当y=1的时候，第二项(1-y)log(1-h(x))等于0 ；2. 当y=0的时候，ylog(h(x))等于0。</li>
+<li>根据线性回归求代价函数的方法，可以用梯度下降算法求解参数θ。</li>
+</ol>
+<h4 id="简化代价函数与梯度下降">简化代价函数与梯度下降</h4>
+<h4 id="高级优化">高级优化</h4>
+<ol>
+<li>梯度下降（Gradient descent）并不是我们可以使用的唯一算法。</li>
+<li>下面三种高级算法，通常不用手动选择学习率。他们有一个智能内循环，称为线搜索算法，自动尝试不同的学习率并选择一个好的学习率，甚至为每次迭代选择不同的学习率。还有其他优化，使代价函数收敛的速度远远大于梯度下降。</li>
+<li>Conjugate Gradient</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+<li>上述三种算法的缺点是特别复杂，不要尝试自己实现。但是不同的语言实现他们是有差别的。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">function [jVal,gradient] = costFunction(theta)
+jVal = (theta(1)-5)^2+(theta(2)-5)^2;
+gradient = zeros(2,1);
+gradient(1) = 2*(theta(1)-5);
+gradient(2) = 2*(theta(2)-5);
+end
+
+options = optimset(&#39;GradObj&#39;,&#39;on&#39;,&#39;MaxIter&#39;,100);
+
+第一个参数为GradObj:on意为设置目标参数为打开，意为要给该算法设置一个梯度。
+第二个参数为MaxLter:100意为最大迭代次数为100。
+
+initialTheta = zeros(2,1);
+[optTheta,functionVal,exitFlag] = fminunc(@costFunction,initialTheta,options);
+
+Fminunc是一个高级算法，第一个参数为代价函数，无需设置学习效率，该算法会自动计算出相应的学习效率
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="多元分类一对多one-vs-allone-vs-rest">多元分类：一对多（one vs all）(one vs rest)</h4>
+<ol>
+<li>多类别分类问题。</li>
+<li>对于每一类都有一个逻辑回归二分类预测函数。有多少类就会有多少个。</li>
+<li>然后对于新的值，套用所有的预测函数，那个函数得到的概率越高，就属于哪一类。</li>
+</ol>
+<h3 id="正则化">正则化</h3>
+<h4 id="过拟合问题">过拟合问题</h4>
+<ol>
+<li>欠拟合：高偏差；过拟合：高方差。</li>
+<li>过拟合：拟合训练集很好，无法泛化到新样本。</li>
+<li>怎么解决过拟合：(1)尽量减少选取变量的数量：可以人工检查变量清单，以确定那些特征变量需要保留，也可以使用模型选择算法，缺点是舍弃了一些有用的特征变量。（2）正则化：保留所有的特征变量，但是减少量级。</li>
+</ol>
+<h4 id="代价函数-2">代价函数</h4>
+<ol>
+<li>给代价函数加入惩罚项，也就是正则项。这样可以弱化指定的参数对式子的影响。</li>
+<li>但是如果特征很多的情况下，我们无法确定应该惩罚哪些参数，这时就要惩罚所有参数，来缩小每一个参数。</li>
+<li>正则化参数，作用是平衡两个目标之间的取舍（更好地拟合训练集，将参数控制地更小保持模型的相对简单。）</li>
+<li>正则化参数设置过大，就会欠拟合；过小，可能过拟合。</li>
+</ol>
+<h4 id="线性回归的正则化">线性回归的正则化</h4>
+<ol>
+<li>梯度下降加入正则化。</li>
+<li>正规方程加入正则化。</li>
+</ol>
+<h4 id="逻辑回归的正则化">逻辑回归的正则化</h4>
+<ol>
+<li>梯度下降加入正则化。</li>
+<li>高级优化加入正则化。</li>
+</ol>
+<h3 id="神经网络学习">神经网络学习</h3>
+<h4 id="非线性假设">非线性假设</h4>
+<ol>
+<li>如果特征值非常大的情况下，使用逻辑回归，就不是很好的选择，需要考虑神经网络。</li>
+</ol>
+<h4 id="神经元与大脑">神经元与大脑</h4>
+<ol>
+<li>不同的传感器接到大脑上，大脑都会自动的处理传输过来的数据，即便使用的是同一块皮层。</li>
+</ol>
+<h4 id="模型展示i">模型展示I</h4>
+<ol>
+<li>输入层（x0偏置单元，为1，在输入层的神经元称为输入神经元）、隐藏层（允许有多层）、输出层（在输出层的神经元称为输出神经元）。</li>
+<li>激活函数（作用是将权值结果转化为分类结果）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sigmoid函数
+
+softmax函数
+
+tanh函数：双曲正切
+
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>参数（权重）</li>
+<li>计算步骤</li>
+</ol>
+<h2 id="机器学习实战">《机器学习实战》</h2>
+<h2 id="机器学习周志华">《机器学习》周志华</h2>
+<h2 id="统计学习方法李航">《统计学习方法》李航</h2>
+<h2 id="实际工作">实际工作</h2>
+<ol>
+<li>大部分的工作只是洗数据、调参数。</li>
+<li>算法的原理。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                </span><span><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-05-16</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-saas/" class="prev" rel="prev" title="微服务架构笔记-中间件-SaaS"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32/" class="next" rel="next" title="嵌入式-ESP32">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>CSS笔记 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="CSS笔记" />
+<meta property="og:description" content="设计原则 语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1 selector {property: value；property: value} 选择器通常是需要改变样式的 HTML 元素；" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-01-18T15:53:16+00:00" />
+<meta property="article:modified_time" content="2019-01-18T15:53:16+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="CSS笔记"/>
+<meta name="twitter:description" content="设计原则 语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1 selector {property: value；property: value} 选择器通常是需要改变样式的 HTML 元素；"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/" /><link rel="next" href="/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CSS笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "前端","wordcount":  2881 ,
+        "url": "\/post\/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0\/","datePublished": "2019-01-18T15:53:16+00:00","dateModified": "2019-01-18T15:53:16+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">CSS笔记</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#设计原则">设计原则</a>
+      <ul>
+        <li><a href="#heading"></a></li>
+      </ul>
+    </li>
+    <li><a href="#语法">语法</a>
+      <ul>
+        <li><a href="#css定位">CSS定位</a></li>
+      </ul>
+    </li>
+    <li><a href="#选择器">选择器</a></li>
+    <li><a href="#属性">属性</a></li>
+    <li><a href="#案例分析">案例分析</a>
+      <ul>
+        <li><a href="#div层叠与固定">DIV层叠与固定</a></li>
+        <li><a href="#b站视频布局">B站视频布局</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="设计原则">设计原则</h2>
+<h3 id="heading"></h3>
+<h2 id="语法">语法</h2>
+<ol>
+<li>CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">selector {property: value；property: value}
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>选择器通常是需要改变样式的 HTML 元素；每条声明由一个属性和一个值组成。</li>
+</ol>
+<h3 id="css定位">CSS定位</h3>
+<ol>
+<li>定位的基本思想很简单，它允许你定义元素框相对于其正常位置应该出现的位置，或者相对于父元素、另一个元素甚至浏览器窗口本身的位置。</li>
+<li>一切皆为框：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">div、h1 或 p 元素常常被称为块级元素。这意味着这些元素显示为一块内容，即“块框”。与之相反，span 和 strong 等元素称为“行内元素”，这是因为它们的内容显示在行中，即“行内框”。
+您可以使用 display 属性改变生成的框的类型。这意味着，通过将 display 属性设置为 block，可以让行内元素（比如 &lt;a&gt; 元素）表现得像块级元素一样。还可以通过把 display 设置为 none，让生成的元素根本没有框。这样的话，该框及其所有内容就不再显示，不占用文档中的空间。
+但是在一种情况下，即使没有进行显式定义，也会创建块级元素。这种情况发生在把一些文本添加到一个块级元素（比如 div）的开头。即使没有把这些文本定义为段落，它也会被当作段落对待：
+&lt;div&gt;
+some text
+&lt;p&gt;Some more text.&lt;/p&gt;
+&lt;/div&gt;
+在这种情况下，这个框称为无名块框，因为它不与专门定义的元素相关联。
+块级元素的文本行也会发生类似的情况。假设有一个包含三行文本的段落。每行文本形成一个无名框。无法直接对无名块或行框应用样式，因为没有可以应用样式的地方（注意，行框和行内框是两个概念）。但是，这有助于理解在屏幕上看到的所有东西都形成某种框。
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="选择器">选择器</h2>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>例子</th>
+<th>例子描述</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.class</td>
+<td>.intro</td>
+<td>选择 class=&quot;intro&rdquo; 的所有元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>.class element</td>
+<td>.static h1</td>
+<td>选择 class=&quot;static&rdquo; 中 h1 的所有元素</td>
+<td></td>
+</tr>
+<tr>
+<td>element.class</td>
+<td>h1.static</td>
+<td>选择class为static的所有h1元素</td>
+<td></td>
+</tr>
+<tr>
+<td>#id</td>
+<td>#firstname</td>
+<td>选择 id=&quot;firstname&rdquo; 的所有元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>选择所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td>element</td>
+<td>p</td>
+<td>选择所有 <p> 元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>element,element</td>
+<td>div,p</td>
+<td>选择所有 <div> 元素和所有 <p> 元素</td>
+<td>1</td>
+</tr>
+<tr>
+<td>element element</td>
+<td>div p</td>
+<td>选择 <div> 元素内部的所有 <p> 元素</td>
+<td>1</td>
+</tr>
+<tr>
+<td>element&gt;element</td>
+<td>div&gt;p</td>
+<td>选择父元素为 <div> 元素的所有 <p> 元素</td>
+<td>2</td>
+</tr>
+<tr>
+<td>element+element</td>
+<td>div+p</td>
+<td>选择紧接在 <div> 元素之后的所有 <p> 元素</td>
+<td>2</td>
+</tr>
+<tr>
+<td>[attribute]</td>
+<td>[target]	选择带有 target 属性所有元素。	2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[attribute=value]	[target=_blank]	选择 target=&rdquo;_blank&rdquo; 的所有元素。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[attribute~=value]	[title~=flower]	选择 title 属性包含单词 &ldquo;flower&rdquo; 的所有元素。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[attribute</td>
+<td>=value]	[lang</td>
+<td>=en]	选择 lang 属性值以 &ldquo;en&rdquo; 开头的所有元素。	2</td>
+<td></td>
+</tr>
+<tr>
+<td>:link	a:link	选择所有未被访问的链接。	1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:visited	a:visited	选择所有已被访问的链接。	1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:active	a:active	选择活动链接。	1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:hover</td>
+<td>a:hover</td>
+<td>选择鼠标指针位于其上的链接。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>:focus	input:focus	选择获得焦点的 input 元素。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:first-letter	p:first-letter	选择每个 <p> 元素的首字母。	1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:first-line	p:first-line	选择每个 <p> 元素的首行。	1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:first-child	p:first-child	选择属于父元素的第一个子元素的每个 <p> 元素。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:before	p:before	在每个 <p> 元素的内容之前插入内容。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:after	p:after	在每个 <p> 元素的内容之后插入内容。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:lang(language)	p:lang(it)	选择带有以 &ldquo;it&rdquo; 开头的 lang 属性值的每个 <p> 元素。	2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>element1~element2	p~ul	选择前面有 <p> 元素的每个 <ul> 元素。	3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[attribute^=value]</td>
+<td>a[src^=&quot;https&rdquo;]	选择其 src 属性值以 &ldquo;https&rdquo; 开头的每个 <a> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[attribute$=value]</td>
+<td>a[src$=&rdquo;.pdf&rdquo;]	选择其 src 属性以 &ldquo;.pdf&rdquo; 结尾的所有 <a> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[attribute*=value]</td>
+<td>a[src*=&quot;abc&rdquo;]	选择其 src 属性中包含 &ldquo;abc&rdquo; 子串的每个 <a> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:first-of-type</td>
+<td>p:first-of-type	选择属于其父元素的首个 <p> 元素的每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:last-of-type</td>
+<td>p:last-of-type	选择属于其父元素的最后 <p> 元素的每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:only-of-type</td>
+<td>p:only-of-type	选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:only-child</td>
+<td>p:only-child	选择属于其父元素的唯一子元素的每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:nth-child(n)</td>
+<td>p:nth-child(2)	选择属于其父元素的第二个子元素的每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:nth-last-child(n)</td>
+<td>p:nth-last-child(2)	同上，从最后一个子元素开始计数。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:nth-of-type(n)</td>
+<td>p:nth-of-type(2)	选择属于其父元素第二个 <p> 元素的每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:nth-last-of-type(n)</td>
+<td>p:nth-last-of-type(2)	同上，但是从最后一个子元素开始计数。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:last-child</td>
+<td>p:last-child	选择属于其父元素最后一个子元素每个 <p> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:root</td>
+<td>:root	选择文档的根元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:empty</td>
+<td>p:empty	选择没有子元素的每个 <p> 元素（包括文本节点）。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:target</td>
+<td>#news:target	选择当前活动的 #news 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:enabled</td>
+<td>input:enabled	选择每个启用的 <input> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:disabled</td>
+<td>input:disabled	选择每个禁用的 <input> 元素	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:checked</td>
+<td>input:checked	选择每个被选中的 <input> 元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:not(selector)</td>
+<td>:not(p)	选择非 <p> 元素的每个元素。	3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>::selection</td>
+<td>::selection	选择被用户选取的元素部分。	3</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="属性">属性</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>功能</th>
+<th>可能的值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background</td>
+<td>背景色</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>border</code></td>
+<td>在一个声明中设置所有的边框属性按顺序（border-width，border-style，border-color）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>color</td>
+<td>颜色：red，#ff0000，#f00，rgb(255,0,0)，rgb(100%,0%,0%)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>display</td>
+<td>规定元素应该生成的框的类型</td>
+<td><a href="http://www.w3school.com.cn/cssref/pr_class_display.asp" target="_blank" rel="noopener noreffer">参考</a></td>
+<td></td>
+</tr>
+<tr>
+<td>float</td>
+<td>块级元素加入这个属性，就不会换行</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>font-family</td>
+<td>字体系列</td>
+<td>&ldquo;sans serif&rdquo;</td>
+<td></td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>字体大小px</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>规定字体的粗细</td>
+<td>normal:默认值,定义标准的字符;bold:定义粗体字符;bolder:定义更粗的字符;lighter:定义更细的字符;100\200\300\400\500\600\700\800\900:定义由粗到细的字符,400 等同于 normal，而 700 等同于 bold;inherit:规定应该从父元素继承字体的粗细。</td>
+<td></td>
+</tr>
+<tr>
+<td>left</td>
+<td>原始位置左侧增加px，可以为负</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>letter-spacing</td>
+<td>设置字符间距</td>
+<td>normal：默认，规定字符间没有额外的空间；length：定义字符间的固定空间（允许使用负值）；inherit：规定应该从父元素继承 letter-spacing 属性的值</td>
+<td></td>
+</tr>
+<tr>
+<td>line-height</td>
+<td>设置行间的距离（行高）</td>
+<td>normal:默认,设置合理的行间距;number:设置数字，此数字会与当前的字体尺寸相乘来设置行间距;length:设置固定的行间距;%:基于当前字体尺寸的百分比行间距</td>
+<td></td>
+</tr>
+<tr>
+<td>inherit	规定应该从父元素继承 line-height 属性的值。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>margin</code></td>
+<td>在一个声明中设置所有外边距属性。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>margin-bottom</code></td>
+<td>设置元素的下外边距</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>margin-left</code></td>
+<td>设置元素的左外边距</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>margin-right</code></td>
+<td>设置元素的右外边距</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>margin-top</code></td>
+<td>设置元素的上外边距</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>object-fit</code></td>
+<td>指定可替换元素的内容应该如何适应到其使用的高度和宽度确定的框</td>
+<td>contain：被替换的内容将被缩放，以在填充元素的内容框时保持其宽高比。 整个对象在填充盒子的同时保留其长宽比，因此如果宽高比与框的宽高比不匹配，该对象将被添加“黑边”。cover：被替换的内容在保持其宽高比的同时填充元素的整个内容框。如果对象的宽高比与内容框不相匹配，该对象将被剪裁以适应内容框。fill：被替换的内容正好填充元素的内容框。整个对象将完全填充此框。如果对象的宽高比与内容框不相匹配，那么该对象将被拉伸以适应内容框。none：被替换的内容将保持其原有的尺寸。scale-down：内容的尺寸与 none 或 contain 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些。</td>
+<td>例如video填充div</td>
+</tr>
+<tr>
+<td>opacity</td>
+<td>规定元素的不透明级别</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>padding</code></td>
+<td>在一个声明中设置所有内边距属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>定义建立元素布局所用的定位机制</td>
+<td>默认：static；relative：相对于其正常位置进行定位；absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位；fixed：生成绝对定位的元素，相对于浏览器窗口进行定位；inherit：规定应该从父元素继承 position 属性的值</td>
+<td></td>
+</tr>
+<tr>
+<td>table-layout</td>
+<td>用来显示表格单元格、行、列的算法规则</td>
+<td>automatic	默认。列宽度由单元格内容设定。fixed	列宽由表格宽度和列宽度设定。inherit	规定应该从父元素继承 table-layout 属性的值。</td>
+<td></td>
+</tr>
+<tr>
+<td><code>text-align</code></td>
+<td>文字对齐：center</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>text-transform</td>
+<td>控制文本的大小写</td>
+<td>none：默认，定义带有小写字母和大写字母的标准的文本；capitalize：文本中的每个单词以大写字母开头；uppercase：定义仅有大写字母；lowercase：定义无大写字母，仅有小写字母；inherit：规定应该从父元素继承 text-transform 属性的值</td>
+<td></td>
+</tr>
+<tr>
+<td>top</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>transform</td>
+<td>向元素应用 2D 或 3D 转换</td>
+<td><a href="http://www.w3school.com.cn/cssref/pr_transform.asp" target="_blank" rel="noopener noreffer">参考</a></td>
+<td></td>
+</tr>
+<tr>
+<td>z-index</td>
+<td>设置元素的堆叠顺序</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="案例分析">案例分析</h2>
+<h3 id="div层叠与固定">DIV层叠与固定</h3>
+<ol>
+<li>在父对象上设置：position:relative; 在子对象上设置：position:absolute; top: 10px; left: 10px; 这样如果父对象里面有其他元素的话。上面设置的子对象就可以&quot;悬浮&quot;在父对象上面了。</li>
+</ol>
+<h3 id="b站视频布局">B站视频布局</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-01-18</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/" class="prev" rel="prev" title="Django静态文件"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="html笔记">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

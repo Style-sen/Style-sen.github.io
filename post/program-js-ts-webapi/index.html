@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>WebApi - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="WebApi" />
+<meta property="og:description" content="WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-js-ts-webapi/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-04-03T14:06:00+00:00" />
+<meta property="article:modified_time" content="2019-04-03T14:06:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="WebApi"/>
+<meta name="twitter:description" content="WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-js-ts-webapi/" /><link rel="prev" href="/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/" /><link rel="next" href="/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "WebApi",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-js-ts-webapi\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, JS\/TS, WEBAPI","wordcount":  1543 ,
+        "url": "\/post\/program-js-ts-webapi\/","datePublished": "2019-04-03T14:06:00+00:00","dateModified": "2019-04-03T14:06:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">WebApi</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-f">1. F</a>
+      <ul>
+        <li><a href="#11-filereaderhttpsdevelopermozillaorgzh-cndocswebapifilereader">1.1. <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader">FileReader</a></a></li>
+        <li><a href="#12-filereadersync">1.2. FileReaderSync</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-websockethttpsdevelopermozillaorgzh-cndocswebapiwebsocket">2. <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket">WebSocket</a></a>
+      <ul>
+        <li><a href="#21-构造函数">2.1. 构造函数</a></li>
+        <li><a href="#22-属性">2.2. 属性</a>
+          <ul>
+            <li><a href="#221-readystate返回实例对象的当前状态">2.2.1. readyState返回实例对象的当前状态</a></li>
+            <li><a href="#222-websocketonopen">2.2.2. webSocket.onopen</a></li>
+            <li><a href="#223-websocketonclose">2.2.3. webSocket.onclose</a></li>
+            <li><a href="#224-websocketonmessage">2.2.4. webSocket.onmessage</a></li>
+            <li><a href="#225-websocketsend">2.2.5. webSocket.send()</a></li>
+            <li><a href="#226-websocketbufferedamount">2.2.6. webSocket.bufferedAmount</a></li>
+            <li><a href="#227-websocketonerror">2.2.7. webSocket.onerror</a></li>
+          </ul>
+        </li>
+        <li><a href="#23-排错">2.3. 排错</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><ol>
+<li>WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如日历或联系人等信息）。通过这些API，我们希望对Web应用进行扩展，实现过去只有专有平台才可以实现的功能。</li>
+<li>在使用 JavaScript 编写 Web 代码时，有许多 API 可供调用。<a href="https://developer.mozilla.org/zh-CN/docs/Web/API" target="_blank" rel="noopener noreffer">这里</a>是所有接口（即对象类型）的列表，你可以在开发网站或 Web 应用程序时使用它们。</li>
+</ol>
+<h2 id="1-f">1. F</h2>
+<h3 id="11-filereaderhttpsdevelopermozillaorgzh-cndocswebapifilereader">1.1. <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener noreffer">FileReader</a></h3>
+<p>FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。</p>
+<p>其中File对象可以是来自用户在一个<input>元素上选择文件后返回的FileList对象,也可以来自拖放操作生成的 DataTransfer对象,还可以是来自在一个HTMLCanvasElement上执行mozGetAsFile()方法后返回结果。</p>
+<p>重要提示： FileReader仅用于以安全的方式从用户（远程）系统读取文件内容 它不能用于从文件系统中按路径名简单地读取文件。 要在JavaScript中按路径名读取文件，应使用标准Ajax解决方案进行服务器端文件读取，如果读取跨域，则使用CORS权限。</p>
+<p>Note: 此特性在 Web Worker 中可用。</p>
+<h3 id="12-filereadersync">1.2. FileReaderSync</h3>
+<p>FileReaderSync接口允许以同步的方式读取File或Blob对象中的内容。</p>
+<p>该接口只在workers里可用,因为在主线程里进行同步I/O操作可能会阻塞用户界面。</p>
+<h2 id="2-websockethttpsdevelopermozillaorgzh-cndocswebapiwebsocket">2. <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket" target="_blank" rel="noopener noreffer">WebSocket</a></h2>
+<h3 id="21-构造函数">2.1. 构造函数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s1">&#39;ws://localhost:8080&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-属性">2.2. 属性</h3>
+<h4 id="221-readystate返回实例对象的当前状态">2.2.1. readyState返回实例对象的当前状态</h4>
+<ol>
+<li>
+<p>共有四种：</p>
+<ul>
+<li>CONNECTING：值为0，表示正在连接。</li>
+<li>OPEN：值为1，表示连接成功，可以通信了。</li>
+<li>CLOSING：值为2，表示连接正在关闭。</li>
+<li>CLOSED：值为3，表示连接已经关闭，或者打开连接失败。</li>
+</ul>
+</li>
+</ol>
+<h4 id="222-websocketonopen">2.2.2. webSocket.onopen</h4>
+<ol>
+<li>实例对象的onopen属性，用于指定连接成功后的回调函数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">ws</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Hello Server!&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>如果要指定多个回调函数，可以使用addEventListener方法。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">ws</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Hello Server!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="223-websocketonclose">2.2.3. webSocket.onclose</h4>
+<ol>
+<li>实例对象的onclose属性，用于指定连接关闭后的回调函数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ws.onclose = function(event) {
+  var code = event.code;
+  var reason = event.reason;
+  var wasClean = event.wasClean;
+  // handle close event
+};
+ws.addEventListener(&#34;close&#34;, function(event) {
+  var code = event.code;
+  var reason = event.reason;
+  var wasClean = event.wasClean;
+  // handle close event
+});
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="224-websocketonmessage">2.2.4. webSocket.onmessage</h4>
+<ol>
+<li>实例对象的onmessage属性，用于指定收到服务器数据后的回调函数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ws.onmessage = function(event) {
+  var data = event.data;
+  // 处理数据
+};
+ws.addEventListener(&#34;message&#34;, function(event) {
+  var data = event.data;
+  // 处理数据
+});
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>注意，服务器数据可能是文本，也可能是二进制数据（blob对象或Arraybuffer对象）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ws.onmessage = function(event){
+  if(typeOf event.data === String) {
+    console.log(&#34;Received data string&#34;);
+  }
+
+  if(event.data instanceof ArrayBuffer){
+    var buffer = event.data;
+    console.log(&#34;Received arraybuffer&#34;);
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>除了动态判断收到的数据类型，也可以使用binaryType属性，显式指定收到的二进制数据类型。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 收到的是 blob 数据
+ws.binaryType = &#34;blob&#34;;
+ws.onmessage = function(e) {
+  console.log(e.data.size);
+};
+
+// 收到的是 ArrayBuffer 数据
+ws.binaryType = &#34;arraybuffer&#34;;
+ws.onmessage = function(e) {
+  console.log(e.data.byteLength);
+};
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="225-websocketsend">2.2.5. webSocket.send()</h4>
+<ol>
+<li>实例对象的send()方法用于向服务器发送数据。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">发送文本的例子。
+
+ws.send(&#39;your message&#39;);
+发送 Blob 对象的例子。
+
+var file = document
+  .querySelector(&#39;input[type=&#34;file&#34;]&#39;)
+  .files[0];
+ws.send(file);
+发送 ArrayBuffer 对象的例子。
+
+// Sending canvas ImageData as ArrayBuffer
+var img = canvas_context.getImageData(0, 0, 400, 320);
+var binary = new Uint8Array(img.data.length);
+for (var i = 0; i &lt; img.data.length; i++) {
+  binary[i] = img.data[i];
+}
+ws.send(binary.buffer);
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="226-websocketbufferedamount">2.2.6. webSocket.bufferedAmount</h4>
+<p>实例对象的bufferedAmount属性，表示还有多少字节的二进制数据没有发送出去。它可以用来判断发送是否结束。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var data = new ArrayBuffer(10000000);
+socket.send(data);
+
+if (socket.bufferedAmount === 0) {
+  // 发送完毕
+} else {
+  // 发送还没结束
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="227-websocketonerror">2.2.7. webSocket.onerror</h4>
+<p>实例对象的onerror属性，用于指定报错时的回调函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">socket.onerror = function(event) {
+  // handle error event
+};
+
+socket.addEventListener(&#34;error&#34;, function(event) {
+  // handle error event
+});
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="23-排错">2.3. 排错</h3>
+<ol>
+<li>参考<a href="https://blog.csdn.net/cai4561/article/details/106809244" target="_blank" rel="noopener noreffer">WebSocket 经常断开原因，解决办法：心跳机制防止自动断开连接</a>.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ws.onclose = function (e) {
+  console.log(&#39;websocket 断开: &#39; + e.code + &#39; &#39; + e.reason + &#39; &#39; + e.wasClean)
+  console.log(e)
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>e 是 <code>CloseEvent</code> 对象。</li>
+<li>CloseEvent.code: code是错误码，是整数类型</li>
+<li>CloseEvent.reason: reason是断开原因，是字符串</li>
+<li>CloseEvent.wasClean: wasClean表示是否正常断开，是布尔值。一般异常断开时，该值为false。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/js/ts/">JS/TS</a>
+                </span><span><a href="/tags/webapi/">WEBAPI</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-04-03</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/" class="prev" rel="prev" title="NODEJS-外围设备模块"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/" class="next" rel="next" title="模块化开发及常用模块">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

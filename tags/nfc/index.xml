@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>NFC - 标签 - 锦枫紫兰</title>
+        <link>/tags/nfc/</link>
+        <description>NFC - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Apr 2019 11:32:43 &#43;0000</lastBuildDate><atom:link href="/tags/nfc/" rel="self" type="application/rss+xml" /><item>
+    <title>嵌入式-NFC</title>
+    <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/</link>
+    <pubDate>Thu, 04 Apr 2019 11:32:43 &#43;0000</pubDate><guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/</guid>
+    <description><![CDATA[NFC类型 NFC-A 基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B 基于ISO/IE]]></description>
+</item>
+</channel>
+</rss>

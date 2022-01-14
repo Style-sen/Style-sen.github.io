@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JAVA-面向对象 - 锦枫紫兰</title><meta name="description" content="JVM"><meta property="og:title" content="JAVA-面向对象" />
+<meta property="og:description" content="JVM" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-02-15T10:52:11+00:00" />
+<meta property="article:modified_time" content="2020-02-15T10:52:11+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="JAVA-面向对象"/>
+<meta name="twitter:description" content="JVM"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><link rel="prev" href="/post/%E6%97%A5%E5%B8%B8-%E7%BD%97%E6%8C%AF%E5%AE%87-%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/" /><link rel="next" href="/post/java-02-%E5%9F%BA%E7%A1%80/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JAVA-面向对象",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "JAVA","wordcount":  10620 ,
+        "url": "\/post\/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1\/","datePublished": "2020-02-15T10:52:11+00:00","dateModified": "2020-02-15T10:52:11+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "JVM"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">JAVA-面向对象</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#类和对象">类和对象</a>
+      <ul>
+        <li><a href="#对象">对象</a>
+          <ul>
+            <li><a href="#对象创建的过程">对象创建的过程</a></li>
+          </ul>
+        </li>
+        <li><a href="#类">类</a>
+          <ul>
+            <li><a href="#构造方法">构造方法</a></li>
+            <li><a href="#静态初始化块用于类的初始化操作">静态初始化块，用于类的初始化操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#方法">方法</a></li>
+        <li><a href="#实例变量">实例变量</a></li>
+        <li><a href="#thisstatic关键字在方法区">this\static关键字(在方法区)</a>
+          <ul>
+            <li><a href="#this的使用场景">this的使用场景</a></li>
+          </ul>
+        </li>
+        <li><a href="#包">包</a>
+          <ul>
+            <li><a href="#常用的包">常用的包</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#内存底层">内存底层</a>
+      <ul>
+        <li><a href="#虚拟机内存模型">虚拟机内存模型</a></li>
+        <li><a href="#垃圾回收机制">垃圾回收机制</a>
+          <ul>
+            <li><a href="#相关算法">相关算法</a>
+              <ul>
+                <li><a href="#引用计数法">引用计数法</a></li>
+                <li><a href="#引用可达法跟搜索算法">引用可达法（跟搜索算法）</a></li>
+              </ul>
+            </li>
+            <li><a href="#通用的分代垃圾回收机制">通用的分代垃圾回收机制</a></li>
+            <li><a href="#jvm调优">JVM调优</a></li>
+            <li><a href="#以下四种情况容易造成内存泄漏">以下四种情况容易造成内存泄漏</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#三大特征">三大特征</a>
+      <ul>
+        <li><a href="#继承">继承</a>
+          <ul>
+            <li><a href="#需求">需求</a></li>
+            <li><a href="#使用要点">使用要点</a></li>
+            <li><a href="#方法重写">方法重写</a></li>
+            <li><a href="#final关键字">final关键字</a></li>
+            <li><a href="#继承和组合">继承和组合</a></li>
+            <li><a href="#object类">Object类</a></li>
+            <li><a href="#super关键字">super关键字</a></li>
+            <li><a href="#继承树追溯">继承树追溯</a></li>
+          </ul>
+        </li>
+        <li><a href="#封装">封装</a>
+          <ul>
+            <li><a href="#访问控制符">访问控制符</a>
+              <ul>
+                <li><a href="#protected">protected</a></li>
+                <li><a href="#使用细节使用private和public最多">使用细节(使用private和public最多)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#多态">多态</a>
+          <ul>
+            <li><a href="#类型的转换">类型的转换</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#特殊类">特殊类</a>
+      <ul>
+        <li><a href="#抽象类和抽象方法">抽象类和抽象方法</a>
+          <ul>
+            <li><a href="#使用要点-1">使用要点</a></li>
+          </ul>
+        </li>
+        <li><a href="#java-接口">Java 接口</a>
+          <ul>
+            <li><a href="#定义">定义</a></li>
+            <li><a href="#要点">要点</a></li>
+            <li><a href="#面向接口">面向接口</a></li>
+            <li><a href="#java8新特性">java8新特性</a></li>
+          </ul>
+        </li>
+        <li><a href="#内部类">内部类</a>
+          <ul>
+            <li><a href="#内部类的作用">内部类的作用：</a></li>
+            <li><a href="#内部类的使用场合">内部类的使用场合：</a></li>
+            <li><a href="#内部类的分类">内部类的分类</a>
+              <ul>
+                <li><a href="#成员内部类">成员内部类</a>
+                  <ul>
+                    <li><a href="#非静态内部类">非静态内部类</a></li>
+                    <li><a href="#静态内部类">静态内部类</a></li>
+                  </ul>
+                </li>
+                <li><a href="#匿名内部类">匿名内部类</a></li>
+                <li><a href="#局部内部类">局部内部类</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#常用类">常用类</a>
+      <ul>
+        <li><a href="#包装类">包装类</a>
+          <ul>
+            <li><a href="#作用">作用</a></li>
+            <li><a href="#自动装箱和拆箱编译器实现">自动装箱和拆箱(编译器实现)</a></li>
+            <li><a href="#包装类的缓存">包装类的缓存</a></li>
+          </ul>
+        </li>
+        <li><a href="#string相关类">String相关类</a>
+          <ul>
+            <li><a href="#string">String</a></li>
+            <li><a href="#stringbuilder">StringBuilder</a></li>
+            <li><a href="#stringbuffer">StringBuffer</a></li>
+            <li><a href="#对比">对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#时间处理相关类">时间处理相关类</a>
+          <ul>
+            <li><a href="#date类javautildate">Date类(java.util.Date)</a></li>
+            <li><a href="#dateformat类和simpledateformat类">DateFormat类和SimpleDateFormat类</a></li>
+            <li><a href="#calendar日历类和gregoriancalendar类">Calendar日历类和GregorianCalendar类</a></li>
+          </ul>
+        </li>
+        <li><a href="#math类-javalangmath">Math类（ java.lang.Math）</a></li>
+        <li><a href="#file类-javaiofile">file类（ java.io.File）</a></li>
+        <li><a href="#枚举">枚举</a></li>
+        <li><a href="#其他">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>部分内容摘自<a href="https://www.sxt.cn/Java_jQuery_in_action" target="_blank" rel="noopener noreffer">速学堂</a></p>
+<h1 id="概念">概念</h1>
+<h2 id="类和对象">类和对象</h2>
+<h3 id="对象">对象</h3>
+<ol>
+<li>对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。</li>
+</ol>
+<h4 id="对象创建的过程">对象创建的过程</h4>
+<ol>
+<li>分配对象空间，并将对象成员变量初始化为0或空</li>
+<li>执行属性值的显示初始化</li>
+<li>执行构造方法</li>
+<li>返回对象的地址给相关的变量</li>
+</ol>
+<h3 id="类">类</h3>
+<ol>
+<li>类是一个模板，它描述一类对象的行为和状态。</li>
+<li>一个JAVA文件只能有一个public类，而且类名和文件名相同。可以有多个非public类。</li>
+</ol>
+<h4 id="构造方法">构造方法</h4>
+<ol>
+<li><code>构造方法名和类名相同</code>，虽然有返回值（对象的地址），不能定义返回值类型，不能在构造器中使用return返回某个值。</li>
+<li>用于对象的初始化。</li>
+<li>Java通过new关键词来调用构造器，从而返回该类的实例。</li>
+<li>没有定义构造器的话，编译器会自动定义一个无参的构造函数。</li>
+<li>构造方法也是方法，也可以重载。</li>
+<li>如果方法构造中形参名与属性名相同时，需要使用this关键字区分属性与形参。</li>
+</ol>
+<h4 id="静态初始化块用于类的初始化操作">静态初始化块，用于类的初始化操作</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User3</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>        <span class="c1">//id
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>   <span class="c1">//账户名
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">pwd</span><span class="o">;</span>   <span class="c1">//密码
+</span><span class="c1"></span>    <span class="kd">static</span> <span class="n">String</span> <span class="n">company</span><span class="o">;</span> <span class="c1">//公司名称
+</span><span class="c1"></span>    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;执行类的初始化工作&#34;</span><span class="o">);</span>
+        <span class="n">company</span> <span class="o">=</span> <span class="s">&#34;北京尚学堂&#34;</span><span class="o">;</span>
+        <span class="n">printCompany</span><span class="o">();</span>
+    <span class="o">}</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printCompany</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">company</span><span class="o">);</span>
+    <span class="o">}</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">User3</span>  <span class="n">u3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User3</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="方法">方法</h3>
+<ol>
+<li>方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。</li>
+</ol>
+<h3 id="实例变量">实例变量</h3>
+<ol>
+<li>每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。</li>
+</ol>
+<h3 id="thisstatic关键字在方法区">this\static关键字(在方法区)</h3>
+<ol>
+<li>this的本质就是“创建好的对象的地址”! <code>在构造方法调用前，对象已经创建</code>。因此，<code>在构造方法中也可以使用this代表“当前对象”</code> 。</li>
+<li>在类中，用static声明的成员变量为静态成员变量，也称为类变量。 类变量的生命周期和类相同，在整个应用程序执行期间都有效。它有如下特点：
+a. 为该类的公用变量，属于类，被该类的所有实例共享，在类被载入时被显式初始化。
+b. 对于该类的所有对象来说，static成员变量只有一份。<code>被该类的所有对象共享</code>!!
+c. 一般用“类名.类属性/方法”来调用。(也可以通过对象引用或类名(不需要实例化)访问静态成员。)
+d. 在static方法中不可直接访问非static的成员。</li>
+<li><code>类方法引用在方法区、对象中的方法引用在堆，都指向方法区中类信息的方法代码。</code></li>
+</ol>
+<h4 id="this的使用场景">this的使用场景</h4>
+<ol>
+<li>在程序中产生二义性之处，应使用this来指明当前对象;普通方法中，this总是指向调用该方法的对象。构造方法中，this总是指向正要初始化的对象。</li>
+<li><code>使用this关键字调用重载的构造方法</code>，避免相同的初始化代码。但<code>只能在构造方法中用，并且必须位于构造方法的第一句</code>。</li>
+<li>this不能用于static方法中。</li>
+</ol>
+<h3 id="包">包</h3>
+<ol>
+<li>开发中，我们会遇到大量同名的类，通过包我们很容易对解决类重名的问题，也可以实现对类的有效管理。</li>
+<li>如果我们要使用其他包的类，需要使用import导入，从而可以在本类中直接通过类名来调用，否则就需要书写类的完整包名和类名。import后，便于编写代码，提高可维护性。</li>
+<li>Java会默认导入java.lang包下所有的类，因此这些类我们可以直接使用。</li>
+<li>如果导入两个同名的类，只能用包名+类名来显示调用相关类。</li>
+<li><code>静态导入(static import)是在JDK1.5新增加的功能，其作用是用于导入指定类的静态属性，这样我们可以直接使用静态属性</code>。</li>
+</ol>
+<h4 id="常用的包">常用的包</h4>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.lang\</td>
+<td>包含一些Java语言的核心类，如String、Math、Integer、System和Thread，提供常用功能。</td>
+</tr>
+<tr>
+<td>java.awt\</td>
+<td>包含了构成抽象窗口工具集（abstract window toolkits）的多个类，这些类被用来构建和管理应用程序的图形用户界面(GUI)。</td>
+</tr>
+<tr>
+<td>java.net\</td>
+<td>包含执行与网络相关的操作的类。</td>
+</tr>
+<tr>
+<td>java.io\</td>
+<td>包含能提供多种输入/输出功能的类。</td>
+</tr>
+<tr>
+<td>java.util\</td>
+<td>包含一些实用工具类，如定义系统特性、使用与日期日历相关的函数。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="内存底层">内存底层</h2>
+<h3 id="虚拟机内存模型">虚拟机内存模型</h3>
+<ol>
+<li>每执行一个方法，都会创建一个栈帧；堆存放对象；方法区存放类信息和常量和字符串等。</li>
+</ol>
+<h3 id="垃圾回收机制">垃圾回收机制</h3>
+<ol>
+<li>主要是堆中对象的管理回收。</li>
+<li>JVM优化主要是垃圾回收机制优化。</li>
+<li>对象创建new。</li>
+<li>发现无用的对象（没有任何变量引用的对象）；回收无用对象占用的内存空间。</li>
+</ol>
+<h4 id="相关算法">相关算法</h4>
+<h5 id="引用计数法">引用计数法</h5>
+<ol>
+<li>每个对象有一个引用计数器，有变量引用加1，无变量引用减1.</li>
+<li>优点：算法简单。缺点是循环引用的无用对象无法识别。</li>
+</ol>
+<h5 id="引用可达法跟搜索算法">引用可达法（跟搜索算法）</h5>
+<ol>
+<li>所有引用关系使用图。</li>
+</ol>
+<h4 id="通用的分代垃圾回收机制">通用的分代垃圾回收机制</h4>
+<ol>
+<li>按生命周期长短划分年轻代、年老代、永久代。将处于不同状态的对象放到堆中不同的区域。</li>
+<li>JVM将堆内存分为Eden、Survivor和Tenured/Old空间。</li>
+<li>按照存活时间，往时间更长的区域移动。</li>
+<li>JDK8之后没有永久代了。</li>
+<li>MinorGC(清理年轻代，满了触发);Major（年老代）GC;Full GC（年轻代和年老代）.</li>
+</ol>
+<h4 id="jvm调优">JVM调优</h4>
+<ol>
+<li>很大一部分工作就是对于Full GC的<code>调节</code>。</li>
+<li>触发Full GC的原因：
+a. 年老代被写满；
+b. 永久代被写满；
+c. System.gc()被显式调用，只是通知JVM（建议），尽量少用；
+d. 上一次GC之后Heap的各域分配策略动态变化。</li>
+<li>程序员无权调用垃圾回收器。</li>
+<li>finalize方法，是java提供给程序员用来释放对象或资源的方法，尽量少用。</li>
+</ol>
+<h4 id="以下四种情况容易造成内存泄漏">以下四种情况容易造成内存泄漏</h4>
+<ol>
+<li>创建大量无用的对象（比如大量拼接字符串，使用了string而不是stringBuilder）；</li>
+<li>静态集合类（HashMap\Vector\List）的使用；</li>
+<li>各种连接对象（IO流对象、数据库连接对象、网络连接对象）未关闭；</li>
+<li>监听器的使用。</li>
+</ol>
+<h2 id="三大特征">三大特征</h2>
+<h3 id="继承">继承</h3>
+<h4 id="需求">需求</h4>
+<ol>
+<li>代码复用。</li>
+<li>事物抽象。</li>
+</ol>
+<h4 id="使用要点">使用要点</h4>
+<ol>
+<li>父类也称作超类、基类、派生类等。</li>
+<li>Java中只有单继承，没有像C++那样的多继承。多继承会引起混乱，使得继承链过于复杂，系统难于维护。</li>
+<li>Java中<code>类没有多继承，接口有多继承</code>。</li>
+<li><code>子类继承父类，可以得到父类的全部属性和方法</code> (除了父类的构造方法)，但<code>不见得可以直接访问</code>(比如，父类私有的属性和方法)。</li>
+<li>如果定义一个类时，没有调用extends，则它的父类是：java.lang.Object。</li>
+<li>instanceof是二元运算符，左边是对象，右边是类；<code>当对象是右面类或子类所创建对象时</code>，返回true；否则，返回false。</li>
+</ol>
+<h4 id="方法重写">方法重写</h4>
+<ol>
+<li>子类通过重写父类的方法，可以用自身的行为替换父类的行为。方法的重写是实现多态的必要条件。</li>
+<li>方法的重写需要符合下面的三个要点：
+1.“==”： 方法名、形参列表相同。
+2.“≤”：返回值类型和声明异常类型，<code>子类小于等于父类</code>。
+3.“≥”： 访问权限，<code>子类大于等于父类</code>。</li>
+</ol>
+<h4 id="final关键字">final关键字</h4>
+<ol>
+<li>修饰变量: 被他修饰的变量不可改变。一旦赋了初值，就不能被重新赋值。</li>
+<li>修饰方法：该方法不可被子类重写。但是可以被重载!</li>
+<li>修饰类: 修饰的类不能被继承。<code>比如：Math、String等</code>。</li>
+</ol>
+<h4 id="继承和组合">继承和组合</h4>
+<ol>
+<li><code>is a</code>使用继承，<code>has a</code>使用组合。</li>
+<li>组合模式是将对象组合成树形结构（<code>定义一个类属性为一个类的实例</code>）以表示“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
+</ol>
+<h4 id="object类">Object类</h4>
+<ol>
+<li>Object类是所有Java类的根基类，也就意味着所有的Java对象都拥有Object类的属性和方法。</li>
+<li><code>toString()</code>方法.</li>
+<li>“==”代表比较双方是否相同。如果是基本类型则表示值相等，如果是引用类型则表示地址相等即是同一个对象。</li>
+<li>Object类中定义有：public boolean equals(Object obj)方法，提供定义“对象内容相等”的逻辑。</li>
+<li>Object 的 equals 方法默认就是比较两个对象的hashcode，是同一个对象的引用时返回 true 否则返回 false。但是，我们可以根据我们自己的要求重写equals方法。</li>
+<li>JDK提供的一些类，如String、Date、包装类等，重写了Object的equals方法，调用这些类的equals方法， x.equals (y) ，当x和y所引用的对象是同一类对象且属性内容相等时（并不一定是相同对象），返回 true 否则返回 false。</li>
+</ol>
+<h4 id="super关键字">super关键字</h4>
+<ol>
+<li>super是直接父类对象的引用。可以通过super来访问父类中被子类覆盖的方法或属性。</li>
+<li>使用super调用普通方法，语句没有位置限制，可以在子类中随便调用。</li>
+<li>若是构造方法的<code>第一行代码没有显式的调用super(...)或者this(...)</code>;那么Java默认都会调用super(),含义是调用父类的无参数构造方法。这里的super()可以省略。</li>
+</ol>
+<h4 id="继承树追溯">继承树追溯</h4>
+<ol>
+<li>依次上溯每个父类，查看每个父类中是否有h，直到Object；</li>
+<li>构造方法第一句总是：super(…)来调用父类对应的构造方法。所以，流程就是：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止。注：静态初始化块调用顺序，与构造方法调用顺序一样，不再重复。</li>
+</ol>
+<h3 id="封装">封装</h3>
+<ol>
+<li>需要让用户知道的才暴露出来，不需要让用户知道的全部隐藏起来，这就是封装。</li>
+<li>“高内聚，低耦合”。</li>
+<li>高内聚就是类的内部数据操作细节自己完成，不允许外部干涉;低耦合是仅暴露少量的方法给外部使用，尽量方便外部调用。</li>
+</ol>
+<h4 id="访问控制符">访问控制符</h4>
+<ol>
+<li>使用“访问控制符”来控制哪些细节需要封装，哪些细节需要暴露的。 Java中4种“访问控制符”分别为private、default、protected、public，它们说明了面向对象的封装性，所以我们要利用它们尽可能的让访问权限降到最低，从而提高安全性。</li>
+<li><code>private</code> 表示私有，只有自己类能访问</li>
+<li>default表示没有修饰符修饰，只有同一个包的类能访问</li>
+<li>protected表示可以被同一个包的类以及其他包中的子类访问</li>
+<li><code>public</code>表示可以被该项目的所有包中的所有类访问</li>
+</ol>
+<h5 id="protected">protected</h5>
+<ol>
+<li>若父类和子类在同一个包中，子类可访问父类的protected成员，也可以访问父类对象的protected成员；</li>
+<li><code>若父类和子类不在同一个包中，子类可访问父类的protected成员，不能访问父类对象的protected成员</code>。</li>
+</ol>
+<h5 id="使用细节使用private和public最多">使用细节(使用private和public最多)</h5>
+<ol>
+<li>类的属性的处理:
+<ol>
+<li>一般使用<code>private</code>访问权限。</li>
+<li>提供相应的get/set方法来访问相关属性，这些方法通常是public修饰的，以提供对属性的赋值与读取操作(注意：boolean变量的get方法是is开头!)。</li>
+<li>一些只用于本类的辅助性方法可以用private修饰，希望其他类调用的方法用public修饰。</li>
+</ol>
+</li>
+<li><code>这个约定就是javabean</code>.</li>
+</ol>
+<h3 id="多态">多态</h3>
+<ol>
+<li>多态指的是同一个方法调用，由于对象不同可能会有不同的行为。</li>
+<li>多态是方法的多态，不是属性的多态(多态与属性无关)。</li>
+<li>多态的存在要有3个必要条件：<code>继承</code>，<code>方法重写</code>，<code>父类引用指向子类对象</code>。</li>
+<li><code>父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了</code>。</li>
+<li>多态的主要优势是提高了代码的可扩展性(避免大量的重载)，符合开闭原则。但是多态也有弊端，就是<code>无法调用子类特有的功能</code>.</li>
+</ol>
+<h4 id="类型的转换">类型的转换</h4>
+<ol>
+<li>父类引用指向子类对象，我们称这个过程为<code>向上转型，属于自动类型转换</code>。</li>
+<li>向上转型后的<code>父类引用变量只能调用它编译类型的方法，不能调用它运行时类型的方法</code>。这时，我们就需要进行类型的<code>强制转换</code>，我们称之为向下转型!</li>
+<li>在向下转型过程中，必须将引用变量转成<code>真实的子类类型</code>(运行时类型)否则会出现类型转换异常ClassCastException。为了避免出现这种异常，我们可以使用instanceof运算符进行判断</li>
+</ol>
+<h2 id="特殊类">特殊类</h2>
+<h3 id="抽象类和抽象方法">抽象类和抽象方法</h3>
+<ol>
+<li>使用abstract修饰的方法，<code>没有方法体，只有声明</code>。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体的实现。</li>
+<li><code>包含抽象方法的类就是抽象类</code>。通过abstract方法定义规范，然后要求子类必须定义具体实现。通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。</li>
+</ol>
+<h4 id="使用要点-1">使用要点</h4>
+<ol>
+<li>有抽象方法的类只能定义成抽象类</li>
+<li><code>抽象类不能实例化</code>，即不能用new来实例化抽象类。</li>
+<li><code>抽象类可以包含属性、方法、构造方法。但是构造方法不能用来new实例，只能用来被子类调用</code>。</li>
+<li><code>抽象类只能用来被继承</code>。</li>
+<li><code>抽象方法必须被子类实现</code>。</li>
+</ol>
+<h3 id="java-接口">Java 接口</h3>
+<ol>
+<li>接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束。全面地专业地实现了：规范和具体实现的分离。</li>
+<li><code>抽象类还提供某些具体实现，接口不提供任何实现</code>，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。</li>
+<li>从接口的实现者角度看，接口定义了可以向外部提供的服务。</li>
+<li>从接口的调用者角度看，接口定义了实现者能提供那些服务。</li>
+<li>接口是两个模块之间通信的标准，通信的规范。如果能把你要设计的模块之间的接口定义好，就相当于完成了系统的设计大纲，剩下的就是添砖加瓦的具体实现了。大家在工作以后，<code>做系统时往往就是使用“面向接口”的思想来设计系统</code>。</li>
+<li><code>接口和实现类不是父子关系，是实现规则的关系</code>。</li>
+<li>接口就是规范，定义的是一组规则，体现了现实世界中“如果你是…则必须能…”的思想。</li>
+<li><code>面向对象的精髓，是对对象的抽象，最能体现这一点的就是接口</code>。为什么我们讨论设计模式都只针对具备了抽象能力的语言(比如C++、Java、C#等)，就是因为<code>设计模式所研究的，实际上就是如何合理的去抽象</code>。</li>
+<li>普通类：具体实现;抽象类：具体实现，规范(抽象方法);接口：规范!</li>
+</ol>
+<h4 id="定义">定义</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">[</span><span class="n">访问修饰符</span><span class="o">]</span>  <span class="kd">interface</span> <span class="nc">接口名</span>   <span class="o">[</span><span class="kd">extends</span>  <span class="n">父接口1</span><span class="err">，</span><span class="n">父接口2</span><span class="err">…</span><span class="o">]</span>  <span class="o">{</span>
+    <span class="n">常量定义</span><span class="err">；</span>  
+    <span class="n">方法定义</span><span class="err">；</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>访问修饰符：只能是public或默认。</li>
+<li>接口名：和类名采用相同命名机制。</li>
+<li>extends：<code>接口可以多继承</code>。</li>
+<li>常量：<code>接口中的属性只能是常量</code>，总是：public static final 修饰。不写也是。</li>
+<li>方法：<code>接口中的方法只能是：public abstract。</code> 省略的话，也是public abstract。</li>
+</ol>
+<h4 id="要点">要点</h4>
+<ol>
+<li>子类通过implements来实现接口中的规范。</li>
+<li>接口不能创建实例，但是<code>可用于声明引用变量类型</code>。</li>
+<li>一个类实现了接口，必须实现接口中所有的方法，并且<code>这些方法只能是public的</code>。</li>
+<li>JDK7之前，接口中只能包含静态常量、抽象方法，不能有普通属性、构造方法、普通方法。</li>
+<li><code>JDK8后，接口中也包含普通的静态方法和default（必须写default）方法</code>。</li>
+</ol>
+<h4 id="面向接口">面向接口</h4>
+<ol>
+<li>我们必须围绕某种稳定的东西开展，才能以静制动，实现规范的高质量的项目。</li>
+<li><code>接口就是规范，就是项目中最稳定的东东! 面向接口编程可以让我们把握住真正核心的东西，使实现复杂多变的需求成为可能</code>。</li>
+<li>面向接口编程的概念比接口本身的概念要大得多。设计阶段相对比较困难，在你没有写实现时就要想好接口，接口一变就乱套了，所以<code>设计要比实现难</code>!</li>
+</ol>
+<h4 id="java8新特性">java8新特性</h4>
+<ol>
+<li>默认方法（普通方法）必须加default。</li>
+<li>静态方法。</li>
+<li>默认方法可以调用静态方法。</li>
+</ol>
+<h3 id="内部类">内部类</h3>
+<ol>
+<li>不是很常用。</li>
+<li>把一个类放在另一个类的内部定义，称为内部类(innerclasses)。</li>
+<li>内部类可以使用public、default、protected 、private以及static修饰。而外部顶级类只能使用public和default修饰。</li>
+<li>内部类只是一个编译时概念，一旦我们编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成后会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量/方法名可以和外部类的相同。</li>
+</ol>
+<h4 id="内部类的作用">内部类的作用：</h4>
+<pre><code>1. 内部类提供了更好的封装。`只能让外部类直接访问，不允许同一个包中的其他类直接访问`。
+2. 内部类`可以直接访问外部类的私有属性，内部类被当成其外部类的成员。 但外部类不能访问内部类的内部属性`。
+3. 接口只是解决了多重继承的部分问题，而`内部类使得多重继承的解决方案变得更加完整`。
+</code></pre>
+<h4 id="内部类的使用场合">内部类的使用场合：</h4>
+<pre><code>1. 由于内部类提供了更好的封装特性，并且可以很方便的访问外部类的属性。所以，在`只为外部类提供服务的情况下`可以优先考虑使用内部类。
+2. 使用内部类`间接实现多继承`：每个内部类都能独立地继承一个类或者实现某些接口，所以无论外部类是否已经继承了某个类或者实现了某些接口，对于内部类没有任何影响。
+</code></pre>
+<h4 id="内部类的分类">内部类的分类</h4>
+<h5 id="成员内部类">成员内部类</h5>
+<ol>
+<li>可以使用private、default、protected、public任意进行修饰。</li>
+</ol>
+<h6 id="非静态内部类">非静态内部类</h6>
+<ol>
+<li>外部类里使用非静态内部类和平时使用其他类没什么不同</li>
+<li>非静态内部类对象单独属于外部类的某个对象。</li>
+<li>非静态内部类可以直接访问外部类的成员，但是外部类不能直接访问非静态内部类成员。</li>
+<li><code>非静态内部类不能有静态方法、静态属性和静态初始化块</code>。</li>
+<li>外部类的静态方法、静态代码块不能访问非静态内部类，包括不能使用非静态内部类定义变量、创建实例。</li>
+<li>成员变量访问要点：
+<ol>
+<li>内部类里方法的局部变量：变量名。</li>
+<li>内部类属性：this.变量名。</li>
+<li>外部类属性：外部类名.this.变量名。</li>
+</ol>
+</li>
+<li>内部类的访问：
+<ol>
+<li>外部类中定义内部类：<code>new Inner()</code></li>
+<li>外部类以外的地方使用非静态内部类：<code>Outer.Inner  varname = new Outer().new Inner()</code>。</li>
+</ol>
+</li>
+</ol>
+<h6 id="静态内部类">静态内部类</h6>
+<ol>
+<li><code>当一个静态内部类对象存在，并不一定存在对应的外部类对象</code>。 因此，静态内部类的实例方法不能直接访问外部类的实例方法。</li>
+<li><code>静态内部类看做外部类的一个静态成员</code>。 因此，外部类的方法中可以通过：“静态内部类.名字”的方式访问静态内部类的静态成员，通过 new 静态内部类()访问静态内部类的实例。</li>
+</ol>
+<h5 id="匿名内部类">匿名内部类</h5>
+<ol>
+<li>适合那种只需要使用一次的类。比如：键盘监听操作等等。·形参·</li>
+<li>匿名内部类没有访问修饰符。</li>
+<li>匿名内部类没有构造方法。因为它连名字都没有那又何来构造方法呢。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">new 父类构造器（参数列表）|实现接口（）  
+    {  
+     //匿名内部类的类体部分  
+    }
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="局部内部类">局部内部类</h5>
+<ol>
+<li>定义在方法内部的，作用域只限于本方法，称为局部内部类。</li>
+<li>局部内部类和成员内部类一样被编译，只是它的作用域发生了改变，它只能在该方法中被使用，<code>出了该方法就会失效</code>。</li>
+</ol>
+<h2 id="常用类">常用类</h2>
+<h3 id="包装类">包装类</h3>
+<ol>
+<li>我们在实际应用中经常需要<code>将基本数据转化成对象</code>，以便于操作。比如：将基本数据类型存储到Object[]数组或集合中的操作等等。</li>
+<li>为了解决这个不足，Java在设计类时<code>为每个基本数据类型设计了一个对应的类进行代表</code>，这样八个和基本数据类型对应的类统称为包装类(Wrapper Class)。</li>
+<li>包装类均位于java.lang包</li>
+<li>这八个类名中，除了Integer和Character类以外，其它六个类的类名和基本数据类型一致，只是类名的第一个字母大写而已。</li>
+<li>这八个类中，除了Character和Boolean以外，其他的都是“数字型”，<code>“数字型”都是java.lang.Number的子类</code>。<code>Number类是抽象类，因此它的抽象方法，所有子类都需要提供实现</code>。Number类提供了抽象方法：intValue()、longValue()、floatValue()、doubleValue()，意味着所有的“数字型”包装类都可以互相转型。</li>
+</ol>
+<h4 id="作用">作用</h4>
+<ol>
+<li>作为和基本数据类型对应的类型存在，方便涉及到对象的操作，如Object[]、集合等的操作。</li>
+<li>包含每种基本数据类型的<code>相关属性</code>如最大值、最小值等，以及<code>相关的操作方法</code>(这些操作方法的作用是在<code>基本数据类型、包装类对象、字符串</code>之间提供相互之间的转化!)。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
+    <span class="cm">/** 测试Integer的用法，其他包装类与Integer类似 */</span>
+    <span class="kt">void</span> <span class="nf">testInteger</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 基本类型转化成Integer对象
+</span><span class="c1"></span>        <span class="n">Integer</span> <span class="n">int1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+        <span class="n">Integer</span> <span class="n">int2</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">20</span><span class="o">);</span> <span class="c1">// 官方推荐这种写法
+</span><span class="c1"></span>        <span class="c1">// Integer对象转化成int
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">int1</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span>
+        <span class="c1">// 字符串转化成Integer对象
+</span><span class="c1"></span>        <span class="n">Integer</span> <span class="n">int3</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&#34;334&#34;</span><span class="o">);</span>
+        <span class="n">Integer</span> <span class="n">int4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="s">&#34;999&#34;</span><span class="o">);</span>
+        <span class="c1">// Integer对象转化成字符串
+</span><span class="c1"></span>        <span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="n">int3</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+        <span class="c1">// 一些常见int类型相关的常量
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;int能表示的最大整数：&#34;</span> <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span> 
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Test</span> <span class="n">test</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">Test</span><span class="o">();</span>
+        <span class="n">test</span><span class="o">.</span><span class="na">testInteger</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="自动装箱和拆箱编译器实现">自动装箱和拆箱(编译器实现)</h4>
+<ol>
+<li>自动装箱和拆箱就是将<code>基本数据类型和包装类</code>之间进行自动的互相转换。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Integer i = 5  自动执行了 Integer i = Integer.valueOf(5)
+Integer i = 5;int j = i; 这样的过程就是自动拆箱。
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>自动装箱过程是通过调用包装类的valueOf()方法实现的，而自动拆箱过程是通过调用包装类的 xxxValue()方法实现的(xxx代表对应的基本数据类型，如intValue()、doubleValue()等)。</li>
+<li>所以自动装箱与拆箱的功能是所谓的“编译器蜜糖(Compiler Sugar)”，虽然使用这个功能很方便，但在程序运行阶段您得了解Java的语义。</li>
+</ol>
+<h4 id="包装类的缓存">包装类的缓存</h4>
+<ol>
+<li>整型、char类型所对应的包装类，在自动装箱时，对于-128~127之间的值会进行<code>缓存处理，其目的是提高效率</code>。</li>
+<li>超过范围后，对象之间不能再使用==进行数值的比较，而是使用equals方法。</li>
+</ol>
+<h3 id="string相关类">String相关类</h3>
+<h4 id="string">String</h4>
+<ol>
+<li>不可变。final value</li>
+<li><code>substring()</code>会生成新的字符串。</li>
+<li>在遇到字符串常量之间的拼接时，编译器会做出优化，即<code>在编译期间就会完成字符串(显示常量)的拼接</code>。因此，在使用==进行String对象之间的比较时，我们需要特别注意</li>
+<li>String类的下述方法能创建并返回一个新的String对象: concat()、 replace()、substring()、 toLowerCase()、 toUpperCase()、trim()。</li>
+<li>提供查找功能的有关方法: endsWith()、 startsWith()、 indexOf()、lastIndexOf()。</li>
+<li>提供比较功能的方法: equals()、equalsIgnoreCase()、compareTo()。</li>
+<li>其它方法: charAt() 、length()。</li>
+</ol>
+<h4 id="stringbuilder">StringBuilder</h4>
+<ol>
+<li>可变。</li>
+<li>效率高，不做线程同步检查，线程不安全。<code>局部变量可用</code>。</li>
+<li>抽象类AbstractStringBuilder的子类。</li>
+<li>重载的public StringBuilder append(…)方法
+可以为该StringBuilder 对象添加字符序列，仍然返回自身对象。</li>
+<li>方法 public StringBuilder delete(int start,int end)
+可以删除从start开始到end-1为止的一段字符序列，仍然返回自身对象。</li>
+<li>方法 public StringBuilder deleteCharAt(int index)
+移除此序列指定位置上的 char，仍然返回自身对象。</li>
+<li>重载的public StringBuilder insert(…)方法
+可以为该StringBuilder 对象在指定位置插入字符序列，仍然返回自身对象。</li>
+<li>方法 public StringBuilder reverse()
+用于将字符序列逆序，仍然返回自身对象。</li>
+<li>方法 public String toString() 返回此序列中数据的字符串表示形式。</li>
+<li>和 String 类含义类似的方法：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">public int indexOf(String str)
+public int indexOf(String str,int fromIndex)
+public String substring(int start)
+public String substring(int start,int end)
+public int length() 
+char charAt(int index)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="stringbuffer">StringBuffer</h4>
+<ol>
+<li>可变。</li>
+<li>效率低，做线程同步检查，线程安全。</li>
+<li>抽象类AbstractStringBuilder的子类。</li>
+<li>方法与上类似。</li>
+</ol>
+<h4 id="对比">对比</h4>
+<ol>
+<li>String s =&quot;a&rdquo;; 创建了一个字符串,s = s+&quot;b&rdquo;; 实际上原来的&quot;a&quot;字符串对象已经丢弃了，现在又产生了另一个字符串s+&quot;b&rdquo;(也就是&quot;ab&rdquo;)。 如果多次执行这些改变串内容的操作，会导致大量副本字符串对象存留在内存中，降低效率。如果这样的操作放到循环中，会极大影响程序的时间和空间性能，甚至会造成服务器的崩溃。</li>
+<li>相反，StringBuilder和StringBuffer类是对原字符串本身操作的，可以对字符串进行修改而不产生副本拷贝或者产生少量的副本。因此可以在循环中使用。</li>
+</ol>
+<h3 id="时间处理相关类">时间处理相关类</h3>
+<h4 id="date类javautildate">Date类(java.util.Date)</h4>
+<ol>
+<li>long类型表示毫秒数。</li>
+<li>System.currentTimeMills() 获取当前的毫秒数。</li>
+<li>Date() 分配一个Date对象，并初始化此对象为系统当前的日期和时间，可以精确到毫秒)。</li>
+<li>Date(long date) 分配 Date 对象并初始化此对象，以表示自从标准基准时间(称为“历元(epoch)”，即 1970 年 1 月 1 日 00:00:00 GMT)以来的指定毫秒数。</li>
+<li>boolean after(Date when) 测试此日期是否在指定日期之后。</li>
+<li>booleanbefore(Date when) 测试此日期是否在指定日期之前。</li>
+<li>boolean equals(Object obj) 比较两个日期的相等性。</li>
+<li>long getTime() 返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数。</li>
+<li>String toString() 把此 Date 对象转换为以下形式的 String：dow mon dd hh:mm:ss zzz yyyy 其中： dow 是一周中的某一天 (Sun、 Mon、Tue、Wed、 Thu、 Fri、 Sat)。</li>
+<li><code>日期操作一般使用Calendar类，而字符串的转化使用DateFormat类</code>。</li>
+</ol>
+<h4 id="dateformat类和simpledateformat类">DateFormat类和SimpleDateFormat类</h4>
+<ol>
+<li>把时间对象转化成指定格式的字符串。反之，把指定格式的字符串转化成时间对象。</li>
+<li>DateFormat是一个抽象类，一般使用它的的子类SimpleDateFormat类来实现。</li>
+</ol>
+<h4 id="calendar日历类和gregoriancalendar类">Calendar日历类和GregorianCalendar类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">GregorianCalendar calendar = new GregorianCalendar(2999, 10, 9, 22, 10, 50);
+        int year = calendar.get(Calendar.YEAR); // 打印：1999
+        int month = calendar.get(Calendar.MONTH); // 打印：10
+        int day = calendar.get(Calendar.DAY_OF_MONTH); // 打印：9
+        int day2 = calendar.get(Calendar.DATE); // 打印：9
+        // 日：Calendar.DATE和Calendar.DAY_OF_MONTH同义
+        int date = calendar.get(Calendar.DAY_OF_WEEK); // 打印：3
+calendar2.set(Calendar.YEAR, 2999);
+        calendar2.set(Calendar.MONTH, Calendar.FEBRUARY); // 月份数：0-11
+        calendar2.set(Calendar.DATE, 3);
+        calendar2.set(Calendar.HOUR_OF_DAY, 10);
+        calendar2.set(Calendar.MINUTE, 20);
+        calendar2.set(Calendar.SECOND, 23);
+        calendar3.add(Calendar.MONTH, -7); // 月份减7
+        calendar3.add(Calendar.DATE, 7); // 增加7天
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="math类-javalangmath">Math类（ java.lang.Math）</h3>
+<ol>
+<li>提供了一系列静态方法用于科学计算;其方法的参数和返回值类型一般为double型。</li>
+<li>如果需要更加强大的数学运算能力，计算高等数学中的相关内容，可以使用apache commons下面的Math类库。</li>
+<li>Math.random()，但是通常我们需要的随机数范围并不是[0, 1)之间的double类型的数据。</li>
+<li>如果使用Math.random()计算过于复杂的话，我们可以使用例外一种方式得到随机数，即Random类，这个类是专门用来生成随机数的，并且Math.random()底层调用的就是Random的nextDouble()方法。</li>
+<li>Random类位于java.util包下。</li>
+</ol>
+<h3 id="file类-javaiofile">file类（ java.io.File）</h3>
+<ol>
+<li>读取文件、生成文件、删除文件、修改文件的属性时经常会用到本类</li>
+<li>常见构造方法：public File(String pathname)</li>
+<li>以pathname为路径创建File对象，如果pathname是相对路径，则默认的当前路径在系统属性user.dir（System.getProperty(&lsquo;user.dir&rsquo;)）中存储.</li>
+<li>createNewFile()</li>
+<li>delete()</li>
+<li>mkdir() chuang&rsquo;jia</li>
+<li>mkdirs()</li>
+</ol>
+<h3 id="枚举">枚举</h3>
+<ol>
+<li>枚举类型的定义包括枚举声明和枚举体。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">enum  枚举名 {
+      枚举体（常量列表）
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>枚举体就是放置一些常量。</li>
+<li><code>所有的枚举类型隐性地继承自 java.lang.Enum</code>。</li>
+<li>枚举实质上还是类!而每个被枚举的成员实质就是一个枚举类型的实例，他们默认都是public static final修饰的。</li>
+<li>可以直接通过枚举类型名使用它们。</li>
+<li>当你需要定义一组常量时，可以使用枚举类型。</li>
+<li>尽量不要使用枚举的高级特性，事实上高级特性都可以使用普通类来实现，没有必要引入枚举，增加程序的复杂性!</li>
+</ol>
+<h3 id="其他">其他</h3>
+<ol>
+<li>工具类的构造器做好是私有化的。</li>
+<li>GameUtil.class.getClassLoader().getResource(path);可以帮助我们获得程序运行类加载器，加载资源的根目录，从而获得相对资源位置。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-02-15</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E6%97%A5%E5%B8%B8-%E7%BD%97%E6%8C%AF%E5%AE%87-%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/" class="prev" rel="prev" title="日常-罗振宇-时间的朋友"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/java-02-%E5%9F%BA%E7%A1%80/" class="next" rel="next" title="JAVA-基础">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

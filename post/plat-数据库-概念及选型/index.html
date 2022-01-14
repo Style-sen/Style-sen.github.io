@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数据库概念及选型 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="数据库概念及选型" />
+<meta property="og:description" content="干货：实时数据库，内存数据库，关系型数据库比较 1. 实时数据库 实时数据库是采用实时数据模型建立起来的数据库，用于处理不断更新的快速变化的数据及具" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-05-12T17:11:35+08:00" />
+<meta property="article:modified_time" content="2021-05-12T17:11:35+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="数据库概念及选型"/>
+<meta name="twitter:description" content="干货：实时数据库，内存数据库，关系型数据库比较 1. 实时数据库 实时数据库是采用实时数据模型建立起来的数据库，用于处理不断更新的快速变化的数据及具"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B/" /><link rel="prev" href="/post/tools-vi%E9%9D%9Evim/" /><link rel="next" href="/post/plat-qt-ifw/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数据库概念及选型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, 数据库","wordcount":  2189 ,
+        "url": "\/post\/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B\/","datePublished": "2021-05-12T17:11:35+08:00","dateModified": "2021-05-12T17:11:35+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">数据库概念及选型</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-实时数据库">1. 实时数据库</a>
+      <ul>
+        <li><a href="#11-核心技术原理">1.1. 核心技术原理</a>
+          <ul>
+            <li><a href="#111-整体架构">1.1.1. 整体架构</a>
+              <ul>
+                <li><a href="#1111-现场接口适配层底层">1.1.1.1. 现场接口适配层（底层）</a></li>
+              </ul>
+            </li>
+            <li><a href="#112-简化模型">1.1.2. 简化模型</a></li>
+            <li><a href="#113-核心io策略">1.1.3. 核心IO策略</a></li>
+            <li><a href="#114-核心调度策略">1.1.4. 核心调度策略</a></li>
+            <li><a href="#115-实时数据库压缩算法">1.1.5. 实时数据库压缩算法</a></li>
+            <li><a href="#116-索引技术">1.1.6. 索引技术</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-选型">1.2. 选型</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-内存数据库">2. 内存数据库</a></li>
+    <li><a href="#3-关系数据库">3. 关系数据库</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p><a href="https://zhuanlan.zhihu.com/p/126749463" target="_blank" rel="noopener noreffer">干货：实时数据库，内存数据库，关系型数据库比较</a></p>
+<h2 id="1-实时数据库">1. 实时数据库</h2>
+<ol>
+<li>
+<p>实时数据库是采用实时数据模型建立起来的数据库，用于处理不断更新的快速变化的数据及具有时间限制的事务处理.对实时性要求高的【时标型信息】的[数据库管理系统].</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 时标型数据并非仅仅指时间戳、值和质量码，还有一个很重要的属性，那就是及时性，及时性有两重含义，采样间隔和数据的新鲜度。时标型数据的价值随新鲜度降低而递减。1秒钟内的数据可以用来流程工业中的控制，5秒钟之内可以用来监视，半小时内的数据可以用来分析和优化，一天内的数据可以用来日报表，如果是半年前的数据，则只能做对比和追溯了。而得到数据的新鲜程度往往取决于采样频率，这就是为什么如此重视实时数据库的采样快速性。同时【采样的频率】还进一步决定了实时数据库保存信息的丰富程度。
+<span class="k">2.</span> 从另一个方面讲，实时数据库中存储的数据永远是滤波后数据，实时数据库就像一个低通滤波器。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>实时数据库技术是实时系统和数据库技术相结合的产物，利用数据库技术来解决实时系统中的数据管理问题，同时利用实时技术为实时数据库提供时间驱动调和资源分配算法。</p>
+</li>
+<li>
+<p>主要应用于工业监控，如：电力、石化、化工、钢铁、冶金、造纸、交通控制和证券金融等工业领域的监控。</p>
+</li>
+<li>
+<p>特点：
+a. 时间约束:实时数据库是其数据和事务都有明确的时间限制的数据库。在实时系统中，具有时间约束的数据主要是来自于外部的动态数据，以及由这些数据求导出的新的数据。数据库中的数据必须如实反映现场设备的运行情况。
+b. 事务调度:实时数据库系统的正确性不仅依赖于事务的逻辑结果，而且依赖于该逻辑结果所产生的时间。事务调度既要考虑事务的执行时间，也要考虑事务的截止期、紧迫程度等因素。
+c. 数据存储:实时数据库主要承担系统所有实时数据的存储和管理，为相关的功能提供快速、正确的实时信息。为了达到实时性，实时数据库在系统运行过程中，应常驻内存，以保证读取速度。对于实时性要求不高的数据可存放在外存储空间。因此，在实时数据库设计时，要妥善处理时间与存储空间的矛盾，以保证系统的实时性。
+d. 数据在线压缩:在实际的数据存储中，实时数据库还要解决如何高效处理海量数据的问题。如果数据被原封不动地存储势必需要大量内存和磁盘空间以及耗费大量的时间，因此必须对实时数据进行在线压缩存储。</p>
+</li>
+</ol>
+<h3 id="11-核心技术原理">1.1. 核心技术原理</h3>
+<h4 id="111-整体架构">1.1.1. 整体架构</h4>
+<ol>
+<li>通过【现场适配层】适配现场的各种接口。然后通过【实时核心】，完成数据的采集、实时计算、报警计算、其它处理，实时数据被不断泵入【磁盘历史存储】，形成可追溯的历史信息，同时通过向【应用层】提供各种适配接口，支持各种开发语言和各种应用需求的访问。</li>
+</ol>
+<h5 id="1111-现场接口适配层底层">1.1.1.1. 现场接口适配层（底层）</h5>
+<ol>
+<li>小型实时数据库（许多是号称自己是实时数据库的组态软件）均将核心和接口做在一起，用户使用起来较为简单，但如果出现任何一个不稳定的接口或局部异常，那整个实时数据库就崩溃了。</li>
+<li>对于大型应用，这种结构也较难扩展。接口软件被独立出来，即可以与实时数据库核心集中部署在1台计算机上，也可以与部署在接口机上，在大规模应用的时候，接口的负载不会影响核心的稳定，同时任意一个接口出现Crash，都不会导致实时数据库整体宕机。从而提供了更好的可扩展性和稳定性。</li>
+<li>影响接口效率因素:协议慢，网络状况，设备效率，工作站负载，底层软件质量。</li>
+<li>接口程序内部主要有两部分：现场接口协议栈和位号分组（按照不同的频率分组）。</li>
+<li>一般主动采集（还会增加一层缓存，影响效率）的频率都是1赫兹以下的（慢于1秒/次），更加快速的时候，均采用主动通知的方法，即当数据变化的时候，主动向实时数据库内核发送变化的数据，以达到更高效率。</li>
+</ol>
+<h4 id="112-简化模型">1.1.2. 简化模型</h4>
+<ol>
+<li>实时数据库被简化成由多个接口、一个接口管理模块、一个组态模块、一个实时模块、一个高速缓存和一个历史模块组成，上面覆以应用接口。</li>
+</ol>
+<h4 id="113-核心io策略">1.1.3. 核心IO策略</h4>
+<ol>
+<li>实时数据库一般采用缓存来增加读实时数据的及时性，因此实时数据库核心中都有高速缓存。</li>
+<li>通过接口的采集，高速缓存的数据得到不断的更新，而当上层读位号的时候，实时数据库通过返回缓存的值来快速响应。因此，读一般是异步的。但写则一般是同步的，</li>
+<li>实时数据库不适宜对快速开关量的控制。</li>
+<li>另一种则是波动较快的窄带控制，意味着必须将被控量控制在一个较窄的区域内，这时必须考虑时滞问题，如果时滞稳定，则可以按照控制理论采用抵消时滞或者前馈的方式获得较好的控制效果。而如果时滞变化很大，则通过实时数据库之上进行的控制则效果不明显了，很容易失控。</li>
+</ol>
+<h4 id="114-核心调度策略">1.1.4. 核心调度策略</h4>
+<ol>
+<li>很少有实时数据库是单线程的，大型实时数据库中往往都有线程池，对于需要实时处理读、写、采集等任务的实时数据库核心，其调度策略必须慎重考虑。</li>
+<li>首先，为难的是往往很难判断那些任务的优先级更高。一般，频率小的数据的优先级高，写的优先级高于读的优先级，采集的优先级高于读。</li>
+</ol>
+<h4 id="115-实时数据库压缩算法">1.1.5. 实时数据库压缩算法</h4>
+<ol>
+<li>说到数据压缩，无非有损和无损。无损的一般通过各类近似霍夫曼编码的方法压缩数据，二有损则是采用线性拟合的方法。</li>
+</ol>
+<h4 id="116-索引技术">1.1.6. 索引技术</h4>
+<h3 id="12-选型">1.2. 选型</h3>
+<ol>
+<li><a href="https://www.cnblogs.com/guohu/p/7308156.html" target="_blank" rel="noopener noreffer">实时数据库系统选型</a></li>
+</ol>
+<h2 id="2-内存数据库">2. 内存数据库</h2>
+<ol>
+<li>内存数据库就是将数据放在内存中直接操作的数据库。</li>
+<li>它利用内存的【读写速度比磁盘快】、内存是【随机访问】而磁盘是顺序访问这两个特点。</li>
+<li>将数据保存在内存中，在内存中模仿建立表结构和索引结构并针对内存特性进行优化，相比从磁盘上访问，内存数据库访问较快。</li>
+</ol>
+<h2 id="3-关系数据库">3. 关系数据库</h2>
+<ol>
+<li>关系数据库是建立在集合代数基础上，应用数学方法来处理数据库中的数据。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-05-12</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/tools-vi%E9%9D%9Evim/" class="prev" rel="prev" title="TOOLS VI非VIM"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-qt-ifw/" class="next" rel="next" title="QT IFW">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

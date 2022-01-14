@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 锦枫紫兰</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on 锦枫紫兰</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 14 Jan 2022 10:40:19 +0800</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PLAT-LINUX-应用-网络编程</title>
+      <link>/post/plat-linux-%E5%BA%94%E7%94%A8-02-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Fri, 14 Jan 2022 10:40:19 +0800</pubDate>
+      
+      <guid>/post/plat-linux-%E5%BA%94%E7%94%A8-02-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
+      <description>1. UDP 1.1. 原理分析 现象：使用UDP发送一包数据给服务端，收到一包ICMP报文（Port unreachable），由服务端返回。 原因：接收UDP报</description>
+    </item>
+    
+    <item>
+      <title>PLAT QT 第三方模块</title>
+      <link>/post/plat-qt-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Wed, 12 Jan 2022 15:43:39 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/</guid>
+      <description>QCustomPlot 基于GPL。</description>
+    </item>
+    
+    <item>
+      <title>PROGRAM C C&#43;&#43; 跨平台</title>
+      <link>/post/program-c-c&#43;&#43;-%E8%B7%A8%E5%B9%B3%E5%8F%B0/</link>
+      <pubDate>Fri, 03 Dec 2021 10:41:50 +0800</pubDate>
+      
+      <guid>/post/program-c-c&#43;&#43;-%E8%B7%A8%E5%B9%B3%E5%8F%B0/</guid>
+      <description>用C++进行跨平台和可移植开发的注意事项 1. 需求 2. 跨平台的注意事项 下面总结的是底层代码，如果要移植C/C++的界面，先找到一套跨平台的界面框架</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;第三方库</title>
+      <link>/post/program-c-c&#43;&#43;-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</link>
+      <pubDate>Fri, 03 Dec 2021 10:30:22 +0800</pubDate>
+      
+      <guid>/post/program-c-c&#43;&#43;-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
+      <description>1. GSL - GNU Scientific Library GNU Scientific库（GSL）是C和C++程序员的数字库。它是GNU通用公共许可下的自由软件。 该库提供了广泛的数学例程，如随</description>
+    </item>
+    
+    <item>
+      <title>命令行终端</title>
+      <link>/post/tools-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BB%88%E7%AB%AF/</link>
+      <pubDate>Thu, 11 Nov 2021 09:57:37 +0800</pubDate>
+      
+      <guid>/post/tools-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BB%88%E7%AB%AF/</guid>
+      <description>1. 阅读What&amp;rsquo;s the difference between a console, a terminal, and a shell? Terminal只是显示文本并接收输入，他不会看你的输入，也不会思考。 在技术上，Conso</description>
+    </item>
+    
+    <item>
+      <title>跨设备（嵌入式-PC）</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-6-%E8%B7%A8%E8%AE%BE%E5%A4%87/</link>
+      <pubDate>Wed, 27 Oct 2021 16:05:30 +0800</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-6-%E8%B7%A8%E8%AE%BE%E5%A4%87/</guid>
+      <description>C++ 1. 空间和效率的平衡 在嵌入式开发中，单纯地加入class，不会影响代码的大小，也不会影响程序的效率。 默认参数和函数重载也不会带来代码大小和运</description>
+    </item>
+    
+    <item>
+      <title>SEAFILE&#43;ONLYOFFICE</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C-seafile-onlyoffice/</link>
+      <pubDate>Wed, 20 Oct 2021 15:46:19 +0800</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C-seafile-onlyoffice/</guid>
+      <description>参考Seafile集成OnlyOffic实现word在线编辑</description>
+    </item>
+    
+    <item>
+      <title>PYTHON-POLORS</title>
+      <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-polors/</link>
+      <pubDate>Thu, 14 Oct 2021 11:36:11 +0800</pubDate>
+      
+      <guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-polors/</guid>
+      <description>概述 相比较PANDAS来说，处理比较大的数据集会很快。</description>
+    </item>
+    
+    <item>
+      <title>QT基本模块QUICK</title>
+      <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-06-quick/</link>
+      <pubDate>Wed, 13 Oct 2021 17:59:49 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-06-quick/</guid>
+      <description>用于构建具有自定义用户界面的高度动态应用程序的声明式框架。</description>
+    </item>
+    
+    <item>
+      <title>QT-QML</title>
+      <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-05-qml/</link>
+      <pubDate>Wed, 13 Oct 2021 17:41:41 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-05-qml/</guid>
+      <description>QML是一种声明式语言。它提供了一组接口用来描述可视化组件以及他们之间的互动。它是一个高度可读的语言，而且被设计成使组件以一个动态的方式相互</description>
+    </item>
+    
+    <item>
+      <title>PLAT QT 扩展模块 03 WEBCHANNEL</title>
+      <link>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-03-webchannel/</link>
+      <pubDate>Wed, 13 Oct 2021 17:25:29 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-03-webchannel/</guid>
+      <description>1. QWebChannel QWebChannel 提供了在 Server（C++应用）和 client 端（HTML/JS）之间点对点的通信能力。 通过向 client 端的 QWebChannel 发布 QObject 的 派生对象，进而实现在 client 端无缝读取</description>
+    </item>
+    
+    <item>
+      <title>QT-XML</title>
+      <link>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-02-xml/</link>
+      <pubDate>Wed, 13 Oct 2021 17:14:10 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-02-xml/</guid>
+      <description>1. QDomElement 解析的xml不是很大，而且基本只涉及加载过程中，所以使用DOM的情况比较多. 1 text()//获取文字，返回QString 2. QXmlSimpleReader</description>
+    </item>
+    
+    <item>
+      <title>QT-SQL</title>
+      <link>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-01-sql/</link>
+      <pubDate>Wed, 13 Oct 2021 17:05:30 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-01-sql/</guid>
+      <description>QtSql模块提供平台独立的基于SQL的数据库操作。这里的“平台独立”，既包括操作系统平台，也包括各个数据库平台。 1 2 3 #include &amp;lt;QSqlDatabase&amp;gt;#include &amp;lt;QSqlQuery&amp;gt;QT += sql 1. QSql</description>
+    </item>
+    
+    <item>
+      <title>QT-NETWORK</title>
+      <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-04-network/</link>
+      <pubDate>Wed, 13 Oct 2021 17:02:55 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-04-network/</guid>
+      <description>使网络编程更容易和更可移植性.QT += network QAbstractSocket 继承自QIODevice; 1. Qftp 需要自己编译。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # LINIX 1. 下载源码`htt</description>
+    </item>
+    
+    <item>
+      <title>PLAT QT 基本模块 01 CORE</title>
+      <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-01-core/</link>
+      <pubDate>Sat, 18 Sep 2021 14:06:15 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-01-core/</guid>
+      <description>1. 设计要点 提供了强大的signals and slots机制,用于对象之间的无缝通讯。 可查询和可设计的对象属性。 对象树。 受保护的指针。 跨库边界的动态</description>
+    </item>
+    
+    <item>
+      <title>QT基本模块-GUI</title>
+      <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-03-gui/</link>
+      <pubDate>Sat, 18 Sep 2021 11:02:18 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-03-gui/</guid>
+      <description>1. QBrush设置QPainter绘制的图形的填充图案 2. QColor颜色 1 3. QGuiApplication管理 GUI 应用程序的控制流和主要设置 1</description>
+    </item>
+    
+    <item>
+      <title>QT基本模块-WIDGETS</title>
+      <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-02-widgets/</link>
+      <pubDate>Sat, 18 Sep 2021 11:02:18 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-02-widgets/</guid>
+      <description>1. 设计要点 qmake: QT += widgets 如果希望界面自适应电脑的分辨率或者改变界面大小时，界面上的所有部件也能够做出相应改变。这种时候就可以使用“布局（Layou</description>
+    </item>
+    
+    <item>
+      <title>MikroKopter开源电机项目学习</title>
+      <link>/post/hardware-moto-mikrokopter%E5%BC%80%E6%BA%90%E7%94%B5%E6%9C%BA%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Sat, 11 Sep 2021 11:16:46 +0800</pubDate>
+      
+      <guid>/post/hardware-moto-mikrokopter%E5%BC%80%E6%BA%90%E7%94%B5%E6%9C%BA%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/</guid>
+      <description>1. 简介 2. 硬件 3. 软件</description>
+    </item>
+    
+    <item>
+      <title>VESC开源电机项目学习</title>
+      <link>/post/hardware-moto-vesc%E5%BC%80%E6%BA%90%E7%94%B5%E6%9C%BA%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Sat, 11 Sep 2021 11:16:46 +0800</pubDate>
+      
+      <guid>/post/hardware-moto-vesc%E5%BC%80%E6%BA%90%E7%94%B5%E6%9C%BA%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/</guid>
+      <description>参考What&amp;rsquo;s VESC? How to use it ? What&amp;rsquo;s difference between VESC and ESC? 简介 VESC 是一个开源 ESC (电动速度控制器)。 官方网站。 硬件 软件 固件</description>
+    </item>
+    
+    <item>
+      <title>STM32软件研发</title>
+      <link>/post/hardware-stm32-%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91/</link>
+      <pubDate>Fri, 20 Aug 2021 17:04:05 +0800</pubDate>
+      
+      <guid>/post/hardware-stm32-%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91/</guid>
+      <description>1. 开始 官方库的选择:使用Cube库替代官方外设库。 2. 资源 中断、事件、中断事件 需触发中断，交给NVIC处理的，也就是软件上有中断函数的，叫中断</description>
+    </item>
+    
+    <item>
+      <title>HARDWARE 常用器件</title>
+      <link>/post/hardware-%E5%B8%B8%E7%94%A8%E5%99%A8%E4%BB%B6/</link>
+      <pubDate>Fri, 20 Aug 2021 16:54:10 +0800</pubDate>
+      
+      <guid>/post/hardware-%E5%B8%B8%E7%94%A8%E5%99%A8%E4%BB%B6/</guid>
+      <description>1. USB 1.1. CH9329 1.2. HT42B564 2. 语音芯片 2.1. NVC系列 3. LED 3.1. NeoPixels 也被称为WS2812 LED彩带，是连接在一起的全彩色led灯串 4. 传感器 多传感器融合算法：卡尔曼滤波</description>
+    </item>
+    
+    <item>
+      <title>注释规范Doxygen</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Thu, 05 Aug 2021 15:45:11 +0800</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/</guid>
+      <description>1. 安装 apt-get install graphviz; apt-get install doxygen 2. 注释格式 2.1. 块注释，建议统一使用 1 2 3 /** *…… */ 2.2. 行注释 如下图，函数中注释可以出现在Doxygen 页面的函数说明中。 1 ///&amp;lt; …</description>
+    </item>
+    
+    <item>
+      <title>编写软件项目需求分析文档</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Thu, 05 Aug 2021 15:45:11 +0800</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3/</guid>
+      <description>参考软件需求分析模板 软件需求分析就是把软件计划期间建立的软件可行性分析求精和细化，分析各种可能的解法，并且分配给各个软件元素。 需求分析是软件</description>
+    </item>
+    
+    <item>
+      <title>Echarts</title>
+      <link>/post/program-js-ts-echarts/</link>
+      <pubDate>Mon, 02 Aug 2021 14:45:56 +0800</pubDate>
+      
+      <guid>/post/program-js-ts-echarts/</guid>
+      <description>配置项详解 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65</description>
+    </item>
+    
+    <item>
+      <title>直流无刷电机的驱动和控制</title>
+      <link>/post/hardware-moto-%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA%E7%9A%84%E9%A9%B1%E5%8A%A8%E5%92%8C%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Fri, 30 Jul 2021 16:03:39 +0800</pubDate>
+      
+      <guid>/post/hardware-moto-%E7%9B%B4%E6%B5%81%E6%97%A0%E5%88%B7%E7%94%B5%E6%9C%BA%E7%9A%84%E9%A9%B1%E5%8A%A8%E5%92%8C%E6%8E%A7%E5%88%B6/</guid>
+      <description>学习 B站 硬石科技的视频教程《基于STM32的电机》专题07 第5节 1. 基础的电机控制 1.1. 电机的驱动原理 直流电源。 逆变器。 霍尔传感器（选配），用来获</description>
+    </item>
+    
+    <item>
+      <title>如何成为学习高手</title>
+      <link>/post/focus-%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%AD%A6%E4%B9%A0%E9%AB%98%E6%89%8B/</link>
+      <pubDate>Wed, 21 Jul 2021 09:11:32 +0800</pubDate>
+      
+      <guid>/post/focus-%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%AD%A6%E4%B9%A0%E9%AB%98%E6%89%8B/</guid>
+      <description>1. 保持愉悦和高效 1.1. 概念 峰终定律 成就目标 [道德许可效应] 1.2. 应用 【制定计划】的时候、量力而行、不要制定完不成的计划、不要制定多类型的任务，尽量少</description>
+    </item>
+    
+    <item>
+      <title>PROGRAM SQL</title>
+      <link>/post/program-sql/</link>
+      <pubDate>Fri, 09 Jul 2021 14:54:37 +0800</pubDate>
+      
+      <guid>/post/program-sql/</guid>
+      <description>1. 创建表 1 2 3 4 5 6 7 8 9 10 11 -- 【SQLITE】 CREATE TABLE COMPANY ( ID INT PRIMARY KEY, -- 主键，唯一索引 NAME TEXT NOT NULL UNIQUE, -- UNIQUE 唯一索引 AGE INT NOT NULL , ADDRESS CHAR(50), SALARY REAL DEFAULT 50000.00, -- UNIQUE(column_name1,column_name2) -- 联合唯一 --</description>
+    </item>
+    
+    <item>
+      <title>使用CREATER开发</title>
+      <link>/post/plat-qt-creater-%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Wed, 23 Jun 2021 13:48:45 +0800</pubDate>
+      
+      <guid>/post/plat-qt-creater-%E5%BC%80%E5%8F%91/</guid>
+      <description>1. Qt Creater配置 【Tools】-&amp;gt;【Options】打开选项。 1.1. Kits 配置可用的编译工具。 2. QtCreater项目 .h是头文件； .c</description>
+    </item>
+    
+    <item>
+      <title>QT IFW</title>
+      <link>/post/plat-qt-ifw/</link>
+      <pubDate>Tue, 15 Jun 2021 16:10:29 +0800</pubDate>
+      
+      <guid>/post/plat-qt-ifw/</guid>
+      <description>参考使用 Qt Installer Framework 制作安装包与程序自动升级 参考Qt Installer Framework 使用说明 Qt Installer Framework 提供了一组工具和实用工具来创建安装程序，并在不重写源代码的情况下将它们部署到</description>
+    </item>
+    
+    <item>
+      <title>数据库概念及选型</title>
+      <link>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B/</link>
+      <pubDate>Wed, 12 May 2021 17:11:35 +0800</pubDate>
+      
+      <guid>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B/</guid>
+      <description>干货：实时数据库，内存数据库，关系型数据库比较 1. 实时数据库 实时数据库是采用实时数据模型建立起来的数据库，用于处理不断更新的快速变化的数据及具</description>
+    </item>
+    
+    <item>
+      <title>TOOLS VI非VIM</title>
+      <link>/post/tools-vi%E9%9D%9Evim/</link>
+      <pubDate>Tue, 11 May 2021 17:39:35 +0800</pubDate>
+      
+      <guid>/post/tools-vi%E9%9D%9Evim/</guid>
+      <description>vi 命令模式 输入:之后 `1,6 s/^/System.out.println(&amp;rdquo; 2,$ s/^/新增的字符串 注：此为2行至尾行 `% s/^/System.out.println(&amp;rdquo; 注：此为所有行</description>
+    </item>
+    
+    <item>
+      <title>Sqlite</title>
+      <link>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-sqlite/</link>
+      <pubDate>Tue, 11 May 2021 15:55:41 +0800</pubDate>
+      
+      <guid>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-sqlite/</guid>
+      <description>参考主键 参考易百教程 参考CSDN 1. 概念 1.1. 数据类型 SQLite使用更通用的动态类型系统。 在SQLite中，值的数据类型与值本身相关联，而不是与</description>
+    </item>
+    
+    <item>
+      <title>PROGRAM 跨语言 架构 500 DBDB</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-500-dbdb/</link>
+      <pubDate>Sat, 08 May 2021 10:37:55 +0800</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-500-dbdb/</guid>
+      <description>代码结构 tool.py：命令行工具，从终端窗口来操作数据库 interface.py：使用二叉树实现方式定义了DBDB类-&amp;gt;实现Pyth</description>
+    </item>
+    
+    <item>
+      <title>QTCreater</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-%E5%85%B6%E4%BB%96%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE-qtcreater/</link>
+      <pubDate>Sat, 08 May 2021 10:37:55 +0800</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-%E5%85%B6%E4%BB%96%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE-qtcreater/</guid>
+      <description>QtCreater是插件设计架构，由插件管理器（负责插件的加载,管理,销毁等工作）和一堆插件（有一个叫core的插件,是QtCreator最</description>
+    </item>
+    
+    <item>
+      <title>架构设计模式</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 08 May 2021 10:37:55 +0800</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>插件设计架构 核心系统 核心系统包含两部分功能：1.最小功能集合,提供给各个插件模块使用,也就是插件如何使用核心系统的功能进行功能扩展;2.插件</description>
+    </item>
+    
+    <item>
+      <title>开源协议</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Thu, 06 May 2021 10:42:19 +0800</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE/</guid>
+      <description>1. GPL 只要在一个软件中使用(包括类库引用、修改后的代码或者衍生代码)GPL协议的产品，则该软件产品必须也采用GPL协议，既必须也是开源和免费。</description>
+    </item>
+    
+    <item>
+      <title>时钟同步</title>
+      <link>/post/plat-linux-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF-%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Thu, 29 Apr 2021 14:09:07 +0800</pubDate>
+      
+      <guid>/post/plat-linux-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF-%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5/</guid>
+      <description>1. NTP 毫秒级。5ms以内的精度。 非超高精度设备，不建议使用PTP设备。 NTP是在应用层级别实现的. 1.1. ntp NTP是用来使计算机时间同步化的一种协议</description>
+    </item>
+    
+    <item>
+      <title>GIT基本操作</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Fri, 23 Apr 2021 10:45:49 +0800</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</guid>
+      <description>1. 增加/删除文件 git add -p添加每个变化前，都会要求确认；对于同一个文件的多处变化，可以实现分次提交； 2. 查看更改 git status查看文件在工作区（</description>
+    </item>
+    
+    <item>
+      <title>如何管理一个项目</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Fri, 23 Apr 2021 10:45:49 +0800</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/</guid>
+      <description>学习 极客时间 《项目管理实战20讲》（完） 项目管理能力，成为一个职场人士的【必备技能】，具备项目管理能力的程序员，会在这个程序员严重同质化的局</description>
+    </item>
+    
+    <item>
+      <title>LINUX调试和性能分析</title>
+      <link>/post/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 21 Apr 2021 16:38:31 +0800</pubDate>
+      
+      <guid>/post/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/</guid>
+      <description>1. 提升程序性能 1.1. 系统级性能优化 两个阶段 1.1.1. 性能剖析 找出性能瓶颈 查找原因和热点代码 1.1.2. 代码优化 【优化代码】和【编译选项】。 2. 性能剖析工具 2.1. gperftools ***** 应用</description>
+    </item>
+    
+    <item>
+      <title>LUA常用模块</title>
+      <link>/post/program-lua-%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Wed, 21 Apr 2021 15:46:41 +0800</pubDate>
+      
+      <guid>/post/program-lua-%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/</guid>
+      <description>1. bit LUA本身不支持位运算,所以需要bit模块。 1.1. 操作 1 2 3 4 bit.lshift(x, n) --逻辑左移 bit.rshift(x, n) --逻辑右移 bit.arshift(x, n) --算术右移 bit.band() --与 2. JSON 2.1. cjson 需要手动编译l</description>
+    </item>
+    
+    <item>
+      <title>PROGRAM C&#43;&#43; 核心准则</title>
+      <link>/post/program-c&#43;&#43;-%E6%A0%B8%E5%BF%83%E5%87%86%E5%88%99/</link>
+      <pubDate>Sat, 17 Apr 2021 11:05:58 +0800</pubDate>
+      
+      <guid>/post/program-c&#43;&#43;-%E6%A0%B8%E5%BF%83%E5%87%86%E5%88%99/</guid>
+      <description>C.40 Define a constructor if a class has an invariant R.3: A raw pointer (a T*) is non-owning R.4: A raw reference (a T&amp;amp;) is non-owning R.10: Avoid malloc() and free() 避免使用malloc和free malloc() and free() do not support construction and destruction, and do not mix well with new and delete. E E.28: Avoid error handling based</description>
+    </item>
+    
+    <item>
+      <title>PROGRAM PYTHON 第三方库 SCAPY</title>
+      <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-scapy/</link>
+      <pubDate>Fri, 16 Apr 2021 10:00:28 +0800</pubDate>
+      
+      <guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-scapy/</guid>
+      <description>Scapy是功能强大的交互式数据包处理程序、数据包生成器、网络扫描器、网络发现工具和包嗅探工具。 它能够伪造或解码各种协议的数据包，在线发送它</description>
+    </item>
+    
+    <item>
+      <title>LINUX命令</title>
+      <link>/post/plat-linux-01-%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Tue, 13 Apr 2021 10:30:51 +0800</pubDate>
+      
+      <guid>/post/plat-linux-01-%E5%91%BD%E4%BB%A4/</guid>
+      <description>（按照字母顺序） 1. busybox（常用工具包） busybox是一个集成了一百多个最常用linux命令和工具的软件,甚至还集成了一个http服</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;面向对象</title>
+      <link>/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Wed, 07 Apr 2021 14:57:16 +0800</pubDate>
+      
+      <guid>/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <description>1. class 1.1. 规范 类名首字母都大写 1.2. 访问权限 1.2.1. public 在类的外部（定义类的代码之外），只能通过对象访问成员，并且通过对象只能访问 public 属性的成员 1.2.2. privat</description>
+    </item>
+    
+    <item>
+      <title>QT安装配置及概览</title>
+      <link>/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/</link>
+      <pubDate>Fri, 02 Apr 2021 14:17:22 +0800</pubDate>
+      
+      <guid>/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/</guid>
+      <description>Qt的实现主要是采用p-impl手法，实现接口与实现分离，它有很好的消息循环机制，有的对象与线程的相关性，它也有借助moc生成反射元信息，这</description>
+    </item>
+    
+    <item>
+      <title>构建框架（make）</title>
+      <link>/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Fri, 02 Apr 2021 10:49:12 +0800</pubDate>
+      
+      <guid>/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/</guid>
+      <description>1. 使用make menuconfig 1.1. ulfalizer/Kconfiglib Just drop kconfiglib.py and the scripts you want somewhere. There are no third-party dependencies, but the terminal menuconfig won&amp;rsquo;t work on Windows unless a package like windows-curses is installed. Kconfiglib is a Kconfig implementation in Python 2/3. 1.2. 使用 使用Kconfig语法写一个Kconfi</description>
+    </item>
+    
+    <item>
+      <title>MarkDown基本语法</title>
+      <link>/post/program-markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 02 Apr 2021 10:44:42 +0800</pubDate>
+      
+      <guid>/post/program-markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+      <description>参考Markdown 语法教程 元素 语法 删除线 ~~abcd~~ 表格内换行 &amp;lt;br&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>GCC</title>
+      <link>/post/plat-%E7%BC%96%E8%AF%91-gcc/</link>
+      <pubDate>Fri, 02 Apr 2021 10:31:59 +0800</pubDate>
+      
+      <guid>/post/plat-%E7%BC%96%E8%AF%91-gcc/</guid>
+      <description>GCC 查看编译器的默认搜索路径echo | gcc -v -x c -E -和echo | g++ -v -x c++ -E -; 查看内部预宏定义gcc -E -dM - &amp;lt;/dev/null. 【注】linux下gcc不支标准c的g</description>
+    </item>
+    
+    <item>
+      <title>系统调用和标准库的封装</title>
+      <link>/post/plat-linux-%E5%BA%94%E7%94%A8-01-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B0%81%E8%A3%85/</link>
+      <pubDate>Tue, 30 Mar 2021 18:13:13 +0800</pubDate>
+      
+      <guid>/post/plat-linux-%E5%BA%94%E7%94%A8-01-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B0%81%E8%A3%85/</guid>
+      <description>1. 多进程和多线程 1.1. 存储空间 参考Linux虚拟地址空间布局以及进程栈和线程栈总结 1.2. 多进程 1.3. 多线程 线程是可结合的（joinable），或者是分离</description>
+    </item>
+    
+    <item>
+      <title>SHELL</title>
+      <link>/post/plat-linux-03-shell/</link>
+      <pubDate>Mon, 29 Mar 2021 14:41:33 +0800</pubDate>
+      
+      <guid>/post/plat-linux-03-shell/</guid>
+      <description>注：命令后台执行。 1 2 1. command &amp;amp; #后台运行，你关掉终端会停止运行 2. nohup command &amp;amp; #后台运行，你关掉终端也会继续运行 1. 变量 1.1. 定义变量 定义：your_nam</description>
+    </item>
+    
+    <item>
+      <title>状态机</title>
+      <link>/post/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA/</link>
+      <pubDate>Sat, 27 Mar 2021 10:14:47 +0800</pubDate>
+      
+      <guid>/post/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA/</guid>
+      <description>学习状态机的三种骚操作，值得你了解 1. 概念 状态机的实现3个要素：状态、事件、响应； 有限状态机，层次状态机，并行状态机。 2. 实现方法 2.1. switch</description>
+    </item>
+    
+    <item>
+      <title>驱动-字符设备</title>
+      <link>/post/plat-linux-%E9%A9%B1%E5%8A%A8-%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87/</link>
+      <pubDate>Sat, 27 Mar 2021 10:14:47 +0800</pubDate>
+      
+      <guid>/post/plat-linux-%E9%A9%B1%E5%8A%A8-%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87/</guid>
+      <description>字符设备驱动，需要支持 O_NOBBLOCK，默认是阻塞的。 1. 串口 linux下的串口或者usb转串口驱动都是依赖linux内核提供的tty核心</description>
+    </item>
+    
+    <item>
+      <title>并发编程</title>
+      <link>/post/program-python-08-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 15 Mar 2021 17:44:35 +0800</pubDate>
+      
+      <guid>/post/program-python-08-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
+      <description>线程 GIL锁，全称为Global Interpreter Lock，也就是全局解释器锁,在一个进程中每次只能有一个线程在运行。 threading 线程间通讯 生产者和消费者问题 使用全局</description>
+    </item>
+    
+    <item>
+      <title>高新区小学</title>
+      <link>/post/%E5%85%B6%E4%BB%96-%E5%AD%A9%E5%AD%90-%E5%B0%8F%E5%AD%A6/</link>
+      <pubDate>Mon, 15 Mar 2021 10:02:29 +0800</pubDate>
+      
+      <guid>/post/%E5%85%B6%E4%BB%96-%E5%AD%A9%E5%AD%90-%E5%B0%8F%E5%AD%A6/</guid>
+      <description>1. 高新区 排名 学校名称 办学特色 公/私 学费 划分片区 1 艾瑞德国际小学 3+1教师模式（语文、数学和生长指导+全校中外英语老师合作履教）和8的倍数班额</description>
+    </item>
+    
+    <item>
+      <title>PROGRAM C C&#43;&#43; 基础知识拾遗</title>
+      <link>/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Tue, 02 Mar 2021 14:57:50 +0800</pubDate>
+      
+      <guid>/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/</guid>
+      <description>1. 语言版本 目前最广泛使用的C语言版本是 ANSI / ISO C(C89,C90)，最经典的C语言教材是《C程序设计语言(The C Programming Language) 第二版》，【几乎所有的开</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43; 标准库</title>
+      <link>/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/</link>
+      <pubDate>Tue, 02 Mar 2021 13:49:43 +0800</pubDate>
+      
+      <guid>/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/</guid>
+      <description>1. &amp;lt;arpa/inet.h&amp;gt; 1.1. 宏 1.2. 结构体 1.3. 函数原型 1 unsigned long int inet_addr(const char *cp)//将一个字符串格式的ip地址转换成一个uint32_t数字格式，&amp;#34;127.0.0.1</description>
+    </item>
+    
+    <item>
+      <title>基本数据类型</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Mon, 01 Mar 2021 16:17:20 +0800</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+      <description>1. 基本数据类型（32位CPU架构） 摘自Basic data types in ARM C and C++ 类型 bit数 Natural alignment in bytes 取值范围 备注 char 8 1 (byte-aligned) 0 to 255 (unsigned) by default. –128 to 127 (signed</description>
+    </item>
+    
+    <item>
+      <title>CHILD 校外培训</title>
+      <link>/post/child-%E6%A0%A1%E5%A4%96%E5%9F%B9%E8%AE%AD/</link>
+      <pubDate>Mon, 01 Mar 2021 10:57:59 +0800</pubDate>
+      
+      <guid>/post/child-%E6%A0%A1%E5%A4%96%E5%9F%B9%E8%AE%AD/</guid>
+      <description>郑州高新区校外培训白名单（2020年12月） 序号 培训机构名称 地址 培训内容 备注 1 学而思培训学校 银屏路15号高新数码港05#商业楼1-3层附1号</description>
+    </item>
+    
+    <item>
+      <title>PYTHON-内建函数</title>
+      <link>/post/program-python-04-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Fri, 19 Feb 2021 06:24:13 +0800</pubDate>
+      
+      <guid>/post/program-python-04-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/</guid>
+      <description>1. 文件 python的文件类似linux的一切皆文件，比如网络。 1.1. open()打开一个文件。 默认只读。 1.1.1. 参数 file mode encoding指定编码。 1.2. r</description>
+    </item>
+    
+    <item>
+      <title>PYTHON-语法</title>
+      <link>/post/program-python-03-%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 19 Feb 2021 05:36:46 +0800</pubDate>
+      
+      <guid>/post/program-python-03-%E8%AF%AD%E6%B3%95/</guid>
+      <description>1. 运算符 1.1. 算术运算符 1.2. 赋值运算符 +=与+的区别。 1 2 3 4 5 6 7 8 9 10 11 12 In [21]: a=[] In [22]: a Out[22]: [] In [23]: a+=b&amp;#39;1&amp;#39; In [24]: a Out[24]: [49] In [25]: a= [] + b&amp;#34;2432&amp;#34; --------------------------------------------------------------------------- TypeError Traceback (most recent call last) &amp;lt;ipython-input-25-5f6065d809aa&amp;gt; in &amp;lt;module&amp;gt; ----&amp;gt; 1</description>
+    </item>
+    
+    <item>
+      <title>Gitlab-CICD配置</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 02 Feb 2021 10:12:26 +0800</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E9%85%8D%E7%BD%AE/</guid>
+      <description>1. .gitlab-ci.yaml详解 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 stages:# 定义构建阶段，非必须- buildjob1:#任务说明script:-</description>
+    </item>
+    
+    <item>
+      <title>WEB常用库</title>
+      <link>/post/program-js-web%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Fri, 29 Jan 2021 14:30:24 +0800</pubDate>
+      
+      <guid>/post/program-js-web%E6%8F%92%E4%BB%B6/</guid>
+      <description>1. Jquery JS库。 1.1. 插件 1.1.1. Datatableslink 一个高度灵活的工具，可以将任何HTML表格添加高级的交互功能 引入 1 2 3 4 cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js ‵‵‵ 简单使用 1 2 3 $(document).ready(function(){ $(&amp;#39;#myTable&amp;#39;).DataTable(); }); sweetalart2 一个美观，响应</description>
+    </item>
+    
+    <item>
+      <title>日常-Upwork</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-upwork/</link>
+      <pubDate>Thu, 10 Sep 2020 17:01:22 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-upwork/</guid>
+      <description>关于 成立于2015年6月。 全球最大的、最优秀的、最规范的综合类人力外包服务平台,没有之一。 其他类似网站 程序员接单网站 http://www.topcoder.com TopCoder是一个</description>
+    </item>
+    
+    <item>
+      <title>python-6-数据分析-第三方库</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-03-python/</link>
+      <pubDate>Thu, 03 Sep 2020 17:25:58 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-03-python/</guid>
+      <description>第三方库 gensim 包含了浅层词嵌入的文本处理模块 包含了浅层词嵌入的文本处理模块，以及常用的自然语言处理相关方法，如 TF-IDF、word2vec 等模</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-数据分析</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-01-%E5%9F%BA%E7%A1%80%E5%8F%8A%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Thu, 03 Sep 2020 15:59:38 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-01-%E5%9F%BA%E7%A1%80%E5%8F%8A%E6%B5%81%E7%A8%8B/</guid>
+      <description>挑战 在尝试使用数据挖掘的方法来解决业务问题，却发现巨大挑战不在于算法本身，而是数据如何清洗、特征如何设计、效果如何优化，这些与业务极度相关的</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-数据分析-02-算法简介</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-02-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Thu, 03 Sep 2020 15:59:38 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-02-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/</guid>
+      <description>分类算法 最近邻算法（K-NearestNeighbor）KNN：近朱者赤，近墨者黑 找到 K 个与新数据最近的样本，取样本中最多的一个类别作为新数</description>
+    </item>
+    
+    <item>
+      <title>后端-数据库-时序数据库</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Thu, 03 Sep 2020 09:12:45 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式-行为型</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4-%E8%A1%8C%E4%B8%BA%E5%9E%8B/</link>
+      <pubDate>Sat, 29 Aug 2020 12:00:19 +0000</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4-%E8%A1%8C%E4%B8%BA%E5%9E%8B/</guid>
+      <description>1. 行为型 创建型设计模式主要解决“对象的创建”问题，结构型设计模式主要解决“类或对象的组合或组装”问题，那行为型设计模式主要解决的就是“类或对</description>
+    </item>
+    
+    <item>
+      <title>设计模式-结构型</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3-%E7%BB%93%E6%9E%84%E5%9E%8B/</link>
+      <pubDate>Sat, 29 Aug 2020 11:59:59 +0000</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3-%E7%BB%93%E6%9E%84%E5%9E%8B/</guid>
+      <description>1. 结构型 结构型模式主要总结了一些类或对象组合在一起的经典结构，这些经典的结构可以解决特定应用场景的问题。 常用的有：代理模式、桥接模式、装饰者</description>
+    </item>
+    
+    <item>
+      <title>PHP-基础</title>
+      <link>/post/program-php-%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 28 Aug 2020 16:04:02 +0000</pubDate>
+      
+      <guid>/post/program-php-%E5%9F%BA%E7%A1%80/</guid>
+      <description>数据类型 array 数组(键为数字)和字典（键值对）都是array。 方法 array_merge 如果这两个数组中有相同的字符串键名，后者将替换前者。 但如果使用的是array</description>
+    </item>
+    
+    <item>
+      <title>后端-数据库-CLICKHOUSE</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%97%E5%BC%8F-clickhouse/</link>
+      <pubDate>Wed, 26 Aug 2020 15:17:44 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%97%E5%BC%8F-clickhouse/</guid>
+      <description>基础 ClickHouse有非常优异的查询性能，非常适合海量数据在线查询分析场景。 查询优势 行式数据库查询一列的数据，查询的时候也必须把其他的数</description>
+    </item>
+    
+    <item>
+      <title>设计模式-创建型</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2-%E5%88%9B%E5%BB%BA%E5%9E%8B/</link>
+      <pubDate>Mon, 24 Aug 2020 15:16:22 +0000</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2-%E5%88%9B%E5%BB%BA%E5%9E%8B/</guid>
+      <description>从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-7-分类算法</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-7-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Thu, 30 Jul 2020 11:48:24 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-7-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/</guid>
+      <description>朴素贝叶斯（NB） 在统计资料的基础上，依据某些特征，计算各个类别的概率，从而实现分类。 主体、特征和类别三个元素。 主体和类别好确定。特征的值不</description>
+    </item>
+    
+    <item>
+      <title>自动化运维管理工具</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 27 Jul 2020 17:59:26 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+      <description>1. Ansible 参考Ansible中文权威指南 参考拉勾教育 Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。 Ansible</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-6-推荐系统</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-6-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Mon, 20 Jul 2020 10:44:37 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-6-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</guid>
+      <description>概述 推荐系统即检索系统。(召回率、准确率) 根据用户的输入从结果数据库中读取数据。 另外有算法系统根据历史数据，生成推荐的结果数据。 基于内容的推</description>
+    </item>
+    
+    <item>
+      <title>分布式-07-分布式高可用</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-07-%E5%88%86%E5%B8%83%E5%BC%8F%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
+      <pubDate>Wed, 15 Jul 2020 09:58:44 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-07-%E5%88%86%E5%B8%83%E5%BC%8F%E9%AB%98%E5%8F%AF%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式-06-分布式缓存</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-06-%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Wed, 15 Jul 2020 09:58:30 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-06-%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式-05-消息队列</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-05-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
+      <pubDate>Wed, 15 Jul 2020 09:58:13 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-05-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式-04-分布式存储</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-04-%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/</link>
+      <pubDate>Wed, 15 Jul 2020 09:58:02 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-04-%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式-03-分布式服务</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-03-%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Wed, 15 Jul 2020 09:57:47 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-03-%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式-02-分布式事务</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-02-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</link>
+      <pubDate>Wed, 15 Jul 2020 09:57:34 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-02-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式-01-基础</title>
+      <link>/post/%E5%88%86%E5%B8%83%E5%BC%8F-01-%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 15 Jul 2020 09:56:45 +0000</pubDate>
+      
+      <guid>/post/%E5%88%86%E5%B8%83%E5%BC%8F-01-%E5%9F%BA%E7%A1%80/</guid>
+      <description>CAP 分布式系统的核心是可扩展性，通过对服务、存储的扩展，来提高系统的处理能力，通过对多台服务器协同工作，来完成单台服务器无法处理的任务，尤其是</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-5-SPARK</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-5-spark/</link>
+      <pubDate>Wed, 08 Jul 2020 15:52:21 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-5-spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-4-NLP-中文分词</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-4-nlp-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/</link>
+      <pubDate>Tue, 30 Jun 2020 14:01:44 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-4-nlp-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/</guid>
+      <description>TF-IDF 阮大神的TF-IDF与余弦相似系列文章。 优点是简单快速，结果比较符合实际情况。缺点是，单纯以&amp;quot;词频&amp;quot;衡量一个词的重要性</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-1-集群安装-HDP-AMBARI</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-hdp-ambari/</link>
+      <pubDate>Wed, 24 Jun 2020 10:57:00 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-hdp-ambari/</guid>
+      <description>参考HDP Installation Documentation 参考amarmesic/ambari-hdp-docker 概述 版本依赖.https://supportmatrix.horto</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-2-HDFS</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-2-hdfs/</link>
+      <pubDate>Tue, 23 Jun 2020 15:28:47 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-2-hdfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-2-MAPREDUCE</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-3-mapreduce/</link>
+      <pubDate>Mon, 22 Jun 2020 18:07:52 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-3-mapreduce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-1-hadoop安装配置命令</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-apache/</link>
+      <pubDate>Wed, 17 Jun 2020 10:27:25 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-apache/</guid>
+      <description>本文以3.2.1版本为主 参考大数据运维实战 参考尚硅谷大数据资料 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-MicroBit-概述</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-microbit-%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Wed, 27 May 2020 12:59:35 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-microbit-%E6%A6%82%E8%BF%B0/</guid>
+      <description>对战机甲。 C/C++ 基于Mbed，可以使用线上IDE. 接口文档 The micro:bit DAL is built on top of ARM mbed and hence uses yotta as an offline build system. YOTTA Yotta is a module management system for C++ and C designed to make it easier to build better software by re-using code. We</description>
+    </item>
+    
+    <item>
+      <title>JS-表达式和运算符</title>
+      <link>/post/js-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <pubDate>Thu, 07 May 2020 17:10:55 +0000</pubDate>
+      
+      <guid>/post/js-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <description>展开语法 在函数调用时使用展开语法。 1 2 3 function myFunction(x, y, z) {} var args = [0, 1, 2]; myFunction(...args); 在 new 表达式中应用 1 2 var dateFields = [1970, 0, 1]; // 1970年1月1日 var d = new Date(...dateFields); 构造字面量数组</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-数据库-架构</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-09-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5-%E6%9E%B6%E6%9E%84/</link>
+      <pubDate>Mon, 04 May 2020 16:03:28 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-09-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5-%E6%9E%B6%E6%9E%84/</guid>
+      <description>原则 高可用 高性能 一致性 扩展性 方案 一：主备，主库读写，备库冗余 性能一般。建立高效的索引和引入缓存来增加性能。 扩展性差。通过分库分表来扩展。 二：</description>
+    </item>
+    
+    <item>
+      <title>JS-NODEJS-基础</title>
+      <link>/post/js-nodejs-%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 30 Apr 2020 16:21:09 +0000</pubDate>
+      
+      <guid>/post/js-nodejs-%E5%9F%BA%E7%A1%80/</guid>
+      <description>参考ElemeFE/node-interview 参考挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇 摘自图解Javascript原型链 基础 其他皆</description>
+    </item>
+    
+    <item>
+      <title>后端-数据库-MONGODB</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-mongodb/</link>
+      <pubDate>Mon, 27 Apr 2020 08:52:32 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-mongodb/</guid>
+      <description>基础概念 关系型数据库遵循A（原子性）C（一致性）I（独立性）D（持久性）规则。 MongoDB是一个基于分布式文件存储(基于磁盘的)的数据库。</description>
+    </item>
+    
+    <item>
+      <title>产品设计-组织关系管理</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E7%BB%84%E7%BB%87%E5%85%B3%E7%B3%BB/</link>
+      <pubDate>Sat, 28 Mar 2020 09:29:19 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E7%BB%84%E7%BB%87%E5%85%B3%E7%B3%BB/</guid>
+      <description>概念 人与人的关系。 抽象 单个人 基类 根属性，根方法。 基于基类继承 不同类型，不同属性不同方法不同对象。 每个类型一个数据表。 单个人群（人的集合） 基类</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-JAVA-MAVEN</title>
+      <link>/post/java-01-maven/</link>
+      <pubDate>Thu, 26 Mar 2020 16:04:23 +0000</pubDate>
+      
+      <guid>/post/java-01-maven/</guid>
+      <description>参考Apache Maven 入门篇 用来做什么 Maven 是一个项目管理和构建自动化工具。 Maven 使用惯例优于配置的原则 。 它要求在没有定制之前，所有的项目都有如下的结构</description>
+    </item>
+    
+    <item>
+      <title>JAVA-JVM底层原理与性能</title>
+      <link>/post/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD/</link>
+      <pubDate>Sat, 15 Feb 2020 10:52:11 +0000</pubDate>
+      
+      <guid>/post/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD/</guid>
+      <description>JVM体系结构 JVM = 类加载器(classloader) + 执行引擎(execution engine) + 运行时数据区域(runtime data area)。 参考JVM</description>
+    </item>
+    
+    <item>
+      <title>JAVA-基础</title>
+      <link>/post/java-02-%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sat, 15 Feb 2020 10:52:11 +0000</pubDate>
+      
+      <guid>/post/java-02-%E5%9F%BA%E7%A1%80/</guid>
+      <description>JAVA基本语法 参考速学堂 面向对象 核心：将物理事物用代码抽象出来，拟物化编程。 一个Java程序可以认为是一系列对象的集合，而这些对象通过调用</description>
+    </item>
+    
+    <item>
+      <title>JAVA-面向对象</title>
+      <link>/post/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Sat, 15 Feb 2020 10:52:11 +0000</pubDate>
+      
+      <guid>/post/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <description>部分内容摘自速学堂 概念 类和对象 对象 对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫</description>
+    </item>
+    
+    <item>
+      <title>日常-罗振宇-时间的朋友</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E7%BD%97%E6%8C%AF%E5%AE%87-%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/</link>
+      <pubDate>Fri, 27 Dec 2019 09:20:36 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E7%BD%97%E6%8C%AF%E5%AE%87-%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/</guid>
+      <description>1. 2015年 1.1. 互联网恐慌 用生物学思维重新理解商业； 何须转型，只要增长； 1.2. 资本寒冬 最适合创业的人是聪明、年轻、贫穷的人； 年轻人创业，失去的是锁</description>
+    </item>
+    
+    <item>
+      <title>产品设计-单点登录</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Wed, 25 Dec 2019 16:50:34 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</guid>
+      <description>关联 目的 第三方应用登录 例如GITHUBOAuth applications are used to access the GitHub API.,在github注册一个OAuth APP(拿到key和secret)就</description>
+    </item>
+    
+    <item>
+      <title>产品设计-多端扫码设计</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%A4%9A%E7%AB%AF%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Fri, 20 Dec 2019 14:17:45 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%A4%9A%E7%AB%AF%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95/</guid>
+      <description>参考产品经理小技术（三）：二维码这把利刃，产品应该用到极致 第三方授权登录 参考微信的网页版扫码登陆原理 网页端扫描二维码登录 二维码是有失效时间以</description>
+    </item>
+    
+    <item>
+      <title>产品设计-SAAS</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-saas/</link>
+      <pubDate>Wed, 11 Dec 2019 09:53:36 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-saas/</guid>
+      <description>IaaS PaaS SaaS 参考IaaS，PaaS，SaaS 的区别. SaaS 模式下用户没有任何自主权，只能使用给定的应用程序；PaaS 模式下可以自己安装应用程序，但是不</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-hadoop生态圈</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B/</link>
+      <pubDate>Tue, 10 Dec 2019 18:16:38 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B/</guid>
+      <description>从无到有、从小到大，今日头条大数据平台实践经历的那些坑 基于刻到骨子里的数据驱动的思想，各种各样的数据需求源源不断的被提上来，这时不再是几个数</description>
+    </item>
+    
+    <item>
+      <title>大数据架构笔记-hadoop生态圈-学习路线</title>
+      <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+      <pubDate>Tue, 10 Dec 2019 18:16:38 +0000</pubDate>
+      
+      <guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+      <description>求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。 hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserve</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-架构历史及架构</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%9E%B6%E6%9E%84%E5%8E%86%E5%8F%B2%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Thu, 21 Nov 2019 10:54:40 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%9E%B6%E6%9E%84%E5%8E%86%E5%8F%B2%E6%A6%82%E5%BF%B5/</guid>
+      <description>演化 云原生 参考云原生架构概述 参考云原生应用：更快交付，降低风险，拓展业务 CNCF组织 在讲云原生之前，我们先了解一下CNCF，即云原生计算基金</description>
+    </item>
+    
+    <item>
+      <title>产品设计-站内信</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E7%AB%99%E5%86%85%E4%BF%A1/</link>
+      <pubDate>Fri, 15 Nov 2019 15:00:57 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E7%AB%99%E5%86%85%E4%BF%A1/</guid>
+      <description>需求（可实现的功能） 基本功能 点到点的消息传送：用户给用户发送站内信，管理员给用户发送站内信； 点到面的消息传送：管理员给用户群发消息。 具体的场</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-08-中间件-日志平台</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-08-%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0/</link>
+      <pubDate>Mon, 11 Nov 2019 18:23:40 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-08-%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0/</guid>
+      <description>解决的问题 将日志统一收集到一个地方集中管理(统一收集、过滤清洗)。 处理日志，输出运维、研发可用的数据（可视化界面、监控、告警、日志搜索）。 满</description>
+    </item>
+    
+    <item>
+      <title>分布式-概念（与微服务的关系）</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 06 Nov 2019 11:51:28 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/</guid>
+      <description>与微服务 服务化的本质是“分治”（服务拆分、服务治理）。 服务化的模式比如SOA、ESB、微服务等。 高内聚、低耦合。 与中间件 中间件起到的是标准化</description>
+    </item>
+    
+    <item>
+      <title>数据科学-面经整理</title>
+      <link>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/</link>
+      <pubDate>Wed, 06 Nov 2019 10:16:28 +0000</pubDate>
+      
+      <guid>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/</guid>
+      <description>目标 不能零零散散地自学，必须系统化学习。 对算法原理公式推导理解深刻、熟悉用法、并且知道工业界算法模型如何落地应用。 算法原理的基础知识和应用场</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-性能测试</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Wed, 30 Oct 2019 17:06:03 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>后端-数据库-MYSQL</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql/</link>
+      <pubDate>Mon, 21 Oct 2019 14:44:11 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql/</guid>
+      <description>MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。 事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在</description>
+    </item>
+    
+    <item>
+      <title>产品设计-开源产品</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+      <pubDate>Mon, 21 Oct 2019 14:11:44 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
+      <description>搜索引擎规则 Robots协议 爬虫的&amp;quot;盗亦有道&amp;rdquo;-Robots协议. Robots协议（也称为爬虫协议、机器人协议等）的全</description>
+    </item>
+    
+    <item>
+      <title>小程序-微信小程序</title>
+      <link>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+      <pubDate>Sat, 12 Oct 2019 10:43:58 +0000</pubDate>
+      
+      <guid>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</guid>
+      <description>注意事项 只有企业可注册微信开放平台。 集成腾讯接口 AI类 微信OCR识别 五官定位 人脸检测与分析 安全类 珊瑚图片内容安全 珊瑚文本内容安全 地图类 逆地址</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-分布式-ZooKeeper</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-zookeeper/</link>
+      <pubDate>Fri, 11 Oct 2019 17:58:40 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-zookeeper/</guid>
+      <description>参考阿里巴巴为什么不用 ZooKeeper 做服务发现？ 优点 阿里巴巴中间件内部也维护了一个面向大规模生产的、高可用、更易监控和运维的 ZooKeeper 的代码分支 TaoKeepe</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-中间件-数据库-Mycat</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-09-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5-mycat/</link>
+      <pubDate>Fri, 11 Oct 2019 17:54:07 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-09-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5-mycat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-中间件-分布式缓存-Memcached</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98-memcached/</link>
+      <pubDate>Fri, 11 Oct 2019 17:52:50 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98-memcached/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-中台</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E5%8F%B0/</link>
+      <pubDate>Thu, 10 Oct 2019 12:20:38 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E5%8F%B0/</guid>
+      <description>在传统的前台-后台架构中，各个项目相对独立，许多项目都在重复发明同样的轮子，即让项目本身越来越臃肿，也让开发效率越来越低。 为提高开发效率，我</description>
+    </item>
+    
+    <item>
+      <title>运维-WEBHOOK</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-webhook/</link>
+      <pubDate>Mon, 23 Sep 2019 11:43:40 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-webhook/</guid>
+      <description>Webhook 使用GO语言编写。 sudo apt-get install webhook安装。 Get或者Post都可以触发hook。 service webhook status 可以查看webhook状态。 使用 1 2 3 4 5 6 7 8 9</description>
+    </item>
+    
+    <item>
+      <title>数据科学-深度学习</title>
+      <link>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Thu, 19 Sep 2019 09:29:09 +0000</pubDate>
+      
+      <guid>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+      <description>学习资料 深度学习500问 开源平台 飞桨致力于让深度学习技术的创新与应用更简单</description>
+    </item>
+    
+    <item>
+      <title>日常-面试</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Wed, 28 Aug 2019 13:50:00 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E9%9D%A2%E8%AF%95/</guid>
+      <description>精神面貌 必须是一个正能量的人。 不断学习。 问公司 目标岗位的离职原因（怎样做会辞退）； 目标岗位的完成目标（怎样做会达到绩效）； Python高级工</description>
+    </item>
+    
+    <item>
+      <title>产品-订单系统</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Wed, 28 Aug 2019 13:47:36 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/</guid>
+      <description>参考GuoZhaoran/spikeSystem 通常订票系统要处理生成订单、减扣库存、用户支付这三个基本的阶段。 要做的事情是要保证订单不超卖</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-中间件-消息队列</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
+      <pubDate>Thu, 22 Aug 2019 15:59:14 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid>
+      <description>注意 消息队列的使用，按时间分块，实时计算（少量的批量计算流）。 声明 参考项目用了消息队列，不知道为啥用，有点尴尬 应用场景 优点 解耦 异步 削峰 缺点 系</description>
+    </item>
+    
+    <item>
+      <title>运维-数据库-NEO4J</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-neo4j/</link>
+      <pubDate>Mon, 19 Aug 2019 15:54:58 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-neo4j/</guid>
+      <description>Neo4j是： 一个开源 无Schema 没有SQL 图形数据库 图形数据库也称为图形数据库管理系统或GDBMS。 CQL</description>
+    </item>
+    
+    <item>
+      <title>ORM-Sequelize</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/</link>
+      <pubDate>Fri, 02 Aug 2019 20:10:26 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/</guid>
+      <description>摘自Sequelize 中文API文档 MODEL定义 时间戳 延时 Getters &amp;amp; setters - 访问器&amp;amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问</description>
+    </item>
+    
+    <item>
+      <title>后端-web框架-基础件-socket.io</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/</link>
+      <pubDate>Fri, 02 Aug 2019 15:53:10 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/</guid>
+      <description>Socket.IO 是一个基于 Node.js 的实时应用程序框架，在即时通讯、通知与消息推送，实时分析等场景中有较为广泛的应用。 Server INIT 1 const io = require(&amp;#39;socket.io&amp;#39;)(server, options); 命名空间(Namespace</description>
+    </item>
+    
+    <item>
+      <title>后端-web框架-node-egg</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/</link>
+      <pubDate>Wed, 31 Jul 2019 14:16:49 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/</guid>
+      <description>Egg 奉行『约定优于配置』 渐进式开发 1 2 3 4 5 1. 最初始的状态：直接在框架中写业务代码。 2. 插件的雏形：发现业务代码具有通用性，可以写成插件。 3. 抽成</description>
+    </item>
+    
+    <item>
+      <title>编码-UML</title>
+      <link>/post/%E7%BC%96%E7%A8%8B-uml/</link>
+      <pubDate>Tue, 30 Jul 2019 17:07:25 +0000</pubDate>
+      
+      <guid>/post/%E7%BC%96%E7%A8%8B-uml/</guid>
+      <description>概述 UML 是一种为面向对象开发系统的产品进行说明、可视化、和编制文档的标准语言。 UML 中最重要的建模元素是符号。 适当有效地使用符号对于一个完整的，有</description>
+    </item>
+    
+    <item>
+      <title>python-标准库</title>
+      <link>/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/</link>
+      <pubDate>Mon, 29 Jul 2019 16:07:02 +0000</pubDate>
+      
+      <guid>/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/</guid>
+      <description>1. main 2. argparse 被 CLICK 代替 3. base64 4. COLLECTIONS 5. datetime 5.1. 属性 datetime.MINYEAR（1）和datetime.MAXYEAR（9999）。 5.2. 类 5.2.1. date 5.2.1.1. 实例属性 y</description>
+    </item>
+    
+    <item>
+      <title>python-第三方库</title>
+      <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/</link>
+      <pubDate>Mon, 29 Jul 2019 16:07:02 +0000</pubDate>
+      
+      <guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/</guid>
+      <description>1. Beautiful Soup是一个可以从HTML或XML文件中提取数据的Python库 2. click 参考Python命令行神器 Click 简明笔记 使用 @click.comman</description>
+    </item>
+    
+    <item>
+      <title>后端-web框架-高并发websocket服务</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E9%AB%98%E5%B9%B6%E5%8F%91websocket%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Sat, 27 Jul 2019 11:02:00 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E9%AB%98%E5%B9%B6%E5%8F%91websocket%E6%9C%8D%E5%8A%A1/</guid>
+      <description>使用四种框架分别实现百万websocket常连接的服务器</description>
+    </item>
+    
+    <item>
+      <title>微服务架构-4-OSS对象存储服务(文件服务)</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Sat, 27 Jul 2019 10:15:55 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/</guid>
+      <description>参考微服务之分布式文件系统 搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage</description>
+    </item>
+    
+    <item>
+      <title>运维-选择公有云产品</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-%E9%80%89%E6%8B%A9%E5%85%AC%E6%9C%89%E4%BA%91%E4%BA%A7%E5%93%81/</link>
+      <pubDate>Mon, 15 Jul 2019 18:02:14 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-%E9%80%89%E6%8B%A9%E5%85%AC%E6%9C%89%E4%BA%91%E4%BA%A7%E5%93%81/</guid>
+      <description>UCLOUD ALIYUN 公共云架构及解决方案 web服务器，直达用户。 业务支撑（OLTP）：业务服务器。 查询服务:可以缓解业务服务压力。 BI服务:提供运营相关服务</description>
+    </item>
+    
+    <item>
+      <title>设计模式-思想-原则</title>
+      <link>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1-%E6%80%9D%E6%83%B3-%E5%8E%9F%E5%88%99/</link>
+      <pubDate>Mon, 15 Jul 2019 14:25:07 +0000</pubDate>
+      
+      <guid>/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1-%E6%80%9D%E6%83%B3-%E5%8E%9F%E5%88%99/</guid>
+      <description>摘自《极客时间x王争|设计模式之美》 1. 解决的问题 1.1. 提高代码质量 解决命名不规范、类设计不合理、分层不清晰、没有模块化概念、代码结构混乱、高度耦</description>
+    </item>
+    
+    <item>
+      <title>为服务架构笔记-7-开源框架</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-07-%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Fri, 12 Jul 2019 17:50:06 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-07-%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-分布式-锁</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</link>
+      <pubDate>Thu, 11 Jul 2019 11:51:28 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SCRUM&#43;GITLAB-FLOW</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow/</link>
+      <pubDate>Wed, 26 Jun 2019 12:08:42 +0000</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow/</guid>
+      <description>参考GitLab 工作流概览 GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。 1. 软件开发阶段 一般情况下，软件开发经过 10 个主要阶</description>
+    </item>
+    
+    <item>
+      <title>组织管理-SCRUM</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-02-scrum%E6%95%8F%E6%8D%B7/</link>
+      <pubDate>Tue, 25 Jun 2019 10:20:03 +0000</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-02-scrum%E6%95%8F%E6%8D%B7/</guid>
+      <description>参考Scrum实践指南：一个可运行的 Scrum是怎样的 参考如何实施 SCRUM ？ 1. 定义 1.1. 定义 Scrum 是一个用于开发和维护复杂产品的框架，是一个增量的、迭代的</description>
+    </item>
+    
+    <item>
+      <title>ONES敏捷研发</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-scrum-one-%E6%95%8F%E6%8D%B7%E7%A0%94%E5%8F%91/</link>
+      <pubDate>Tue, 25 Jun 2019 10:07:32 +0000</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-scrum-one-%E6%95%8F%E6%8D%B7%E7%A0%94%E5%8F%91/</guid>
+      <description>参考ones的敏捷研发管理解决方案 1. 需求规划 产品经理需要将客户、用户的反馈，以及经过市场调研的结果整理出来，通过用户故事的方式描述，形成需求</description>
+    </item>
+    
+    <item>
+      <title>python数据类型</title>
+      <link>/post/program-python-02-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Fri, 21 Jun 2019 10:33:49 +0000</pubDate>
+      
+      <guid>/post/program-python-02-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+      <description>4种基本数据类型：整数，浮点数，字符串，布尔值 type() 1. 字符串 1.1. 字符串驻留 由于Cpython在编译优化时, 某些情况下会尝试使用已经存在的不可变对象</description>
+    </item>
+    
+    <item>
+      <title>编辑-LATEX</title>
+      <link>/post/%E7%BC%96%E8%BE%91-latex/</link>
+      <pubDate>Thu, 20 Jun 2019 14:07:34 +0000</pubDate>
+      
+      <guid>/post/%E7%BC%96%E8%BE%91-latex/</guid>
+      <description>mathpix 将图片变为LATEX公式。 在线公式识别</description>
+    </item>
+    
+    <item>
+      <title>图片分享</title>
+      <link>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%9B%BE%E7%89%87%E5%88%86%E4%BA%AB/</link>
+      <pubDate>Thu, 20 Jun 2019 13:47:56 +0000</pubDate>
+      
+      <guid>/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%9B%BE%E7%89%87%E5%88%86%E4%BA%AB/</guid>
+      <description>截屏 浏览器端 最直接的方案是Canvas。 1将浏览器中当前DOM的内容渲染到Canvas中，（niklasvh/html2canvas），再将</description>
+    </item>
+    
+    <item>
+      <title>数据科学-OCTAVE</title>
+      <link>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-octave/</link>
+      <pubDate>Thu, 20 Jun 2019 13:47:56 +0000</pubDate>
+      
+      <guid>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-octave/</guid>
+      <description>INSTALL download ./configure configure: error: a Fortran compiler is required to build Octave:sudo apt-get install gfortran configure: error: BLAS and LAPACK libraries are required:sudo apt-get install libblas-dev libatlas-base-dev liblapack-dev sudo make install 语法 基本操作 %为注释。 PS1(&#39;&amp;gt;&amp;gt;&#39;)更改提示符。 在语句后加;</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-逻辑分析仪</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-%E9%80%BB%E8%BE%91%E5%88%86%E6%9E%90%E4%BB%AA/</link>
+      <pubDate>Wed, 19 Jun 2019 09:35:42 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-%E9%80%BB%E8%BE%91%E5%88%86%E6%9E%90%E4%BB%AA/</guid>
+      <description>LA5016 使用 选择通道（chanel）； 设置出发条件。 选择解析器。</description>
+    </item>
+    
+    <item>
+      <title>后端-uWSGI</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-uwsgi/</link>
+      <pubDate>Tue, 11 Jun 2019 16:25:52 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-uwsgi/</guid>
+      <description>配置 默认情况下，uWSGI会在第一个启动的进程中加载整个应用，并在加载完毕之后，会将自己多次fork()。这是常见的Unix模式，这能够显著</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-FREERTOS</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-freertos/</link>
+      <pubDate>Mon, 10 Jun 2019 11:45:56 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-freertos/</guid>
+      <description>消息队列 FreeRTOS 的消息传递是数据的复制，而不是传递的数据地址。 xQueueCreate 函数 xQueueCreate 用于创建消息队列。 1 2 3 第 1 个参数是消息队列支持的消息个数。 第 2 个参数是每个</description>
+    </item>
+    
+    <item>
+      <title>日常-股票</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E8%82%A1%E7%A5%A8/</link>
+      <pubDate>Tue, 28 May 2019 11:05:32 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E8%82%A1%E7%A5%A8/</guid>
+      <description>概念 股票分类 A股：国内公司上市发行，以人民币交易结算，供我国居民、法人交易的社会公众股。 A股分为深A股（以0为开头和创业板股票（以3开头））</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-中间件-CELERY</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-celery/</link>
+      <pubDate>Tue, 28 May 2019 11:03:53 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-celery/</guid>
+      <description>经验 跑celery的容器和跑APP的容器最好分开，以分开数据库session，防止session混合。</description>
+    </item>
+    
+    <item>
+      <title>运维-CENTOS</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-centos/</link>
+      <pubDate>Sat, 25 May 2019 16:44:42 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-centos/</guid>
+      <description>用户管理 docker How To Install and Use Docker Compose on CentOS 7</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-MESH</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-mesh/</link>
+      <pubDate>Sat, 25 May 2019 10:54:49 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-mesh/</guid>
+      <description>参考什么是Mesh网络 1. 简介 无线Mesh技术是一种与传统无线网络完全不同的新型无线网络技术。在传统的WLAN中，每个客户端均通过一条与接入点</description>
+    </item>
+    
+    <item>
+      <title>操作系统-MAC-基本使用</title>
+      <link>/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-mac-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 23 May 2019 14:54:17 +0000</pubDate>
+      
+      <guid>/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-mac-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>窗口操作 TotalSpaces 首先关闭SIP； 快捷键 键 描述 CapsLock 切换中英文输入 文件系统 终端操作 终端窗口 Mac 上的“终端”键盘快捷键 命令 功能 Ctrl + - 字体变小 Ctrl + + 字体变大 命</description>
+    </item>
+    
+    <item>
+      <title>MicroPython</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-micropython/</link>
+      <pubDate>Thu, 23 May 2019 10:31:03 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-micropython/</guid>
+      <description>文件结构 官方固件 1 2 / boot.py _boot.py在文件系统中不可见（在MicorPython中称为internal frozen modules，也就是编译好的内</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-ESP32</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32/</link>
+      <pubDate>Thu, 23 May 2019 10:31:03 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32/</guid>
+      <description>《ESP32技术参考手册》 双CPU，两个CPU的名称分别是“PRO_CPU”和“APP_CPU”； 存储 1 2 3 4 5 6 7 8 9 片上存储器 –448 KB</description>
+    </item>
+    
+    <item>
+      <title>数据科学-机器学习</title>
+      <link>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+      <pubDate>Thu, 16 May 2019 10:16:28 +0000</pubDate>
+      
+      <guid>/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+      <description>吴恩达的课程 网易云课堂 fengdu78/Coursera-ML-AndrewNg-Notes Machine Learning Yearning 中文版 初识 什么是机器学习 机器学习最主要的两类是监督学习和无监督学习，也是常用到的。 监督学习就是我们会教计算机做</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-中间件-SaaS</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-saas/</link>
+      <pubDate>Wed, 15 May 2019 10:58:17 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-saas/</guid>
+      <description>不蒜子 两行代码 搞定计数 LeanCloud 提供包括数据存储、文件存储与 CDN、消息推送和实时通信在内的后端云服务，同时提供支撑后端代码的云引擎和云函数等开发工</description>
+    </item>
+    
+    <item>
+      <title>Django缓存</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Wed, 08 May 2019 15:55:39 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E7%BC%93%E5%AD%98/</guid>
+      <description>Django’s cache framework niwinz/django-redis</description>
+    </item>
+    
+    <item>
+      <title>redis</title>
+      <link>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93-redis/</link>
+      <pubDate>Tue, 07 May 2019 15:55:39 +0000</pubDate>
+      
+      <guid>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93-redis/</guid>
+      <description>参考Redis的最常被问到知识点总结 参考Redis性能问题排查解决手册(七) 参考Redis 命令参考 解决的问题：数据库受磁盘IO的影响。把比较</description>
+    </item>
+    
+    <item>
+      <title>后端-web框架-Django-任务队列</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/</link>
+      <pubDate>Tue, 07 May 2019 09:45:46 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/</guid>
+      <description>基本信息 celery/django-celery老的celery对django的集成，已经不再更新，最新版本为3.2.0（2016年11月2</description>
+    </item>
+    
+    <item>
+      <title>CMSIS-DAP</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-arm-cmsis-dap/</link>
+      <pubDate>Tue, 23 Apr 2019 16:40:15 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-arm-cmsis-dap/</guid>
+      <description>openocd 1 2 3 -f 指定配置文件（一般一个接口配置一个target配置） -c 命令 -c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd 1 2 3 4 5 6 7 8 9 10 11 12</description>
+    </item>
+    
+    <item>
+      <title>开始一个python应用</title>
+      <link>/post/program-python-01-%E5%BC%80%E5%A7%8B/</link>
+      <pubDate>Tue, 23 Apr 2019 16:40:15 +0000</pubDate>
+      
+      <guid>/post/program-python-01-%E5%BC%80%E5%A7%8B/</guid>
+      <description>1. 版本切换 pyenv 命令 功能 pyenv versions 列出已安装python版本 pyenv local 设置当前shell的python版本 pyenv global 设置全局的python版本 pyenv install -l 列出可以使用的</description>
+    </item>
+    
+    <item>
+      <title>桌面应用打包和开源协议</title>
+      <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8-%E6%89%93%E5%8C%85/</link>
+      <pubDate>Tue, 23 Apr 2019 16:40:15 +0000</pubDate>
+      
+      <guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8-%E6%89%93%E5%8C%85/</guid>
+      <description>打包 cx-freeze PSF协议，想怎么用就怎么用。 cx-freeze与python3.7 fbs不建议 分为免费版（GPL）和收费版。 pyinstaller PyInstaller 是在 GPL 许可证下发布的</description>
+    </item>
+    
+    <item>
+      <title>财会金融</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E8%B4%A2%E4%BC%9A%E9%87%91%E8%9E%8D/</link>
+      <pubDate>Tue, 23 Apr 2019 16:40:15 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E8%B4%A2%E4%BC%9A%E9%87%91%E8%9E%8D/</guid>
+      <description>注册会计师 TMT行业分析员 TMT，是电信、媒体和科技（Telecommunication，Media，Technology）三个英文单词的首</description>
+    </item>
+    
+    <item>
+      <title>JS-原理(原型链-事件循环-内存-作用域链-垃圾回收)</title>
+      <link>/post/js-%E5%8E%9F%E7%90%86%E5%8E%9F%E5%9E%8B%E9%93%BE-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-%E5%86%85%E5%AD%98-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/</link>
+      <pubDate>Wed, 17 Apr 2019 14:54:11 +0000</pubDate>
+      
+      <guid>/post/js-%E5%8E%9F%E7%90%86%E5%8E%9F%E5%9E%8B%E9%93%BE-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-%E5%86%85%E5%AD%98-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/</guid>
+      <description>摘自面试一定会问到的-js事件循环 线程 执行中的线程。 主线程：也就是 js 引擎执行的线程，这个线程只有一个，页面渲染、函数处理都在这个主线程上执行</description>
+    </item>
+    
+    <item>
+      <title>JS-snippets</title>
+      <link>/post/js-snippets/</link>
+      <pubDate>Mon, 15 Apr 2019 15:22:39 +0000</pubDate>
+      
+      <guid>/post/js-snippets/</guid>
+      <description>使用JS现在文件 cunzaizhuyi/maskPlugin 为一个视频添加一个覆盖物，从而挡住视频某区域，在视频的某一时间段，比如第10到第20分钟不显示划定的这块区域。应用场景包括</description>
+    </item>
+    
+    <item>
+      <title>编程-规范(NODE为主)</title>
+      <link>/post/%E7%BC%96%E7%A8%8B-%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Wed, 10 Apr 2019 09:15:15 +0000</pubDate>
+      
+      <guid>/post/%E7%BC%96%E7%A8%8B-%E8%A7%84%E8%8C%83/</guid>
+      <description>编程思想 面向过程 面向对象 《重构:改善既有代码的设计》9.0 《Effective Java 中文版》8.9 《深入浅出面向对象分析与设计（中文版）》8.8</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-NRF-BLE</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nrf-ble/</link>
+      <pubDate>Mon, 08 Apr 2019 10:33:53 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nrf-ble/</guid>
+      <description>NRF开源的库从底层到顶层。 NordicSemiconductor/pc-ble-driver C\C++ 最新版本V4.1.1 提供C/C++库for Bluetooth Low Energy nRF5 SoftDevice serialization.可以直接调用，也可以使用其上</description>
+    </item>
+    
+    <item>
+      <title>嵌入式-NFC</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/</link>
+      <pubDate>Thu, 04 Apr 2019 11:32:43 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/</guid>
+      <description>NFC类型 NFC-A 基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B 基于ISO/IE</description>
+    </item>
+    
+    <item>
+      <title>模块化开发及常用模块</title>
+      <link>/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Wed, 03 Apr 2019 14:36:52 +0000</pubDate>
+      
+      <guid>/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/</guid>
+      <description>理论 参考详解JavaScript模块化开发 参考JavaScript中的模块化开发 一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地</description>
+    </item>
+    
+    <item>
+      <title>WebApi</title>
+      <link>/post/program-js-ts-webapi/</link>
+      <pubDate>Wed, 03 Apr 2019 14:06:00 +0000</pubDate>
+      
+      <guid>/post/program-js-ts-webapi/</guid>
+      <description>WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如</description>
+    </item>
+    
+    <item>
+      <title>NODEJS-外围设备模块</title>
+      <link>/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/</link>
+      <pubDate>Thu, 28 Mar 2019 10:20:06 +0000</pubDate>
+      
+      <guid>/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/</guid>
+      <description>NFC nfc-pcsc 1 node:&amp;gt;=8 分析源码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 NFC类（继承自EventEmitter） |----emit reader(接收到pcsc的信号) |----r</description>
+    </item>
+    
+    <item>
+      <title>生产管理-产品从无到有</title>
+      <link>/post/%E7%94%9F%E4%BA%A7%E7%AE%A1%E7%90%86-%E4%BA%A7%E5%93%81%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/</link>
+      <pubDate>Wed, 27 Mar 2019 10:27:05 +0000</pubDate>
+      
+      <guid>/post/%E7%94%9F%E4%BA%A7%E7%AE%A1%E7%90%86-%E4%BA%A7%E5%93%81%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/</guid>
+      <description>单板贴装 来料检验 贴片（包含目检和机检） 烧写程序 单板检测 成品组装 来料检验 工装夹具制作 GET DRAFTSIGHT® 2019The freedom to do more with a better 2D drafting and 3D design experience. 创建C</description>
+    </item>
+    
+    <item>
+      <title>编程-数据结构</title>
+      <link>/post/%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 25 Mar 2019 16:49:12 +0000</pubDate>
+      
+      <guid>/post/%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>图 图描述一种多对多的关系。 最基本的单元是顶点（vertex），顶点之间的关联关系，被称为边（edge）。有的图中边具有权重（Weight）。</description>
+    </item>
+    
+    <item>
+      <title>后端-构建API服务</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-api/</link>
+      <pubDate>Mon, 25 Mar 2019 14:32:17 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-api/</guid>
+      <description>标准 OpenAPI规范 JSON Schema 设计原则 1 2 3 1. API版本放进URL中。 2. API执行前都需要进行认证和权限的判定（中间件）。`权限的判定，通过to</description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas/</link>
+      <pubDate>Fri, 15 Mar 2019 09:27:16 +0000</pubDate>
+      
+      <guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas/</guid>
+      <description>概述 缺点不具备多处理器，处理较大的数据集速度很慢。 1. def 方法 2. class 类 最重要的两个数据结构为Series和DataFrames。 对齐数据和缺失数据</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记-网络协议</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Thu, 14 Mar 2019 09:28:22 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/</guid>
+      <description>http HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP连接就结束了。 HTTP请求和HTTP响应，都是通过TCP连接这个通</description>
+    </item>
+    
+    <item>
+      <title>后端-web框架-Flask</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</link>
+      <pubDate>Mon, 11 Mar 2019 09:55:21 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</guid>
+      <description>配置的最佳实践 变量的配置 通过调用自定义config.py文件中config字典，可以得到一个类，这个类里面定义的都是类变量，这些变量就是自定</description>
+    </item>
+    
+    <item>
+      <title>后端-ORM-PYTHON</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/</link>
+      <pubDate>Fri, 08 Mar 2019 09:56:28 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/</guid>
+      <description>数据库设计 数据库中的字段要区分永久性还是递变性，永久性存为一张表，递变性的字段单独为一张表，但是会随时间变化。 永久性的字段衍伸的字段，可以用</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio</title>
+      <link>/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/</link>
+      <pubDate>Sat, 02 Mar 2019 09:54:45 +0000</pubDate>
+      
+      <guid>/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/</guid>
+      <description>1. 支持QT开发 下载并安装Qt Visual Studio Tools. 在VS的[扩展]中增加QT版本即选中qt安装目录下的qmake.exe。 1.1. 设置 1.1.1. Qt 1.1.1.1. General Qt Designer:Run in detached window</description>
+    </item>
+    
+    <item>
+      <title>VSCODE</title>
+      <link>/post/tools-vscode/</link>
+      <pubDate>Sat, 02 Mar 2019 09:54:45 +0000</pubDate>
+      
+      <guid>/post/tools-vscode/</guid>
+      <description>1. 安装 1 sudo snap install code --classic 2. 配置 打开设置（快捷键Ctrl + ,）,里面有两个设置。 【一个】是USER SETTINGS（用户设置）也就是全局配置，其他项</description>
+    </item>
+    
+    <item>
+      <title>运维-监控系统-问题排查</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/</link>
+      <pubDate>Wed, 27 Feb 2019 12:14:16 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/</guid>
+      <description>监控系统 Grafana ***** Grafana是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。 核心特点 展示方式：</description>
+    </item>
+    
+    <item>
+      <title>负载均衡\反向代理</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
+      <pubDate>Tue, 26 Feb 2019 09:09:04 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
+      <description>负载均衡的作用 转发功能 按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 故障移除 通过心跳</description>
+    </item>
+    
+    <item>
+      <title>API文档服务器</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Fri, 22 Feb 2019 14:15:25 +0000</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</guid>
+      <description>参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 1. API概述 2. 重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前</description>
+    </item>
+    
+    <item>
+      <title>前端扩展和工程模板</title>
+      <link>/post/%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Thu, 21 Feb 2019 11:41:13 +0000</pubDate>
+      
+      <guid>/post/%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95/</guid>
+      <description>前端风向标 THX from Alimama FE THX 是一系列前端开发相关的工具，框架和类库的集合，也是阿里集团阿里妈妈、一淘网和无线产品线 以及小微金服部分前端工程师的技术组</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记(3)流媒体服务器</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-03-%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Thu, 21 Feb 2019 10:01:55 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-03-%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>协议 HLS协议 HTTP Live Streaming（缩写是HLS）是一个由苹果公司提出的基于HTTP的流媒体网络传输协议。是苹果公司QuickTime X和</description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>/post/plat-web%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx/</link>
+      <pubDate>Mon, 18 Feb 2019 09:28:22 +0000</pubDate>
+      
+      <guid>/post/plat-web%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx/</guid>
+      <description>1. 配置 1.1. 配置文件nginx.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52</description>
+    </item>
+    
+    <item>
+      <title>家常菜</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E5%AE%B6%E5%B8%B8%E8%8F%9C/</link>
+      <pubDate>Sun, 17 Feb 2019 16:37:13 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E5%AE%B6%E5%B8%B8%E8%8F%9C/</guid>
+      <description>炒 干锅花菜 花菜切小块，清洗干净备用； 猪肉切片备用； 蒜切小粒，小米椒切小粒，二荆条辣椒切小粒，干辣椒剪碎，备用。 洋葱切撕备用。 加水，放入盐，烧</description>
+    </item>
+    
+    <item>
+      <title>chrome插件</title>
+      <link>/post/tools-chrome/</link>
+      <pubDate>Wed, 30 Jan 2019 10:22:21 +0000</pubDate>
+      
+      <guid>/post/tools-chrome/</guid>
+      <description>插件网站 1. t9tio/tomato-pie 不太好用 2. Awesome Screenshot 比较好用 3. Tampermonkey 3.1. 油猴脚本网站Greasy Fork 3.2. 编写油猴脚本 3.2.1. 元数据块 元数据块是描述脚本的一个用户脚本部分。它通常包含脚</description>
+    </item>
+    
+    <item>
+      <title>Docker笔记</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-5-docker%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 23 Jan 2019 18:04:46 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-5-docker%E7%AC%94%E8%AE%B0/</guid>
+      <description>Docker进程管理 参考从一个实例，一窥docker进程管理 在Docker中，进程管理的基础是Linux内核的PID命名空间技术。在不同的P</description>
+    </item>
+    
+    <item>
+      <title>Docker-compose编排容器</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Wed, 23 Jan 2019 16:06:54 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8/</guid>
+      <description>1. 思想 容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。 默认情况下，Compose会为我们的应用创建一个网络，服务的每个</description>
+    </item>
+    
+    <item>
+      <title>服务器硬件</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-01-%E7%A1%AC%E4%BB%B6/</link>
+      <pubDate>Wed, 23 Jan 2019 11:18:45 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-01-%E7%A1%AC%E4%BB%B6/</guid>
+      <description>内存 内存颗粒 DDR内存的颗粒为长方形； DDR2和DDR3内存的颗粒为正方形,而且体积大约只有DDR内存颗粒的三分之一。 项目 DDR DDR2 普通DDR3 普</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu服务器系统及基础设施</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-02-%E7%B3%BB%E7%BB%9F-ubuntu/</link>
+      <pubDate>Wed, 23 Jan 2019 09:47:48 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-02-%E7%B3%BB%E7%BB%9F-ubuntu/</guid>
+      <description>1. U盘安装 windows 7以上系统； 下载Rufus; 下载Ubuntu server镜像； 使用Rufus制作启动U盘； U盘启动即可安装。 2. 文件系统 根目录 一级</description>
+    </item>
+    
+    <item>
+      <title>Python-面向对象</title>
+      <link>/post/program-python-05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Tue, 22 Jan 2019 17:50:20 +0000</pubDate>
+      
+      <guid>/post/program-python-05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <description>1. 面向对象 参考 面向对象编程——Object Oriented Programming，简称OOP，是一种程序设计思想。OOP把对象作为程序的基本单元，一个对象</description>
+    </item>
+    
+    <item>
+      <title>微服务架构笔记(1)认证和授权</title>
+      <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-01-%E8%AE%A4%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83/</link>
+      <pubDate>Mon, 21 Jan 2019 15:53:08 +0000</pubDate>
+      
+      <guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-01-%E8%AE%A4%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83/</guid>
+      <description>解决问题：微服务之间以及你的应用和微服务之间是怎么信任对方的？ 参考理解OAuth 2.0 参考OAuth2.0 原理流程及其单点登录和权限控制 概念 认证</description>
+    </item>
+    
+    <item>
+      <title>算法(一)</title>
+      <link>/post/%E7%BC%96%E7%A8%8B-%E7%AE%97%E6%B3%95-1/</link>
+      <pubDate>Sat, 19 Jan 2019 13:08:00 +0000</pubDate>
+      
+      <guid>/post/%E7%BC%96%E7%A8%8B-%E7%AE%97%E6%B3%95-1/</guid>
+      <description>矩阵向量 向量积 a向量与b向量的向量积的方向与这两个向量所在平面垂直，且遵守右手定则。（一个简单的确定满足“右手定则”的结果向量的方向的方法是</description>
+    </item>
+    
+    <item>
+      <title>JS笔记</title>
+      <link>/post/js-html%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Sat, 19 Jan 2019 10:20:20 +0000</pubDate>
+      
+      <guid>/post/js-html%E5%AF%B9%E8%B1%A1/</guid>
+      <description>CANVAS 使用实时凸包算法实现 规范 JavaScript Standard Style 插件 Velocity.js Velocity.js是一款动画切换插件，它重新实现了jQuery的$.animate()方法，并且你</description>
+    </item>
+    
+    <item>
+      <title>JS语法(ES6)</title>
+      <link>/post/js-%E8%AF%AD%E6%B3%95es6/</link>
+      <pubDate>Sat, 19 Jan 2019 09:56:30 +0000</pubDate>
+      
+      <guid>/post/js-%E8%AF%AD%E6%B3%95es6/</guid>
+      <description>变量 $在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变</description>
+    </item>
+    
+    <item>
+      <title>html笔记</title>
+      <link>/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 18 Jan 2019 17:53:33 +0000</pubDate>
+      
+      <guid>/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/</guid>
+      <description>标签 换行 &amp;lt;i&amp;gt; 显示斜体文本效果 DOM DOM （文档对象模型）定义了访问 HTML 和 XML 文档的标准. DOM事件</description>
+    </item>
+    
+    <item>
+      <title>CSS笔记</title>
+      <link>/post/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 18 Jan 2019 15:53:16 +0000</pubDate>
+      
+      <guid>/post/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0/</guid>
+      <description>设计原则 语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1 selector {property: value；property: value} 选择器通常是需要改变样式的 HTML 元素；</description>
+    </item>
+    
+    <item>
+      <title>Django静态文件</title>
+      <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Wed, 16 Jan 2019 11:41:14 +0000</pubDate>
+      
+      <guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/</guid>
+      <description>思路 Django提供 django.contrib.staticfiles 中间件来管理静态文件。 方法 配置 将 django.contrib.staticfiles 包含进 INSTALLED_APPS； 在配置文件中定义 STATIC_URL； 访问 开发 开</description>
+    </item>
+    
+    <item>
+      <title>给自己上保险（笔记）</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E7%BB%99%E8%87%AA%E5%B7%B1%E4%B8%8A%E4%BF%9D%E9%99%A9%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 15 Jan 2019 12:47:56 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E7%BB%99%E8%87%AA%E5%B7%B1%E4%B8%8A%E4%BF%9D%E9%99%A9%E7%AC%94%E8%AE%B0/</guid>
+      <description>思路 资产配置都是反人性的。 首先问自己使用保险要解决什么问题. 需求 重疾险 作用 1. 疾病赔偿：轻症赔付、重症赔付； 2. 身故赔偿； 3. 到期或返还保险金，或</description>
+    </item>
+    
+    <item>
+      <title>JS标准内置对象(全局作用域里的对象)</title>
+      <link>/post/program-js-js%E5%AF%B9%E8%B1%A1%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Tue, 15 Jan 2019 10:16:06 +0000</pubDate>
+      
+      <guid>/post/program-js-js%E5%AF%B9%E8%B1%A1%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/</guid>
+      <description>参考JavaScript 标准内置对象 感谢 1 2 3 4 作者：小黎也 链接：https://juejin.im/post/5e523e726fb9a0</description>
+    </item>
+    
+    <item>
+      <title>使用Electron创建桌面应用</title>
+      <link>/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Mon, 14 Jan 2019 15:03:27 +0000</pubDate>
+      
+      <guid>/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</guid>
+      <description>Electron API 演示(中文版) 完成一个桌面项目 使用Xmind制作功能描述和模块划分 使用pencil制作界面原型 使用yed制作流程图 开始一个工程 注：创建一</description>
+    </item>
+    
+    <item>
+      <title>VUE</title>
+      <link>/post/%E5%89%8D%E7%AB%AF-vue/</link>
+      <pubDate>Mon, 14 Jan 2019 11:58:24 +0000</pubDate>
+      
+      <guid>/post/%E5%89%8D%E7%AB%AF-vue/</guid>
+      <description>VUE实例的生命周期 VUE实例的特殊属性和方法 $refs 一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性 1 2 3 4 5 6 7 8 9 10 Vue.prototype.$appName = &amp;#39;My App&amp;#39;</description>
+    </item>
+    
+    <item>
+      <title>UNIAPP</title>
+      <link>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/</link>
+      <pubDate>Wed, 09 Jan 2019 10:24:02 +0000</pubDate>
+      
+      <guid>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/</guid>
+      <description>看完这篇白话uni-app。 DCloud与vue合作，在vue.js官网提供了免费视频教程，也可以直达教程地址：https://learni</description>
+    </item>
+    
+    <item>
+      <title>小程序生态-历史-优秀小程序</title>
+      <link>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%90%84%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94%E5%8F%8A%E4%BC%98%E7%A7%80%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+      <pubDate>Wed, 09 Jan 2019 10:24:02 +0000</pubDate>
+      
+      <guid>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%90%84%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94%E5%8F%8A%E4%BC%98%E7%A7%80%E5%B0%8F%E7%A8%8B%E5%BA%8F/</guid>
+      <description>历史 HTML5成功地实现了打破IE+FLASH的垄断，但是没有达到承载优秀的移动互联网体验的地步。 APPLE发布了自己的app store，开</description>
+    </item>
+    
+    <item>
+      <title>给孩子上保险（笔记）</title>
+      <link>/post/%E6%97%A5%E5%B8%B8-%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E4%BF%9D%E9%99%A9%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 21 Dec 2018 13:03:54 +0000</pubDate>
+      
+      <guid>/post/%E6%97%A5%E5%B8%B8-%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E4%BF%9D%E9%99%A9%E7%AC%94%E8%AE%B0/</guid>
+      <description>上医保是首位 1. 每年为下一年交，截止年底。 2. 220元（郑州） 以保障优先 1. 别想又能攒钱，又有保障，应以保障优先； 2. 大病保障，几百元就可以搞定。 保</description>
+    </item>
+    
+    <item>
+      <title>容器镜像服务</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Fri, 21 Dec 2018 09:34:38 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</guid>
+      <description>容器镜像 镜像中的应用尽量从环境变量获取配置参数； 退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。 阿里云的容器镜像服务 产品</description>
+    </item>
+    
+    <item>
+      <title>使用GitLab CI/CD创建Docker镜像</title>
+      <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Thu, 20 Dec 2018 16:08:27 +0000</pubDate>
+      
+      <guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F/</guid>
+      <description>翻译自Building Docker images with GitLab CI/CD GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。 **Tip:**允许使用docker-</description>
+    </item>
+    
+    <item>
+      <title>NodeJS概览及开发框架</title>
+      <link>/post/js-nodejs/</link>
+      <pubDate>Thu, 20 Dec 2018 10:52:11 +0000</pubDate>
+      
+      <guid>/post/js-nodejs/</guid>
+      <description>安装 首先安装NVM Ubuntu 安装nvm (win8及以上) 安装nvm-windows win8以下系统 1 在Windows的系统变量和用户变量中，均添加N</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes-服务网格</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-8-kubernetes%E5%AE%9E%E6%88%98-%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BCservicemesh%E9%80%89%E6%8B%A9/</link>
+      <pubDate>Tue, 18 Dec 2018 17:30:59 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-8-kubernetes%E5%AE%9E%E6%88%98-%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BCservicemesh%E9%80%89%E6%8B%A9/</guid>
+      <description>阅读Kubernetes 服务网格: Istio, Linkerd 和 Consul 大比较 存在的问题 目前越来越多的容器应用都是基于 Kubernetes 的，Kubernetes 已经成为了容器编排的事实标</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes实战</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-7-kubernetes%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Tue, 18 Dec 2018 17:30:59 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-7-kubernetes%E5%AE%9E%E6%88%98/</guid>
+      <description>参考杜先生的博客 参考官网 参考k8s Deployment 创建集群 Kubernetes 集群由两种类型的资源组成: 1. 一个 Master 是集群的调度节点 2. Nodes 是应用程序实际运行的工作节点 Master 负责管理集</description>
+    </item>
+    
+    <item>
+      <title>自动化运维学习（AutoDevOps实践）</title>
+      <link>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Tue, 18 Dec 2018 11:02:06 +0000</pubDate>
+      
+      <guid>/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0/</guid>
+      <description>参考：CodePipeline &amp;gt; 产品简介 &amp;gt; 应用场景 参考：AliyunContainerService/DevOps CodePipeline功</description>
+    </item>
+    
+    <item>
+      <title>NodeJS-性能</title>
+      <link>/post/js-nodejs-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/js-nodejs-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+      <description>参考你不知道的Node.js性能优化 参考Node.js 调试指南 使用最新版的NodeJS 对于生产环境而言，Node.js 官方推荐使用最新的 LTS 版</description>
+    </item>
+    
+  </channel>
+</rss>

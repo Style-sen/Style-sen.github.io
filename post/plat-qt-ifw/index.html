@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>QT IFW - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="QT IFW" />
+<meta property="og:description" content="参考使用 Qt Installer Framework 制作安装包与程序自动升级 参考Qt Installer Framework 使用说明 Qt Installer Framework 提供了一组工具和实用工具来创建安装程序，并在不重写源代码的情况下将它们部署到" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-qt-ifw/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-06-15T16:10:29+08:00" />
+<meta property="article:modified_time" content="2021-06-15T16:10:29+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="QT IFW"/>
+<meta name="twitter:description" content="参考使用 Qt Installer Framework 制作安装包与程序自动升级 参考Qt Installer Framework 使用说明 Qt Installer Framework 提供了一组工具和实用工具来创建安装程序，并在不重写源代码的情况下将它们部署到"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-qt-ifw/" /><link rel="prev" href="/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B/" /><link rel="next" href="/post/plat-qt-creater-%E5%BC%80%E5%8F%91/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "QT IFW",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-qt-ifw\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, QT","wordcount":  1718 ,
+        "url": "\/post\/plat-qt-ifw\/","datePublished": "2021-06-15T16:10:29+08:00","dateModified": "2021-06-15T16:10:29+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">QT IFW</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-目录结构">1. 目录结构</a></li>
+    <li><a href="#2-创建安装程序">2. 创建安装程序</a>
+      <ul>
+        <li><a href="#21-创建目录">2.1. 创建目录</a></li>
+        <li><a href="#22-创建配置">2.2. 创建配置</a></li>
+        <li><a href="#23-拷贝exe及其依赖">2.3. 拷贝exe及其依赖</a></li>
+        <li><a href="#24-创建安装包">2.4. 创建安装包</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-定制安装程序">3. 定制安装程序</a></li>
+    <li><a href="#4-覆盖安装">4. 覆盖安装</a></li>
+    <li><a href="#创建在线安装程序">创建在线安装程序</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://pressc.cn/1041.html" target="_blank" rel="noopener noreffer">使用 Qt Installer Framework 制作安装包与程序自动升级</a>
+参考<a href="https://www.cnblogs.com/oloroso/p/6775220.html" target="_blank" rel="noopener noreffer">Qt Installer Framework 使用说明</a></p>
+<ol>
+<li>Qt Installer Framework 提供了一组工具和实用工具来创建安装程序，并在不重写源代码的情况下将它们部署到所有受支持的桌面 Qt 平台上，它可以运行在 Linux、Microsoft Windows、and OS X 平台上。</li>
+</ol>
+<h2 id="1-目录结构">1. 目录结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml">bin<span class="w">
+</span><span class="w">    </span>binarycreator.exe<span class="w">   </span>用于生成安装程序<span class="w">
+</span><span class="w">    </span>repogen.exe<span class="w">         </span>用于生成升级仓库<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-创建安装程序">2. 创建安装程序</h2>
+<h3 id="21-创建目录">2.1. 创建目录</h3>
+<ol>
+<li>
+<p>创建一个<code>Package</code>目录，包含所有配置文件和可安装软件包；</p>
+</li>
+<li>
+<p>在<code>Package</code>目录中包含 <code>config</code> 和 <code>packages</code> 两个子目录;</p>
+</li>
+<li>
+<p>在 <code>packages</code> 可以放置不同的程序组件，目录名一般以 <code>domain-like identifier</code> 方式命名，例如：com.vendor.root 。在组件根目录下，创建名为 <code>data</code> 和 <code>meta</code> 的子目录;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">-packages
+    - com.vendor.root
+        - data
+        - meta
+    - com.vendor.root.component1
+        - data
+        - meta
+    - com.vendor.root.component1.subcomponent1
+        - data
+        - meta
+    - com.vendor.root.component2
+        - data
+        - meta
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>meta 目录包含指定部署和安装过程的文件，这些文件【不会由安装程序提取安装】，meta 目录中必须包含至少一个包信息文件（package.xml ）和你在包信息文件中引用的所有文件，例如：脚本、用户界面文件和翻译等。</p>
+</li>
+<li>
+<p>将安装程序需要安装的文件（你的exe程序及其依赖等）放到 data 目录中。【包含安装过程中安装程序提取的安装内容】；</p>
+</li>
+</ol>
+<h3 id="22-创建配置">2.2. 创建配置</h3>
+<ol>
+<li>
+<p>在 config 目录中，创建具有以下内容的名为 config.xml 的文件;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;Installer&gt;</span>
+    <span class="c">&lt;!-- 程序名称 --&gt;</span>
+    <span class="nt">&lt;Name&gt;</span>Your application<span class="nt">&lt;/Name&gt;</span>
+    <span class="c">&lt;!-- 版本号 --&gt;</span>
+    <span class="nt">&lt;Version&gt;</span>1.0.0<span class="nt">&lt;/Version&gt;</span>
+    <span class="nt">&lt;Title&gt;</span>Your application Installer<span class="nt">&lt;/Title&gt;</span>
+    <span class="c">&lt;!-- 软件的发布者（公司名称） --&gt;</span>
+    <span class="nt">&lt;Publisher&gt;</span>Your vendor<span class="nt">&lt;/Publisher&gt;</span>
+    <span class="c">&lt;!-- 在 Windows 开始菜单中为产品指定了默认程序组的名称 --&gt;</span>
+    <span class="nt">&lt;StartMenuDir&gt;</span>Super App<span class="nt">&lt;/StartMenuDir&gt;</span>
+    <span class="c">&lt;!-- 指定应用程序的默认安装目录 --&gt;</span>
+    <span class="nt">&lt;TargetDir&gt;</span>@HomeDir@/InstallationDirectory<span class="nt">&lt;/TargetDir&gt;</span>
+    <span class="c">&lt;!-- 如果卸载时不删除目标文件夹,设置为false --&gt;</span>
+    <span class="nt">&lt;RemoveTargetDir&gt;</span>false<span class="nt">&lt;/RemoveTargetDir&gt;</span>
+<span class="nt">&lt;/Installer&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>meta 目录中创建一个具有以下内容并名为 package.xml 的文件(组件)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;Package&gt;</span>
+    <span class="nt">&lt;DisplayName&gt;</span>The root component<span class="nt">&lt;/DisplayName&gt;</span>
+    <span class="nt">&lt;Description&gt;</span>Install this example.<span class="nt">&lt;/Description&gt;</span>
+    <span class="nt">&lt;Version&gt;</span>0.1.0-1<span class="nt">&lt;/Version&gt;</span>
+    <span class="nt">&lt;ReleaseDate&gt;</span>2010-09-21<span class="nt">&lt;/ReleaseDate&gt;</span>
+    <span class="nt">&lt;Licenses&gt;</span>
+        <span class="nt">&lt;License</span> <span class="na">name=</span><span class="s">&#34;Beer Public License Agreement&#34;</span> <span class="na">file=</span><span class="s">&#34;license.txt&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Licenses&gt;</span>
+    <span class="nt">&lt;Default&gt;</span>script<span class="nt">&lt;/Default&gt;</span>
+    <span class="nt">&lt;Script&gt;</span>installscript.qs<span class="nt">&lt;/Script&gt;</span>
+    <span class="nt">&lt;UserInterfaces&gt;</span>
+        <span class="nt">&lt;UserInterface&gt;</span>page.ui<span class="nt">&lt;/UserInterface&gt;</span>
+    <span class="nt">&lt;/UserInterfaces&gt;</span>
+<span class="nt">&lt;/Package&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="23-拷贝exe及其依赖">2.3. 拷贝exe及其依赖</h3>
+<ol>
+<li>例如：将程序可执行文件及其依赖放到 packages/com.vendor.root/data 目录中.</li>
+</ol>
+<h3 id="24-创建安装包">2.4. 创建安装包</h3>
+<ol>
+<li>切换到 Package 目录，执行下列命令即可：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">binarycreator.exe -c config/config.xml -p packages YourInstaller.exe
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-定制安装程序">3. 定制安装程序</h2>
+<h2 id="4-覆盖安装">4. 覆盖安装</h2>
+<ol>
+<li>
+<p>默认情况下，Qt Installer Framework 不支持离线升级。</p>
+</li>
+<li>
+<p>如果想要升级，只能先手动卸载旧版程序，再安装新版本的程序。</p>
+</li>
+<li>
+<p>定制安装程序，来强制覆盖安装新版本程序；或先自动卸载旧版本程序，再安装新版程序。</p>
+</li>
+<li>
+<p><code>&lt;Component&gt;/meta/package.xml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;Package&gt;</span>
+    <span class="nt">&lt;DisplayName&gt;</span>Atlas4500Tuner<span class="nt">&lt;/DisplayName&gt;</span>
+    <span class="nt">&lt;Description&gt;</span>Install the Atlas4500 Tuner<span class="nt">&lt;/Description&gt;</span>
+    <span class="nt">&lt;Version&gt;</span>1.0.0<span class="nt">&lt;/Version&gt;</span>
+    <span class="nt">&lt;ReleaseDate&gt;&lt;/ReleaseDate&gt;</span>
+    <span class="nt">&lt;Default&gt;</span>true<span class="nt">&lt;/Default&gt;</span>
+    <span class="nt">&lt;Required&gt;</span>true<span class="nt">&lt;/Required&gt;</span>
+    <span class="c">&lt;!-- 自定义脚本 --&gt;</span>
+    <span class="nt">&lt;Script&gt;</span>installscript.qs<span class="nt">&lt;/Script&gt;</span>
+    <span class="nt">&lt;UserInterfaces&gt;</span>
+        <span class="nt">&lt;UserInterface&gt;</span>targetwidget.ui<span class="nt">&lt;/UserInterface&gt;</span>
+    <span class="nt">&lt;/UserInterfaces&gt;</span>
+<span class="nt">&lt;/Package&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>&lt;Component&gt;/meta/installscript.qs</code></p>
+<p><code>maintenancetool.exe</code>为Qt的维护软件，生成安装包的时候，会自动加载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var targetDirectoryPage = null;
+
+function Component() 
+{
+    installer.gainAdminRights();
+    component.loaded.connect(this, this.installerLoaded);
+}
+
+Component.prototype.createOperations = function() 
+{
+    // Add the desktop and start menu shortcuts.
+    component.createOperations();
+    component.addOperation(&#34;CreateShortcut&#34;,
+                           &#34;@TargetDir@/Atlas4500Tuner.exe&#34;,
+                           &#34;@DesktopDir@/Atlas4500 Tuner.lnk&#34;,
+                           &#34;workingDirectory=@TargetDir@&#34;);
+
+    component.addOperation(&#34;CreateShortcut&#34;,
+                           &#34;@TargetDir@/Atlas4500Tuner.exe&#34;,
+                           &#34;@StartMenuDir@/Atlas4500 Tuner.lnk&#34;,
+                           &#34;workingDirectory=@TargetDir@&#34;);
+}
+
+Component.prototype.installerLoaded = function()
+{
+    installer.setDefaultPageVisible(QInstaller.TargetDirectory, false);
+    installer.addWizardPage(component, &#34;TargetWidget&#34;, QInstaller.TargetDirectory);
+
+    targetDirectoryPage = gui.pageWidgetByObjectName(&#34;DynamicTargetWidget&#34;);
+    targetDirectoryPage.windowTitle = &#34;Choose Installation Directory&#34;;
+    targetDirectoryPage.description.setText(&#34;Please select where the Atlas4500 Tuner will be    installed:&#34;);
+    targetDirectoryPage.targetDirectory.textChanged.connect(this, this.targetDirectoryChanged);
+    targetDirectoryPage.targetDirectory.setText(installer.value(&#34;TargetDir&#34;));
+    targetDirectoryPage.targetChooser.released.connect(this, this.targetChooserClicked);
+
+    gui.pageById(QInstaller.ComponentSelection).entered.connect(this, this. componentSelectionPageEntered);
+}
+
+Component.prototype.targetChooserClicked = function()
+{
+    var dir = QFileDialog.getExistingDirectory(&#34;&#34;, targetDirectoryPage.targetDirectory.text);
+    targetDirectoryPage.targetDirectory.setText(dir);
+}
+
+Component.prototype.targetDirectoryChanged = function()
+{
+    var dir = targetDirectoryPage.targetDirectory.text;
+    if (installer.fileExists(dir) &amp;&amp; installer.fileExists(dir + &#34;/maintenancetool.exe&#34;)) {
+        targetDirectoryPage.warning.setText(&#34;&lt;p style=\&#34;color: red\&#34;&gt;Existing installation detected and     will be overwritten.&lt;/p&gt;&#34;);
+    }
+    else if (installer.fileExists(dir)) {
+            targetDirectoryPage.warning.setText(&#34;&lt;p style=\&#34;color: red\&#34;&gt;Installing in existing     directory. It will be wiped on uninstallation.&lt;/p&gt;&#34;);
+    }
+    else {
+        targetDirectoryPage.warning.setText(&#34;&#34;);
+    }
+    installer.setValue(&#34;TargetDir&#34;, dir);
+}
+
+Component.prototype.componentSelectionPageEntered = function()
+{
+    var dir = installer.value(&#34;TargetDir&#34;);
+    if (installer.fileExists(dir) &amp;&amp; installer.fileExists(dir + &#34;/maintenancetool.exe&#34;)) {
+        installer.execute(dir + &#34;/maintenancetool.exe&#34;, &#34;--script=&#34; + dir + &#34;/scripts/auto_uninstall.qs&#34;);
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>&lt;Component&gt;/meta/targetwidget.ui</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;ui</span> <span class="na">version=</span><span class="s">&#34;4.0&#34;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;class&gt;</span>TargetWidget<span class="nt">&lt;/class&gt;</span>
+ <span class="nt">&lt;widget</span> <span class="na">class=</span><span class="s">&#34;QWidget&#34;</span> <span class="na">name=</span><span class="s">&#34;TargetWidget&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;geometry&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;rect&gt;</span>
+    <span class="nt">&lt;x&gt;</span>0<span class="nt">&lt;/x&gt;</span>
+    <span class="nt">&lt;y&gt;</span>0<span class="nt">&lt;/y&gt;</span>
+    <span class="nt">&lt;width&gt;</span>491<span class="nt">&lt;/width&gt;</span>
+    <span class="nt">&lt;height&gt;</span>190<span class="nt">&lt;/height&gt;</span>
+   <span class="nt">&lt;/rect&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sizePolicy&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;sizepolicy</span> <span class="na">hsizetype=</span><span class="s">&#34;Preferred&#34;</span> <span class="na">vsizetype=</span><span class="s">&#34;Preferred&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;horstretch&gt;</span>0<span class="nt">&lt;/horstretch&gt;</span>
+    <span class="nt">&lt;verstretch&gt;</span>0<span class="nt">&lt;/verstretch&gt;</span>
+   <span class="nt">&lt;/sizepolicy&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;minimumSize&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;size&gt;</span>
+    <span class="nt">&lt;width&gt;</span>491<span class="nt">&lt;/width&gt;</span>
+    <span class="nt">&lt;height&gt;</span>190<span class="nt">&lt;/height&gt;</span>
+   <span class="nt">&lt;/size&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;windowTitle&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;string&gt;</span>Form<span class="nt">&lt;/string&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">class=</span><span class="s">&#34;QVBoxLayout&#34;</span> <span class="na">name=</span><span class="s">&#34;verticalLayout&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;widget</span> <span class="na">class=</span><span class="s">&#34;QLabel&#34;</span> <span class="na">name=</span><span class="s">&#34;description&#34;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;text&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;string/&gt;</span>
+     <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/widget&gt;</span>
+   <span class="nt">&lt;/item&gt;</span>
+   <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">class=</span><span class="s">&#34;QHBoxLayout&#34;</span> <span class="na">name=</span><span class="s">&#34;horizontalLayout&#34;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;item&gt;</span>
+      <span class="nt">&lt;widget</span> <span class="na">class=</span><span class="s">&#34;QLineEdit&#34;</span> <span class="na">name=</span><span class="s">&#34;targetDirectory&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;readOnly&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;bool&gt;</span>true<span class="nt">&lt;/bool&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/widget&gt;</span>
+     <span class="nt">&lt;/item&gt;</span>
+     <span class="nt">&lt;item&gt;</span>
+      <span class="nt">&lt;widget</span> <span class="na">class=</span><span class="s">&#34;QToolButton&#34;</span> <span class="na">name=</span><span class="s">&#34;targetChooser&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sizePolicy&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;sizepolicy</span> <span class="na">hsizetype=</span><span class="s">&#34;Fixed&#34;</span> <span class="na">vsizetype=</span><span class="s">&#34;Preferred&#34;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;horstretch&gt;</span>0<span class="nt">&lt;/horstretch&gt;</span>
+         <span class="nt">&lt;verstretch&gt;</span>0<span class="nt">&lt;/verstretch&gt;</span>
+        <span class="nt">&lt;/sizepolicy&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;minimumSize&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;size&gt;</span>
+         <span class="nt">&lt;width&gt;</span>0<span class="nt">&lt;/width&gt;</span>
+         <span class="nt">&lt;height&gt;</span>0<span class="nt">&lt;/height&gt;</span>
+        <span class="nt">&lt;/size&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;text&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;string&gt;</span>...<span class="nt">&lt;/string&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/widget&gt;</span>
+     <span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;/layout&gt;</span>
+   <span class="nt">&lt;/item&gt;</span>
+   <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">class=</span><span class="s">&#34;QHBoxLayout&#34;</span> <span class="na">name=</span><span class="s">&#34;horizontalLayout_2&#34;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;topMargin&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;number&gt;</span>0<span class="nt">&lt;/number&gt;</span>
+     <span class="nt">&lt;/property&gt;</span>
+     <span class="nt">&lt;item&gt;</span>
+      <span class="nt">&lt;widget</span> <span class="na">class=</span><span class="s">&#34;QLabel&#34;</span> <span class="na">name=</span><span class="s">&#34;warning&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;enabled&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;bool&gt;</span>true<span class="nt">&lt;/bool&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;text&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;string&gt;</span>TextLabel<span class="nt">&lt;/string&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/widget&gt;</span>
+     <span class="nt">&lt;/item&gt;</span>
+     <span class="nt">&lt;item&gt;</span>
+      <span class="nt">&lt;spacer</span> <span class="na">name=</span><span class="s">&#34;horizontalSpacer&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;orientation&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;enum&gt;</span>Qt::Horizontal<span class="nt">&lt;/enum&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sizeHint&#34;</span> <span class="na">stdset=</span><span class="s">&#34;0&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;size&gt;</span>
+         <span class="nt">&lt;width&gt;</span>40<span class="nt">&lt;/width&gt;</span>
+         <span class="nt">&lt;height&gt;</span>20<span class="nt">&lt;/height&gt;</span>
+        <span class="nt">&lt;/size&gt;</span>
+       <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/spacer&gt;</span>
+     <span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;/layout&gt;</span>
+   <span class="nt">&lt;/item&gt;</span>
+   <span class="nt">&lt;item&gt;</span>
+    <span class="nt">&lt;spacer</span> <span class="na">name=</span><span class="s">&#34;verticalSpacer&#34;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;orientation&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;enum&gt;</span>Qt::Vertical<span class="nt">&lt;/enum&gt;</span>
+     <span class="nt">&lt;/property&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sizeHint&#34;</span> <span class="na">stdset=</span><span class="s">&#34;0&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;size&gt;</span>
+       <span class="nt">&lt;width&gt;</span>20<span class="nt">&lt;/width&gt;</span>
+       <span class="nt">&lt;height&gt;</span>122<span class="nt">&lt;/height&gt;</span>
+      <span class="nt">&lt;/size&gt;</span>
+     <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/spacer&gt;</span>
+   <span class="nt">&lt;/item&gt;</span>
+  <span class="nt">&lt;/layout&gt;</span>
+ <span class="nt">&lt;/widget&gt;</span>
+ <span class="nt">&lt;resources/&gt;</span>
+ <span class="nt">&lt;connections/&gt;</span>
+<span class="nt">&lt;/ui&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>&lt;Component&gt;/data/scripts/auto_uninstall.qs</code>思想是检测当前目录是否有安装，如果有的话，在该目录中运行维护工具（执行卸载方法），并使用一个控制器脚本模拟点击 下一步 按钮</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// Controller script to pass to the uninstaller to get it to run automatically.
+// It&#39;s passed to the maintenance tool during installation if there is already an
+// installation present with: &lt;target dir&gt;/maintenancetool.exe --script=&lt;target dir&gt;/scripts/   auto_uninstall.qs.
+// This is required so that the user doesn&#39;t have to see/deal with the uninstaller in the middle of
+// an installation.
+
+function Controller()
+{
+    gui.clickButton(buttons.NextButton);
+    gui.clickButton(buttons.NextButton);
+
+    installer.uninstallationFinished.connect(this, this.uninstallationFinished);
+}
+
+Controller.prototype.uninstallationFinished = function()
+{
+    gui.clickButton(buttons.NextButton);
+}
+
+Controller.prototype.FinishedPageCallback = function()
+{
+    gui.clickButton(buttons.FinishButton);
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="创建在线安装程序">创建在线安装程序</h2>
+<ol>
+<li>创建在线安装应用程序，只需创建一个存储库并将其上传到 web 服务器，然后在 config.xml 文件中指定存储库的位置即可。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/qt/">QT</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-06-15</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%80%89%E5%9E%8B/" class="prev" rel="prev" title="数据库概念及选型"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-qt-creater-%E5%BC%80%E5%8F%91/" class="next" rel="next" title="使用CREATER开发">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

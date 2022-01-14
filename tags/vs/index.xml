@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>VS - 标签 - 锦枫紫兰</title>
+        <link>/tags/vs/</link>
+        <description>VS - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 11 May 2021 17:39:35 &#43;0800</lastBuildDate><atom:link href="/tags/vs/" rel="self" type="application/rss+xml" /><item>
+    <title>Visual Studio</title>
+    <link>/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/</link>
+    <pubDate>Sat, 02 Mar 2019 09:54:45 &#43;0000</pubDate><guid>/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/</guid>
+    <description><![CDATA[1. 支持QT开发 下载并安装Qt Visual Studio Tools. 在VS的[扩展]中增加QT版本即选中qt安装目录下的qmake.exe。 1.1. 设置 1.1.1. Qt 1.1.1.1. General Qt Designer:Run in detached window]]></description>
+</item>
+</channel>
+</rss>

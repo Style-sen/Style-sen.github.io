@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>VUE - 标签 - 锦枫紫兰</title>
+        <link>/tags/vue/</link>
+        <description>VUE - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Jan 2019 11:58:24 &#43;0000</lastBuildDate><atom:link href="/tags/vue/" rel="self" type="application/rss+xml" /><item>
+    <title>VUE</title>
+    <link>/post/%E5%89%8D%E7%AB%AF-vue/</link>
+    <pubDate>Mon, 14 Jan 2019 11:58:24 &#43;0000</pubDate><guid>/post/%E5%89%8D%E7%AB%AF-vue/</guid>
+    <description><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法 $refs 一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性 1 2 3 4 5 6 7 8 9 10 Vue.prototype.$appName = &#39;My App&#39;]]></description>
+</item>
+</channel>
+</rss>

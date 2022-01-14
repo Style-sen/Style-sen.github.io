@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>celery - 标签 - 锦枫紫兰</title>
+        <link>/tags/celery/</link>
+        <description>celery - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 May 2019 11:03:53 &#43;0000</lastBuildDate><atom:link href="/tags/celery/" rel="self" type="application/rss+xml" /><item>
+    <title>微服务架构笔记-中间件-CELERY</title>
+    <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-celery/</link>
+    <pubDate>Tue, 28 May 2019 11:03:53 &#43;0000</pubDate><guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-celery/</guid>
+    <description><![CDATA[经验 跑celery的容器和跑APP的容器最好分开，以分开数据库session，防止session混合。]]></description>
+</item>
+</channel>
+</rss>

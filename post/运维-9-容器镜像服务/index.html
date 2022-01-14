@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>容器镜像服务 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="容器镜像服务" />
+<meta property="og:description" content="容器镜像 镜像中的应用尽量从环境变量获取配置参数； 退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。 阿里云的容器镜像服务 产品" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2018-12-21T09:34:38+00:00" />
+<meta property="article:modified_time" content="2018-12-21T09:34:38+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="容器镜像服务"/>
+<meta name="twitter:description" content="容器镜像 镜像中的应用尽量从环境变量获取配置参数； 退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。 阿里云的容器镜像服务 产品"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/" /><link rel="prev" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F/" /><link rel="next" href="/post/%E6%97%A5%E5%B8%B8-%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E4%BF%9D%E9%99%A9%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "容器镜像服务",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "Docker, Deploy","wordcount":  1315 ,
+        "url": "\/post\/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1\/","datePublished": "2018-12-21T09:34:38+00:00","dateModified": "2018-12-21T09:34:38+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">容器镜像服务</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#容器镜像">容器镜像</a></li>
+    <li><a href="#阿里云的容器镜像服务">阿里云的容器镜像服务</a>
+      <ul>
+        <li><a href="#产品功能">产品功能</a></li>
+        <li><a href="#操作使用">操作使用</a></li>
+        <li><a href="#缺点">缺点</a></li>
+        <li><a href="#计费">计费</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="容器镜像">容器镜像</h2>
+<ol>
+<li>镜像中的应用尽量从环境变量获取配置参数；</li>
+<li>退而求其次，配置文件放在一个配置文件夹中，编排的时候可以挂载文件夹。</li>
+</ol>
+<h2 id="阿里云的容器镜像服务">阿里云的容器镜像服务</h2>
+<h3 id="产品功能">产品功能</h3>
+<pre><code>1. 用户可以根据自己的业务需求，选择不同的地域创建和删除镜像仓库，提供稳定快速的镜像上传、下载服务；
+2. 每个镜像仓库都提供了公网、内网、VPC网络下对应的网络地址；
+3. 支持便捷的镜像安全扫描功能，展示详细的镜像层信息；
+4. 提供镜像漏洞报告，展示漏洞编号、漏洞等级、修复版本等多维度漏洞信息；
+5. 支持阿里云Code、GitHub、Bitbucket、自建GitLab的源代码构建源；
+6. 支持自动构建，源代码变更后实现自动构建成新Docker镜像；
+7. 支持海外构建，源代码在海外实现构建成新Docker镜像；
+8. 整合阿里云Code及CodePipeline，实现源代码到应用编译测试后，自动构建成新镜像；
+9. 整合容器服务，实现新镜像构建完成后便捷部署至容器服务集群。
+10. [通过配置镜像加速器可以提升获取Docker官方镜像的速度](https://help.aliyun.com/document_detail/60750.html?spm=a2c4g.11186623.4.3.43bf1e66F2XOnU)
+</code></pre>
+<h3 id="操作使用">操作使用</h3>
+<pre><code>1. `一般在企业账户下设置一个子账户来管理镜像服务`。
+2. 命名空间
+    1) 作为一些仓库的集合，推荐将一个公司或组织的仓库集中在一个命名空间下面。
+        以公司名称作为命名空间：aliyun、alibaba
+        以团队、组织作为命名空间：misaka-team
+    2) 目前每个主账号可以创建5个命名空间
+3. 创建镜像仓库
+    1) 仓库作为一些镜像的集合，推荐将一个（应用或功能）不同版本的镜像放置在一个仓库中。
+        以软件包作为仓库名称：centos、jetty
+        以应用名作为仓库名称：console-web、console-service
+    2) 创建过程中会选择关联代码库。
+    3) 私有仓库，仓库是其他用户不可见的，只有有权限的账户登录才能进行下载。
+4. 管理镜像仓库
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本信息</td>
+<td>查看并修改此镜像的基本信息</td>
+</tr>
+<tr>
+<td>构建</td>
+<td>设置构建规则， 并构建；查看构建日志<code>一般tag为发布版，master为latest班</code></td>
+</tr>
+<tr>
+<td>仓库授权</td>
+<td>支持RAM细粒度控制仓库的访问权限</td>
+</tr>
+<tr>
+<td>webhook</td>
+<td>提供仓库镜像的消息触发功能，当镜像上传之后主动触发用户设置的访问地址；串联镜像服务的下游流程,详见<a href="https://help.aliyun.com/document_detail/60949.html?spm=a2c4g.11186623.6.553.53692b77fjPDtb" target="_blank" rel="noopener noreffer">触发器管理</a></td>
+</tr>
+<tr>
+<td>镜像版本</td>
+<td>可以对镜像进行安全扫描，生成漏洞报告，并查看层信息</td>
+</tr>
+<tr>
+<td>镜像同步</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code>5. 部署应用
+    点击，可以直接前往容器服务进行部署。
+6. docker基本操作
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">    docker login -u <span class="o">[</span>user<span class="o">]</span> -p <span class="o">[</span>pw<span class="o">]</span> <span class="o">[</span>registry.cn-hangzhou.aliyuncs.com<span class="o">]</span>
+    docker pull registry.cn-hangzhou.aliyuncs.com/<span class="o">[</span>命名空间<span class="o">]</span>/<span class="o">[</span>仓库名<span class="o">]</span>:<span class="o">[</span>版本<span class="o">]</span>
+    docker tag <span class="o">[</span>ImageId<span class="o">]</span> registry.cn-hangzhou.aliyuncs.com/<span class="o">[</span>命名空间<span class="o">]</span>/<span class="o">[</span>仓库名<span class="o">]</span>:<span class="o">[</span>版本<span class="o">]</span>
+    docker push registry.cn-hangzhou.aliyuncs.com/<span class="o">[</span>命名空间<span class="o">]</span>/<span class="o">[</span>仓库名<span class="o">]</span>:<span class="o">[</span>版本<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre><code>7. 对上游的建议
+    在编写项目代码时，配置信息一般从环境变量中获取，获取不到采用默认值。
+</code></pre>
+<h3 id="缺点">缺点</h3>
+<pre><code>1. 构建失败之后，查看构建日志，很难定位到日志最后。
+</code></pre>
+<h3 id="计费">计费</h3>
+<pre><code>1. 目前容器镜像服务处于公测期间，免费提供镜像托管、镜像构建服务以及镜像加速器服务，请放心使用。
+</code></pre>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/docker/">Docker</a>
+                </span><span><a href="/tags/deploy/">Deploy</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2018-12-21</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F/" class="prev" rel="prev" title="使用GitLab CI/CD创建Docker镜像"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E6%97%A5%E5%B8%B8-%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E4%BF%9D%E9%99%A9%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="给孩子上保险（笔记）">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

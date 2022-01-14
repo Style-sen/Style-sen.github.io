@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>python-标准库 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="python-标准库" />
+<meta property="og:description" content="1. main 2. argparse 被 CLICK 代替 3. base64 4. COLLECTIONS 5. datetime 5.1. 属性 datetime.MINYEAR（1）和datetime.MAXYEAR（9999）。 5.2. 类 5.2.1. date 5.2.1.1. 实例属性 y" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-07-29T16:07:02+00:00" />
+<meta property="article:modified_time" content="2019-07-29T16:07:02+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="python-标准库"/>
+<meta name="twitter:description" content="1. main 2. argparse 被 CLICK 代替 3. base64 4. COLLECTIONS 5. datetime 5.1. 属性 datetime.MINYEAR（1）和datetime.MAXYEAR（9999）。 5.2. 类 5.2.1. date 5.2.1.1. 实例属性 y"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/" /><link rel="prev" href="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/" /><link rel="next" href="/post/%E7%BC%96%E7%A8%8B-uml/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "python-标准库",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, PYTHON","wordcount":  2512 ,
+        "url": "\/post\/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93\/","datePublished": "2019-07-29T16:07:02+00:00","dateModified": "2019-07-29T16:07:02+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">python-标准库</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-__main__">1. <strong>main</strong></a></li>
+    <li><a href="#2-argparse-被-click-代替">2. argparse 被 CLICK 代替</a></li>
+    <li><a href="#3-base64">3. base64</a></li>
+    <li><a href="#4-collections">4. COLLECTIONS</a></li>
+    <li><a href="#5-datetime">5. datetime</a>
+      <ul>
+        <li><a href="#51-属性">5.1. 属性</a></li>
+        <li><a href="#52-类">5.2. 类</a>
+          <ul>
+            <li><a href="#521-date">5.2.1. date</a>
+              <ul>
+                <li><a href="#5211-实例属性">5.2.1.1. 实例属性</a></li>
+              </ul>
+            </li>
+            <li><a href="#522-time">5.2.2. time</a>
+              <ul>
+                <li><a href="#5221-实例属性">5.2.2.1. 实例属性</a></li>
+              </ul>
+            </li>
+            <li><a href="#523-datetime">5.2.3. datetime</a>
+              <ul>
+                <li><a href="#5231-类方法">5.2.3.1. 类方法</a></li>
+                <li><a href="#5232-实例方法">5.2.3.2. 实例方法</a></li>
+              </ul>
+            </li>
+            <li><a href="#524-timedelta-时间间隔">5.2.4. timedelta 时间间隔</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6-enum">6. enum</a></li>
+    <li><a href="#7-file">7. file</a></li>
+    <li><a href="#8-hashlib不同的安全散列和消息摘要算法">8. hashlib不同的安全散列和消息摘要算法</a></li>
+    <li><a href="#9-hmac实现了-hmac-算法">9. hmac实现了 HMAC 算法</a></li>
+    <li><a href="#10-html">10. html</a></li>
+    <li><a href="#11-json">11. json</a></li>
+    <li><a href="#12-logging">12. logging</a></li>
+    <li><a href="#13-math">13. math</a></li>
+    <li><a href="#14-os">14. os</a>
+      <ul>
+        <li><a href="#141-def-方法">14.1. def 方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-pathlib">15. pathlib</a></li>
+    <li><a href="#16-pywifi">16. pywifi</a></li>
+    <li><a href="#17-queue">17. queue</a>
+      <ul>
+        <li><a href="#171-class-类">17.1. class 类</a>
+          <ul>
+            <li><a href="#1711-queue">17.1.1. Queue</a></li>
+            <li><a href="#1712-lifoqueuequeue">17.1.2. LifoQueue(Queue)</a></li>
+            <li><a href="#1713-priorityqueuequeue">17.1.3. PriorityQueue(Queue)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#18-random">18. random</a></li>
+    <li><a href="#19-re-文本处理">19. re 文本处理</a>
+      <ul>
+        <li><a href="#191-元字符常用">19.1. 元字符（常用）</a></li>
+      </ul>
+    </li>
+    <li><a href="#20-shutil-文件和文件夹操作">20. SHUTIL 文件和文件夹操作</a></li>
+    <li><a href="#21-socket">21. socket</a></li>
+    <li><a href="#22-struct">22. struct</a>
+      <ul>
+        <li><a href="#221-格式字符串">22.1. 格式字符串</a></li>
+        <li><a href="#222-def-方法">22.2. def 方法</a>
+          <ul>
+            <li><a href="#2221-unpack">22.2.1. <code>unpack</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#23-sys-操作系统交互">23. sys 操作系统交互</a></li>
+    <li><a href="#24-tarfile">24. tarfile</a></li>
+    <li><a href="#25-time">25. time</a></li>
+    <li><a href="#26-timeit">26. timeit</a></li>
+    <li><a href="#27-threading-见并发编程">27. threading 见并发编程</a></li>
+    <li><a href="#28-unitest">28. unitest</a></li>
+    <li><a href="#29-urllib">29. urllib</a></li>
+    <li><a href="#30-venv">30. venv</a></li>
+    <li><a href="#31-xml">31. xml</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-__main__">1. <strong>main</strong></h2>
+<h2 id="2-argparse-被-click-代替">2. argparse 被 CLICK 代替</h2>
+<h2 id="3-base64">3. base64</h2>
+<h2 id="4-collections">4. COLLECTIONS</h2>
+<h2 id="5-datetime">5. datetime</h2>
+<h3 id="51-属性">5.1. 属性</h3>
+<ol>
+<li>datetime.MINYEAR（1）和datetime.MAXYEAR（9999）。</li>
+<li></li>
+</ol>
+<h3 id="52-类">5.2. 类</h3>
+<h4 id="521-date">5.2.1. date</h4>
+<h5 id="5211-实例属性">5.2.1.1. 实例属性</h5>
+<ol>
+<li>year、month、day。</li>
+</ol>
+<h4 id="522-time">5.2.2. time</h4>
+<h5 id="5221-实例属性">5.2.2.1. 实例属性</h5>
+<ol>
+<li>hour, minute, second, microsecond。</li>
+</ol>
+<h4 id="523-datetime">5.2.3. datetime</h4>
+<h5 id="5231-类方法">5.2.3.1. 类方法</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">now</span><span class="p">()</span> <span class="c1"># 当前时刻</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="5232-实例方法">5.2.3.2. 实例方法</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="524-timedelta-时间间隔">5.2.4. timedelta 时间间隔</h4>
+<h2 id="6-enum">6. enum</h2>
+<ol>
+<li><code>from enum import Enum,IntEnum,unique</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 导入枚举类</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+ 
+<span class="c1"># 继承枚举类</span>
+<span class="k">class</span> <span class="nc">color</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">YELLOW</span>  <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">BEOWN</span>   <span class="o">=</span> <span class="mi">1</span> 
+    <span class="c1"># 注意BROWN的值和YELLOW的值相同，这是允许的，此时的BROWN相当于YELLOW的别名</span>
+    <span class="n">RED</span>     <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">GREEN</span>   <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">PINK</span>    <span class="o">=</span> <span class="mi">4</span>
+ 
+<span class="k">class</span> <span class="nc">color2</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">YELLOW</span>  <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">RED</span>     <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">GREEN</span>   <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">PINK</span>    <span class="o">=</span> <span class="mi">4</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>枚举类不能用来实例化对象.</li>
+<li>访问枚举类中的某一项，直接使用类名访问加上要访问的项即可，比如 color.YELLOW.</li>
+<li>枚举类里面定义的Key = Value，在类外部不能修改Value值，也就是说下面这个做法是错误的.</li>
+<li>枚举项可以用来比较，使用==，或者is.</li>
+<li>导入Enum之后，一个枚举类中的Key和Value，Key不能相同，Value可以相，但是Value相同的各项Key都会当做别名.</li>
+<li>如果要枚举类中的Value只能是整型数字，那么，可以导入IntEnum，然后继承IntEnum即可，注意，此时，如果value为字符串的数字，也不会报错</li>
+<li>如果要枚举类中的key也不能相同，那么在导入Enum的同时，需要导入unique函数.</li>
+</ol>
+<h2 id="7-file">7. file</h2>
+<h2 id="8-hashlib不同的安全散列和消息摘要算法">8. hashlib不同的安全散列和消息摘要算法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">algorithms_available</span>
+<span class="p">{</span><span class="s1">&#39;whirlpool&#39;</span><span class="p">,</span> <span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="s1">&#39;shake_256&#39;</span><span class="p">,</span> <span class="s1">&#39;BLAKE2s256&#39;</span><span class="p">,</span> <span class="s1">&#39;SHA224&#39;</span><span class="p">,</span> <span class="s1">&#39;blake2s256&#39;</span><span class="p">,</span> <span class="s1">&#39;BLAKE2b512&#39;</span><span class="p">,</span> <span class="s1">&#39;md5-sha1&#39;</span><span class="p">,</span> <span class="s1">&#39;md4&#39;</span><span class="p">,</span> <span class="s1">&#39;sha256&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_224&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_384&#39;</span><span class="p">,</span> <span class="s1">&#39;shake_128&#39;</span><span class="p">,</span> <span class="s1">&#39;blake2b512&#39;</span><span class="p">,</span> <span class="s1">&#39;SHA512&#39;</span><span class="p">,</span> <span class="s1">&#39;SHA1&#39;</span><span class="p">,</span> <span class="s1">&#39;sha224&#39;</span><span class="p">,</span> <span class="s1">&#39;RIPEMD160&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_256&#39;</span><span class="p">,</span> <span class="s1">&#39;SHA384&#39;</span><span class="p">,</span> <span class="s1">&#39;MD5-SHA1&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_512&#39;</span><span class="p">,</span> <span class="s1">&#39;SHA256&#39;</span><span class="p">,</span> <span class="s1">&#39;MD4&#39;</span><span class="p">,</span> <span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="s1">&#39;sha512&#39;</span><span class="p">,</span> <span class="s1">&#39;MD5&#39;</span><span class="p">,</span> <span class="s1">&#39;sha384&#39;</span><span class="p">,</span> <span class="s1">&#39;blake2s&#39;</span><span class="p">,</span> <span class="s1">&#39;ripemd160&#39;</span><span class="p">,</span> <span class="s1">&#39;blake2b&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">algorithms_guaranteed</span>
+<span class="p">{</span><span class="s1">&#39;sha224&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_256&#39;</span><span class="p">,</span> <span class="s1">&#39;sha384&#39;</span><span class="p">,</span> <span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="s1">&#39;shake_256&#39;</span><span class="p">,</span> <span class="s1">&#39;sha256&#39;</span><span class="p">,</span> <span class="s1">&#39;blake2s&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_224&#39;</span><span class="p">,</span> <span class="s1">&#39;blake2b&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_384&#39;</span><span class="p">,</span> <span class="s1">&#39;shake_128&#39;</span><span class="p">,</span> <span class="s1">&#39;sha3_512&#39;</span><span class="p">,</span> <span class="s1">&#39;sha1&#39;</span><span class="p">,</span> <span class="s1">&#39;sha512&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;helloword&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;helloword&#39;</span><span class="p">)</span>  <span class="c1"># 不能是unicode编码   </span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="s1">&#39;c3710d9949a3ee2b1c89ec9e9dd154a649aeecc43422222ce3d4de51fa32f021e75123a1b5769aae35c939bf87f333d92ec58192ce5f55fa72e344225027c16e&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="9-hmac实现了-hmac-算法">9. hmac实现了 HMAC 算法</h2>
+<h2 id="10-html">10. html</h2>
+<h2 id="11-json">11. json</h2>
+<h2 id="12-logging">12. logging</h2>
+<h2 id="13-math">13. math</h2>
+<h2 id="14-os">14. os</h2>
+<h3 id="141-def-方法">14.1. def 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">([</span><span class="n">path</span><span class="p">])</span> <span class="c1"># 遍历path</span>
+<span class="k">def</span> <span class="nf">getAllSub</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">Dirlist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Filelist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">home</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="c1"># 获得所有文件夹</span>
+        <span class="k">for</span> <span class="n">dirname</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+            <span class="n">Dirlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span> <span class="n">dirname</span><span class="p">))</span>
+        <span class="c1"># 获得所有文件</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">Filelist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Dirlist</span><span class="p">,</span> <span class="n">Filelist</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">【</span><span class="mi">1</span><span class="err">】</span><span class="n">os</span><span class="o">.</span><span class="n">path</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1">#返回绝对路径（__file__当前文件）</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1">#返回文件名，去除路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">commonprefix</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1">#返回list(多个路径)中，所有path共有的最长的路径。</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1">#返回文件路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#路径存在则返回True,路径损坏返回False</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">lexists</span>  <span class="c1">#路径存在则返回True,路径损坏也返回True</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#把path中包含的&#34;~&#34;和&#34;~user&#34;转换成用户目录</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expandvars</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#根据环境变量的值替换path中包含的”$name”和”${name}”</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getatime</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#返回最后一次进入此path的时间。</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#返回在此path下最后一次修改的时间。</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getctime</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#返回path的大小</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#返回文件大小，如果文件不存在就返回错误</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#判断是否为绝对路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#判断路径是否为文件</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#判断路径是否为目录</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">islink</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#判断路径是否为链接</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">ismount</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#判断路径是否为挂载点（）</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path1</span><span class="p">[,</span> <span class="n">path2</span><span class="p">[,</span> <span class="o">...</span><span class="p">]])</span>  <span class="c1">#把目录和文件名合成一个路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normcase</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#转换path的大小写和斜杠</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#规范path字符串形式</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#返回path的真实路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">[,</span> <span class="n">start</span><span class="p">])</span>  <span class="c1">#从start开始计算相对路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">samefile</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span> <span class="n">path2</span><span class="p">)</span>  <span class="c1">#判断目录或文件是否相同</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sameopenfile</span><span class="p">(</span><span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">)</span>  <span class="c1">#判断fp1和fp2是否指向同一文件</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">samestat</span><span class="p">(</span><span class="n">stat1</span><span class="p">,</span> <span class="n">stat2</span><span class="p">)</span>  <span class="c1">#判断stat tuple stat1和stat2是否指向同一个文件</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#把路径分割成dirname和basename，返回一个元组</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitdrive</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>   <span class="c1">#一般用在windows下，返回驱动器名和路径组成的元组</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#分割路径，返回路径名和文件扩展名的元组</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitunc</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1">#把路径分割为加载点与文件</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>  <span class="c1">#遍历path，进入每个目录都调用visit函数，visit函数必须有</span>
+<span class="mi">3</span><span class="err">个参数</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span><span class="err">，</span><span class="n">dirname表示当前目录的目录名</span><span class="err">，</span><span class="n">names代表当前目录下的所有</span>
+<span class="err">文件名，</span><span class="n">args则为walk的第三个参数</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">supports_unicode_filenames</span>  <span class="c1">#设置是否支持unicode路径名</span>
+<span class="err">【</span><span class="mi">2</span><span class="err">】</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="err">不会创建，</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="err">则会创建父目录。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="15-pathlib">15. pathlib</h2>
+<h2 id="16-pywifi">16. pywifi</h2>
+<h2 id="17-queue">17. queue</h2>
+<ol>
+<li><code>线程安全</code>的队列（FIFO）实现,提供了一个适用于多线程编程的先进先出的数据结构，即队列，用来在生产者和消费者线程之间的信息传递.</li>
+<li><code>empty()</code>判断是否为空。</li>
+</ol>
+<h3 id="171-class-类">17.1. class 类</h3>
+<h4 id="1711-queue">17.1.1. Queue</h4>
+<ol>
+<li>先进先出。</li>
+</ol>
+<h4 id="1712-lifoqueuequeue">17.1.2. LifoQueue(Queue)</h4>
+<ol>
+<li>先进后出。</li>
+</ol>
+<h4 id="1713-priorityqueuequeue">17.1.3. PriorityQueue(Queue)</h4>
+<ol>
+<li>优先级队列</li>
+</ol>
+<h2 id="18-random">18. random</h2>
+<h2 id="19-re-文本处理">19. re 文本处理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">re_telephone</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(\d{3})-(\d{3,8})$&#39;</span><span class="p">)</span>  <span class="c1"># 预编译（正则字符串） r表示不转义</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">re_telephone</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;010-12345&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>  <span class="c1"># 使用</span>
+<span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>  <span class="c1"># 结果 (&#39;010&#39;, &#39;12345&#39;)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">re_telephone</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;010-12345&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 使用group,指定第几个</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">re_telephone</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;010-12345&#39;</span><span class="p">)</span>    <span class="c1"># search一般是搜索，比match宽松，match必须是完全匹配字符串</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">re_telephone</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;010-8086&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>  <span class="c1"># 使用</span>
+<span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>  <span class="c1"># 结果 (&#39;010&#39;, &#39;8086&#39;)</span>
+<span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">()</span>    <span class="c1"># 可以匹配多次</span>
+<span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">([</span><span class="err">正则</span><span class="p">],[</span><span class="err">替换为</span><span class="p">],[</span><span class="err">元字符串</span><span class="p">])</span>    <span class="c1">#替换，替换为空即删除 </span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="191-元字符常用">19.1. 元字符（常用）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">.</span>    <span class="c1">#匹配除换行符 \n 之外的任何单字符</span>
+<span class="o">^</span>    <span class="c1">#以什么开头</span>
+<span class="err">$</span>    <span class="c1">#以什么结尾</span>
+<span class="o">*</span>    <span class="c1">#匹配前面的子表达式零次或多次</span>
+<span class="o">+</span>    <span class="c1">#匹配前面的子表达式一次或多次</span>
+<span class="err">?</span>    <span class="c1">#匹配前面的子表达式零次或一次,或指明一个非贪婪限定符</span>
+<span class="p">{}</span>   <span class="c1">#指明前面的子表达式出现的次数</span>
+<span class="p">[]</span>   <span class="c1">#给定一个匹配池[a-z]</span>
+\<span class="n">d</span>   <span class="c1">#匹配数字</span>
+\<span class="n">D</span>   <span class="c1">#匹配非数字</span>
+\<span class="n">s</span>   <span class="c1">#匹配任何空白字符</span>
+\<span class="n">S</span>   <span class="c1">#匹配任何非空白字符</span>
+<span class="p">()</span>   <span class="c1">#分组</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="20-shutil-文件和文件夹操作">20. SHUTIL 文件和文件夹操作</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>功能</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shutil.copytree</code></td>
+<td>复制整个目录树（cp -r）</td>
+<td>不能覆盖目标文件夹</td>
+</tr>
+<tr>
+<td><code>shutil.copyfile</code></td>
+<td>复制文件</td>
+<td>可以覆盖目标文件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="21-socket">21. socket</h2>
+<h2 id="22-struct">22. struct</h2>
+<ol>
+<li>按照指定格式将Python数据转换为字符串,该字符串为字节流,如网络传输时,不能传输int,此时先将int转化为字节流,然后再发送;</li>
+<li>按照指定格式将字节流转换为Python指定的数据类型;</li>
+<li>处理二进制数据,如果用struct来处理文件的话,需要用’wb’,’rb’以二进制(字节流)写,读的方式来处理文件;</li>
+<li>处理c语言中的结构体;</li>
+</ol>
+<h3 id="221-格式字符串">22.1. 格式字符串</h3>
+<ol>
+<li>格式字符串的第一个字符可用于指示打包数据的字节顺序、大小和对齐方式。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Byte order</th>
+<th>Size</th>
+<th>Alignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@(默认)</td>
+<td>本机</td>
+<td>本机</td>
+<td>本机,凑够4字节</td>
+</tr>
+<tr>
+<td>=</td>
+<td>本机</td>
+<td>标准</td>
+<td>none,按原字节数</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小端</td>
+<td>标准</td>
+<td>none,按原字节数</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大端</td>
+<td>标准</td>
+<td>none,按原字节数</td>
+</tr>
+<tr>
+<td>!</td>
+<td>network(大端)</td>
+<td>标准</td>
+<td>none,按原字节数</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>格式符</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>C语言类型</th>
+<th>Python类型</th>
+<th>Standard size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>pad byte(填充字节)</td>
+<td>no value</td>
+<td></td>
+</tr>
+<tr>
+<td>c</td>
+<td>char</td>
+<td>string of length 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>b</td>
+<td>signed char</td>
+<td>integer</td>
+<td>1</td>
+</tr>
+<tr>
+<td>B</td>
+<td>unsigned char</td>
+<td>integer</td>
+<td>1</td>
+</tr>
+<tr>
+<td>?</td>
+<td>_Bool</td>
+<td>bool</td>
+<td>1</td>
+</tr>
+<tr>
+<td>h</td>
+<td>short</td>
+<td>integer</td>
+<td>2</td>
+</tr>
+<tr>
+<td>H</td>
+<td>unsigned short</td>
+<td>integer</td>
+<td>2</td>
+</tr>
+<tr>
+<td>i</td>
+<td>int</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+<tr>
+<td>I(大写的i)</td>
+<td>unsigned int</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+<tr>
+<td>l(小写的L)</td>
+<td>long</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+<tr>
+<td>L</td>
+<td>unsigned long</td>
+<td>long</td>
+<td>4</td>
+</tr>
+<tr>
+<td>q</td>
+<td>long long</td>
+<td>long</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>unsigned long long</td>
+<td>long</td>
+<td>8</td>
+</tr>
+<tr>
+<td>f</td>
+<td>float</td>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>d</td>
+<td>double</td>
+<td>float</td>
+<td>8</td>
+</tr>
+<tr>
+<td>s</td>
+<td>char[]</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>p</td>
+<td>char[]</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>P</td>
+<td>void *</td>
+<td>long</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="222-def-方法">22.2. def 方法</h3>
+<h4 id="2221-unpack">22.2.1. <code>unpack</code></h4>
+<ol>
+<li>格式的长度必须和data的长度相等。</li>
+</ol>
+<h2 id="23-sys-操作系统交互">23. sys 操作系统交互</h2>
+<h2 id="24-tarfile">24. tarfile</h2>
+<h2 id="25-time">25. time</h2>
+<h2 id="26-timeit">26. timeit</h2>
+<h2 id="27-threading-见并发编程">27. threading 见并发编程</h2>
+<h2 id="28-unitest">28. unitest</h2>
+<h2 id="29-urllib">29. urllib</h2>
+<h2 id="30-venv">30. venv</h2>
+<h2 id="31-xml">31. xml</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/python/">PYTHON</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-07-29</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/" class="prev" rel="prev" title="python-第三方库"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E7%BC%96%E7%A8%8B-uml/" class="next" rel="next" title="编码-UML">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

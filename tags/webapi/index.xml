@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>WEBAPI - 标签 - 锦枫紫兰</title>
+        <link>/tags/webapi/</link>
+        <description>WEBAPI - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Apr 2019 14:06:00 &#43;0000</lastBuildDate><atom:link href="/tags/webapi/" rel="self" type="application/rss+xml" /><item>
+    <title>WebApi</title>
+    <link>/post/program-js-ts-webapi/</link>
+    <pubDate>Wed, 03 Apr 2019 14:06:00 &#43;0000</pubDate><guid>/post/program-js-ts-webapi/</guid>
+    <description><![CDATA[WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>前端 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E5%89%8D%E7%AB%AF/</link>
+        <description>前端 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 21 Feb 2019 11:41:13 &#43;0000</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+    <title>前端扩展和工程模板</title>
+    <link>/post/%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95/</link>
+    <pubDate>Thu, 21 Feb 2019 11:41:13 &#43;0000</pubDate><guid>/post/%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95/</guid>
+    <description><![CDATA[前端风向标 THX from Alimama FE THX 是一系列前端开发相关的工具，框架和类库的集合，也是阿里集团阿里妈妈、一淘网和无线产品线 以及小微金服部分前端工程师的技术组]]></description>
+</item>
+<item>
+    <title>JS笔记</title>
+    <link>/post/js-html%E5%AF%B9%E8%B1%A1/</link>
+    <pubDate>Sat, 19 Jan 2019 10:20:20 &#43;0000</pubDate><guid>/post/js-html%E5%AF%B9%E8%B1%A1/</guid>
+    <description><![CDATA[CANVAS 使用实时凸包算法实现 规范 JavaScript Standard Style 插件 Velocity.js Velocity.js是一款动画切换插件，它重新实现了jQuery的$.animate()方法，并且你]]></description>
+</item>
+<item>
+    <title>JS语法(ES6)</title>
+    <link>/post/js-%E8%AF%AD%E6%B3%95es6/</link>
+    <pubDate>Sat, 19 Jan 2019 09:56:30 &#43;0000</pubDate><guid>/post/js-%E8%AF%AD%E6%B3%95es6/</guid>
+    <description><![CDATA[变量 $在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变]]></description>
+</item>
+<item>
+    <title>html笔记</title>
+    <link>/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Fri, 18 Jan 2019 17:53:33 &#43;0000</pubDate><guid>/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[标签 换行 &lt;i&gt; 显示斜体文本效果 DOM DOM （文档对象模型）定义了访问 HTML 和 XML 文档的标准. DOM事件]]></description>
+</item>
+<item>
+    <title>CSS笔记</title>
+    <link>/post/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Fri, 18 Jan 2019 15:53:16 &#43;0000</pubDate><guid>/post/%E5%89%8D%E7%AB%AF-css%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[设计原则 语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。 1 selector {property: value；property: value} 选择器通常是需要改变样式的 HTML 元素；]]></description>
+</item>
+<item>
+    <title>VUE</title>
+    <link>/post/%E5%89%8D%E7%AB%AF-vue/</link>
+    <pubDate>Mon, 14 Jan 2019 11:58:24 &#43;0000</pubDate><guid>/post/%E5%89%8D%E7%AB%AF-vue/</guid>
+    <description><![CDATA[VUE实例的生命周期 VUE实例的特殊属性和方法 $refs 一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例。 VUE实例属性 1 2 3 4 5 6 7 8 9 10 Vue.prototype.$appName = &#39;My App&#39;]]></description>
+</item>
+</channel>
+</rss>

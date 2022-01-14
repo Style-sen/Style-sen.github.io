@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>QT安装配置及概览 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="QT安装配置及概览" />
+<meta property="og:description" content="Qt的实现主要是采用p-impl手法，实现接口与实现分离，它有很好的消息循环机制，有的对象与线程的相关性，它也有借助moc生成反射元信息，这" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-04-02T14:17:22+08:00" />
+<meta property="article:modified_time" content="2021-04-02T14:17:22+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="QT安装配置及概览"/>
+<meta name="twitter:description" content="Qt的实现主要是采用p-impl手法，实现接口与实现分离，它有很好的消息循环机制，有的对象与线程的相关性，它也有借助moc生成反射元信息，这"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/" /><link rel="prev" href="/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/" /><link rel="next" href="/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "QT安装配置及概览",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, QT","wordcount":  3269 ,
+        "url": "\/post\/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88\/","datePublished": "2021-04-02T14:17:22+08:00","dateModified": "2021-04-02T14:17:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">QT安装配置及概览</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-开发方式">1. 开发方式</a></li>
+    <li><a href="#2-软件架构">2. 软件架构</a>
+      <ul>
+        <li><a href="#21-基于插件的架构">2.1. 基于插件的架构</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-国内源">3. 国内源</a></li>
+    <li><a href="#4-官方安装包安装只支持到51212lts">4. 官方安装包安装(只支持到5.12.12LTS)</a></li>
+    <li><a href="#5-编译源码5152">5. 编译源码(5.15.2)</a>
+      <ul>
+        <li><a href="#51-ubuntu">5.1. Ubuntu</a></li>
+        <li><a href="#52-windows">5.2. windows</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-qt多版本管理">6. Qt多版本管理</a>
+      <ul>
+        <li><a href="#61-qtchooser">6.1. qtchooser</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-理论支持">7. 理论支持</a>
+      <ul>
+        <li><a href="#71-元对象系统">7.1. 元对象系统</a></li>
+        <li><a href="#72-qt全局定义">7.2. QT全局定义</a></li>
+        <li><a href="#73-容器类">7.3. 容器类</a></li>
+        <li><a href="#74-模块文件夹">7.4. 模块（文件夹）</a>
+          <ul>
+            <li><a href="#741-基本模块">7.4.1. 基本模块</a>
+              <ul>
+                <li><a href="#7411-qt-webenginewidgets">7.4.1.1. QT Webenginewidgets</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#8-工具">8. 工具</a></li>
+    <li><a href="#9-有什么很好的软件是用-qt-编写的httpswwwzhihucomquestion19630324">9. <a href="https://www.zhihu.com/question/19630324">有什么很好的软件是用 Qt 编写的</a></a></li>
+    <li><a href="#10-解决方法">10. 解决方法</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><ol>
+<li>Qt的实现主要是采用p-impl手法，实现接口与实现分离，它有很好的消息循环机制，有的对象与线程的相关性，它也有借助moc生成反射元信息，这种设计方法至今仍然非常适用。</li>
+<li>Qt内核部分其实是完全和界面无关的，你完全可以抛开Qt GUI部分来学习和使用Qt。当你完完全全学习了qt及其理念后，你会发现写优雅的代码是一件十分简单的事情，它可以应用到你之后的所有过程中去。</li>
+</ol>
+<h2 id="1-开发方式">1. 开发方式</h2>
+<ol>
+<li>如果开发的程序只管windows上跑，不用跨平台，也不关心是否需要使用Qt Creator打开，那么推荐使用VS+Qt方式进行开发。把Qt当成一个界面库来在VS中调用。VS编码+MSVC编译。</li>
+<li>需要考虑跨平台，那么最好不要使用VS+Qt这种方式。纯QtCreator方式，QtCreator编码+MinGW或MSVC或其他编译。</li>
+</ol>
+<h2 id="2-软件架构">2. 软件架构</h2>
+<ol>
+<li>
+<p>原则：UI界面和业务逻辑需要尽可能的分离（判断一个结构的解耦程度，一个简单的办法是离开了UI界面，业务逻辑是否可以正常调用和运行，如果可以，说明这个架构是比较成功的。同时，对UI界面和业务逻辑功能的每个模块，是否能够被替换，而不影响整个项目的功能，这点也是判断架构解耦性的一个指标）。两者的链接用信号与槽机制。然后每个业务逻辑按照功能划分，封装成一个单独的函数或者类。</p>
+</li>
+<li>
+<p>三层： UI层（所有的主界面都会从这三个类：QWiget,QMainWindow,QDialog中的一个继承而来，并在main函数里生成实例并show出来，进入主消息循环。可以使用QWiget，不使用UI文件，所有的界面都new出来，再使用代码来布局）；控制器层(建线程，实例化业务逻辑类，搭建信号和槽)；模型层(业务逻辑，在线程中执行)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">三层：
+UI界面层（view）——&gt;控制器层：当用户操作UI界面时，发射一个控制器层【信号】；
+控制器层（controller）——&gt;模型层：控制层【调用】模型层功能函数，实现对应业务逻辑功能；
+模型层（model）——&gt;控制器层：模型功能层，完成业务逻辑后，再发射一个控制器层【信号】，声明完成了该业务逻辑功能。
+控制器层（controller）——&gt;UI界面层：控制器层接收到该支线程完成了对应的业务逻辑，开启槽函数结束该支线程，然后发射一个控制器层完成业务逻辑【信号】到UI界面层。UI界面层收到 信号，显示对应的结果UI界面。
+   
+注意：整个过程控制器有【三个关键信号】：启动业务逻辑功能信号；退出该业务逻辑线程信号；完成业务逻辑信号。而model层功能函数是用【支线程】来执行。也就是说，所有的模型功能函数 都是用【支线程】完成，这样可以保证UI界面的流畅度。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>基于上边3层，还可以增加一个通讯层，用于调用通信接口逻辑。</p>
+</li>
+</ol>
+<h3 id="21-基于插件的架构">2.1. 基于插件的架构</h3>
+<ol>
+<li>
+<p>【注】以前基于APP+DLL的传统架构，现在流行插件架构（核心加插件组件）：【方便功能的扩展（接口定义好）】；【更新量小（只更新插件）】；【降低模块之间依赖】；【面向未来（API稳定）】。</p>
+</li>
+<li>
+<p>分为三部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">主系统:通过插件管理器加载插件，并创建插件对象。一旦插件对象被创建，主系统就会获得相应的指针/引用，它可以像任何其他对象一样使用。
+插件管理器:用于管理插件的生命周期，并将其暴露给主系统。它负责查找并加载插件，初始化它们，并且能够进行卸载。它还应该让主系统迭代加载的插件或注册的插件对象,很难与主系统分割干净。
+插件:插件本身应符合插件管理器协议，并提供符合主系统期望的对象。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>开源项目<a href="https://blog.csdn.net/jam12315/article/details/108461027" target="_blank" rel="noopener noreffer">【开源】基于Qt的跨平台插件开发框架QCPFrame（一）</a></p>
+</li>
+</ol>
+<h2 id="3-国内源">3. 国内源</h2>
+<p>中国科学技术大学：<a href="http://mirrors.ustc.edu.cn/qtproject/">http://mirrors.ustc.edu.cn/qtproject/</a>
+清华大学：<a href="https://mirrors.tuna.tsinghua.edu.cn/qt/">https://mirrors.tuna.tsinghua.edu.cn/qt/</a>
+北京理工大学：<a href="http://mirror.bit.edu.cn/qtproject/">http://mirror.bit.edu.cn/qtproject/</a>
+中国互联网络信息中心：<a href="http://mirror.bit.edu.cn/qtproject/">http://mirror.bit.edu.cn/qtproject/</a></p>
+<p>注:</p>
+<ol>
+<li>5.15开始，官方不再提供编译好的版本。</li>
+<li>6.0开始，貌似只支持win10以上的windows。</li>
+</ol>
+<h2 id="4-官方安装包安装只支持到51212lts">4. 官方安装包安装(只支持到5.12.12LTS)</h2>
+<ol>
+<li>下载<code>.run</code>文件。</li>
+<li>增加执行权限。</li>
+<li>运行，选择所有模块（包括qtcreater和qmake）。</li>
+</ol>
+<h2 id="5-编译源码5152">5. 编译源码(5.15.2)</h2>
+<ol>
+<li>下载<code>*everywhere*</code>源码，可以使用编译工具，编译到各个平台（Windows，Linux，Arm）。</li>
+<li><a href="https://doc.qt.io/qt-5/build-sources.html" target="_blank" rel="noopener noreffer">Building Qt Sources</a>.</li>
+</ol>
+<h3 id="51-ubuntu">5.1. Ubuntu</h3>
+<ol>
+<li>
+<p>下载<code>qt-everywhere-src-5.15.2.tar.xz</code>.</p>
+</li>
+<li>
+<p>解压<code>tar xvJf qt-everywhere-src-5.15.2.tar.xz</code>。</p>
+</li>
+<li>
+<p>安装依赖(可以不安装依赖，直接走下一步，会没有一些模块)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install gperf <span class="c1"># WARNING: gperf is required to build QWebEngine.</span>
+sudo apt-get install flex <span class="c1"># WARNING: flex is required to build QWebEngine.</span>
+sudo apt-get install bison <span class="c1"># WARNING: bison is required to build QWebEngine.</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>执行<code>configure</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mkdir qt-5.15.2-build
+<span class="nb">cd</span> qt-5.15.2-build
+./../qt-everywhere-src-5.15.2/configure -release -prefix /opt/qt-5.15.2
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>执行<code>make</code>(大概会需要半小时到4小时不等)</p>
+</li>
+<li>
+<p>【注】不需要<code>make install</code>.</p>
+</li>
+</ol>
+<h3 id="52-windows">5.2. windows</h3>
+<ol>
+<li>
+<p>编译之前<a href="https://doc.qt.io/qt-5/windows-requirements.html" target="_blank" rel="noopener noreffer">Qt for Windows - Requirements</a>.</p>
+</li>
+<li>
+<p>参考<a href="https://doc.qt.io/qt-5/windows-building.html" target="_blank" rel="noopener noreffer">Qt for Windows - Building from Source</a></p>
+</li>
+<li>
+<p>参考<a href="https://tanjoe.github.io/2020/09/21/%E5%9C%A8Windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%BC%96%E8%AF%91Qt-5-15-1/" target="_blank" rel="noopener noreffer">在Windows环境下编译Qt 5.15.1</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 安装python；
+2. 安装perl；
+3. 安装openssl或其他可选依赖。
+4. 注意configure的时候使用-debug-and-release选项
+
+configure.bat 
+-static <span class="c1">#指明是静态编译</span>
+-prefix <span class="s2">&#34;D:\qt&#34;</span> <span class="c1">#指明安装的目录</span>
+-confirm-license -opensource  <span class="c1">#指明是开源版本的qt</span>
+-debug-and-release <span class="c1">#指明需要debug版和release版，可以单独选择release版</span>
+-platform win32-msvc  <span class="c1">#指明使用msvc编译，这里的win32并不指32位</span>
+-nomake examples -nomake tests  <span class="c1">#不编译样例</span>
+-plugin-sql-sqlite -plugin-sql-odbc -qt-zlib -qt-libpng -qt-libjpeg <span class="c1">#可选插件</span>
+-opengl desktop  <span class="c1">#用系统自带的opengl</span>
+-mp <span class="c1">#多核编译</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装完毕之后，将bin目录放进Path中。</p>
+</li>
+</ol>
+<h2 id="6-qt多版本管理">6. Qt多版本管理</h2>
+<h3 id="61-qtchooser">6.1. qtchooser</h3>
+<h2 id="7-理论支持">7. 理论支持</h2>
+<ol>
+<li>QT实质上是用C++编写的跨平台的开发类库。为GUI应用程序和非GUI应用程序提供了各种类。</li>
+</ol>
+<h3 id="71-元对象系统">7.1. 元对象系统</h3>
+<ol>
+<li>元对象系统由3个部分组成。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="mf">1.</span> <span class="n">QObject是所有使用元对象系统的类的基类</span><span class="err">；</span>
+<span class="mf">2.</span> <span class="err">在一个类的</span><span class="n">private部分声明Q_OBJECT宏</span><span class="err">，使得类可以使用元对象的特性，如动态属性、信号与槽；</span>
+<span class="mf">3.</span> <span class="n">MOC</span><span class="err">（元对象编译器）为每个</span><span class="n">QObject的子类提供必要的代码来实现元对象系统的特性</span><span class="err">。是一个预处理器，在源程序被编译前先将</span><span class="n">Qt特性的程序</span><span class="err">（发现类的定义里有</span><span class="n">Q_OBJECT宏</span><span class="err">）转换为标准</span><span class="n">C</span><span class="o">++</span><span class="err">兼容的形式，然后再由标准</span><span class="n">C</span><span class="o">++</span><span class="err">编译器进行编译。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="72-qt全局定义">7.2. QT全局定义</h3>
+<h3 id="73-容器类">7.3. 容器类</h3>
+<h3 id="74-模块文件夹">7.4. 模块（文件夹）</h3>
+<h4 id="741-基本模块">7.4.1. 基本模块</h4>
+<ol>
+<li><code>在所有的开发平台和目标平台都可用</code>。</li>
+</ol>
+<h5 id="7411-qt-webenginewidgets">7.4.1.1. QT Webenginewidgets</h5>
+<ol>
+<li>
+<p><code>QT += webenginewidgets</code></p>
+</li>
+<li>
+<p>需要将<code>QtWebEngineProcess.exe</code>放到exe同级目录，会生成<code>debug.log</code>日志文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//QtWebEngineProcess.exe的依赖
+</span><span class="c1"></span><span class="n">QT5WEBENGINECORED</span><span class="p">.</span><span class="n">DLL</span>
+<span class="n">QT5CORED</span><span class="p">.</span><span class="n">DLL</span>
+<span class="n">MSVCP120D</span><span class="p">.</span><span class="n">DLL</span>
+<span class="n">MSVCR120D</span><span class="p">.</span><span class="n">DLL</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>需要拷贝resources和tranlations<code>下</code>的文件到运行目录。【必要的时候，需要将resources中文件拷贝到运行目录，qtwebengine_locales拷贝到运行目录】。</p>
+</li>
+<li>
+<p><a href="https://wiki.qt.io/Compiling-ICU-with-MSVC#Compiling_ICU_with_MSVC_.28Microsoft_Visual_Studio.29" target="_blank" rel="noopener noreffer">需要编译安装ICU</a>,可以下载<a href="https://www.npcglib.org/~stathis/blog/precompiled-icu-past/" target="_blank" rel="noopener noreffer">编译好的</a>。</p>
+</li>
+</ol>
+<h2 id="8-工具">8. 工具</h2>
+<ol>
+<li>
+<p><code>Qt Creator</code>是Qt的IDE，功能最强大，它大大简化了Qt开发，可以原生创建QT应用程序（带有Qt引擎的C++）。并且允许我们创建和编辑源代码，调试应用程序等。集成下边的两个工具：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> <span class="sb">`Qt Designer`</span>是用于使用Qt小部件文件（.ui）设计和构建图形用户界面（GUI）的Qt工具，可以按所见即所得（WYSIWYG）的方式编写和自定义窗口或对话框，并使 用不同的样式和分辨率对其进行测试。
+<span class="k">2.</span> <span class="sb">`Qt Quick Designer`</span>允许图形化编辑QML文件（.qml），但是现在它已集成在Qt Creator中。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>Qt Design Studio</code>是一款UI设计和开发工具，它让设计师和开发者可以迅速设计原型，并且开发复杂的可伸缩的UI。简单概括其功能就是<code>让UI设计转换为qml</code>，为工程师所用，并且可以与Photoshop集成。</p>
+</li>
+</ol>
+<h2 id="9-有什么很好的软件是用-qt-编写的httpswwwzhihucomquestion19630324">9. <a href="https://www.zhihu.com/question/19630324" target="_blank" rel="noopener noreffer">有什么很好的软件是用 Qt 编写的</a></h2>
+<ol>
+<li><a href="https://github.com/qt-creator/qt-creator" target="_blank" rel="noopener noreffer">QtCreater</a> 插件架构，过于复杂。</li>
+<li><a href="https://github.com/pawelsalawa/sqlitestudio" target="_blank" rel="noopener noreffer">sqlitestudio</a> 也有插件，可以作为入门。</li>
+</ol>
+<h2 id="10-解决方法">10. 解决方法</h2>
+<ol>
+<li><a href="https://blog.csdn.net/simmerlee/article/details/37872793" target="_blank" rel="noopener noreffer">QSqlDatabasePrivate::addDatabase: duplicate connection name &lsquo;qt_sql_default_connection'解决办法</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/qt/">QT</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-04-02</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/" class="prev" rel="prev" title="构建框架（make）"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="next" rel="next" title="C&#43;&#43;面向对象">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

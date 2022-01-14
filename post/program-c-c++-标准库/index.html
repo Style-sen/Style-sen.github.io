@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C/C&#43;&#43; 标准库 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="C/C&#43;&#43; 标准库" />
+<meta property="og:description" content="1. &lt;arpa/inet.h&gt; 1.1. 宏 1.2. 结构体 1.3. 函数原型 1 unsigned long int inet_addr(const char *cp)//将一个字符串格式的ip地址转换成一个uint32_t数字格式，&#34;127.0.0.1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-03-02T13:49:43+08:00" />
+<meta property="article:modified_time" content="2021-03-02T13:49:43+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="C/C&#43;&#43; 标准库"/>
+<meta name="twitter:description" content="1. &lt;arpa/inet.h&gt; 1.1. 宏 1.2. 结构体 1.3. 函数原型 1 unsigned long int inet_addr(const char *cp)//将一个字符串格式的ip地址转换成一个uint32_t数字格式，&#34;127.0.0.1"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/" /><link rel="prev" href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" /><link rel="next" href="/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C/C++ 标准库",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-c-c\x2b\x2b-%E6%A0%87%E5%87%86%E5%BA%93\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, C\/C\x2b\x2b","wordcount":  1061 ,
+        "url": "\/post\/program-c-c\x2b\x2b-%E6%A0%87%E5%87%86%E5%BA%93\/","datePublished": "2021-03-02T13:49:43+08:00","dateModified": "2021-03-02T13:49:43+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">C/C&#43;&#43; 标准库</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-arpaineth">1. &lt;arpa/inet.h&gt;</a>
+      <ul>
+        <li><a href="#11-宏">1.1. 宏</a></li>
+        <li><a href="#12-结构体">1.2. 结构体</a></li>
+        <li><a href="#13-函数原型">1.3. 函数原型</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-errnoh">2. &lt;errno.h&gt;</a></li>
+    <li><a href="#3-fcntlh">3. &lt;fcntl.h&gt;</a>
+      <ul>
+        <li><a href="#31-宏">3.1. 宏</a></li>
+        <li><a href="#32-函数原型">3.2. 函数原型</a>
+          <ul>
+            <li><a href="#321-int-fcntl-int-__fd-int-__cmd-">3.2.1. <code>int fcntl (int __fd, int __cmd, ...);</code></a></li>
+            <li><a href="#322-int-open-const-char-__file-int-__oflag-">3.2.2. <code>int open (const char *__file, int __oflag, ...)</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-setjmph">4. &lt;setjmp.h&gt;</a></li>
+    <li><a href="#5-signalh">5. &lt;signal.h&gt;</a></li>
+    <li><a href="#6-stdioh-标准-io-函数库">6. &lt;stdio.h&gt; 标准 IO 函数库</a>
+      <ul>
+        <li><a href="#61-宏">6.1. 宏</a></li>
+        <li><a href="#62-函数原型">6.2. 函数原型</a>
+          <ul>
+            <li><a href="#621-void-perror-const-char-__s">6.2.1. <code>void perror (const char *__s);</code></a></li>
+            <li><a href="#622-int-atoi-const-char--str">6.2.2. int atoi (const char * str)</a></li>
+            <li><a href="#623-double-atof-const-char-str">6.2.3. double atof (const char* str)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#7-stdlibh">7. &lt;stdlib.h&gt;</a>
+      <ul>
+        <li><a href="#函数原型">函数原型</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-stringh">8. &lt;string.h&gt;</a></li>
+    <li><a href="#9-sysdefsh">9. &lt;sysdefs.h&gt;</a></li>
+    <li><a href="#10-sysstath">10. &lt;sys/stat.h&gt;</a>
+      <ul>
+        <li><a href="#101-宏">10.1. 宏</a></li>
+      </ul>
+    </li>
+    <li><a href="#11-syswaith">11. &lt;sys/wait.h&gt;</a></li>
+    <li><a href="#12-timeh">12. &lt;time.h&gt;</a>
+      <ul>
+        <li><a href="#121-函数原型">12.1. 函数原型</a>
+          <ul>
+            <li><a href="#1211-timetime_t-t">12.1.1. <code>time(time_t *t)</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#13-unistdh封装了类-unix-系统下的很多固定名称的-system_call-系统调用">13. &lt;unistd.h&gt;封装了类 UNIX 系统下的很多固定名称的 system_call 系统调用</a>
+      <ul>
+        <li><a href="#131-宏">13.1. 宏</a></li>
+        <li><a href="#132-函数原型">13.2. 函数原型</a>
+          <ul>
+            <li><a href="#1321-ssize_t-read-int-__fd-void-__buf-size_t-__nbytes">13.2.1. <code>ssize_t read (int __fd, void *__buf, size_t __nbytes)</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#14-wcharh-标准-io">14. &lt;wchar.h&gt; 标准 IO</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-arpaineth">1. &lt;arpa/inet.h&gt;</h2>
+<h3 id="11-宏">1.1. 宏</h3>
+<h3 id="12-结构体">1.2. 结构体</h3>
+<h3 id="13-函数原型">1.3. 函数原型</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">inet_addr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">)</span><span class="c1">//将一个字符串格式的ip地址转换成一个uint32_t数字格式，&#34;127.0.0.1&#34;&gt;0x100007F
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-errnoh">2. &lt;errno.h&gt;</h2>
+<ol>
+<li>定义了 errno 和各种常量。</li>
+</ol>
+<h2 id="3-fcntlh">3. &lt;fcntl.h&gt;</h2>
+<h3 id="31-宏">3.1. 宏</h3>
+<h3 id="32-函数原型">3.2. 函数原型</h3>
+<h4 id="321-int-fcntl-int-__fd-int-__cmd-">3.2.1. <code>int fcntl (int __fd, int __cmd, ...);</code></h4>
+<ol>
+<li>针对(文件)描述符提供控制.</li>
+</ol>
+<h4 id="322-int-open-const-char-__file-int-__oflag-">3.2.2. <code>int open (const char *__file, int __oflag, ...)</code></h4>
+<ol>
+<li></li>
+</ol>
+<h2 id="4-setjmph">4. &lt;setjmp.h&gt;</h2>
+<h2 id="5-signalh">5. &lt;signal.h&gt;</h2>
+<h2 id="6-stdioh-标准-io-函数库">6. &lt;stdio.h&gt; 标准 IO 函数库</h2>
+<h3 id="61-宏">6.1. 宏</h3>
+<ol>
+<li>EOF</li>
+<li>stdin</li>
+<li>stdout</li>
+</ol>
+<h3 id="62-函数原型">6.2. 函数原型</h3>
+<ol>
+<li><code>printf()</code>%p的实质即为将所指向的数据地址以十六进制的形式输出；对于指针来说，%p的打印的为所指向的数据地址。指针自己的实际地址为&amp;p。负值为左对齐。</li>
+<li><code>getc()</code>从文件描述符获取一个字符</li>
+<li><code>putc()</code>向文件描述符写一个字符</li>
+<li><code>fgets()</code>从文件描述符读取一行</li>
+</ol>
+<h4 id="621-void-perror-const-char-__s">6.2.1. <code>void perror (const char *__s);</code></h4>
+<ol>
+<li>把一个描述性错误消息输出到标准错误 stderr。首先输出字符串 str，后跟一个冒号，然后是一个空格。</li>
+</ol>
+<h4 id="622-int-atoi-const-char--str">6.2.2. int atoi (const char * str)</h4>
+<ol>
+<li>将字符串转换成整数。</li>
+<li>atoi() 函数会扫描参数 str 字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，而再遇到非数字或字符串结束时('\0&rsquo;)才结束转换，并将结果返回。</li>
+<li>返回转换后的整型数；如果 str 不能转换成 int 或者 str 为空字符串，那么将返回 0。</li>
+</ol>
+<h4 id="623-double-atof-const-char-str">6.2.3. double atof (const char* str)</h4>
+<ol>
+<li>将字符串转换为双精度浮点数。</li>
+</ol>
+<h2 id="7-stdlibh">7. &lt;stdlib.h&gt;</h2>
+<ol>
+<li>定义了四个变量类型、一些宏和各种通用工具函数.</li>
+</ol>
+<h3 id="函数原型">函数原型</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="mf">1.</span> <span class="kt">void</span> <span class="o">*</span><span class="n">bsearch</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">nitems</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">compar</span><span class="p">)(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">))</span> <span class="err">对</span> <span class="n">nitems</span> <span class="err">对象的数组执行二分查找，</span><span class="n">base</span> <span class="err">指向进行查找的数组，</span><span class="n">key</span> <span class="err">指向要查找的元素，</span><span class="n">size</span> <span class="err">指定数组中每个元素的大小。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="8-stringh">8. &lt;string.h&gt;</h2>
+<ol>
+<li><code>void *memset (void *__s, int __c, size_t __n)</code>复制字符 c（一个无符号字符）到参数 str 所指向的字符串的前 n 个字符.</li>
+<li><code>char *strchr(const char *str, int c)</code>在参数<code>str</code>所指向的字符串中搜索第一次出现字符<code>c</code>（一个无符号字符）的位置.未找到该字符则返回 NULL.</li>
+<li><code>strerror()</code>传入 errno，输出对应的错误字符串。</li>
+<li><code>int strncasecmp (const char *__s1, const char *__s2, size_t __n)</code></li>
+<li><code>char *strstr(const char *haystack, const char *needle)</code>返回在<code>haystack</code>中第一次出现<code>needle</code>字符串的位置，如果未找到则返回 null;不包含终止符 &lsquo;\0&rsquo;.</li>
+</ol>
+<h2 id="9-sysdefsh">9. &lt;sysdefs.h&gt;</h2>
+<h2 id="10-sysstath">10. &lt;sys/stat.h&gt;</h2>
+<h3 id="101-宏">10.1. 宏</h3>
+<h2 id="11-syswaith">11. &lt;sys/wait.h&gt;</h2>
+<h2 id="12-timeh">12. &lt;time.h&gt;</h2>
+<h3 id="121-函数原型">12.1. 函数原型</h3>
+<h4 id="1211-timetime_t-t">12.1.1. <code>time(time_t *t)</code></h4>
+<ol>
+<li>此函数会返回从公元 1970 年 1 月 1 日的 UTC 时间从 0 时 0 分 0 秒算起到现在所经过的秒数。如果 t 并非空指针的话，此函数也会将返回值存到 t 指针所指的内存。</li>
+</ol>
+<h2 id="13-unistdh封装了类-unix-系统下的很多固定名称的-system_call-系统调用">13. &lt;unistd.h&gt;封装了类 UNIX 系统下的很多固定名称的 system_call 系统调用</h2>
+<h3 id="131-宏">13.1. 宏</h3>
+<ol>
+<li>STDIN_FILENO 标准输入的文件描述符</li>
+<li>STDOUT_FILENO 标准输出的文件描述符</li>
+</ol>
+<h3 id="132-函数原型">13.2. 函数原型</h3>
+<ol>
+<li><code>getpid()</code> 获取当前进程的进程 ID</li>
+<li><code>getppid()</code> 获取当前进程的父进程 ID</li>
+<li>_exit()</li>
+<li><code>close()</code></li>
+</ol>
+<h4 id="1321-ssize_t-read-int-__fd-void-__buf-size_t-__nbytes">13.2.1. <code>ssize_t read (int __fd, void *__buf, size_t __nbytes)</code></h4>
+<ol>
+<li>如果文件描述符不是 socket 的话，该函数是非阻塞的，否则该函数是阻塞的。</li>
+</ol>
+<h2 id="14-wcharh-标准-io">14. &lt;wchar.h&gt; 标准 IO</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-03-02</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="prev" rel="prev" title="基本数据类型"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/" class="next" rel="next" title="PROGRAM C C&#43;&#43; 基础知识拾遗">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

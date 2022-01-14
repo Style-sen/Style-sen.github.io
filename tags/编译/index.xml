@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>编译 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E7%BC%96%E8%AF%91/</link>
+        <description>编译 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 02 Apr 2021 10:49:12 &#43;0800</lastBuildDate><atom:link href="/tags/%E7%BC%96%E8%AF%91/" rel="self" type="application/rss+xml" /><item>
+    <title>构建框架（make）</title>
+    <link>/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/</link>
+    <pubDate>Fri, 02 Apr 2021 10:49:12 &#43;0800</pubDate><guid>/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/</guid>
+    <description><![CDATA[1. 使用make menuconfig 1.1. ulfalizer/Kconfiglib Just drop kconfiglib.py and the scripts you want somewhere. There are no third-party dependencies, but the terminal menuconfig won&rsquo;t work on Windows unless a package like windows-curses is installed. Kconfiglib is a Kconfig implementation in Python 2/3. 1.2. 使用 使用Kconfig语法写一个Kconfi]]></description>
+</item>
+<item>
+    <title>GCC</title>
+    <link>/post/plat-%E7%BC%96%E8%AF%91-gcc/</link>
+    <pubDate>Fri, 02 Apr 2021 10:31:59 &#43;0800</pubDate><guid>/post/plat-%E7%BC%96%E8%AF%91-gcc/</guid>
+    <description><![CDATA[GCC 查看编译器的默认搜索路径echo | gcc -v -x c -E -和echo | g++ -v -x c++ -E -; 查看内部预宏定义gcc -E -dM - &lt;/dev/null. 【注】linux下gcc不支标准c的g]]></description>
+</item>
+</channel>
+</rss>

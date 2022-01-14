@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>模块化开发及常用模块 - 锦枫紫兰</title><meta name="description" content="JS模块化开发规范及常用插件"><meta property="og:title" content="模块化开发及常用模块" />
+<meta property="og:description" content="JS模块化开发规范及常用插件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-04-03T14:36:52+00:00" />
+<meta property="article:modified_time" content="2019-04-03T14:36:52+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="模块化开发及常用模块"/>
+<meta name="twitter:description" content="JS模块化开发规范及常用插件"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/" /><link rel="prev" href="/post/program-js-ts-webapi/" /><link rel="next" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "模块化开发及常用模块",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "JS, NODE","wordcount":  4705 ,
+        "url": "\/post\/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97\/","datePublished": "2019-04-03T14:36:52+00:00","dateModified": "2019-04-03T14:36:52+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "JS模块化开发规范及常用插件"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">模块化开发及常用模块</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#commonjs">Commonjs</a>
+      <ul>
+        <li><a href="#promisesa">Promises/A</a>
+          <ul>
+            <li><a href="#规范">规范</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#amdasynchronous-module-definition">AMD(Asynchronous Module Definition)</a></li>
+    <li><a href="#cmd">CMD</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#browser和nodejs共同支持">Browser和Nodejs共同支持</a>
+      <ul>
+        <li><a href="#axioshttp客户端">AXIOS（HTTP客户端）</a>
+          <ul>
+            <li><a href="#特点">特点</a></li>
+            <li><a href="#拦截器">拦截器</a></li>
+          </ul>
+        </li>
+        <li><a href="#bezier-jshttpswwwnpmjscompackagebezier-js"><a href="https://www.npmjs.com/package/bezier-js">bezier-js</a></a></li>
+        <li><a href="#caolanasynchttpsgithubcomcaolanasync--async-utilities-for-node-and-the-browser---"><a href="https://github.com/caolan/async">caolan/async</a>  Async utilities for node and the browser   *****</a></li>
+        <li><a href="#form-datahttpsgithubcomform-dataform-data"><a href="https://github.com/form-data/form-data">form-data</a></a></li>
+        <li><a href="#js-splinehttpswwwnpmjscompackagejs-spline"><a href="https://www.npmjs.com/package/js-spline">js-spline</a></a></li>
+        <li><a href="#kennethjiangjs-file-downloadhttpsgithubcomkennethjiangjs-file-download保存数据到文件中"><a href="https://github.com/kennethjiang/js-file-download">kennethjiang/js-file-download</a>保存数据到文件中</a></li>
+        <li><a href="#lodashhttpswwwlodashjscom是一个一致性模块化高性能的-javascript-实用工具库-"><a href="https://www.lodashjs.com/">Lodash</a>是一个一致性、模块化、高性能的 JavaScript 实用工具库 *****</a></li>
+        <li><a href="#smartprocurefutil-jshttpsgithubcomsmartprocurefutil-js-lodash的补充--"><a href="https://github.com/smartprocure/futil-js">smartprocure/futil-js</a> Lodash的补充  *****</a></li>
+        <li><a href="#momenthttpsmomentjscomdocs-格式化分析日期和时间---"><a href="https://momentjs.com/docs/">moment</a> 格式化分析日期和时间   *****</a></li>
+        <li><a href="#momentluxonhttpsgithubcommomentluxon-a-library-for-working-with-dates-and-times-in-js--"><a href="https://github.com/moment/luxon">moment/luxon</a> A library for working with dates and times in JS  *****</a>
+          <ul>
+            <li><a href="#datetimeconst--datetime---requireluxon">DateTime<code>const { DateTime } = require(&quot;luxon&quot;)</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#moment-timezonehttpsmomentjscomtimezone--分析和格式化日期时间在各个时区---"><a href="https://momentjs.com/timezone/">moment-timezone</a>  分析和格式化日期时间在各个时区   *****</a></li>
+        <li><a href="#ramda-一款实用的-javascript-函数式编程库httpsramdacn"><a href="https://ramda.cn/">Ramda 一款实用的 JavaScript 函数式编程库</a></a></li>
+        <li><a href="#range--类似python的range"><a href="">range</a>  类似python的range</a></li>
+        <li><a href="#simplifyjshttpsmournergithubiosimplify-js--压缩点数轨迹不失真"><a href="https://mourner.github.io/simplify-js/">Simplify.js</a>  压缩点数（轨迹不失真）</a></li>
+        <li><a href="#underscorejshttpsunderscorejsbootcsscom--一个-javascript-工具库----"><a href="https://underscorejs.bootcss.com/">Underscore.js</a>  一个 JavaScript 工具库    *****</a></li>
+        <li><a href="#whenjshttpsgithubcomcujojswhen-promise--async---"><a href="https://github.com/cujojs/when">when.js</a> promise + async   ******</a></li>
+      </ul>
+    </li>
+    <li><a href="#nodejs支持">NodeJs支持</a>
+      <ul>
+        <li><a href="#automatticnode-canvashttpsgithubcomautomatticnode-canvas-在node中实现canvas渲染"><a href="https://github.com/Automattic/node-canvas">Automattic/node-canvas</a> 在node中实现canvas渲染</a></li>
+        <li><a href="#bullhttpsgithubcomoptimalbitsbull"><a href="https://github.com/OptimalBits/bull">BULL</a></a>
+          <ul>
+            <li><a href="#简单队列">简单队列</a></li>
+            <li><a href="#生产者">生产者</a></li>
+            <li><a href="#消费者">消费者</a></li>
+            <li><a href="#选项">选项</a>
+              <ul>
+                <li><a href="#速率限制">速率限制</a></li>
+                <li><a href="#named-jobs">Named jobs</a></li>
+                <li><a href="#sandboxed-processors">Sandboxed Processors</a></li>
+              </ul>
+            </li>
+            <li><a href="#job类型">JOB类型</a>
+              <ul>
+                <li><a href="#lifo">LIFO</a></li>
+                <li><a href="#delayed">Delayed</a></li>
+                <li><a href="#优先级">优先级</a></li>
+                <li><a href="#可重复">可重复</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#generic-poolhttpsgithubcomcoopernursenode-pool-连接池-----"><a href="https://github.com/coopernurse/node-pool">generic-pool</a> 连接池     *****</a></li>
+        <li><a href="#ioredishttpsgithubcomluinioredisbasic-usage-"><a href="https://github.com/luin/ioredis#basic-usage">ioredis</a> *****</a></li>
+        <li><a href="#is-type-ofhttpsgithubcomnode-modulesis-type-of"><a href="https://github.com/node-modules/is-type-of">is-type-of</a></a></li>
+        <li><a href="#jsonwebtokenhttpsgithubcomauth0node-jsonwebtoken-jwt"><a href="https://github.com/auth0/node-jsonwebtoken">JsonWebToken</a> JWT</a>
+          <ul>
+            <li><a href="#jwtsignpayload-secretorprivatekey-options-callback-生成token">jwt.sign(payload, secretOrPrivateKey, [options, callback]) 生成Token</a></li>
+            <li><a href="#jwtverifytoken-secretorpublickey-options-callback--校验token">jwt.verify(token, secretOrPublicKey, [options, callback])  校验Token</a></li>
+          </ul>
+        </li>
+        <li><a href="#stratodempandas-jshttpsstratodemgithubiopandasjs-docsintroduction"><a href="https://stratodem.github.io/pandas.js-docs/#introduction">StratoDem/pandas-js</a></a>
+          <ul>
+            <li><a href="#dataframe">DataFrame</a></li>
+          </ul>
+        </li>
+        <li><a href="#puppeteerhttpszhaoqizegithubiopuppeteer-api-zh_cn"><a href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#/">puppeteer</a></a></li>
+        <li><a href="#requesthttpsgithubcomrequestrequest----"><a href="https://github.com/request/request">request</a>    *****</a></li>
+        <li><a href="#request-promisehttpsgithubcomrequestrequest-promise----"><a href="https://github.com/request/request-promise">Request-Promise</a>    ******</a>
+          <ul>
+            <li><a href="#流操作">流操作</a></li>
+            <li><a href="#form相关">form相关</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#browser支持">Browser支持</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="理论">理论</h1>
+<p>参考<a href="https://segmentfault.com/a/1190000000733959#articleHeader5" target="_blank" rel="noopener noreffer">详解JavaScript模块化开发</a>
+参考<a href="https://www.jianshu.com/p/3832c00a44a7" target="_blank" rel="noopener noreffer">JavaScript中的模块化开发</a></p>
+<p>一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块。模块开发需要遵循一定的规范，否则就都乱套了。</p>
+<p>AMD规范的实现主要有RequireJS，CMD规范的主要实现有SeaJS。RequireJS在国外用的比较多，SeaJS在国内用的比较多，并且SeaJS的创始人为阿里的玉伯，所以SeaJS在阿里系用的非常广泛，包括京东等大厂也在用SeaJS，我们详细介绍的也是SeaJS。但是SeaJS已经停止维护了，因为在ES6中已经有了模块化的实现，随着ES6的普及，第三方的模块化实现将会慢慢的淘汰（但是这个在国内可能还要很多年）。</p>
+<h2 id="commonjs">Commonjs</h2>
+<ol>
+<li>服务器端规范,<code>node.js用的就是CommonJS规范</code>.</li>
+<li>根据CommonJS规范，<code>一个单独的文件就是一个模块</code>。<strong>每一个模块都是一个单独的作用域，也就是说，在该模块内部定义的变量，无法被其他模块读取，除非定义为global对象的属性</strong>。</li>
+<li>在node.js中直接使用<code>require</code>引包，直接使用<code>exports</code>和<code>module.exports</code>暴露公开成员，并且npm基于CommonJs实现了自动加载和安装依赖。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="c1">// module指的就是当前文件
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="o">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">max</span> <span class="o">*=</span> <span class="mf">1.1</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">插件名</span><span class="p">]</span><span class="o">:</span><span class="p">{</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//与下方一致
+</span><span class="c1"></span><span class="nx">exports</span><span class="p">.[</span><span class="nx">插件名</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+  
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="promisesa">Promises/A</h3>
+<ol>
+<li>Promises/A是由CommonJS组织制定的异步模式编程规范，有不少库已根据该规范及后来经改进的<code>Promises/A+</code>规范提供了实现.</li>
+<li>参考<a href="https://imququ.com/post/promises-when-js.html" target="_blank" rel="noopener noreffer">JS魔法堂：剖析源码理解Promises/A规范</a></li>
+</ol>
+<h4 id="规范">规范</h4>
+<ol>
+<li>有限状态机
+Promise（中文：承诺）其实为一个有限状态机，共有三种状态：pending（执行中）、fulfilled（执行成功）和rejected（执行失败）。
+其中pending为初始状态，fulfilled和rejected为结束状态（结束状态表示promise的生命周期已结束）。
+状态转换关系为：pending-&gt;fulfilled，pending-&gt;rejected。
+随着状态的转换将触发各种事件（如执行成功事件、执行失败事件等）。</li>
+<li>构造函数
+Promise({Function} factory/<em>({Function} resolve, {Function} reject)</em>/) ，构造函数存在一个Function类型的入参factory，作为唯一一个修改promise对象状态的地方，其中factory函数的入参resolve的作用是将promise对象的状态从pending转换为fulfilled，而reject的作用是将promise对象的状态从pending转换为rejected。
+入参 void resolve({Any} val)  ，当val为非thenable对象和promise对象时则会将val作为执行成功事件处理函数的入参，若val为thenable对象时则会执行thenable.then方法，若val为Promise对象时则会将该Promise对象添加到Promise对象单向链表中。
+入参 void reject({Any} reason) ，reason不管是哪种内容均直接作为执行失败事件处理函数的入参。
+注意：关于抛异常的做法，同步模式为 throw new Error(&ldquo;I&rsquo;m synchronous way!&quot;) ，而Promise规范的做法是 reject(new Error(&ldquo;I&rsquo;m asynchronous way!&quot;));</li>
+<li>实例方法
+Promise then([{Function} onFulfilled[, {Function} onRejected]]) ，用于订阅Promise对象状态转换事件，入参onFulfilled为执行成功的事件处理函数，入参onRejected为执行失败的事件处理函数。两者的返回值均作为Promise对象单向链表中下一个Promise对象的状态转换事件处理函数的入参。而then方法的返回值是一个新的Promise对象并且已添加到Promise对象单向链表的末尾。
+Promise catch({Function} onRejected) ，相当于 then(null, onRejected) 。</li>
+<li>类方法
+Promise Promise.resolve({Any} obj) ，用于将非Promise类型的入参封装为Promise对象，若obj为非thenable对象则返回状态为fulfilled的Promise对象，对于非若入参为Promise对象则直接返回。
+Promise Promise.reject({Any} obj) ，用于将非Promise类型的入参封装为状态为rejected的Promise对象。
+Promise Promise.all({Array} array) ，当array中所有Promise实例的状态均为fulfilled时，该方法返回的Promise对象的状态也转为fulfilled（执行成功事件处理函数的入参为array数组中所有Promise实例执行成功事件处理函数的返回值），否则转换为rejected。
+Promise Promise.race({Array} array) ，当array中有一个Promise实例的状态出现fulfilled或rejected时，该方法返回的Promise对象的状态也转为fulfilled或rejected。</li>
+<li>thenable对象
+拥有 then方法 的对象均称为thenable对象，并且thenable对象将作为Promise对象被处理。</li>
+</ol>
+<h2 id="amdasynchronous-module-definition">AMD(Asynchronous Module Definition)</h2>
+<ol>
+<li>在浏览器端模块化开发的规范</li>
+<li>模块将被异步加载，模块加载不影响后面语句的运行。所有依赖某些模块的语句均放置在回调函数中。</li>
+<li>AMD规范的实现主要有RequireJS</li>
+</ol>
+<h2 id="cmd">CMD</h2>
+<ol>
+<li>CMD规范的主要实现有SeaJS</li>
+</ol>
+<h1 id="常用模块">常用模块</h1>
+<h2 id="browser和nodejs共同支持">Browser和Nodejs共同支持</h2>
+<h3 id="axioshttp客户端">AXIOS（HTTP客户端）</h3>
+<ol>
+<li>基于promise用于浏览器和node.js的http客户端；</li>
+</ol>
+<h4 id="特点">特点</h4>
+<ol>
+<li>支持浏览器和node.js</li>
+<li>支持promise</li>
+<li>能拦截请求和响应</li>
+<li>能转换请求和响应数据</li>
+<li>能取消请求</li>
+<li>自动转换JSON数据</li>
+<li>浏览器端支持防止CSRF(跨站请求伪造)</li>
+</ol>
+<h4 id="拦截器">拦截器</h4>
+<ol>
+<li>你可以在then和catch之前拦截请求和响应。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 添加一个请求拦截器
+</span><span class="c1"></span><span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something before request is sent
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+  <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something with request error
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+
+<span class="c1">// 添加一个响应拦截器
+</span><span class="c1"></span><span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something with response data
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+  <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something with response error
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>如果之后想移除拦截器你可以这么做</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+axios.interceptors.request.eject(myInterceptor);
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>你也可以为axios实例添加一个拦截器</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var instance = axios.create();
+instance.interceptors.request.use(function () {/*...*/});
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="bezier-jshttpswwwnpmjscompackagebezier-js"><a href="https://www.npmjs.com/package/bezier-js" target="_blank" rel="noopener noreffer">bezier-js</a></h3>
+<ol>
+<li>一个Node.js和客户端库，用于（二次和三次）贝塞尔曲线工作。</li>
+<li>用于执行Bezier曲线操作</li>
+<li>参考<a href="https://www.cnblogs.com/hnfxs/p/3148743.html" target="_blank" rel="noopener noreffer">贝塞尔曲线应用（贝塞尔插值）</a>使用两个点作为顶点，利用相邻的点生成2个控制点。</li>
+</ol>
+<h3 id="caolanasynchttpsgithubcomcaolanasync--async-utilities-for-node-and-the-browser---"><a href="https://github.com/caolan/async" target="_blank" rel="noopener noreffer">caolan/async</a>  Async utilities for node and the browser   *****</h3>
+<ol>
+<li>async模块是为了解决嵌套金字塔,和异步流程控制而生.</li>
+</ol>
+<h3 id="form-datahttpsgithubcomform-dataform-data"><a href="https://github.com/form-data/form-data" target="_blank" rel="noopener noreffer">form-data</a></h3>
+<ol>
+<li>A module to create readable <code>&quot;multipart/form-data&quot;</code> streams. Can be used to submit forms and file uploads to other web applications.</li>
+</ol>
+<h3 id="js-splinehttpswwwnpmjscompackagejs-spline"><a href="https://www.npmjs.com/package/js-spline" target="_blank" rel="noopener noreffer">js-spline</a></h3>
+<ol>
+<li>程序包提供了JavaScript的算法实现，这些算法可从一组控制方式点生成各种类型的样条。</li>
+<li>插值之后的曲线经过样本点，拟合的曲线不一定经过样本点。</li>
+<li><a href="http://blog.sina.com.cn/s/blog_6316e2af0101l548.html" target="_blank" rel="noopener noreffer">插值算法比较</a>:1. 反距离加权法（Inverse Distance Weighted）两个物体相似性随他们间的距离增大而减少。2. 样条插值法（Spline）样条插值是使用一种数学函数，对一些限定的点值，通过控制估计方差，利用一些特征节点，用多项式拟合的方法来产生平滑的插值曲线。这种方法适用于逐渐变化的曲面，如温度、高程、地下水位高度或污染浓度等。3、克里金法（Kriging）这种方法认为在空间连续变化的属性是非常不规则的，用简单的平滑函数进行模拟将出现误差，用随机表面函数给予描述会比较恰当。4、离散平滑插值（Discrete Smooth Interpolation）欲在一个离散化数据点间建立相互联络的网络，如果网络上的已知节点值满足某种约束条件，则未知节点上的值可以通过解线性方程而得到。5、趋势面光滑插值（Trend Surface）作为一个非精确的插值方法，趋势面插值用多项式表示的线或面按最小二乘法原理对数据点进行拟合.6.贝塞尔插值。</li>
+</ol>
+<h3 id="kennethjiangjs-file-downloadhttpsgithubcomkennethjiangjs-file-download保存数据到文件中"><a href="https://github.com/kennethjiang/js-file-download" target="_blank" rel="noopener noreffer">kennethjiang/js-file-download</a>保存数据到文件中</h3>
+<h3 id="lodashhttpswwwlodashjscom是一个一致性模块化高性能的-javascript-实用工具库-"><a href="https://www.lodashjs.com/" target="_blank" rel="noopener noreffer">Lodash</a>是一个一致性、模块化、高性能的 JavaScript 实用工具库 *****</h3>
+<h3 id="smartprocurefutil-jshttpsgithubcomsmartprocurefutil-js-lodash的补充--"><a href="https://github.com/smartprocure/futil-js" target="_blank" rel="noopener noreffer">smartprocure/futil-js</a> Lodash的补充  *****</h3>
+<h3 id="momenthttpsmomentjscomdocs-格式化分析日期和时间---"><a href="https://momentjs.com/docs/" target="_blank" rel="noopener noreffer">moment</a> 格式化分析日期和时间   *****</h3>
+<h3 id="momentluxonhttpsgithubcommomentluxon-a-library-for-working-with-dates-and-times-in-js--"><a href="https://github.com/moment/luxon" target="_blank" rel="noopener noreffer">moment/luxon</a> A library for working with dates and times in JS  *****</h3>
+<ol>
+<li><code>每年的最后几天是下一年的第一周</code>。</li>
+</ol>
+<h4 id="datetimeconst--datetime---requireluxon">DateTime<code>const { DateTime } = require(&quot;luxon&quot;)</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">();</span>
+<span class="nx">dt</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">fromObject</span><span class="p">({</span><span class="nx">day</span><span class="o">:</span> <span class="mi">22</span><span class="p">,</span> <span class="nx">hour</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span> <span class="nx">zone</span><span class="o">:</span> <span class="s1">&#39;America/Los_Angeles&#39;</span><span class="p">,</span> <span class="nx">numberingSystem</span><span class="o">:</span> <span class="s1">&#39;beng&#39;</span><span class="p">})</span>
+<span class="nx">DateTime</span><span class="p">.</span><span class="nx">fromISO</span><span class="p">(</span><span class="s2">&#34;2017-05-15&#34;</span><span class="p">)</span>          <span class="c1">//=&gt; May 15, 2017 at midnight
+</span><span class="c1"></span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">fromISO</span><span class="p">(</span><span class="s2">&#34;2017-05-15T08:30:00&#34;</span><span class="p">)</span> <span class="c1">//=&gt; May 15, 2017 at 8:30
+</span><span class="c1"></span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">//=&gt; &#39;2017-09-14T03:20:34.091-04:00&#39;
+</span><span class="c1"></span><span class="nx">dt</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">()</span>
+<span class="nx">dt</span><span class="p">.</span><span class="nx">year</span>     <span class="c1">//=&gt; 2017
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">month</span>    <span class="c1">//=&gt; 9
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">day</span>      <span class="c1">//=&gt; 14
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">second</span>   <span class="c1">//=&gt; 47
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">weekday</span>  <span class="c1">//=&gt; 4
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">zoneName</span>     <span class="c1">//=&gt; &#39;America/New_York&#39;
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">offset</span>       <span class="c1">//=&gt; -240
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">daysInMonth</span>  <span class="c1">//=&gt; 30
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">toLocaleString</span><span class="p">()</span>      <span class="c1">//=&gt; &#39;9/14/2017&#39;
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">toLocaleString</span><span class="p">(</span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">DATETIME_MED</span><span class="p">)</span> <span class="c1">//=&gt; &#39;September 14, 3:21 AM&#39;
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">toISO</span><span class="p">()</span> <span class="c1">//=&gt; &#39;2017-09-14T03:21:47.070-04:00&#39;
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">();</span>
+<span class="nx">dt</span><span class="p">.</span><span class="nx">plus</span><span class="p">({</span><span class="nx">hours</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">minutes</span><span class="o">:</span> <span class="mi">2</span><span class="p">});</span>　　　　<span class="c1">//　计算
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">minus</span><span class="p">({</span><span class="nx">days</span><span class="o">:</span> <span class="mi">7</span><span class="p">});</span>        <span class="c1">// 减
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">startOf</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">);</span>
+<span class="nx">dt</span><span class="p">.</span><span class="nx">endOf</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">();</span>
+<span class="nx">dt</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="nx">hour</span><span class="o">:</span> <span class="mi">3</span><span class="p">}).</span><span class="nx">hour</span>   <span class="c1">//设置时间
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="p">{</span><span class="nx">month</span><span class="o">:</span> <span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="nx">day</span><span class="o">:</span> <span class="s1">&#39;numeric&#39;</span><span class="p">};</span>
+<span class="nx">dt</span><span class="p">.</span><span class="nx">setLocale</span><span class="p">(</span><span class="s1">&#39;fr&#39;</span><span class="p">).</span><span class="nx">toLocaleString</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>      <span class="c1">//=&gt; &#39;14 septembre&#39;
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">setLocale</span><span class="p">(</span><span class="s1">&#39;en-GB&#39;</span><span class="p">).</span><span class="nx">toLocaleString</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>   <span class="c1">//=&gt; &#39;14 September&#39;
+</span><span class="c1"></span><span class="nx">dt</span><span class="p">.</span><span class="nx">setLocale</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">).</span><span class="nx">toLocaleString</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>  <span class="c1">//=&gt; &#39;September 14&#39;
+</span><span class="c1"></span><span class="nx">Info</span><span class="p">.</span><span class="nx">months</span><span class="p">(</span><span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;fr&#39;</span><span class="p">})</span> <span class="c1">//=&gt; [ &#39;janvier&#39;, &#39;février&#39;, &#39;mars&#39;, &#39;avril&#39;, ... ]
+</span><span class="c1"></span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">fromObject</span><span class="p">({</span><span class="nx">zone</span><span class="o">:</span> <span class="s1">&#39;America/Los_Angeles&#39;</span><span class="p">})</span> <span class="c1">// now, but expressed in LA&#39;s local time
+</span><span class="c1"></span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">().</span><span class="nx">setZone</span><span class="p">(</span><span class="s1">&#39;America/Los_Angeles&#39;</span><span class="p">)</span> <span class="c1">// same
+</span><span class="c1"></span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">utc</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>
+<span class="nx">DateTime</span><span class="p">.</span><span class="nx">utc</span><span class="p">();</span>
+<span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">().</span><span class="nx">toUTC</span><span class="p">();</span>
+<span class="nx">DateTime</span><span class="p">.</span><span class="nx">utc</span><span class="p">().</span><span class="nx">toLocal</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">dur</span> <span class="o">=</span> <span class="nx">Duration</span><span class="p">.</span><span class="nx">fromObject</span><span class="p">({</span><span class="nx">hours</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">minutes</span><span class="o">:</span> <span class="mi">7</span><span class="p">});</span>
+<span class="nx">dt</span><span class="p">.</span><span class="nx">plus</span><span class="p">(</span><span class="nx">dur</span><span class="p">);</span>
+<span class="nx">dur</span><span class="p">.</span><span class="nx">hours</span>   <span class="c1">//=&gt; 2
+</span><span class="c1"></span><span class="nx">dur</span><span class="p">.</span><span class="nx">minutes</span> <span class="c1">//=&gt; 7
+</span><span class="c1"></span><span class="nx">dur</span><span class="p">.</span><span class="nx">seconds</span> <span class="c1">//=&gt; 0
+</span><span class="c1"></span><span class="nx">dur</span><span class="p">.</span><span class="nx">as</span><span class="p">(</span><span class="s1">&#39;seconds&#39;</span><span class="p">)</span> <span class="c1">//=&gt; 7620
+</span><span class="c1"></span><span class="nx">dur</span><span class="p">.</span><span class="nx">toObject</span><span class="p">()</span>    <span class="c1">//=&gt; { hours: 2, minutes: 7 }
+</span><span class="c1"></span><span class="nx">dur</span><span class="p">.</span><span class="nx">toISO</span><span class="p">()</span>       <span class="c1">//=&gt; &#39;PT2H7M&#39;
+</span><span class="c1"></span><span class="nx">now</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">();</span>
+<span class="nx">later</span> <span class="o">=</span> <span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+<span class="nx">i</span> <span class="o">=</span> <span class="nx">Interval</span><span class="p">.</span><span class="nx">fromDateTimes</span><span class="p">(</span><span class="nx">now</span><span class="p">,</span> <span class="nx">later</span><span class="p">);</span>
+<span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">()</span>                             <span class="c1">//=&gt; 97098768468
+</span><span class="c1"></span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">(</span><span class="s1">&#39;years&#39;</span><span class="p">)</span>                <span class="c1">//=&gt; 3.0762420239726027
+</span><span class="c1"></span><span class="nx">i</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">DateTime</span><span class="p">.</span><span class="nx">local</span><span class="p">(</span><span class="mi">2019</span><span class="p">))</span>       <span class="c1">//=&gt; true
+</span><span class="c1"></span><span class="nx">i</span><span class="p">.</span><span class="nx">toISO</span><span class="p">()</span>       <span class="c1">//=&gt; &#39;2017-09-14T04:07:11.532-04:00/2020-10-12T00:00:00.000-04:00&#39;
+</span><span class="c1"></span><span class="nx">i</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>    <span class="c1">//=&gt; &#39;[2017-09-14T04:07:11.532-04:00 – 2020-10-12T00:00:00.000-04:00)
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="moment-timezonehttpsmomentjscomtimezone--分析和格式化日期时间在各个时区---"><a href="https://momentjs.com/timezone/" target="_blank" rel="noopener noreffer">moment-timezone</a>  分析和格式化日期时间在各个时区   *****</h3>
+<h3 id="ramda-一款实用的-javascript-函数式编程库httpsramdacn"><a href="https://ramda.cn/" target="_blank" rel="noopener noreffer">Ramda 一款实用的 JavaScript 函数式编程库</a></h3>
+<h3 id="range--类似python的range"><a href="" rel="">range</a>  类似python的range</h3>
+<h3 id="simplifyjshttpsmournergithubiosimplify-js--压缩点数轨迹不失真"><a href="https://mourner.github.io/simplify-js/" target="_blank" rel="noopener noreffer">Simplify.js</a>  压缩点数（轨迹不失真）</h3>
+<h3 id="underscorejshttpsunderscorejsbootcsscom--一个-javascript-工具库----"><a href="https://underscorejs.bootcss.com/" target="_blank" rel="noopener noreffer">Underscore.js</a>  一个 JavaScript 工具库    *****</h3>
+<ol>
+<li>它提供了一整套函数式编程的实用功能，但是没有扩展任何 JavaScript 内置对象.</li>
+</ol>
+<h3 id="whenjshttpsgithubcomcujojswhen-promise--async---"><a href="https://github.com/cujojs/when" target="_blank" rel="noopener noreffer">when.js</a> promise + async   ******</h3>
+<ol>
+<li>A solid, fast Promises/A+ and when() implementation, plus other async goodies.</li>
+<li>参考<a href="https://imququ.com/post/promises-when-js.html" target="_blank" rel="noopener noreffer">异步编程：When.js快速上手</a>.</li>
+<li>优化promise.</li>
+</ol>
+<h2 id="nodejs支持">NodeJs支持</h2>
+<h3 id="automatticnode-canvashttpsgithubcomautomatticnode-canvas-在node中实现canvas渲染"><a href="https://github.com/Automattic/node-canvas" target="_blank" rel="noopener noreffer">Automattic/node-canvas</a> 在node中实现canvas渲染</h3>
+<h3 id="bullhttpsgithubcomoptimalbitsbull"><a href="https://github.com/OptimalBits/bull" target="_blank" rel="noopener noreffer">BULL</a></h3>
+<ol>
+<li>KUE不再维护。</li>
+</ol>
+<h4 id="简单队列">简单队列</h4>
+<ol>
+<li>简单创建一个队列实例。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">const myFirstQueue = new Bull(&#39;my-first-queue&#39;);
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>一个简单队列大致有3个主要角色： A job producer, a job consumer or/and an events listener.</li>
+<li>虽然一个给定的实例可以用于3个角色，但通常将生产者和消费者分成几个实例。 一个给定的队列，总是由其实例化名称（上例中的my-first-queue）引用，可以有许多生产者，许多消费者和许多听众。 一个重要的方面是，即使当时没有可用的消费者，生产者也可以将作业添加到队列中：队列提供异步通信，这是使它们如此强大的功能之一。</li>
+<li>相反，您可以让一个或多个worker从队列中消费作业，它将按照给定的顺序消费这些作业:FIFO(缺省值)、LIFO或根据优先级。</li>
+</ol>
+<h4 id="生产者">生产者</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">const myFirstQueue = new Bull(&#39;my-first-queue&#39;);
+const job = await myFirstQueue.add({
+  foo: &#39;bar&#39;
+});
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="消费者">消费者</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">const myFirstQueue = new Bull(&#39;my-first-queue&#39;);
+myFirstQueue.process(async (job, data) =&gt; {
+  return doSomething(data);
+});
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>有时您需要向外部侦听器提供作业的进度信息，这可以通过在作业对象上使用progress方法轻松完成：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">myFirstQueue.process( async (job, data) =&gt; {
+  let progress = 0;
+  for(i = 0; i &lt; 100; i++){
+    await doSomething(data);
+    progress += 10;
+    job.progress(progress);
+  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="选项">选项</h4>
+<h5 id="速率限制">速率限制</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// Limit queue to max 1.000 jobs per 5 seconds.
+const myRateLimitedQueue = new Queue(&#39;rateLimited&#39;, {
+  limiter: {
+    max: 1000,
+    duration: 5000
+  }
+});
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="named-jobs">Named jobs</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// Jobs producer
+const myJob = await transcoderQueue.add(&#39;image&#39;, { input: &#39;myimagefile&#39; });
+const myJob = await transcoderQueue.add(&#39;audio&#39;, { input: &#39;myaudiofile&#39; });
+const myJob = await transcoderQueue.add(&#39;video&#39;, { input: &#39;myvideofile&#39; });
+// Worker
+transcoderQueue.process(&#39;image&#39;, processImage);
+transcoderQueue.process(&#39;audio&#39;, processAudio);
+transcoderQueue.process(&#39;video&#39;, processVideo);
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>每一个命名的JOB必须有一个对应的processer。</li>
+</ol>
+<h5 id="sandboxed-processors">Sandboxed Processors</h5>
+<h4 id="job类型">JOB类型</h4>
+<h5 id="lifo">LIFO</h5>
+<p>后进先出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">const myJob = await myqueue.add({ foo: &#39;bar&#39; }, { lifo: true });
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="delayed">Delayed</h5>
+<ol>
+<li>延时。</li>
+<li>设置的为最小延时，过了这个时间，才放进可执行队列中。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// Delayed 5 seconds
+const myJob = await myqueue.add({ foo: &#39;bar&#39; }, { delay: 5000 });
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="优先级">优先级</h5>
+<h5 id="可重复">可重复</h5>
+<h3 id="generic-poolhttpsgithubcomcoopernursenode-pool-连接池-----"><a href="https://github.com/coopernurse/node-pool" target="_blank" rel="noopener noreffer">generic-pool</a> 连接池     *****</h3>
+<ol>
+<li>NNODEJS的一般链接池模块。</li>
+</ol>
+<h3 id="ioredishttpsgithubcomluinioredisbasic-usage-"><a href="https://github.com/luin/ioredis#basic-usage" target="_blank" rel="noopener noreffer">ioredis</a> *****</h3>
+<p>一个健壮的、以性能为中心的、功能全面的Redis Node.js客户端.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">redis</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">,</span> <span class="s2">&#34;bar&#34;</span><span class="p">);</span>
+<span class="nx">redis</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;dir:key&#34;</span><span class="p">,</span><span class="nx">value</span><span class="p">);</span>  <span class="c1">//可以创建dir文件夹，归类key
+</span><span class="c1"></span><span class="nx">redis</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// get value
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">redis</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">);</span>  <span class="c1">// 删除键
+</span><span class="c1"></span>
+<span class="c1">// Or using a promise if the last argument isn&#39;t a function
+</span><span class="c1"></span><span class="nx">redis</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">redis</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="s1">&#39;course*&#39;</span><span class="p">);</span> <span class="c1">// 列出匹配到给定字符串的key的列表
+</span><span class="c1"></span>
+<span class="c1">// Arguments to commands are flattened, so the following are the same:
+</span><span class="c1"></span><span class="nx">redis</span><span class="p">.</span><span class="nx">sadd</span><span class="p">(</span><span class="s2">&#34;set&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>     <span class="c1">//集合
+</span><span class="c1"></span><span class="nx">redis</span><span class="p">.</span><span class="nx">sadd</span><span class="p">(</span><span class="s2">&#34;set&#34;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]);</span>
+
+<span class="c1">// All arguments are passed directly to the redis server:
+</span><span class="c1"></span><span class="nx">redis</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&#34;EX&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nx">redis</span><span class="p">.</span><span class="nx">setex</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">,</span> <span class="s2">&#34;msg&#34;</span><span class="p">);</span><span class="c1">//存进redis中，并设置超时时间。
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="is-type-ofhttpsgithubcomnode-modulesis-type-of"><a href="https://github.com/node-modules/is-type-of" target="_blank" rel="noopener noreffer">is-type-of</a></h3>
+<ol>
+<li><code>complete type checking for node</code>类型检测。</li>
+</ol>
+<h3 id="jsonwebtokenhttpsgithubcomauth0node-jsonwebtoken-jwt"><a href="https://github.com/auth0/node-jsonwebtoken" target="_blank" rel="noopener noreffer">JsonWebToken</a> JWT</h3>
+<h4 id="jwtsignpayload-secretorprivatekey-options-callback-生成token">jwt.sign(payload, secretOrPrivateKey, [options, callback]) 生成Token</h4>
+<ol>
+<li><code>secretOrPrivateKey</code> is a string, buffer, or object 包含secret(for HMAC algorithms)或者the PEM encoded private key(for RSA and ECDSA). In case of a private key with passphrase an object { key, passphrase } can be used (based on crypto documentation), in this case be sure you pass the algorithm option.</li>
+<li><a href="https://www.jianshu.com/p/7575f7976dad" target="_blank" rel="noopener noreffer">OpenSSL生成pem，der文件</a></li>
+</ol>
+<h4 id="jwtverifytoken-secretorpublickey-options-callback--校验token">jwt.verify(token, secretOrPublicKey, [options, callback])  校验Token</h4>
+<h3 id="stratodempandas-jshttpsstratodemgithubiopandasjs-docsintroduction"><a href="https://stratodem.github.io/pandas.js-docs/#introduction" target="_blank" rel="noopener noreffer">StratoDem/pandas-js</a></h3>
+<h4 id="dataframe">DataFrame</h4>
+<p>支持常用的统计。</p>
+<h3 id="puppeteerhttpszhaoqizegithubiopuppeteer-api-zh_cn"><a href="https://zhaoqize.github.io/puppeteer-api-zh_CN/#/" target="_blank" rel="noopener noreffer">puppeteer</a></h3>
+<h3 id="requesthttpsgithubcomrequestrequest----"><a href="https://github.com/request/request" target="_blank" rel="noopener noreffer">request</a>    *****</h3>
+<ol>
+<li>业务不复杂的情况下，使用Nodejs的原生http模块的客户端功能可满足需求，但在业务较复杂时使用http模块工作量会比较大，使用第三方request模块会让http请求变的简单。</li>
+<li>Request模块封装了http请求，使你可以用很简单的方式处理http请求，同时也支持HTTPS和请求重定向.</li>
+</ol>
+<h3 id="request-promisehttpsgithubcomrequestrequest-promise----"><a href="https://github.com/request/request-promise" target="_blank" rel="noopener noreffer">Request-Promise</a>    ******</h3>
+<ol>
+<li>request增加promise的支持。</li>
+</ol>
+<h4 id="流操作">流操作</h4>
+<h4 id="form相关">form相关</h4>
+<h2 id="browser支持">Browser支持</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/js/">JS</a>
+                </span><span><a href="/tags/node/">NODE</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-04-03</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-js-ts-webapi/" class="prev" rel="prev" title="WebApi"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/" class="next" rel="next" title="嵌入式-NFC">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

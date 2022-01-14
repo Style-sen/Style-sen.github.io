@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Egg - 标签 - 锦枫紫兰</title>
+        <link>/tags/egg/</link>
+        <description>Egg - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 31 Jul 2019 14:16:49 &#43;0000</lastBuildDate><atom:link href="/tags/egg/" rel="self" type="application/rss+xml" /><item>
+    <title>后端-web框架-node-egg</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/</link>
+    <pubDate>Wed, 31 Jul 2019 14:16:49 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/</guid>
+    <description><![CDATA[Egg 奉行『约定优于配置』 渐进式开发 1 2 3 4 5 1. 最初始的状态：直接在框架中写业务代码。 2. 插件的雏形：发现业务代码具有通用性，可以写成插件。 3. 抽成]]></description>
+</item>
+</channel>
+</rss>

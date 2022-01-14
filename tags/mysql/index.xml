@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MySQL - 标签 - 锦枫紫兰</title>
+        <link>/tags/mysql/</link>
+        <description>MySQL - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 21 Oct 2019 14:44:11 &#43;0000</lastBuildDate><atom:link href="/tags/mysql/" rel="self" type="application/rss+xml" /><item>
+    <title>后端-数据库-MYSQL</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql/</link>
+    <pubDate>Mon, 21 Oct 2019 14:44:11 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql/</guid>
+    <description><![CDATA[MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。 事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在]]></description>
+</item>
+</channel>
+</rss>

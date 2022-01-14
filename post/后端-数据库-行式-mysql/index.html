@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>后端-数据库-MYSQL - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="后端-数据库-MYSQL" />
+<meta property="og:description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。 事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-10-21T14:44:11+00:00" />
+<meta property="article:modified_time" content="2019-10-21T14:44:11+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="后端-数据库-MYSQL"/>
+<meta name="twitter:description" content="MYSQL基本教程 面试必备（原理） 数据库解决全量IO的问题。 事务隔离 在数据库系统中，事务隔离级别(isolation level)决定了数据在"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql/" /><link rel="prev" href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" /><link rel="next" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "后端-数据库-MYSQL",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "数据库, MySQL","wordcount":  3493 ,
+        "url": "\/post\/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%8C%E5%BC%8F-mysql\/","datePublished": "2019-10-21T14:44:11+00:00","dateModified": "2019-10-21T14:44:11+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">后端-数据库-MYSQL</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#面试必备原理">面试必备（原理）</a>
+      <ul>
+        <li><a href="#事务隔离">事务隔离</a></li>
+        <li><a href="#索引">索引</a></li>
+      </ul>
+    </li>
+    <li><a href="#mysql配置及优化">MYSQL配置及优化</a></li>
+    <li><a href="#mysql优化">MYSQL优化</a></li>
+    <li><a href="#数据库云">数据库云</a>
+      <ul>
+        <li><a href="#rdsaliyun">RDS(Aliyun)</a></li>
+      </ul>
+    </li>
+    <li><a href="#sql语句">SQL语句</a>
+      <ul>
+        <li><a href="#常用操作">常用操作</a></li>
+        <li><a href="#联查join">联查<code>JOIN</code></a></li>
+        <li><a href="#模糊查询">模糊查询</a>
+          <ul>
+            <li><a href="#条件">条件</a></li>
+          </ul>
+        </li>
+        <li><a href="#having子句">HAVING子句</a></li>
+      </ul>
+    </li>
+    <li><a href="#设计规范">设计规范</a>
+      <ul>
+        <li><a href="#表结构">表结构</a></li>
+        <li><a href="#线上禁止使用的sql语句">线上禁止使用的SQL语句</a></li>
+      </ul>
+    </li>
+    <li><a href="#官方docker镜像httpshubdockercom_mysql"><a href="https://hub.docker.com/_/mysql/">官方docker镜像</a></a>
+      <ul>
+        <li><a href="#配置">配置</a>
+          <ul>
+            <li><a href="#自定义配置文件">自定义配置文件</a></li>
+            <li><a href="#启动参数">启动参数</a></li>
+            <li><a href="#环境变量">环境变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储">存储</a></li>
+        <li><a href="#首次启动">首次启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#答疑解惑">答疑解惑</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p><a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener noreffer">MYSQL基本教程</a></p>
+<h2 id="面试必备原理">面试必备（原理）</h2>
+<ol>
+<li>数据库解决<code>全量IO</code>的问题。</li>
+</ol>
+<h3 id="事务隔离">事务隔离</h3>
+<ol>
+<li>在数据库系统中，事务隔离级别(isolation level)决定了数据在系统中的可见性。隔离级别从低到高分为四种：未提交读(Read uncommitted)，已提交读(Read committed)，可重复读(Repeatable read)，可串行化(Serializable)。他们的区别如下表所示。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未提交读(RU)</td>
+<td>可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>已提交读(RC)</td>
+<td>不可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可重复读(RR)</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可串行化</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>不可能</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>脏读(dirty read)是指一个事务可以读到其他事务还未提交的数据。不可重复读(non-repeatable read)是指在一个事务中同一行被读取了多次，可以读到不同的值。幻读(phantom read)是指在一个事务中执行同一个语句多次，读到的数据行发生了改变，即可能行数增加了或减少了。对于MySQL来说，默认的事务隔离级别是RR，通过上表我们可知RR是可重复读的，因此可以解释这个现象。</li>
+</ol>
+<h3 id="索引">索引</h3>
+<ol>
+<li>数据存在磁盘上的data page（默认4K）中。（分治）</li>
+<li>建表之前创建schema，指定字段类型（实际上是空间），是为了确定表中每一行的长度。方便查找。</li>
+<li>MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。</li>
+<li>建立索引的字段<code>必须是</code>数据表中最常用来查询（where）的字段。</li>
+<li>索引分单列索引和组合索引。单列索引，即一个索引只包含单个列，一个表可以有多个单列索引，但这不是组合索引。组合索引，即一个索引包含多个列。</li>
+<li>创建索引时，你需要确保该索引是应用在 SQL 查询语句的条件(一般作为 WHERE 子句的条件)。</li>
+<li>实际上，<code>索引也是一张表</code>，该表保存了主键与索引字段，并指向实体表的记录。</li>
+<li><code>缺点</code>过多的使用索引将会造成滥用。因此索引也会有它的缺点：虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行INSERT、UPDATE和DELETE。因为更新表时，MySQL不仅要保存数据，还要保存一下索引文件。建立索引会占用磁盘空间的索引文件。</li>
+<li>索引也是数据，也需要查询，大了之后也需要提高速度。这个时候有一个<code>B+</code>数。树干在内存，树叶在磁盘。</li>
+<li><code>因为有了索引</code>，数据表变大了，查询不一定会变慢。<code>WHERE</code>只有索引，是不会慢的。但是并发量比较大，查询比较复杂，速度还是比较慢的（磁盘IO影响）。</li>
+</ol>
+<h2 id="mysql配置及优化">MYSQL配置及优化</h2>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait_timeout</td>
+<td>wait_timeout过大有弊端，其体现就是MySQL里大量的SLEEP进程无法及时释放，拖累系统性能，不过也不能把这个指设置的过小，否则你可 能会遭遇到“MySQL has gone away”之类的问题</td>
+<td></td>
+</tr>
+<tr>
+<td>max_connections</td>
+<td>最大连接数.并法高，调高此值；但是会消耗内存，合适的值（SHOW STATUS LIKE &lsquo;max%connections&rsquo;;max_used_connections / max_connections * 100% （理想值≈85%））</td>
+<td>151</td>
+</tr>
+<tr>
+<td>back_log</td>
+<td>如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即back_log</td>
+<td>默认值是80，最多512，可设置为128</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mysql优化">MYSQL优化</h2>
+<h2 id="数据库云">数据库云</h2>
+<h3 id="rdsaliyun">RDS(Aliyun)</h3>
+<ol>
+<li><a href="https://help.aliyun.com/knowledge_detail/41817.html" target="_blank" rel="noopener noreffer">RDS for MySQL 物理备份文件恢复到自建数据库</a>;</li>
+<li><a href="https://help.aliyun.com/document_detail/157518.html" target="_blank" rel="noopener noreffer">数据同步方案概览</a></li>
+<li><a href="https://help.aliyun.com/document_detail/26652.html?spm=a2c4g.11186623.2.56.230251c1ONvmDR#concept-xng-n1b-mhb" target="_blank" rel="noopener noreffer">跨阿里云账号迁移RDS实例</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">如需执行增量数据迁移(或者数据同步)，需开启Binlog并满足以下要求：
+binlog_format设置为row。
+binlog_row_image设置为full。
+Binlog日志应至少保留24小时（建议3天以上）。
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="sql语句">SQL语句</h2>
+<ol>
+<li>mysql的创建表的语句后面有auto_increment=4.AUTO_INCREMENT=n命令来重设自增的起始值。但是如果设置的n比目前的数值小的话，执行的sql不会报错，但是不会生效！</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;&gt;</td>
+<td>不相等</td>
+</tr>
+<tr>
+<td>in</td>
+<td>在区间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用操作">常用操作</h3>
+<ol>
+<li>删除字段：<code>ALTER TABLE table_NAME DROP COLUMN column_NAM</code></li>
+</ol>
+<h3 id="联查join">联查<code>JOIN</code></h3>
+<ol>
+<li>SQL join 用于根据两个或多个表中的列之间的关系，从这些表中查询数据。</li>
+<li>普通的用法：<code>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons, Orders WHERE Persons.Id_P = Orders.Id_P </code>。</li>
+<li><code>默认</code>使用<code>inner join</code>，INNER JOIN 关键字在表中存在至少一个匹配时返回行。如果 &ldquo;Persons&rdquo; 中的行在 &ldquo;Orders&rdquo; 中没有匹配，就不会列出这些行。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+INNER JOIN Orders
+ON Persons.Id_P = Orders.Id_P
+ORDER BY Persons.LastName
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>使用<code>left join</code>, LEFT JOIN 关键字会从左表 (Persons) 那里返回所有的行，即使在右表 (Orders) 中没有匹配的行。</li>
+<li>使用<code>right join</code>, RIGHT JOIN 关键字会从右表 (Orders) 那里返回所有的行，即使在左表 (Persons) 中没有匹配的行。</li>
+<li>受用<code>full join</code>,FULL JOIN 关键字会从左表 (Persons) 和右表 (Orders) 那里返回所有的行。如果 &ldquo;Persons&rdquo; 中的行在表 &ldquo;Orders&rdquo; 中没有匹配，或者如果 &ldquo;Orders&rdquo; 中的行在表&quot;Persons&rdquo; 中没有匹配，这些行同样会列出。</li>
+</ol>
+<h3 id="模糊查询">模糊查询</h3>
+<ol>
+<li><code>SELECT 字段 FROM 表 WHERE 某字段 Like 条件</code></li>
+</ol>
+<h4 id="条件">条件</h4>
+<ol>
+<li><code>%</code>表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示。</li>
+<li><code>_</code> 表示任意单个字符。匹配单个任意字符，它常用来限制表达式的字符长度语句。</li>
+<li><code>[ ]</code> 表示括号内所列字符中的一个（类似正则表达式）。指定一个字符、字符串或范围（使用-），要求所匹配对象为它们中的任一个。</li>
+<li><code>[^ ]</code> 表示不在括号所列之内的单个字符。其取值和 <code>[]</code> 相同，但它要求所匹配对象为指定字符以外的任一个字符。</li>
+<li>由于通配符的缘故，导致我们查询特殊字符&rdquo;%&quot;、&quot;_&quot;、&quot;[&ldquo;的语句无法正常实现，而把特殊字符用&rdquo;<i class="far fa-square fa-fw"></i> &ldquo;括起便可正常查询。</li>
+</ol>
+<h3 id="having子句">HAVING子句</h3>
+<ol>
+<li>在SELECT语句中使用HAVING子句来指定<code>一组行或聚合</code>的过滤条件。</li>
+<li><code>HAVING子句通常与GROUP BY子句一起使用，放在其后</code>，以根据指定的条件过滤分组之后的结果。如果省略GROUP BY子句，则HAVING子句的行为与WHERE子句类似。</li>
+<li>请注意，HAVING子句将过滤条件应用于每组分行，而WHERE子句将过滤条件应用于每个单独的行。</li>
+</ol>
+<h2 id="设计规范">设计规范</h2>
+<ol>
+<li>参考<a href="https://gitee.com/ilanni/archer/blob/master/src/docs/mysql_db_design_guide.md" target="_blank" rel="noopener noreffer">MySQL数据库设计规范</a></li>
+</ol>
+<h3 id="表结构">表结构</h3>
+<ol start="8">
+<li><code>建议</code>表中所有字段必须都是NOT NULL属性，业务可以根据需要定义DEFAULT值。因为使用NULL值会存在每一行都会占用额外存储空间、数据迁移容易出错、聚合函数计算结果偏差等问题。</li>
+<li><code>建议</code>反范式设计：把经常需要join查询的字段，在其他表里冗余一份。如user_name属性在user_account，user_login_log等表里冗余一份，减少join查询。</li>
+</ol>
+<h3 id="线上禁止使用的sql语句">线上禁止使用的SQL语句</h3>
+<ol start="3">
+<li><code>强制</code>禁用procedure、function、trigger、views、event、<code>外键约束</code>。因为他们消耗数据库资源，降低数据库实例可扩展性。推荐都在程序端实现。</li>
+</ol>
+<h2 id="官方docker镜像httpshubdockercom_mysql"><a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener noreffer">官方docker镜像</a></h2>
+<h3 id="配置">配置</h3>
+<ol>
+<li>默认的配置文件<code>/etc/mysql/my.cnf</code>。</li>
+</ol>
+<h4 id="自定义配置文件">自定义配置文件</h4>
+<h4 id="启动参数">启动参数</h4>
+<ol>
+<li>可以使用<code>command</code>指定启动参数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">version: &#39;3.1&#39;
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - &#39;3306:3306&#39;
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./db_data:/var/lib/mysql:Z
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="环境变量">环境变量</h4>
+<ol>
+<li><code>注意</code>，如果用一个已经包含数据库的数据目录启动容器，那么下面的变量都不会有任何影响:在容器启动时，任何预先存在的数据库都不会改变。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">MYSQL_ROOT_PASSWORD    强制性的，设置root超级用户的密码
+MYSQL_DATABASE    可选的，指定镜像启动时，创建的数据库名称
+MYSQL_USER, MYSQL_PASSWORD    可选的，用于创建上述数据库的用户和密码
+MYSQL_ALLOW_EMPTY_PASSWORD    可选的（yes），允许可以不设置root密码，不建议，不安全
+MYSQL_RANDOM_ROOT_PASSWORD    可选的（yes），设置root一个随机密码，会在stdout打印 (GENERATED ROOT PASSWORD: .....).
+MYSQL_ONETIME_PASSWORD    设置root一次性密码，登录之后必须修改
+MYSQL_INITDB_SKIP_TZINFO    任何非空值，禁用时区加载
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="存储">存储</h3>
+<ol>
+<li>默认存储路径<code>/var/lib/mysql</code>.</li>
+</ol>
+<h3 id="首次启动">首次启动</h3>
+<ol>
+<li>首次启动容器时，将创建一个具有指定名称的新数据库，并使用提供的配置变量对其进行初始化。</li>
+<li>此外，它将执行在<code>/docker-entrypoint-initdb.d</code>中找到的扩展名为<code>.sh，.sql和.sql.gz</code>的文件。 文件将按字母顺序执行。</li>
+<li>You can easily populate your mysql services by mounting a SQL dump into that directory and provide custom images with contributed data.</li>
+<li>默认情况下，SQL文件将导入到MYSQL_DATABASE变量指定的数据库中。</li>
+</ol>
+<h2 id="答疑解惑">答疑解惑</h2>
+<ol>
+<li><a href="https://blog.csdn.net/anan890624/article/details/50991404" target="_blank" rel="noopener noreffer">删除数据的时候可能会出现MYSQL SAFE UPDATE MODE</a>；</li>
+<li><a href="https://github.com/gavenwangcn/vole/issues/4" target="_blank" rel="noopener noreffer">1273 - Unknown collation: &lsquo;utf8mb4_0900_ai_ci&rsquo;</a>;</li>
+<li><a href="https://help.aliyun.com/knowledge_detail/41701.html?spm=a2c4g.11186631.2.2.64d33641KBWxTO" target="_blank" rel="noopener noreffer">RDS MySQL出现“OPERATION need to be executed set by ADMIN”报错</a></li>
+<li>可以使用<code>mysql workbench</code>来导出和导入数据,注意需要删除<code>AUTO_INCREMENT=321</code>属性。</li>
+<li><a href="https://www.jianshu.com/p/c09df83c9805" target="_blank" rel="noopener noreffer">解决MySQL报错：[Err] 1055 - Expression #1 of ORDER BY clause is not in GROUP BY clause and contains no&hellip;</a></li>
+<li><a href="https://help.aliyun.com/knowledge_detail/41702.html" target="_blank" rel="noopener noreffer">微信昵称emoji表情</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">原因：MySQL的utf8编码方式的数据为三个字节。MySQL的utf8编码改为utf8mb4编码方式。
+解决方法：
+1. 查看数据库是否支持，SHOW CHAR SET WHERE Charset LIKE &#34;%utf8%&#34;;
+2. 修改数据库支持：ALTER DATABASE [$Database] CHARACTER SET [$Character_Set] COLLATE [$Collation_Name];
+3. 修改表支持：ALTER TABLE [$Table] CONVERT TO CHARACTER SET [$Character_Set] COLLATE [$Collation_Name];
+4. 重启：
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                </span><span><a href="/tags/mysql/">MySQL</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-10-21</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" class="prev" rel="prev" title="产品设计-开源产品"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="next" rel="next" title="微服务架构笔记-性能测试">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

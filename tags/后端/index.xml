@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>后端 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E5%90%8E%E7%AB%AF/</link>
+        <description>后端 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 02 Aug 2019 20:10:26 &#43;0000</lastBuildDate><atom:link href="/tags/%E5%90%8E%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+    <title>ORM-Sequelize</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/</link>
+    <pubDate>Fri, 02 Aug 2019 20:10:26 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/</guid>
+    <description><![CDATA[摘自Sequelize 中文API文档 MODEL定义 时间戳 延时 Getters &amp; setters - 访问器&amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问]]></description>
+</item>
+<item>
+    <title>后端-web框架-node-egg</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/</link>
+    <pubDate>Wed, 31 Jul 2019 14:16:49 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/</guid>
+    <description><![CDATA[Egg 奉行『约定优于配置』 渐进式开发 1 2 3 4 5 1. 最初始的状态：直接在框架中写业务代码。 2. 插件的雏形：发现业务代码具有通用性，可以写成插件。 3. 抽成]]></description>
+</item>
+<item>
+    <title>后端-uWSGI</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-uwsgi/</link>
+    <pubDate>Tue, 11 Jun 2019 16:25:52 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-uwsgi/</guid>
+    <description><![CDATA[配置 默认情况下，uWSGI会在第一个启动的进程中加载整个应用，并在加载完毕之后，会将自己多次fork()。这是常见的Unix模式，这能够显著]]></description>
+</item>
+<item>
+    <title>后端-构建API服务</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-api/</link>
+    <pubDate>Mon, 25 Mar 2019 14:32:17 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-api/</guid>
+    <description><![CDATA[标准 OpenAPI规范 JSON Schema 设计原则 1 2 3 1. API版本放进URL中。 2. API执行前都需要进行认证和权限的判定（中间件）。`权限的判定，通过to]]></description>
+</item>
+<item>
+    <title>后端-web框架-Flask</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</link>
+    <pubDate>Mon, 11 Mar 2019 09:55:21 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</guid>
+    <description><![CDATA[配置的最佳实践 变量的配置 通过调用自定义config.py文件中config字典，可以得到一个类，这个类里面定义的都是类变量，这些变量就是自定]]></description>
+</item>
+<item>
+    <title>后端-ORM-PYTHON</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/</link>
+    <pubDate>Fri, 08 Mar 2019 09:56:28 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/</guid>
+    <description><![CDATA[数据库设计 数据库中的字段要区分永久性还是递变性，永久性存为一张表，递变性的字段单独为一张表，但是会随时间变化。 永久性的字段衍伸的字段，可以用]]></description>
+</item>
+</channel>
+</rss>

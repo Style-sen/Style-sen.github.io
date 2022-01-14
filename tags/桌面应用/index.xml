@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>桌面应用 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</link>
+        <description>桌面应用 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Jan 2019 15:03:27 &#43;0000</lastBuildDate><atom:link href="/tags/%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>使用Electron创建桌面应用</title>
+    <link>/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</link>
+    <pubDate>Mon, 14 Jan 2019 15:03:27 &#43;0000</pubDate><guid>/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</guid>
+    <description><![CDATA[Electron API 演示(中文版) 完成一个桌面项目 使用Xmind制作功能描述和模块划分 使用pencil制作界面原型 使用yed制作流程图 开始一个工程 注：创建一]]></description>
+</item>
+</channel>
+</rss>

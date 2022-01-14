@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>嵌入式-NFC - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="嵌入式-NFC" />
+<meta property="og:description" content="NFC类型 NFC-A 基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B 基于ISO/IE" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-04-04T11:32:43+00:00" />
+<meta property="article:modified_time" content="2019-04-04T11:32:43+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="嵌入式-NFC"/>
+<meta name="twitter:description" content="NFC类型 NFC-A 基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。 NFC-B 基于ISO/IE"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc/" /><link rel="prev" href="/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/" /><link rel="next" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nrf-ble/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "嵌入式-NFC",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "NFC","wordcount":  3439 ,
+        "url": "\/post\/%E5%B5%8C%E5%85%A5%E5%BC%8F-nfc\/","datePublished": "2019-04-04T11:32:43+00:00","dateModified": "2019-04-04T11:32:43+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">嵌入式-NFC</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#nfc类型">NFC类型</a>
+      <ul>
+        <li><a href="#nfc-a">NFC-A</a></li>
+        <li><a href="#nfc-b">NFC-B</a></li>
+        <li><a href="#nfc-f">NFC-F</a></li>
+      </ul>
+    </li>
+    <li><a href="#nfc标签类型tag">NFC标签类型(TAG)</a>
+      <ul>
+        <li><a href="#heading"></a></li>
+      </ul>
+    </li>
+    <li><a href="#apdu">APDU</a>
+      <ul>
+        <li><a href="#ifd读卡接口设备与ic卡之间的通讯">IFD（读卡接口设备）与IC卡之间的通讯：</a></li>
+        <li><a href="#命令头">命令头</a></li>
+        <li><a href="#指令类别和指令码">指令类别和指令码</a></li>
+        <li><a href="#状态码">状态码</a></li>
+      </ul>
+    </li>
+    <li><a href="#ndef">NDEF</a>
+      <ul>
+        <li><a href="#读写tag-4">读写TAG 4</a></li>
+      </ul>
+    </li>
+    <li><a href="#读卡器">读卡器</a>
+      <ul>
+        <li><a href="#acr122uhttpwwwacr122com"><a href="http://www.acr122.com/">ACR122U</a></a></li>
+        <li><a href="#pn532">PN532</a>
+          <ul>
+            <li><a href="#用户手册">用户手册</a>
+              <ul>
+                <li><a href="#命令支持">命令支持</a>
+                  <ul>
+                    <li><a href="#读取pn532版本">读取PN532版本</a></li>
+                    <li><a href="#indataexchange">InDataExchange</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#libnfchttpnfc-toolsorgindexphptitlelibnfc"><a href="http://nfc-tools.org/index.php?title=Libnfc">Libnfc</a></a>
+              <ul>
+                <li><a href="#ubuntu下使用">Ubuntu下使用</a></li>
+                <li><a href="#nfc-devicehardware-manipulation">NFC Device/Hardware manipulation</a></li>
+              </ul>
+            </li>
+            <li><a href="#libfreefarehttpnfc-toolsorgindexphplibfreefare基于libnfc访问mifare-tag"><a href="http://nfc-tools.org/index.php/Libfreefare">Libfreefare</a>基于libnfc访问MIFARE TAG</a>
+              <ul>
+                <li><a href="#支持部分卡">支持部分卡</a></li>
+                <li><a href="#源码分析">源码分析</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#mfrc522">MFRC522</a>
+          <ul>
+            <li><a href="#非接触cpu卡读卡模块mifare-plus读写模块cut100-plushttpsitemtaobaocomitemhtmspma1z0212016030118d2016038584d782du6gtzpid41402998243scm10071015781291100200300000000pvidb35f93ad-75f1-48fa-842e-301016fcb583"><a href="https://item.taobao.com/item.htm?spm=a1z02.1.2016030118.d2016038.584d782dU6GTzP&amp;id=41402998243&amp;scm=1007.10157.81291.100200300000000&amp;pvid=b35f93ad-75f1-48fa-842e-301016fcb583">非接触CPU卡读卡模块|Mifare plus读写模块|CUT100-PLUS</a></a></li>
+            <li><a href="#周立功-zlg522st-rfid-读卡模块-1356mhz-可直拍httpsitemtaobaocomitemhtmspma230r114967656a7dnbcuzzid41191367328ns1abbucket12detail"><a href="https://item.taobao.com/item.htm?spm=a230r.1.14.9.67656a7dnBcuzZ&amp;id=41191367328&amp;ns=1&amp;abbucket=12#detail">周立功 ZLG522S/T RFID 读卡模块 13.56MHz 可直拍</a></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#模拟标签">模拟标签</a>
+      <ul>
+        <li><a href="#nrf52832">NRF52832</a>
+          <ul>
+            <li><a href="#sdk">SDK</a>
+              <ul>
+                <li><a href="#nrf5_sdkcomponentsnfct4t_libnfc_t4t_libh">nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</a></li>
+                <li><a href="#nrf5_sdkcomponentsnfct2t_libnfc_t2t_libh">nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#缩略语">缩略语</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="nfc类型">NFC类型</h2>
+<h3 id="nfc-a">NFC-A</h3>
+<p>基于ISO/IEC 14443A。类似RFID-A。AM调制弥勒编码（高低代表1和0）。106 Kbps数据速率。</p>
+<h3 id="nfc-b">NFC-B</h3>
+<p>基于ISO/IEC 14443B。类似RFID-B。AM调制曼彻斯特编码（边沿触发）。106 Kbps数据速率。</p>
+<h3 id="nfc-f">NFC-F</h3>
+<p>基于FeliCA JIS X6319-4。更快。也被称作FeliCA。它被用于各种各样的应用，如基于creadit卡或借记卡的支付，地铁车票的访问控制，在办公室和住宅公寓的个人识别等。</p>
+<h2 id="nfc标签类型tag">NFC标签类型(TAG)</h2>
+<p>参考<a href="https://www.nxp.com/docs/en/application-note/AN10833.pdf" target="_blank" rel="noopener noreffer">MIFARE Type Identification Procedure</a>可以看到ATQA和SAK与卡类型的对应关系。</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>Standard</th>
+<th>Memory Size</th>
+<th>Speed</th>
+<th>Data Access</th>
+<th>Collision mechanism</th>
+<th>Compliant Products</th>
+<th>Pricing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type-1</td>
+<td>ISO-14443A</td>
+<td>96 bytes</td>
+<td>106 Kbps</td>
+<td>Read/Write or Read Only</td>
+<td>Data collision protection not available</td>
+<td>Innovision Topaz</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Type-2</td>
+<td>ISO-14443A</td>
+<td>48 bytes/ 144 bytes</td>
+<td>106 Kbps</td>
+<td>Read/Write or Read Only</td>
+<td>Anti-collision support available</td>
+<td>NXP Mifare Ultralight, NXP Mifare Ultralight C</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Type-3</td>
+<td>ISO-18092, JIS-X-6319-4</td>
+<td>1/4/9 KB</td>
+<td>212 or 424 kbps</td>
+<td>Read/Write or Read Only</td>
+<td>Anti-collision support available</td>
+<td>Sony Felica</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Type-4</td>
+<td>NXP DESFire Tag (ISO-14443A)</td>
+<td>4 KB/ 32 KB</td>
+<td>106/212/424 Kbps</td>
+<td>Read/Write or Read Only</td>
+<td>Anti-collision support available</td>
+<td>NXP DESFire, NXP SmartMX-JCOP</td>
+<td>Medium to high</td>
+</tr>
+<tr>
+<td>Type-5 Tag (Type Mifare Classic Tag)</td>
+<td>ISO-14443A, MF1 IC S50</td>
+<td>192 Bytes/ 768 bytes/ 3584 bytes</td>
+<td>106Kbps</td>
+<td>Read/Write or Read Only</td>
+<td>Anti-collision Support available</td>
+<td>NXP Mifare Classic 1K, NXP Mifare Classic 4K, NXP Mifare Classic Mini</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heading"></h3>
+<h2 id="apdu">APDU</h2>
+<ol>
+<li>智能卡与智能卡读卡器之间传送的信息单元, 是给智能卡发送的命令。</li>
+</ol>
+<h3 id="ifd读卡接口设备与ic卡之间的通讯">IFD（读卡接口设备）与IC卡之间的通讯：</h3>
+<ol>
+<li>首先，IFD发送5个字节的命令头给IC卡，这5个字节的内容告诉了IC卡要做什么操作；</li>
+<li>然后，IC卡回传一个过程字节给IFD，告诉IFD，IC卡是否支持该操作；</li>
+<li>如果返回的过程字节告诉IFD——IC卡支持该操作，则接下来就进行数据的传输（如果有的话），数据从IFD输入到IC卡或数据从IC卡输出到IFD；</li>
+<li>如果返回的过程字节告诉IFD——IC卡不支持该操作，则IC卡回传给IFD两个状态字节SW1 SW2，IFD根据SW1 SW2两字节判断IC卡不支持该操作的原因；</li>
+</ol>
+<h3 id="命令头">命令头</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLA</td>
+<td>指令类别</td>
+<td>其中值‘FF’被保留用于PPS。注意 ISO/IEC 7816-4 强制‘FF’对于CLA为无效值</td>
+</tr>
+<tr>
+<td>INS</td>
+<td>指令码</td>
+<td>其中值‘6X’和‘9X’为无效值。注意 ISO/IEC 7816-4 强制‘6X’和‘9X’对于INS为无效值</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>参数1</td>
+<td></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>参数2</td>
+<td></td>
+</tr>
+<tr>
+<td>Lc</td>
+<td>Data的长度</td>
+<td>=0</td>
+</tr>
+<tr>
+<td>Data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Le</td>
+<td>希望响应的数据的长度</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令类别和指令码">指令类别和指令码</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>类别</th>
+<th>指令码</th>
+<th>功能</th>
+<th>例子</th>
+<th>参数1</th>
+<th>参数2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT</td>
+<td>00</td>
+<td>A4</td>
+<td>选择文件</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>READ BINARY</td>
+<td>00</td>
+<td>B0</td>
+<td>读二进制文件内容</td>
+<td>0x00, 0xb0, 0x00, 0x00, 0x10 读取16个字节</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>READ RECORD</td>
+<td>00</td>
+<td>B2</td>
+<td>读记录文件指定内容</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UPDATE BINARY</td>
+<td>00/04</td>
+<td>D6</td>
+<td>写二进制文件</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UPDATE RECORD</td>
+<td>00/04</td>
+<td>DC</td>
+<td>写记录文件</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>00</td>
+<td>a4</td>
+<td>选择文件</td>
+<td></td>
+<td>0x04（根据名称选择）;0x00（根据file id选择）</td>
+<td>0x00（根据名称选择）；0x0C（根据file id选择）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="状态码">状态码</h3>
+<p>|状态码| 十进制表示 |性质|错误解释|
+|&ndash;|&ndash;|&ndash;|
+|9000 | 144， 0|正常| 成功执行|
+|6200 |警告 信息未提供
+|6281 |警告 回送数据可能出错
+|6282 |警告 文件长度小于Le
+|6283 |警告 选中的文件无效
+|6284 |警告 FCI格式与P2指定的不符
+|6300 警告 鉴别失败
+|63Cx 警告 校验失败（x－允许重试次数）
+|6400 出错 状态标志位没有变
+|6581 出错 内存失败
+|6700 出错 长度错误
+|6882 出错 不支持安全报文
+|6981 出错 命令与文件结构不相容，当前文件非所需文件
+|6982 出错 操作条件（AC）不满足，没有校验PIN
+|6983 出错 认证方法锁定，PIN被锁定
+|6984 出错 随机数无效，引用的数据无效
+|6985 出错 使用条件不满足
+|6986 出错 不满足命令执行条件（不允许的命令，INS有错）
+|6987 出错 MAC丢失
+|6988 出错 MAC不正确
+|698D 保留
+|6A80 出错 数据域参数不正确
+|6A81 出错 功能不支持；创建不允许；目录无效；应用锁定
+|6A82 | 106,130 |出错 |该文件未找到|
+|6A83 出错 该记录未找到
+|6A84 出错 文件预留空间不足
+|6A86 出错 P1或P2不正确
+|6A88 出错 引用数据未找到
+|6B00 出错 参数错误
+|6Cxx 出错 Le长度错误，实际长度是xx
+|6E00 出错 不支持的类：CLA有错
+|6F00 出错 数据无效
+|6D00 出错 不支持的指令代码
+|9301 出错 资金不足
+|9302 出错 MAC无效
+|9303 出错 应用被永久锁定
+|9401 出错 交易金额不足
+|9402 出错 交易计数器达到最大值
+|9403 出错 密钥索引不支持
+|9406 出错 所需MAC不可用
+|6900 出错 不能处理
+|6901 出错 命令不接受（无效状态）
+|61xx 正常 需发GET RESPONSE命令
+|6600 出错 接收通讯超时
+|6601 出错 接收字符奇偶错
+|6602 出错 校验和不对
+|6603 警告 当前DF文件无FCI
+|6604 警告 当前DF下无SF或KF</p>
+<h2 id="ndef">NDEF</h2>
+<p>参考<a href="https://github.com/haldean/ndef" target="_blank" rel="noopener noreffer">haldean/ndef</a></p>
+<h3 id="读写tag-4">读写TAG 4</h3>
+<p>使用pn532仿真tag4获得此流程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">Emulating</span> <span class="n">NDEF</span> <span class="n">tag</span> <span class="n">now</span><span class="p">,</span> <span class="n">please</span> <span class="n">touch</span> <span class="n">it</span> <span class="n">with</span> <span class="n">a</span> <span class="n">second</span> <span class="n">NFC</span> <span class="n">device</span>
+    <span class="c1">// 第一步：NDEF Tag Application Select Procedure 根据名称选择
+</span><span class="c1"></span>    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">a4</span>  <span class="mo">04</span>  <span class="mo">00</span>  <span class="mo">07</span>  <span class="n">d2</span>  <span class="mi">76</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mi">85</span>  <span class="mo">01</span>  <span class="mo">01</span>  <span class="mo">00</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="c1">// 第二步：根据file_id选择
+</span><span class="c1"></span>    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">a4</span>  <span class="mo">00</span>  <span class="mi">0</span><span class="n">c</span>  <span class="mo">02</span>  <span class="n">e1</span>  <span class="mo">03</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="c1">// 读
+</span><span class="c1"></span>    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">b0</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mf">0f</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mo">00</span>  <span class="mf">0f</span>  <span class="mi">20</span>  <span class="mo">00</span>  <span class="mi">54</span>  <span class="mo">00</span>  <span class="n">ff</span>  <span class="mo">04</span>  <span class="mo">06</span>  <span class="n">e1</span>  <span class="mo">04</span>  <span class="n">ff</span>  <span class="n">fe</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">a4</span>  <span class="mo">00</span>  <span class="mi">0</span><span class="n">c</span>  <span class="mo">02</span>  <span class="n">e1</span>  <span class="mo">04</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">b0</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mo">02</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mo">00</span>  <span class="mi">21</span>  <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">b0</span>  <span class="mo">00</span>  <span class="mo">02</span>  <span class="mi">21</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="n">d1</span>  <span class="mo">02</span>  <span class="mi">1</span><span class="n">c</span>  <span class="mi">53</span>  <span class="mi">70</span>  <span class="mi">91</span>  <span class="mo">01</span>  <span class="mi">09</span>  <span class="mi">54</span>  <span class="mo">02</span>  <span class="mi">65</span>  <span class="mi">6</span><span class="n">e</span>  <span class="mi">4</span><span class="n">c</span>  <span class="mi">69</span>  <span class="mi">62</span>  <span class="mi">6</span><span class="n">e</span>  <span class="mi">66</span>  <span class="mi">63</span>  <span class="mi">51</span>  <span class="mo">01</span>  <span class="mi">0</span><span class="n">b</span>  <span class="mi">55</span>  <span class="mo">03</span>  <span class="mi">6</span><span class="n">c</span>  <span class="mi">69</span>  <span class="mi">62</span>  <span class="mi">6</span><span class="n">e</span>  <span class="mi">66</span>  <span class="mi">63</span>  <span class="mi">2</span><span class="n">e</span>  <span class="mf">6f</span>  <span class="mi">72</span>  <span class="mi">67</span>  <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">a4</span>  <span class="mo">00</span>  <span class="mi">0</span><span class="n">c</span>  <span class="mo">02</span>  <span class="n">e1</span>  <span class="mo">03</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">b0</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mf">0f</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mo">00</span>  <span class="mf">0f</span>  <span class="mi">20</span>  <span class="mo">00</span>  <span class="mi">54</span>  <span class="mo">00</span>  <span class="n">ff</span>  <span class="mo">04</span>  <span class="mo">06</span>  <span class="n">e1</span>  <span class="mo">04</span>  <span class="n">ff</span>  <span class="n">fe</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">a4</span>  <span class="mo">00</span>  <span class="mi">0</span><span class="n">c</span>  <span class="mo">02</span>  <span class="n">e1</span>  <span class="mo">04</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">b0</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mo">02</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mo">00</span>  <span class="mi">21</span>  <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="c1">// 写第一步
+</span><span class="c1"></span>    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">d6</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mo">02</span>  <span class="mo">00</span>  <span class="mo">00</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="c1">// 写第二步
+</span><span class="c1"></span>    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">d6</span>  <span class="mo">00</span>  <span class="mo">02</span>  <span class="mi">16</span>  <span class="n">d1</span>  <span class="mo">01</span>  <span class="mi">12</span>  <span class="mi">54</span>  <span class="o">&lt;</span><span class="err">数据</span><span class="o">&gt;</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="c1">// 写第三步
+</span><span class="c1"></span>    <span class="nl">In</span><span class="p">:</span> <span class="mo">00</span>  <span class="n">d6</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mo">02</span>  <span class="mo">00</span>  <span class="mi">16</span>  
+    <span class="nl">Out</span><span class="p">:</span> <span class="mi">90</span>  <span class="mo">00</span>  
+    <span class="nl">In</span><span class="p">:</span> <span class="mo">03</span>  <span class="n">b0</span>  <span class="mo">00</span>  <span class="mo">00</span>  <span class="mo">01</span>  
+<span class="nl">nfc_emulate_target</span><span class="p">:</span> <span class="n">Success</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="读卡器">读卡器</h2>
+<h3 id="acr122uhttpwwwacr122com"><a href="http://www.acr122.com/" target="_blank" rel="noopener noreffer">ACR122U</a></h3>
+<ol>
+<li>支持Android™ OS 3.1 及以上版本（使用OTG）。</li>
+</ol>
+<h3 id="pn532">PN532</h3>
+<p>PN532是一个高度集成的非接触读写芯片，它包含80C51微控制器内核，集成了13.56MHz下的各种主动/被动式非接触通信方法和协议。
+PN532传输模块支持6种不同的工作模式：</p>
+<ul>
+<li>读写器模式，支持ISO/IEC 14443A / MIFARE®机制</li>
+<li>读写器模式，支持 FeliCa机制</li>
+<li>读写器模式，支持ISO/IEC 14443B机制</li>
+<li>卡操作模式，支持ISO 14443A / MIFARE®机制</li>
+<li>卡操作模式，FeliCa机制</li>
+<li>ISO/IEC18092，ECM340点对点</li>
+</ul>
+<h4 id="用户手册">用户手册</h4>
+<h5 id="命令支持">命令支持</h5>
+<p>|a |b |c |d |e |f |g |h |i |j |k |
+|&ndash;|&ndash;|&ndash;|&ndash;|&ndash;|&ndash;|&ndash;|&ndash;|&ndash;|&ndash;|
+|0x00| 0x00| 0xFF| LEN(数据长度+1)|LCS(LEN的校验)| 0xD4|CC|Optional Input Data|DCS|0x00|
+00 00 FF LEN LCS D5 CC+1 Optional Output Data DCS 00</p>
+<h6 id="读取pn532版本">读取PN532版本</h6>
+<p>发送：0x02
+返回：0x03 0x32 0x01 0x06 0x07</p>
+<h6 id="indataexchange">InDataExchange</h6>
+<p>支持读卡器（PN532）和TAG之间的协议数据（APDU）交流。</p>
+<h4 id="libnfchttpnfc-toolsorgindexphptitlelibnfc"><a href="http://nfc-tools.org/index.php?title=Libnfc" target="_blank" rel="noopener noreffer">Libnfc</a></h4>
+<h5 id="ubuntu下使用">Ubuntu下使用</h5>
+<ol>
+<li>安装完libnfc;</li>
+<li>更改配置：<code>/etc/nfc/libnfc.conf</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">device.name = &#34;microBuilder.eu&#34;
+device.connstring = &#34;pn532_uart:/dev/ttyUSB0&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>modules</p>
+<h5 id="nfc-devicehardware-manipulation">NFC Device/Hardware manipulation</h5>
+<p><a href="http://www.libnfc.org/api/modules.html" target="_blank" rel="noopener noreffer">API</a></p>
+<p>nfc/drivers/pn532_i2c.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">static nfc_device * pn532_i2c_open(const nfc_context *context, const nfc_connstring connstring)
+
+</code></pre></td></tr></table>
+</div>
+</div><p>nfc/nfc/nfc-internal.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">int connstring_decode(const nfc_connstring connstring, const char *driver_name, const char *bus_name, char **pparam1, char **pparam2)
+</code></pre></td></tr></table>
+</div>
+</div><p>nfc/nfc/nfc.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">nfc_init</span><span class="p">(</span><span class="n">nfc_context</span> <span class="o">**</span> <span class="n">context</span><span class="p">)</span>    <span class="c1">// context	Output location for nfc_context
+</span><span class="c1">// (必须第一步)Initialize libnfc. This function must be called before calling any other libnfc function.
+</span><span class="c1"></span><span class="n">size_t</span> <span class="n">nfc_list_devices</span><span class="p">(</span><span class="n">nfc_context</span> <span class="o">*</span> <span class="n">context</span><span class="p">,</span>    <span class="c1">// The context to operate on, or NULL for the default context.
+</span><span class="c1"></span>                        <span class="n">nfc_connstring</span> <span class="n">connstrings</span><span class="p">[],</span>    <span class="c1">// array of nfc_connstring.
+</span><span class="c1"></span>                        <span class="k">const</span> <span class="n">size_t</span> <span class="n">connstrings_len</span>     <span class="c1">// size of the connstrings array.
+</span><span class="c1"></span><span class="p">)</span>    <span class="c1">// (可选)扫描支持的设备 (ie. only available for some drivers)返回找到的设备数量
+</span><span class="c1"></span><span class="n">nfc_device</span><span class="o">*</span> <span class="n">nfc_open</span><span class="p">(</span><span class="n">nfc_context</span> <span class="o">*</span> <span class="n">context</span><span class="p">,</span>    <span class="c1">// The context to operate on.
+</span><span class="c1"></span>                     <span class="k">const</span> <span class="n">nfc_connstring</span> <span class="n">connstring</span>     <span class="c1">// The device connection string if specific device is wanted, NULL otherwise
+</span><span class="c1"></span><span class="p">)</span>    <span class="o">//</span> <span class="n">Open</span> <span class="n">a</span> <span class="n">NFC</span> <span class="n">device</span><span class="p">.</span><span class="n">Returns</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">a</span> <span class="n">nfc_device</span> <span class="k">struct</span> <span class="k">if</span> <span class="n">successfull</span><span class="p">;</span> <span class="n">otherwise</span> <span class="n">returns</span> <span class="nb">NULL</span> <span class="n">value</span><span class="p">.</span>
+
+<span class="kt">int</span> <span class="n">nfc_initiator_init</span><span class="p">(</span><span class="n">nfc_device</span> <span class="o">*</span> <span class="n">pnd</span><span class="p">)</span>    <span class="c1">// Initialize NFC device as initiator (reader)读卡器
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">nfc_initiator_list_passive_targets</span>	<span class="p">(</span>	<span class="n">nfc_device</span> <span class="o">*</span> 	<span class="n">pnd</span><span class="p">,</span>    <span class="c1">// nfc_device struct pointer that represent currently used device
+</span><span class="c1"></span>                                            <span class="k">const</span> <span class="n">nfc_modulation</span> 	<span class="n">nm</span><span class="p">,</span>    <span class="c1">// desired modulation
+</span><span class="c1"></span>                                            <span class="n">nfc_target</span> 	<span class="n">ant</span><span class="p">[],</span>    <span class="c1">// array of nfc_target that will be filled with targets info
+</span><span class="c1"></span>                                            <span class="k">const</span> <span class="n">size_t</span> 	<span class="n">szTargets</span>     <span class="c1">// size of ant (will be the max targets listed)
+</span><span class="c1"></span><span class="p">)</span>    <span class="c1">// List passive or emulated tags.	Returns the number of targets found on success, otherwise returns libnfc&#39;s error code (negative value)
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">nfc_initiator_select_passive_target</span>	<span class="p">(</span>	<span class="n">nfc_device</span> <span class="o">*</span> 	<span class="n">pnd</span><span class="p">,</span>    <span class="c1">// nfc_device struct pointer that represent currently used device
+</span><span class="c1"></span>                                            <span class="k">const</span> <span class="n">nfc_modulation</span> 	<span class="n">nm</span><span class="p">,</span>    <span class="c1">//desired modulation
+</span><span class="c1"></span>                                            <span class="k">const</span> <span class="n">uint8_t</span> <span class="o">*</span> 	<span class="n">pbtInitData</span><span class="p">,</span>  <span class="c1">// optional initiator data, NULL for using the default values.
+</span><span class="c1"></span>                                            <span class="k">const</span> <span class="n">size_t</span> 	<span class="n">szInitData</span><span class="p">,</span>    <span class="c1">// pbtInitData的长度.
+</span><span class="c1"></span>                                            <span class="n">nfc_target</span> <span class="o">*</span> 	<span class="n">pnt</span>    <span class="c1">// nfc_target struct pointer which will filled if available
+</span><span class="c1"></span><span class="p">)</span>	<span class="c1">// 选择一个tag  Returns selected passive target count on success, otherwise returns libnfc&#39;s error code (negative value)
+</span><span class="c1"></span>
+<span class="c1">// 执行下边的函数必须先选择target
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">nfc_initiator_transceive_bytes</span>	<span class="p">(</span>	<span class="n">nfc_device</span> <span class="o">*</span> 	<span class="n">pnd</span><span class="p">,</span>    <span class="c1">// nfc_device struct pointer that represent currently used device
+</span><span class="c1"></span>                                        <span class="k">const</span> <span class="n">uint8_t</span> <span class="o">*</span> 	<span class="n">pbtTx</span><span class="p">,</span>    <span class="c1">// 待发送帧的字节数组
+</span><span class="c1"></span>                                        <span class="k">const</span> <span class="n">size_t</span> 	<span class="n">szTx</span><span class="p">,</span>    <span class="c1">// 待发送帧的字节数组的长度
+</span><span class="c1"></span>                                        <span class="n">uint8_t</span> <span class="o">*</span> 	<span class="n">pbtRx</span><span class="p">,</span>    <span class="c1">// 用来存储从卡中读取的数据字节
+</span><span class="c1"></span>                                        <span class="k">const</span> <span class="n">size_t</span> 	<span class="n">szRx</span><span class="p">,</span>    <span class="c1">// size of pbtRx (Will return NFC_EOVFLOW if RX exceeds this size)
+</span><span class="c1"></span>                                        <span class="kt">int</span> 	<span class="n">timeout</span>    <span class="c1">// in milliseconds
+</span><span class="c1"></span><span class="p">)</span>	<span class="c1">// Returns received bytes count on success, otherwise returns libnfc&#39;s error code
+</span><span class="c1">//The NFC device (configured as initiator) will transmit the supplied bytes (pbtTx) to the target. It waits for the response and stores the received bytes in the pbtRx byte array.
+</span><span class="c1">//If NP_EASY_FRAMING option is disabled the frames will sent and received in raw mode: PN53x will not handle input neither output data.
+</span><span class="c1">//The parity bits are handled by the PN53x chip. The CRC can be generated automatically or handled manually. Using this function, frames can be communicated very fast via the NFC initiator to the tag.
+</span><span class="c1">//Tests show that on average this way of communicating is much faster than using the regular driver/middle-ware (often supplied by manufacturers).
+</span><span class="c1">//WARNING:The configuration option NP_HANDLE_PARITY must be set to true (the default value).
+</span><span class="c1">//NOTE:When used with MIFARE Classic, NFC_EMFCAUTHFAIL error is returned if authentication command failed. You need to re-select the tag to operate with.
+</span><span class="c1">//NOTE:If timeout equals to 0, the function blocks indefinitely (until an error is raised or function is completed) If timeout equals to -1, the default timeout will be used
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="libfreefarehttpnfc-toolsorgindexphplibfreefare基于libnfc访问mifare-tag"><a href="http://nfc-tools.org/index.php/Libfreefare" target="_blank" rel="noopener noreffer">Libfreefare</a>基于libnfc访问MIFARE TAG</h4>
+<h5 id="支持部分卡">支持部分卡</h5>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FeliCa Lite	Supported</td>
+<td></td>
+</tr>
+<tr>
+<td>MIFARE Classic 1k</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE Classic 4k</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE DESFire 2k</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE DESFire 4k</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE DESFire 8k</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE DESFire EV1</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE Mini</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE Plus S 2k</td>
+<td>Not supported</td>
+</tr>
+<tr>
+<td>MIFARE Plus S 4k</td>
+<td>Not supported</td>
+</tr>
+<tr>
+<td>MIFARE Plus X 2k</td>
+<td>Not supported</td>
+</tr>
+<tr>
+<td>MIFARE Plus X 4k</td>
+<td>Not supported</td>
+</tr>
+<tr>
+<td>MIFARE Ultralight</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>MIFARE Ultralight C</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>NTAG21x</td>
+<td>Supported</td>
+</tr>
+</tbody>
+</table>
+<h5 id="源码分析">源码分析</h5>
+<p>freefare.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">MifareTag</span> <span class="o">*</span> <span class="n">freefare_get_tags</span> <span class="p">(</span><span class="n">nfc_device</span> <span class="o">*</span><span class="n">device</span><span class="p">)</span>    <span class="c1">// 
+</span><span class="c1">// send NFC commands to the initiator to prepare communication with a MIFARE card, and perform required cleannups after using the targets.
+</span><span class="c1">// Get a list of the MIFARE targets near to the provided NFC initiator.
+</span><span class="c1">// The list has to be freed using the freefare_free_tags() function.
+</span><span class="c1">// 此方法在nfc_open之后就可以调用
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mfrc522">MFRC522</h3>
+<h4 id="非接触cpu卡读卡模块mifare-plus读写模块cut100-plushttpsitemtaobaocomitemhtmspma1z0212016030118d2016038584d782du6gtzpid41402998243scm10071015781291100200300000000pvidb35f93ad-75f1-48fa-842e-301016fcb583"><a href="https://item.taobao.com/item.htm?spm=a1z02.1.2016030118.d2016038.584d782dU6GTzP&amp;id=41402998243&amp;scm=1007.10157.81291.100200300000000&amp;pvid=b35f93ad-75f1-48fa-842e-301016fcb583" target="_blank" rel="noopener noreffer">非接触CPU卡读卡模块|Mifare plus读写模块|CUT100-PLUS</a></h4>
+<h4 id="周立功-zlg522st-rfid-读卡模块-1356mhz-可直拍httpsitemtaobaocomitemhtmspma230r114967656a7dnbcuzzid41191367328ns1abbucket12detail"><a href="https://item.taobao.com/item.htm?spm=a230r.1.14.9.67656a7dnBcuzZ&amp;id=41191367328&amp;ns=1&amp;abbucket=12#detail" target="_blank" rel="noopener noreffer">周立功 ZLG522S/T RFID 读卡模块 13.56MHz 可直拍</a></h4>
+<h2 id="模拟标签">模拟标签</h2>
+<h3 id="nrf52832">NRF52832</h3>
+<p>NFCT(Near field communication tag)是NFC-A类型。</p>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TXD.FRAMECONFIG</td>
+<td>设置发送数据帧的格式</td>
+</tr>
+<tr>
+<td>RXD.FRAMECONFIG</td>
+<td>设置接收数据帧的格式</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sdk">SDK</h4>
+<h5 id="nrf5_sdkcomponentsnfct4t_libnfc_t4t_libh">nrf5_sdk/components/nfc/t4t_lib/nfc_t4t_lib.h</h5>
+<p>This is the NFC Forum NDEF tag 4 type emulation library. It implements the ISO14443-4A protocol (ISO-DEP) and additionally can emulate a read-writable NDEF content. If the emulation of the NDEF content is not needed, the library works in a raw mode where all APDUs are delivered to the user, who is then responsible to generate a timely RPDU as a response.</p>
+<p>The sequence of initializing functions determines whether the NDEF emulation will run or whether the raw mode is used.</p>
+<ul>
+<li>E.g. NDEF emulation</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">         * @ref nfc_t4t_setup
+         * @ref nfc_t4t_ndef_rwpayload_set or @ref nfc_t4t_ndef_staticpayload_set
+         * @ref nfc_t4t_emulation_start
+         * ... running in NDEF emulation mode ...
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>E.g. RAW mode</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">         * @ref nfc_t4t_setup
+         * @ref nfc_t4t_emulation_start
+         * ... running in RAW emulation mode ...
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="nrf5_sdkcomponentsnfct2t_libnfc_t2t_libh">nrf5_sdk/components/nfc/t2t_lib/nfc_t2t_lib.h</h5>
+<p>NFC Forum type 2 tag.</p>
+<h2 id="缩略语">缩略语</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PICC</td>
+<td>proximity card，感应卡</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/nfc/">NFC</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-04-04</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/" class="prev" rel="prev" title="模块化开发及常用模块"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-nrf-ble/" class="next" rel="next" title="嵌入式-NRF-BLE">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

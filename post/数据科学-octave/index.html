@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数据科学-OCTAVE - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="数据科学-OCTAVE" />
+<meta property="og:description" content="INSTALL download ./configure configure: error: a Fortran compiler is required to build Octave:sudo apt-get install gfortran configure: error: BLAS and LAPACK libraries are required:sudo apt-get install libblas-dev libatlas-base-dev liblapack-dev sudo make install 语法 基本操作 %为注释。 PS1(&#39;&gt;&gt;&#39;)更改提示符。 在语句后加;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-octave/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-06-20T13:47:56+00:00" />
+<meta property="article:modified_time" content="2019-06-20T13:47:56+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="数据科学-OCTAVE"/>
+<meta name="twitter:description" content="INSTALL download ./configure configure: error: a Fortran compiler is required to build Octave:sudo apt-get install gfortran configure: error: BLAS and LAPACK libraries are required:sudo apt-get install libblas-dev libatlas-base-dev liblapack-dev sudo make install 语法 基本操作 %为注释。 PS1(&#39;&gt;&gt;&#39;)更改提示符。 在语句后加;"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-octave/" /><link rel="prev" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-%E9%80%BB%E8%BE%91%E5%88%86%E6%9E%90%E4%BB%AA/" /><link rel="next" href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%9B%BE%E7%89%87%E5%88%86%E4%BA%AB/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数据科学-OCTAVE",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-octave\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  2467 ,
+        "url": "\/post\/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-octave\/","datePublished": "2019-06-20T13:47:56+00:00","dateModified": "2019-06-20T13:47:56+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">数据科学-OCTAVE</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#install">INSTALL</a>
+      <ul>
+        <li><a href="#downloadhttpswwwgnuorgsoftwareoctavedownloadhtml"><a href="https://www.gnu.org/software/octave/download.html">download</a></a></li>
+        <li><a href="#configure"><code>./configure</code></a></li>
+        <li><a href="#sudo-make--install"><code>sudo make  install</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#语法">语法</a>
+      <ul>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#基本计算">基本计算</a></li>
+        <li><a href="#内建函数">内建函数</a></li>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#向量和矩阵">向量和矩阵</a></li>
+        <li><a href="#文件">文件</a></li>
+        <li><a href="#图形绘制">图形绘制</a></li>
+        <li><a href="#控制语句">控制语句</a></li>
+        <li><a href="#定义函数">定义函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#内置函数">内置函数</a>
+      <ul>
+        <li><a href="#fminunc">fminunc</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="install">INSTALL</h2>
+<h3 id="downloadhttpswwwgnuorgsoftwareoctavedownloadhtml"><a href="https://www.gnu.org/software/octave/download.html" target="_blank" rel="noopener noreffer">download</a></h3>
+<h3 id="configure"><code>./configure</code></h3>
+<ol>
+<li><code>configure: error: a Fortran compiler is required to build Octave</code>:<code>sudo apt-get install gfortran</code></li>
+<li><code>configure: error: BLAS and LAPACK libraries are required</code>:<code>sudo apt-get install libblas-dev libatlas-base-dev liblapack-dev</code></li>
+</ol>
+<h3 id="sudo-make--install"><code>sudo make  install</code></h3>
+<h2 id="语法">语法</h2>
+<h3 id="基本操作">基本操作</h3>
+<ol>
+<li>%为注释。</li>
+<li><code>PS1('&gt;&gt;')</code>更改提示符。</li>
+<li>在语句后加<code>;</code>可以阻止打印输出。</li>
+</ol>
+<h3 id="基本计算">基本计算</h3>
+<ol>
+<li>支持基本数学运算。</li>
+<li>支持判断运算符：==（等于）、~=（不相等）、&amp;&amp;（与）、||（或）。</li>
+<li><code>pwd</code>返回octave的安装路径。</li>
+<li><code>cd ''</code>改变路径。</li>
+<li><code>ls</code>列出文件。</li>
+</ol>
+<h3 id="内建函数">内建函数</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xor</td>
+<td>异或</td>
+<td></td>
+</tr>
+<tr>
+<td>sqrt</td>
+<td>求根</td>
+<td></td>
+</tr>
+<tr>
+<td>cos</td>
+<td>余弦函数（弧度制）</td>
+<td></td>
+</tr>
+<tr>
+<td>sin</td>
+<td>正弦函数（弧度制）</td>
+<td></td>
+</tr>
+<tr>
+<td>tan</td>
+<td>正切函数（弧度制）</td>
+<td></td>
+</tr>
+<tr>
+<td>exp</td>
+<td>指数函数（$e^{x}$）</td>
+<td>对矩阵每个元素求解</td>
+</tr>
+<tr>
+<td>log</td>
+<td>以e为底的指数函数</td>
+<td></td>
+</tr>
+<tr>
+<td>log10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sinh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tanh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cosh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>acos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>acosh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>asin</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>asinh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>atan</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>atan2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>atanh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>abs</td>
+<td></td>
+<td>对矩阵中所有元素取绝对值</td>
+</tr>
+<tr>
+<td>sign</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>round</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>floor</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ceil</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fix</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rem</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-V</td>
+<td></td>
+<td>对矩阵中所有元素取反</td>
+</tr>
+<tr>
+<td>1/V</td>
+<td></td>
+<td>对矩阵中所有元素取导数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="变量">变量</h3>
+<ol>
+<li><code>a=3</code>定义一个变量，并赋值3.</li>
+<li><code>b='hello'</code>定义一个字符串变量。</li>
+<li><code>c=(3&gt;=1)</code>定义一个bool类型的变量。</li>
+<li><code>disp(a)</code>显示变量a的值或直接<code>a</code>回车。</li>
+<li><code>disp(sprintf('2 decimals: %0.2f', a))</code>格式化输出。</li>
+<li><code>format long</code>显示默认的位数。</li>
+<li><code>format short</code>显示少量的位数。</li>
+<li><code>who</code>显示octave在内存中存储的所有变量。</li>
+<li><code>whos</code>显示octave在内存中存储的所有变量的更详细的信息。</li>
+<li><code>clear</code>删除所有变量。</li>
+<li><code>clear 变量名</code>删除指定变量。</li>
+</ol>
+<h3 id="向量和矩阵">向量和矩阵</h3>
+<ol>
+<li>
+<p><code>A=[1 2;3 4;5 6]</code>产生一个3行2列的矩阵A。</p>
+</li>
+<li>
+<p><code>v=[1 2 2]</code>定义一个行向量。</p>
+</li>
+<li>
+<p><code>v=1:0.1:2</code>定义一组数，从1开始，步长为0.1一直增加到2.1x11的矩阵。</p>
+</li>
+<li>
+<p><code>v=1:6</code>定义[1 2 3 4 5 6].</p>
+</li>
+<li>
+<p><code>ones(2,3)</code>生成2X3的矩阵，元素都为1.</p>
+</li>
+<li>
+<p><code>zeros(1,3)</code>生成1X3的矩阵，元素都为0；</p>
+</li>
+<li>
+<p><code>rand(3,3)</code>生成3X3的矩阵，元素为随机数（0~1之间）。</p>
+</li>
+<li>
+<p><code>randn(1,3)</code>服从高斯分布，均值为0.标准差或者方差为1.</p>
+</li>
+<li>
+<p><code>hist(w,50)</code>绘制一个矩阵的直方图，并指定柱的数目。</p>
+</li>
+<li>
+<p><code>eye(n)</code>生成n维的单位矩阵。</p>
+</li>
+<li>
+<p><code>size(A)</code>返回矩阵的大小（维数）即一个1X2的矩阵。</p>
+</li>
+<li>
+<p><code>size(A,1)</code>返回矩阵A第一维度的大小。</p>
+</li>
+<li>
+<p><code>length(A)</code>返回矩阵A较大的那个维数，通常对变量使用。</p>
+</li>
+<li>
+<p><code>v=priceY(1:10)</code>将priceY的前10个元素赋给v.</p>
+</li>
+<li>
+<p><code>A(3,2)</code>获得第3行第二列的元素。</p>
+</li>
+<li>
+<p><code>A(3,:)</code>获得第三行的全部元素。</p>
+</li>
+<li>
+<p><code>A([1,3],:)</code>获得第1行和第3行的全部元素。</p>
+</li>
+<li>
+<p><code>A(:,2)=[10;11;12]</code>将A的第2列元素替换。</p>
+</li>
+<li>
+<p><code>A=[A,[100;101;102]]</code>在A的右边追加一列元素。</p>
+</li>
+<li>
+<p><code>A(:)</code>将A中的所有元素放进一个列向量。</p>
+</li>
+<li>
+<p><code>c=[A B]</code>将A和B放进一个矩阵中。</p>
+</li>
+<li>
+<p><code>C=[A;B]</code>将B放在A的下方。</p>
+</li>
+<li>
+<p><code>A*C</code>A和C矩阵相乘。</p>
+</li>
+<li>
+<p><code>A.*B</code>将矩阵A和矩阵B的对应元素进行相乘。点号用来表示元素的运算。</p>
+</li>
+<li>
+<p><code>A'</code>求A的转置。</p>
+</li>
+<li>
+<p><code>max(A)</code>获得A中最大元素。</p>
+</li>
+<li>
+<p><code>[val, ind]=max(A)</code>val为A中最大的元素，ind为此值的索引。</p>
+</li>
+<li>
+<p><code>find(a&lt;3&gt;)</code>找到小于3的元素，返回他们的索引。</p>
+</li>
+<li>
+<p><code>magic(3)</code>返回幻方的方阵，他的任一行、列、对角线的和相同。</p>
+</li>
+<li>
+<p><code>[r,c]=find(A&gt;=7)</code>r为大于等于7的行号，c为大于等于7的列号。</p>
+</li>
+<li>
+<p><code>sum(A)</code>求矩阵所有元素的和。<code>sum(A,1)</code>取每一列的和。<code>sum(A,2)</code>取每一行的和。</p>
+</li>
+<li>
+<p><code>prod(A)</code>求所有元素的积。</p>
+</li>
+<li>
+<p><code>floor(A)</code>所有元素向下取整。</p>
+</li>
+<li>
+<p><code>ceil(A</code>所有元素向上取整。</p>
+</li>
+<li>
+<p><code>max(rand(3),rand(3))</code>取两个随机矩阵中的大值组成新的矩阵。</p>
+</li>
+<li>
+<p><code>max(A,[],1)</code>取每一列的最大值 。</p>
+</li>
+<li>
+<p><code>max(A,[],2)</code>取每一行的最大值。</p>
+</li>
+<li>
+<p><code>flipud(A)</code>使矩阵A竖直反转。</p>
+</li>
+<li>
+<p><code>pinv(A)</code>求逆。</p>
+</li>
+</ol>
+<h3 id="文件">文件</h3>
+<ol>
+<li><code>load xxxx.dat</code>和<code>load('xxxx.dat')</code>加载数据，并生成以文件名命名的变量。</li>
+<li><code>save hello.mat v</code>将变量v保存为hello.mat的文件（二进制）。</li>
+<li><code>save hello.txt v -ascii</code>将变量保存为用ascii编码的文档。</li>
+</ol>
+<h3 id="图形绘制">图形绘制</h3>
+<ol>
+<li><code>plot(x, y1)</code>绘制图形,会清除原有图形。<code>plot(x, y, x, h, '.-')</code>绘制多条线。</li>
+<li><code>hold on</code>不清楚原有图形，叠加绘图。</li>
+<li><code>xlabel('x')</code>添加 x 轴标签。</li>
+<li><code>ylabel('Sin(x)')</code>添加 y 轴标签。</li>
+<li><code>title('Sin(x) Graph')</code>添加标题。</li>
+<li><code>grid on</code>显示网格线。</li>
+<li><code>axis equal</code>使横轴和纵轴的间隔相等。</li>
+<li><code>legend('Sin(x)', 'Cos(x)')</code>在图形中添加图例。</li>
+<li><code>axis([xmin xmax ymin ymax])</code>设置xy轴的刻度。</li>
+<li><code>subplot(m, n, p)</code>创建子图。</li>
+<li>输入多条命令用逗号隔开。</li>
+<li><code>figure</code>给图形标号</li>
+<li><code>print -dpng ‘myPlot.png’</code>保存图形，保存图形到 ‘myPlot.png’ 文件中，保存目录为当前工作路径。</li>
+<li><code>close</code>关闭图形</li>
+<li><code>clf</code>清除图形.</li>
+<li><code>bar()</code>绘制条形图。</li>
+<li>meshgrid 命令是用于产生一个矩阵的元素，赋予 x xx 和 y yy 的范围内进行了在每一种情况下的增量同规格一起。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[x, y] = meshgrid(-5: 0.1: 5, -3: 0.1: 3); %
+g = x.^2 + y.^2;           % 函数 g
+[C, h] = contour(x, y, g); % 绘制等高线图
+set(h, &#39;ShowText&#39;, &#39;on&#39;, &#39;TextStep&#39;, get(h, &#39;LevelStep&#39;)*2);
+</code></pre></td></tr></table>
+</div>
+</div><ol start="18">
+<li><code>surf(x, y, g)</code>绘制三维图.</li>
+<li><code>imagesc(A)</code>将矩阵A中的元素数值按大小转化为不同颜色，并在坐标轴对应位置处以这种颜色染色imagesc(x,y,A) x,y决定坐标范围，x,y应是两个二维向量.</li>
+<li><code>colorbar</code>在上图中加入颜色指示条。<code>colormap gray</code>将颜色变为灰度。</li>
+</ol>
+<h3 id="控制语句">控制语句</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-octave" data-lang="octave"><span class="c">% FOR</span><span class="err">
+</span><span class="err"></span><span class="k">for</span> <span class="n">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>    <span class="n">V</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span>^<span class="n">i</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="k">end</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="o">&gt;&gt;</span> <span class="n">indices</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="o">&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span><span class="p">=</span><span class="n">indices</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>       <span class="nb">disp</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="err">
+</span><span class="err"></span>   <span class="k">end</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="o">&gt;&gt;</span> <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span><span class="p">=</span> <span class="mi">5</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>        <span class="nb">disp</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">i</span><span class="p">));</span><span class="err">
+</span><span class="err"></span>        <span class="n">i</span> <span class="p">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="err">
+</span><span class="err"></span>   <span class="k">end</span><span class="p">;</span><span class="err">
+</span><span class="err"></span><span class="o">&gt;&gt;</span> <span class="k">while</span> <span class="nb">true</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>        <span class="nb">disp</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">i</span><span class="p">));</span><span class="err">
+</span><span class="err"></span>        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>            <span class="k">break</span><span class="p">;</span><span class="err">
+</span><span class="err"></span>        <span class="k">end</span><span class="p">;</span><span class="err">
+</span><span class="err"></span>        <span class="n">i</span> <span class="p">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span><span class="err">
+</span><span class="err"></span>   <span class="k">end</span><span class="p">;</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="定义函数">定义函数</h3>
+<ol>
+<li>在Octave中，定义一个函数需要使用function 关键字，然后紧跟在 function 后面的是函数的声明，包括返回值，函数名称和参数，之后换行来实现具体的函数功能。</li>
+<li>Octave的函数不需要显式的返回语句，Octave会将函数第一行声明的返回值返回给调用方，因此，我们在函数体中只需将最终的计算结果赋给定义的返回值。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&gt;&gt; function [y1, y2] = calVal(x)
+       y1 = x^2;
+       y2 = x^3;
+   end;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>在该目录下新建一个文件名为“squareThisNumber.m”后缀是.m这样octave可以自动识别。（注意：文件名要和函数名保持一致）。在octave中直接调用就可以。</li>
+<li><code>addpath(&quot;&quot;)</code>添加函数搜索路径。</li>
+<li>代价函数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&gt;&gt; X=[1 1;1 2;1 3;1 4]
+&gt;&gt; Y=[1;2;3;4]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="内置函数">内置函数</h2>
+<h3 id="fminunc">fminunc</h3>
+<p>自动的从众多高级优化算法中挑选一个来使用(你也可以把它当做一个可以自动选择合适的学习速率aa的梯度下降算法)。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-06-20</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-%E9%80%BB%E8%BE%91%E5%88%86%E6%9E%90%E4%BB%AA/" class="prev" rel="prev" title="嵌入式-逻辑分析仪"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E5%9B%BE%E7%89%87%E5%88%86%E4%BA%AB/" class="next" rel="next" title="图片分享">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

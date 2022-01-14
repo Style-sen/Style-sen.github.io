@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>桌面应用 - 分类 - 锦枫紫兰</title>
+        <link>/categories/%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</link>
+        <description>桌面应用 - 分类 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Apr 2019 16:40:15 &#43;0000</lastBuildDate><atom:link href="/categories/%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>桌面应用打包和开源协议</title>
+    <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8-%E6%89%93%E5%8C%85/</link>
+    <pubDate>Tue, 23 Apr 2019 16:40:15 &#43;0000</pubDate><guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8-%E6%89%93%E5%8C%85/</guid>
+    <description><![CDATA[打包 cx-freeze PSF协议，想怎么用就怎么用。 cx-freeze与python3.7 fbs不建议 分为免费版（GPL）和收费版。 pyinstaller PyInstaller 是在 GPL 许可证下发布的]]></description>
+</item>
+<item>
+    <title>使用Electron创建桌面应用</title>
+    <link>/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</link>
+    <pubDate>Mon, 14 Jan 2019 15:03:27 &#43;0000</pubDate><guid>/post/js-nodejs-electron-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/</guid>
+    <description><![CDATA[Electron API 演示(中文版) 完成一个桌面项目 使用Xmind制作功能描述和模块划分 使用pencil制作界面原型 使用yed制作流程图 开始一个工程 注：创建一]]></description>
+</item>
+</channel>
+</rss>

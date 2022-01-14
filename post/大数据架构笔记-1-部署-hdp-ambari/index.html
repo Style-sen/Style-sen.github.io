@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>大数据架构笔记-1-集群安装-HDP-AMBARI - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="大数据架构笔记-1-集群安装-HDP-AMBARI" />
+<meta property="og:description" content="参考HDP Installation Documentation 参考amarmesic/ambari-hdp-docker 概述 版本依赖.https://supportmatrix.horto" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-hdp-ambari/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-06-24T10:57:00+00:00" />
+<meta property="article:modified_time" content="2020-06-24T10:57:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="大数据架构笔记-1-集群安装-HDP-AMBARI"/>
+<meta name="twitter:description" content="参考HDP Installation Documentation 参考amarmesic/ambari-hdp-docker 概述 版本依赖.https://supportmatrix.horto"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-hdp-ambari/" /><link rel="prev" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-2-hdfs/" /><link rel="next" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-4-nlp-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "大数据架构笔记-1-集群安装-HDP-AMBARI",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-hdp-ambari\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  918 ,
+        "url": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-hdp-ambari\/","datePublished": "2020-06-24T10:57:00+00:00","dateModified": "2020-06-24T10:57:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">大数据架构笔记-1-集群安装-HDP-AMBARI</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#apache-ambari-installation">Apache Ambari Installation</a>
+      <ul>
+        <li><a href="#准备">准备</a>
+          <ul>
+            <li><a href="#set-up-password-less-ssh">Set Up Password-less SSH</a></li>
+            <li><a href="#set-up-service-user-accounts">Set Up Service User Accounts</a></li>
+            <li><a href="#enable-ntp-on-the-cluster-and-on-the-browser-host">Enable NTP on the Cluster and on the Browser Host</a></li>
+            <li><a href="#check-dns-and-nscd">Check DNS and NSCD</a></li>
+            <li><a href="#configuring-iptables">Configuring iptables</a></li>
+            <li><a href="#disable-selinux-and-packagekit-and-check-the-umask-value">Disable SELinux and PackageKit and check the umask Value</a></li>
+            <li><a href="#download-and-set-up-database-connectors">Download and set up database connectors</a>
+              <ul>
+                <li><a href="#configuring-a-database-instance-for-ranger">Configuring a Database Instance for Ranger</a></li>
+                <li><a href="#install-databases-for-hdf-services">Install Databases for HDF services</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#安装ambri">安装Ambri</a></li>
+        <li><a href="#安装配置和部署一个集群">安装、配置和部署一个集群</a>
+          <ul>
+            <li><a href="#启动服务">启动服务</a></li>
+            <li><a href="#登入">登入</a></li>
+            <li><a href="#启动安装向导">启动安装向导</a></li>
+            <li><a href="#选择版本">选择版本</a></li>
+            <li><a href="#install-options">Install Options</a></li>
+            <li><a href="#confirm-hosts">Confirm Hosts</a></li>
+            <li><a href="#choose-services">Choose Services</a></li>
+            <li><a href="#assign-masters">Assign Masters</a></li>
+            <li><a href="#assign-slaves-and-clients">Assign Slaves and Clients</a></li>
+            <li><a href="#customize-services">Customize Services</a></li>
+            <li><a href="#review">Review</a></li>
+            <li><a href="#install-start-and-test">Install, Start and Test</a></li>
+            <li><a href="#complete">Complete</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#遇到问题">遇到问题</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/installation.html" target="_blank" rel="noopener noreffer">HDP Installation Documentation</a>
+参考<a href="https://github.com/amarmesic/ambari-hdp-docker" target="_blank" rel="noopener noreffer">amarmesic/ambari-hdp-docker</a></p>
+<h2 id="概述">概述</h2>
+<ol>
+<li>版本依赖.https://supportmatrix.hortonworks.com。</li>
+</ol>
+<h2 id="apache-ambari-installation">Apache Ambari Installation</h2>
+<h3 id="准备">准备</h3>
+<h4 id="set-up-password-less-ssh">Set Up Password-less SSH</h4>
+<h4 id="set-up-service-user-accounts">Set Up Service User Accounts</h4>
+<h4 id="enable-ntp-on-the-cluster-and-on-the-browser-host">Enable NTP on the Cluster and on the Browser Host</h4>
+<ol>
+<li>启用NTP服务。</li>
+</ol>
+<h4 id="check-dns-and-nscd">Check DNS and NSCD</h4>
+<ol>
+<li>使用docker-compose部署的时候，使用hostname参数。</li>
+</ol>
+<h4 id="configuring-iptables">Configuring iptables</h4>
+<ol>
+<li>关闭防火墙。</li>
+</ol>
+<h4 id="disable-selinux-and-packagekit-and-check-the-umask-value">Disable SELinux and PackageKit and check the umask Value</h4>
+<ol>
+<li>关闭SELinux。</li>
+</ol>
+<h4 id="download-and-set-up-database-connectors">Download and set up database connectors</h4>
+<ol>
+<li>像Druid, Hive, Ranger, Oozie和Superset这样的组件需要一个可操作的数据库。</li>
+<li>在安装过程中，您可以选择使用现有的数据库，或者让Ambari安装一个新的实例(对于Hive)。</li>
+<li>为了让Ambari连接到您选择的数据库，您必须在安装组件之前从数据库供应商直接下载必要的数据库驱动程序和连接器。</li>
+<li>为了更好地为安装或升级做准备，请在设置环境时设置数据库连接器。</li>
+</ol>
+<h5 id="configuring-a-database-instance-for-ranger">Configuring a Database Instance for Ranger</h5>
+<ol>
+<li>MySQL、Oracle、PostgreSQL或Amazon RDS数据库实例必须运行并可供Ranger使用。Ranger安装将创建两个新用户(默认名称:rangeradmin和rangerlogger)和两个新数据库(默认名称:Ranger和Ranger audit)。</li>
+<li><code>可以创建好mysql数据库，在Ambari安装向导过程中，指定连接数据</code>。</li>
+</ol>
+<h5 id="install-databases-for-hdf-services">Install Databases for HDF services</h5>
+<ol>
+<li>在安装Schema Registry,、SAM、Druid和Superset时，需要一个关系数据存储来存储元数据。</li>
+<li>您可以使用MySQL、Postgres、Oracle或MariaDB。</li>
+<li>如果使用Superset在现有的HDP集群上安装，可以跳过安装说明，因为MySQL是与Druid一起安装的。在这种情况下，配置数据库。</li>
+</ol>
+<h3 id="安装ambri">安装Ambri</h3>
+<ol>
+<li>从2.7.5开始，使用源安装，需要使用用户和密码下载源文件。</li>
+</ol>
+<h3 id="安装配置和部署一个集群">安装、配置和部署一个集群</h3>
+<ol>
+<li><code>配置过程中需要指定现有的数据库</code>。</li>
+</ol>
+<h4 id="启动服务">启动服务</h4>
+<ol>
+<li><code>ambari-server start</code></li>
+<li><code>ambari-server status</code></li>
+<li><code>ambari-server stop</code></li>
+<li><code>如果您计划为Hive或Oozie使用一个现有的数据库实例，那么您必须在安装Hadoop集群之前准备好使用一个现有的数据库。</code></li>
+<li>在启动时，会对数据库一致性进行检查。如果出现任何问题，启动会中止，并报告<code>DB configs consistency check failed</code>。</li>
+</ol>
+<h4 id="登入">登入</h4>
+<h4 id="启动安装向导">启动安装向导</h4>
+<h4 id="选择版本">选择版本</h4>
+<h4 id="install-options">Install Options</h4>
+<h4 id="confirm-hosts">Confirm Hosts</h4>
+<h4 id="choose-services">Choose Services</h4>
+<h4 id="assign-masters">Assign Masters</h4>
+<h4 id="assign-slaves-and-clients">Assign Slaves and Clients</h4>
+<h4 id="customize-services">Customize Services</h4>
+<h4 id="review">Review</h4>
+<h4 id="install-start-and-test">Install, Start and Test</h4>
+<h4 id="complete">Complete</h4>
+<h2 id="遇到问题">遇到问题</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-06-24</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-2-hdfs/" class="prev" rel="prev" title="大数据架构笔记-2-HDFS"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-4-nlp-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/" class="next" rel="next" title="大数据架构笔记-4-NLP-中文分词">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

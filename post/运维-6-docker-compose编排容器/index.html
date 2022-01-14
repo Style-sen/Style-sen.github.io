@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Docker-compose编排容器 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="Docker-compose编排容器" />
+<meta property="og:description" content="1. 思想 容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。 默认情况下，Compose会为我们的应用创建一个网络，服务的每个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-01-23T16:06:54+00:00" />
+<meta property="article:modified_time" content="2019-01-23T16:06:54+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="Docker-compose编排容器"/>
+<meta name="twitter:description" content="1. 思想 容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。 默认情况下，Compose会为我们的应用创建一个网络，服务的每个"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8/" /><link rel="prev" href="/post/%E8%BF%90%E7%BB%B4-01-%E7%A1%AC%E4%BB%B6/" /><link rel="next" href="/post/%E8%BF%90%E7%BB%B4-5-docker%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Docker-compose编排容器",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "Docker，运维","wordcount":  1925 ,
+        "url": "\/post\/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8\/","datePublished": "2019-01-23T16:06:54+00:00","dateModified": "2019-01-23T16:06:54+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">Docker-compose编排容器</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-思想">1. 思想</a></li>
+    <li><a href="#2-命令">2. 命令</a></li>
+    <li><a href="#3-配置">3. 配置</a>
+      <ul>
+        <li><a href="#31-version">3.1. version</a></li>
+        <li><a href="#32-services">3.2. services:</a>
+          <ul>
+            <li><a href="#321-build">3.2.1. build</a></li>
+            <li><a href="#322-command">3.2.2. command</a></li>
+            <li><a href="#323-depends_on">3.2.3. depends_on</a></li>
+            <li><a href="#324-deploy">3.2.4. deploy</a></li>
+            <li><a href="#325-entrypoint">3.2.5. entrypoint</a></li>
+            <li><a href="#326-environment">3.2.6. environment</a></li>
+            <li><a href="#327-env_file">3.2.7. env_file</a></li>
+            <li><a href="#328-external_links">3.2.8. external_links</a></li>
+            <li><a href="#329-healthcheck">3.2.9. healthcheck</a></li>
+            <li><a href="#3210-hostname">3.2.10. hostname</a></li>
+            <li><a href="#3211-image">3.2.11. image</a></li>
+            <li><a href="#3212-links">3.2.12. links</a></li>
+            <li><a href="#3213-networks">3.2.13. networks</a></li>
+            <li><a href="#3214-volumes">3.2.14. volumes</a></li>
+            <li><a href="#3215-user">3.2.15. user</a></li>
+          </ul>
+        </li>
+        <li><a href="#33-networks">3.3. networks</a>
+          <ul>
+            <li><a href="#331-配置默认网络">3.3.1. 配置默认网络</a></li>
+            <li><a href="#332-增加新的网络进行网络隔离">3.3.2. 增加新的网络进行网络隔离</a></li>
+            <li><a href="#333-使用已存在的网络">3.3.3. 使用已存在的网络</a></li>
+            <li><a href="#334-通过上边的组合可以将不同docker-compose中的服务放进一个网络中">3.3.4. 通过上边的组合可以将不同docker-compose中的服务放进一个网络中</a></li>
+          </ul>
+        </li>
+        <li><a href="#34-volumes">3.4. volumes</a>
+          <ul>
+            <li><a href="#341-非service中volumes即namedvolumes">3.4.1. 非service中volumes（即namedvolumes）</a></li>
+            <li><a href="#342-service中的volumes">3.4.2. service中的volumes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-思想">1. 思想</h2>
+<ol>
+<li>容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。</li>
+<li><code>默认情况下，Compose会为我们的应用创建一个网络，服务的每个容器都会加入该网络中</code>。这样，容器就可被该网络中的其他容器访问，不仅如此，该容器还能以服务名称作为hostname被其他容器访问。默认情况下，应用程序的网络名称基于Compose的工程名称，而项目名称基于docker-compose.yml所在目录的名称(例如:app_default)。如需修改工程名称，可使用&ndash;project-name标识或COMPOSE_PORJECT_NAME环境变量。</li>
+</ol>
+<h2 id="2-命令">2. 命令</h2>
+<h2 id="3-配置">3. 配置</h2>
+<p><code>docker-compose.yml</code></p>
+<h3 id="31-version">3.1. version</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">version: &#39;3.7&#39;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="32-services">3.2. services:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">  [server name]:   // 每个服务为一条
+    [配置选项]
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>配置选项，如下。</li>
+</ol>
+<h4 id="321-build">3.2.1. build</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">context</span><span class="p">:</span><span class="w"> </span>.<span class="w">
+</span><span class="w">  </span><span class="k">dockerfile</span><span class="p">:</span><span class="w"> </span>Dockerfile<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="322-command">3.2.2. command</h4>
+<ol>
+<li>覆盖默认命令。</li>
+</ol>
+<h4 id="323-depends_on">3.2.3. depends_on</h4>
+<ol>
+<li>用于指定服务依赖，一般是mysql、redis等。</li>
+<li>指定了依赖，将会优先于服务创建并启动依赖，也可以使用容器名作为主机名。</li>
+</ol>
+<h4 id="324-deploy">3.2.4. deploy</h4>
+<ol>
+<li>Version 3 only.</li>
+<li>用来配置服务运行和部署时的参数。</li>
+<li>注：<code>This only takes effect when deploying to a swarm with docker stack deploy, and is ignored by docker-compose up and docker-compose run</code>.</li>
+</ol>
+<h4 id="325-entrypoint">3.2.5. entrypoint</h4>
+<p>覆盖默认entrypoint</p>
+<h4 id="326-environment">3.2.6. environment</h4>
+<p>设置环境变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">environment:
+  RACK_ENV: development
+  SESSION_SECRET:  # 只给定名称的变量会自动获取它在 Compose 主机上的值，可以用来防止泄露不必要的数据
+
+environment:
+  - RACK_ENV=development
+  - SESSION_SECRET
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="327-env_file">3.2.7. env_file</h4>
+<ol>
+<li>从文件中获取变量</li>
+<li>如果通过 docker-compose -f FILE 指定了模板文件，则 env_file 中路径会基于模板文件路径。</li>
+<li>如果有变量名称与 environment 指令冲突，则以后者为准。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">env_file: .env
+
+env_file:
+  - ./common.env
+  - ./apps/web.env
+  - /opt/secrets.env
+
+
+环境变量文件中每一行必须符合格式，支持 # 开头的注释行。
+# common.env: Set Rails/Rack environment
+RACK_ENV=development
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="328-external_links">3.2.8. external_links</h4>
+<p><code>链接到 docker-compose.yml 外部的容器，甚至 并非 Compose 管理的容器</code>。参数格式跟 links 类似。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">external_links:
+ - redis_1
+ - project_db_1:mysql
+ - project_db_1:postgresql
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="329-healthcheck">3.2.9. healthcheck</h4>
+<ol>
+<li>HEALTHCHECK 指令是告诉 Docker 应该如何进行判断容器的状态是否正常，这是 Docker 1.12 引入的新指令。在没有 HEALTHCHECK 指令前，Docker 引擎只可以通过容器内主进程是否退出来判断容器是否状态异常。很多情况下这没问题，但是如果程序进入死锁状态，或者死循环状态，应用进程并不退出，但是该容器已经无法提供服务了。在 1.12 以前，Docker 不会检测到容器的这种状态，从而不会重新调度，导致可能会有部分容器已经无法提供服务了却还在接受用户请求。</li>
+<li>而自 1.12 之后，Docker 提供了 HEALTHCHECK 指令，通过该指令指定一行命令，用这行命令来判断容器主进程的服务状态是否还正常，从而比较真实的反应容器实际状态。</li>
+<li>当在一个镜像指定了 HEALTHCHECK 指令后，用其启动容器，初始状态会为 starting，在 HEALTHCHECK 指令检查成功后变为 healthy，如果连续一定次数失败，则会变为 unhealthy。</li>
+<li>因此我们需要使用 HEALTHCHECK 从应用的业务层面检查容器的状态。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">healthcheck:
+      test: [&#34;CMD&#34;, &#34;curl&#34;, &#34;-f&#34;, &#34;http://localhost:9000/minio/health/live&#34;]
+      interval: 30s    # 两次健康检查的间隔，默认为 30 秒，单位(h/m/s)；
+      timeout: 20s    # 健康检查命令运行超时时间，如果超过这个时间，本次健康检查就被视为失败，默认 30 秒，单位(h/m/s)；
+      retries: 3    # 当连续失败指定次数后，则将容器状态视为 unhealthy，默认 3 次。
+CMD, ENTRYPOINT 一样，HEALTHCHECK 只可以出现一次，如果写了多个，只有最后一个生效。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3210-hostname">3.2.10. hostname</h4>
+<ol>
+<li><code>通过指定hostname，/etc/hosts中的记录，不再是hash值，而是hostname。</code></li>
+</ol>
+<h4 id="3211-image">3.2.11. image</h4>
+<h4 id="3212-links">3.2.12. links</h4>
+<ol>
+<li><code>允许在连接其他服务时定义别名</code>。</li>
+<li>注意：<code>They are not required to enable services to communicate - by default, any service can reach any other service at that service’s name.</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">links:
+ - db
+ - db:mysql
+ - redis
+
+# 使用了别名将自动会在容器的/etc/hosts文件里创建相应记录：
+172.17.2.186  db
+172.17.2.186  mysql
+172.17.2.187  redis
+# 所以我们在容器里就可以直接使用别名作为服务的主机名。
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>link指定的服务名，必须在此compose配置文件中定义。<code>ERROR: Service 'nginx_fe' has a link to service 'dc_api:gym_dc_api' which is undefined.</code></li>
+</ol>
+<h4 id="3213-networks">3.2.13. networks</h4>
+<ol>
+<li>指定加入的网络.</li>
+</ol>
+<h4 id="3214-volumes">3.2.14. volumes</h4>
+<p>将本机的文件夹挂载到container中.
+注：此时可能会出现，此文件夹的所有者和组都为<code>1000</code>.</p>
+<h4 id="3215-user">3.2.15. user</h4>
+<ol>
+<li>指定用户。</li>
+</ol>
+<h3 id="33-networks">3.3. networks</h3>
+<ol>
+<li>配置集群的网络。</li>
+</ol>
+<h4 id="331-配置默认网络">3.3.1. 配置默认网络</h4>
+<ol>
+<li><code>default默认网络，compose启动就会创建</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">networks:
+  default:
+    # Use a custom driver
+    driver: custom-driver-1   # host, bridge, overlay
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="332-增加新的网络进行网络隔离">3.3.2. 增加新的网络进行网络隔离</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">networks:
+  [定义不是default的名称，即创建一个新的网络，default依然存在]
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="333-使用已存在的网络">3.3.3. 使用已存在的网络</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">networks:
+  default:
+    external:
+      name: my-pre-existing-network
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="334-通过上边的组合可以将不同docker-compose中的服务放进一个网络中">3.3.4. 通过上边的组合可以将不同docker-compose中的服务放进一个网络中</h4>
+<h3 id="34-volumes">3.4. volumes</h3>
+<h4 id="341-非service中volumes即namedvolumes">3.4.1. 非service中volumes（即namedvolumes）</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">[named volumes]</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">external</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>actual-name-of-volume<span class="w">   </span><span class="c">#表示使用外部创建的卷</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>冒号后边为空。会默认挂载在/var/lib/docker/volumes/。<code>但是后边不能跟主机路径</code></li>
+<li>不能指定主机本地路径。</li>
+</ol>
+<h4 id="342-service中的volumes">3.4.2. service中的volumes</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># Just specify a path and let the Engine create a volume</span><span class="w">
+</span><span class="w">  </span>- /var/lib/mysql<span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="c"># 使用绝对路径</span><span class="w">
+</span><span class="w">  </span>- /opt/data<span class="p">:</span>/var/lib/mysql<span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="c"># 相对于the Compose file的相对路径</span><span class="w">
+</span><span class="w">  </span>- ./cache<span class="p">:</span>/tmp/cache<span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="c"># User-relative path</span><span class="w">
+</span><span class="w">  </span>- ~/configs<span class="p">:</span>/etc/configs/<span class="p">:</span>ro<span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="c"># 命名过的卷</span><span class="w">
+</span><span class="w">  </span>- datavolume<span class="p">:</span>/var/lib/mysql<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/docker%E8%BF%90%E7%BB%B4/">Docker，运维</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-01-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E8%BF%90%E7%BB%B4-01-%E7%A1%AC%E4%BB%B6/" class="prev" rel="prev" title="服务器硬件"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E8%BF%90%E7%BB%B4-5-docker%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="Docker笔记">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

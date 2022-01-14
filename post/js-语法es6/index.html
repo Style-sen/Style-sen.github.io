@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JS语法(ES6) - 锦枫紫兰</title><meta name="description" content="变量、函数、对象、方法"><meta property="og:title" content="JS语法(ES6)" />
+<meta property="og:description" content="变量、函数、对象、方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/js-%E8%AF%AD%E6%B3%95es6/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-01-19T09:56:30+00:00" />
+<meta property="article:modified_time" content="2019-01-19T09:56:30+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="JS语法(ES6)"/>
+<meta name="twitter:description" content="变量、函数、对象、方法"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/js-%E8%AF%AD%E6%B3%95es6/" /><link rel="prev" href="/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/" /><link rel="next" href="/post/js-html%E5%AF%B9%E8%B1%A1/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JS语法(ES6)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/js-%E8%AF%AD%E6%B3%95es6\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "前端, JS","wordcount":  4986 ,
+        "url": "\/post\/js-%E8%AF%AD%E6%B3%95es6\/","datePublished": "2019-01-19T09:56:30+00:00","dateModified": "2019-01-19T09:56:30+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "变量、函数、对象、方法"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">JS语法(ES6)</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#变量">变量</a></li>
+    <li><a href="#语法">语法</a>
+      <ul>
+        <li><a href="#throw-和-try-to-catch">Throw 和 Try to Catch</a></li>
+        <li><a href="#es6中的class和static">ES6中的class和static</a></li>
+        <li><a href="#可枚举属性和不可枚举属性">可枚举属性和不可枚举属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#函数自定义">函数（自定义）</a>
+      <ul>
+        <li><a href="#异步编程的解决方案">异步编程的解决方案</a>
+          <ul>
+            <li><a href="#回调函数">回调函数</a></li>
+            <li><a href="#事件监听">事件监听</a></li>
+            <li><a href="#发布和订阅">发布和订阅</a></li>
+            <li><a href="#promises对象">Promises对象</a></li>
+            <li><a href="#async-和-await">async 和 await</a></li>
+            <li><a href="#generator">Generator</a></li>
+            <li><a href="#co">co</a></li>
+          </ul>
+        </li>
+        <li><a href="#默认参数">默认参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#对象前端">对象（前端）</a>
+      <ul>
+        <li><a href="#canvas对象标示一个html画布元素">canvas对象标示一个html画布元素</a></li>
+        <li><a href="#技巧">技巧</a>
+          <ul>
+            <li><a href="#案例学习">案例学习</a></li>
+          </ul>
+        </li>
+        <li><a href="#document对象">document对象</a></li>
+        <li><a href="#element对象">element对象</a></li>
+        <li><a href="#window对象httpwwww3schoolcomcnjsrefdom_obj_windowasp"><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp">window对象</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#内置方法">内置方法</a>
+      <ul>
+        <li><a href="#javascript中get和set访问器">JavaScript中Get和Set访问器</a></li>
+        <li><a href="#constructor">constructor</a></li>
+        <li><a href="#数学计算">数学计算</a></li>
+        <li><a href="#apply-方法接受数组形式的参数">apply() 方法接受数组形式的参数</a></li>
+        <li><a href="#eval-函数可计算某个字符串并执行其中的的-javascript-代码">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#声明">声明</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="变量">变量</h2>
+<ol>
+<li>$在js并不是特殊的存在，在Jquery中有$函数。一般地，在开发js脚本，而框架中必然要定义一些变量，而你又不希望用你脚本的人在定义变量的时候与你的变量重名，导致脚本中的变量被覆盖，这时，就可以使用$符号来进行标记一下哪些是你的脚本中的变量。</li>
+<li><code>this指的是调用函数的那个对象</code>，就是函数运行时所在的环境对象。
+a. 全局对象;
+b. 函数作为某个对象的方法调用，这时this就指这个上级对象；
+c. 作为构造函数调用:通过这个函数，可以生成一个新对象。这时，this就指这个新对象，如new function()；
+d. apply 调用:apply()是函数的一个方法，作用是改变函数的调用对象。它的第一个参数就表示改变后的调用这个函数的对象。apply()的参数为空时，默认调用全局对象。</li>
+</ol>
+<h2 id="语法">语法</h2>
+<h3 id="throw-和-try-to-catch">Throw 和 Try to Catch</h3>
+<ol>
+<li>try 语句使您能够测试代码块中的错误。</li>
+<li>catch 语句允许您处理错误。</li>
+<li>throw 语句允许您创建自定义错误。</li>
+<li>finally 使您能够执行代码，在 try 和 catch 之后，无论结果如何。</li>
+</ol>
+<h3 id="es6中的class和static">ES6中的class和static</h3>
+<ol>
+<li>类就是实例的原型，new一个类,<code>在类中定义的方法，都会被实例继承</code>；如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</li>
+<li>父类的静态方法，可以被子类继承，super也可以调用。</li>
+<li>JavaScript语言的传统方法是通过构造函数（属性在构造函数中定义）,定义并生成新对象,prototype 属性使您有能力向对象添加属性和方法（实例都会有这个属性和方法）（<code>构造器生成的实例.没有prototype属性</code>）。</li>
+<li>定义“类”的方法的时候,前面不需要加上function这个关键字,直接把函数定义放进去了就可以了。方法之间不需要逗号分隔,加了会报错。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">console.log(typeof Person);//function
+console.log(Person === Person.prototype.constructor);//true
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li><code>类的数据类型就是函数,类本身就指向构造函数</code>。</li>
+<li>类的<code>所有方法都定义在类的prototype属性上面</code>,可以通过prototype覆盖方法或者添加方法。</li>
+<li>在类的实例上面调用方法，其实就是调用原型上的方法。</li>
+<li>ES6 明确规定， <code>Class 内部只有静态方法， 没有静态属性</code>但是ES7有了静态属性。</li>
+<li><code>定义实例属性， 只能写在类的constructor方法里面（使用this）或者function定义中（使用this）或者使用prototype属性</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Object.keys（obj），返回一个数组，数组里是`该obj（实例）可被枚举的所有属性(不包括原型中的属性)`，但是for...in可以包含原型链中的可枚举属性。
+Object.getOwnPropertyNames(obj)，返回一个数组，数组里是该obj上所有的实例属性。
+</code></pre></td></tr></table>
+</div>
+</div><ol start="10">
+<li><code>非Object都是实例，JS中的对象也是实例</code>。</li>
+<li>constructor方法是类的构造函数是默认方法，<code>通过new命令生成对象实例时，自动调用该方法</code>。一个类必须有constructor方法，如果没有显式定义，一个默认的constructor方法会被添加。所以即使你没有添加构造函数,也是有默认的构造函数的。一般constructor方法默认返回实例对象this，但是也可以指定constructor方法返回一个全新的对象,让返回的实例对象不是该类的实例。</li>
+<li>类的构造函数，不使用new是没法调用的,即使你使用实例对象去调用也是不行的,这是它跟普通构造函数的一个主要区别。</li>
+<li>可以通过实例的__proto__属性为Class添加方法。</li>
+<li>这个类的名字是Expression而不是Expre，Expre只在Class的内部代码可用，指代当前类。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">const Expression = class Expre{
+ 
+    static getAge(){
+        return &#39;12&#39;;
+    }
+ 
+    getClassName(){
+        return &#34; ClassName1= &#34; +Expre.name + &#34; ClassName2= &#34; +Expression.name;
+    }
+ 
+};
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="可枚举属性和不可枚举属性">可枚举属性和不可枚举属性</h3>
+<ol>
+<li>对象的属性分为可枚举和不可枚举之分，它们是由属性的enumerable值决定的。可枚举性决定了这个属性能否被for…in查找遍历到。</li>
+<li>js中基本包装类型的原型属性是不可枚举的，如Object, Array, Number等.</li>
+<li>对于通过直接的赋值和属性初始化的属性，该标识值默认为即为 true，对于通过 Object.defineProperty 等定义的属性，该标识值默认为 false。</li>
+</ol>
+<h2 id="函数自定义">函数（自定义）</h2>
+<h3 id="异步编程的解决方案">异步编程的解决方案</h3>
+<h4 id="回调函数">回调函数</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// f1的任务代码
+</span><span class="c1"></span>        <span class="nx">callback</span><span class="p">();</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">f1</span><span class="p">(</span><span class="nx">f2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>回调函数的优点是简单、容易理解和部署，<code>缺点是不利于代码的阅读和维护</code>，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。</li>
+</ol>
+<h4 id="事件监听">事件监听</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">JQUERY的写法</span>
+<span class="nx">f1</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">,</span> <span class="nx">f2</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// f1的任务代码
+</span><span class="c1"></span>        <span class="nx">f1</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以&quot;去耦合&rdquo;（Decoupling），有利于实现模块化。<code>缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰</code>。</li>
+</ol>
+<h4 id="发布和订阅">发布和订阅</h4>
+<p>我们假定，存在一个&quot;信号中心&rdquo;，某个任务执行完成，就向信号中心&quot;发布&rdquo;（publish）一个信号，其他任务可以向信号中心&quot;订阅&rdquo;（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做&quot;发布/订阅模式&rdquo;（publish-subscribe pattern），又称&quot;观察者模式&rdquo;（observer pattern）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">这个模式有多种实现</span><span class="err">，</span><span class="nx">下面采用的是Ben</span> <span class="nx">Alman的Tiny</span> <span class="nx">Pub</span><span class="o">/</span><span class="nx">Sub</span><span class="err">，</span><span class="nx">这是jQuery的一个插件</span><span class="err">。</span>
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&#34;done&#34;</span><span class="p">,</span> <span class="nx">f2</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// f1的任务代码
+</span><span class="c1"></span>        <span class="nx">jQuery</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&#34;done&#34;</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">(</span><span class="s2">&#34;done&#34;</span><span class="p">,</span> <span class="nx">f2</span><span class="p">);</span> <span class="c1">// 取消订阅
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>这种方法的性质与&quot;事件监听&quot;类似，但是明显优于后者。因为我们可以通过查看&quot;消息中心&rdquo;，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</li>
+</ol>
+<h4 id="promises对象">Promises对象</h4>
+<ol>
+<li>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。</li>
+<li>每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成<code>f1().then(f2);</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">jquery的实现</span>
+<span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// f1的任务代码
+</span><span class="c1"></span>        <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。</li>
+<li>指定多个回调函数：<code>f1().then(f2).then(f3);</code></li>
+<li>再比如，指定发生错误时的回调函数：<code>f1().then(f2).fail(f3);</code></li>
+<li>还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。</li>
+</ol>
+<h4 id="async-和-await">async 和 await</h4>
+<ol>
+<li><code>async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成</code>。</li>
+<li><code>await 只能出现在 async 函数中</code>。</li>
+<li><code>async 函数返回的是一个 Promise</code>。</li>
+<li>如果在函数中 return 一个直接量，async 会把这个直接量通过 Promise.resolve() 封装成 Promise 对象。then() 链来处理这个 Promise 对象。</li>
+<li>联想一下 Promise 的特点——无等待，所以在没有 await 的情况下执行 async 函数，它会立即执行，返回一个 Promise 对象，并且，绝不会阻塞后面的语句。这和普通返回 Promise 对象的函数并无二致。</li>
+<li>因为 async 函数返回一个 Promise 对象，所以 await 可以用于等待一个 async 函数的返回值——这也可以说是 await 在等 async 函数，但要清楚，它等的实际是一个返回值。注意到 await 不仅仅用于等 Promise 对象，它可以等任意表达式的结果，所以，await 后面实际是可以接普通函数调用或者直接量的。</li>
+<li>await 等到了它要等的东西，一个 Promise 对象，或者其它值，然后呢？await 是个运算符，用于组成表达式，await 表达式的运算结果取决于它等的东西。</li>
+<li>如果它等到的不是一个 Promise 对象，那 await 表达式的运算结果就是它等到的东西。</li>
+<li><code>如果它等到的是一个 Promise 对象，await 就忙起来了，它会阻塞后面的代码，等着 Promise 对象 resolve，然后得到 resolve 的值，作为 await 表达式的运算结果</code>。</li>
+<li>看到上面的阻塞一词，心慌了吧……放心，这就是 await 必须用在 async 函数中的原因。async 函数调用不会造成阻塞，它内部所有的阻塞都被封装在一个 Promise 对象中异步执行。</li>
+<li><code>async/await 的优势在于处理 then 链，与promise类似</code>。</li>
+<li>可以使用 Promise.all 来 await 多个 async（异步）函数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">anAsyncCall</span><span class="p">(),</span> <span class="nx">thisIsAlsoAsync</span><span class="p">(),</span> <span class="nx">oneMore</span><span class="p">()])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="generator">Generator</h4>
+<h4 id="co">co</h4>
+<ol>
+<li>把 Generator 和 Promise 封装，达到自动执行</li>
+</ol>
+<h3 id="默认参数">默认参数</h3>
+<ol>
+<li>使用对象解构(destructuring)模拟命名参数.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">doSomething</span><span class="p">({</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="nx">bar</span> <span class="o">=</span> <span class="s1">&#39;Yo!&#39;</span><span class="p">,</span> <span class="nx">baz</span> <span class="o">=</span> <span class="mi">13</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">doSomething</span><span class="p">({</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="nx">bar</span> <span class="o">=</span> <span class="s1">&#39;Yo!&#39;</span><span class="p">,</span> <span class="nx">baz</span> <span class="o">=</span> <span class="mi">13</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{})</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="对象前端">对象（前端）</h2>
+<h3 id="canvas对象标示一个html画布元素">canvas对象标示一个html画布元素</h3>
+<ol>
+<li><canvas> 标签只有两个属性—— width和height，这两个属性是可选的。当我们没有定义时，Canvas 的默认大小为300像素×150像素（宽×高，像素的单位是px）。但是，我们也可以使用HTML的高度和宽度属性来自定义尺寸。</li>
+<li>canvas元素有两套尺寸：一个是元素本身的大小(通过CSS设置)，另一个是元素绘图表面的大小(通过canvas自身的width和height属性设置)。
+注意：通过CSS修改width和height，只是改变了元素本身大小，对元素绘图表面的大小并无影响;</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var Canvas = document.getElementById(&#39;tutorial&#39;);
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>父</th>
+<th>子</th>
+<th>参数</th>
+<th>功能</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctx=Canvas.getContext(contextID)</code></td>
+<td></td>
+<td>&lsquo;2d&rsquo;</td>
+<td>返回一个用于在画布上绘图的环境</td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="noopener noreffer">绘图参考</a></td>
+</tr>
+<tr>
+<td></td>
+<td>.strokeStyle</td>
+<td>描述画笔（绘制图形）颜色或者样式的属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>.lineWidth</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>.fillstyle</code></td>
+<td>使用内部方式描述颜色和样式的属性。默认值是 #000 （黑色）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>.font</code></td>
+<td>描述绘制文字时，当前字体样式的属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>.textAlign</code></td>
+<td></td>
+<td>textAlign的值为center时候文本的居中是基于你在fillText的时候所给的x的值，也就是说文本一半在x的左边，一半在x的右边</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>.textBaseline</code></td>
+<td>top文本基线在文本块的顶部。hanging文本基线是悬挂基线。middle文本基线在文本块的中间。alphabetic文本基线是标准的字母基线。ideographic文字基线是表意字基线；如果字符本身超出了alphabetic 基线，那么ideograhpic基线位置在字符本身的底部。bottom文本基线在文本块的底部。 与 ideographic 基线的区别在于 ideographic 基线不需要考虑下行字母。默认值是 alphabetic。</td>
+<td>当前文本基线的属性</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.clearRect(x, y, width, height)</code></td>
+<td>设置指定矩形区域内（以 点 (x, y) 为起点，范围是(width, height) ）所有像素变成透明，并擦除之前绘制的所有内容的方法</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.translate(x, y)</code></td>
+<td>绘图原点移动</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.fillRect(x, y, width, height)</code></td>
+<td>绘制填充矩形的方法。矩形的起点在 (x, y) 位置，矩形的尺寸是 width 和 height ，fillStyle 属性决定矩形的样式</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.scale(x, y)</code></td>
+<td>根据 x 水平方向和 y 垂直方向，为canvas 单位添加缩放变换的方法</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.rotate(angle)</code></td>
+<td>在变换矩阵中增加旋转的方法。角度变量表示一个顺时针旋转角度并且用弧度表示。旋转中心点一直是 canvas 的起始点。 如果想改变中心点，我们可以通过 translate() 方法移动 canvas 。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>beginPath()</td>
+<td>创建一个新的路径</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>moveTo(x,y)</td>
+<td>将一个新的子路径的起始点移动到(x，y)坐标的方法</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>lineTo(x,y)</td>
+<td>使用直线连接子路径的终点到x，y坐标的方法（并不会真正地绘制）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>stroke()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>closePath()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>save()</td>
+<td>通过将当前状态放入栈中，保存 canvas 全部状态的方法</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>restore()</td>
+<td>通过在绘图状态栈中弹出顶端的状态，将 canvas 恢复到最近的保存状态的方法。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>void ctx.fillText(text, x, y [, maxWidth])</code></td>
+<td>文本、x坐标，y坐标[,宽]（是字左下点的位置）</td>
+<td>绘制文字</td>
+<td></td>
+</tr>
+<tr>
+<td>Canvas.height</td>
+<td></td>
+<td>画布的高度</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Canvas.width</td>
+<td></td>
+<td>画布的宽度</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="技巧">技巧</h3>
+<ol>
+<li>绘制2D图形时，使用极坐标的话，可以通过旋转一定角度，那么x y坐标系跟着旋转。</li>
+</ol>
+<h4 id="案例学习">案例学习</h4>
+<ol>
+<li><a href="https://github.com/cuijing1031/Canvas-Gauge" target="_blank" rel="noopener noreffer">cuijing1031/Canvas-Gauge</a></li>
+</ol>
+<h3 id="document对象">document对象</h3>
+<ol>
+<li>每个载入浏览器的 HTML 文档都会成为 Document 对象。</li>
+<li>Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性和方法</th>
+<th>功能</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document.addEventListener()</td>
+<td>用于向文档添加事件句柄</td>
+<td>具体事件可查看html笔记中DOM事件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="element对象">element对象</h3>
+<ol>
+<li>指定元素。</li>
+</ol>
+<h3 id="window对象httpwwww3schoolcomcnjsrefdom_obj_windowasp"><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp" target="_blank" rel="noopener noreffer">window对象</a></h3>
+<ol>
+<li>Window 对象表示浏览器中打开的窗口。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性和方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>window.requestAnimationFrame(animate)</td>
+<td>告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。</td>
+</tr>
+<tr>
+<td>window.location.href</td>
+<td>当前页面的路由，可以修改这个值跳转到其他页面</td>
+</tr>
+<tr>
+<td>window.ScrollTo</td>
+<td>当前页面滚动</td>
+</tr>
+</tbody>
+</table>
+<h2 id="内置方法">内置方法</h2>
+<p>encodeURIComponent() 函数可把字符串作为URI组件进行编码，返回正常打印看不见的字符。</p>
+<h3 id="javascript中get和set访问器">JavaScript中Get和Set访问器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">标准用法
+function Field(val){  
+    this.value = val;  
+} 
+Field.prototype = {  
+    get value(){  
+        return this._value;  
+    },  
+    set value(val){  
+        this._value = val;  
+    }
+};
+var field = new Field(&#34;test&#34;);
+field.value=&#34;test2&#34;;
+//field.value will now return &#34;test2&#34;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="constructor">constructor</h3>
+<p>是一种用于创建和初始化class创建的对象的特殊方法</p>
+<h3 id="数学计算">数学计算</h3>
+<table>
+<thead>
+<tr>
+<th>方法　</th>
+<th>　功能　</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parseInt　</td>
+<td>　丢弃小数部分　</td>
+</tr>
+<tr>
+<td>Math.ceil　</td>
+<td>向上取整　</td>
+</tr>
+<tr>
+<td>Math.round　</td>
+<td>四舍五入　</td>
+</tr>
+<tr>
+<td>Math.floor</td>
+<td>向下取整　</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取余　｜</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apply-方法接受数组形式的参数">apply() 方法接受数组形式的参数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Math.max.apply(null, [1,2,3]); // 返回数组最大值
+Math.min.apply(null, [1,2,3]); // 返回数组最小值
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="eval-函数可计算某个字符串并执行其中的的-javascript-代码">eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</h3>
+<h2 id="声明">声明</h2>
+<ol>
+<li>&ldquo;use strict&rdquo; 的目的是指定代码在严格条件下执行,严格模式下你不能使用未声明的变量。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                </span><span><a href="/tags/js/">JS</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-01-19</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%89%8D%E7%AB%AF-html%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="html笔记"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/js-html%E5%AF%B9%E8%B1%A1/" class="next" rel="next" title="JS笔记">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

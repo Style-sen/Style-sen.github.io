@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HARDWARE 常用器件 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="HARDWARE 常用器件" />
+<meta property="og:description" content="1. USB 1.1. CH9329 1.2. HT42B564 2. 语音芯片 2.1. NVC系列 3. LED 3.1. NeoPixels 也被称为WS2812 LED彩带，是连接在一起的全彩色led灯串 4. 传感器 多传感器融合算法：卡尔曼滤波" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/hardware-%E5%B8%B8%E7%94%A8%E5%99%A8%E4%BB%B6/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-08-20T16:54:10+08:00" />
+<meta property="article:modified_time" content="2021-08-20T16:54:10+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="HARDWARE 常用器件"/>
+<meta name="twitter:description" content="1. USB 1.1. CH9329 1.2. HT42B564 2. 语音芯片 2.1. NVC系列 3. LED 3.1. NeoPixels 也被称为WS2812 LED彩带，是连接在一起的全彩色led灯串 4. 传感器 多传感器融合算法：卡尔曼滤波"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/hardware-%E5%B8%B8%E7%94%A8%E5%99%A8%E4%BB%B6/" /><link rel="prev" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/" /><link rel="next" href="/post/hardware-stm32-%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HARDWARE 常用器件",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/hardware-%E5%B8%B8%E7%94%A8%E5%99%A8%E4%BB%B6\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "HARDWARE","wordcount":  790 ,
+        "url": "\/post\/hardware-%E5%B8%B8%E7%94%A8%E5%99%A8%E4%BB%B6\/","datePublished": "2021-08-20T16:54:10+08:00","dateModified": "2021-08-20T16:54:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">HARDWARE 常用器件</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-usb">1. USB</a>
+      <ul>
+        <li><a href="#11-ch9329">1.1. CH9329</a></li>
+        <li><a href="#12-ht42b564">1.2. HT42B564</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-语音芯片">2. 语音芯片</a>
+      <ul>
+        <li><a href="#21-nvc系列">2.1. NVC系列</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-led">3. LED</a>
+      <ul>
+        <li><a href="#31-neopixels">3.1. NeoPixels</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-传感器">4. 传感器</a>
+      <ul>
+        <li><a href="#41-温湿度传感器">4.1. 温湿度传感器</a>
+          <ul>
+            <li><a href="#411-dht11050">4.1.1. DHT11（0～50）</a></li>
+            <li><a href="#412-dht22-4080">4.1.2. DHT22（-40~80）</a></li>
+          </ul>
+        </li>
+        <li><a href="#42-光照传感器">4.2. 光照传感器</a>
+          <ul>
+            <li><a href="#421-pt550">4.2.1. PT550</a></li>
+          </ul>
+        </li>
+        <li><a href="#43-麦克风阵列">4.3. 麦克风阵列</a>
+          <ul>
+            <li><a href="#431-respeaker-2-mics-pi-hat">4.3.1. ReSpeaker 2-Mics Pi HAT</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5-micro-sd卡tf卡">5. Micro SD卡（TF卡）</a></li>
+    <li><a href="#6-树莓派">6. 树莓派</a></li>
+    <li><a href="#7-nodemcu">7. NodeMCU</a></li>
+    <li><a href="#8-掌控板httpswwwmpythoncnmpythonapp">8. <a href="https://www.mpython.cn/mPython/app">掌控板</a></a></li>
+    <li><a href="#9-智能音箱">9. 智能音箱</a>
+      <ul>
+        <li><a href="#91-技术架构">9.1. 技术架构</a>
+          <ul>
+            <li><a href="#911-拾音">9.1.1. 拾音</a></li>
+            <li><a href="#912-前端信号处理">9.1.2. 前端信号处理</a></li>
+            <li><a href="#913-语音唤醒">9.1.3. 语音唤醒</a></li>
+            <li><a href="#914-语音识别stt">9.1.4. 语音识别（STT）</a></li>
+            <li><a href="#915-自然语言理解">9.1.5. 自然语言理解</a></li>
+            <li><a href="#916-技能">9.1.6. 技能</a></li>
+            <li><a href="#917-自然语言生成">9.1.7. 自然语言生成</a></li>
+            <li><a href="#918-语音合成tts">9.1.8. 语音合成（TTS）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-usb">1. USB</h2>
+<h3 id="11-ch9329">1.1. CH9329</h3>
+<h3 id="12-ht42b564">1.2. HT42B564</h3>
+<h2 id="2-语音芯片">2. 语音芯片</h2>
+<h3 id="21-nvc系列">2.1. NVC系列</h3>
+<h2 id="3-led">3. LED</h2>
+<h3 id="31-neopixels">3.1. NeoPixels</h3>
+<ol>
+<li>也被称为WS2812 LED彩带，是连接在一起的全彩色led灯串</li>
+</ol>
+<h2 id="4-传感器">4. 传感器</h2>
+<ol>
+<li>多传感器融合算法：卡尔曼滤波和多贝叶斯估计。</li>
+</ol>
+<h3 id="41-温湿度传感器">4.1. 温湿度传感器</h3>
+<h4 id="411-dht11050">4.1.1. DHT11（0～50）</h4>
+<h4 id="412-dht22-4080">4.1.2. DHT22（-40~80）</h4>
+<h3 id="42-光照传感器">4.2. 光照传感器</h3>
+<ol>
+<li>Lux(勒克斯)是光照强度的单位，Lumens(流明)指一个光源发出的光能力的总量。</li>
+</ol>
+<h4 id="421-pt550">4.2.1. PT550</h4>
+<ol>
+<li>输出模拟量。</li>
+</ol>
+<h3 id="43-麦克风阵列">4.3. 麦克风阵列</h3>
+<h4 id="431-respeaker-2-mics-pi-hat">4.3.1. ReSpeaker 2-Mics Pi HAT</h4>
+<h2 id="5-micro-sd卡tf卡">5. Micro SD卡（TF卡）</h2>
+<ol>
+<li>存储容量：</li>
+<li>读写速度等级：U3表示最低写入速度是30MB/s.</li>
+<li>应用性能等级，随机读写性能。A2标识。</li>
+</ol>
+<h2 id="6-树莓派">6. 树莓派</h2>
+<ol>
+<li>免费的烧录工具：Etcher。</li>
+<li>支持WIFI：wpa_supplicant.conf.</li>
+</ol>
+<h2 id="7-nodemcu">7. NodeMCU</h2>
+<ol>
+<li>基于乐鑫esp8266的<a href="http://www.nodemcu.com/index_cn.html" target="_blank" rel="noopener noreffer">NodeMcu开发板</a>，具有GPIO、PWM、I2C、1-Wire、ADC等功能，结合NodeMcu 固件为您的原型开发提供最快速的途径。</li>
+<li><a href="https://nodemcu.readthedocs.io/en/release/" target="_blank" rel="noopener noreffer">文档</a>.</li>
+</ol>
+<h2 id="8-掌控板httpswwwmpythoncnmpythonapp">8. <a href="https://www.mpython.cn/mPython/app" target="_blank" rel="noopener noreffer">掌控板</a></h2>
+<h2 id="9-智能音箱">9. 智能音箱</h2>
+<h3 id="91-技术架构">9.1. 技术架构</h3>
+<h4 id="911-拾音">9.1.1. 拾音</h4>
+<ol>
+<li>麦克风阵列（Mic Array）</li>
+</ol>
+<h4 id="912-前端信号处理">9.1.2. 前端信号处理</h4>
+<ol>
+<li>回声消除，用于消除在播放音乐时，外放的声音对麦克风采集声音的影响；</li>
+<li>噪声抑制；</li>
+<li>语音检测：准确检测出语音的开始和结束，过滤掉非语音的声音；</li>
+<li>声源定位：在麦克风阵列中，一般是基于声音到达的时间差等算法，确定生源的空间位置，可以帮助进行波束成型；</li>
+<li>波束成型：通过滤波算法，将声源方向的信号增强，而其他方向的声音进行抑制；</li>
+<li>混响消除：通过算法将人声分离出来，为后续的语音唤醒和识别提供高质量的语音信号.</li>
+</ol>
+<h4 id="913-语音唤醒">9.1.3. 语音唤醒</h4>
+<ol>
+<li>通过特定的唤醒词来激活智能音箱，一方面保护隐私，一方面简化。</li>
+<li><code>Snowboy</code>停止服务；<code>Mycroft Precise</code>(基于RNN神经网络的语音唤醒工具).</li>
+</ol>
+<h4 id="914-语音识别stt">9.1.4. 语音识别（STT）</h4>
+<ol>
+<li>将语音转换为文本。</li>
+</ol>
+<h4 id="915-自然语言理解">9.1.5. 自然语言理解</h4>
+<ol>
+<li>对文本进行处理，识别用户的意图。</li>
+</ol>
+<h4 id="916-技能">9.1.6. 技能</h4>
+<ol>
+<li>借助后端云平台的强大能力，提供知识图谱、家居设备远程控制和音乐等。</li>
+</ol>
+<h4 id="917-自然语言生成">9.1.7. 自然语言生成</h4>
+<ol>
+<li>组成文本语言。</li>
+</ol>
+<h4 id="918-语音合成tts">9.1.8. 语音合成（TTS）</h4>
+<ol>
+<li>文本转化成语音。</li>
+<li><code>HanTTS</code></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/hardware/">HARDWARE</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-08-20</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/" class="prev" rel="prev" title="注释规范Doxygen"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/hardware-stm32-%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91/" class="next" rel="next" title="STM32软件研发">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

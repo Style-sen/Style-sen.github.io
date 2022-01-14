@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>运维-WEBHOOK - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="运维-WEBHOOK" />
+<meta property="og:description" content="Webhook 使用GO语言编写。 sudo apt-get install webhook安装。 Get或者Post都可以触发hook。 service webhook status 可以查看webhook状态。 使用 1 2 3 4 5 6 7 8 9" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-webhook/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-09-23T11:43:40+00:00" />
+<meta property="article:modified_time" content="2019-09-23T11:43:40+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="运维-WEBHOOK"/>
+<meta name="twitter:description" content="Webhook 使用GO语言编写。 sudo apt-get install webhook安装。 Get或者Post都可以触发hook。 service webhook status 可以查看webhook状态。 使用 1 2 3 4 5 6 7 8 9"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-webhook/" /><link rel="prev" href="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" /><link rel="next" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E5%8F%B0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "运维-WEBHOOK",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-webhook\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  816 ,
+        "url": "\/post\/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-webhook\/","datePublished": "2019-09-23T11:43:40+00:00","dateModified": "2019-09-23T11:43:40+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">运维-WEBHOOK</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#webhookhttpsgithubcomadnanhwebhook"><a href="https://github.com/adnanh/webhook">Webhook</a></a>
+      <ul>
+        <li><a href="#使用">使用</a>
+          <ul>
+            <li><a href="#创建一个hooksjson文件">创建一个<code>hooks.json</code>文件</a></li>
+            <li><a href="#hook-rule">Hook Rule</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="webhookhttpsgithubcomadnanhwebhook"><a href="https://github.com/adnanh/webhook" target="_blank" rel="noopener noreffer">Webhook</a></h2>
+<ol>
+<li>使用GO语言编写。</li>
+<li><code>sudo apt-get install webhook</code>安装。</li>
+<li>Get或者Post都可以触发hook。</li>
+<li><code>service webhook status</code> 可以查看webhook状态。</li>
+</ol>
+<h3 id="使用">使用</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Usage of webhook:
+  -cert string
+        path to the HTTPS certificate pem file (default &#34;cert.pem&#34;) HTTPS证书的路径
+  -header value
+        response header to return, specified in format name=value, use multiple times to set multiple headers
+  -hooks string
+        hook json文件的路径 (default &#34;hooks.json&#34;)
+  -hotreload
+        watch hooks file for changes and reload them automatically
+  -ip string
+        ip the webhook should serve hooks on (default &#34;0.0.0.0&#34;)
+  -key string
+        path to the HTTPS certificate private key pem file (default &#34;key.pem&#34;)
+  -nopanic
+        do not panic if hooks cannot be loaded when webhook is not running in verbose mode
+  -port int
+        port the webhook should serve hooks on (default 9000)
+  -secure
+        use HTTPS instead of HTTP
+  -urlprefix string
+        url prefix to use for served hooks (protocol://yourserver:port/PREFIX/:hook-id) (default &#34;hooks&#34;)
+  -verbose
+        show verbose output
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="创建一个hooksjson文件">创建一个<code>hooks.json</code>文件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[
+  {
+    &#34;id&#34;: &#34;redeploy-webhook&#34;,
+    &#34;execute-command&#34;: &#34;/var/scripts/redeploy.sh&#34;,
+    &#34;command-working-directory&#34;: &#34;/var/webhook&#34;
+  }
+]
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>必须包含<code>id</code>和<code>execute-command</code>属性，其他属性为可选的。</li>
+</ol>
+<p>属性列表如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>指定hook的ID，这个只用来创建HTTP endpoint (http://yourserver:port/hooks/your-hook-id)</td>
+</tr>
+<tr>
+<td>execute-command</td>
+<td>hook触发执行的命令</td>
+</tr>
+<tr>
+<td>command-working-directory</td>
+<td>指定hook执行命令的工作路径</td>
+</tr>
+<tr>
+<td>response-message</td>
+<td>string回复</td>
+</tr>
+<tr>
+<td>response-headers</td>
+<td>specifies the list of headers in format {&ldquo;name&rdquo;: &ldquo;X-Example-Header&rdquo;, &ldquo;value&rdquo;: &ldquo;it works&rdquo;} that will be returned in HTTP response for the hook</td>
+</tr>
+<tr>
+<td>include-command-output-in-response</td>
+<td>- boolean whether webhook should wait for the command to finish and return the raw output as a response to the hook initiator. If the command fails to execute or encounters any errors while executing the response will result in 500 Internal Server Error HTTP status code, otherwise the 200 OK status code will be returned.</td>
+</tr>
+<tr>
+<td>include-command-output-in-response-on-error</td>
+<td>- boolean whether webhook should include command stdout &amp; stderror as a response in failed executions. It only works if include-command-output-in-response is set to true.</td>
+</tr>
+<tr>
+<td>parse-parameters-as-json</td>
+<td>- specifies the list of arguments that contain JSON strings. These parameters will be decoded by webhook and you can access them like regular objects in rules and pass-arguments-to-command.</td>
+</tr>
+<tr>
+<td>pass-arguments-to-command</td>
+<td>specifies the list of arguments that will be passed to the command. Check Referencing request values page to see how to reference the values from the request. If you want to pass a static string value to your command you can specify it as { &ldquo;source&rdquo;: &ldquo;string&rdquo;, &ldquo;name&rdquo;: &ldquo;argumentvalue&rdquo; }</td>
+</tr>
+<tr>
+<td>pass-environment-to-command</td>
+<td>specifies the list of arguments that will be passed to the command 作为环境变量. If you do not specify the &ldquo;envname&rdquo; field in the referenced value, the hook will be in format &ldquo;HOOK_argumentname&rdquo;, otherwise &ldquo;envname&rdquo; field will be used as it&rsquo;s name. Check Referencing request values page to see how to reference the values from the request. If you want to pass a static string value to your command you can specify it as { &ldquo;source&rdquo;: &ldquo;string&rdquo;, &ldquo;envname&rdquo;: &ldquo;SOMETHING&rdquo;, &ldquo;name&rdquo;: &ldquo;argumentvalue&rdquo; }</td>
+</tr>
+<tr>
+<td>pass-file-to-command</td>
+<td>specifies a list of entries that will be serialized as a file. Incoming data will be serialized in a request-temporary-file (otherwise parallel calls of the hook would lead to concurrent overwritings of the file). The filename to be addressed within the subsequent script is provided via an environment variable. Use envname to specify the name of the environment variable. If envname is not provided HOOK_ and the name used to reference the request value are used. Defining command-working-directory will store the file relative to this location, if not provided, the systems temporary file directory will be used. If base64decode is true, the incoming binary data will be base 64 decoded prior to storing it into the file. By default the corresponding file will be removed after the webhook exited.</td>
+</tr>
+<tr>
+<td>trigger-rule</td>
+<td>specifies the rule that will be evaluated in order to determine should the hook be triggered. Check Hook rules page to see the list of valid rules and their usage</td>
+</tr>
+<tr>
+<td>trigger-rule-mismatch-http-response-code</td>
+<td>specifies the HTTP status code to be returned when the trigger rule is not satisfied</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hook-rule">Hook Rule</h4>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-09-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="prev" rel="prev" title="数据科学-深度学习"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E5%8F%B0/" class="next" rel="next" title="微服务架构笔记-中台">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

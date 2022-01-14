@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>文档协作 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C/</link>
+        <description>文档协作 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 20 Oct 2021 15:46:19 &#43;0800</lastBuildDate><atom:link href="/tags/%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C/" rel="self" type="application/rss+xml" /><item>
+    <title>SEAFILE&#43;ONLYOFFICE</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C-seafile-onlyoffice/</link>
+    <pubDate>Wed, 20 Oct 2021 15:46:19 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C-seafile-onlyoffice/</guid>
+    <description><![CDATA[参考Seafile集成OnlyOffic实现word在线编辑]]></description>
+</item>
+</channel>
+</rss>

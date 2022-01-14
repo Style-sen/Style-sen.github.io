@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>嵌入式-MESH - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="嵌入式-MESH" />
+<meta property="og:description" content="参考什么是Mesh网络 1. 简介 无线Mesh技术是一种与传统无线网络完全不同的新型无线网络技术。在传统的WLAN中，每个客户端均通过一条与接入点" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-mesh/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-05-25T10:54:49+00:00" />
+<meta property="article:modified_time" content="2019-05-25T10:54:49+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="嵌入式-MESH"/>
+<meta name="twitter:description" content="参考什么是Mesh网络 1. 简介 无线Mesh技术是一种与传统无线网络完全不同的新型无线网络技术。在传统的WLAN中，每个客户端均通过一条与接入点"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-mesh/" /><link rel="prev" href="/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-mac-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" /><link rel="next" href="/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-centos/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "嵌入式-MESH",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%B5%8C%E5%85%A5%E5%BC%8F-mesh\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  1840 ,
+        "url": "\/post\/%E5%B5%8C%E5%85%A5%E5%BC%8F-mesh\/","datePublished": "2019-05-25T10:54:49+00:00","dateModified": "2019-05-25T10:54:49+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">嵌入式-MESH</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-简介">1. 简介</a></li>
+    <li><a href="#2-特点">2. 特点</a>
+      <ul>
+        <li><a href="#21-自组织">2.1. 自组织</a></li>
+        <li><a href="#22-自愈">2.2. 自愈</a></li>
+        <li><a href="#23-多跳式">2.3. 多跳式</a></li>
+        <li><a href="#24-点对点网络">2.4. 点对点网络</a></li>
+        <li><a href="#25-多信道协商-提高带宽的利用率">2.5. 多信道协商 提高带宽的利用率</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-工作原理">3. 工作原理</a>
+      <ul>
+        <li><a href="#31-mesh邻居发现">3.1. Mesh邻居发现</a>
+          <ul>
+            <li><a href="#311-mesh网络扫描">3.1.1. Mesh网络扫描</a></li>
+            <li><a href="#312-邻居关系维护">3.1.2. 邻居关系维护</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-mesh连接管理">3.2. Mesh连接管理</a>
+          <ul>
+            <li><a href="#321-mesh连接建立">3.2.1. Mesh连接建立</a></li>
+            <li><a href="#322-mesh连接拆除">3.2.2. Mesh连接拆除</a></li>
+          </ul>
+        </li>
+        <li><a href="#33-mesh安全机制">3.3. Mesh安全机制</a></li>
+        <li><a href="#34-mesh选路">3.4. Mesh选路</a></li>
+        <li><a href="#35-mesh转发">3.5. Mesh转发</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-实现">4. 实现</a>
+      <ul>
+        <li><a href="#41-esp-meshhttpswwwespressifcomzh-hansproductssoftwareesp-meshoverview">4.1. <a href="https://www.espressif.com/zh-hans/products/software/esp-mesh/overview">ESP MESH</a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://www.jianshu.com/p/ce56f75284b8" target="_blank" rel="noopener noreffer">什么是Mesh网络</a></p>
+<h2 id="1-简介">1. 简介</h2>
+<ol>
+<li>无线Mesh技术是一种与传统无线网络完全不同的新型无线网络技术。在传统的WLAN中，每个客户端均通过一条与接入点（AP）相连的无线链路访问网络，用户若要进行相互通信，必须首先访问一个固定的AP，这种网络结构称为单跳网络。而在无线Mesh网络中，任何无线设备节点都可同时作为路由器，网络中的每个节点都能发送和接收信号，每个节点都能与一个或多个对等节点进行直接通信。</li>
+<li>这种结构的最大好处在于：如果最近的AP由于流量过大而导致拥塞的话，数据可以自动重新路由到一个通信流量较小的邻近节点进行传输。依此类推，数据包还可以根据网络的情况，继续路由到与之最近的下一个节点进行传输，直到到达最终目的地为止。这样的访问方式就是多跳访问。</li>
+</ol>
+<h2 id="2-特点">2. 特点</h2>
+<h3 id="21-自组织">2.1. 自组织</h3>
+<p>网络节点和授权最终用户可即时加入网络，扩展网络覆盖范围，并可连接至所有其他节点。</p>
+<h3 id="22-自愈">2.2. 自愈</h3>
+<p>如果网络中的某台设备发生故障或从其拓扑位置上拆卸，网络会自动适应这种改变。既使发端与对端之间的连接涉及多台中继设备，网络也会找到从发端到对端的新的路由。</p>
+<h3 id="23-多跳式">2.3. 多跳式</h3>
+<p>每个网络节点和用户端设备（无线通信单元）均能转发和路由发送至另一个对端的数据包，能选择并确定一个从发端到对端的最佳路由。</p>
+<h3 id="24-点对点网络">2.4. 点对点网络</h3>
+<p>自组织网络通常由平等的网元构成，只要发端和对端的距离足够近，就能直接连接发端和对端。而不必通过中央管理节点。</p>
+<h3 id="25-多信道协商-提高带宽的利用率">2.5. 多信道协商 提高带宽的利用率</h3>
+<p>无线Mesh网络进行多信道接入时一种协调机制，保证通信的两个节点都工作在相同的信道上。将时间轴被划分为信标间隔，在每一个信标间隔的开始，建立一个叫做ATIM的时间窗口，在相同的ATIM窗口内，有数据需要发送的节点使用控制消息和接收端使用相同的信道。这种多信道协商方法的目的是要选择业务负载小的信道，尽可能地平衡信道负载，减小竞争和退避所浪费的带宽。</p>
+<h2 id="3-工作原理">3. 工作原理</h2>
+<h3 id="31-mesh邻居发现">3.1. Mesh邻居发现</h3>
+<p>Mesh发现是Mesh网络建立过程中的第一步，类似于接入服务中STA扫描网络。</p>
+<h4 id="311-mesh网络扫描">3.1.1. Mesh网络扫描</h4>
+<p>Mesh节点(MP)通过主动发送Probe Request探测帧，或侦听Beacon帧，来收集邻居信息。Beacon或Probe帧中包含Mesh ID、Mesh Configuration以及安全能力等相关信息。</p>
+<h4 id="312-邻居关系维护">3.1.2. 邻居关系维护</h4>
+<p>MP从接收到的Beacon或Probe Response帧中解析发端MP的Mesh profile信息，与本端Mesh profile信息进行匹配。只有当扫描双方的Mesh profile<code>匹配</code>时，双方才可以建立邻居关系。</p>
+<h3 id="32-mesh连接管理">3.2. Mesh连接管理</h3>
+<p>Mesh连接管理包括Mesh连接建立和Mesh连接拆除两个过程，采用Peer Link Open/Confirm/Close三种Mesh连接管理Action帧交互实现。</p>
+<h4 id="321-mesh连接建立">3.2.1. Mesh连接建立</h4>
+<p>MP在选出候选Peer后，可以与之发起Mesh连接建立过程。协商Mesh连接的双方需要确保使用相同的Mesh profile。
+每个MP根据需要可以建立一条或多条Mesh连接，Mesh连接建立后，需要继续进行后续的认证和安全协商，之后Mesh连接才可以参与Mesh数据转发。</p>
+<h4 id="322-mesh连接拆除">3.2.2. Mesh连接拆除</h4>
+<p>Mesh连接双方中任一方，均可以主动向对方发送Peer Link Close消息，以关闭双方间的Mesh连接，收到Peer Link Close消息的MP，需要向对方MP回应一个Peer Link Close消息。</p>
+<h3 id="33-mesh安全机制">3.3. Mesh安全机制</h3>
+<p>由于传输媒质的开放性，无线网络很容易遭受非法攻击，802.11i标准的推出解决了传统WLAN网络的安全问题，但Mesh网络的多跳性带来了新的安全挑战。在认证方式上，Mesh安全同样支持802.1x认证和PSK认证方式，802.1x认证通过Supplicant MP与AAA server交互产生后续密钥协商用的种子密钥MSK，PSK认证方式则直接使用PSK作为密钥协商的种子密钥。</p>
+<h3 id="34-mesh选路">3.4. Mesh选路</h3>
+<p>Mesh网络是全连接的WLAN网络，任何一个源和目的地之间会存在多条可用的Mesh链路，并且这些Mesh链路的传输质量会随着周边环境实时变化。因此，非常有必要在Mesh网络支持选路协议，以确保数据帧能始终通过最优的链路传输。</p>
+<h3 id="35-mesh转发">3.5. Mesh转发</h3>
+<p>对于目的MAC为单播地址的数据帧，首先查找转发表项。若查到匹配表项，则将数据帧由该表项对应的Mesh链路发送出去；若未匹配任何表项，则将该数据帧从所有处于活跃状态的Mesh链路发送出去。
+对于目的MAC为组播或广播地址的数据帧，MP将数据帧从所有处于活跃状态的Mesh链路发送出去。</p>
+<h2 id="4-实现">4. 实现</h2>
+<h3 id="41-esp-meshhttpswwwespressifcomzh-hansproductssoftwareesp-meshoverview">4.1. <a href="https://www.espressif.com/zh-hans/products/software/esp-mesh/overview" target="_blank" rel="noopener noreffer">ESP MESH</a></h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-05-25</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-mac-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="操作系统-MAC-基本使用"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E8%BF%90%E7%BB%B4-03-%E7%B3%BB%E7%BB%9F-centos/" class="next" rel="next" title="运维-CENTOS">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

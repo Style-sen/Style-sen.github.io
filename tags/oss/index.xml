@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OSS - 标签 - 锦枫紫兰</title>
+        <link>/tags/oss/</link>
+        <description>OSS - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 Jul 2019 10:15:55 &#43;0000</lastBuildDate><atom:link href="/tags/oss/" rel="self" type="application/rss+xml" /><item>
+    <title>微服务架构-4-OSS对象存储服务(文件服务)</title>
+    <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/</link>
+    <pubDate>Sat, 27 Jul 2019 10:15:55 &#43;0000</pubDate><guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-04-oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/</guid>
+    <description><![CDATA[参考微服务之分布式文件系统 搭建独立的文件服务是解决文件共享、释放业务系统压力的最优选择。于是便诞生了分布式文件系统简称OSS(Object Storage]]></description>
+</item>
+</channel>
+</rss>

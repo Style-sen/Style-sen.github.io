@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>微服务架构笔记-中间件-消息队列 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="微服务架构笔记-中间件-消息队列" />
+<meta property="og:description" content="注意 消息队列的使用，按时间分块，实时计算（少量的批量计算流）。 声明 参考项目用了消息队列，不知道为啥用，有点尴尬 应用场景 优点 解耦 异步 削峰 缺点 系" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-08-22T15:59:14+00:00" />
+<meta property="article:modified_time" content="2019-08-22T15:59:14+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="微服务架构笔记-中间件-消息队列"/>
+<meta name="twitter:description" content="注意 消息队列的使用，按时间分块，实时计算（少量的批量计算流）。 声明 参考项目用了消息队列，不知道为啥用，有点尴尬 应用场景 优点 解耦 异步 削峰 缺点 系"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-neo4j/" /><link rel="next" href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "微服务架构笔记-中间件-消息队列",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  2042 ,
+        "url": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97\/","datePublished": "2019-08-22T15:59:14+00:00","dateModified": "2019-08-22T15:59:14+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">微服务架构笔记-中间件-消息队列</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#注意">注意</a></li>
+    <li><a href="#声明">声明</a></li>
+    <li><a href="#应用场景">应用场景</a>
+      <ul>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点">缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#消息队列选型">消息队列选型</a>
+      <ul>
+        <li><a href="#rabbitmq----">RabbitMQ    *****</a></li>
+        <li><a href="#rocketmq">RocketMQ</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何保证消息队列是高可用的">如何保证消息队列是高可用的</a>
+      <ul>
+        <li><a href="#以rcoketmq为例他的集群就有多master-模式多master多slave异步复制模式多-master多slave同步双写模式">以rcoketMQ为例，他的集群就有多master 模式、多master多slave异步复制模式、多 master多slave同步双写模式。</a></li>
+        <li><a href="#rabbitmq也有普通集群和镜像集群模式">rabbitMQ,也有普通集群和镜像集群模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何保证消息不被重复消费">如何保证消息不被重复消费</a>
+      <ul>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何保证消费的可靠性传输">如何保证消费的可靠性传输</a>
+      <ul>
+        <li><a href="#rabbitmq">RabbitMQ</a>
+          <ul>
+            <li><a href="#生产者丢数据">生产者丢数据</a></li>
+            <li><a href="#消息队列丢数据">消息队列丢数据</a></li>
+            <li><a href="#消费者丢数据">消费者丢数据</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#如何保证消息队列的顺序性">如何保证消息队列的顺序性</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="注意">注意</h2>
+<ol>
+<li>消息队列的使用，按时间分块，实时计算（少量的批量计算流）。</li>
+</ol>
+<h2 id="声明">声明</h2>
+<ol>
+<li>参考<a href="https://mp.weixin.qq.com/s/PG29Ig3ttBEznI7oG0nimw" target="_blank" rel="noopener noreffer">项目用了消息队列，不知道为啥用，有点尴尬</a></li>
+</ol>
+<h2 id="应用场景">应用场景</h2>
+<h3 id="优点">优点</h3>
+<ol>
+<li>解耦</li>
+<li>异步</li>
+<li>削峰</li>
+</ol>
+<h3 id="缺点">缺点</h3>
+<ol>
+<li>系统可用性降低，增加了一层消息队列，就增加了一层风险。</li>
+<li>系统复杂性增加。</li>
+</ol>
+<h2 id="消息队列选型">消息队列选型</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ActiveMQ</th>
+<th>RabbitMQ</th>
+<th>RocketMQ</th>
+<th>Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单机吞吐量</td>
+<td>万级，比RocketMQ\Kafka低一个数量级</td>
+<td>同ActiveMQ</td>
+<td>10万级，支持高吞吐</td>
+<td>10万级，高吞吐，一般配合大数据类的系统来进行实时数据计算、日志采集等场景</td>
+</tr>
+<tr>
+<td>topic数量对吞吐量的影响</td>
+<td></td>
+<td></td>
+<td>topic可以达到几百、几千的级别，吞吐量会有较小幅度的下降，这是RocketMQ的一大优势，在同等机器下，可以支撑大量的topic</td>
+<td>topic从几十到几百个时候，吞吐量会大幅度下降，在同等机器下，Kafka尽量保证topic数量不要过多，如果支撑大规模的topic，需要增加更多的机器资源</td>
+</tr>
+<tr>
+<td>时效性</td>
+<td>ms级</td>
+<td>微秒级，这是RabbitMQ的一大特点、延迟最低</td>
+<td>ms级</td>
+<td>延迟在ms级以内</td>
+</tr>
+<tr>
+<td>可用性</td>
+<td>高，基于主从架构实现高可用</td>
+<td>同ActiveMQ</td>
+<td>非常高，分布式架构</td>
+<td>非常高，分布式，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用</td>
+</tr>
+<tr>
+<td>消息可读性</td>
+<td>有较低的概率丢失数据</td>
+<td>基本不丢</td>
+<td>经过参数优化配置，可以做到0丢失</td>
+<td>同RocketMQ</td>
+</tr>
+<tr>
+<td>功能支持</td>
+<td>MQ领域的功能极其完备</td>
+<td>基于erlang开发，并发能力很强，性能很好，延时很低</td>
+<td>MQ功能较为完善，还是分布式的，扩展性好</td>
+<td>功能较为简单，主要支持简单的MQ功能，在大数据领域的实时计算以及日志采集被大规模使用</td>
+</tr>
+<tr>
+<td>活跃度</td>
+<td>不太活跃</td>
+<td>活跃</td>
+<td>较活跃</td>
+<td>较活跃</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Topic是消息中间件里一个重要的概念，每一个Topic代表了一类消息，有了多个Topic，就可以对消息进行归类与隔离。</li>
+<li>Kafka和RocketMQ都是磁盘消息队列的模式，对于同一个消费组，一个分区只支持一个消费线程来消费消息。过少的分区，会导致消费速度大大落后于消息的生产速度。所以在实际生产环境中，一个Topic会设置成多分区的模式，来支持多个消费者.</li>
+</ul>
+<h3 id="rabbitmq----">RabbitMQ    *****</h3>
+<ol>
+<li>中小型软件公司，建议选RabbitMQ，</li>
+<li>erlang语言天生具备高并发的特性，而且他的管理界面用起来十分方便。但是定制开发比较难。</li>
+<li>RabbitMQ的社区十分活跃，可以解决开发过程中遇到的bug，这点对于中小型公司来说十分重要。</li>
+<li>中小型软件公司不如互联网公司，数据量没那么大，选消息中间件，应首选功能比较完备的，所以kafka排除。</li>
+<li>rocketmq是阿里出品，如果阿里放弃维护rocketmq，中小型公司一般抽不出人来进行rocketmq的定制化开发，因此不推荐。</li>
+</ol>
+<h3 id="rocketmq">RocketMQ</h3>
+<ol>
+<li>大型软件公司，根据具体使用在rocketMq和kafka之间二选一。</li>
+<li>针对rocketMQ,大型软件公司也可以抽出人手对rocketMQ进行定制化开发，毕竟国内有能力改JAVA源码的人，还是相当多的。</li>
+<li>至于kafka，根据业务场景选择，如果有日志采集功能，肯定是首选kafka了。具体该选哪个，看使用场景。</li>
+</ol>
+<h2 id="如何保证消息队列是高可用的">如何保证消息队列是高可用的</h2>
+<ol>
+<li>要对消息队列的集群模式有深刻了解。</li>
+</ol>
+<h3 id="以rcoketmq为例他的集群就有多master-模式多master多slave异步复制模式多-master多slave同步双写模式">以rcoketMQ为例，他的集群就有多master 模式、多master多slave异步复制模式、多 master多slave同步双写模式。</h3>
+<h3 id="rabbitmq也有普通集群和镜像集群模式">rabbitMQ,也有普通集群和镜像集群模式</h3>
+<h2 id="如何保证消息不被重复消费">如何保证消息不被重复消费</h2>
+<ol>
+<li>正常情况下，消费者在消费消息时候，消费完毕后，会发送一个确认信息给消息队列，消息队列就知道该消息被消费了，就会将该消息从消息队列中删除。只是不同的消息队列发送的确认信息形式不同。</li>
+<li>因为网络传输等等故障，确认信息没有传送到消息队列，导致消息队列不知道自己已经消费过该消息了，再次将该消息分发给其他的消费者。</li>
+</ol>
+<h3 id="解决方法">解决方法</h3>
+<ol>
+<li>使用第三方介质（redis），做消费记录。</li>
+</ol>
+<h2 id="如何保证消费的可靠性传输">如何保证消费的可靠性传输</h2>
+<h3 id="rabbitmq">RabbitMQ</h3>
+<h4 id="生产者丢数据">生产者丢数据</h4>
+<ol>
+<li>RabbitMQ提供transaction和confirm模式来确保生产者不丢消息。</li>
+<li>transaction机制就是说，发送消息前，开启事务(channel.txSelect())，然后发送消息，如果发送过程中出现什么异常，事务就会回滚(channel.txRollback())，如果发送成功则提交事务(channel.txCommit())。</li>
+</ol>
+<h4 id="消息队列丢数据">消息队列丢数据</h4>
+<ol>
+<li>处理消息队列丢数据的情况，一般是开启持久化磁盘的配置。</li>
+<li>这个持久化配置可以和confirm机制配合使用，你可以在消息持久化磁盘后，再给生产者发送一个Ack信号。</li>
+<li>这样，如果消息持久化磁盘之前，rabbitMQ阵亡了，那么生产者收不到Ack信号，生产者会自动重发。</li>
+</ol>
+<h4 id="消费者丢数据">消费者丢数据</h4>
+<ol>
+<li>消费者丢数据一般是因为采用了自动确认消息模式。</li>
+<li>这种模式下，消费者会自动确认收到信息。这时rahbitMQ会立即将消息删除，这种情况下如果消费者出现异常而没能处理该消息，就会丢失该消息。</li>
+<li>至于解决方案，采用手动确认消息即可。</li>
+</ol>
+<h2 id="如何保证消息队列的顺序性">如何保证消息队列的顺序性</h2>
+<p>通过某种算法，将需要保持先后顺序的消息放到同一个消息队列中(kafka中就是partition,rabbitMq中就是queue)。然后只用一个消费者去消费该队列。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-08-22</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-neo4j/" class="prev" rel="prev" title="运维-数据库-NEO4J"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/" class="next" rel="next" title="产品-订单系统">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

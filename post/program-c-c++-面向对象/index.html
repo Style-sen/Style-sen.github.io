@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C&#43;&#43;面向对象 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="C&#43;&#43;面向对象" />
+<meta property="og:description" content="1. class 1.1. 规范 类名首字母都大写 1.2. 访问权限 1.2.1. public 在类的外部（定义类的代码之外），只能通过对象访问成员，并且通过对象只能访问 public 属性的成员 1.2.2. privat" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-04-07T14:57:16+08:00" />
+<meta property="article:modified_time" content="2021-04-07T14:57:16+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="C&#43;&#43;面向对象"/>
+<meta name="twitter:description" content="1. class 1.1. 规范 类名首字母都大写 1.2. 访问权限 1.2.1. public 在类的外部（定义类的代码之外），只能通过对象访问成员，并且通过对象只能访问 public 属性的成员 1.2.2. privat"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-c-c&#43;&#43;-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><link rel="prev" href="/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/" /><link rel="next" href="/post/plat-linux-01-%E5%91%BD%E4%BB%A4/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++面向对象",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-c-c\x2b\x2b-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, C\/C\x2b\x2b","wordcount":  3804 ,
+        "url": "\/post\/program-c-c\x2b\x2b-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1\/","datePublished": "2021-04-07T14:57:16+08:00","dateModified": "2021-04-07T14:57:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">C&#43;&#43;面向对象</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-class">1. class</a>
+      <ul>
+        <li><a href="#11-规范">1.1. 规范</a></li>
+        <li><a href="#12-访问权限">1.2. 访问权限</a>
+          <ul>
+            <li><a href="#121-public">1.2.1. public</a></li>
+            <li><a href="#122-private默认">1.2.2. private（默认）</a></li>
+            <li><a href="#123-protected">1.2.3. protected</a></li>
+            <li><a href="#124-实现private和protected的外部调用">1.2.4. 实现private和protected的外部调用</a></li>
+          </ul>
+        </li>
+        <li><a href="#13-抽象和封装">1.3. 抽象和封装</a></li>
+        <li><a href="#14-成员">1.4. 成员</a>
+          <ul>
+            <li><a href="#141-成员变量">1.4.1. 成员变量</a></li>
+            <li><a href="#142-成员函数">1.4.2. 成员函数</a>
+              <ul>
+                <li><a href="#1421-构造函数">1.4.2.1. 构造函数</a></li>
+                <li><a href="#1422-会隐式调用拷贝构造函数">1.4.2.2. “=”会隐式调用拷贝构造函数</a></li>
+                <li><a href="#1423-带默认值参数的构造函数和无参数的构造函数不能共存会有编译错误">1.4.2.3. 带默认值参数的构造函数和无参数的构造函数不能共存，会有编译错误</a></li>
+                <li><a href="#1424-继承">1.4.2.4. 继承</a></li>
+                <li><a href="#1425-构造函数后加冒号是初始化表达式">1.4.2.5. 构造函数后加冒号【:】是初始化表达式</a></li>
+                <li><a href="#1426-拷贝构造函数">1.4.2.6. 拷贝构造函数</a></li>
+                <li><a href="#1427-get开头">1.4.2.7. get开头</a></li>
+                <li><a href="#1428-set开头">1.4.2.8. set开头</a></li>
+                <li><a href="#1429-非静态非虚的普通成员函数指针不能直接调用必须绑定一个类对象">1.4.2.9. 非静态、非虚的普通成员函数指针不能直接调用，必须绑定一个类对象</a></li>
+                <li><a href="#14210-重载">1.4.2.10. 重载</a></li>
+                <li><a href="#14211-重写">1.4.2.11. 重写</a></li>
+                <li><a href="#14212-重定义隐藏">1.4.2.12. 重定义（隐藏）</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#15-friend-classesfunctions友元类或者函数">1.5. Friend Classes（functions）（友元类或者函数）</a>
+          <ul>
+            <li><a href="#151-在一个类中指明其他的类或者函数能够直接访问该类中的private和protected成员">1.5.1. 在一个类中指明其他的类（或者）函数能够直接访问该类中的private和protected成员</a></li>
+            <li><a href="#152-友元按类型分为三种普通非类成员函数作为友元类的成员函数作为友元类作为友元">1.5.2. 友元按类型分为三种：普通非类成员函数作为友元,类的成员函数作为友元，类作为友元</a></li>
+            <li><a href="#153-友元不能被继承">1.5.3. 友元不能被继承</a></li>
+            <li><a href="#154-友元不具有传递性">1.5.4. 友元不具有传递性</a></li>
+            <li><a href="#155-如果想要指定两个类都有成员函数作为对方的友元那么必须第2个类是第一个类的友元">1.5.5. 如果想要指定两个类都有成员函数作为对方的友元，那么必须第2个类是第一个类的友元</a></li>
+            <li><a href="#156-可以互为友元">1.5.6. 可以互为友元</a></li>
+          </ul>
+        </li>
+        <li><a href="#16-创建对象">1.6. 创建对象</a></li>
+        <li><a href="#17-多态">1.7. 多态</a>
+          <ul>
+            <li><a href="#171-虚基类">1.7.1. 虚基类</a>
+              <ul>
+                <li><a href="#1711-在c中派生类可以继承多个基类问题在于如果这多个基类又是继承自同一个基类时那么派生类是不是需要多次继承这同一个基类中的内容虚基类可以解决这个问题">1.7.1.1. 在c++中，派生类可以继承多个基类。问题在于：如果这多个基类又是继承自同一个基类时，那么派生类是不是需要多次继承这“同一个基类”中的内容？虚基类可以解决这个问题。</a></li>
+              </ul>
+            </li>
+            <li><a href="#172-纯虚函数">1.7.2. 纯虚函数</a></li>
+            <li><a href="#173-虚函数">1.7.3. 虚函数</a></li>
+          </ul>
+        </li>
+        <li><a href="#18-继承">1.8. 继承</a></li>
+      </ul>
+    </li>
+    <li><a href="#方案">方案</a>
+      <ul>
+        <li><a href="#两个类如何相互调用">两个类如何相互调用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-class">1. class</h2>
+<h3 id="11-规范">1.1. 规范</h3>
+<ol>
+<li><code>类名首字母都大写</code></li>
+</ol>
+<h3 id="12-访问权限">1.2. 访问权限</h3>
+<h4 id="121-public">1.2.1. public</h4>
+<ol>
+<li>在类的外部（定义类的代码之外），只能通过对象访问成员，并且通过对象只能访问 public 属性的成员</li>
+</ol>
+<h4 id="122-private默认">1.2.2. private（默认）</h4>
+<ol>
+<li>基类中的 private 成员不能在派生类中使用，仍然可以被继承（派生类也有这些成员，只是不可以在自己的成员函数中直接访问和使用，必须要要调用基类的成员函数获取和修改）。</li>
+</ol>
+<h4 id="123-protected">1.2.3. protected</h4>
+<ol>
+<li>声明为 protected 的成员在类外也不能通过对象访问，但是在它的派生类内部可以访问</li>
+</ol>
+<h4 id="124-实现private和protected的外部调用">1.2.4. 实现private和protected的外部调用</h4>
+<ol>
+<li>一般用于消息系统注册函数（基类调用子类的方法）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&#34;stdio.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">struct</span> <span class="nc">func_struct</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">static</span> <span class="n">func_struct</span> <span class="n">func</span><span class="p">;</span>
+
+<span class="k">protected</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">echo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">func_struct</span> <span class="o">*</span><span class="n">get</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="o">&amp;</span><span class="n">func</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="n">A</span><span class="o">::*</span><span class="n">TEST</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="k">struct</span> <span class="nc">func_struct</span>
+<span class="p">{</span>
+    <span class="n">TEST</span> <span class="n">func</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">func_struct</span> <span class="n">A</span><span class="o">::</span><span class="n">func</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">A</span><span class="o">::</span><span class="n">echo</span><span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">func_struct</span> <span class="o">*</span><span class="n">m_ptr</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+    <span class="p">((</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)</span><span class="o">-&gt;*</span><span class="p">(</span><span class="n">m_ptr</span><span class="o">-&gt;</span><span class="n">func</span><span class="p">))();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-抽象和封装">1.3. 抽象和封装</h3>
+<h3 id="14-成员">1.4. 成员</h3>
+<h4 id="141-成员变量">1.4.1. 成员变量</h4>
+<ol>
+<li>大都以m_开头</li>
+<li>一般为private</li>
+<li><a href="https://blog.csdn.net/bumingchun/article/details/112755993" target="_blank" rel="noopener noreffer">类的成员变量应该使用引用类型、指针类型还是对应类型对象呢？</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 因为引用类型必须在初始化列表初始化，并且不能被重新赋值，使用较少。
+<span class="k">2.</span> 指针类型适合在以下几种情况下使用：
+    当成员变量要使用多态时，将成员变量定义成指针。
+    当成员变量是可选的，在有些情况下不会使用，可以将成员变量定义成指针，节省空间。
+    当成员变量是一个很大的对象时，将成员定义成指针，避免栈溢出，linux默认栈大小可以通过ulimit -s查看，默认为8Mb。
+    当成员变量对应的资源不是对象独有，而是多个对象共同所有。
+    ？？构造函数具有参数。
+<span class="k">3.</span> 其他情况直接定义指定类型对象较好，无需进行内存管理，无需担心空指针。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="142-成员函数">1.4.2. 成员函数</h4>
+<h5 id="1421-构造函数">1.4.2.1. 构造函数</h5>
+<ol>
+<li>
+<p><code>只有在编译器需要默认构造函数来完成编译任务的时候，编译器才会为没有任何构造函数的类合成一个默认构造函数，或者是把这些操作插入到已有的构造函数中去</code>。参考<a href="https://www.cnblogs.com/QG-whz/p/4676481.html" target="_blank" rel="noopener noreffer">C++ 合成默认构造函数的真相</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">编译器需要默认构造函数的四种情况，总结起来就是:
+a) 调用对象成员或基类的默认构造函数。
+b) 为对象初始化虚表指针与虚基类指针。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>一个参数的构造函数(或者除了第一个参数外其余参数都有默认值的多参构造函数)， 承担了两个角色。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 是个构造器;
+<span class="k">2.</span> 是个默认且隐含的类型转换操作符。(在我们写下如 AAA = XXX， 这样的代码， 且恰好XXX的类型正好是AAA单参数构造器的参数类型， 这时候编译器就自动调用这个构造器， 创建一个AAA的对象。)
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="1422-会隐式调用拷贝构造函数">1.4.2.2. “=”会隐式调用拷贝构造函数</h5>
+<ol>
+<li>使用explicit声明 才能避免隐式调用</li>
+</ol>
+<h5 id="1423-带默认值参数的构造函数和无参数的构造函数不能共存会有编译错误">1.4.2.3. 带默认值参数的构造函数和无参数的构造函数不能共存，会有编译错误</h5>
+<h5 id="1424-继承">1.4.2.4. 继承</h5>
+<ol>
+<li>【基类构造函数将会被自动调用】，用于初始化派生类从基类继承过来的成员变量，而派生类中新增的成员则需要从新定义构造函数用于初始化了</li>
+<li>在派生类的构造函数中不指定对应的基类的构造函数，这个时候调用的是基类的默认构造函数(即含有默认参数值或不带参数的构造函数)</li>
+<li>在派生类的构造函数中指定要调用的基类的构造函数，并将派生类构造函数的部分参数值传递给基类构造函数。</li>
+<li>除非基类有默认的构造函数，否则必须采用【显式调用】。</li>
+</ol>
+<h5 id="1425-构造函数后加冒号是初始化表达式">1.4.2.5. 构造函数后加冒号【:】是初始化表达式</h5>
+<ol>
+<li>初始化const成员(括号赋值)</li>
+<li>初始化引用成员</li>
+<li>调用基类的构造函数，而它拥有一组参数时</li>
+<li>调用成员类的构造函数，而它拥有一组参数时</li>
+</ol>
+<h5 id="1426-拷贝构造函数">1.4.2.6. 拷贝构造函数</h5>
+<ol>
+<li>
+<p>复制构造函数是构造函数的一种，也称拷贝构造函数，它只有一个参数，【参数类型是本类的引用】。</p>
+</li>
+<li>
+<p>复制构造函数的参数可以是 const 引用，也可以是非 const 引用(一般使用前者，这样既能以常量对象（初始化后值不能改变的对象）作为参数，也能以非常量对象作为参数去初始化其他对象。一个类中写两个复制构造函数，一个的参数是 const 引用，另一个的参数是非 const 引用，也是可以的。)</p>
+</li>
+<li>
+<p>不写复制构造函数，【编译器就会自动生成复制构造函数】。大多数情况下，其作用是实现从源对象到目标对象逐个字节的复制，即使得目标对象的每个成员变量都变得和源对象相等。编译器自动生成的复制构造函数称为“默认复制构造函数”.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Complex</span> <span class="nf">cl</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">Complex</span> <span class="nf">c2</span> <span class="p">(</span><span class="n">cl</span><span class="p">);</span>  <span class="c1">//用复制构造函数初始化c2
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>如果编写了复制构造函数，则默认复制构造函数就不存在了</p>
+</li>
+<li>
+<p>复制构造函数被调用的三种情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 当用一个对象去初始化同类的另一个对象时，会引发复制构造函数被调用
+    Complex c2(c1);
+    Complex c2 = c1;
+<span class="k">2.</span> 如果函数 F 的参数是类 A 的对象，那么当 F 被调用时，类 A 的复制构造函数将被调用。换句话说，作为形参的对象，是用复制构造函数初始化的，而且调用复制构造函数时的参数，就是调用函数时所给的实参。【类似传值调用】
+    a. 以对象作为函数的形参，在函数被调用时，生成的形参要用复制构造函数初始化，这会带来时间上的开销。如果用对象的引用而不是对象作为形参，就没有这个问题了。但是以引用作为形参有一定的风险，因为这种情况下如果形参的值发生改变，实参的值也会跟着改变。
+    b. 如果要确保实参的值不会改变，又希望避免复制构造函数带来的开销，解决办法就是将形参声明为对象的 const 引用。
+<span class="k">3.</span> 如果函数的返冋值是类 A 的对象，则函数返冋时，类 A 的复制构造函数被调用。换言之，作为函数返回值的对象是用复制构造函数初始化 的，而调用复制构造函数时的实参，就是 return 语句所返回的对象。【类似函数返回】
+    a. 有些编译器出于程序执行效率的考虑，编译的时候进行了优化，函数返回值对象就不用复制构造函数初始化了，这并不符合 C++ 的标准
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="1427-get开头">1.4.2.7. get开头</h5>
+<h5 id="1428-set开头">1.4.2.8. set开头</h5>
+<h5 id="1429-非静态非虚的普通成员函数指针不能直接调用必须绑定一个类对象">1.4.2.9. 非静态、非虚的普通成员函数指针不能直接调用，必须绑定一个类对象</h5>
+<h5 id="14210-重载">1.4.2.10. 重载</h5>
+<ol>
+<li>同一个类中（同一个作用域中/在类的内部）</li>
+<li>【一组函数名相同】，【函数的参数列表不同（参数的个数、类型、顺序）】，函数有无 virtual 关键字都可以</li>
+<li>返回值的类型不会影响重载</li>
+<li>const属性相同</li>
+<li><code>typeof</code>是类型重命名，类型是相同的。</li>
+</ol>
+<h5 id="14211-重写">1.4.2.11. 重写</h5>
+<ol>
+<li>虚函数重写（会发生多态）</li>
+<li>非虚函数重写（重定义的一种形式）</li>
+<li>条件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">    <span class="k">1.</span> 函数的返回类型、方法名、参数列表完全相同
+    <span class="k">2.</span> 必须发生在不同的作用域中（基类与派生类中）
+    <span class="k">3.</span> 基类中有 virtual 关键字声明，派生类中可有可无，不能有 static （虚函数重写）
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="14212-重定义隐藏">1.4.2.12. 重定义（隐藏）</h5>
+<ol>
+<li>
+<p>子类重新定义父类中有相同名称的函数 ( 不包括虚函数重写 )</p>
+</li>
+<li>
+<p>条件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">    <span class="k">1.</span> 必须发生在不同的作用域中（基类与派生类中）
+    <span class="k">2.</span> 函数名相同
+    <span class="k">3.</span> 返回值可以不同
+    <span class="k">4.</span> 参数列表不同，此时，无论基类中的同名函数有无 virtual 关键字，【基类中的同名函数都会被隐藏】
+    <span class="k">5.</span> 参数列表相同，此时，基类中的同名函数没有 virtual 关键字，则基类中的同名函数将会被隐藏 --- 非虚函数重写
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>可以通过作用域分辨符(::)访问被隐藏的父类中的同名成员</p>
+</li>
+<li>
+<p>不可以直接通过子类对象访问父类成员；
+注：<code>同名覆盖规则适用于类的成员变量与成员函数</code></p>
+</li>
+</ol>
+<h3 id="15-friend-classesfunctions友元类或者函数">1.5. Friend Classes（functions）（友元类或者函数）</h3>
+<h4 id="151-在一个类中指明其他的类或者函数能够直接访问该类中的private和protected成员">1.5.1. 在一个类中指明其他的类（或者）函数能够直接访问该类中的private和protected成员</h4>
+<h4 id="152-友元按类型分为三种普通非类成员函数作为友元类的成员函数作为友元类作为友元">1.5.2. 友元按类型分为三种：普通非类成员函数作为友元,类的成员函数作为友元，类作为友元</h4>
+<h4 id="153-友元不能被继承">1.5.3. 友元不能被继承</h4>
+<h4 id="154-友元不具有传递性">1.5.4. 友元不具有传递性</h4>
+<h4 id="155-如果想要指定两个类都有成员函数作为对方的友元那么必须第2个类是第一个类的友元">1.5.5. 如果想要指定两个类都有成员函数作为对方的友元，那么必须第2个类是第一个类的友元</h4>
+<h4 id="156-可以互为友元">1.5.6. 可以互为友元</h4>
+<h3 id="16-创建对象">1.6. 创建对象</h3>
+<ol>
+<li>在栈上创建对象<code>Student stu;</code>.</li>
+<li>在堆上创建对象<code>Student *pstu = new Student;</code>.</li>
+</ol>
+<h3 id="17-多态">1.7. 多态</h3>
+<h4 id="171-虚基类">1.7.1. 虚基类</h4>
+<h5 id="1711-在c中派生类可以继承多个基类问题在于如果这多个基类又是继承自同一个基类时那么派生类是不是需要多次继承这同一个基类中的内容虚基类可以解决这个问题">1.7.1.1. 在c++中，派生类可以继承多个基类。问题在于：如果这多个基类又是继承自同一个基类时，那么派生类是不是需要多次继承这“同一个基类”中的内容？虚基类可以解决这个问题。</h5>
+<ol>
+<li>虚基类可以使得从多个类（它们继承自一个类）中派生出的对象只继承一个对象。</li>
+</ol>
+<h4 id="172-纯虚函数">1.7.2. 纯虚函数</h4>
+<ol>
+<li>若一个类的成员函数被声明为纯虚函数，则意味着该类是ABC(Abstract Base Class，抽象基类)，即只能被继承，而不能用来声明对象。纯虚函数通常需要在类中声明的后面加上关键词“=0”。</li>
+<li>当然，声明为纯虚函数并不意味着在实现文件中不可对其进行定义，只是意味着不可用抽象基类实现一个具体的对象。</li>
+</ol>
+<h4 id="173-虚函数">1.7.3. 虚函数</h4>
+<ol>
+<li>重写不同于重载。我对重载的理解是：同一个类，内部的同名函数具有不同的参数列表称为重载；重写则是派生类对基类同名函数的“本地改造”，要求函数特征标完全相同。当然，返回值类型不一定相同（可能会出现返回类型协变的特殊情况）。</li>
+<li>一个基类的指针或者引用可以指向或者引用派生类的对象。同时，派生类可以重写基类中的成员函数。</li>
+<li>在基类中将被重写的成员函数设置为【虚函数】，其含义是：当通过基类的指针或者引用调用该成员函数时，将根据指针指向的对象类型确定调用的函数，而非指针的类型。【否则默认会调用基类的方法】</li>
+<li>将基类与派生类的同名方法区分开</li>
+<li>虚函数的使用将导致类对象占用更大的内存空间。</li>
+<li>只需将基类中的成员函数声明为虚函数即可，派生类中重写的virtual函数【自动成为虚函数】；</li>
+<li>基类中的析构函数必须为虚函数，否则会出现对象释放错误</li>
+</ol>
+<h3 id="18-继承">1.8. 继承</h3>
+<h2 id="方案">方案</h2>
+<h3 id="两个类如何相互调用">两个类如何相互调用</h3>
+<ol>
+<li>类A和类B相互引用比较麻烦的根本原因在于：定义A的时候，A的里面有B，所以就需要去查看B的占空间大小，但是查看的时候又发现需要知道A的占空间大小，从而造成死循环。</li>
+<li>两个类相互引用，一个用对象、include；另一个用指针、前置声明、create手动new。手动new的过程不能在构造函数中进行，同时需要知道另一个类的完整定义（include）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++">
+<span class="c1">///&lt;A.h&gt;
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">B</span><span class="p">;</span><span class="c1">///&lt;前置声明&gt;
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="n">B</span> <span class="o">*</span><span class="n">b_</span><span class="p">;</span><span class="c1">///&lt;此处只能用指针或者引用&gt;
+</span><span class="c1"></span><span class="p">}</span>
+<span class="c1">///&lt;A.cpp&gt;
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;A.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;B.h&#34; ///&lt;次文件中要调用b_所以此处需要inlcude B 的头文件&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">void</span> <span class="n">A</span><span class="o">::</span><span class="n">create</span><span class="p">(){</span>
+    <span class="n">b_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="c1">///&lt;B.h&gt;
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;A.h&#34;</span><span class="cp">
+</span><span class="cp"></span><span class="k">class</span> <span class="nc">B</span><span class="p">{</span>
+    <span class="n">A</span> <span class="n">a_</span><span class="p">;</span><span class="c1">///&lt;此处可用对象&gt;
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-04-07</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/" class="prev" rel="prev" title="QT安装配置及概览"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-linux-01-%E5%91%BD%E4%BB%A4/" class="next" rel="next" title="LINUX命令">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

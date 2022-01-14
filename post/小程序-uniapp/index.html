@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>UNIAPP - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="UNIAPP" />
+<meta property="og:description" content="看完这篇白话uni-app。 DCloud与vue合作，在vue.js官网提供了免费视频教程，也可以直达教程地址：https://learni" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-01-09T10:24:02+00:00" />
+<meta property="article:modified_time" content="2019-01-09T10:24:02+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="UNIAPP"/>
+<meta name="twitter:description" content="看完这篇白话uni-app。 DCloud与vue合作，在vue.js官网提供了免费视频教程，也可以直达教程地址：https://learni"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/" /><link rel="prev" href="/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%90%84%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94%E5%8F%8A%E4%BC%98%E7%A7%80%E5%B0%8F%E7%A8%8B%E5%BA%8F/" /><link rel="next" href="/post/%E5%89%8D%E7%AB%AF-vue/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "UNIAPP",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "小程序","wordcount":  2573 ,
+        "url": "\/post\/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp\/","datePublished": "2019-01-09T10:24:02+00:00","dateModified": "2019-01-09T10:24:02+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">UNIAPP</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#知识点">知识点</a>
+      <ul>
+        <li><a href="#组件标签的变化">组件/标签的变化</a></li>
+        <li><a href="#js的变化">JS的变化</a>
+          <ul>
+            <li><a href="#运行环境变化">运行环境变化</a></li>
+            <li><a href="#数据绑定模式变化">数据绑定模式变化</a></li>
+            <li><a href="#api变化">api变化</a></li>
+          </ul>
+        </li>
+        <li><a href="#css的变化">CSS的变化</a></li>
+        <li><a href="#工程结构">工程结构</a>
+          <ul>
+            <li><a href="#pagesjson">pages.json</a>
+              <ul>
+                <li><a href="#pages">pages</a></li>
+                <li><a href="#tabbar-底部">tabBar 底部</a></li>
+                <li><a href="#globalstyle">globalStyle</a></li>
+              </ul>
+            </li>
+            <li><a href="#appvue">app.vue</a></li>
+          </ul>
+        </li>
+        <li><a href="#生命周期">生命周期</a></li>
+      </ul>
+    </li>
+    <li><a href="#框架">框架</a></li>
+    <li><a href="#组件">组件</a>
+      <ul>
+        <li><a href="#视图容器">视图容器</a>
+          <ul>
+            <li><a href="#view-视图容器">view 视图容器</a></li>
+            <li><a href="#scroll-view-可滚动视图区域">scroll-view 可滚动视图区域</a></li>
+          </ul>
+        </li>
+        <li><a href="#表单组件">表单组件</a>
+          <ul>
+            <li><a href="#button">button</a></li>
+          </ul>
+        </li>
+        <li><a href="#扩展组建uni-ui">扩展组建（uni-ui）</a></li>
+      </ul>
+    </li>
+    <li><a href="#api">API</a>
+      <ul>
+        <li><a href="#界面">界面</a>
+          <ul>
+            <li><a href="#交互反馈">交互反馈</a>
+              <ul>
+                <li><a href="#unishowtoastobject">uni.showToast(OBJECT)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#设备">设备</a>
+          <ul>
+            <li><a href="#蓝牙">蓝牙</a>
+              <ul>
+                <li><a href="#uniopenbluetoothadapter">uni.openBluetoothAdapter</a></li>
+                <li><a href="#unistartbluetoothdevicesdiscovery">uni.startBluetoothDevicesDiscovery</a></li>
+                <li><a href="#unionbluetoothdevicefound">uni.onBluetoothDeviceFound</a></li>
+                <li><a href="#unistopbluetoothdevicesdiscovery">uni.stopBluetoothDevicesDiscovery</a></li>
+                <li><a href="#unionbluetoothadapterstatechange">uni.onBluetoothAdapterStateChange</a></li>
+                <li><a href="#unigetconnectedbluetoothdevices">uni.getConnectedBluetoothDevices</a></li>
+                <li><a href="#unigetbluetoothdevices">uni.getBluetoothDevices</a></li>
+                <li><a href="#unigetbluetoothadapterstate">uni.getBluetoothAdapterState</a></li>
+                <li><a href="#uniclosebluetoothadapter">uni.closeBluetoothAdapter</a></li>
+              </ul>
+            </li>
+            <li><a href="#ble">BLE</a>
+              <ul>
+                <li><a href="#uniwriteblecharacteristicvalue">uni.writeBLECharacteristicValue</a></li>
+                <li><a href="#unireadblecharacteristicvalue">uni.readBLECharacteristicValue</a></li>
+                <li><a href="#unionbleconnectionstatechange">uni.onBLEConnectionStateChange</a></li>
+                <li><a href="#unionblecharacteristicvaluechange">uni.onBLECharacteristicValueChange</a></li>
+                <li><a href="#uninotifyblecharacteristicvaluechange">uni.notifyBLECharacteristicValueChange</a></li>
+                <li><a href="#unigetbledeviceservices">uni.getBLEDeviceServices</a></li>
+                <li><a href="#unigetbledevicecharacteristics">uni.getBLEDeviceCharacteristics</a></li>
+                <li><a href="#unicreatebleconnection">uni.createBLEConnection</a></li>
+                <li><a href="#uniclosebleconnection">uni.closeBLEConnection</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实战">实战</a>
+      <ul>
+        <li><a href="#父子组件通信">父子组件通信</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><ol>
+<li>看完这篇白话uni-app。</li>
+<li>DCloud与vue合作，在vue.js官网提供了免费视频教程，也可以直达教程地址：https://learning.dcloud.io。</li>
+<li><a href="https://uniapp.dcloud.io/resource" target="_blank" rel="noopener noreffer">学习资源</a>。</li>
+</ol>
+<h2 id="知识点">知识点</h2>
+<ol>
+<li>全局样式：在根目录下的app.vue里写入，每个页面都会加载app.vue里的样式。</li>
+<li>如需要全局导入vue组件，即每个页面都可以直接使用而不用引用和注册的话，在项目根目录下的main.js里处理。如下是hello uni-app里的例子。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//main.js  
+import pageHead from &#39;./components/page-head.vue&#39; //导入  
+Vue.component(&#39;page-head&#39;, pageHead) //注册。注册后在每个vue的page页面里可以直接使用&lt;page-head&gt;&lt;/page-head&gt;组件。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="组件标签的变化">组件/标签的变化</h3>
+<ol>
+<li>以前是html标签，现在是小程序组件。具体说来：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">div 改成 view
+span、font 改成 text
+a 改成 navigator
+img 改成 image
+input 还在，但type属性改成了confirmtype
+form、button、checkbox、radio、label、textarea、canvas、video 这些还在。
+select 改成 picker
+iframe 改成 web-view
+ul、li没有了，都用view替代
+audio 不再推荐使用，改成api方式，背景音频api文档
+</code></pre></td></tr></table>
+</div>
+</div><p>其实老的HTML标签也可以在uni-app里使用，uni-app编译器会在编译时把老标签转为新标签，比如把div编译成view。但<code>不推荐这种用法</code>，调试H5端时容易混乱。
+除了改动外，新增了一批手机端常用的新组件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">scroll-view 可区域滚动视图容器
+swiper 可滑动区域视图容器
+icon 图标
+rich-text 富文本（不可执行js，但可渲染各种文字格式和图片）
+progress 进度条
+slider 滑块指示器
+switch 开关选择器
+camera 相机
+live-player 直播
+map 地图
+cover-view 可覆盖原生组件的视图容器 cover-view需要多强调几句，uni-app的非h5端的video、map、canvas、textarea是原生组件，层级高于其他组件。如需覆盖原生组件，比如在map上加个遮罩，则需要使用cover-view组件
+</code></pre></td></tr></table>
+</div>
+</div><p>除了内置组件，还有很多开源的扩展组件，把常用操作都进行封装，DCloud建立了插件市场收录这些扩展组件，详见插件市场</p>
+<h3 id="js的变化">JS的变化</h3>
+<h4 id="运行环境变化">运行环境变化</h4>
+<ol>
+<li>在uni-app的各个端中，除了h5端，其他端的js都运行在一个独立的v8引擎下，不是在浏览器中，所以浏览器的对象（浏览器专用的window、document、navigator、location对象，包括cookie等存储）无法使用。</li>
+<li>app和小程序支持web-view组件，里面可以加载标准HTML，这种页面仍然支持浏览器专用对象window、document、navigator、location。</li>
+</ol>
+<h4 id="数据绑定模式变化">数据绑定模式变化</h4>
+<ol>
+<li>现在<code>前端趋势是去dom化</code>，改用mvvm模式，更简洁的写法，大幅减少代码行数，同时差量渲染性能更好。</li>
+</ol>
+<h4 id="api变化">api变化</h4>
+<ol>
+<li>uni-app的api是参考小程序的</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">alert,confirm 改成 uni.showmodel
+ajax 改成 uni.request
+cookie、session 没有了，local.storage 改成 uni.storage
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>uni-app在不同的端，支持条件编译，无限制的使用各端独有的api.</li>
+</ol>
+<h3 id="css的变化">CSS的变化</h3>
+<ol>
+<li>*选择器不支持；元素选择器里没有body，改为了page。</li>
+<li>单位方面，<code>px无法动态适应不同宽度的屏幕</code>，rem无法用于nvue/weex。如果想使用根据屏幕宽度自适应的单位，推荐使用<code>rpx</code>，全端支持。</li>
+<li>uni-app推荐使用flex布局，并默认就是flex布局.</li>
+<li>注意背景图和字体文件尽量不要大于40k。会影响性能。如果非要大于40k，需放到服务器侧远程引用或base64后引入，不能放到本地作为独立文件引用。在小程序里，其实小于40k的文件在css里也无法引用，uni-app编译器在编译时自动做了处理，把小于40k的文件编译为base64方式了。</li>
+</ol>
+<h3 id="工程结构">工程结构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">┌─components            uni-app组件目录
+│  └─comp-a.vue         可复用的a组件
+├─hybrid                存放本地网页的目录，详见
+├─platforms             存放各平台专用页面的目录，详见
+├─pages                 业务页面文件存放的目录
+│  ├─index
+│  │  └─index.vue       index页面
+│  └─list
+│     └─list.vue        list页面
+├─static                存放应用引用静态资源（如图片、视频等）的目录，注意：静态资源只能存放于此
+├─wxcomponents          存放小程序组件的目录，详见
+├─utils                 （非必须，约定）存放自定义模块
+├─common                （非必须，约定）存放样式文件
+├─api                   （非必须，约定）存放API
+├─main.js               Vue初始化入口文件
+├─App.vue               应用配置，用来配置App全局样式以及监听应用生命周期
+├─manifest.json         配置应用名称、appid、logo、版本等打包信息，详见
+├─uni.scss              全局的样式文件
+└─pages.json            配置页面路由、导航条、选项卡等页面类信息，详见
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>每个可显示的页面，都必须在 pages.json 中注册。如果你开发过小程序，那么pages.json类似app.json。如果你熟悉vue，这里没有vue的路由，都是在pages.json里管理。</li>
+<li>uni-app的首页，是在pages.json里配的，<code>page节点下第一个页面就是首页</code>。一般在/pages/xx的目录下。</li>
+<li>app和小程序中，为了提升体验，页面提供了原生的导航栏和底部tabbar，注意这些配置是在pages.json中做，而不是在vue页面里创建，但点击事件的监听在显示的vue页面中做。</li>
+<li>对比小程序:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1. 原来app.json被一拆为二。页面管理，被挪入了uni-app的pages.json；非页面管理，挪入了manifest.json
+2. 原来的app.js和app.wxss被合并到了app.vue中
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="pagesjson">pages.json</h4>
+<ol>
+<li>用来对 uni-app 进行全局配置，决定<code>页面文件的路径</code>、<code>窗口样式</code>、<code>原生的导航栏</code>、<code>底部的原生tabbar</code> 等。</li>
+<li>类似微信小程序中app.json的页面管理部分。注意<code>定位权限申请等原属于app.json的内容，在uni-app中是在manifest中配置</code>。</li>
+</ol>
+<h5 id="pages">pages</h5>
+<ol>
+<li>第一个为默认页。</li>
+</ol>
+<h5 id="tabbar-底部">tabBar 底部</h5>
+<ol>
+<li>显示的顺序为list的顺序。</li>
+</ol>
+<h5 id="globalstyle">globalStyle</h5>
+<h4 id="appvue">app.vue</h4>
+<ol>
+<li>onLaunch:可以通过option获取场景值。</li>
+</ol>
+<h3 id="生命周期">生命周期</h3>
+<h2 id="框架">框架</h2>
+<h2 id="组件">组件</h2>
+<h3 id="视图容器">视图容器</h3>
+<h4 id="view-视图容器">view 视图容器</h4>
+<h4 id="scroll-view-可滚动视图区域">scroll-view 可滚动视图区域</h4>
+<h3 id="表单组件">表单组件</h3>
+<h4 id="button">button</h4>
+<ol>
+<li>@tap 触发</li>
+</ol>
+<h3 id="扩展组建uni-ui">扩展组建（uni-ui）</h3>
+<h2 id="api">API</h2>
+<h3 id="界面">界面</h3>
+<h4 id="交互反馈">交互反馈</h4>
+<h5 id="unishowtoastobject">uni.showToast(OBJECT)</h5>
+<h3 id="设备">设备</h3>
+<h4 id="蓝牙">蓝牙</h4>
+<h5 id="uniopenbluetoothadapter">uni.openBluetoothAdapter</h5>
+<h5 id="unistartbluetoothdevicesdiscovery">uni.startBluetoothDevicesDiscovery</h5>
+<h5 id="unionbluetoothdevicefound">uni.onBluetoothDeviceFound</h5>
+<h5 id="unistopbluetoothdevicesdiscovery">uni.stopBluetoothDevicesDiscovery</h5>
+<h5 id="unionbluetoothadapterstatechange">uni.onBluetoothAdapterStateChange</h5>
+<h5 id="unigetconnectedbluetoothdevices">uni.getConnectedBluetoothDevices</h5>
+<h5 id="unigetbluetoothdevices">uni.getBluetoothDevices</h5>
+<h5 id="unigetbluetoothadapterstate">uni.getBluetoothAdapterState</h5>
+<h5 id="uniclosebluetoothadapter">uni.closeBluetoothAdapter</h5>
+<h4 id="ble">BLE</h4>
+<h5 id="uniwriteblecharacteristicvalue">uni.writeBLECharacteristicValue</h5>
+<h5 id="unireadblecharacteristicvalue">uni.readBLECharacteristicValue</h5>
+<h5 id="unionbleconnectionstatechange">uni.onBLEConnectionStateChange</h5>
+<h5 id="unionblecharacteristicvaluechange">uni.onBLECharacteristicValueChange</h5>
+<h5 id="uninotifyblecharacteristicvaluechange">uni.notifyBLECharacteristicValueChange</h5>
+<h5 id="unigetbledeviceservices">uni.getBLEDeviceServices</h5>
+<h5 id="unigetbledevicecharacteristics">uni.getBLEDeviceCharacteristics</h5>
+<h5 id="unicreatebleconnection">uni.createBLEConnection</h5>
+<h5 id="uniclosebleconnection">uni.closeBLEConnection</h5>
+<h2 id="实战">实战</h2>
+<h3 id="父子组件通信">父子组件通信</h3>
+<ol>
+<li>uni.</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-01-09</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%90%84%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94%E5%8F%8A%E4%BC%98%E7%A7%80%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="prev" rel="prev" title="小程序生态-历史-优秀小程序"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%89%8D%E7%AB%AF-vue/" class="next" rel="next" title="VUE">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>产品-订单系统 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="产品-订单系统" />
+<meta property="og:description" content="参考GuoZhaoran/spikeSystem 通常订票系统要处理生成订单、减扣库存、用户支付这三个基本的阶段。 要做的事情是要保证订单不超卖" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-08-28T13:47:36+00:00" />
+<meta property="article:modified_time" content="2019-08-28T13:47:36+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="产品-订单系统"/>
+<meta name="twitter:description" content="参考GuoZhaoran/spikeSystem 通常订票系统要处理生成订单、减扣库存、用户支付这三个基本的阶段。 要做的事情是要保证订单不超卖"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/" /><link rel="prev" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" /><link rel="next" href="/post/%E6%97%A5%E5%B8%B8-%E9%9D%A2%E8%AF%95/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "产品-订单系统",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  1260 ,
+        "url": "\/post\/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F\/","datePublished": "2019-08-28T13:47:36+00:00","dateModified": "2019-08-28T13:47:36+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">产品-订单系统</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#需要解决的问题">需要解决的问题</a>
+      <ul>
+        <li><a href="#下单减库存会造成少卖">下单减库存，会造成少卖</a></li>
+        <li><a href="#支付减库存会造成超卖">支付减库存，会造成超卖</a></li>
+        <li><a href="#预扣库存">预扣库存</a></li>
+      </ul>
+    </li>
+    <li><a href="#扣库存的艺术">扣库存的艺术</a>
+      <ul>
+        <li><a href="#本地扣库存异步产生订单">本地扣库存，异步产生订单</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://github.com/GuoZhaoran/spikeSystem" target="_blank" rel="noopener noreffer">GuoZhaoran/spikeSystem</a></p>
+<ol>
+<li>通常订票系统要处理生成订单、减扣库存、用户支付这三个基本的阶段。</li>
+<li>要做的事情是要保证订单不超卖、不少卖，每张售卖的车票都必须支付才有效，还要保证系统承受极高的并发（抢票和秒杀）。</li>
+</ol>
+<h2 id="需要解决的问题">需要解决的问题</h2>
+<h3 id="下单减库存会造成少卖">下单减库存，会造成少卖</h3>
+<ol>
+<li>在极限并发情况下，任何一个内存操作的细节都至关影响性能，尤其像创建订单这种逻辑，一般都需要存储到磁盘数据库的，对数据库的压力是可想而知的。</li>
+<li>如果用户存在恶意下单的情况，只下单不支付这样库存就会变少，会少卖很多订单，虽然服务端可以限制 IP 和用户的购买订单数量，这也不算是一个好方法。</li>
+</ol>
+<h3 id="支付减库存会造成超卖">支付减库存，会造成超卖</h3>
+<ol>
+<li>在极限并发情况下，用户可能会创建很多订单。</li>
+<li>当库存减为零的时候很多用户发现抢到的订单支付不了了，这也就是所谓的“超卖”。也不能避免并发操作数据库磁盘 IO。</li>
+</ol>
+<h3 id="预扣库存">预扣库存</h3>
+<ol>
+<li>先扣除了库存，保证不超卖，然后异步生成用户订单，这样响应给用户的速度就会快很多；</li>
+<li>现在订单都有有效期，比如说用户五分钟内不支付，订单就失效了，订单一旦失效，就会加入新的库存，这也是现在很多网上零售企业保证商品不少卖采用的方案。</li>
+<li>订单的生成是异步的，一般都会放到 MQ、Kafka 这样的即时消费队列中处理，订单量比较少的情况下，生成订单非常快，用户几乎不用排队。</li>
+</ol>
+<h2 id="扣库存的艺术">扣库存的艺术</h2>
+<h3 id="本地扣库存异步产生订单">本地扣库存，异步产生订单</h3>
+<ol>
+<li>上面我们提到了 Nginx 的加权均衡策略，我们不妨假设将 100W 的用户请求量平均均衡到 100 台服务器上，这样单机所承受的并发量就小了很多。</li>
+<li>然后我们每台机器本地库存 100 张火车票，100 台服务器上的总库存还是 1 万，这样保证了库存订单不超卖。</li>
+<li>问题接踵而至，在高并发情况下，现在我们还无法保证系统的高可用，假如这 100 台服务器上有两三台机器因为扛不住并发的流量或者其他的原因宕机了。那么这些服务器上的订单就卖不出去了，这就造成了订单的少卖。</li>
+<li>要解决这个问题，我们需要对总订单量做统一的管理，这就是接下来的容错方案。服务器不仅要在本地减库存，另外要远程统一减库存。</li>
+<li>有了远程统一减库存的操作，我们就可以根据机器负载情况，为每台机器分配一些多余的“Buffer 库存”用来防止机器中有机器宕机的情况。</li>
+<li>我们采用 Redis 存储统一库存，因为 Redis 的性能非常高，号称单机 QPS 能抗 10W 的并发。</li>
+<li>在本地减库存以后，如果本地有订单，我们再去请求 Redis 远程减库存，本地减库存和远程减库存都成功了，才返回给用户抢票成功的提示，这样也能有效的保证订单不会超卖。</li>
+<li>当机器中有机器宕机时，因为每个机器上有预留的 Buffer 余票，所以宕机机器上的余票依然能够在其他机器上得到弥补，保证了不少卖。</li>
+<li>Buffer 余票设置多少合适呢，理论上 Buffer 设置的越多，系统容忍宕机的机器数量就越多，但是 Buffer 设置的太大也会对 Redis 造成一定的影响。</li>
+<li>虽然 Redis 内存数据库抗并发能力非常高，请求依然会走一次网络 IO，其实抢票过程中对 Redis 的请求次数是本地库存和 Buffer 库存的总量。</li>
+<li>因为当本地库存不足时，系统直接返回用户“已售罄”的信息提示，就不会再走统一扣库存的逻辑。</li>
+<li>这在一定程度上也避免了巨大的网络请求量把 Redis 压跨，所以 Buffer 值设置多少，需要架构师对系统的负载能力做认真的考量。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-08-28</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="prev" rel="prev" title="微服务架构笔记-中间件-消息队列"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E6%97%A5%E5%B8%B8-%E9%9D%A2%E8%AF%95/" class="next" rel="next" title="日常-面试">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

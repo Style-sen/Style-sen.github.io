@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>pandas - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="pandas" />
+<meta property="og:description" content="概述 缺点不具备多处理器，处理较大的数据集速度很慢。 1. def 方法 2. class 类 最重要的两个数据结构为Series和DataFrames。 对齐数据和缺失数据" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-03-15T09:27:16+00:00" />
+<meta property="article:modified_time" content="2019-03-15T09:27:16+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="pandas"/>
+<meta name="twitter:description" content="概述 缺点不具备多处理器，处理较大的数据集速度很慢。 1. def 方法 2. class 类 最重要的两个数据结构为Series和DataFrames。 对齐数据和缺失数据"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas/" /><link rel="prev" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-api/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "pandas",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, PYTHON","wordcount":  2943 ,
+        "url": "\/post\/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas\/","datePublished": "2019-03-15T09:27:16+00:00","dateModified": "2019-03-15T09:27:16+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">pandas</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#1-def-方法">1. def 方法</a></li>
+    <li><a href="#2-class-类">2. class 类</a>
+      <ul>
+        <li><a href="#21-series-类">2.1. Series 类</a></li>
+        <li><a href="#22-dataframes-类">2.2. DataFrames 类</a>
+          <ul>
+            <li><a href="#221-实例属性">2.2.1. 实例属性</a></li>
+            <li><a href="#222-实例方法">2.2.2. 实例方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#cufflinkshttpsgithubcomsantosjorgecufflinksthis-library-binds-the-power-of-plotly-with-the-flexibility-of-pandas-for-easy-plotting"><a href="https://github.com/santosjorge/cufflinks">Cufflinks</a>This library binds the power of plotly with the flexibility of pandas for easy plotting</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="概述">概述</h2>
+<ol>
+<li><code>缺点</code>不具备多处理器，处理较大的数据集速度很慢。</li>
+</ol>
+<h2 id="1-def-方法">1. def 方法</h2>
+<h2 id="2-class-类">2. class 类</h2>
+<ol>
+<li>最重要的两个数据结构为Series和DataFrames。</li>
+<li>对齐数据和缺失数据（dropna()和fillna()）,层次化索引。</li>
+</ol>
+<h3 id="21-series-类">2.1. Series 类</h3>
+<ol>
+<li>对numpy进行了封装。</li>
+<li>索引可以重复。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">## 定义</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span><span class="s2">&#34;b&#34;</span><span class="p">,</span><span class="s2">&#34;c&#34;</span><span class="p">,</span><span class="s2">&#34;d&#34;</span><span class="p">,</span><span class="s2">&#34;e&#34;</span><span class="p">])</span>
+<span class="s2">&#34;a&#34;</span> <span class="ow">in</span> <span class="n">obj</span> <span class="c1"># 判断索引</span>
+<span class="n">obj</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>  <span class="c1"># 访问index</span>
+<span class="n">obj1</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="err">字典</span><span class="p">)</span>
+<span class="n">obj1</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="c1"># 更改index</span>
+<span class="n">obj1</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="mi">1</span><span class="err">，</span><span class="mi">2</span><span class="err">，</span><span class="mi">3</span><span class="err">，</span><span class="mi">4</span><span class="p">],</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 重新定义index，空值填充0</span>
+<span class="n">obj1</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="mi">1</span><span class="err">，</span><span class="mi">2</span><span class="err">，</span><span class="mi">3</span><span class="err">，</span><span class="mi">4</span><span class="p">],</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span> <span class="c1"># 重新定义index，利用上边的值填充，&#39;bfill&#39;利用后边的值填充</span>
+<span class="n">obj1</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="c1"># 删除缺失值</span>
+<span class="c1">## 层次化索引，index是一个数组</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-dataframes-类">2.2. DataFrames 类</h3>
+<ol>
+<li>一般说来dataframe就是a set of columns, each column is an array of values.</li>
+<li>In pandas, the array is one way or another a (maybe variant of) numpy ndarray. 而ndarray本身不存在一种in place append的操作。因为它实际上是一段连续内存。任何需要改变ndarray长度的操作都涉及分配一段长度合适的新的内存，然后copy。【这是这类操作慢的原因】。</li>
+<li>如果pandas dataframe没有用其他设计减少copy的话，我相信Bren说的&quot;That&rsquo;s probably as efficient as any&quot;是很对的。所以in general, 正如Bren说的。Pandas/numpy structures are fundamentally not suited for efficiently growing.Matti 和arynaq说的是两种常见的对付这个问题的方法。我想Matti实际的意思是把要加的rows收集成起来然后concatenate, 这样只copy一次。arynaq的方法就是预先分配内存比较好理解。如果你真的需要incrementally build a dataframe的话，估计你需要实际测试一下两种方法。==我的建议是，如有可能，尽力避免incrementally build a dataframe, 比如用其他data structure 收集齐所有data然后转变成dataframe做分析==。</li>
+<li><code>df = pd.DataFrame(一个字典)</code>如果使用所有标量值（key和value也是标量）,value是一个值的列表，必须设置一个索引（index=字典.keys()）.</li>
+<li>可以使用<code>[]</code>和<code>.</code>访问一列的值。</li>
+</ol>
+<h4 id="221-实例属性">2.2.1. 实例属性</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>  <span class="s2">&#34;每一列的类型&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span>   <span class="s2">&#34;&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="s2">&#34;列名&#34;</span>
+   <span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">values</span>  <span class="s2">&#34;&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">T</span>       <span class="s2">&#34;转置&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="222-实例方法">2.2.2. 实例方法</h4>
+<ol>
+<li>根据一列通过算法生成另一列</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 使用apply函数, 如果city字段包含&#39;ing&#39;关键词，则&#39;判断&#39;这一列赋值为1,否则为0</span>
+<span class="err">如：</span> 
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;panduan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">city</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="s1">&#39;ing&#39;</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;cap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">city</span> <span class="o">==</span> <span class="s2">&#34;北京&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>DataFrame的排名</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rank</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="n">numeric_only</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">na_option</span><span class="o">=</span><span class="s1">&#39;keep&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pct</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>axis</td>
+<td>{0 or ‘index’, 1 or ‘columns’}, default 0</td>
+<td>index to direct ranking</td>
+</tr>
+<tr>
+<td>method</td>
+<td>{‘average’, ‘min’, ‘max’, ‘first’, ‘dense’}</td>
+<td>average:相同的值给一个平均排名，min: 对于相同的值都取小的排名，max: 对于相同的值都取大的排名，first:对于相同的值按照出现的顺序排名，dense: like ‘min’, but rank always increases by 1 between groups</td>
+</tr>
+<tr>
+<td>numeric_only</td>
+<td>boolean:default None</td>
+<td>Include only float, int, boolean data. Valid only for DataFrame or Panel objects</td>
+</tr>
+<tr>
+<td>na_option</td>
+<td>{‘keep’, ‘top’, ‘bottom’}</td>
+<td>keep: leave NA values where they are,top: smallest rank if ascending,bottom: smallest rank if descending</td>
+</tr>
+<tr>
+<td>ascending</td>
+<td>boolean, default True</td>
+<td>False从高(1)到低(N)排序</td>
+</tr>
+<tr>
+<td>pct</td>
+<td>boolean, default False</td>
+<td>Computes percentage rank of data</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>DataFrame索引</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">DataFrame</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verify_integrity</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>DataFrame将一列导出数组</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;column&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20130101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">datetime对象</span><span class="p">)</span>     <span class="c1">#转化为日期类型</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="3-dataframe">3. dataframe</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">## 定义</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">))</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
+                    <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130102&#39;</span><span class="p">),</span>
+                    <span class="s1">&#39;C&#39;</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">),</span>
+                    <span class="s1">&#39;D&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">),</span>
+                    <span class="s1">&#39;E&#39;</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&#34;test&#34;</span><span class="p">,</span><span class="s2">&#34;train&#34;</span><span class="p">,</span><span class="s2">&#34;test&#34;</span><span class="p">,</span><span class="s2">&#34;train&#34;</span><span class="p">]),</span>
+                    <span class="s1">&#39;F&#39;</span> <span class="p">:</span> <span class="s1">&#39;foo&#39;</span> <span class="p">})</span>
+
+<span class="c1">## 实例属性</span>
+
+<span class="c1">## 实例方法</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>  <span class="c1">#前5行</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>  <span class="s2">&#34;&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="s2">&#34;显示快速统计&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>    <span class="s2">&#34;计数&#34;</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;列名&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>    <span class="s2">&#34;将dataframe所有内容变成字符串&#34;</span>
+<span class="n">df</span><span class="p">[]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">()</span>    <span class="s2">&#34;字符串是否包含&#34;</span>
+
+<span class="s2">&#34;排序&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="s2">&#34;按照索引排序&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>  <span class="s2">&#34;按照列值排序&#34;</span>
+
+<span class="s2">&#34;筛选&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dates</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;20130102&#39;</span><span class="p">:</span><span class="s1">&#39;20130104&#39;</span><span class="p">,[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;20130102&#39;</span><span class="p">,[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">dates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>    <span class="s2">&#34;比上一条命令效率更高&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,:]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>    <span class="s2">&#34;比上一条命令效率更高&#34;</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>    <span class="s2">&#34;Bool 筛选A列数据中大于0的行&#34;</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>    <span class="s2">&#34;Bool&#34;</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">C</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">D</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)]</span> <span class="s2">&#34;使用&amp;符号可以实现多条件筛选，当然是用&#34;</span><span class="o">|</span><span class="s2">&#34;符号也可以实现多条件，只不过他是或的关系&#34;</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">]][(</span><span class="n">df</span><span class="o">.</span><span class="n">C</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">D</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)]</span>  <span class="s2">&#34;假如我们只需要A和B列数据，而D和C列数据都是用于筛选的&#34;</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;20130102&#39;</span><span class="p">:</span><span class="s1">&#39;20130104&#39;</span><span class="p">]</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">,</span><span class="s1">&#39;four&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">]</span>
+<span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;four&#39;</span><span class="p">])]</span>  <span class="s2">&#34;筛选特定的值&#34;</span>
+<span class="s2">&#34;没有isnotin函数，取反的方法就是在函数前面加个 ~ ，好销魂的一飘&#34;</span>
+<span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<span class="s2">&#34;去重&#34;</span>
+<span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;column1&#39;</span><span class="p">)</span><span class="c1">#找第一列重复者</span>
+<span class="n">data</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)</span><span class="c1">#&#39;first&#39;,&#39;last&#39;,False</span>
+
+<span class="s2">&#34;删除木一列&#34;</span>
+<span class="n">DF</span><span class="o">=</span> <span class="n">DF</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;column_name&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="err">；</span>
+<span class="n">DF</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;column_name&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">DF</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">DF</span><span class="o">.</span><span class="n">columns</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>   <span class="c1"># Note: zero indexed</span>
+
+<span class="s2">&#34;修改&#34;</span>
+<span class="s1">&#39;.loc[row_indexer筛选条件,col_indexer赋值列名] = value&#39;</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df2</span><span class="o">.</span><span class="n">C</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&#34;D&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20130102&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s1</span>
+<span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">dates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;D&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df2</span><span class="p">[</span><span class="n">df2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">df2</span>
+
+<span class="s2">&#34;Grouping&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="s2">&#34;分类统计个数&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;job&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+                                      <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                                      <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+                                     <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;E&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+
+<span class="s2">&#34;透视表pivot_table&#34;</span>
+<span class="o">*</span> <span class="err">更快（一旦设置之后）</span>
+<span class="o">*</span> <span class="err">自行说明（通过查看代码，你将知道它做了什么）</span>
+<span class="o">*</span> <span class="err">易于生成报告或电子邮件</span>
+<span class="o">*</span> <span class="err">更灵活，因为你可以定义定制的聚合函数</span>
+
+<span class="s2">&#34;小方法&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span>      <span class="s2">&#34;设置索引&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&#34;M&#34;</span><span class="p">)</span>  <span class="s2">&#34;设置日期索引之后，按月显示,不统计&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&#34;Q&#34;</span><span class="p">)</span>  <span class="s2">&#34;设置日期索引之后，按季度显示,不统计&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&#34;A&#34;</span><span class="p">)</span>  <span class="s2">&#34;设置日期索引之后，按年度显示,不统计&#34;</span>
+<span class="n">df_period</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s2">&#34;A&#34;</span><span class="p">)</span>  <span class="s2">&#34;按年度频率显示,&#39;A&#39;默认是&#39;A-DEC&#39;,其他如&#39;A-JAN&#39;&#34;</span>
+<span class="n">df_period</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s2">&#34;Q&#34;</span><span class="p">)</span>  <span class="s2">&#34;按季度频率显示,&#39;Q&#39;默认是&#39;Q-DEC&#39;,其他如“Q-SEP”，“Q-FEB”&#34;</span>
+<span class="n">df_period</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s2">&#34;M&#34;</span><span class="p">)</span>  <span class="s2">&#34;按月度频率显示,&#39;Q&#39;默认是&#39;Q-DEC&#39;,其他如“Q-SEP”，“Q-FEB”&#34;</span>
+<span class="n">df_period</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">)</span>  <span class="s2">&#34;按工作日显示,how=&#39;start&#39; or end&#34;</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;列名&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>    <span class="s2">&#34;按周统计数据&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>    <span class="s2">&#34;按月统计数据&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>    <span class="s2">&#34;按季度统计数据&#34;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>    <span class="s2">&#34;按年统计数据&#34;</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">))</span>
+
+<span class="s2">&#34;To dict的时候，nan 转 None&#34;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&#34;a&#34;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="bp">None</span><span class="p">],</span><span class="s2">&#34;b&#34;</span><span class="p">:[</span><span class="bp">None</span><span class="p">,</span><span class="s2">&#34;foo&#34;</span><span class="p">]})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="bp">None</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">850</span><span class="p">]:</span> 
+      <span class="n">a</span>     <span class="n">b</span>
+<span class="mi">0</span>     <span class="mi">1</span>  <span class="bp">None</span>
+<span class="mi">1</span>  <span class="bp">None</span>   <span class="n">foo</span>
+<span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="bp">None</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">851</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="5-小技巧">5. 小技巧</h1>
+<ol>
+<li><a href="https://blog.csdn.net/htbeker/article/details/79645651" target="_blank" rel="noopener noreffer">pandas.DataFrame中删除包涵特定字符串所在的行</a>
+思想：
+将所有列转为字符串，找到所要查找的列的值的列表，对这个列表进行操作，形成新的列表，使用isin。</li>
+</ol>
+<h2 id="cufflinkshttpsgithubcomsantosjorgecufflinksthis-library-binds-the-power-of-plotly-with-the-flexibility-of-pandas-for-easy-plotting"><a href="https://github.com/santosjorge/cufflinks" target="_blank" rel="noopener noreffer">Cufflinks</a>This library binds the power of plotly with the flexibility of pandas for easy plotting</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/python/">PYTHON</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-03-15</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/" class="prev" rel="prev" title="微服务架构笔记-网络协议"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-api/" class="next" rel="next" title="后端-构建API服务">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

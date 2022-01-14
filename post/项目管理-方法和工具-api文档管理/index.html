@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>API文档服务器 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="API文档服务器" />
+<meta property="og:description" content="参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 1. API概述 2. 重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-02-22T14:15:25+00:00" />
+<meta property="article:modified_time" content="2019-02-22T14:15:25+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="API文档服务器"/>
+<meta name="twitter:description" content="参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 1. API概述 2. 重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" /><link rel="prev" href="/post/%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95/" /><link rel="next" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "API文档服务器",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "项目管理","wordcount":  1266 ,
+        "url": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86\/","datePublished": "2019-02-22T14:15:25+00:00","dateModified": "2019-02-22T14:15:25+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">API文档服务器</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-api概述">1. API概述</a></li>
+    <li><a href="#2-重要性">2. 重要性</a></li>
+    <li><a href="#3-api工具">3. API工具</a>
+      <ul>
+        <li><a href="#31-apifoxhttpswwwapifoxcn">3.1. <a href="https://www.apifox.cn/">Apifox</a>******</a></li>
+        <li><a href="#32-postman工具">3.2. POSTMAN工具</a></li>
+        <li><a href="#33-rap2">3.3. rap2</a></li>
+        <li><a href="#34-showdochttpswwwshowdoccc">3.4. <a href="https://www.showdoc.cc/">Showdoc</a></a></li>
+        <li><a href="#35-crapapihttpscrapcn">3.5. <a href="https://crap.cn/">Crapapi</a></a></li>
+        <li><a href="#36-apidochttpapidocjscom">3.6. <a href="http://apidocjs.com/">apiDoc</a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://www.cnblogs.com/leotsai/p/vuejs-front-backend-architecture.html" target="_blank" rel="noopener noreffer">[原创]基于VueJs的前后端分离框架搭建之完全攻略</a></p>
+<h2 id="1-api概述">1. API概述</h2>
+<h2 id="2-重要性">2. 重要性</h2>
+<ol>
+<li>
+<p>API文档服务器就是专门用来生成API文档的。有了API文档，前端开发人员就可以基于API文档产生模拟数据（mock），然后使用mock的数据完成页面样式和页面交互；有了API文档，后端开发人员就可以基于API文档完成请求的处理以及返回响应数据。</p>
+</li>
+<li>
+<p>API文档服务器（通常为WEB服务器）是一个可以动态生成最新版本API文档的服务器，并支持本地维护+远程访问。</p>
+</li>
+</ol>
+<p>软件开发流程中的几个关键环节：
+（1）产品经理提需求，画原型；
+（2）UI设计师根据原型出设计图；
+（3）测试团队根据产品原型编写测试用例，制定测试计划；
+（4）架构师根据原型编写API文档；
+（5）前后端工程师基于API文档完成业务开发；
+（6）测试、改BUG、发布。</p>
+<p>swagger之不够完美的地方：
+（1）通过swagger生成的API文档看不见版本修改记录，你不知道什么时候后端开发人员悄悄改了下API文档而忘记/有意不通知前端开发人员，这样的锅前端背了太多；
+（2）接口文档由后端开发人员编写，前端开发人员的地位实际上比后端的低，并且前端开发人员仍然会经常找后端开发人员沟通修改API文档（强依赖仍然存在）；
+（3）本来swagger的API定义应该由架构师或项目经理编写，但由于后端开发人员可以直接改文档，这导致的实际效果就是：基本上API文档都直接由开发人员编写（或修改），其质量水平很难达到期望；
+（4）swagger生成API文档的类的定义可能是多层引用关联的，但是这个类又太容易被开发人员修改到，或者不小心改到，如果开发人员忘记通知前端或者只通知了部分改动，那就会造成严重的问题；
+（5）使用swagger的语法来编写API文档，其实还是很麻烦的，我们希望这个语法能够超级简单；
+（6）swagger会污染你的代码。</p>
+<p>wagger的这些缺点其实综合来讲，其主要的问题就在于它让API编写/修改太过容易，让软件开发过程和管理过程太容易出错。如果你们团队建立了严格的管理机制，那还是可以将swagger用的很和谐的，但这不是笔者，作为一个架构师，可以撇开责任的理由。</p>
+<p>如何让开发人员更不容易写出错误的代码是评价一个架构师能力的重要标准。</p>
+<p><code>笔者在写代码或做架构的时候有一个思维习惯，就是不管某个问题多么复杂具体解决方案是什么，我会先去想想这个问题的最佳的处理方式应该是什么样子，然后再去想这些最佳的处理方式哪些可以实现，哪些实现不了而只能用次一点的方案，然后次一点的方案是否可以接受。</code></p>
+<h2 id="3-api工具">3. API工具</h2>
+<h3 id="31-apifoxhttpswwwapifoxcn">3.1. <a href="https://www.apifox.cn/" target="_blank" rel="noopener noreffer">Apifox</a>******</h3>
+<ol>
+<li>Apifox = Postman + Swagger + Mock</li>
+<li>接口文档、调试、Mock、自动化测试，提升 10 倍效率！</li>
+</ol>
+<h3 id="32-postman工具">3.2. POSTMAN工具</h3>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>只有在线版，不能私有部署</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-rap2">3.3. rap2</h3>
+<ol>
+<li><a href="https://github.com/thx/rap2-delos/issues/119" target="_blank" rel="noopener noreffer">非官方rap2-delos部署文档</a></li>
+<li><a href="https://github.com/thx/rap2-delos" target="_blank" rel="noopener noreffer">阿里妈妈前端团队出品的开源接口管理工具RAP第二代后端</a></li>
+<li><a href="https://github.com/thx/rap2-dolores" target="_blank" rel="noopener noreffer">RAP2前端</a></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可以导出postman文件</td>
+<td></td>
+</tr>
+<tr>
+<td>支持自动生成mock数据</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-showdochttpswwwshowdoccc">3.4. <a href="https://www.showdoc.cc/" target="_blank" rel="noopener noreffer">Showdoc</a></h3>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可以权限管理</td>
+<td>版本控制不完善，需要手动添加</td>
+</tr>
+<tr>
+<td>可以私有部署</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="35-crapapihttpscrapcn">3.5. <a href="https://crap.cn/" target="_blank" rel="noopener noreffer">Crapapi</a></h3>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>接口</td>
+<td></td>
+</tr>
+<tr>
+<td>文档</td>
+<td></td>
+</tr>
+<tr>
+<td>数据库表</td>
+<td></td>
+</tr>
+<tr>
+<td>BUG管理</td>
+<td></td>
+</tr>
+<tr>
+<td>附件</td>
+<td></td>
+</tr>
+<tr>
+<td>团队协作</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="36-apidochttpapidocjscom">3.6. <a href="http://apidocjs.com/" target="_blank" rel="noopener noreffer">apiDoc</a></h3>
+<p>creates a documentation from API annotations in your source code</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-02-22</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%89%8D%E7%AB%AF-%E6%89%A9%E5%B1%95/" class="prev" rel="prev" title="前端扩展和工程模板"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="next" rel="next" title="负载均衡\反向代理">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

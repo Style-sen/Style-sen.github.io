@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>负载均衡\反向代理 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="负载均衡\反向代理" />
+<meta property="og:description" content="负载均衡的作用 转发功能 按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 故障移除 通过心跳" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-02-26T09:09:04+00:00" />
+<meta property="article:modified_time" content="2019-02-26T09:09:04+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="负载均衡\反向代理"/>
+<meta name="twitter:description" content="负载均衡的作用 转发功能 按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。 故障移除 通过心跳"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" /><link rel="prev" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" /><link rel="next" href="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "负载均衡\\反向代理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "运维","wordcount":  1893 ,
+        "url": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E4%B8%AD%E9%97%B4%E4%BB%B6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1\/","datePublished": "2019-02-26T09:09:04+00:00","dateModified": "2019-02-26T09:09:04+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">负载均衡\反向代理</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#负载均衡的作用">负载均衡的作用</a>
+      <ul>
+        <li><a href="#转发功能">转发功能</a></li>
+        <li><a href="#故障移除">故障移除</a></li>
+        <li><a href="#恢复添加">恢复添加</a></li>
+      </ul>
+    </li>
+    <li><a href="#ospf负载均衡">OSPF负载均衡</a></li>
+    <li><a href="#lvs">LVS</a></li>
+    <li><a href="#haproxyhttpswwwhaproxyorg可靠高性能的tcp--http负载均衡器"><a href="https://www.haproxy.org/">HAProxy</a>可靠，高性能的TCP / HTTP负载均衡器</a></li>
+    <li><a href="#nginx">NGINX</a>
+      <ul>
+        <li><a href="#nginx的负载分发策略">Nginx的负载分发策略</a></li>
+        <li><a href="#配置nginx的负载均衡与分发策略">配置Nginx的负载均衡与分发策略</a></li>
+        <li><a href="#使用nginx的高可用">使用Nginx的高可用 </a></li>
+        <li><a href="#keepalivenginx实现负载均衡高可用">keepalive+nginx实现负载均衡高可用</a>
+          <ul>
+            <li><a href="#keepalive-安装">keepalive 安装</a></li>
+            <li><a href="#keepalive-配置">keepalive 配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#pache">PACHE</a>
+      <ul>
+        <li><a href="#反向代理">反向代理</a></li>
+      </ul>
+    </li>
+    <li><a href="#traefikhttpsgithubcomcontainoustraefik"><a href="https://github.com/containous/traefik">TRAEFIK</a></a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="负载均衡的作用">负载均衡的作用</h2>
+<h3 id="转发功能">转发功能</h3>
+<p>按照一定的算法【权重、轮询】，将客户端请求转发到不同应用服务器上，减轻单个服务器压力，提高系统并发量。</p>
+<h3 id="故障移除">故障移除</h3>
+<p>通过心跳检测的方式，判断应用服务器当前是否可以正常工作，如果服务器期宕掉，自动将请求发送到其他应用服务器。</p>
+<h3 id="恢复添加">恢复添加</h3>
+<p>如检测到发生故障的应用服务器恢复工作，自动将其添加到处理用户请求队伍中。</p>
+<h2 id="ospf负载均衡">OSPF负载均衡</h2>
+<ol>
+<li>OSPF（开放式最短链路优先）是一个内部网关协议（Interior Gateway Protocol，简称 IGP）。</li>
+<li>OSPF 通过路由器之间通告网络接口的状态来建立链路状态数据库，生成最短路径树，OSPF 会自动计算路由接口上的 Cost 值，但也可以通过手工指定该接口的 Cost 值，手工指定的优先于自动计算的值。</li>
+<li>OSPF 计算的 Cost，同样是和接口带宽成反比，带宽越高，Cost 值越小。到达目标相同 Cost 值的路径，可以执行负载均衡，最多 6 条链路同时执行负载均衡。</li>
+</ol>
+<h2 id="lvs">LVS</h2>
+<ol>
+<li>它是一种集群（Cluster）技术，采用 IP 负载均衡技术和基于内容请求分发技术。</li>
+<li>调度器具有很好的吞吐率，将请求均衡地转移到不同的服务器上执行，且调度器自动屏蔽掉服务器的故障，从而将一组服务器构成一个高性能的、高可用的虚拟服务器。</li>
+</ol>
+<h2 id="haproxyhttpswwwhaproxyorg可靠高性能的tcp--http负载均衡器"><a href="https://www.haproxy.org/" target="_blank" rel="noopener noreffer">HAProxy</a>可靠，高性能的TCP / HTTP负载均衡器</h2>
+<p>haproxy是工作在四层之上的，这也就意味着它可以代理的服务要比nginx更广泛，性能比nginx也要更高一些。</p>
+<ol>
+<li><a href="https://blog.csdn.net/muye0503/article/details/45721411" target="_blank" rel="noopener noreffer">让一个端口同时做两件事：http/https和ssh</a></li>
+<li>需要设置为开机启动。</li>
+</ol>
+<h2 id="nginx">NGINX</h2>
+<h3 id="nginx的负载分发策略">Nginx的负载分发策略</h3>
+<ol>
+<li>
+<p>Nginx 的 upstream目前支持的分配算法： </p>
+<ul>
+<li>轮询 ——1：1 轮流处理请求（默认）,每个请求按时间顺序逐一分配到不同的应用服务器，如果应用服务器down掉，自动剔除，剩下的继续轮询。 </li>
+<li>权重 ——you can you up.通过配置权重，指定轮询几率，权重和访问比率成正比，用于应用服务器性能不均的情况。 </li>
+<li>ip_哈希算法:每个请求按访问ip的hash结果分配，这样<code>每个访客固定访问一个应用服务器</code>，可以解决session共享的问题。 </li>
+</ul>
+</li>
+</ol>
+<h3 id="配置nginx的负载均衡与分发策略">配置Nginx的负载均衡与分发策略</h3>
+<ol>
+<li>通过在upstream参数中添加的应用服务器IP后添加指定参数即可实现，如：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">upstream tomcatserver1 {
+    server 192.168.72.49:8080 weight=3;
+    server 192.168.72.49:8081;
+} 
+ 
+server {
+    listen       80;
+    server_name  8080.max.com;
+    #charset koi8-r;
+    #access_log  logs/host.access.log  main;
+    location / {
+        proxy_pass   http://tomcatserver1;
+        index  index.html index.htm;
+    }
+} 
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>
+<p>通过以上配置，便可以实现，在访问8080.max.com这个网站时，由于配置了proxy_pass地址，所有请求都会先通过nginx反向代理服务器，在服务器将请求转发给目的主机时，读取upstream为 tomcatsever1的地址，读取分发策略，配置tomcat1权重为3，所以nginx会将大部分请求发送给49服务器上的tomcat1，也就是8080端口；较少部分给tomcat2来实现有条件的负载均衡，当然这个条件就是服务器1、2的硬件指数处理请求能力。 </p>
+</li>
+<li>
+<p>nginx其他配置</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">upstream myServer {  
+    server 192.168.72.49:9090 down; 
+    server 192.168.72.49:8080 weight=2; 
+    server 192.168.72.49:6060; 
+    server 192.168.72.49:7070 backup; 
+}
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>down:表示单前的server暂时不参与负载</li>
+<li>Weight:默认为1.weight越大，负载的权重就越大。</li>
+<li>max_fails:允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误</li>
+<li>fail_timeout:max_fails 次失败后，暂停的时间。</li>
+<li>Backup:其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</li>
+</ul>
+<h3 id="使用nginx的高可用">使用Nginx的高可用 </h3>
+<ol>
+<li>除了要实现网站的高可用，也就是提供n多台服务器用于发布相同的服务，添加负载均衡服务器分发请求以保证在高并发下各台服务器能相对饱和的处理请求。同样，负载均衡服务器也需要高可用，以防如果负载均衡服务器挂掉了，后面的应用服务器也紊乱无法工作。</li>
+<li>实现高可用的方案：添加冗余。添加n台nginx服务器以避免发生上述单点故障。具体方案详见下文：keepalive+nginx实现负载均衡高可用.</li>
+</ol>
+<h3 id="keepalivenginx实现负载均衡高可用">keepalive+nginx实现负载均衡高可用</h3>
+<ol>
+<li>为了避免负载均衡服务器的宕机故障，需要建立一个备份机。主备机上都运行高可用（High Availability）监控程序，通过传送心跳信息来监控对方的运行状况。当备份机不能在一定的时间内收到对方的正常心跳时，它就接管主服务器的服务IP并继续提供负载均衡服务；当备份管理器又从主管理器收到“I am alive”这样的信息时，它就释放服务IP地址，这样的主服务器就开始再次提供负载均衡服务。</li>
+</ol>
+<h4 id="keepalive-安装">keepalive 安装</h4>
+<h4 id="keepalive-配置">keepalive 配置</h4>
+<h2 id="pache">PACHE</h2>
+<h3 id="反向代理">反向代理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;VirtualHost *:80&gt;
+    ServerName www.songsong.red
+    ServerAlias songsong.red
+
+    ProxyRequests off  # off表示开启反向代理，on表示开启正向代理
+
+    &lt;Proxy *&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Proxy&gt;
+
+    &lt;Location /&gt;
+        ProxyPass http://localhost:8080/
+        ProxyPassReverse http://localhost:8080/
+    &lt;/Location&gt;
+&lt;/VirtualHost&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="traefikhttpsgithubcomcontainoustraefik"><a href="https://github.com/containous/traefik" target="_blank" rel="noopener noreffer">TRAEFIK</a></h2>
+<ol>
+<li>云原生Edge路由器。</li>
+<li>是一个现代HTTP反向代理和负载均衡器，使部署微服务更容易.</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-02-26</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" class="prev" rel="prev" title="API文档服务器"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" class="next" rel="next" title="运维-监控系统-问题排查">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

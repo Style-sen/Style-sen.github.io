@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>JAVA - 标签 - 锦枫紫兰</title>
+        <link>/tags/java/</link>
+        <description>JAVA - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 15 Feb 2020 10:52:11 &#43;0000</lastBuildDate><atom:link href="/tags/java/" rel="self" type="application/rss+xml" /><item>
+    <title>JAVA-JVM底层原理与性能</title>
+    <link>/post/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD/</link>
+    <pubDate>Sat, 15 Feb 2020 10:52:11 &#43;0000</pubDate><guid>/post/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD/</guid>
+    <description><![CDATA[JVM体系结构 JVM = 类加载器(classloader) + 执行引擎(execution engine) + 运行时数据区域(runtime data area)。 参考JVM]]></description>
+</item>
+<item>
+    <title>JAVA-基础</title>
+    <link>/post/java-02-%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Sat, 15 Feb 2020 10:52:11 &#43;0000</pubDate><guid>/post/java-02-%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[JAVA基本语法 参考速学堂 面向对象 核心：将物理事物用代码抽象出来，拟物化编程。 一个Java程序可以认为是一系列对象的集合，而这些对象通过调用]]></description>
+</item>
+<item>
+    <title>JAVA-面向对象</title>
+    <link>/post/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+    <pubDate>Sat, 15 Feb 2020 10:52:11 &#43;0000</pubDate><guid>/post/java-03-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+    <description><![CDATA[部分内容摘自速学堂 概念 类和对象 对象 对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫]]></description>
+</item>
+</channel>
+</rss>

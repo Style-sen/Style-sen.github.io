@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>项目管理 - 分类 - 锦枫紫兰</title>
+        <link>/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</link>
+        <description>项目管理 - 分类 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 20 Oct 2021 15:46:19 &#43;0800</lastBuildDate><atom:link href="/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>SEAFILE&#43;ONLYOFFICE</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C-seafile-onlyoffice/</link>
+    <pubDate>Wed, 20 Oct 2021 15:46:19 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C-seafile-onlyoffice/</guid>
+    <description><![CDATA[参考Seafile集成OnlyOffic实现word在线编辑]]></description>
+</item>
+<item>
+    <title>注释规范Doxygen</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/</link>
+    <pubDate>Thu, 05 Aug 2021 15:45:11 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/</guid>
+    <description><![CDATA[1. 安装 apt-get install graphviz; apt-get install doxygen 2. 注释格式 2.1. 块注释，建议统一使用 1 2 3 /** *…… */ 2.2. 行注释 如下图，函数中注释可以出现在Doxygen 页面的函数说明中。 1 ///&lt; …]]></description>
+</item>
+<item>
+    <title>编写软件项目需求分析文档</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3/</link>
+    <pubDate>Thu, 05 Aug 2021 15:45:11 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3/</guid>
+    <description><![CDATA[参考软件需求分析模板 软件需求分析就是把软件计划期间建立的软件可行性分析求精和细化，分析各种可能的解法，并且分配给各个软件元素。 需求分析是软件]]></description>
+</item>
+<item>
+    <title>GIT基本操作</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Fri, 23 Apr 2021 10:45:49 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[1. 增加/删除文件 git add -p添加每个变化前，都会要求确认；对于同一个文件的多处变化，可以实现分次提交； 2. 查看更改 git status查看文件在工作区（]]></description>
+</item>
+<item>
+    <title>如何管理一个项目</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/</link>
+    <pubDate>Fri, 23 Apr 2021 10:45:49 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/</guid>
+    <description><![CDATA[学习 极客时间 《项目管理实战20讲》（完） 项目管理能力，成为一个职场人士的【必备技能】，具备项目管理能力的程序员，会在这个程序员严重同质化的局]]></description>
+</item>
+<item>
+    <title>Gitlab-CICD配置</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E9%85%8D%E7%BD%AE/</link>
+    <pubDate>Tue, 02 Feb 2021 10:12:26 &#43;0800</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E9%85%8D%E7%BD%AE/</guid>
+    <description><![CDATA[1. .gitlab-ci.yaml详解 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 stages:# 定义构建阶段，非必须- buildjob1:#任务说明script:-]]></description>
+</item>
+<item>
+    <title>SCRUM&#43;GITLAB-FLOW</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow/</link>
+    <pubDate>Wed, 26 Jun 2019 12:08:42 &#43;0000</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow/</guid>
+    <description><![CDATA[参考GitLab 工作流概览 GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。 1. 软件开发阶段 一般情况下，软件开发经过 10 个主要阶]]></description>
+</item>
+<item>
+    <title>组织管理-SCRUM</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-02-scrum%E6%95%8F%E6%8D%B7/</link>
+    <pubDate>Tue, 25 Jun 2019 10:20:03 &#43;0000</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-02-scrum%E6%95%8F%E6%8D%B7/</guid>
+    <description><![CDATA[参考Scrum实践指南：一个可运行的 Scrum是怎样的 参考如何实施 SCRUM ？ 1. 定义 1.1. 定义 Scrum 是一个用于开发和维护复杂产品的框架，是一个增量的、迭代的]]></description>
+</item>
+<item>
+    <title>ONES敏捷研发</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-scrum-one-%E6%95%8F%E6%8D%B7%E7%A0%94%E5%8F%91/</link>
+    <pubDate>Tue, 25 Jun 2019 10:07:32 &#43;0000</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-scrum-one-%E6%95%8F%E6%8D%B7%E7%A0%94%E5%8F%91/</guid>
+    <description><![CDATA[参考ones的敏捷研发管理解决方案 1. 需求规划 产品经理需要将客户、用户的反馈，以及经过市场调研的结果整理出来，通过用户故事的方式描述，形成需求]]></description>
+</item>
+<item>
+    <title>API文档服务器</title>
+    <link>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Fri, 22 Feb 2019 14:15:25 &#43;0000</pubDate><guid>/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-api%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[参考[原创]基于VueJs的前后端分离框架搭建之完全攻略 1. API概述 2. 重要性 API文档服务器就是专门用来生成API文档的。有了API文档，前]]></description>
+</item>
+</channel>
+</rss>

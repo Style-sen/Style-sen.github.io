@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JAVA-JVM底层原理与性能 - 锦枫紫兰</title><meta name="description" content="JVM"><meta property="og:title" content="JAVA-JVM底层原理与性能" />
+<meta property="og:description" content="JVM" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-02-15T10:52:11+00:00" />
+<meta property="article:modified_time" content="2020-02-15T10:52:11+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="JAVA-JVM底层原理与性能"/>
+<meta name="twitter:description" content="JVM"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD/" /><link rel="prev" href="/post/java-02-%E5%9F%BA%E7%A1%80/" /><link rel="next" href="/post/java-01-maven/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JAVA-JVM底层原理与性能",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "JAVA","wordcount":  2486 ,
+        "url": "\/post\/java-jvm%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD\/","datePublished": "2020-02-15T10:52:11+00:00","dateModified": "2020-02-15T10:52:11+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "JVM"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">JAVA-JVM底层原理与性能</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#内存结构">内存结构</a>
+      <ul>
+        <li><a href="#程序计数器program-counter-register">程序计数器（Program Counter Register）</a></li>
+        <li><a href="#java虚拟机栈jvm-stacks">Java虚拟机栈（JVM Stacks）</a></li>
+        <li><a href="#本地方法栈native-method-stacks">本地方法栈（Native Method Stacks）</a></li>
+        <li><a href="#java堆heap-只有一个">Java堆（Heap） 只有一个</a></li>
+        <li><a href="#方法区method-area">方法区（Method Area）</a>
+          <ul>
+            <li><a href="#运行时常量池runtime-constant-pool">运行时常量池（Runtime Constant Pool）</a></li>
+          </ul>
+        </li>
+        <li><a href="#直接内存direct-memory">直接内存（Direct Memory）</a></li>
+      </ul>
+    </li>
+    <li><a href="#深入理解堆与栈">深入理解堆与栈</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="jvm体系结构">JVM体系结构</h1>
+<ol>
+<li>JVM = 类加载器(classloader) + 执行引擎(execution engine) + 运行时数据区域(runtime data area)。</li>
+<li>参考<a href="https://juejin.im/post/5ad5c0216fb9a028e014fb63" target="_blank" rel="noopener noreffer">JVM内存模型</a>。</li>
+</ol>
+<h2 id="内存结构">内存结构</h2>
+<ol>
+<li>Java 虚拟机在运行 Java 程序 时，把它所管理的<code>内存</code>划分为若干个不同的数据区域（运行时数据区域），主要包括以下五个部分：<code>程序计数器</code>、<code>Java 堆</code>、<code>Java 虚拟机栈</code>、<code>方法区</code>和<code>本地方法栈</code>。</li>
+</ol>
+<h3 id="程序计数器program-counter-register">程序计数器（Program Counter Register）</h3>
+<ol>
+<li><code>线程私有</code>，它的生命周期与线程相同。</li>
+<li>可以看做是当前线程所执行的字节码的<code>行号指示器</code>。</li>
+<li>在虚拟机的概念模型里（仅是概念模型，各种虚拟机可能会通过一些更高效的方式去实现），<code>字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令</code>，如：分支、循环、跳转、异常处理、线程恢复（多线程切换）等基础功能。 </li>
+<li>如果线程正在执行的是一个Java方法，这个计数器记录的是<code>正在执行的虚拟机字节码指令的地址</code>；如果正在执行的是Natvie方法，这个计数器值则为空（undefined）。</li>
+<li>程序计数器中存储的数据所占空间的大小不会随程序的执行而发生改变，所以此区域不会出现OutOfMemoryError的情况。</li>
+</ol>
+<h3 id="java虚拟机栈jvm-stacks">Java虚拟机栈（JVM Stacks）</h3>
+<ol>
+<li><code>线程私有的</code>，它的生命周期与线程相同。</li>
+<li>虚拟机栈描述的是<code>Java方法执行的内存模型</code>：<code>每个方法被执行的时候都会同时创建一个栈帧（Stack Frame）用于存储局部变量表、操作栈、动态链接、方法出口等信息</code>。<code>每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程</code>。</li>
+<li><code>局部变量表存放了编译期可知的各种基本数据类型（boolean、byte、char、short、int、float、long、double）、对象引用（reference类型）</code>，它不等同于对象本身，根据不同的虚拟机实现，它可能是一个指向对象起始地址的引用指针，也可能指向一个代表对象的句柄或者其他与此对象相关的位置）和returnAddress类型（指向了一条字节码指令的地址）。<code>局部变量表所需的内存空间在编译期间完成分配</code>，当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。</li>
+<li>该区域可能抛出以下异常：<code>当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常</code>；<code>栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常</code>。</li>
+</ol>
+<h3 id="本地方法栈native-method-stacks">本地方法栈（Native Method Stacks）</h3>
+<ol>
+<li><code>线程私有</code>。</li>
+<li>与虚拟机栈非常相似，其区别不过是虚拟机栈为虚拟机执行Java方法（也就是字节码）服务，而本地方法栈则是为<code>虚拟机使用到的Native方法服务</code>。</li>
+<li>虚拟机规范中对本地方法（操作系统）栈中的方法使用的语言、使用方式与数据结构并没有强制规定，因此具体的虚拟机可以自由实现它。</li>
+<li><code>甚至有的虚拟机（譬如Sun HotSpot 虚拟机）直接就把本地方法栈和虚拟机栈合二为一</code>。</li>
+<li>与虚拟机栈一样，本地方法栈区域也会抛出StackOverflowError和OutOfMemoryError异常。</li>
+</ol>
+<h3 id="java堆heap-只有一个">Java堆（Heap） 只有一个</h3>
+<ol>
+<li><code>被所有线程共享</code>，在虚拟机启动时创建，用来存放对象实例，<code>几乎所有的对象实例都在这里分配内存</code>。</li>
+<li>对于大多数应用来说，Java堆（Java Heap）是Java虚拟机所管理的内存中最大的一块。</li>
+<li>Java堆是垃圾收集器管理的主要区域，因此很多时候也被称做“GC堆”。如果从内存回收的角度看，由于现在收集器基本都是采用的<code>分代收集算法</code>，所以Java堆中还可以细分为：<code>新生代</code>和<code>老年代</code>；新生代又有Eden空间、From Survivor空间、To Survivor空间三部分。</li>
+<li><code>Java 堆不需要连续内存</code>，并且可以通过动态增加其内存，增加失败会抛出 OutOfMemoryError 异常。</li>
+</ol>
+<h3 id="方法区method-area">方法区（Method Area）</h3>
+<ol>
+<li>用于存放已被加载的<code>类信息、常量、静态变量、即时编译器编译后的代码</code>等数据。</li>
+<li>和 Java 堆一样不需要连续的内存，并且可以动态扩展，动态扩展失败一样会抛出 OutOfMemoryError 异常。</li>
+<li>对这块区域进行垃圾回收的主要目标是对常量池的回收和对类的卸载，但是一般比较难实现，HotSpot 虚拟机把它当成永久代（Permanent Generation）来进行垃圾回收。<code>方法区逻辑上属于堆的一部分</code>，但是为了与堆进行区分，通常又叫“非堆”。</li>
+</ol>
+<h4 id="运行时常量池runtime-constant-pool">运行时常量池（Runtime Constant Pool）</h4>
+<ol>
+<li>运行时常量池是方法区的一部分。</li>
+<li>Class 文件中的常量池（编译器生成的各种字面量和符号引用）会在类加载后被放入这个区域。除了<code>在编译期生成的常量，还允许动态生成</code>，例如 <code>String 类的 intern()</code>。这部分常量也会被放入运行时常量池。3. 注：在 JDK1.7之前，HotSpot 使用永久代实现方法区；HotSpot 使用 GC 分代实现方法区带来了很大便利；从 JDK1.7 开始HotSpot 开始移除永久代。其中符号引用（Symbols）被移动到 Native Heap中，字符串常量和类引用被移动到 Java Heap中。<code>在 JDK1.8 中，永久代已完全被元空间(Meatspace)所取代</code>。元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。直接内存（Direct Memory）</li>
+</ol>
+<h3 id="直接内存direct-memory">直接内存（Direct Memory）</h3>
+<ol>
+<li>并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用，而且也可能导致OutOfMemoryError 异常出现。</li>
+<li>在 JDK 1.4 中新加入了 NIO 类，引入了一种基于通道（Channel）与缓冲区（Buffer）的 I/O方式，它可以使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆里的 DirectByteBuffer 
+对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在Java 堆和 Native 堆中来回复制数据。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">作者：军儿呀
+链接：https://juejin.im/post/5ad5c0216fb9a028e014fb63
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="深入理解堆与栈">深入理解堆与栈</h2>
+<ol>
+<li>参考<a href="https://www.cnblogs.com/whgw/archive/2011/09/29/2194997.html" target="_blank" rel="noopener noreffer">Java中堆内存和栈内存详解</a></li>
+</ol>
+<h1 id="堆内存调优">堆内存调优</h1>
+<h1 id="dump内存快照分析">DUMP内存快照分析</h1>
+<h1 id="jprofiler工具使用">JProfiler工具使用</h1>
+<h1 id="gc机制及算法详解">GC机制及算法详解</h1>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/java/">JAVA</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-02-15</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/java-02-%E5%9F%BA%E7%A1%80/" class="prev" rel="prev" title="JAVA-基础"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/java-01-maven/" class="next" rel="next" title="微服务架构笔记-JAVA-MAVEN">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

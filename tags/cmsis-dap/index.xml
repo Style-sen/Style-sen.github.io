@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CMSIS-DAP - 标签 - 锦枫紫兰</title>
+        <link>/tags/cmsis-dap/</link>
+        <description>CMSIS-DAP - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Apr 2019 16:40:15 &#43;0000</lastBuildDate><atom:link href="/tags/cmsis-dap/" rel="self" type="application/rss+xml" /><item>
+    <title>CMSIS-DAP</title>
+    <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-arm-cmsis-dap/</link>
+    <pubDate>Tue, 23 Apr 2019 16:40:15 &#43;0000</pubDate><guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-arm-cmsis-dap/</guid>
+    <description><![CDATA[openocd 1 2 3 -f 指定配置文件（一般一个接口配置一个target配置） -c 命令 -c cmsis-dap-serial 指定cmsis-dap烧写器序列号 Programming nRF52 with OpenOCD pyocd 1 2 3 4 5 6 7 8 9 10 11 12]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>PLAT - 标签 - 锦枫紫兰</title>
+        <link>/tags/plat/</link>
+        <description>PLAT - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 14 Jan 2022 10:40:19 &#43;0800</lastBuildDate><atom:link href="/tags/plat/" rel="self" type="application/rss+xml" /><item>
+    <title>PLAT-LINUX-应用-网络编程</title>
+    <link>/post/plat-linux-%E5%BA%94%E7%94%A8-02-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+    <pubDate>Fri, 14 Jan 2022 10:40:19 &#43;0800</pubDate><guid>/post/plat-linux-%E5%BA%94%E7%94%A8-02-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
+    <description><![CDATA[1. UDP 1.1. 原理分析 现象：使用UDP发送一包数据给服务端，收到一包ICMP报文（Port unreachable），由服务端返回。 原因：接收UDP报]]></description>
+</item>
+<item>
+    <title>PLAT QT 第三方模块</title>
+    <link>/post/plat-qt-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/</link>
+    <pubDate>Wed, 12 Jan 2022 15:43:39 &#43;0800</pubDate><guid>/post/plat-qt-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/</guid>
+    <description><![CDATA[QCustomPlot 基于GPL。]]></description>
+</item>
+<item>
+    <title>QT基本模块QUICK</title>
+    <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-06-quick/</link>
+    <pubDate>Wed, 13 Oct 2021 17:59:49 &#43;0800</pubDate><guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-06-quick/</guid>
+    <description><![CDATA[用于构建具有自定义用户界面的高度动态应用程序的声明式框架。]]></description>
+</item>
+<item>
+    <title>QT-QML</title>
+    <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-05-qml/</link>
+    <pubDate>Wed, 13 Oct 2021 17:41:41 &#43;0800</pubDate><guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-05-qml/</guid>
+    <description><![CDATA[QML是一种声明式语言。它提供了一组接口用来描述可视化组件以及他们之间的互动。它是一个高度可读的语言，而且被设计成使组件以一个动态的方式相互]]></description>
+</item>
+<item>
+    <title>PLAT QT 扩展模块 03 WEBCHANNEL</title>
+    <link>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-03-webchannel/</link>
+    <pubDate>Wed, 13 Oct 2021 17:25:29 &#43;0800</pubDate><guid>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-03-webchannel/</guid>
+    <description><![CDATA[1. QWebChannel QWebChannel 提供了在 Server（C++应用）和 client 端（HTML/JS）之间点对点的通信能力。 通过向 client 端的 QWebChannel 发布 QObject 的 派生对象，进而实现在 client 端无缝读取]]></description>
+</item>
+<item>
+    <title>QT-XML</title>
+    <link>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-02-xml/</link>
+    <pubDate>Wed, 13 Oct 2021 17:14:10 &#43;0800</pubDate><guid>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-02-xml/</guid>
+    <description><![CDATA[1. QDomElement 解析的xml不是很大，而且基本只涉及加载过程中，所以使用DOM的情况比较多. 1 text()//获取文字，返回QString 2. QXmlSimpleReader]]></description>
+</item>
+<item>
+    <title>QT-SQL</title>
+    <link>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-01-sql/</link>
+    <pubDate>Wed, 13 Oct 2021 17:05:30 &#43;0800</pubDate><guid>/post/plat-qt-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97-01-sql/</guid>
+    <description><![CDATA[QtSql模块提供平台独立的基于SQL的数据库操作。这里的“平台独立”，既包括操作系统平台，也包括各个数据库平台。 1 2 3 #include &lt;QSqlDatabase&gt;#include &lt;QSqlQuery&gt;QT += sql 1. QSql]]></description>
+</item>
+<item>
+    <title>QT-NETWORK</title>
+    <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-04-network/</link>
+    <pubDate>Wed, 13 Oct 2021 17:02:55 &#43;0800</pubDate><guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-04-network/</guid>
+    <description><![CDATA[使网络编程更容易和更可移植性.QT += network QAbstractSocket 继承自QIODevice; 1. Qftp 需要自己编译。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # LINIX 1. 下载源码`htt]]></description>
+</item>
+<item>
+    <title>PLAT QT 基本模块 01 CORE</title>
+    <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-01-core/</link>
+    <pubDate>Sat, 18 Sep 2021 14:06:15 &#43;0800</pubDate><guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-01-core/</guid>
+    <description><![CDATA[1. 设计要点 提供了强大的signals and slots机制,用于对象之间的无缝通讯。 可查询和可设计的对象属性。 对象树。 受保护的指针。 跨库边界的动态]]></description>
+</item>
+<item>
+    <title>QT基本模块-GUI</title>
+    <link>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-03-gui/</link>
+    <pubDate>Sat, 18 Sep 2021 11:02:18 &#43;0800</pubDate><guid>/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-03-gui/</guid>
+    <description><![CDATA[1. QBrush设置QPainter绘制的图形的填充图案 2. QColor颜色 1 3. QGuiApplication管理 GUI 应用程序的控制流和主要设置 1]]></description>
+</item>
+</channel>
+</rss>

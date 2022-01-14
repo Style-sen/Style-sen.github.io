@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>后端-web框架-node-egg - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="后端-web框架-node-egg" />
+<meta property="og:description" content="Egg 奉行『约定优于配置』 渐进式开发 1 2 3 4 5 1. 最初始的状态：直接在框架中写业务代码。 2. 插件的雏形：发现业务代码具有通用性，可以写成插件。 3. 抽成" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-07-31T14:16:49+00:00" />
+<meta property="article:modified_time" content="2019-07-31T14:16:49+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="后端-web框架-node-egg"/>
+<meta name="twitter:description" content="Egg 奉行『约定优于配置』 渐进式开发 1 2 3 4 5 1. 最初始的状态：直接在框架中写业务代码。 2. 插件的雏形：发现业务代码具有通用性，可以写成插件。 3. 抽成"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/" /><link rel="prev" href="/post/%E7%BC%96%E7%A8%8B-uml/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "后端-web框架-node-egg",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "后端, NodeJs, Egg","wordcount":  8090 ,
+        "url": "\/post\/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg\/","datePublished": "2019-07-31T14:16:49+00:00","dateModified": "2019-07-31T14:16:49+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">后端-web框架-node-egg</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#渐进式开发">渐进式开发</a></li>
+    <li><a href="#框架内置基础对象">框架内置基础对象</a>
+      <ul>
+        <li><a href="#application">Application</a>
+          <ul>
+            <li><a href="#事件">事件</a></li>
+            <li><a href="#获取方式">获取方式</a></li>
+          </ul>
+        </li>
+        <li><a href="#context">Context</a>
+          <ul>
+            <li><a href="#ctx获取方式">Ctx获取方式</a></li>
+          </ul>
+        </li>
+        <li><a href="#request--response">Request &amp; Response</a></li>
+        <li><a href="#controller">Controller</a></li>
+        <li><a href="#service">Service</a>
+          <ul>
+            <li><a href="#作用">作用</a></li>
+          </ul>
+        </li>
+        <li><a href="#helper">Helper</a></li>
+        <li><a href="#config">Config</a></li>
+        <li><a href="#logger">Logger</a></li>
+        <li><a href="#subscription">Subscription</a></li>
+      </ul>
+    </li>
+    <li><a href="#目录结构httpseggjsorgzh-cnbasicsstructurehtml"><a href="https://eggjs.org/zh-cn/basics/structure.html">目录结构</a></a>
+      <ul>
+        <li><a href="#servicecontroller使用core定义的类--">Service\Controller使用core定义的类  ******</a></li>
+        <li><a href="#controller-1">controller</a></li>
+        <li><a href="#router">router</a>
+          <ul>
+            <li><a href="#路由完整定义主要包括5个主要部分">路由完整定义主要包括5个主要部分:</a></li>
+            <li><a href="#restful-风格的-url-定义">RESTful 风格的 URL 定义</a></li>
+          </ul>
+        </li>
+        <li><a href="#单元测试">单元测试</a>
+          <ul>
+            <li><a href="#约定">约定</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置">配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#启动自定义">启动自定义</a></li>
+    <li><a href="#中间件httpseggjsorgzh-cnbasicsmiddlewarehtml"><a href="https://eggjs.org/zh-cn/basics/middleware.html">中间件</a></a></li>
+    <li><a href="#加载器">加载器</a>
+      <ul>
+        <li><a href="#应用和插件框架之间的关系">应用和插件、框架之间的关系</a></li>
+        <li><a href="#加载器扩展">加载器扩展</a></li>
+      </ul>
+    </li>
+    <li><a href="#插件">插件</a>
+      <ul>
+        <li><a href="#常用插件">常用插件</a>
+          <ul>
+            <li><a href="#egg-corshttpsgithubcomeggjsegg-cors"><a href="https://github.com/eggjs/egg-cors">egg-cors</a></a></li>
+            <li><a href="#eggjsegg-prometheushttpsgithubcomeggjsegg-prometheus"><a href="https://github.com/eggjs/egg-prometheus">eggjs/egg-prometheus</a></a></li>
+            <li><a href="#jianglin-wuegg-exporterhttpsgithubcomjianglin-wuegg-exporter"><a href="https://github.com/jianglin-wu/egg-exporter">jianglin-wu/egg-exporter</a></a></li>
+            <li><a href="#egg-redis">[egg-redis]</a></li>
+            <li><a href="#egg-sequelizehttpsgithubcomeggjsegg-sequelize"><a href="https://github.com/eggjs/egg-sequelize">egg-Sequelize</a></a></li>
+            <li><a href="#eggjsegg-router-plushttpsgithubcomeggjsegg-router-plus"><a href="https://github.com/eggjs/egg-router-plus">eggjs/egg-router-plus</a></a></li>
+            <li><a href="#egg-jwthttpsgithubcomokoalaegg-jwt"><a href="https://github.com/okoala/egg-jwt">egg-jwt</a></a></li>
+            <li><a href="#brickyangegg-bullhttpsgithubcombrickyangegg-bull"><a href="https://github.com/brickyang/egg-bull">brickyang/egg-bull</a></a></li>
+            <li><a href="#egg-validate"><a href="">egg-validate</a></a>
+              <ul>
+                <li><a href="#type可能的值">type可能的值</a></li>
+              </ul>
+            </li>
+            <li><a href="#egg-sockethttpsgithubcomeggjsegg-socketio"><a href="https://github.com/eggjs/egg-socket.io">egg-socket</a></a>
+              <ul>
+                <li><a href="#router加入router">router（加入router）</a></li>
+                <li><a href="#namespace-nsp">Namespace (nsp)</a></li>
+                <li><a href="#room">Room</a></li>
+                <li><a href="#踩过的坑">踩过的坑</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#框架开发">框架开发</a>
+      <ul>
+        <li><a href="#egg-init脚手架工具httpsyaozhanxingithubio20180922nodeegg-init"><a href="https://yaozhanxin.github.io/2018/09/22/node/egg-init/">egg-init脚手架工具</a></a></li>
+        <li><a href="#参考egg-cloudhttpsgithubcomeggjsegg-cloud">参考<a href="https://github.com/eggjs/egg-cloud">egg-cloud</a></a></li>
+        <li><a href="#使用框架">使用框架</a></li>
+      </ul>
+    </li>
+    <li><a href="#restful-api">Restful API</a></li>
+    <li><a href="#生产部署">生产部署</a>
+      <ul>
+        <li><a href="#构建">构建</a></li>
+        <li><a href="#部署">部署</a></li>
+        <li><a href="#监控">监控</a>
+          <ul>
+            <li><a href="#nodejs-性能平台alinode">Node.js 性能平台（alinode）</a></li>
+            <li><a href="#nsolid">NSolid</a></li>
+          </ul>
+        </li>
+        <li><a href="#前置代理模式一般都需要反向代理">前置代理模式（一般都需要反向代理）</a></li>
+        <li><a href="#docker">docker</a>
+          <ul>
+            <li><a href="#eggjsdockerhttpsgithubcomeggjsdocker"><a href="https://github.com/eggjs/docker">eggjs/docker</a></a></li>
+            <li><a href="#aliyun-nodealinode-dockerhttpsgithubcomaliyun-nodealinode-docker"><a href="https://github.com/aliyun-node/alinode-docker">aliyun-node/alinode-docker</a></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>Egg 奉行『约定优于配置』</p>
+<h2 id="渐进式开发">渐进式开发</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 最初始的状态：直接在框架中写业务代码。
+<span class="k">2.</span> 插件的雏形：发现业务代码具有通用性，可以写成插件。
+<span class="k">3.</span> 抽成独立插件： 插件稳定之后，做成node module。
+<span class="k">4.</span> 沉淀到框架：重复上述的过程，很快我们会积累了好几个插件和配置，并且我们会发现，在团队的大部分项目中，都会用到这些插件，考虑抽象出一个适合团队业务场景的框架。
+<span class="k">5.</span> 注意：不管是应用/插件/框架，都必须编写单元测试，并尽量实现 100% 覆盖率。
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="框架内置基础对象">框架内置基础对象</h2>
+<h3 id="application">Application</h3>
+<ol>
+<li>Application 是<code>全局应用对象，在一个应用中，只会实例化一个</code>，它继承自 Koa.Application。</li>
+</ol>
+<h4 id="事件">事件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js
+</span><span class="c1"></span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="nx">server</span> <span class="p">=&gt;</span> <span class="p">{</span>    <span class="c1">//该事件一个 worker 进程只会触发一次，在 HTTP 服务完成启动后，会将 HTTP server 通过这个事件暴露出来给开发者
+</span><span class="c1"></span>    <span class="c1">// websocket
+</span><span class="c1"></span>  <span class="p">});</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>    <span class="c1">//运行时有任何的异常被 onerror 插件捕获后，都会触发 error 事件，将错误对象和关联的上下文（如果有）暴露给开发者，可以进行自定义的日志记录上报等处理
+</span><span class="c1"></span>    <span class="c1">// report error
+</span><span class="c1"></span>  <span class="p">});</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">,</span> <span class="nx">ctx</span> <span class="p">=&gt;</span> <span class="p">{</span>    <span class="c1">//应用收到请求和响应请求时，分别会触发 request 和 response 事件，并将当前请求上下文暴露出来，开发者可以监听这两个事件来进行日志记录
+</span><span class="c1"></span>    <span class="c1">// log receive request
+</span><span class="c1"></span>  <span class="p">});</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span> <span class="nx">ctx</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// ctx.starttime is set by framework
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">used</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">starttime</span><span class="p">;</span>
+    <span class="c1">// log total cost
+</span><span class="c1"></span>  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="获取方式">获取方式</h4>
+<ol>
+<li>Application 对象几乎可以在编写应用时的任何一个地方获取到.</li>
+<li>和 Koa 一样，在 Context 对象上，可以通过 ctx.app 访问到 Application 对象。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 使用egg-socket之后，关闭连接
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">).</span><span class="nx">adapter</span><span class="p">.</span><span class="nx">remoteDisconnect</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="context">Context</h3>
+<p>Context 是一个请求级别的对象，继承自 Koa.Context。在<code>每一次收到用户请求时，框架会实例化一个 Context 对象</code>，这个对象封装了这次用户请求的信息，并提供了许多便捷的方法来获取请求参数或者设置响应信息。<code>框架会将所有的 Service 挂载到 Context 实例上</code>，<code>一些插件也会将一些其他的方法和对象挂载到它上面（egg-sequelize 会将所有的 model 挂载在 Context 上）</code>。</p>
+<h4 id="ctx获取方式">Ctx获取方式</h4>
+<ol>
+<li>最常见的 Context 实例获取方式是在 Middleware, Controller 以及 Service 中.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">ctx</span> <span class="nx">作为函数参数</span>
+    <span class="p">.</span><span class="nx">query</span>    <span class="c1">//请求url中的参数(=)
+</span><span class="c1"></span>    <span class="p">.</span><span class="nx">request</span>
+        <span class="p">.</span><span class="nx">body</span>    <span class="c1">//获取post请求的body.请求内容类型必须为为`application/json`
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">header</span>
+            <span class="p">.</span><span class="nx">host</span>    <span class="c1">// 域名
+</span><span class="c1"></span>            <span class="p">.</span><span class="nx">connection</span>    <span class="c1">// upgrade
+</span><span class="c1"></span>            <span class="p">.</span><span class="nx">content</span><span class="o">-</span><span class="nx">length</span>
+            <span class="p">.</span><span class="nx">x</span><span class="o">-</span><span class="nx">forwarded</span><span class="o">-</span><span class="k">for</span>    <span class="c1">// IP地址
+</span><span class="c1"></span>            <span class="p">.</span><span class="nx">user</span><span class="o">-</span><span class="nx">agent</span>    <span class="c1">// 用户客户端
+</span><span class="c1"></span>            <span class="p">.</span><span class="nx">accept</span>    <span class="c1">//
+</span><span class="c1"></span>            <span class="p">.</span><span class="nx">cache</span><span class="o">-</span><span class="nx">control</span>
+            <span class="p">.</span><span class="nx">postman</span><span class="o">-</span><span class="nx">token</span>
+            <span class="p">.</span><span class="nx">accept</span><span class="o">-</span><span class="nx">encoding</span>    <span class="c1">//gzip,deflate,br
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">method</span>    <span class="c1">// 请求方法 GET
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">url</span>    <span class="c1">// 路由
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">query</span>  <span class="c1">//参数
+</span><span class="c1"></span>    <span class="p">.</span><span class="nx">res</span>
+    <span class="p">.</span><span class="nx">response</span>
+        <span class="p">.</span><span class="nx">status</span>    <span class="c1">// 404(初始)
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">msg</span>    <span class="c1">//Not Found(初始)
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">header</span>
+    <span class="p">.</span><span class="nx">socket</span>    <span class="c1">//使用egg-socket插件之后
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;res&#39;</span><span class="p">,</span> <span class="s1">&#39;connected!&#39;</span><span class="p">);</span>    <span class="c1">//
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">id</span> <span class="c1">//socket连接ID
+</span><span class="c1"></span>    <span class="p">.</span><span class="nx">app</span>    <span class="c1">//项目有关
+</span><span class="c1"></span>        <span class="p">.</span><span class="nx">env</span>
+        <span class="p">.</span><span class="nx">name</span>
+        <span class="p">.</span><span class="nx">baseDir</span>
+        <span class="p">.</span><span class="nx">subdomainOffset</span>
+        <span class="p">.</span><span class="nx">config</span>
+        <span class="p">.</span><span class="nx">controller</span>
+        <span class="p">.</span><span class="nx">httpclient</span>
+        <span class="p">.</span><span class="nx">loggers</span>
+        <span class="p">.</span><span class="nx">middlewares</span>
+        <span class="p">.</span><span class="nx">router</span>
+        <span class="p">.</span><span class="nx">serviceClasses</span>
+    <span class="p">.</span><span class="nx">params</span>    <span class="c1">// URL中的参数，定义router时会定义
+</span><span class="c1"></span>    <span class="p">.</span><span class="nx">originalUrl</span>
+    <span class="p">.</span><span class="nx">req</span>
+    <span class="p">.</span><span class="nx">res</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="request--response">Request &amp; Response</h3>
+<p>Request 是一个请求级别的对象，继承自 Koa.Request。封装了 Node.js 原生的 HTTP Request 对象，提供了一系列辅助方法获取 HTTP 请求常用参数。
+Response 是一个请求级别的对象，继承自 Koa.Response。封装了 Node.js 原生的 HTTP Response 对象，提供了一系列辅助方法设置 HTTP 响应。</p>
+<h3 id="controller">Controller</h3>
+<ol>
+<li><code>框架提供了一个 Controller 基类，并推荐所有的 Controller 都继承于该基类实现</code>。这个 Controller 基类有下列属性：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">ctx</span> <span class="o">-</span> <span class="nx">当前请求的</span> <span class="nx">Context</span> <span class="nx">实例</span><span class="err">。</span>
+<span class="nx">app</span> <span class="o">-</span> <span class="nx">应用的</span> <span class="nx">Application</span> <span class="nx">实例</span><span class="err">。</span>
+<span class="nx">config</span> <span class="o">-</span> <span class="nx">应用的配置</span><span class="err">。</span>
+<span class="nx">service</span> <span class="o">-</span> <span class="nx">应用所有的</span> <span class="nx">service</span><span class="err">。</span>
+<span class="nx">logger</span> <span class="o">-</span> <span class="nx">为当前</span> <span class="nx">controller</span> <span class="nx">封装的</span> <span class="nx">logger</span> <span class="nx">对象</span><span class="err">。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="service">Service</h3>
+<ol>
+<li><code>框架提供了一个 Service 基类，并推荐所有的 Service 都继承于该基类实现</code>。</li>
+<li>Service 基类的属性和 Controller 基类属性一致</li>
+<li><code>每一次用户请求，框架都会实例化对应的 Service 实例</code>。</li>
+<li>Service 不是单例，是 请求级别 的对象，框架在每次请求中首次访问 ctx.service.xx 时<code>延迟实例化</code>，所以 Service 中可以通过 this.ctx 获取到当前请求的上下文。</li>
+</ol>
+<h4 id="作用">作用</h4>
+<ol>
+<li>保持 Controller 中的逻辑更加简洁。</li>
+<li>保持业务逻辑的独立性，抽象出来的 Service 可以被多个 Controller 重复调用。</li>
+<li>将逻辑和展现分离，更容易编写测试用例。</li>
+</ol>
+<h3 id="helper">Helper</h3>
+<ol>
+<li>Helper 用来提供一些实用的 utility 函数。它的作用在于我们可以将一些常用的动作抽离在 helper.js 里面成为一个独立的函数，这样可以用 JavaScript 来写复杂的逻辑，避免逻辑分散各处，同时可以更好的编写测试用例。</li>
+<li>Helper 自身是一个类，有和 Controller 基类一样的属性，它<code>也会在每次请求时进行实例化</code>，因此 <code>Helper 上的所有函数也能获取到当前请求相关的上下文信息</code>。</li>
+</ol>
+<h3 id="config">Config</h3>
+<p>7.1. 获取方式</p>
+<h3 id="logger">Logger</h3>
+<p>8.1. App Logger
+8.2. App CoreLogger
+8.3. Context Logger
+8.4. Context CoreLogger
+8.5. Controller Logger &amp; Service Logger</p>
+<h3 id="subscription">Subscription</h3>
+<h2 id="目录结构httpseggjsorgzh-cnbasicsstructurehtml"><a href="https://eggjs.org/zh-cn/basics/structure.html" target="_blank" rel="noopener noreffer">目录结构</a></h2>
+<ol>
+<li>文件名不能用下划线，有可能识别不了。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">egg</span><span class="o">-</span><span class="nx">project</span>
+<span class="err">├──</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+<span class="err">├──</span> <span class="nx">app</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//自定义启动时的初始化工作，可选
+</span><span class="c1"></span><span class="err">├──</span> <span class="nx">agent</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">├──</span> <span class="nx">app</span>
+  <span class="o">|</span>   <span class="err">├──</span> <span class="nx">router</span><span class="p">.</span><span class="nx">js</span>    <span class="c1">//配置 URL 路由规则
+</span><span class="c1"></span><span class="err">│</span>  <span class="err">├──</span> <span class="nx">controller</span>    <span class="c1">//解析用户的输入，处理后返回相应的结果,注意，支持多级目录，默认文件名为驼峰式
+</span><span class="c1"></span><span class="err">│</span>    <span class="o">|</span>   <span class="err">└──</span> <span class="nx">home</span><span class="p">.</span><span class="nx">js</span>
+<span class="err">│</span>  <span class="err">├──</span> <span class="nx">service</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//编写业务逻辑层，可选，建议使用，*注意，支持多级目录，默认文件名为驼峰式，可以修改LoaderAPI改变文件名*
+</span><span class="c1"></span><span class="err">│</span>    <span class="o">|</span>   <span class="err">└──</span> <span class="nx">user</span><span class="p">.</span><span class="nx">js</span>
+<span class="err">│</span>  <span class="err">├──</span> <span class="nx">middleware</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//编写中间件，可选（例如同意错误处理）
+</span><span class="c1"></span><span class="err">│</span>    <span class="o">|</span>   <span class="err">└──</span> <span class="nx">response_time</span><span class="p">.</span><span class="nx">js</span>
+<span class="err">│</span>  <span class="err">├──</span> <span class="nx">schedule</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//定时任务，可选
+</span><span class="c1"></span><span class="err">│</span>    <span class="o">|</span>   <span class="err">└──</span> <span class="nx">my_task</span><span class="p">.</span><span class="nx">js</span>
+<span class="err">│</span>  <span class="err">├──</span> <span class="kr">public</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//放置静态资源，可选
+</span><span class="c1"></span><span class="err">│</span>    <span class="o">|</span>   <span class="err">└──</span> <span class="nx">reset</span><span class="p">.</span><span class="nx">css</span>
+<span class="err">│</span>  <span class="err">├──</span> <span class="nx">core</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//基于内部类可以定义中间类（定义中间类使用constructor(ctx)必须使用ctx作为入口参数）
+</span><span class="c1"></span><span class="err">│</span>  <span class="err">├──</span> <span class="nx">utils</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//自定义方法
+</span><span class="c1"></span><span class="err">│</span>  <span class="err">├──</span> <span class="nx">lib</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//自定义模块
+</span><span class="c1"></span><span class="err">│</span>  <span class="err">├──</span> <span class="nx">view</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//放置模板文件，可选，由模板插件约定，具体参见模板渲染
+</span><span class="c1"></span><span class="err">│</span>    <span class="o">|</span>   <span class="err">└──</span> <span class="nx">home</span><span class="p">.</span><span class="nx">tpl</span>
+  <span class="o">|</span>   <span class="err">├──</span> <span class="nx">model</span>    <span class="c1">//放置领域模型，可选，由领域类相关插件约定，如 egg-sequelize.   不能存在子目录，而且模型名必须要和模型文件名字符相同（可以不区分大小写）
+</span><span class="c1"></span><span class="err">│</span>  <span class="err">└──</span> <span class="nx">extend</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>    <span class="c1">//框架的扩展，可选
+</span><span class="c1"></span><span class="err">│</span>       <span class="err">├──</span> <span class="nx">helper</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">│</span>       <span class="err">├──</span> <span class="nx">request</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">│</span>       <span class="err">├──</span> <span class="nx">response</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">│</span>       <span class="err">├──</span> <span class="nx">context</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">│</span>       <span class="err">├──</span> <span class="nx">application</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">│</span>       <span class="err">└──</span> <span class="nx">agent</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">├──</span> <span class="nx">config</span>    <span class="c1">//编写配置文件
+</span><span class="c1"></span>  <span class="o">|</span>   <span class="err">├──</span> <span class="nx">plugin</span><span class="p">.</span><span class="nx">js</span>    <span class="c1">//配置需要加载的插件
+</span><span class="c1"></span>  <span class="o">|</span>   <span class="err">├──</span> <span class="nx">config</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="nx">js</span>
+<span class="err">│</span>  <span class="err">├──</span> <span class="nx">config</span><span class="p">.</span><span class="nx">prod</span><span class="p">.</span><span class="nx">js</span>
+  <span class="o">|</span>   <span class="err">├──</span> <span class="nx">config</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+  <span class="o">|</span>   <span class="err">├──</span> <span class="nx">config</span><span class="p">.</span><span class="nx">local</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+  <span class="o">|</span>   <span class="err">└──</span> <span class="nx">config</span><span class="p">.</span><span class="nx">unittest</span><span class="p">.</span><span class="nx">js</span> <span class="p">(</span><span class="nx">可选</span><span class="p">)</span>
+<span class="err">└──</span> <span class="nx">test</span>    <span class="c1">//单元测试
+</span><span class="c1"></span>    <span class="err">├──</span> <span class="nx">middleware</span>
+      <span class="o">|</span>   <span class="err">└──</span> <span class="nx">response_time</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+    <span class="err">└──</span> <span class="nx">controller</span>
+        <span class="err">└──</span> <span class="nx">home</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="servicecontroller使用core定义的类--">Service\Controller使用core定义的类  ******</h3>
+<ol>
+<li>core中的类基于Service或者Controller创建的。<code>如果有了自己的属性，需要用new；如果没有自己的属性，可以使用extends</code></li>
+<li>core中的类不是基于Service或者Controller创建的。<code>只能使用new</code></li>
+</ol>
+<h3 id="controller-1">controller</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">UserController</span> <span class="kr">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="nx">async</span> <span class="nx">info</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">ctx</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="sb">`hello </span><span class="si">${</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>  <span class="c1">// params获取url中的参数。
+</span><span class="c1"></span>    <span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="router">router</h3>
+<ol>
+<li>Router 主要用来描述请求 URL 和具体承担执行动作的 Controller 的对应关系， 框架约定了 app/router.js 文件用于统一所有路由规则。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// app/router.js
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">router</span><span class="p">,</span> <span class="nx">controller</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">app</span><span class="p">;</span>
+  <span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/user/:id&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">info</span><span class="p">);</span>    <span class="c1">// 定义/user/1
+</span><span class="c1"></span>  <span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">home</span><span class="p">);</span>
+  <span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/user/:id&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">page</span><span class="p">);</span>
+  <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/admin&#39;</span><span class="p">,</span> <span class="nx">isAdmin</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">admin</span><span class="p">);</span>
+  <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="nx">isLoginUser</span><span class="p">,</span> <span class="nx">hasAdminPermission</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">create</span><span class="p">);</span>
+  <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/v1/comments&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">v1</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">create</span><span class="p">);</span> <span class="c1">// app/controller/v1/comments.js
+</span><span class="c1"></span>  <span class="nx">router</span><span class="p">.</span><span class="nx">resources</span><span class="p">(</span><span class="s1">&#39;topics&#39;</span><span class="p">,</span> <span class="s1">&#39;/api/v2/topics&#39;</span><span class="p">,</span> <span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">topics</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="路由完整定义主要包括5个主要部分">路由完整定义主要包括5个主要部分:</h4>
+<p><code>router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.action);</code></p>
+<ol>
+<li>verb - 用户触发动作，支持 get，post 等所有 HTTP 方法</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">router</span><span class="p">.</span><span class="nx">head</span> <span class="o">-</span> <span class="nx">HEAD</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">options</span> <span class="o">-</span> <span class="nx">OPTIONS</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span> <span class="o">-</span> <span class="nx">GET</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">put</span> <span class="o">-</span> <span class="nx">PUT</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span> <span class="o">-</span> <span class="nx">POST</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">patch</span> <span class="o">-</span> <span class="nx">PATCH</span>
+<span class="nx">router</span><span class="p">.</span><span class="k">delete</span> <span class="o">-</span> <span class="nx">DELETE</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">del</span> <span class="o">-</span> <span class="nx">由于</span> <span class="k">delete</span> <span class="nx">是一个保留字</span><span class="err">，</span><span class="nx">所以提供了一个</span> <span class="k">delete</span> <span class="nx">方法的别名</span><span class="err">。</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">redirect</span> <span class="o">-</span> <span class="nx">可以对</span> <span class="nx">URL</span> <span class="nx">进行重定向处理</span><span class="err">，</span><span class="nx">比如我们最经常使用的可以把用户访问的根目录路由到某个主页</span><span class="err">。</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>router-name 给路由设定一个别名，可以通过 Helper 提供的辅助函数 pathFor 和 urlFor 来生成 URL。(可选)</li>
+<li>path-match - 路由 URL 路径。</li>
+<li>middleware1 - 在 Router 里面可以配置多个 Middleware。(可选)</li>
+<li>controller - 指定路由映射到的具体的 controller 上，controller 可以有两种写法：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">fetch</span> <span class="o">-</span> <span class="nx">直接指定一个具体的</span> <span class="nx">controller</span>
+<span class="s1">&#39;user.fetch&#39;</span> <span class="o">-</span> <span class="nx">可以简写为字符串形式</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="restful-风格的-url-定义">RESTful 风格的 URL 定义</h4>
+<p>通过 app.resources 方法，我们将 posts 这个资源的增删改查接口映射到了 app/controller/posts.js 文件。</p>
+<p>只需要在 posts.js 里面实现对应的函数就可以了。</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>RouteName</th>
+<th>Controller.Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/posts</td>
+<td>posts</td>
+<td>app.controllers.posts.index</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/new</td>
+<td>new_post</td>
+<td>app.controllers.posts.new</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.show</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/posts/:id/edit</td>
+<td>edit_post</td>
+<td>app.controllers.posts.edit</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/posts</td>
+<td>posts</td>
+<td>app.controllers.posts.create</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.update</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/posts/:id</td>
+<td>post</td>
+<td>app.controllers.posts.destroy</td>
+</tr>
+</tbody>
+</table>
+<h3 id="单元测试">单元测试</h3>
+<h4 id="约定">约定</h4>
+<ol>
+<li>我们约定 test 目录为存放所有测试脚本的目录，测试所使用到的 fixtures 和相关辅助脚本都应该放在此目录下。</li>
+<li>测试脚本文件统一按 ${filename}.test.js 命名，必须以 .test.js 作为文件后缀。</li>
+</ol>
+<p>一个应用的测试目录示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">test
+├── controller
+│   └── home.test.js
+├── hello.test.js
+└── service
+    └── user.test.js
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置">配置</h3>
+<ol>
+<li>框架提供了强大且可扩展的配置功能，可以自动合并应用、插件、框架的配置，按顺序覆盖，且可以根据环境维护不同的配置。合并后的配置可直接从 app.config 获取。</li>
+</ol>
+<h2 id="启动自定义">启动自定义</h2>
+<ol>
+<li>我们常常需要在应用启动期间进行一些初始化工作，等初始化完成后应用才可以启动成功，并开始对外提供服务。</li>
+<li>框架提供了统一的入口文件（app.js）进行启动过程自定义，这个文件返回一个 Boot 类，我们可以通过定义 Boot 类中的生命周期方法来执行启动应用过程中的初始化工作。</li>
+<li>框架提供了这些 生命周期函数供开发人员处理：</li>
+</ol>
+<ul>
+<li>配置文件即将加载，这是最后动态修改配置的时机（configWillLoad）</li>
+<li>配置文件加载完成（configDidLoad）</li>
+<li>文件加载完成（didLoad）</li>
+<li>插件启动完毕（willReady）</li>
+<li>worker 准备就绪（didReady）</li>
+<li>应用启动完成（serverDidReady）</li>
+<li>应用即将关闭（beforeClose）</li>
+</ul>
+<ol start="4">
+<li>我们可以在 app.js 中定义这个 Boot 类，下面我们抽取几个在应用开发中常用的生命周期函数来举例：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">AppBootHook</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="nx">app</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">configWillLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 此时 config 文件已经被读取并合并，但是还并未生效
+</span><span class="c1"></span>    <span class="c1">// 这是应用层修改配置的最后时机
+</span><span class="c1"></span>    <span class="c1">// 注意：此函数只支持同步调用
+</span><span class="c1"></span>
+    <span class="c1">// 例如：参数中的密码是加密的，在此处进行解密
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">decrypt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">password</span><span class="p">);</span>
+    <span class="c1">// 例如：插入一个中间件到框架的 coreMiddleware 之间
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">statusIdx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">coreMiddleware</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">coreMiddleware</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">statusIdx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;limit&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">async</span> <span class="nx">didLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 所有的配置已经加载完毕
+</span><span class="c1"></span>    <span class="c1">// 可以用来加载应用自定义的文件，启动自定义的服务
+</span><span class="c1"></span>
+    <span class="c1">// 例如：创建自定义应用的示例
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Queue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">queue</span><span class="p">);</span>
+    <span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">queue</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+
+    <span class="c1">// 例如：加载自定义的目录
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">loader</span><span class="p">.</span><span class="nx">loadToContext</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;app/tasks&#39;</span><span class="p">),</span> <span class="s1">&#39;tasks&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">fieldClass</span><span class="o">:</span> <span class="s1">&#39;tasksClasses&#39;</span><span class="p">,</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">async</span> <span class="nx">willReady</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 所有的插件都已启动完毕，但是应用整体还未 ready
+</span><span class="c1"></span>    <span class="c1">// 可以做一些数据初始化等操作，这些操作成功才会启动应用
+</span><span class="c1"></span>
+    <span class="c1">// 例如：从数据库加载数据到内存缓存
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">cacheData</span> <span class="o">=</span> <span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">QUERY_CACHE_SQL</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">async</span> <span class="nx">didReady</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 应用已经启动完毕
+</span><span class="c1"></span>
+    <span class="kr">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">createAnonymousContext</span><span class="p">();</span>
+    <span class="nx">await</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nx">Biz</span><span class="p">.</span><span class="nx">request</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">async</span> <span class="nx">serverDidReady</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// http / https server 已启动，开始接受外部请求
+</span><span class="c1"></span>    <span class="c1">// 此时可以从 app.server 拿到 server 的实例
+</span><span class="c1"></span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="nx">socket</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// handle socket timeout
+</span><span class="c1"></span>    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AppBootHook</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：在自定义生命周期函数中不建议做太耗时的操作，框架会有启动的超时检测。</strong></p>
+<h2 id="中间件httpseggjsorgzh-cnbasicsmiddlewarehtml"><a href="https://eggjs.org/zh-cn/basics/middleware.html" target="_blank" rel="noopener noreffer">中间件</a></h2>
+<ol>
+<li>Egg 是基于 Koa 实现的，所以 Egg 的中间件形式和 Koa 的中间件形式是一样的，都是基于洋葱圈模型。每次我们编写一个中间件，就相当于在洋葱外面包了一层。</li>
+</ol>
+<h2 id="加载器">加载器</h2>
+<ol>
+<li>Egg 在 Koa 的基础上进行增强最重要的就是基于一定的约定，根据功能差异将代码放到不同的目录下管理，对整体团队的开发成本提升有着明显的效果。<code>Loader 实现了这套约定</code>，并抽象了很多底层 API 可以进一步扩展。</li>
+<li><code>Egg 是一个底层框架，应用可以直接使用，但 Egg 本身的插件比较少，应用需要自己配置插件增加各种特性</code>，比如 MySQL。</li>
+<li>当应用达到一定数量，我们会发现大部分应用的配置都是类似的，这时<code>可以基于 Egg 扩展出一个框架</code>，应用的配置就会简化很多。</li>
+</ol>
+<h3 id="应用和插件框架之间的关系">应用和插件、框架之间的关系</h3>
+<ol>
+<li>在应用中完成业务，需要指定一个框架才能运行起来，当需要<code>某个特性场景的功能时</code>可以配置插件（比如 MySQL）。</li>
+<li><code>插件只完成特定功能</code>，当两个独立的功能有互相依赖时，还是分开两个插件，但需要配置依赖。</li>
+<li>框架是一个启动器（默认就是 Egg），必须有它才能运行起来。<code>框架还是一个封装器，将插件的功能聚合起来统一提供，框架也可以配置插件</code>。</li>
+<li>在框架的基础上还可以扩展出新的框架，也就是说<code>框架是可以无限级继承的</code>，有点像类的继承。</li>
+<li>Egg 将应用、框架和插件都称为<code>加载单元（loadUnit）</code>，因为<code>在代码结构上几乎没有什么差异</code>，目录结构类似有一些差异。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>应用</th>
+<th>框架</th>
+<th>插件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>package.json</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>config/plugin.{env}.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td></td>
+</tr>
+<tr>
+<td>config/config.{env}.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/extend/application.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/extend/request.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/extend/response.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/extend/context.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/extend/helper.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>agent.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app.js</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/service</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/middleware</td>
+<td>✔︎</td>
+<td>✔︎</td>
+<td>✔︎</td>
+</tr>
+<tr>
+<td>app/controller</td>
+<td>✔︎</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>app/router.js</td>
+<td>✔︎</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="6">
+<li><code>文件按表格内的顺序自上而下加载</code>.</li>
+<li>加载优先级：插件-&gt;框架-&gt;应用。</li>
+<li>插件之间的顺序由依赖关系决定，<code>被依赖方先加载，无依赖按 object key 配置顺序加载</code>；</li>
+<li>框架按<code>继承顺序加载，越底层越先加载</code>。</li>
+<li><code>加载时如果遇到同名的会覆盖，可以重写</code>，比如想要覆盖 ctx.ip 可以直接在应用的 app/extend/context.js 定义 ip 就可以了。</li>
+</ol>
+<h3 id="加载器扩展">加载器扩展</h3>
+<ol>
+<li>Loader 的扩展只能在框架进行。</li>
+</ol>
+<h2 id="插件">插件</h2>
+<ol>
+<li>需要一套更加强大的机制，来管理、编排那些<code>相对独立的业务逻辑</code>。</li>
+</ol>
+<h3 id="常用插件">常用插件</h3>
+<ol>
+<li>插件合集<a href="https://github.com/eggjs/awesome-egg" target="_blank" rel="noopener noreffer">eggjs/awesome-egg</a></li>
+<li>插件合集<a href="https://github.com/topics/egg-plugin" target="_blank" rel="noopener noreffer">github搜索</a></li>
+</ol>
+<h4 id="egg-corshttpsgithubcomeggjsegg-cors"><a href="https://github.com/eggjs/egg-cors" target="_blank" rel="noopener noreffer">egg-cors</a></h4>
+<ol>
+<li><a href="https://blog.csdn.net/Cappuccino200/article/details/82535201" target="_blank" rel="noopener noreffer">egg.js作为服务端接受post跨域请求</a></li>
+</ol>
+<h4 id="eggjsegg-prometheushttpsgithubcomeggjsegg-prometheus"><a href="https://github.com/eggjs/egg-prometheus" target="_blank" rel="noopener noreffer">eggjs/egg-prometheus</a></h4>
+<ol>
+<li>Prometheus plugin for egg framework.</li>
+</ol>
+<h4 id="jianglin-wuegg-exporterhttpsgithubcomjianglin-wuegg-exporter"><a href="https://github.com/jianglin-wu/egg-exporter" target="_blank" rel="noopener noreffer">jianglin-wu/egg-exporter</a></h4>
+<ol>
+<li>基于 egg-prometheus 开发，增加更多性能指标，为 egg 提供 Prometheus 功能支持。</li>
+</ol>
+<h4 id="egg-redis">[egg-redis]</h4>
+<p>基于ioredis。</p>
+<h4 id="egg-sequelizehttpsgithubcomeggjsegg-sequelize"><a href="https://github.com/eggjs/egg-sequelize" target="_blank" rel="noopener noreffer">egg-Sequelize</a></h4>
+<ol>
+<li><strong>model定义文件在model目录下，不能存在子目录，而且模型名必须要和模型文件名字符相同（可以不区分大小写）</strong></li>
+<li><strong>外键需要定义在model中</strong></li>
+<li><code>const Op = app.Sequelize.Op;</code></li>
+<li>不需要多个关联关系并存，比如使用了<code>belongsTo</code>不用再使用<code>hasMany</code>。但是<code>belongsTo</code>只能用源model联查目标model，如果需要反过来的话，还需要hasOne或者hasMany。</li>
+<li><code>一个model定义中只能出现一个Model.associate=function(){},多条关联关系都写在其中</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">STRING</span><span class="p">,</span> <span class="nx">INTEGER</span><span class="p">,</span> <span class="nx">DATE</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">Sequelize</span><span class="p">;</span>
+
+  <span class="kr">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nx">INTEGER</span><span class="p">,</span>
+      <span class="nx">primaryKey</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">autoIncrement</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="nx">STRING</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="nx">age</span><span class="o">:</span> <span class="nx">INTEGER</span><span class="p">,</span>
+    <span class="nx">created_at</span><span class="o">:</span> <span class="nx">DATE</span><span class="p">,</span>
+    <span class="nx">updated_at</span><span class="o">:</span> <span class="nx">DATE</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="nx">User</span><span class="p">.</span><span class="nx">associate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>    <span class="c1">// 不能使用prototype
+</span><span class="c1"></span>    <span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">hasMany</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Post</span><span class="p">,</span> <span class="p">{</span> <span class="nx">as</span><span class="o">:</span> <span class="s1">&#39;posts&#39;</span> <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="nx">User</span><span class="p">;</span>
+<span class="p">};</span>  
+
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">STRING</span><span class="p">,</span> <span class="nx">INTEGER</span><span class="p">,</span> <span class="nx">DATE</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">Sequelize</span><span class="p">;</span>
+
+  <span class="kr">const</span> <span class="nx">Post</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="c1">// model名称
+</span><span class="c1"></span>    <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nx">INTEGER</span><span class="p">,</span>
+      <span class="nx">primaryKey</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">autoIncrement</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="nx">STRING</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="nx">STRING</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="nx">user_id</span><span class="o">:</span> <span class="nx">INTEGER</span><span class="p">,</span>
+    <span class="nx">created_at</span><span class="o">:</span> <span class="nx">DATE</span><span class="p">,</span>
+    <span class="nx">updated_at</span><span class="o">:</span> <span class="nx">DATE</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="c1">// model 配置
+</span><span class="c1"></span>  <span class="p">});</span>
+
+  <span class="c1">//关联
+</span><span class="c1"></span>  <span class="nx">Post</span><span class="p">.</span><span class="nx">associate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">belongsTo</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">,</span> <span class="p">{</span> <span class="nx">as</span><span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nx">foreignKey</span><span class="o">:</span> <span class="s1">&#39;user_id&#39;</span> <span class="p">});</span>
+  <span class="p">};</span>
+  <span class="c1">//方法
+</span><span class="c1"></span>  <span class="nx">Post</span><span class="p">.</span><span class="nx">findByIdWithUser</span> <span class="o">=</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">userId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
+      <span class="nx">where</span><span class="o">:</span> <span class="p">{</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">user_id</span><span class="o">:</span> <span class="nx">userId</span> <span class="p">},</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="nx">Post</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="eggjsegg-router-plushttpsgithubcomeggjsegg-router-plus"><a href="https://github.com/eggjs/egg-router-plus" target="_blank" rel="noopener noreffer">eggjs/egg-router-plus</a></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">this plugin will auto load router define at app/router/**/*.js.
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="egg-jwthttpsgithubcomokoalaegg-jwt"><a href="https://github.com/okoala/egg-jwt" target="_blank" rel="noopener noreffer">egg-jwt</a></h4>
+<h4 id="brickyangegg-bullhttpsgithubcombrickyangegg-bull"><a href="https://github.com/brickyang/egg-bull" target="_blank" rel="noopener noreffer">brickyang/egg-bull</a></h4>
+<ol>
+<li>增加任务队列。</li>
+<li>将process方法放进app.js中。</li>
+</ol>
+<h4 id="egg-validate"><a href="" rel="">egg-validate</a></h4>
+<ol>
+<li>作用：对参数进行检验。</li>
+<li>对API接口参数进行校验。</li>
+<li>See <a href="https://github.com/node-modules/parameter" target="_blank" rel="noopener noreffer">parameter</a> for more information such as custom rule.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>属性的类型</td>
+</tr>
+<tr>
+<td>Required</td>
+<td>若为false，此参数可以为null或undefined。默认为true</td>
+</tr>
+<tr>
+<td>length</td>
+<td></td>
+</tr>
+<tr>
+<td>convertType</td>
+<td>Make parameter convert the input param to the specific type, support int, number, string and boolean, also support a function to customize your own convert method.</td>
+</tr>
+<tr>
+<td>default</td>
+<td>The default value of property, once the property is allowed non-required and missed, parameter will use this as the default value. This may change the original input params.</td>
+</tr>
+<tr>
+<td>widelyUndefined</td>
+<td>override options.widelyUndefined</td>
+</tr>
+</tbody>
+</table>
+<h5 id="type可能的值">type可能的值</h5>
+<table>
+<thead>
+<tr>
+<th>type的值</th>
+<th>说明</th>
+<th>额外的属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string: Must be of type string. This is the default type.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>number</td>
+<td>Must be of type number</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Must be of type boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>method: Must be of type function.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>regexp: Must be an instance of RegExp or a string that does not generate an exception when creating a new RegExp.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>integer(int)</td>
+<td>Must be of type number and an integer</td>
+<td>max,min</td>
+</tr>
+<tr>
+<td>float: Must be of type number and a floating point number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>array: Must be an array as determined by Array.isArray.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>object: Must be of type object and not Array.isArray.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>enum: Value must exist in the enum.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>date: Value must be valid as determined by Date</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>url: Must be of type url.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hex: Must be of type hex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email: Must be of type email.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>any: Can be any type.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="egg-sockethttpsgithubcomeggjsegg-socketio"><a href="https://github.com/eggjs/egg-socket.io" target="_blank" rel="noopener noreffer">egg-socket</a></h4>
+<ol>
+<li>框架提供了 egg-socket.io 插件，增加了以下开发规约：</li>
+</ol>
+<ul>
+<li>namespace: 通过配置的方式定义 namespace（命名空间）</li>
+<li>middleware: 对每一次 socket 连接的建立/断开、每一次消息/数据传递进行预处理</li>
+<li>controller: 响应 socket.io 的 event 事件</li>
+<li>router: 统一了 socket.io 的 event 与 框架路由的处理配置方式</li>
+</ul>
+<ol start="2">
+<li><code>egg-socket.io 内置了 socket.io-redis，在 cluster 模式下，使用 redis 可以较为简单的实现 clients/rooms 等信息共享</code>。</li>
+<li>开启 redis 后，程序在启动时会尝试连接到 redis 服务器 此处 redis 仅用于存储连接实例信息，参见 #server.adapter。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">chat
+├── app
+│   ├── extend
+│   │   └── helper.js
+│   ├── io
+│   │   ├── controller
+│   │   │   └── default.js    //对连接之后的数据交互调用此，对socket.id独立
+│   │   └── middleware
+│   │       ├── connection.js    //处理链接的时候调用，每次新建连接的时候处理（连接或断开）在配置中`connectionMiddleware`设置
+│   │       └── packet.js    //针对消息的处理
+│   └── router.js
+├── config
+└── package.json
+</code></pre></td></tr></table>
+</div>
+</div><p>对应的文件都在 app/io 目录下</p>
+<h5 id="router加入router">router（加入router）</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">module.exports = app =&gt; {
+  // app.io.of(&#39;/&#39;)
+  app.io.route(&#39;chat&#39;, app.io.controller.chat.index);
+
+  // app.io.of(&#39;/chat&#39;)
+  app.io.of(&#39;/chat&#39;).route(&#39;chat&#39;, app.io.controller.chat.index);
+};
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="namespace-nsp">Namespace (nsp)</h5>
+<ol>
+<li>namespace 通常意味分配到不同的接入点或者路径，如果客户端没有指定 nsp，则默认分配到 &ldquo;/&rdquo; 这个默认的命名空间。</li>
+<li>在 socket.io 中我们通过 of 来划分命名空间；鉴于 nsp 通常是预定义且相对固定的存在，框架将其进行了封装，采用配置的方式来划分不同的命名空间。</li>
+</ol>
+<h5 id="room">Room</h5>
+<ol>
+<li>room 存在于 nsp 中，通过 join/leave 方法来加入或者离开; 框架中使用方法相同；</li>
+<li>注意： <code>每一个 socket 连接都会拥有一个随机且不可预测的唯一 id Socket#id，并且会自动加入到以这个 id 命名的 room 中</code></li>
+</ol>
+<h5 id="踩过的坑">踩过的坑</h5>
+<ol>
+<li>在连接中间件中，使用<code>await next()</code>来分别处理连接和断开连接。需要注意的是，断开连接响应发生在断开连接超时的时候，所以可能断开连接响应发生在建立连接之后。</li>
+<li><code>一种方案</code>：此时需要判断old_id和current_id是否一致的情况；只需要连接时判断有无C_id,没有C_id更新C_id和O_id；有C_id,只更新C_id；超时回调判断C_id和O_id是否一致，一致删除C-id和O_id;不一致，更新O_id.</li>
+<li>上述方案有一个问题，在异步的时候，会出现超时回调距离时间很近，会导致更新缓存里的值出问题。</li>
+<li>采用<code>第二种方案</code>：将socket id也作为缓存key值，value值为时间，这要每次取value值最大的情况。</li>
+<li>在cluster模式下，socket只是连接到其中一个进程，所以需要使用<a href="https://github.com/socketio/socket.io-redis" target="_blank" rel="noopener noreffer">socketio/socket.io-redis</a>共享连接信息，但是限制有方法调用。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">By running socket.io with the socket.io-redis adapter you can run multiple socket.io instances in different processes or servers that can all broadcast and emit events to and from each other.
+
+So any of the following commands:
+
+io.emit(&#39;hello&#39;, &#39;to all clients&#39;);
+io.to(&#39;room42&#39;).emit(&#39;hello&#39;, &#34;to all clients in &#39;room42&#39; room&#34;);
+
+io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.broadcast.emit(&#39;hello&#39;, &#39;to all clients except sender&#39;);
+  socket.to(&#39;room42&#39;).emit(&#39;hello&#39;, &#34;to all clients in &#39;room42&#39; room except sender&#34;);
+});
+will properly be broadcast to the clients through the Redis Pub/Sub mechanism.
+
+If you need to emit events to socket.io instances from a non-socket.io process, you should use socket.io-emitter.
+</code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li><code>app.io.sockets.connected[socketId]</code>和<code>const nsp = app.io.of('/');nsp.sockets[id]</code>两种方法在cluster之下不能发送数据,因为和进程有关，只能用上述方法。</li>
+</ol>
+<h2 id="框架开发">框架开发</h2>
+<h3 id="egg-init脚手架工具httpsyaozhanxingithubio20180922nodeegg-init"><a href="https://yaozhanxin.github.io/2018/09/22/node/egg-init/" target="_blank" rel="noopener noreffer">egg-init脚手架工具</a></h3>
+<ol>
+<li>新版本增加了microservice 继承自<code>egg-cloud</code>框架。</li>
+<li>可以快速开始创建项目工程。</li>
+</ol>
+<h3 id="参考egg-cloudhttpsgithubcomeggjsegg-cloud">参考<a href="https://github.com/eggjs/egg-cloud" target="_blank" rel="noopener noreffer">egg-cloud</a></h3>
+<h3 id="使用框架">使用框架</h3>
+<ol>
+<li>配置package.json</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">...</span>
+<span class="s2">&#34;egg&#34;</span><span class="err">:</span><span class="p">{</span>
+  <span class="nt">&#34;framework&#34;</span><span class="p">:</span><span class="s2">&#34;egg-cloud&#34;</span>
+<span class="p">}</span>
+<span class="err">...</span>
+<span class="s2">&#34;dependencies&#34;</span><span class="err">:</span><span class="p">{</span>
+  <span class="nt">&#34;egg-cloud&#34;</span><span class="p">:</span><span class="s2">&#34;^0.2.0&#34;</span>    <span class="err">//</span> <span class="err">不用egg</span>
+<span class="p">}</span>
+<span class="err">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="restful-api">Restful API</h2>
+<h2 id="生产部署">生产部署</h2>
+<h3 id="构建">构建</h3>
+<ol>
+<li>只安装 dependencies 的依赖.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ npm install --production    
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>打包</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ tar -zcvf ../release.tgz .
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="部署">部署</h3>
+<ol>
+<li>框架内置了 egg-cluster 来启动 Master 进程，Master 有足够的稳定性，不再需要使用 pm2 等进程守护模块。</li>
+<li>框架也提供了 egg-scripts 来支持线上环境的运行和停止。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ npm i egg-scripts --save
+添加 npm scripts 到 package.json：
+{
+  &#34;scripts&#34;: {
+    &#34;start&#34;: &#34;egg-scripts start --daemon&#34;,
+    &#34;stop&#34;: &#34;egg-scripts stop&#34;
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>启动应用<code>$ egg-scripts start --port=7001 --daemon --title=egg-server-showcase</code></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&ndash;port=7001</td>
+<td>端口号，默认会读取环境变量 process.env.PORT，如未传递将使用框架内置端口 7001。</td>
+</tr>
+<tr>
+<td>&ndash;daemon</td>
+<td>是否允许在后台模式，无需 nohup。<code>若使用 Docker 建议直接前台运行</code>。</td>
+</tr>
+<tr>
+<td>&ndash;env=prod</td>
+<td>框架运行环境，默认会读取环境变量 process.env.EGG_SERVER_ENV， 如未传递将使用框架内置环境 prod。</td>
+</tr>
+<tr>
+<td>&ndash;workers=2</td>
+<td>框架 worker 线程数，默认会创建和 CPU 核数相当的 app worker 数，可以充分的利用 CPU 资源。</td>
+</tr>
+<tr>
+<td>&ndash;title=egg-server-showcase</td>
+<td>用于方便 ps 进程时 grep 用，默认为 egg-server-${appname}。</td>
+</tr>
+<tr>
+<td>&ndash;framework=yadan</td>
+<td>如果应用使用了自定义框架，可以配置 package.json 的 egg.framework 或指定该参数。</td>
+</tr>
+<tr>
+<td>&ndash;ignore-stderr</td>
+<td>忽略启动期的报错。</td>
+</tr>
+<tr>
+<td>&ndash;https.key</td>
+<td>指定 HTTPS 所需密钥文件的完整路径。</td>
+</tr>
+<tr>
+<td>&ndash;https.cert</td>
+<td>指定 HTTPS 所需证书文件的完整路径。</td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>所有 egg-cluster 的 Options 都支持透传，如 &ndash;port 等。</li>
+<li>更多参数可查看 egg-scripts 和 egg-cluster 文档。</li>
+<li>启动配置项也可以在config.{env}.js 中配置指定启动配置。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// config/config.default.js
+
+exports.cluster = {
+  listen: {
+    port: 7001,
+    hostname: &#39;127.0.0.1&#39;,
+    // path: &#39;/var/run/egg.sock&#39;,
+  }
+}
+path，port，hostname 均为 server.listen 的参数，egg-scripts 和 egg.startCluster 方法传入的 port 优先级高于此配置。
+</code></pre></td></tr></table>
+</div>
+</div><ol start="7">
+<li>停止命令<code>$ egg-scripts stop [--title=egg-server]</code>，该命令将杀死 master 进程，并通知 worker 和 agent 优雅退出。
+支持以下参数：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">--title=egg-server 用于杀死指定的 egg 应用，未传递则会终止所有的 Egg 应用。
+你也可以直接通过 ps -eo &#34;pid,command&#34; | grep -- &#34;--title=egg-server&#34; 来找到 master 进程，并 kill 掉，无需 kill -9。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="监控">监控</h3>
+<h4 id="nodejs-性能平台alinode">Node.js 性能平台（alinode）</h4>
+<ol>
+<li>Node.js 性能平台全部功能免费提供给用户使用。</li>
+<li>AliNode Runtime 可以直接替换掉 Node.js Runtime。</li>
+</ol>
+<h4 id="nsolid">NSolid</h4>
+<h3 id="前置代理模式一般都需要反向代理">前置代理模式（一般都需要反向代理）</h3>
+<ol>
+<li><code>一般来说我们的服务都不会直接接受外部的请求，而会将服务部署在接入层之后，从而实现多台机器的负载均衡和服务的平滑发布，保证高可用。</code></li>
+<li>在这个场景下，我们无法直接获取到真实用户请求的连接，从而无法确认用户的真实 IP，请求协议，甚至请求的域名。为了解决这个问题，框架默认提供了一系列配置项来让开发者配置，以便基于和接入层的约定（事实标准）来让应用层获取到真实的用户请求信息。</li>
+</ol>
+<h3 id="docker">docker</h3>
+<ol>
+<li>基于eggjs修改增加<code>alinode</code>和nginx、https的支持。</li>
+<li>[<code>直接在node镜像之上安装alinode，运行时一直不能选择alinode</code>].</li>
+<li>考虑基于<a href="https://github.com/toomeefed/docker-alinode/blob/master/4/slim/Dockerfile" target="_blank" rel="noopener noreffer">toomeefed/docker-alinode</a>进行更改：增加eggjs支持和nginx支持。</li>
+</ol>
+<h4 id="eggjsdockerhttpsgithubcomeggjsdocker"><a href="https://github.com/eggjs/docker" target="_blank" rel="noopener noreffer">eggjs/docker</a></h4>
+<ol>
+<li>官方Docker。</li>
+<li>没有使用alinode。</li>
+<li>没有nginx。</li>
+</ol>
+<h4 id="aliyun-nodealinode-dockerhttpsgithubcomaliyun-nodealinode-docker"><a href="https://github.com/aliyun-node/alinode-docker" target="_blank" rel="noopener noreffer">aliyun-node/alinode-docker</a></h4>
+<ol>
+<li>非egg。</li>
+<li>没有nginx。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+                </span><span><a href="/tags/nodejs/">NODEJS</a>
+                </span><span><a href="/tags/egg/">Egg</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-07-31</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E7%BC%96%E7%A8%8B-uml/" class="prev" rel="prev" title="编码-UML"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/" class="next" rel="next" title="后端-web框架-基础件-socket.io">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

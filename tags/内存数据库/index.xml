@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>内存数据库 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>内存数据库 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 May 2019 15:55:39 &#43;0000</lastBuildDate><atom:link href="/tags/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>redis</title>
+    <link>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93-redis/</link>
+    <pubDate>Tue, 07 May 2019 15:55:39 &#43;0000</pubDate><guid>/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93-redis/</guid>
+    <description><![CDATA[参考Redis的最常被问到知识点总结 参考Redis性能问题排查解决手册(七) 参考Redis 命令参考 解决的问题：数据库受磁盘IO的影响。把比较]]></description>
+</item>
+</channel>
+</rss>

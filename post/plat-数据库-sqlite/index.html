@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Sqlite - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="Sqlite" />
+<meta property="og:description" content="参考主键 参考易百教程 参考CSDN 1. 概念 1.1. 数据类型 SQLite使用更通用的动态类型系统。 在SQLite中，值的数据类型与值本身相关联，而不是与" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-sqlite/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-05-11T15:55:41+08:00" />
+<meta property="article:modified_time" content="2021-05-11T15:55:41+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="Sqlite"/>
+<meta name="twitter:description" content="参考主键 参考易百教程 参考CSDN 1. 概念 1.1. 数据类型 SQLite使用更通用的动态类型系统。 在SQLite中，值的数据类型与值本身相关联，而不是与"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-sqlite/" /><link rel="prev" href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-500-dbdb/" /><link rel="next" href="/post/tools-vi%E9%9D%9Evim/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Sqlite",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-sqlite\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, 数据库, SQLITE","wordcount":  2346 ,
+        "url": "\/post\/plat-%E6%95%B0%E6%8D%AE%E5%BA%93-sqlite\/","datePublished": "2021-05-11T15:55:41+08:00","dateModified": "2021-05-11T15:55:41+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">Sqlite</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-概念">1. 概念</a>
+      <ul>
+        <li><a href="#11-数据类型">1.1. 数据类型</a>
+          <ul>
+            <li><a href="#111-存储类">1.1.1. 存储类</a></li>
+            <li><a href="#112-近似类型">1.1.2. 近似类型</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-主键">1.2. 主键</a></li>
+        <li><a href="#13-autoincrement">1.3. AUTOINCREMENT</a>
+          <ul>
+            <li><a href="#131-自增主键清零">1.3.1. 自增主键清零</a></li>
+          </ul>
+        </li>
+        <li><a href="#14-索引">1.4. 索引</a>
+          <ul>
+            <li><a href="#141-单列索引">1.4.1. 单列索引</a></li>
+            <li><a href="#142-唯一索引">1.4.2. 唯一索引</a></li>
+            <li><a href="#143-组合索引">1.4.3. 组合索引</a></li>
+            <li><a href="#144-隐式索引">1.4.4. 隐式索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#15-触发器">1.5. 触发器</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-附加数据库">2. 附加数据库</a></li>
+    <li><a href="#3-shell命令">3. shell命令</a></li>
+    <li><a href="#4-sqlite中命令">4. sqlite中命令</a></li>
+    <li><a href="#5-sqlite客户端工具">5. sqlite客户端工具</a>
+      <ul>
+        <li><a href="#51-sqlitestudiohttpsgithubcompawelsalawasqlitestudio">5.1. <a href="https://github.com/pawelsalawa/sqlitestudio">sqlitestudio</a></a>
+          <ul>
+            <li><a href="#511-使用">5.1.1. 使用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6-c调用">6. C++调用</a>
+      <ul>
+        <li><a href="#61-socisocihttpsgithubcomsocisoci">6.1. <a href="https://github.com/SOCI/soci">SOCI/soci</a></a></li>
+        <li><a href="#62-sqlitewrappershttpwwwnaughtercomsqlitewrappershtml">6.2. <a href="http://www.naughter.com/sqlitewrappers.html">SQLiteWrappers</a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1218728391867808" target="_blank" rel="noopener noreffer">主键</a>
+参考<a href="https://www.yiibai.com/sqlite/data-types.html" target="_blank" rel="noopener noreffer">易百教程</a>
+参考<a href="https://blog.csdn.net/qq_35844043/article/details/97634257" target="_blank" rel="noopener noreffer">CSDN</a></p>
+<h2 id="1-概念">1. 概念</h2>
+<h3 id="11-数据类型">1.1. 数据类型</h3>
+<ol>
+<li>SQLite使用更通用的动态类型系统。 在SQLite中，值的数据类型与值本身相关联，而不是与其容器相关联。</li>
+<li>在SQLite中，没有一个单独的布尔存储类。一个代替办法是将布尔值存储为整数0(假)和1(真)。</li>
+<li>在SQLite中，没有单独的类型来存储日期和时间。 但是可以将日期和时间存储为TEXT，REAL或INTEGER值.</li>
+</ol>
+<h4 id="111-存储类">1.1.1. 存储类</h4>
+<ol>
+<li>SQLite存储类比数据类型更通用一些。 例如：INTEGER存储类包括不同长度的6种不同的整数数据类型。</li>
+<li>SQLite数据库中存储的值是以下存储类之一：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>存储类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>表示值为空(null)值。</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>表示值是一个有符号整数，根据值的大小存储在1,2,3,4,6或8个字节中。</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>表示值是一个浮点值，存储为8位IEEE浮点数。</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>表示值是一个文本字符串，使用数据库编码(utf-8，utf-16be或utf-16le)存储</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>表示值是一个数据块，与输入的数据完全相同，二进制</td>
+</tr>
+</tbody>
+</table>
+<h4 id="112-近似类型">1.1.2. 近似类型</h4>
+<ol>
+<li>SQLite支持列的类型近似性。<code>列可以存储任何类型的数据</code>，但是列的首选存储类称为它的近似性类型。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>相应的近似类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INT INTEGER TINYINT SMALLINT（16bit整数） MEDIUMINT BIGINT UNSIGNED BIG INT INT2 INT8</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>VARCHAR(n长度不固定，最大，4000) VARYING CHARACTER(n) NCHAR(55) NATIVE NVARCHAR(100) TEXT CLOB CHAR(n不超过254)</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td>BLOB - 未指定数据类型</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td>REAL DOUBLE DOUBLE PRECISION FLOAT DECIMAL(p,s)(精确值，小数位数)</td>
+<td>REAL</td>
+</tr>
+<tr>
+<td>NUMERIC DECIMAL(10,5) BOOLEAN DATE DATETIME</td>
+<td>NUMERIC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-主键">1.2. 主键</h3>
+<ol>
+<li>记录一旦插入到表中，主键最好不要再修改，因为主键是用来唯一定位记录的，修改了主键，会造成一系列的影响。</li>
+<li>选取主键的一个基本原则是：【不使用任何业务相关的字段作为主键】。</li>
+<li>作为主键最好是完全业务无关的字段，我们一般把这个字段命名为<code>id</code>。常见的可作为id字段的类型有：
+a. 自增整数类型【最常用】：数据库会在插入数据时自动为每一条记录分配一个自增整数，这样我们就完全不用担心主键重复，也不用自己预先生成主键；
+b. 全局唯一GUID类型：使用一种全局唯一的字符串作为主键，类似8f55d96b-8acc-4636-8cb8-76bf8abc2f57。GUID算法通过网卡MAC地址、时间戳和随机数保证任意计算机在任意时间生成的字符串都是不同的，大部分编程语言都内置了GUID算法，可以自己预算出主键。</li>
+<li>[联合主键]：允许一列有重复，只要不是所有主键列都重复即可。</li>
+</ol>
+<h3 id="13-autoincrement">1.3. AUTOINCREMENT</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>字段定义</th>
+<th>是否可以自增</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>INT PRIMARY KEY</td>
+<td>否</td>
+<td>字段值默认为NULL</td>
+</tr>
+<tr>
+<td>2</td>
+<td>INT PRIMARY KEY AUTOINCREMENT</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>INTEGER PRIMARY KEY</td>
+<td>是</td>
+<td>自增（引擎没有创建sqlite_sequence表）。值 = 此表最大值 + 1，故可与之前删除的值重叠；当超过最大值时，会随机找一个没被使用的值</td>
+</tr>
+<tr>
+<td>4</td>
+<td>INTEGER PRIMARY KEY AUTOINCREMENT</td>
+<td>是</td>
+<td>自增(引擎自动在sqlite_sequence表中添加一条记录)，值 = sqlite_sequence表中对应值 + 1。故一般不会与之前删除的值重叠；当超过最大值时，会丢出一个SQLITE_FULL的错误</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>自增的使用，必须满足以下两点:
+a. 只能用于整型（INTEGER）字段，INT类型是不可以；
+b. 只能用于PRIMARY KEY字段；</li>
+<li>然后，插入的SQL就是：<code>INSERT INTO Product VALUES(NULL, '產品名稱')</code>. 主键为NULL，就会自动自增填充。</li>
+</ol>
+<h4 id="131-自增主键清零">1.3.1. 自增主键清零</h4>
+<ol>
+<li>当SQLite数据库中包含自增列时，会自动建立一个名为<code>sqlite_sequence</code>的表。这个表包含两个列：<code>name</code>和<code>seq</code>。<code>name</code>记录自增列所在的表，<code>seq</code>记录当前序号（下一条记录的编号就是当前序号加1）。</li>
+<li>如果想把某个自增列的序号归零，只需要修改<code>UPDATE sqlite_sequence SET seq = 0 WHERE name='TableName'</code>或者<code>DELETE FROM sqlite_sequence WHERE name='TableName'</code>;</li>
+<li>要想将所有表的自增列都归零，直接清空sqlite_sequence表就可以了<code>DELETE FROM sqlite_sequence</code>.</li>
+</ol>
+<h3 id="14-索引">1.4. 索引</h3>
+<ol>
+<li>简单地说，索引是一个指向表中数据的指针。</li>
+<li>索引有助于加快 SELECT 查询和 WHERE 子句，但它会减慢使用 UPDATE 和 INSERT 语句时的数据输入。</li>
+</ol>
+<h4 id="141-单列索引">1.4.1. 单列索引</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="k">ON</span> <span class="k">table_name</span> <span class="p">(</span><span class="k">column_name</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="142-唯一索引">1.4.2. 唯一索引</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">UNIQUE</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="k">on</span> <span class="k">table_name</span> <span class="p">(</span><span class="k">column_name</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="143-组合索引">1.4.3. 组合索引</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="k">on</span> <span class="k">table_name</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="144-隐式索引">1.4.4. 隐式索引</h4>
+<ol>
+<li>隐式索引是在创建对象时，由数据库服务器自动创建的索引。索引自动创建为主键约束和唯一约束。</li>
+</ol>
+<h3 id="15-触发器">1.5. 触发器</h3>
+<ol>
+<li>SQLite 的触发器（Trigger）可以指定在特定的数据库表发生 DELETE、INSERT 或 UPDATE 时触发，或在一个或多个指定表的列发生更新时触发。</li>
+<li>SQLite 只支持 FOR EACH ROW 触发器（Trigger）（<code>操作语句每影响到一行的时候就触发一次</code>），没有 FOR EACH STATEMENT 触发器（Trigger）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 创建触发器
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TRIGGER</span> <span class="n">supplier_change_trigger</span> 
+<span class="k">AFTER</span> <span class="k">INSERT</span> <span class="c1">-- 触发的操作（BEFORE|AFTER）（INSERT|UPDATE|DELETE）（OF column_name）指定哪一个字段
+</span><span class="c1"></span><span class="k">ON</span> <span class="n">supplier_new</span> <span class="c1">-- 表名
+</span><span class="c1"></span><span class="k">BEGIN</span> <span class="c1">-- 到END之间是触发执行的语句
+</span><span class="c1"></span><span class="k">insert</span> <span class="k">into</span> <span class="n">supplier_data_change</span> <span class="p">(</span><span class="n">info</span><span class="p">,</span><span class="n">updateTime</span><span class="p">)</span>  
+<span class="k">values</span> <span class="p">(</span><span class="c1">-- 记录供应商变化的时间和id
+</span><span class="c1"></span><span class="s1">&#39;新增供应商ID=&#39;</span><span class="o">||</span><span class="p">(</span><span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">from</span> <span class="n">supplier_new</span><span class="p">),</span>
+<span class="n">datetime</span><span class="p">());</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="c1">-- 删除触发器
+</span><span class="c1"></span><span class="k">DROP</span> <span class="k">TRIGGER</span> <span class="k">trigger_name</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-附加数据库">2. 附加数据库</h2>
+<ol>
+<li><code>ATTACH DATABASE file_name AS database_name</code>福建一个数据库。</li>
+<li><code>DETACH DATABASE database_name</code>解除附加一个数据库。</li>
+</ol>
+<h2 id="3-shell命令">3. shell命令</h2>
+<ol>
+<li><code>sqlite3 db文件</code>打开一个数据库文件,不存在则创建。</li>
+<li><code>sqlite3 test.db &lt; sql文件</code>打开数据库文件，并执行sql文件中sql语句。</li>
+</ol>
+<h2 id="4-sqlite中命令">4. sqlite中命令</h2>
+<ol>
+<li><code>.help</code> 显示帮助信息；</li>
+<li><code>.read sql文件</code>对打开的数据库文件执行sql文件中语句。</li>
+<li><code>.tables</code>列出数据库文件中的所有表。</li>
+<li><code>.output xxx.sql</code>指定到处的sql文件。</li>
+<li><code>.dump</code>导出。</li>
+<li><code>.exit</code>退出。</li>
+</ol>
+<h2 id="5-sqlite客户端工具">5. sqlite客户端工具</h2>
+<h3 id="51-sqlitestudiohttpsgithubcompawelsalawasqlitestudio">5.1. <a href="https://github.com/pawelsalawa/sqlitestudio" target="_blank" rel="noopener noreffer">sqlitestudio</a></h3>
+<ol>
+<li>开源，C++和Qt编写。</li>
+</ol>
+<h4 id="511-使用">5.1.1. 使用</h4>
+<ol>
+<li>【注】多个进程可以同时打开同一个数据库。多个进程可以同时做一个SELECT。但是，<code>只有一个进程可以在任何时刻对数据库进行更改</code>。<code>所以，如果要多个进程同时更改一个数据库的话，最好是执行sql之前创建连接，执行结束之后就断开连接</code>。</li>
+</ol>
+<h2 id="6-c调用">6. C++调用</h2>
+<h3 id="61-socisocihttpsgithubcomsocisoci">6.1. <a href="https://github.com/SOCI/soci" target="_blank" rel="noopener noreffer">SOCI/soci</a></h3>
+<ol>
+<li>SOCI is a database access library for C++ that makes the illusion of embedding SQL queries in the regular C++ code, staying entirely within the Standard C++.</li>
+</ol>
+<h3 id="62-sqlitewrappershttpwwwnaughtercomsqlitewrappershtml">6.2. <a href="http://www.naughter.com/sqlitewrappers.html" target="_blank" rel="noopener noreffer">SQLiteWrappers</a></h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                </span><span><a href="/tags/sqlite/">SQLITE</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-05-11</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E6%9E%B6%E6%9E%84-500-dbdb/" class="prev" rel="prev" title="PROGRAM 跨语言 架构 500 DBDB"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/tools-vi%E9%9D%9Evim/" class="next" rel="next" title="TOOLS VI非VIM">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

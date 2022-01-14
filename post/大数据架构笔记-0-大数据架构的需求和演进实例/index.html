@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>大数据架构笔记-hadoop生态圈 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="大数据架构笔记-hadoop生态圈" />
+<meta property="og:description" content="从无到有、从小到大，今日头条大数据平台实践经历的那些坑 基于刻到骨子里的数据驱动的思想，各种各样的数据需求源源不断的被提上来，这时不再是几个数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-12-10T18:16:38+00:00" />
+<meta property="article:modified_time" content="2019-12-10T18:16:38+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="大数据架构笔记-hadoop生态圈"/>
+<meta name="twitter:description" content="从无到有、从小到大，今日头条大数据平台实践经历的那些坑 基于刻到骨子里的数据驱动的思想，各种各样的数据需求源源不断的被提上来，这时不再是几个数"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B/" /><link rel="prev" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" /><link rel="next" href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-saas/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "大数据架构笔记-hadoop生态圈",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  456 ,
+        "url": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B\/","datePublished": "2019-12-10T18:16:38+00:00","dateModified": "2019-12-10T18:16:38+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">大数据架构笔记-hadoop生态圈</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1数据生成与采集sdk用户埋点">（1）数据生成与采集——SDK、用户埋点</a></li>
+    <li><a href="#2数据传输kafka-做消息总线连接在线和离线系统">（2）数据传输——Kafka 做消息总线连接在线和离线系统</a></li>
+    <li><a href="#3数据入库数据仓库etl抽取转换加载">（3）数据入库——数据仓库、ETL（抽取转换加载）</a></li>
+    <li><a href="#4数据计算计算引擎的演进">（4）数据计算——计算引擎的演进</a></li>
+    <li><a href="#5数据门户为业务的数据分析提供整体解决方案">（5）数据门户——为业务的数据分析提供整体解决方案</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="从无到有从小到大今日头条大数据平台实践经历的那些坑httpwwwyunweipaicomarchives20517html"><a href="http://www.yunweipai.com/archives/20517.html" target="_blank" rel="noopener noreffer">从无到有、从小到大，今日头条大数据平台实践经历的那些坑</a></h1>
+<ol>
+<li>基于刻到骨子里的数据驱动的思想，各种各样的数据需求源源不断的被提上来，这时不再是几个数据工程师单打独斗就能解决问题了，而让PM 和运营直接分析数据的门槛也很高。</li>
+<li>面对这些情况，头条的做法是成立数据平台团队，把数据基础设施像 Hadoop、Hive、Spark、Kylin 等封装成工具，把这些工具结合通用的分析模式整合成完整的解决方案，再把这些解决方案通过平台的形式，提供给业务部门使用。</li>
+<li>这里需要注意数据平台的发展是一个演进的过程，并不需要追求一开始就大而全，不同阶段采用的技术能匹配当时需求就好。</li>
+</ol>
+<h2 id="1数据生成与采集sdk用户埋点">（1）数据生成与采集——SDK、用户埋点</h2>
+<ol>
+<li>因为头条属于 C 端业务公司，主要以日志形式为主，数据的主要来源是用户行为，那么就采用事件模型来描述日志，以 SDK 形式接入，支持客户端、服务端埋点。</li>
+</ol>
+<h2 id="2数据传输kafka-做消息总线连接在线和离线系统">（2）数据传输——Kafka 做消息总线连接在线和离线系统</h2>
+<h2 id="3数据入库数据仓库etl抽取转换加载">（3）数据入库——数据仓库、ETL（抽取转换加载）</h2>
+<h2 id="4数据计算计算引擎的演进">（4）数据计算——计算引擎的演进</h2>
+<h2 id="5数据门户为业务的数据分析提供整体解决方案">（5）数据门户——为业务的数据分析提供整体解决方案</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-12-10</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="prev" rel="prev" title="大数据架构笔记-hadoop生态圈-学习路线"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1-saas/" class="next" rel="next" title="产品设计-SAAS">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

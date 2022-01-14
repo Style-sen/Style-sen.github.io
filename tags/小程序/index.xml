@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>小程序 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+        <description>小程序 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Jan 2019 10:24:02 &#43;0000</lastBuildDate><atom:link href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="self" type="application/rss+xml" /><item>
+    <title>UNIAPP</title>
+    <link>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/</link>
+    <pubDate>Wed, 09 Jan 2019 10:24:02 &#43;0000</pubDate><guid>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-uniapp/</guid>
+    <description><![CDATA[看完这篇白话uni-app。 DCloud与vue合作，在vue.js官网提供了免费视频教程，也可以直达教程地址：https://learni]]></description>
+</item>
+<item>
+    <title>小程序生态-历史-优秀小程序</title>
+    <link>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%90%84%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94%E5%8F%8A%E4%BC%98%E7%A7%80%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+    <pubDate>Wed, 09 Jan 2019 10:24:02 &#43;0000</pubDate><guid>/post/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%90%84%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94%E5%8F%8A%E4%BC%98%E7%A7%80%E5%B0%8F%E7%A8%8B%E5%BA%8F/</guid>
+    <description><![CDATA[历史 HTML5成功地实现了打破IE+FLASH的垄断，但是没有达到承载优秀的移动互联网体验的地步。 APPLE发布了自己的app store，开]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LINUX调试和性能分析 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="LINUX调试和性能分析" />
+<meta property="og:description" content="1. 提升程序性能 1.1. 系统级性能优化 两个阶段 1.1.1. 性能剖析 找出性能瓶颈 查找原因和热点代码 1.1.2. 代码优化 【优化代码】和【编译选项】。 2. 性能剖析工具 2.1. gperftools ***** 应用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-04-21T16:38:31+08:00" />
+<meta property="article:modified_time" content="2021-04-21T16:38:31+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="LINUX调试和性能分析"/>
+<meta name="twitter:description" content="1. 提升程序性能 1.1. 系统级性能优化 两个阶段 1.1.1. 性能剖析 找出性能瓶颈 查找原因和热点代码 1.1.2. 代码优化 【优化代码】和【编译选项】。 2. 性能剖析工具 2.1. gperftools ***** 应用"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" /><link rel="prev" href="/post/program-lua-%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" /><link rel="next" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LINUX调试和性能分析",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, LINUX","wordcount":  2140 ,
+        "url": "\/post\/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90\/","datePublished": "2021-04-21T16:38:31+08:00","dateModified": "2021-04-21T16:38:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">LINUX调试和性能分析</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-提升程序性能">1. 提升程序性能</a>
+      <ul>
+        <li><a href="#11-系统级性能优化">1.1. 系统级性能优化</a>
+          <ul>
+            <li><a href="#111-性能剖析">1.1.1. 性能剖析</a></li>
+            <li><a href="#112-代码优化">1.1.2. 代码优化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-性能剖析工具">2. 性能剖析工具</a>
+      <ul>
+        <li><a href="#21-gperftoolshttpsgithubcomgperftoolsgperftools-">2.1. <a href="https://github.com/gperftools/gperftools">gperftools</a> *****</a>
+          <ul>
+            <li><a href="#安装">安装</a>
+              <ul>
+                <li><a href="#pc">PC</a></li>
+                <li><a href="#交叉编译生成so动态库">交叉编译生成so动态库</a></li>
+              </ul>
+            </li>
+            <li><a href="#使用">使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-oprofile">2.2. Oprofile</a></li>
+        <li><a href="#23-perf-">2.3. Perf *****</a>
+          <ul>
+            <li><a href="#231-以性能事件为基础">2.3.1. 以性能事件为基础</a>
+              <ul>
+                <li><a href="#2311-hardware-event-是由-pmu-硬件产生的事件">2.3.1.1. Hardware Event 是由 PMU 硬件产生的事件</a>
+                  <ul>
+                    <li><a href="#23111-cache-命中">2.3.1.1.1. cache 命中</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2312-software-event-是内核软件产生的事件">2.3.1.2. Software Event 是内核软件产生的事件</a>
+                  <ul>
+                    <li><a href="#23121-进程切换">2.3.1.2.1. 进程切换</a></li>
+                    <li><a href="#23122-tick-数">2.3.1.2.2. tick 数</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2313-tracepoint-event-是内核中的静态-tracepoint-所触发的事件这些-tracepoint-用来判断程序运行期间内核的行为细节">2.3.1.3. Tracepoint event 是内核中的静态 tracepoint 所触发的事件，这些 tracepoint 用来判断程序运行期间内核的行为细节</a>
+                  <ul>
+                    <li><a href="#23131-slab-分配器的分配次数">2.3.1.3.1. slab 分配器的分配次数</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#232-安装">2.3.2. 安装</a>
+              <ul>
+                <li><a href="#2321-交叉编译">2.3.2.1. 交叉编译</a></li>
+              </ul>
+            </li>
+            <li><a href="#233-使用">2.3.3. 使用</a>
+              <ul>
+                <li><a href="#2331-perf-stat-程序">2.3.3.1. <code>perf stat [程序]</code></a>
+                  <ul>
+                    <li><a href="#23311-指标分析">2.3.3.1.1. 指标分析</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2332-perf-top">2.3.3.2. <code>perf top</code></a></li>
+                <li><a href="#2333-perf-record">2.3.3.3. <code>perf record</code></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#24-strace">2.4. Strace</a>
+          <ul>
+            <li><a href="#241-交叉编译">2.4.1. 交叉编译</a></li>
+            <li><a href="#242-使用">2.4.2. 使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#25-top">2.5. Top</a>
+          <ul>
+            <li><a href="#251-内存">2.5.1. 内存</a></li>
+            <li><a href="#252-cpu">2.5.2. CPU</a></li>
+            <li><a href="#253-各列">2.5.3. 各列</a></li>
+          </ul>
+        </li>
+        <li><a href="#26-vtune">2.6. VTune</a></li>
+        <li><a href="#27-shell脚本">2.7. shell脚本</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-程序性能问题的原因">3. 程序性能问题的原因</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-提升程序性能">1. 提升程序性能</h2>
+<h3 id="11-系统级性能优化">1.1. 系统级性能优化</h3>
+<ol>
+<li>两个阶段</li>
+</ol>
+<h4 id="111-性能剖析">1.1.1. 性能剖析</h4>
+<ol>
+<li>找出性能瓶颈</li>
+<li>查找原因和热点代码</li>
+</ol>
+<h4 id="112-代码优化">1.1.2. 代码优化</h4>
+<ol>
+<li>【优化代码】和【编译选项】。</li>
+</ol>
+<h2 id="2-性能剖析工具">2. 性能剖析工具</h2>
+<h3 id="21-gperftoolshttpsgithubcomgperftoolsgperftools-">2.1. <a href="https://github.com/gperftools/gperftools" target="_blank" rel="noopener noreffer">gperftools</a> *****</h3>
+<ol>
+<li>
+<p>应用级别。</p>
+</li>
+<li>
+<p>gperftool主要支持以下四个功能：</p>
+<p>a. thread-caching malloc
+b. heap-checking using tcmalloc 堆检查器
+c. heap-profiling using tcmalloc 堆分析器
+d. CPU profiler CPU分析器</p>
+</li>
+<li>
+<p>如果要获得完整功能，链接应用代码的时候，需要链接动态库<code>-lprofiler -ltcmalloc</code>.</p>
+</li>
+</ol>
+<h4 id="安装">安装</h4>
+<ol>
+<li>参考<a href="http://qiushao.net/2020/07/11/Linux/memory-leak-analyze-tcmalloc/index.html" target="_blank" rel="noopener noreffer">内存泄漏分析工具：tcmalloc</a>.</li>
+<li>克隆源码,提取出<code>tag</code>。</li>
+<li>没有libtool的话，需要安装<code>sudo apt-get install libtool</code>.</li>
+<li><code>./autogen.sh</code>.</li>
+</ol>
+<h5 id="pc">PC</h5>
+<ol>
+<li><code>mkdir x64_build</code>;</li>
+<li><code>./configure --prefix=$(pwd)/x64_build</code>;</li>
+<li><code>make</code>;</li>
+<li><code>make install</code>.</li>
+</ol>
+<h5 id="交叉编译生成so动态库">交叉编译生成so动态库</h5>
+<ol>
+<li><code>source</code>使用交叉编译器。</li>
+<li><code>./configure --prefix=$(pwd)/arm_build --host=arm-linux</code>.</li>
+<li><code>make clean</code>.</li>
+<li><code>make -j8</code>.</li>
+<li><code>make install</code>.</li>
+</ol>
+<h4 id="使用">使用</h4>
+<ol>
+<li>应用程序生成分析源文件(需要设置一些环境变量)，然后在PC上分析(<code>pprof</code>perl脚本)，此时需要<a href="https://blog.51cto.com/wulingdong/2043898" target="_blank" rel="noopener noreffer">修改应用程序源码并链接相应的库</a>。</li>
+</ol>
+<h3 id="22-oprofile">2.2. Oprofile</h3>
+<ol>
+<li>更新停滞。</li>
+</ol>
+<h3 id="23-perf-">2.3. Perf *****</h3>
+<ol>
+<li>内核级别(一般用来分析CPU，分析内存可用gperftools)【必须在内核中打开perf的events功能】。</li>
+<li>开源。</li>
+<li>内置于内核源码树。</li>
+<li>基于事件采样原理:每隔一个固定的时间，产生一个中断，然后统计对应的pid和函数【采样就预示着与实际运行情况并不能保持一致，但如果一个函数运行的时间越长，被时钟中断的机会就越大。鉴于perf最终显示的是统计值，所以它的测量结果是高度可信的】。</li>
+<li>perf支持两种模式，计算模式和采样模式。比如，perf stat使用的是计算模式，而perf record采用的是采样模式。</li>
+</ol>
+<h4 id="231-以性能事件为基础">2.3.1. 以性能事件为基础</h4>
+<ol>
+<li>支持针对处理器相关性能指标与操作系统相关性能指标的性能剖析.</li>
+<li>主要有3类。</li>
+</ol>
+<h5 id="2311-hardware-event-是由-pmu-硬件产生的事件">2.3.1.1. Hardware Event 是由 PMU 硬件产生的事件</h5>
+<h6 id="23111-cache-命中">2.3.1.1.1. cache 命中</h6>
+<h5 id="2312-software-event-是内核软件产生的事件">2.3.1.2. Software Event 是内核软件产生的事件</h5>
+<h6 id="23121-进程切换">2.3.1.2.1. 进程切换</h6>
+<h6 id="23122-tick-数">2.3.1.2.2. tick 数</h6>
+<h5 id="2313-tracepoint-event-是内核中的静态-tracepoint-所触发的事件这些-tracepoint-用来判断程序运行期间内核的行为细节">2.3.1.3. Tracepoint event 是内核中的静态 tracepoint 所触发的事件，这些 tracepoint 用来判断程序运行期间内核的行为细节</h5>
+<h6 id="23131-slab-分配器的分配次数">2.3.1.3.1. slab 分配器的分配次数</h6>
+<h4 id="232-安装">2.3.2. 安装</h4>
+<ol>
+<li>源码存在<code>linux</code>内核源码<code>tools/perf</code>中。</li>
+</ol>
+<h5 id="2321-交叉编译">2.3.2.1. 交叉编译</h5>
+<ol>
+<li>
+<p>需使用和编译内核一致的编译器。</p>
+</li>
+<li>
+<p>需要查看是否需要安装相应的插件.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Auto-detecting system features:
+...                         dwarf: <span class="o">[</span> OFF <span class="o">]</span>
+...                         glibc: <span class="o">[</span> on  <span class="o">]</span>
+...                          gtk2: <span class="o">[</span> OFF <span class="o">]</span>
+...                      libaudit: <span class="o">[</span> OFF <span class="o">]</span>
+...                        libbfd: <span class="o">[</span> OFF <span class="o">]</span>
+...                        libelf: <span class="o">[</span> OFF <span class="o">]</span> <span class="c1"># 需要elf</span>
+...                       libnuma: <span class="o">[</span> OFF <span class="o">]</span>
+...                       libperl: <span class="o">[</span> OFF <span class="o">]</span>
+...                     libpython: <span class="o">[</span> OFF <span class="o">]</span>
+...                      libslang: <span class="o">[</span> OFF <span class="o">]</span>
+...                     libunwind: <span class="o">[</span> OFF <span class="o">]</span>
+...            libdw-dwarf-unwind: <span class="o">[</span> OFF <span class="o">]</span>
+...                          zlib: <span class="o">[</span> OFF <span class="o">]</span>
+...                          lzma: <span class="o">[</span> OFF <span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装<code>zlib</code>1.2.11.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 下载源码；
+2. 更新环境变量，使用交叉编译器。
+3. <span class="sb">`</span>mkdir arm_build<span class="sb">`</span><span class="p">;</span>
+4. <span class="sb">`</span>./configure --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/arm_build<span class="sb">`</span><span class="p">;</span>
+5. <span class="sb">`</span>make<span class="sb">`</span>
+6. <span class="sb">`</span>make install<span class="sb">`</span>.
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装<code>elfutils</code>0.183.(work)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 下载<span class="s2">&#34;https://sourceware.org/elfutils/ftp/&#34;</span>.
+2. <span class="sb">`</span>mkdir arm_build<span class="sb">`</span><span class="p">;</span>
+3. <span class="sb">`</span>./configure --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/arm_build --host<span class="o">=</span>arm-linux <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&#34;-L[zlib_path] -lz&#34;</span> <span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="o">[</span>zlib_include<span class="o">]</span> --disable-libdebuginfod --disable-debuginfod<span class="sb">`</span><span class="p">;</span>
+4.  <span class="sb">`</span>make<span class="sb">`</span>
+5.  <span class="sb">`</span>make install<span class="sb">`</span>.
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>交叉编译<code>perf</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 修改Makefile.config<span class="sb">`</span>EXTLIBS<span class="sb">`</span>增加-lelf -lz
+1. make <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>遗留问题，静态编译(LDFLAGS+=-static)失败，只能动态编译???。</p>
+</li>
+<li>
+<p>symbol不显示函数名<code>sudo apt-get install libiberty-dev binutils-dev</code>.</p>
+</li>
+</ol>
+<h4 id="233-使用">2.3.3. 使用</h4>
+<ol>
+<li><code>perf list</code>列出所有能够触发<code>perf</code>采样点的事件.</li>
+</ol>
+<h5 id="2331-perf-stat-程序">2.3.3.1. <code>perf stat [程序]</code></h5>
+<ol>
+<li>最先使用的一个工具;</li>
+<li>通过概括精简的方式提供被调试程序运行的整体情况和汇总数据.</li>
+</ol>
+<h6 id="23311-指标分析">2.3.3.1.1. 指标分析</h6>
+<ol>
+<li><code>task-clock</code>CPU 利用率，该值高，说明程序的多数时间花费在 CPU 计算上而非 IO.</li>
+<li><code>context-switches</code>进程切换次数，记录了程序运行过程中发生了多少次进程切换，频繁的进程切换是应该避免的。</li>
+<li><code>cpu-migrations</code>表示进程 t1 运行过程中发生了多少次 CPU 迁移，即被调度器从一个 CPU 转移到另外一个 CPU 上运行</li>
+<li><code>page-faults</code>;</li>
+<li><code>cycles</code>处理器时钟，一条机器指令可能需要多个 cycles;</li>
+<li><code>instructions</code>机器指令数目;</li>
+<li><code>branches</code></li>
+<li><code>branch-misses</code></li>
+<li>使用 -e 选项来查看您所感兴趣的特殊的事件.</li>
+</ol>
+<h5 id="2332-perf-top">2.3.3.2. <code>perf top</code></h5>
+<ol>
+<li>实时显示当前系统的性能统计信息。该命令主要用来观察整个系统当前的状态.</li>
+<li>查看当前系统最耗时的[内核函数]或[某个用户进程].</li>
+<li>-e 选项，您可以列出造成其他事件的 TopN 个进程 / 函数</li>
+</ol>
+<h5 id="2333-perf-record">2.3.3.3. <code>perf record</code></h5>
+<ol>
+<li>记录单个函数级别的统计信息,使用<code>-o</code>记录到文件中，并使用 perf report 来显示统计结果</li>
+</ol>
+<h3 id="24-strace">2.4. Strace</h3>
+<ol>
+<li>strace是一个可用于诊断、调试和教学的Linux用户空间跟踪器。我们用它来监控用户空间进程和内核的交互，比如【<code>系统调用</code>】、信号传递、进程状态变更等.</li>
+<li>strace底层使用内核的ptrace特性来实现其功能.</li>
+<li>基本使用<code>strace -tt -f  ./some_server ../conf/some_server.conf</code>.</li>
+</ol>
+<h4 id="241-交叉编译">2.4.1. 交叉编译</h4>
+<ol>
+<li>clone<a href="https://github.com/strace/strace.git" target="_blank" rel="noopener noreffer">strace</a>;</li>
+<li>使用<code>gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf</code>;</li>
+<li><code>./bootstrap</code>;</li>
+<li><code>./configure --prefix=$(pwd)/arm_build --host=arm-none-linux</code>;</li>
+<li><code>make</code>;</li>
+<li><code>make install</code>;</li>
+</ol>
+<h4 id="242-使用">2.4.2. 使用</h4>
+<h3 id="25-top">2.5. Top</h3>
+<h4 id="251-内存">2.5.1. 内存</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Mem: 172520K used, 858088K free, 0K shrd, 1053056K buff, 1053104K cached
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="252-cpu">2.5.2. CPU</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>sys 占用高需要查看系统调用</code>。</li>
+</ol>
+<h4 id="253-各列">2.5.3. 各列</h4>
+<ol>
+<li>VSZ 虚拟内存。</li>
+<li>STAT 进程状态。</li>
+</ol>
+<h3 id="26-vtune">2.6. VTune</h3>
+<ol>
+<li>Intel平台。</li>
+<li>收费。</li>
+</ol>
+<h3 id="27-shell脚本">2.7. shell脚本</h3>
+<ol>
+<li><a href="https://github.com/f18m/CPU-MEM-monitor" target="_blank" rel="noopener noreffer">f18m/CPU-MEM-monitor</a>复杂脚本.</li>
+<li>简单脚本。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/sh
+</span><span class="cp"></span><span class="nv">interval</span><span class="o">=</span><span class="m">1</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">interval</span><span class="o">=</span><span class="nv">$1</span>
+<span class="k">else</span>
+    <span class="nb">exit</span>
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">procname</span><span class="o">=</span><span class="nv">$2</span>
+<span class="k">else</span>
+    <span class="nb">exit</span>
+<span class="k">fi</span>
+<span class="nb">echo</span> <span class="s2">&#34;检查时间间隔(单位秒)：&#34;</span><span class="nv">$interval</span>
+<span class="nb">echo</span> <span class="s2">&#34;进程名称:&#34;</span><span class="nv">$procname</span>
+<span class="nv">datetime</span><span class="o">=</span><span class="k">$(</span>date +<span class="s1">&#39;%Y%m%d&#39;</span><span class="k">)</span>
+<span class="k">while</span> :<span class="p">;</span> <span class="k">do</span>
+    <span class="c1">#根据进程名获取进程id</span>
+    <span class="nv">pid</span><span class="o">=</span><span class="k">$(</span>ps -ef <span class="p">|</span> grep <span class="nv">$procname</span> <span class="p">|</span> grep -v grep <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+    <span class="nb">echo</span> <span class="nv">$pid</span> <span class="nv">$procname</span>
+    <span class="c1">#获取当读占用cpu信息</span>
+    <span class="nb">echo</span> <span class="k">$(</span>date +<span class="s1">&#39;%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span> %cpu: <span class="k">$(</span>top -n <span class="m">1</span> -d <span class="m">1</span> <span class="p">|</span> grep <span class="nv">$procname</span> <span class="p">|</span> grep -v grep <span class="p">|</span> awk <span class="s1">&#39;{print $8}&#39;</span><span class="k">)</span> &gt;&gt;/program/<span class="si">${</span><span class="nv">procname</span><span class="si">}</span>_cpu_stat.txt
+    sleep <span class="nv">$interval</span>
+<span class="k">done</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-程序性能问题的原因">3. 程序性能问题的原因</h2>
+<ol>
+<li>程序的运算量很大，导致 CPU过于繁忙，CPU是瓶颈.</li>
+<li>程序需要做大量的 I/O，读写文件、内存操作等等，CPU 更多的是处于等待，I/O部分称为程序性能的瓶颈.</li>
+<li>程序之间相互等待，结果 CPU 利用率很低，但运行速度依然很慢，事务间的共享与死锁制约了程序的性能.</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/linux/">LINUX</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-04-21</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-lua-%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" class="prev" rel="prev" title="LUA常用模块"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/" class="next" rel="next" title="如何管理一个项目">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

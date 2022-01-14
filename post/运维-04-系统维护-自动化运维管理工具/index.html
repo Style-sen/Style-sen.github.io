@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>自动化运维管理工具 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="自动化运维管理工具" />
+<meta property="og:description" content="1. Ansible 参考Ansible中文权威指南 参考拉勾教育 Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。 Ansible" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-07-27T17:59:26+00:00" />
+<meta property="article:modified_time" content="2020-07-27T17:59:26+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="自动化运维管理工具"/>
+<meta name="twitter:description" content="1. Ansible 参考Ansible中文权威指南 参考拉勾教育 Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。 Ansible"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" /><link rel="prev" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-6-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" /><link rel="next" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-7-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "自动化运维管理工具",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "运维","wordcount":  3645 ,
+        "url": "\/post\/%E8%BF%90%E7%BB%B4-04-%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7\/","datePublished": "2020-07-27T17:59:26+00:00","dateModified": "2020-07-27T17:59:26+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">自动化运维管理工具</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-ansible">1. Ansible</a>
+      <ul>
+        <li><a href="#11-配置etcansible">1.1. 配置(/etc/ansible)</a>
+          <ul>
+            <li><a href="#111-hosts文件">1.1.1. hosts文件</a></li>
+            <li><a href="#112-ansiblecfg">1.1.2. ansible.cfg</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-执行模式">1.2. 执行模式</a>
+          <ul>
+            <li><a href="#121-命令行模式ad-hoc">1.2.1. 命令行模式（ad-hoc）</a></li>
+            <li><a href="#122-playbook多个想要执行的任务上下关联放到一个-playbook-中">1.2.2. playbook（多个想要执行的任务[上下关联]放到一个 playbook 中）</a>
+              <ul>
+                <li><a href="#1221-文件格式">1.2.2.1. 文件格式</a></li>
+                <li><a href="#1222-文件组成">1.2.2.2. 文件组成</a>
+                  <ul>
+                    <li><a href="#12221-targethosts-和-users">1.2.2.2.1. Target(Hosts 和 Users)</a></li>
+                    <li><a href="#12222-task">1.2.2.2.2. Task</a></li>
+                    <li><a href="#12223-handler">1.2.2.2.3. Handler</a></li>
+                    <li><a href="#12224-tags">1.2.2.2.4. tags</a></li>
+                  </ul>
+                </li>
+                <li><a href="#1223-playbook模块">1.2.2.3. playbook模块</a>
+                  <ul>
+                    <li><a href="#12231-unarchive-模块">1.2.2.3.1. unarchive 模块</a></li>
+                    <li><a href="#12232-lineinfilereplace-模块">1.2.2.3.2. lineinfile、replace 模块</a></li>
+                    <li><a href="#12233-registerset_factdebug-模块">1.2.2.3.3. register、set_fact、debug 模块</a></li>
+                    <li><a href="#12234-delegate_toconnection-和-local_action-模块管理机本地执行">1.2.2.3.4. delegate_to、connection 和 local_action 模块(管理机本地执行)</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#123-ansible模块">1.2.3. Ansible模块</a>
+              <ul>
+                <li><a href="#1231-commands">1.2.3.1. commands</a>
+                  <ul>
+                    <li><a href="#12311-模块参数常用的shell命令">1.2.3.1.1. 模块参数（常用的shell命令）</a></li>
+                  </ul>
+                </li>
+                <li><a href="#1232-shell-模块">1.2.3.2. shell 模块</a></li>
+                <li><a href="#1233-raw-模块和-script-模块">1.2.3.3. raw 模块和 script 模块</a></li>
+                <li><a href="#1234-file-模块copy-模块与-synchronize-模块-fetch模块">1.2.3.4. file 模块、copy 模块与 synchronize 模块 fetch模块</a></li>
+                <li><a href="#1235-cron-模块yum-模块与-service-模块">1.2.3.5. cron 模块、yum 模块与 service 模块</a></li>
+                <li><a href="#1236-setup-模块获取-ansible-facts-信息">1.2.3.6. setup 模块获取 Ansible facts 信息</a></li>
+                <li><a href="#1237-user-模块与-group-模块">1.2.3.7. user 模块与 group 模块</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#13-大数据运维实战">1.3. 大数据运维实战</a>
+          <ul>
+            <li><a href="#131-hosts">1.3.1. hosts</a></li>
+            <li><a href="#132-ssh">1.3.2. ssh</a></li>
+            <li><a href="#133-jdk">1.3.3. jdk</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-puppet">2. Puppet</a></li>
+    <li><a href="#3-saltstack">3. Saltstack</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-ansible">1. Ansible</h2>
+<p>参考<a href="http://ansible.com.cn/index.html" target="_blank" rel="noopener noreffer">Ansible中文权威指南</a>
+参考<a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=144#/detail/pc?id=3078" target="_blank" rel="noopener noreffer">拉勾教育</a></p>
+<ol>
+<li>Ansible 是基于 Python 语言开发的，只需要在一台普通的服务器上运行即可，不需要在客户端服务器上安装客户端。</li>
+<li>Ansible 是基于 SSH 远程管理，而 Linux 服务器基本都开启了 SSH 服务，所以 Ansible 不需要为配置工作添加额外的支持。</li>
+</ol>
+<h3 id="11-配置etcansible">1.1. 配置(/etc/ansible)</h3>
+<h4 id="111-hosts文件">1.1.1. hosts文件</h4>
+<ol>
+<li>
+<p>定义主机列表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">                // 未分组的机器保留在顶部
+<span class="o">[</span>webservers<span class="o">]</span>    // 组名
+ixdba1.net      // 可以使用域名、主机名、IP（一般用IP）
+ixdba2.net     // 其后还可以用空格跟变量
+192.168.1.2 <span class="nv">ansible_ssh_user</span><span class="o">=</span>breeze <span class="nv">ansible_ssh_pass</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span>
+
+<span class="o">[</span>dbservers<span class="o">]</span>
+db.ixdba1.net
+db.ixdba2.net
+www<span class="o">[</span>01:50<span class="o">]</span>.ixdba.net  // 可以使用数字范围
+db<span class="o">[</span>a:f<span class="o">]</span>.ixdba.ent   // 可以使用字母范围
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ansible_ssh_host 被管理主机的真实IP
+ansible_ssh_port 被管理主机的端口
+ansible_ssh_user 被管理主机的用户名
+ansible_ssh_pass 被管理主机的密码
+ansible_ssh_private_key_file 密钥文件路径
+
+ansible_sudo_pass    使用sudo连接时的密码
+ansible_sudo_exec    指定sudo命令的路径
+
+ansible_shell_type    shell的类型，默认sh
+
+ansible_connection    ssh连接的类型
+
+ansible_<span class="o">[</span>python/perl/ruby<span class="o">]</span>_interpreter    解释器的路径
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="112-ansiblecfg">1.1.2. ansible.cfg</h4>
+<ol>
+<li>默认配置，保持默认即可。</li>
+<li>一般将<code>host_key_checking</code>设置为false，关闭yes/no的确认。</li>
+</ol>
+<h3 id="12-执行模式">1.2. 执行模式</h3>
+<ol>
+<li><code>管理机</code>是安装 Ansible 的机器，<code>远程主机</code>是 Ansible 批量操作的对象，可以是一个或一组主机.</li>
+</ol>
+<h4 id="121-命令行模式ad-hoc">1.2.1. 命令行模式（ad-hoc）</h4>
+<ol>
+<li>
+<p>一般用于测试、临时应用等场景。</p>
+</li>
+<li>
+<p>常用参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ansible 主机或组<span class="o">(</span>在 /etc/ansible/hosts 里进行指定<span class="o">)</span>  -m 模块名<span class="o">(</span>默认是command模块<span class="o">)</span> -a <span class="s1">&#39;模块参数（要在远程机器上执   行的命令）&#39;</span>  ansible参数
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="122-playbook多个想要执行的任务上下关联放到一个-playbook-中">1.2.2. playbook（多个想要执行的任务[上下关联]放到一个 playbook 中）</h4>
+<ol>
+<li>主用用于正式环境，通过编写 playbook 文件，可实现固定的、批量的对系统或服务进行配置以及维护工作。</li>
+</ol>
+<h5 id="1221-文件格式">1.2.2.1. 文件格式</h5>
+<ol>
+<li>由 YMAL 语言编写。通过 <code>ansible-playbook</code> 命令进行解析。</li>
+<li>文件的第一行应该以“&mdash;”（三个连字符）开始，表明 YMAL 文件的开始；</li>
+<li>在同一行中，# 之后的内容表示注释，类似于 shell 、Python 和 Ruby；</li>
+<li>YMAL 中的列表元素以“-”开头，然后紧跟着一个空格，后面为元素内容；</li>
+<li>同一个列表中的元素应该保持相同的缩进，否则会被当作错误处理；</li>
+<li>play 中的 hosts、variables、roles、tasks 等对象的表示方法都是键值中间以“:”分隔表示，“:”后面还要增加一个空格。</li>
+</ol>
+<h5 id="1222-文件组成">1.2.2.2. 文件组成</h5>
+<ol>
+<li>playbook 是由一个或多个“play”组成的列表。</li>
+<li>playbooks 主要有以下四部分构成，分别如下：
+<ul>
+<li>Target 部分，定义将要执行 playbook 的远程主机组；</li>
+<li>Variable 部分，定义 playbook 运行时需要使用的变量；</li>
+<li>Task 部分，定义将要在远程主机上执行的任务列表；</li>
+<li>Handler 部分，定义 task 执行完成以后需要调用的任务。</li>
+</ul>
+</li>
+<li>示例</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">- name: create user    // 功能概述
+  hosts: <span class="o">[</span>ip<span class="o">]</span>    // 指定主机
+  remote_user: root    // 指定登陆远程主机的用户
+  gather_facts: <span class="nb">false</span>
+  vars:
+    user1: testuser    // 定义了一个变量
+  tasks:    // 指定了一个任务
+   - name: start createuser    // 人物描述
+     user: <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;{{user1}}&#34;</span>    // 模块： 模块参数
+
+- hosts: hadoophosts
+  remote_user: root
+  tasks:
+   - name: create hadoop user
+     user: <span class="nv">name</span><span class="o">=</span>hadoop <span class="nv">state</span><span class="o">=</span>present
+   - name: create hadoop directory and chmod/chown
+     file: <span class="nv">path</span><span class="o">=</span>/opt/hadoop <span class="nv">state</span><span class="o">=</span>directory <span class="nv">mode</span><span class="o">=</span><span class="m">0755</span> <span class="nv">owner</span><span class="o">=</span>hadoop <span class="nv">group</span><span class="o">=</span>hadoop
+   - name: synchronize hadoop program
+     synchronize: <span class="nv">src</span><span class="o">=</span>/data/hadoop/ <span class="nv">dest</span><span class="o">=</span>/opt/hadoop
+   - name: Setting environment variables
+     shell: <span class="nb">echo</span> <span class="s2">&#34;export JAVA_HOME=/usr/jdk&#34;</span> &gt;&gt; /etc/profile
+
+- hosts: 172.16.213.231
+  remote_user: root
+  tasks:
+   - name: modify selinux    // 关闭远程主机的SELINUX
+     replace: <span class="nv">path</span><span class="o">=</span>/etc/selinux/config <span class="nv">regexp</span><span class="o">=</span><span class="s2">&#34;enforcing&#34;</span> <span class="nv">replace</span><span class="o">=</span>disabled <span class="nv">backup</span><span class="o">=</span>yes
+
+- hosts: 172.16.213.231
+  remote_user: root
+  tasks:
+   - lineinfile: <span class="nv">dest</span><span class="o">=</span>/etc/profile <span class="nv">insertafter</span><span class="o">=</span><span class="s1">&#39;ulimit(.*)&#39;</span> <span class="nv">line</span><span class="o">=</span><span class="s2">&#34;ulimit -c unlimited&#34;</span>    // 在 /etc/profile 文件中找到以 <span class="nb">ulimit</span> 开头的行，并在后面添加一行内容“ulimit -c unlimited”
+   - lineinfile: <span class="nv">dest</span><span class="o">=</span>/etc/profile <span class="nv">line</span><span class="o">=</span><span class="s2">&#34;export JAVA_HOME=/usr/jdk&#34;</span>    在 /etc/profile 文件的最后添加一个 JAVA_HOME 路径；
+   - lineinfile: <span class="nv">dest</span><span class="o">=</span>/etc/selinux/config <span class="nv">regexp</span><span class="o">=</span><span class="s1">&#39;SELINUX=(.*)&#39;</span> <span class="nv">line</span><span class="o">=</span><span class="s1">&#39;SELINUX=disabled&#39;</span>    修改 /etc/selinux/config 文件中以“SELINUX<span class="o">=</span>”开头的行，将其替换为“SELINUX<span class="o">=</span>disabled”，其实就是关闭 selinux
+   - lineinfile: <span class="nv">dest</span><span class="o">=</span>/etc/resolv.conf <span class="nv">regexp</span><span class="o">=</span><span class="s1">&#39;search(.*)&#39;</span> <span class="nv">state</span><span class="o">=</span>absent    //  /etc/resolv.conf 文件找查找以 search 开头的行，然后将其删除掉。
+
+
+- hosts: 172.16.213.231
+  remote_user: root
+  tasks:
+   - name: ps <span class="nb">command</span>
+     shell: hostname
+     register: host_result
+   - debug: <span class="nv">var</span><span class="o">=</span>host_result
+   - debug: <span class="nv">var</span><span class="o">=</span>host_result.stdout
+   - debug: <span class="s1">&#39;msg=&#34;output: {{host_result.stdout}}&#34;&#39;</span>
+   - set_fact: <span class="nv">var1</span><span class="o">=</span><span class="s2">&#34;{{host_result.stdout}}&#34;</span>
+   - set_fact: <span class="nv">var2</span><span class="o">=</span><span class="s2">&#34;This is a string&#34;</span>
+   - debug: <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;{{var1}}  {{var2}}&#34;</span>
+
+- hosts: 172.16.213.231
+  remote_user: root
+  gather_facts: <span class="nb">true</span>
+  tasks:
+   - name: connection
+     shell: <span class="nb">echo</span> <span class="s2">&#34;connection . {{inventory_hostname}} </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2"> .&#34;</span> &gt;&gt; /tmp/local.log
+     connection: <span class="nb">local</span>
+   - name: delegate_to
+     shell: <span class="nb">echo</span> <span class="s2">&#34;delegate_to . {{inventory_hostname}} </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2"> .&#34;</span> &gt;&gt; /tmp/local.log
+     delegate_to: localhost
+   - name: local_action
+     local_action: shell <span class="nb">echo</span> <span class="s2">&#34;local_action. {{inventory_hostname}} </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">&#34;</span> &gt;&gt; /tmp/local.log
+
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="12221-targethosts-和-users">1.2.2.2.1. Target(Hosts 和 Users)</h6>
+<ol>
+<li>hosts：用于指定要执行任务的远程主机.</li>
+<li>remote_user：用于指定在远程主机上执行任务的用户.</li>
+</ol>
+<h6 id="12222-task">1.2.2.2.2. Task</h6>
+<ol>
+<li>各任务<code>按次序</code>逐个在 hosts 中指定所有远程主机上的执行，即在所有远程主机上完成第一个任务后再开始第二个。</li>
+<li>在运行自上而下某 playbook 时，如果中途发生错误，则所有已执行任务都将<code>回滚</code>，因此在更正 playbook 后需要重新执行一次。</li>
+</ol>
+<h6 id="12223-handler">1.2.2.2.3. Handler</h6>
+<ol>
+<li>handlers 和“notify”配合使用.</li>
+</ol>
+<h6 id="12224-tags">1.2.2.2.4. tags</h6>
+<ol>
+<li>Ansible 具有幂等性，因此会自动跳过没有变化的部分；但是当一个 playbook 任务比较多时，一个个的判断每个部分是否发生了变化，也需要很长时间。因此，如果确定某些部分没有发生变化，就可以通过 tags 跳过这些代码片断。</li>
+</ol>
+<h5 id="1223-playbook模块">1.2.2.3. playbook模块</h5>
+<h6 id="12231-unarchive-模块">1.2.2.3.1. unarchive 模块</h6>
+<ol>
+<li>实现解压缩，也就是将压缩文件解压分发到远程不同节点上。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">src，源文件路径，这个源文件在管理机上；
+dest，指定远程主机的文件路径；
+mode，设置远程主机上文件权限。
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="12232-lineinfilereplace-模块">1.2.2.3.2. lineinfile、replace 模块</h6>
+<ol>
+<li>
+<p>替换模块为 replace 和 lineinfile。</p>
+</li>
+<li>
+<p>replace 模块可以根据指定的正则表达式替换远程主机下某个文件中的内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">path
+regexp
+replace
+backup
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>lineinfile，此模块也可以实现 replace 的功能，但 lineinfile 功能更加强大</p>
+</li>
+</ol>
+<h6 id="12233-registerset_factdebug-模块">1.2.2.3.3. register、set_fact、debug 模块</h6>
+<ol>
+<li>
+<p>使用 register 选项，可以将当前 task 的输出结果赋值给一个变量.</p>
+</li>
+<li>
+<p>debug 模块，此模块用于在调试中输出信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">msg 可以输出自定义信息，并且变量需要双大括号包含起来；
+var 参数只能输出变量，并且不需要双大括号。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>set_fact 和 register 的功能很类似，它也可以将 task 输出赋值给变量。set_fact 更像 shell 中变量的赋值方式，可以将某个变量的值赋值给另一个变量，也可以将字符串赋值给变量。</p>
+</li>
+</ol>
+<h6 id="12234-delegate_toconnection-和-local_action-模块管理机本地执行">1.2.2.3.4. delegate_to、connection 和 local_action 模块(管理机本地执行)</h6>
+<ol>
+<li>在管理机本机上执行一些操作，该如何实现呢？其实现的方法有很多，可以通过 delegate_to（任务委派）来实现，也可通过 connection:local 方法，还可通过 local_action 关键字来实现。</li>
+</ol>
+<h4 id="123-ansible模块">1.2.3. Ansible模块</h4>
+<h5 id="1231-commands">1.2.3.1. commands</h5>
+<p><code>-m command -a '模块参数'</code></p>
+<h6 id="12311-模块参数常用的shell命令">1.2.3.1.1. 模块参数（常用的shell命令）</h6>
+<ol>
+<li>creates，后跟一个文件名，当远程主机上存在这个文件时，该命令不执行，否则执行；</li>
+<li>chdir，在执行指令之前，先切换到该指定的目录；</li>
+<li>removes，后跟一个文件名，当该文件存在时，该选项执行，否则不执行。</li>
+<li>commands 模块不支持这些特殊字符（“&lt;”、“&gt;”、“|”、“&amp;”等）</li>
+</ol>
+<h5 id="1232-shell-模块">1.2.3.2. shell 模块</h5>
+<ol>
+<li>功能和用法与 command 模块一样，不过 shell 模块执行命令的时候使用的是 /bin/sh，该模块可以执行任何命令。</li>
+</ol>
+<h5 id="1233-raw-模块和-script-模块">1.2.3.3. raw 模块和 script 模块</h5>
+<ol>
+<li>raw 模块功能与 command 和 shell 模块类似，shell 能够完成的操作，raw 也都能完成。不同的是，<code>raw 模块不需要远程主机上的 Python 环境</code>。</li>
+<li>可以使用 raw 模块来装 Python、python-simplejson 等,来支持其他模块。</li>
+<li>script 模块是将管理端的 <code>shell 脚本</code>拷贝到被管理的远程主机上执行，其原理是先将 shell 复制到远程主机，再在远程主机上执行。此模块的执行，不需要远程主机上的 Python 环境。</li>
+</ol>
+<h5 id="1234-file-模块copy-模块与-synchronize-模块-fetch模块">1.2.3.4. file 模块、copy 模块与 synchronize 模块 fetch模块</h5>
+<ol>
+<li>
+<p><code>file 模块功能强大，主要用于远程主机上的文件或目录操作</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">force
+group
+mode
+owner
+path
+recurse
+scr
+dest
+state
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>copy 模块，此模块用来<code>复制文件到远程主机</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">owner
+group
+backup
+content
+dest
+directory_mode
+force
+src  如果用<span class="s2">&#34;/&#34;</span>结尾，只复制目录里边的内容
+validate 参数，表示在复制之前验证要拷贝的文件是否正确
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>copy 模块<code>拷贝小文件</code>还可以，如果拷贝大文件或者目录的话，速度很慢，不建议使用。</p>
+</li>
+<li>
+<p>fetch 与copy类似，但是功能相反，<code>把文件从目标主机拷贝到本地</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">dest 目标目录
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>synchronize 模块，此模块通过调用 rsync 进行文件或目录同步，同步速度很快，还支持增量同步</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">compress
+copy_links
+delete
+src
+dest
+dest_port
+mode  远程主机必须要有rsync命令
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="1235-cron-模块yum-模块与-service-模块">1.2.3.5. cron 模块、yum 模块与 service 模块</h5>
+<ol>
+<li>
+<p>cron 模块用于管理计划任务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ansible 172.16.213.233  -m cron -a <span class="s1">&#39;name=&#34;job for reboot&#34; special_time=reboot  job=&#34;/data/bootservice.    sh&#34; &#39;</span>    此命令执行后，会在 172.16.213.233 的 crontab 中写入“@reboot /data/bootservice.sh”，通过“crontab    -l ”可以查看到
+ansible 172.16.213.233  -m cron -a <span class="s1">&#39;name=&#34;yum autoupdate&#34; weekday=&#34;6&#34; minute=20 hour=1 user=&#34;root&#34;    job=&#34;yum -y update&#34;&#39;</span>    每周六的 1:20 分执行<span class="s2">&#34;yum -y update&#34;</span>操作
+ansible 172.16.213.233  -m cron -a  <span class="s1">&#39;backup=&#34;True&#34; name=&#34;autobackup&#34; weekday=&#34;6&#34; minute=30  hour=1    user=&#34;root&#34; job=&#34;/home/ixdba/backup.sh&#34;&#39;</span>    每周六的 1:30 分以 root 用户执行 <span class="s2">&#34;/home/ixdba/backup.sh&#34;</span> 脚本
+ansible 172.16.213.233  -m cron -a  <span class="s1">&#39;name=&#34;checkhttp&#34; minute=30 hour=12 user=&#34;root&#34; job=&#34;/home/ixdba/   check_http.sh&#34; cron_file=&#34;check_http_for_ansible&#34; &#39;</span>    会在 /etc/cron.d 创建一个 check_http_for_ansible   文件，表示每天的 12：30 分通过 root 用户执行 /home/ixdba/check_http.sh 脚本
+ansible 172.16.213.233  -m cron  -a  <span class="s1">&#39;name=&#34;yum  update&#34; state=absent&#39;</span>    删除一个计划任务
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>yum 模块的使用，此模块用来通过 <code>yum 包管理器</code>来管理软件包.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">config_file    yum的配置文件
+disable_gpg_check    关闭gpg_check
+disablerepo    不启用某个源
+enablerepo    启用某个源
+name    软件包的名字2url3本地的rpm包的路径
+state    present<span class="se">\i</span>nstalled<span class="se">\l</span>atest<span class="se">\a</span>bsent<span class="se">\r</span>emoved
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>service 模块，此模块用于管理远程主机上的服务，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">enabled
+name
+sleep
+state    started<span class="se">\s</span>topped<span class="se">\r</span>estarted<span class="se">\r</span>eloaded
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="1236-setup-模块获取-ansible-facts-信息">1.2.3.6. setup 模块获取 Ansible facts 信息</h5>
+<ol>
+<li>
+<p>setup 模块来收集远程主机的系统信息，这些 facts 信息可以直接以变量的形式使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ansible 172.16.213.77 -m setup -a <span class="s1">&#39;filter=ansible_*_mb&#39;</span>    查看主机内存信息
+ansible 172.16.213.77 -m setup -a <span class="s1">&#39;filter=ansible_em[1-2]&#39;</span>    查看接口为 eth0-2 的网卡信息
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>playbooks 脚本中，经常会用到一个参数 gather_facts，其与该模块相关。gather_facts 默认值为 yes，也就是说，在使用 Ansible 对远程主机执行任何一个 playbook 之前，总会先<code>通过 setup 模块获取 facts，并将信息暂存在内存中</code>，直到该 playbook 执行结束为止。</p>
+</li>
+</ol>
+<h5 id="1237-user-模块与-group-模块">1.2.3.7. user 模块与 group 模块</h5>
+<ol>
+<li>user 模块请求的是 useradd、userdel、usermod 三个指令；group 模块请求的是 groupadd、groupdel、groupmod 三个指令。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ansible 172.16.213.77 -m user -a <span class="s2">&#34;name=usertest1&#34;</span>    创建一个用户 usertest1
+ansible 172.16.213.77 -m user -a <span class="s2">&#34;name=usertest2 groups=admins,developers&#34;</span>    创建用户 usertest2，并设置附加组。
+ansible 172.16.213.77 -m user -a <span class="s2">&#34;name=usertest1 state=absent remove=yes&#34;</span>    删除用户 usertest1 的同时，删除用户根目录
+ansible 172.16.213.77 -m user -a <span class="s1">&#39;name=usertest2 password=&#34;$1$yjJ74Wid$x0QUaaHzA8EwWU2kG6SRB1&#34; &#39;</span> 批量修改用户密码
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-大数据运维实战">1.3. 大数据运维实战</h3>
+<h4 id="131-hosts">1.3.1. hosts</h4>
+<h4 id="132-ssh">1.3.2. ssh</h4>
+<h4 id="133-jdk">1.3.3. jdk</h4>
+<h2 id="2-puppet">2. Puppet</h2>
+<h2 id="3-saltstack">3. Saltstack</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-07-27</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-6-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" class="prev" rel="prev" title="大数据架构笔记-6-推荐系统"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-7-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/" class="next" rel="next" title="大数据架构笔记-7-分类算法">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

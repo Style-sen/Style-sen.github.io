@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>python-第三方库 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="python-第三方库" />
+<meta property="og:description" content="1. Beautiful Soup是一个可以从HTML或XML文件中提取数据的Python库 2. click 参考Python命令行神器 Click 简明笔记 使用 @click.comman" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-07-29T16:07:02+00:00" />
+<meta property="article:modified_time" content="2019-07-29T16:07:02+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="python-第三方库"/>
+<meta name="twitter:description" content="1. Beautiful Soup是一个可以从HTML或XML文件中提取数据的Python库 2. click 参考Python命令行神器 Click 简明笔记 使用 @click.comman"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E9%AB%98%E5%B9%B6%E5%8F%91websocket%E6%9C%8D%E5%8A%A1/" /><link rel="next" href="/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "python-第三方库",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, PYTHON","wordcount":  1189 ,
+        "url": "\/post\/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB\/","datePublished": "2019-07-29T16:07:02+00:00","dateModified": "2019-07-29T16:07:02+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">python-第三方库</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-beautiful-souphttpswwwcrummycomsoftwarebeautifulsoupbs4doc是一个可以从html或xml文件中提取数据的python库">1. <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup</a>是一个可以从HTML或XML文件中提取数据的Python库</a></li>
+    <li><a href="#2-clickhttpsclickpalletsprojectscomen7x">2. <a href="https://click.palletsprojects.com/en/7.x/">click</a></a></li>
+    <li><a href="#3-matplotlib">3. <a href="">Matplotlib</a></a></li>
+    <li><a href="#4-numpy-数据预处理">4. <a href="">numpy</a> 数据预处理</a>
+      <ul>
+        <li><a href="#41-def-方法">4.1. def 方法</a>
+          <ul>
+            <li><a href="#411-numpyarrayobject-dtype--none-copy--true-order--none-subok--false-ndmin--0">4.1.1. <code>numpy.array(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)</code></a></li>
+            <li><a href="#412-numpyzeros">4.1.2. <code>numpy.zeros()</code></a></li>
+            <li><a href="#413-numpyones">4.1.3. <code>numpy.ones()</code></a></li>
+            <li><a href="#414-numpyempty">4.1.4. <code>numpy.empty()</code></a></li>
+            <li><a href="#415-numpyarange">4.1.5. <code>numpy.arange()</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#42-ndarray方法">4.2. ndarray方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-pywifi">5. [pywifi]</a></li>
+    <li><a href="#6-psycopg2">6. <a href="">psycopg2</a></a></li>
+    <li><a href="#7-requestshttpdocspython-requestsorgzh_cnlatest">7. <a href="http://docs.python-requests.org/zh_CN/latest/">requests</a></a>
+      <ul>
+        <li><a href="#71-def-方法">7.1. def 方法</a>
+          <ul>
+            <li><a href="#711-get">7.1.1. get</a></li>
+          </ul>
+        </li>
+        <li><a href="#72-class-类">7.2. class 类</a>
+          <ul>
+            <li><a href="#721-session">7.2.1. Session</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#8-seaborn">8. seaborn</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-beautiful-souphttpswwwcrummycomsoftwarebeautifulsoupbs4doc是一个可以从html或xml文件中提取数据的python库">1. <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="noopener noreffer">Beautiful Soup</a>是一个可以从HTML或XML文件中提取数据的Python库</h2>
+<h2 id="2-clickhttpsclickpalletsprojectscomen7x">2. <a href="https://click.palletsprojects.com/en/7.x/" target="_blank" rel="noopener noreffer">click</a></h2>
+<p>参考<a href="https://blog.csdn.net/lihua_tan/article/details/54869355" target="_blank" rel="noopener noreffer">Python命令行神器 Click 简明笔记</a></p>
+<ol>
+<li>
+<p>使用 @click.command()装饰一个函数，使之成为命令行接口；</p>
+</li>
+<li>
+<p>使用 @click.option()等装饰函数，为其添加命令行选项等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="mf">1.</span> <span class="err">第一个参数指定了命令行选项的名称，如</span><span class="sb">`--count`</span>
+<span class="mf">2.</span> <span class="n">option</span> <span class="err">常用的设置参数如下：</span>
+    <span class="n">default</span><span class="p">:</span> <span class="err">设置命令行参数的默认值</span>
+    <span class="n">help</span><span class="p">:</span> <span class="err">参数说明</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="err">参数类型，可以是</span> <span class="n">string</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span> <span class="err">等；也可以通过</span> <span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="n">ARRAY</span><span class="p">])</span> <span class="err">来限定可选值</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="err">当在命令行中没有输入相应的参数时，会根据</span> <span class="n">prompt</span> <span class="err">提示用户输入</span>
+    <span class="n">nargs</span><span class="p">:</span> <span class="err">指定此参数接收的值的个数</span>
+<span class="mf">3.</span> <span class="n">option</span> <span class="err">提供了两个参数来设置密码的输入：</span><span class="n">hide_input</span> <span class="err">和</span> <span class="n">confirmation_promt</span><span class="err">，其中，</span><span class="n">hide_input</span><span class="o">=</span><span class="n">true</span> <span class="err">用于隐藏输入，</span>    <span class="n">confirmation_promt</span><span class="o">=</span><span class="n">true</span> <span class="err">用于重复输入；由于上面的写法有点繁琐，</span><span class="n">click</span> <span class="err">也提供了一种快捷的方式，通过使用</span><span class="nd">@click.password_option</span><span class="p">(),</span><span class="err">增加参数</span><span class="n">password</span>
+<span class="mf">4.</span> <span class="err">改变命令行程序的执行</span>
+    <span class="n">is_eager</span><span class="o">=</span><span class="bp">True</span> <span class="err">表明该命令行选项优先级高于其他选项；</span>
+    <span class="n">expose_value</span><span class="o">=</span><span class="bp">False</span> <span class="err">表示如果没有输入该命令行选项，会执行既定的命令行流程；</span>
+    <span class="n">callback</span> <span class="err">指定了输入该命令行选项时，要跳转执行的函数；</span>
+
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>代码中使用 click.echo 进行输出是为了获得更好的兼容性，因为 print在 Python2 和 Python3 的用法有些差别。配合 colorama 这个模块，我们可以使用 click.secho 进行彩色输出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fg</span> <span class="err">表示前景颜色（即字体颜色），可选值有：</span><span class="n">BLACK</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">MAGENTA</span><span class="p">,</span> <span class="n">CYAN</span><span class="p">,</span> <span class="n">WHITE</span> <span class="err">等；</span>
+<span class="n">bg</span> <span class="err">表示背景颜色，可选值有：</span><span class="n">BLACK</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">MAGENTA</span><span class="p">,</span> <span class="n">CYAN</span><span class="p">,</span> <span class="n">WHITE</span> <span class="err">等；</span>
+<span class="n">underline</span> <span class="err">表示下划线，可选的样式还有：</span><span class="n">dim</span><span class="o">=</span><span class="bp">True</span><span class="err">，</span><span class="n">bold</span><span class="o">=</span><span class="n">True等</span><span class="err">；</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>除了使用 @click.option 来添加可选参数，还会经常使用@click.argument(&ldquo;参数名称&rdquo;) 来添加固定参数。它的使用和 option 类似，但支持的功能比 option 少。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">argument</span> <span class="err">可以接收不定量的参数。</span><span class="n">nargs</span><span class="o">=-</span><span class="mi">1</span> <span class="err">表明参数</span> <span class="n">src</span> <span class="err">接收不定量的参数值，参数值会以</span> <span class="nb">tuple</span> <span class="err">的形式传入函数。如果</span> <span class="n">nargs</span> <span class="err">大于等于</span> <span class="mi">1</span><span class="err">，表示接收</span><span class="n">nargs个参数值</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="3-matplotlib">3. <a href="" rel="">Matplotlib</a></h2>
+<h2 id="4-numpy-数据预处理">4. <a href="" rel="">numpy</a> 数据预处理</h2>
+<ol>
+<li>用于【高性能】科学计算和数据分析。</li>
+<li>NumPy 最重要的一个特点是其 【N 维数组对象 ndarray】，它是一系列同类型数据的集合，以 0 下标为开始进行集合中元素的索引。</li>
+<li>ndarray 中的每个元素在内存中都有相同存储大小的区域。</li>
+<li>创建一个 ndarray 只需调用 NumPy 的 array 函数即可。</li>
+<li><a href="https://www.runoob.com/numpy/numpy-dtype.html" target="_blank" rel="noopener noreffer">numpy 支持的数据类型比 Python 内置的类型要多很多，基本上可以和 C 语言的数据类型对应上，其中部分类型对应为 Python 内置的类型</a></li>
+</ol>
+<h3 id="41-def-方法">4.1. def 方法</h3>
+<h4 id="411-numpyarrayobject-dtype--none-copy--true-order--none-subok--false-ndmin--0">4.1.1. <code>numpy.array(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)</code></h4>
+<h4 id="412-numpyzeros">4.1.2. <code>numpy.zeros()</code></h4>
+<h4 id="413-numpyones">4.1.3. <code>numpy.ones()</code></h4>
+<h4 id="414-numpyempty">4.1.4. <code>numpy.empty()</code></h4>
+<h4 id="415-numpyarange">4.1.5. <code>numpy.arange()</code></h4>
+<h3 id="42-ndarray方法">4.2. ndarray方法</h3>
+<ol>
+<li><code>copy()</code></li>
+</ol>
+<h2 id="5-pywifi">5. [pywifi]</h2>
+<h2 id="6-psycopg2">6. <a href="" rel="">psycopg2</a></h2>
+<p>操作PostgreSQL 数据库</p>
+<h2 id="7-requestshttpdocspython-requestsorgzh_cnlatest">7. <a href="http://docs.python-requests.org/zh_CN/latest/" target="_blank" rel="noopener noreffer">requests</a></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; <span class="nv">payload</span> <span class="o">=</span> <span class="o">{</span><span class="s1">&#39;key1&#39;</span>: <span class="s1">&#39;value1&#39;</span>, <span class="s1">&#39;key2&#39;</span>: <span class="s1">&#39;value2&#39;</span><span class="o">}</span>
+&gt;&gt;&gt; <span class="nv">r</span> <span class="o">=</span> requests.get<span class="o">(</span><span class="s2">&#34;http://httpbin.org/get&#34;</span>, <span class="nv">params</span><span class="o">=</span>payload<span class="o">)</span>
+返回的r是一个reponse对象
+r.url    目标的url
+r.json<span class="o">()</span>    使用json解码
+r.encoding    text的编码。可以设置
+r.text    响应的内容
+r.content    以字节的方式访问请求响应体
+r.status_code    请求代码
+r.headers    响应的头
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="71-def-方法">7.1. def 方法</h3>
+<h4 id="711-get">7.1.1. get</h4>
+<ol>
+<li><code>def get(url, params=None, **kwargs)</code></li>
+</ol>
+<h3 id="72-class-类">7.2. class 类</h3>
+<h4 id="721-session">7.2.1. Session</h4>
+<h2 id="8-seaborn">8. seaborn</h2>
+<ol>
+<li>Seaborn is a Python data visualization library 【based on matplotlib】.</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/python/">PYTHON</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-07-29</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E9%AB%98%E5%B9%B6%E5%8F%91websocket%E6%9C%8D%E5%8A%A1/" class="prev" rel="prev" title="后端-web框架-高并发websocket服务"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/" class="next" rel="next" title="python-标准库">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

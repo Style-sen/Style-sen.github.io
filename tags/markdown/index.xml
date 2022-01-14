@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MARKDOWN - 标签 - 锦枫紫兰</title>
+        <link>/tags/markdown/</link>
+        <description>MARKDOWN - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 02 Apr 2021 10:44:42 &#43;0800</lastBuildDate><atom:link href="/tags/markdown/" rel="self" type="application/rss+xml" /><item>
+    <title>MarkDown基本语法</title>
+    <link>/post/program-markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Fri, 02 Apr 2021 10:44:42 &#43;0800</pubDate><guid>/post/program-markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[参考Markdown 语法教程 元素 语法 删除线 ~~abcd~~ 表格内换行 &lt;br&gt;]]></description>
+</item>
+</channel>
+</rss>

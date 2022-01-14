@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>PYTHON-语法 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="PYTHON-语法" />
+<meta property="og:description" content="1. 运算符 1.1. 算术运算符 1.2. 赋值运算符 &#43;=与&#43;的区别。 1 2 3 4 5 6 7 8 9 10 11 12 In [21]: a=[] In [22]: a Out[22]: [] In [23]: a&#43;=b&#39;1&#39; In [24]: a Out[24]: [49] In [25]: a= [] &#43; b&#34;2432&#34; --------------------------------------------------------------------------- TypeError Traceback (most recent call last) &lt;ipython-input-25-5f6065d809aa&gt; in &lt;module&gt; ----&gt; 1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-python-03-%E8%AF%AD%E6%B3%95/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-02-19T05:36:46+08:00" />
+<meta property="article:modified_time" content="2021-02-19T05:36:46+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="PYTHON-语法"/>
+<meta name="twitter:description" content="1. 运算符 1.1. 算术运算符 1.2. 赋值运算符 &#43;=与&#43;的区别。 1 2 3 4 5 6 7 8 9 10 11 12 In [21]: a=[] In [22]: a Out[22]: [] In [23]: a&#43;=b&#39;1&#39; In [24]: a Out[24]: [49] In [25]: a= [] &#43; b&#34;2432&#34; --------------------------------------------------------------------------- TypeError Traceback (most recent call last) &lt;ipython-input-25-5f6065d809aa&gt; in &lt;module&gt; ----&gt; 1"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-python-03-%E8%AF%AD%E6%B3%95/" /><link rel="prev" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E9%85%8D%E7%BD%AE/" /><link rel="next" href="/post/program-python-04-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PYTHON-语法",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-python-03-%E8%AF%AD%E6%B3%95\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, PYTHON","wordcount":  874 ,
+        "url": "\/post\/program-python-03-%E8%AF%AD%E6%B3%95\/","datePublished": "2021-02-19T05:36:46+08:00","dateModified": "2021-02-19T05:36:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">PYTHON-语法</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-运算符">1. 运算符</a>
+      <ul>
+        <li><a href="#11-算术运算符">1.1. 算术运算符</a></li>
+        <li><a href="#12-赋值运算符">1.2. 赋值运算符</a></li>
+        <li><a href="#13-比较运算符">1.3. 比较运算符</a></li>
+        <li><a href="#14-逻辑运算符">1.4. 逻辑运算符</a></li>
+        <li><a href="#15-身份运算符">1.5. 身份运算符</a></li>
+        <li><a href="#16-成员运算符">1.6. 成员运算符</a></li>
+        <li><a href="#17-位运算符">1.7. 位运算符</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-作用域">2. 作用域</a></li>
+    <li><a href="#3-循环">3. 循环</a>
+      <ul>
+        <li><a href="#31-for">3.1. for</a>
+          <ul>
+            <li><a href="#311-推导式迭代器">3.1.1. 推导式（迭代器）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-异常捕获可以弹出用户友好的弹窗">4. 异常捕获（可以弹出用户友好的弹窗）</a>
+      <ul>
+        <li><a href="#41-异常列表">4.1. 异常列表</a></li>
+        <li><a href="#42-自定义异常类型">4.2. 自定义异常类型</a></li>
+        <li><a href="#43-with">4.3. with</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-函数">5. 函数</a>
+      <ul>
+        <li><a href="#51-定义函数">5.1. 定义函数</a></li>
+        <li><a href="#52-调用函数">5.2. 调用函数</a></li>
+        <li><a href="#53-迭代器和生成器">5.3. 迭代器和生成器</a></li>
+        <li><a href="#54-lambda表达式">5.4. lambda表达式</a></li>
+        <li><a href="#55-闭包">5.5. 闭包</a></li>
+        <li><a href="#56-装饰器">5.6. 装饰器</a></li>
+        <li><a href="#57-上下文管理器">5.7. 上下文管理器</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-模块">6. 模块</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-运算符">1. 运算符</h2>
+<h3 id="11-算术运算符">1.1. 算术运算符</h3>
+<h3 id="12-赋值运算符">1.2. 赋值运算符</h3>
+<ol>
+<li><code>+=</code>与<code>+</code>的区别。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">a</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="p">[]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="n">a</span><span class="o">+=</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">a</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="p">[</span><span class="mi">49</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="n">a</span><span class="o">=</span> <span class="p">[]</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;2432&#34;</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">25</span><span class="o">-</span><span class="mi">5</span><span class="n">f6065d809aa</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">a</span><span class="o">=</span> <span class="p">[]</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;2432&#34;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span> <span class="n">only</span> <span class="n">concatenate</span> <span class="nb">list</span> <span class="p">(</span><span class="ow">not</span> <span class="s2">&#34;bytes&#34;</span><span class="p">)</span> <span class="n">to</span> <span class="nb">list</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-比较运算符">1.3. 比较运算符</h3>
+<h3 id="14-逻辑运算符">1.4. 逻辑运算符</h3>
+<h3 id="15-身份运算符">1.5. 身份运算符</h3>
+<h3 id="16-成员运算符">1.6. 成员运算符</h3>
+<h3 id="17-位运算符">1.7. 位运算符</h3>
+<h2 id="2-作用域">2. 作用域</h2>
+<h2 id="3-循环">3. 循环</h2>
+<h3 id="31-for">3.1. for</h3>
+<h4 id="311-推导式迭代器">3.1.1. 推导式（迭代器）</h4>
+<ol>
+<li>列表推导式；</li>
+<li>字典推导式。</li>
+</ol>
+<h2 id="4-异常捕获可以弹出用户友好的弹窗">4. 异常捕获（可以弹出用户友好的弹窗）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="err">监控异常</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">[,</span><span class="n">reason</span><span class="p">]:</span> <span class="c1"># 捕获多个异常可以使用元组；可以使用as</span>
+    <span class="o">&lt;</span><span class="err">捕获异常</span><span class="o">&gt;</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="err">无论异常发生与否都发生</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="41-异常列表">4.1. 异常列表</h3>
+<ol>
+<li><code>ValueError</code></li>
+<li><code>AttributeError</code></li>
+</ol>
+<h3 id="42-自定义异常类型">4.2. 自定义异常类型</h3>
+<ol>
+<li>使用<code>raise</code>可以发出异常。</li>
+</ol>
+<h3 id="43-with">4.3. with</h3>
+<h2 id="5-函数">5. 函数</h2>
+<h3 id="51-定义函数">5.1. 定义函数</h3>
+<ol>
+<li>变长参数。def func(*para,**paras):</li>
+<li>参数有默认值的话，可以省略；没有默认值，不可省略。</li>
+<li>函数中使用【赋值语句】（=）都会创建一个新变量，如果全局有同名变量，他们是不同的。如果是给全局变量重新赋值或改变他的值，需要使用<code>global</code>关键字.【注】</li>
+</ol>
+<h3 id="52-调用函数">5.2. 调用函数</h3>
+<ol>
+<li>使用<code>关键字参数</code>。c=func(a=1,b=2)</li>
+</ol>
+<h3 id="53-迭代器和生成器">5.3. 迭代器和生成器</h3>
+<ol>
+<li>使用关键字<code>yield</code>.配合<code>next()</code>使用。</li>
+<li><code>for in</code>会自动调用<code>next()</code>方法。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">frange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="p">,</span><span class="n">step</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">start</span>
+    <span class="k">while</span> <span class="n">x</span><span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">step</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="54-lambda表达式">5.4. lambda表达式</h3>
+<ol>
+<li>作用：简化，没有函数名的函数。</li>
+<li><code>lambda x,y: x+y</code></li>
+</ol>
+<h3 id="55-闭包">5.5. 闭包</h3>
+<ol>
+<li>外部函数的变量被内部函数引用。变量不会释放。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+       <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">add</span>
+
+<span class="n">sum2</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sum2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>实现计数器的功能，调用一次自动加1</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">counter</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="c1"># 如果使用整形，下边再使用的时候会没有定义</span>
+    <span class="k">def</span> <span class="nf">add_one</span><span class="p">():</span>
+        <span class="n">cnt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">cnt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">add_one</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>实现一些科学计算。<code>有若干变量的值不变，变的是其他一些参数</code>。调用一次外部函数，传入不变的值；然后多次调用闭包。</li>
+<li>可以使用lambda优化闭包，内部函数使用lambda。</li>
+</ol>
+<h3 id="56-装饰器">5.6. 装饰器</h3>
+<ol>
+<li>使用场景：如计算程序的运行时间。不用重复一些代码</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">func</span><span class="p">()</span>
+        <span class="n">stop_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">printf</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{stop_time-start_time}&#34;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@timer</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>带参数的装饰器。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">new_tips</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="c1"># 判断argv</span>
+    <span class="k">def</span> <span class="nf">tips</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">([</span><span class="err">这里的参数定义和装饰的函数的参数定义相同</span><span class="p">]):</span>
+            <span class="c1">####</span>
+            <span class="n">func</span><span class="p">([])</span>
+            <span class="c1">####</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">tips</span>
+
+<span class="nd">@new_tips</span><span class="p">(</span><span class="s2">&#34;argv&#34;</span><span class="p">)</span> <span class="c1"># 装饰器带参数</span>
+<span class="k">def</span> <span class="nf">new_func</span><span class="p">():</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="57-上下文管理器">5.7. 上下文管理器</h3>
+<ol>
+<li><code>with</code>用法。</li>
+</ol>
+<h2 id="6-模块">6. 模块</h2>
+<ol>
+<li><code>import [py文件]</code> 会执行一遍py文件中的代码。</li>
+<li><code>from [py文件] import []</code></li>
+<li><code>as</code>别名</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/python/">PYTHON</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-02-19</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E9%85%8D%E7%BD%AE/" class="prev" rel="prev" title="Gitlab-CICD配置"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/program-python-04-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/" class="next" rel="next" title="PYTHON-内建函数">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

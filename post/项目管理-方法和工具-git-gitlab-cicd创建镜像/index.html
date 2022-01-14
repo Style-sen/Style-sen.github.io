@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>使用GitLab CI/CD创建Docker镜像 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="使用GitLab CI/CD创建Docker镜像" />
+<meta property="og:description" content="翻译自Building Docker images with GitLab CI/CD GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。 **Tip:**允许使用docker-" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2018-12-20T16:08:27+00:00" />
+<meta property="article:modified_time" content="2018-12-20T16:08:27+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="使用GitLab CI/CD创建Docker镜像"/>
+<meta name="twitter:description" content="翻译自Building Docker images with GitLab CI/CD GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。 **Tip:**允许使用docker-"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F/" /><link rel="prev" href="/post/js-nodejs/" /><link rel="next" href="/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用GitLab CI/CD创建Docker镜像",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "项目管理, GIT","wordcount":  3128 ,
+        "url": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-gitlab-cicd%E5%88%9B%E5%BB%BA%E9%95%9C%E5%83%8F\/","datePublished": "2018-12-20T16:08:27+00:00","dateModified": "2018-12-20T16:08:27+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">使用GitLab CI/CD创建Docker镜像</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#runner配置">Runner配置</a>
+      <ul>
+        <li><a href="#使用shell执行器">使用shell执行器</a>
+          <ul>
+            <li><a href="#安装-gitlab-runnerhttpsgitlabcomgitlab-orggitlab-runnerinstallation">安装 <a href="https://gitlab.com/gitlab-org/gitlab-runner/#installation">GitLab Runner</a></a></li>
+          </ul>
+        </li>
+        <li><a href="#使用docker-in-docker执行器">使用docker-in-docker执行器</a>
+          <ul>
+            <li><a href="#步骤如下">步骤如下</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用-docker-socket-绑定">使用 Docker socket 绑定</a></li>
+      </ul>
+    </li>
+    <li><a href="#making-docker-in-docker-builds-faster-with-docker-layer-caching">Making docker-in-docker builds faster with Docker layer caching</a>
+      <ul>
+        <li><a href="#how-docker-caching-works">How Docker caching works</a></li>
+        <li><a href="#using-docker-caching">Using Docker caching</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-the-overlayfs-driver">Using the OverlayFS driver</a>
+      <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#use-driver-per-project">Use driver per project</a></li>
+        <li><a href="#use-driver-for-every-project">Use driver for every project</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-the-gitlab-container-registry">Using the GitLab Container Registry</a>
+      <ul>
+        <li><a href="#authenticating-to-the-container-registry">Authenticating to the Container Registry</a></li>
+        <li><a href="#container-registry-examples">Container Registry examples</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>翻译自<a href="https://docs.gitlab.com/ce/ci/docker/using_docker_build.html" target="_blank" rel="noopener noreffer">Building Docker images with GitLab CI/CD</a></p>
+<ol>
+<li>GitLab CI/CD允许使用Docker引擎构建和测试基于Docker的项目。</li>
+</ol>
+<p>**Tip:**允许使用<code>docker-compose</code>和其他Docker编排工具。</p>
+<ol start="2">
+<li>
+<p>持续集成/部署的趋势之一:</p>
+<ol>
+<li>创建应用镜像</li>
+<li>对所创建的镜像进行测试</li>
+<li>将镜像推到远程registry</li>
+<li>部署到服务器</li>
+</ol>
+</li>
+<li>
+<p>应用中可包含<code>Dockerfile</code>用来创建和测试镜像:</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">docker build -t my-image dockerfiles/
+docker run my-docker-image /script/to/run/tests
+docker tag my-image my-registry:5000/my-image
+docker push my-registry:5000/my-image
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>GitLab Runner需要一些特别的配置使jobs中支持<code>docker</code>。</li>
+</ol>
+<h2 id="runner配置">Runner配置</h2>
+<ol>
+<li>有三种方法在jobs中使用<code>docker build</code>和<code>docker run</code>，各有利弊。</li>
+</ol>
+<h3 id="使用shell执行器">使用shell执行器</h3>
+<ol>
+<li>最简单的方法是将GitLab Runner安装成shell执行器模式。</li>
+<li><code>GitLab Runner</code>将以<code>gitlab-runner</code>用户执行jobs中的脚本.</li>
+</ol>
+<h4 id="安装-gitlab-runnerhttpsgitlabcomgitlab-orggitlab-runnerinstallation">安装 <a href="https://gitlab.com/gitlab-org/gitlab-runner/#installation" target="_blank" rel="noopener noreffer">GitLab Runner</a></h4>
+<ol>
+<li>
+<p>在安装过程中选择 <code>shell</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo gitlab-runner register -n <span class="se">\
+</span><span class="se"></span>  --url https://gitlab.com/ <span class="se">\
+</span><span class="se"></span>  --registration-token REGISTRATION_TOKEN <span class="se">\
+</span><span class="se"></span>  --executor shell <span class="se">\
+</span><span class="se"></span>  --description <span class="s2">&#34;My Runner&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在服务器中安装 Docker.</p>
+<p>更多信息参考<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="noopener noreffer">Supported installations</a>.</p>
+</li>
+<li>
+<p>将<code>gitlab-runner</code>用户加入到<code>docker</code>组中:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo usermod -aG docker gitlab-runner
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>检查<code>gitlab-runner</code>是否可以访问Docker:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo -u gitlab-runner -H docker info
+</code></pre></td></tr></table>
+</div>
+</div><p>将<code>docker info</code>写入<code>.gitlab-ci.yml</code>来检测一切是否OK:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">before_script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>info<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build_image</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-docker-image<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>run<span class="w"> </span>my-docker-image<span class="w"> </span>/script/to/run/tests<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>现在，可以使用<code>docker</code>命令和安装<code>docker-compose</code>.</p>
+</li>
+</ol>
+<p>**Note:**通过将<code>gitlab-runner</code>添加到<code>docker</code>组，可以有效地授予<code>gitlab-runner</code>完全的根用户权限。更多信息可参考<a href="https://www.andreas-jung.com/contents/on-docker-security-docker-group-considered-harmful" target="_blank" rel="noopener noreffer">On Docker security: <code>docker</code> group considered harmful</a>.</p>
+<h3 id="使用docker-in-docker执行器">使用docker-in-docker执行器</h3>
+<ol>
+<li>第二种方法是使用docker-in-docker (dind)<a href="https://hub.docker.com/_/docker/" target="_blank" rel="noopener noreffer">Docker image</a> 安装有(<code>docker</code> and <code>docker-compose</code>)，以特权模式在镜像的上下文中执行jobs脚本或命令。</li>
+</ol>
+<h4 id="步骤如下">步骤如下</h4>
+<ol>
+<li>
+<p>安装<a href="https://docs.gitlab.com/runner/install" target="_blank" rel="noopener noreffer">GitLab Runner</a>.</p>
+</li>
+<li>
+<p>命令行注册<code>GitLab Runner</code> 使用 <code>docker</code> and <code>privileged</code>模式:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo gitlab-runner register -n <span class="se">\
+</span><span class="se"></span>  --url https://gitlab.com/ <span class="se">\
+</span><span class="se"></span>  --registration-token REGISTRATION_TOKEN <span class="se">\
+</span><span class="se"></span>  --executor docker <span class="se">\
+</span><span class="se"></span>  --description <span class="s2">&#34;My Docker Runner&#34;</span> <span class="se">\
+</span><span class="se"></span>  --docker-image <span class="s2">&#34;docker:stable&#34;</span> <span class="se">\
+</span><span class="se"></span>  --docker-privileged
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>上边的命令将注册一个新的Runner使用<code>docker:stable</code>镜像（Docker提供）.
+<strong>注意：使用<code>privileged</code>模式来执行build和service容器.</strong> 如果要使用<a href="https://blog.docker.com/2013/09/docker-can-now-run-within-docker/" target="_blank" rel="noopener noreffer">docker-in-docker</a>模式, 必须在你的Docker容器中使用<code>privileged = true</code>。</p>
+</li>
+<li>
+<p>上边的命令将创建<code>config.toml</code>如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[[runners]]
+  url = &#34;https://gitlab.com/&#34;
+  token = TOKEN
+  executor = &#34;docker&#34;
+  [runners.docker]
+    tls_verify = false
+    image = &#34;docker:stable&#34;
+    privileged = true
+    disable_cache = false
+    volumes = [&#34;/cache&#34;]
+  [runners.cache]
+    Insecure = false
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>现在可以在构建脚本中使用 <code>docker</code> 命令 (注意需要包含<code>docker:dind</code>服务):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>stable<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># When using dind service we need to instruct docker, to talk with the</span><span class="w">
+</span><span class="w">  </span><span class="c"># daemon started inside of the service. The daemon is available with</span><span class="w">
+</span><span class="w">  </span><span class="c"># a network connection instead of the default /var/run/docker.sock socket.</span><span class="w">
+</span><span class="w">  </span><span class="c">#</span><span class="w">
+</span><span class="w">  </span><span class="c"># The &#39;docker&#39; hostname is the alias of the service container as described at</span><span class="w">
+</span><span class="w">  </span><span class="c"># https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services</span><span class="w">
+</span><span class="w">  </span><span class="c">#</span><span class="w">
+</span><span class="w">  </span><span class="c"># Note that if you&#39;re using Kubernetes executor, the variable should be set to</span><span class="w">
+</span><span class="w">  </span><span class="c"># tcp://localhost:2375 because of how Kubernetes executor connects services</span><span class="w">
+</span><span class="w">  </span><span class="c"># to the job container</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_HOST</span><span class="p">:</span><span class="w"> </span>tcp<span class="p">:</span>//docker<span class="p">:</span><span class="m">2375</span>/<span class="w">
+</span><span class="w">  </span><span class="c"># When using dind, it&#39;s wise to use the overlayfs driver for</span><span class="w">
+</span><span class="w">  </span><span class="c"># improved performance.</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_DRIVER</span><span class="p">:</span><span class="w"> </span>overlay2<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="p">:</span>dind<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">before_script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>info<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>build<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-docker-image<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>run<span class="w"> </span>my-docker-image<span class="w"> </span>/script/to/run/tests<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>Docker-in-Docker以上为推荐的配置，工作OK。还有一些额外的配置:</p>
+<ul>
+<li>
+<p>By enabling <code>--docker-privileged</code>, you are effectively disabling all of
+the security mechanisms of containers and exposing your host to privilege
+escalation which can lead to container breakout. For more information, check
+out the official Docker documentation on
+<a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities" target="_blank" rel="noopener noreffer">Runtime privilege and Linux capabilities</a>.</p>
+</li>
+<li>
+<p>当使用docker-in-docker, 每一个job都运行在干净的环境中不包含历史. 并行jobs也会工作得很好因为每一个构建都会获得他们自己的Docker引擎实例，彼此之间不会冲突。但是，这也意味着jobs会运行
+很慢，没有layers的缓存。</p>
+</li>
+<li>
+<p>默认情况下， <code>docker:dind</code> 使用 <code>--storage-driver vfs</code> 是最慢. 可以使用另外一种storage driver<a href="#using-the-overlayfs-driver" rel="">Using the overlayfs driver</a>.</p>
+</li>
+<li>
+<p>因为<code>docker:dind</code>容器和runner容器没有共享他们的root文件系统, job的工作目录会被挂载在子容器中。 For example, if you have files you want to share with a
+child container, you may create a subdirectory under <code>/builds/$CI_PROJECT_PATH</code>
+and use it as your mount point (for a more thorough explanation, check <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/41227" target="_blank" rel="noopener noreffer">issue#41227</a>):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">MOUNT_POINT</span><span class="p">:</span><span class="w"> </span>/builds/$CI_PROJECT_PATH/mnt<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&#34;$MOUNT_POINT&#34;</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="s2">&#34;$MOUNT_POINT:/mnt&#34;</span><span class="w"> </span>my-docker-image<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>这种方法的一个样例: <a href="https://gitlab.com/gitlab-examples/docker">https://gitlab.com/gitlab-examples/docker</a>.</p>
+<h3 id="使用-docker-socket-绑定">使用 Docker socket 绑定</h3>
+<p>第三种方法将 <code>/var/run/docker.sock</code> 绑定到容器，这样在image中就可以使用docker了.</p>
+<p>步骤如下:</p>
+<ol>
+<li>
+<p>安装 <a href="https://docs.gitlab.com/runner/install" target="_blank" rel="noopener noreffer">GitLab Runner</a>.</p>
+</li>
+<li>
+<p>命令行注册 GitLab Runner 使用 <code>docker</code> 和分享 <code>/var/run/docker.sock</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo gitlab-runner register -n <span class="se">\
+</span><span class="se"></span>  --url https://gitlab.com/ <span class="se">\
+</span><span class="se"></span>  --registration-token REGISTRATION_TOKEN <span class="se">\
+</span><span class="se"></span>  --executor docker <span class="se">\
+</span><span class="se"></span>  --description <span class="s2">&#34;My Docker Runner&#34;</span> <span class="se">\
+</span><span class="se"></span>  --docker-image <span class="s2">&#34;docker:stable&#34;</span> <span class="se">\
+</span><span class="se"></span>  --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+</code></pre></td></tr></table>
+</div>
+</div><p>The above command will register a new Runner to use the special
+<code>docker:stable</code> image which is provided by Docker. <strong>Notice that it&rsquo;s using
+the Docker daemon of the Runner itself, and any containers spawned by docker
+commands will be siblings of the Runner rather than children of the runner.</strong>
+This may have complications and limitations that are unsuitable for your workflow.</p>
+<p>The above command will create a <code>config.toml</code> entry similar to this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[[runners]]
+  url = &#34;https://gitlab.com/&#34;
+  token = REGISTRATION_TOKEN
+  executor = &#34;docker&#34;
+  [runners.docker]
+    tls_verify = false
+    image = &#34;docker:stable&#34;
+    privileged = false
+    disable_cache = false
+    volumes = [&#34;/var/run/docker.sock:/var/run/docker.sock&#34;, &#34;/cache&#34;]
+  [runners.cache]
+    Insecure = false
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>You can now use <code>docker</code> in the build script (note that you don&rsquo;t need to
+include the <code>docker:dind</code> service as when using the Docker in Docker executor):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>stable<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">before_script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>info<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>build<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-docker-image<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>run<span class="w"> </span>my-docker-image<span class="w"> </span>/script/to/run/tests<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>While the above method avoids using Docker in privileged mode, you should be
+aware of the following implications:</p>
+<ul>
+<li>
+<p>By sharing the docker daemon, you are effectively disabling all
+the security mechanisms of containers and exposing your host to privilege
+escalation which can lead to container breakout. For example, if a project
+ran <code>docker rm -f $(docker ps -a -q)</code> it would remove the GitLab Runner
+containers.</p>
+</li>
+<li>
+<p>Concurrent jobs may not work; if your tests
+create containers with specific names, they may conflict with each other.</p>
+</li>
+<li>
+<p>Sharing files and directories from the source repo into containers may not
+work as expected since volume mounting is done in the context of the host
+machine, not the build container, e.g.:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --rm -t -i -v $(pwd)/src:/home/app/src test-image:latest run_app_tests
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="making-docker-in-docker-builds-faster-with-docker-layer-caching">Making docker-in-docker builds faster with Docker layer caching</h2>
+<p>When using docker-in-docker, Docker will download all layers of your image every
+time you create a build. Recent versions of Docker (Docker 1.13 and above) can
+use a pre-existing image as a cache during the <code>docker build</code> step, considerably
+speeding up the build process.</p>
+<h3 id="how-docker-caching-works">How Docker caching works</h3>
+<p>When running <code>docker build</code>, each command in <code>Dockerfile</code> results in a layer.
+These layers are kept around as a cache and can be reused if there haven&rsquo;t been
+any changes. Change in one layer causes all subsequent layers to be recreated.</p>
+<p>You can specify a tagged image to be used as a cache source for the <code>docker build</code>
+command by using the <code>--cache-from</code> argument. Multiple images can be specified
+as a cache source by using multiple <code>--cache-from</code> arguments. Keep in mind that
+any image that&rsquo;s used with the <code>--cache-from</code> argument must first be pulled
+(using <code>docker pull</code>) before it can be used as a cache source.</p>
+<h3 id="using-docker-caching">Using Docker caching</h3>
+<p>Here&rsquo;s a simple <code>.gitlab-ci.yml</code> file showing how Docker caching can be utilized:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>stable<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="p">:</span>dind<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">CONTAINER_IMAGE</span><span class="p">:</span><span class="w"> </span>registry.gitlab.com/$CI_PROJECT_PATH<span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_HOST</span><span class="p">:</span><span class="w"> </span>tcp<span class="p">:</span>//docker<span class="p">:</span><span class="m">2375</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_DRIVER</span><span class="p">:</span><span class="w"> </span>overlay2<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">before_script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>gitlab-ci-token<span class="w"> </span>-p<span class="w"> </span>$CI_JOB_TOKEN<span class="w"> </span>registry.gitlab.com<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>build<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>pull<span class="w"> </span>$CONTAINER_IMAGE<span class="p">:</span>latest<span class="w"> </span>||<span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>build<span class="w"> </span>--cache-from<span class="w"> </span>$CONTAINER_IMAGE<span class="p">:</span>latest<span class="w"> </span>--tag<span class="w"> </span>$CONTAINER_IMAGE<span class="p">:</span>$CI_COMMIT_SHA<span class="w"> </span>--tag<span class="w"> </span>$CONTAINER_IMAGE<span class="p">:</span>latest<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>push<span class="w"> </span>$CONTAINER_IMAGE<span class="p">:</span>$CI_COMMIT_SHA<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>push<span class="w"> </span>$CONTAINER_IMAGE<span class="p">:</span>latest<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The steps in the <code>script</code> section for the <code>build</code> stage can be summed up to:</p>
+<ol>
+<li>The first command tries to pull the image from the registry so that it can be
+used as a cache for the <code>docker build</code> command.</li>
+<li>The second command builds a Docker image using the pulled image as a
+cache (notice the <code>--cache-from $CONTAINER_IMAGE:latest</code> argument) if
+available, and tags it.</li>
+<li>The last two commands push the tagged Docker images to the container registry
+so that they may also be used as cache for subsequent builds.</li>
+</ol>
+<h2 id="using-the-overlayfs-driver">Using the OverlayFS driver</h2>
+<p>NOTE: <strong>Note:</strong>
+The shared Runners on GitLab.com use the <code>overlay2</code> driver by default.</p>
+<p>By default, when using <code>docker:dind</code>, Docker uses the <code>vfs</code> storage driver which
+copies the filesystem on every run. This is a very disk-intensive operation
+which can be avoided if a different driver is used, for example <code>overlay2</code>.</p>
+<h3 id="requirements">Requirements</h3>
+<ol>
+<li>
+<p>Make sure a recent kernel is used, preferably <code>&gt;= 4.2</code>.</p>
+</li>
+<li>
+<p>Check whether the <code>overlay</code> module is loaded:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sudo lsmod | grep overlay
+</code></pre></td></tr></table>
+</div>
+</div><p>If you see no result, then it isn&rsquo;t loaded. To load it use:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sudo modprobe overlay
+</code></pre></td></tr></table>
+</div>
+</div><p>If everything went fine, you need to make sure module is loaded on reboot.
+On Ubuntu systems, this is done by editing <code>/etc/modules</code>. Just add the
+following line into it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">overlay
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="use-driver-per-project">Use driver per project</h3>
+<p>You can enable the driver for each project individually by editing the project&rsquo;s <code>.gitlab-ci.yml</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">variables:
+  DOCKER_DRIVER: overlay2
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="use-driver-for-every-project">Use driver for every project</h3>
+<p>To enable the driver for every project, you can set the environment variable for every build by adding <code>environment</code> in the <code>[[runners]]</code> section of <code>config.toml</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">environment</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;DOCKER_DRIVER=overlay2&#34;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you&rsquo;re running multiple Runners you will have to modify all configuration files.</p>
+<blockquote>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>More information about the Runner configuration is available in the <a href="https://docs.gitlab.com/runner/configuration/" target="_blank" rel="noopener noreffer">Runner documentation</a>.</li>
+<li>For more information about using OverlayFS with Docker, you can read
+<a href="https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/" target="_blank" rel="noopener noreffer">Use the OverlayFS storage driver</a>.</li>
+</ul>
+</blockquote>
+<h2 id="using-the-gitlab-container-registry">Using the GitLab Container Registry</h2>
+<blockquote>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>This feature requires GitLab 8.8 and GitLab Runner 1.2.</li>
+<li>Starting from GitLab 8.12, if you have <a href="../../user/profile/account/two_factor_authentication.md" rel="">2FA</a> enabled in your account, you need
+to pass a <a href="../../user/profile/personal_access_tokens.md" rel="">personal access token</a> instead of your password in order to
+login to GitLab&rsquo;s Container Registry.</li>
+</ul>
+</blockquote>
+<p>Once you&rsquo;ve built a Docker image, you can push it up to the built-in
+<a href="../../user/project/container_registry.md" rel="">GitLab Container Registry</a>.
+Some things you should be aware of:</p>
+<ul>
+<li>You must <a href="#authenticating-to-the-container-registry" rel="">log in to the container registry</a>
+before running commands. You can do this in the <code>before_script</code> if multiple
+jobs depend on it.</li>
+<li>Using <code>docker build --pull</code> fetches any changes to base
+images before building just in case your cache is stale. It takes slightly
+longer, but means you don’t get stuck without security patches to base images.</li>
+<li>Doing an explicit <code>docker pull</code> before each <code>docker run</code> fetches
+the latest image that was just built. This is especially important if you are
+using multiple runners that cache images locally. Using the git SHA in your
+image tag makes this less necessary since each job will be unique and you
+shouldn&rsquo;t ever have a stale image. However, it&rsquo;s still possible to have a
+stale image if you re-build a given commit after a dependency has changed.</li>
+<li>You don&rsquo;t want to build directly to <code>latest</code> tag in case there are multiple jobs
+happening simultaneously.</li>
+</ul>
+<h3 id="authenticating-to-the-container-registry">Authenticating to the Container Registry</h3>
+<p>There are three ways to authenticate to the Container Registry via GitLab CI/CD
+and depend on the visibility of your project.</p>
+<p>For all projects, mostly suitable for public ones:</p>
+<ul>
+<li>
+<p><strong>Using the special <code>gitlab-ci-token</code> user</strong>: This user is created for you in order to
+push to the Registry connected to your project. Its password is automatically
+set with the <code>$CI_JOB_TOKEN</code> variable. This allows you to automate building and deploying
+your Docker images and has read/write access to the Registry. This is ephemeral,
+so it&rsquo;s only valid for one job. You can use the following example as-is:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">docker login -u gitlab-ci-token -p <span class="nv">$CI_JOB_TOKEN</span> <span class="nv">$CI_REGISTRY</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>For private and internal projects:</p>
+<ul>
+<li>
+<p><strong>Using a personal access token</strong>: You can create and use a
+<a href="../../user/profile/personal_access_tokens.md" rel="">personal access token</a>
+in case your project is private:</p>
+<ul>
+<li>For read (pull) access, the scope should be <code>read_registry</code>.</li>
+<li>For read/write (pull/push) access, use <code>api</code>.
+Replace the <code>&lt;username&gt;</code> and <code>&lt;access_token&gt;</code> in the following example:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">docker login -u &lt;username&gt; -p &lt;access_token&gt; <span class="nv">$CI_REGISTRY</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>Using the GitLab Deploy Token</strong>: You can create and use a
+<a href="../../user/project/deploy_tokens/index.md#gitlab-deploy-token" rel="">special deploy token</a>
+with your private projects. It provides read-only (pull) access to the Registry.
+Once created, you can use the special environment variables, and GitLab CI/CD
+will fill them in for you. You can use the following example as-is:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">docker login -u <span class="nv">$CI_DEPLOY_USER</span> -p <span class="nv">$CI_DEPLOY_PASSWORD</span> <span class="nv">$CI_REGISTRY</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="container-registry-examples">Container Registry examples</h3>
+<p>If you&rsquo;re using docker-in-docker on your Runners, this is how your <code>.gitlab-ci.yml</code>
+could look like:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w"> </span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">   </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>stable<span class="w">
+</span><span class="w">   </span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span>- docker<span class="p">:</span>dind<span class="w">
+</span><span class="w">   </span><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="k">DOCKER_HOST</span><span class="p">:</span><span class="w"> </span>tcp<span class="p">:</span>//docker<span class="p">:</span><span class="m">2375</span><span class="w">
+</span><span class="w">     </span><span class="k">DOCKER_DRIVER</span><span class="p">:</span><span class="w"> </span>overlay2<span class="w">
+</span><span class="w">   </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>build<span class="w">
+</span><span class="w">   </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span>- docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>gitlab-ci-token<span class="w"> </span>-p<span class="w"> </span>$CI_JOB_TOKEN<span class="w"> </span>registry.example.com<span class="w">
+</span><span class="w">     </span>- docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>registry.example.com/group/project/image<span class="p">:</span>latest<span class="w"> </span>.<span class="w">
+</span><span class="w">     </span>- docker<span class="w"> </span>push<span class="w"> </span>registry.example.com/group/project/image<span class="p">:</span>latest<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>You can also make use of <a href="../variables/README.md" rel="">other variables</a> to avoid hardcoding:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="p">:</span>dind<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_HOST</span><span class="p">:</span><span class="w"> </span>tcp<span class="p">:</span>//docker<span class="p">:</span><span class="m">2375</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_DRIVER</span><span class="p">:</span><span class="w"> </span>overlay2<span class="w">
+</span><span class="w">  </span><span class="k">IMAGE_TAG</span><span class="p">:</span><span class="w"> </span>$CI_REGISTRY_IMAGE<span class="p">:</span>$CI_COMMIT_REF_SLUG<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">before_script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>gitlab-ci-token<span class="w"> </span>-p<span class="w"> </span>$CI_JOB_TOKEN<span class="w"> </span>$CI_REGISTRY<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>build<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>$IMAGE_TAG<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>push<span class="w"> </span>$IMAGE_TAG<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Here, <code>$CI_REGISTRY_IMAGE</code> would be resolved to the address of the registry tied
+to this project. Since <code>$CI_COMMIT_REF_NAME</code> resolves to the branch or tag name,
+and your branch-name can contain forward slashes (e.g., feature/my-feature), it is
+safer to use <code>$CI_COMMIT_REF_SLUG</code> as the image tag. This is due to that image tags
+cannot contain forward slashes. We also declare our own variable, <code>$IMAGE_TAG</code>,
+combining the two to save us some typing in the <code>script</code> section.</p>
+<p>Here&rsquo;s a more elaborate example that splits up the tasks into 4 pipeline stages,
+including two tests that run in parallel. The <code>build</code> is stored in the container
+registry and used by subsequent stages, downloading the image
+when needed. Changes to <code>master</code> also get tagged as <code>latest</code> and deployed using
+an application-specific deploy script:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>stable<span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="p">:</span>dind<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">stages</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- build<span class="w">
+</span><span class="w">  </span>- test<span class="w">
+</span><span class="w">  </span>- release<span class="w">
+</span><span class="w">  </span>- deploy<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_HOST</span><span class="p">:</span><span class="w"> </span>tcp<span class="p">:</span>//docker<span class="p">:</span><span class="m">2375</span><span class="w">
+</span><span class="w">  </span><span class="k">DOCKER_DRIVER</span><span class="p">:</span><span class="w"> </span>overlay2<span class="w">
+</span><span class="w">  </span><span class="k">CONTAINER_TEST_IMAGE</span><span class="p">:</span><span class="w"> </span>registry.example.com/my-group/my-project/my-image<span class="p">:</span>$CI_COMMIT_REF_SLUG<span class="w">
+</span><span class="w">  </span><span class="k">CONTAINER_RELEASE_IMAGE</span><span class="p">:</span><span class="w"> </span>registry.example.com/my-group/my-project/my-image<span class="p">:</span>latest<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">before_script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>gitlab-ci-token<span class="w"> </span>-p<span class="w"> </span>$CI_JOB_TOKEN<span class="w"> </span>registry.example.com<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>build<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>build<span class="w"> </span>--pull<span class="w"> </span>-t<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w"> </span>.<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>push<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">test1</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>test<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>pull<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>run<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w"> </span>/script/to/run/tests<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">test2</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>test<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>pull<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>run<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w"> </span>/script/to/run/another/test<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">release-image</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>release<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>pull<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>tag<span class="w"> </span>$CONTAINER_TEST_IMAGE<span class="w"> </span>$CONTAINER_RELEASE_IMAGE<span class="w">
+</span><span class="w">    </span>- docker<span class="w"> </span>push<span class="w"> </span>$CONTAINER_RELEASE_IMAGE<span class="w">
+</span><span class="w">  </span><span class="k">only</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- master<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">stage</span><span class="p">:</span><span class="w"> </span>deploy<span class="w">
+</span><span class="w">  </span><span class="k">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ./deploy.sh<span class="w">
+</span><span class="w">  </span><span class="k">only</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- master<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
+                </span><span><a href="/tags/git/">GIT</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2018-12-20</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/js-nodejs/" class="prev" rel="prev" title="NodeJS概览及开发框架"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E8%BF%90%E7%BB%B4-9-%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/" class="next" rel="next" title="容器镜像服务">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>SQL - 标签 - 锦枫紫兰</title>
+        <link>/tags/sql/</link>
+        <description>SQL - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 09 Jul 2021 14:54:37 &#43;0800</lastBuildDate><atom:link href="/tags/sql/" rel="self" type="application/rss+xml" /><item>
+    <title>PROGRAM SQL</title>
+    <link>/post/program-sql/</link>
+    <pubDate>Fri, 09 Jul 2021 14:54:37 &#43;0800</pubDate><guid>/post/program-sql/</guid>
+    <description><![CDATA[1. 创建表 1 2 3 4 5 6 7 8 9 10 11 -- 【SQLITE】 CREATE TABLE COMPANY ( ID INT PRIMARY KEY, -- 主键，唯一索引 NAME TEXT NOT NULL UNIQUE, -- UNIQUE 唯一索引 AGE INT NOT NULL , ADDRESS CHAR(50), SALARY REAL DEFAULT 50000.00, -- UNIQUE(column_name1,column_name2) -- 联合唯一 --]]></description>
+</item>
+</channel>
+</rss>

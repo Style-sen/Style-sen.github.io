@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>微服务架构笔记-网络协议 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="微服务架构笔记-网络协议" />
+<meta property="og:description" content="http HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP连接就结束了。 HTTP请求和HTTP响应，都是通过TCP连接这个通" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-03-14T09:28:22+00:00" />
+<meta property="article:modified_time" content="2019-03-14T09:28:22+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="微服务架构笔记-网络协议"/>
+<meta name="twitter:description" content="http HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP连接就结束了。 HTTP请求和HTTP响应，都是通过TCP连接这个通"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/" /><link rel="next" href="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "微服务架构笔记-网络协议",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  2735 ,
+        "url": "\/post\/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE\/","datePublished": "2019-03-14T09:28:22+00:00","dateModified": "2019-03-14T09:28:22+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">微服务架构笔记-网络协议</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#http">http</a>
+      <ul>
+        <li><a href="#消息结构">消息结构</a></li>
+        <li><a href="#头部信息">头部信息</a></li>
+      </ul>
+    </li>
+    <li><a href="#server-sent-events简称sse">Server-Sent Events(简称SSE)</a></li>
+    <li><a href="#websocket">websocket</a></li>
+    <li><a href="#http状态码">HTTP状态码</a></li>
+    <li><a href="#术语">术语</a>
+      <ul>
+        <li><a href="#轮询">轮询</a></li>
+        <li><a href="#长轮询">长轮询</a></li>
+        <li><a href="#长连接">长连接</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="http">http</h2>
+<ol>
+<li>HTTP协议是基于请求/响应模式的，因此只要服务端给了响应，本次HTTP连接就结束了。</li>
+<li>HTTP请求和HTTP响应，都是通过TCP连接这个通道来回传输的。长连接是指的TCP连接，而不是HTTP连接。</li>
+<li>TCP连接才有真正的长连接（目的是重复使用，多个Http请求复用同一个TCP连接）和短连接这一说。</li>
+</ol>
+<h3 id="消息结构">消息结构</h3>
+<ol>
+<li>客户端发送一个HTTP请求到服务器的请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。</li>
+<li>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</li>
+<li><a href="https://www.cnblogs.com/jiangxiaobo/p/5499488.html" target="_blank" rel="noopener noreffer">HTTP头部信息解释分析(详细整理)</a></li>
+</ol>
+<h3 id="头部信息">头部信息</h3>
+<table>
+<thead>
+<tr>
+<th>应答头</th>
+<th>请求说明</th>
+<th>应答说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allow</td>
+<td>服务器支持哪些请求方法（如GET、POST等）。</td>
+<td></td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>close（告诉WEB服务器或者代理服务器，在完成本次请求的响应 后，断开连接，不要等待本次连接的后续请求了）keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，保持连接，等待本次连接的后续请求）</td>
+<td>close（连接已经关闭）keepalive（连接保持着，在等待本次连接的后续请求）。 Keep-Alive：如果浏览器请求保持连接，则该头部表明希望 WEB 服务器保持连接多长时间（秒）。 例如：Keep-Alive：300</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>文档的编码（Encode）方法。只有在解码之后才可以得到Content-Type头指定的内容类型。利用gzip压缩文档能够显著地减少HTML文档的下载时间。Java的GZIPOutputStream可以很方便地进行gzip压缩，但只有Unix上的Netscape和Windows上的IE 4、IE 5才支持它。因此，Servlet应该通过查看Accept-Encoding头（即request.getHeader(&ldquo;Accept-Encoding&rdquo;)）检查浏览器是否支持gzip，为支持gzip的浏览器返回经gzip压缩的HTML页面，为其他浏览器返回普通页面。</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>表示内容长度。只有当浏览器使用持久HTTP连接时才需要这个数据。如果你想要利用持久连接的优势，可以把输出文档写入 ByteArrayOutputStream，完成后查看其大小，然后把该值放入Content-Length头，最后通过byteArrayStream.writeTo(response.getOutputStream()发送内容。</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>表示后面的文档属于什么MIME类型。Servlet默认为text/plain，但通常需要显式地指定为text/html。由于经常要设置Content-Type，因此HttpServletResponse提供了一个专用的方法setContentType。</td>
+<td></td>
+</tr>
+<tr>
+<td>Date</td>
+<td>当前的GMT时间。你可以用setDateHeader来设置这个头以避免转换时间格式的麻烦。</td>
+<td></td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>应该在什么时候认为文档已经过期，从而不再缓存它？</td>
+<td></td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>文档的最后改动时间。客户可以通过If-Modified-Since请求头提供一个日期，该请求将被视为一个条件GET，只有改动时间迟于指定时间的文档才会返回，否则返回一个304（Not Modified）状态。Last-Modified也可用setDateHeader方法来设置。</td>
+<td></td>
+</tr>
+<tr>
+<td>Location</td>
+<td>表示客户应当到哪里去提取文档。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态代码为302。</td>
+<td></td>
+</tr>
+<tr>
+<td>Refresh</td>
+<td>表示浏览器应该在多少时间之后刷新文档，以秒计。除了刷新当前文档之外，你还可以通过setHeader(&ldquo;Refresh&rdquo;, &ldquo;5; URL=http://host/path&rdquo;)让浏览器读取指定的页面。 注意这种功能通常是通过设置HTML页面HEAD区的＜META HTTP-EQUIV=&quot;Refresh&rdquo; CONTENT=&quot;5;URL=http://host/path&quot;＞实现，这是因为，自动刷新或重定向对于那些不能使用CGI或Servlet的HTML编写者十分重要。但是，对于Servlet来说，直接设置Refresh头更加方便。 注意Refresh的意义是&quot;N秒之后刷新本页面或访问指定页面&rdquo;，而不是&quot;每隔N秒刷新本页面或访问指定页面&rdquo;。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是＜META HTTP-EQUIV=&quot;Refresh&rdquo; &hellip;＞。 注意Refresh头不属于HTTP 1.1正式规范的一部分，而是一个扩展，但Netscape和IE都支持它。</td>
+<td></td>
+</tr>
+<tr>
+<td>Server</td>
+<td>服务器名字。Servlet一般不设置这个值，而是由Web服务器自己设置。</td>
+<td></td>
+</tr>
+<tr>
+<td>Set-Cookie</td>
+<td>设置和页面关联的Cookie。Servlet不应使用response.setHeader(&ldquo;Set-Cookie&rdquo;, &hellip;)，而是应使用HttpServletResponse提供的专用方法addCookie。参见下文有关Cookie设置的讨论。</td>
+<td></td>
+</tr>
+<tr>
+<td>WWW-Authenticate</td>
+<td>客户应该在Authorization头中提供什么类型的授权信息？在包含401（Unauthorized）状态行的应答中这个头是必需的。例如，response.setHeader(&ldquo;WWW-Authenticate&rdquo;, &ldquo;BASIC realm=＼&ldquo;executives＼&quot;&quot;)。 注意Servlet一般不进行这方面的处理，而是让Web服务器的专门机制来控制受密码保护页面的访问（例如.htaccess）。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="server-sent-events简称sse">Server-Sent Events(简称SSE)</h2>
+<ol>
+<li>SSE是一种能让浏览器通过HTTP连接自动收到服务器端更新的技术，SSE EventSource 接口被W3C制定为HTML5的一部分。</li>
+<li>单向。</li>
+</ol>
+<h2 id="websocket">websocket</h2>
+<ol>
+<li>双向。</li>
+</ol>
+<h2 id="http状态码">HTTP状态码</h2>
+<h2 id="术语">术语</h2>
+<h3 id="轮询">轮询</h3>
+<ol>
+<li>客户端起一个<code>定时器</code>，定时发起请求向服务端请求数据。</li>
+<li>服务端接到请求之后马上返回响应信息并关闭连接。</li>
+<li><code>优点</code>：后端简单。</li>
+<li><code>缺点</code>：浪费带宽和服务器资源。</li>
+<li>场景：不适合客户端数量太多的情况。</li>
+</ol>
+<h3 id="长轮询">长轮询</h3>
+<ol>
+<li>客户端发起请求，请求返回结束后，立即发起第二次请求。</li>
+<li>服务端接到请求后hold住连接，直到有新消息才返回响应信息或等<code>超时</code>返回，关闭连接。</li>
+<li><code>优点</code>：在无消息的情况下不会频繁地请求，耗费资源小。</li>
+<li><code>缺点</code>：服务器hold住连接会消耗资源，返回数据顺序无保证，难于管理维护。</li>
+<li>场景：WebQQ网页扫码登录。不适合客户端数量太多的情况。</li>
+</ol>
+<h3 id="长连接">长连接</h3>
+<ol>
+<li>客户端与服务端建立长连接，此连接不会断开，服务端随时可向客户端推送消息。（websocket, SSE）</li>
+<li><code>优点</code>：消息即时到达，不发无用请求；管理起来也相对方便。</li>
+<li><code>缺点</code>：服务器维护一个长连接会增加开销。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-03-14</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/" class="prev" rel="prev" title="后端-web框架-Flask"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-pandas/" class="next" rel="next" title="pandas">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

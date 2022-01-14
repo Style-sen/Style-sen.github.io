@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>设计模式-创建型 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="设计模式-创建型" />
+<meta property="og:description" content="从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2-%E5%88%9B%E5%BB%BA%E5%9E%8B/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-08-24T15:16:22+00:00" />
+<meta property="article:modified_time" content="2020-08-24T15:16:22+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="设计模式-创建型"/>
+<meta name="twitter:description" content="从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。 大部分设计模式要解决的都是代码的可扩展性问题。 了解它们都能解决哪些"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2-%E5%88%9B%E5%BB%BA%E5%9E%8B/" /><link rel="prev" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-7-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%97%E5%BC%8F-clickhouse/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "设计模式-创建型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2-%E5%88%9B%E5%BB%BA%E5%9E%8B\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "设计模式, PROGRAM","wordcount":  7532 ,
+        "url": "\/post\/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2-%E5%88%9B%E5%BB%BA%E5%9E%8B\/","datePublished": "2020-08-24T15:16:22+00:00","dateModified": "2020-08-24T15:16:22+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">设计模式-创建型</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-单例模式">1. 单例模式</a>
+      <ul>
+        <li><a href="#11-为什么使用单例模式">1.1. 为什么使用单例模式</a>
+          <ul>
+            <li><a href="#111-处理资源冲突多线程环境下">1.1.1. 处理资源冲突（多线程环境下）</a></li>
+            <li><a href="#112-表示全局唯一类有些数据在系统中只应保存一份">1.1.2. 表示全局唯一类（有些数据在系统中只应保存一份）</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-如何实现一个单例">1.2. 如何实现一个单例</a>
+          <ul>
+            <li><a href="#121-饿汉式">1.2.1. 饿汉式</a></li>
+            <li><a href="#122-懒汉式相对于饿汉式的优势是支持延迟加载但是不支持高并发">1.2.2. 懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)</a></li>
+            <li><a href="#123-双重检测">1.2.3. 双重检测</a></li>
+            <li><a href="#124-静态内部类">1.2.4. 静态内部类</a></li>
+            <li><a href="#125-枚举">1.2.5. 枚举</a></li>
+          </ul>
+        </li>
+        <li><a href="#13-单例存在哪些问题">1.3. 单例存在哪些问题</a>
+          <ul>
+            <li><a href="#131-单例对-oop-特性的支持不友好">1.3.1. 单例对 OOP 特性的支持不友好</a></li>
+            <li><a href="#132-单例会隐藏类之间的依赖关系">1.3.2. 单例会隐藏类之间的依赖关系</a></li>
+            <li><a href="#133-单例对代码的扩展性不友好">1.3.3. 单例对代码的扩展性不友好</a></li>
+            <li><a href="#134-单例对代码的可测试性不友好">1.3.4. 单例对代码的可测试性不友好</a></li>
+            <li><a href="#135-单例不支持有参数的构造函数参数只有在new-instance的时候有用">1.3.5. 单例不支持有参数的构造函数（参数只有在new instance的时候有用）</a></li>
+          </ul>
+        </li>
+        <li><a href="#14-替代方案">1.4. 替代方案</a></li>
+        <li><a href="#15-如何理解单例模式中的唯一性">1.5. 如何理解单例模式中的唯一性？</a></li>
+        <li><a href="#16-如何实现集群环境下的单例">1.6. 如何实现集群环境下的单例？</a></li>
+        <li><a href="#17-如何实现一个多例模式">1.7. 如何实现一个多例模式？</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-工厂模式">2. 工厂模式</a>
+      <ul>
+        <li><a href="#21-简单工厂工厂方法模式的一种特例">2.1. 简单工厂（工厂方法模式的一种特例）</a></li>
+        <li><a href="#22-工厂方法">2.2. 工厂方法</a>
+          <ul>
+            <li><a href="#221-使用场景">2.2.1. 使用场景</a></li>
+          </ul>
+        </li>
+        <li><a href="#23-抽象工厂了解">2.3. 抽象工厂（了解）</a></li>
+        <li><a href="#24-设计一个依赖注入框架di容器">2.4. 设计一个依赖注入框架（DI容器）</a>
+          <ul>
+            <li><a href="#241-配置解析">2.4.1. 配置解析</a></li>
+            <li><a href="#242-创建对象反射语法">2.4.2. 创建对象(反射语法)</a></li>
+            <li><a href="#243-对象的生命周期管理">2.4.3. 对象的生命周期管理</a></li>
+            <li><a href="#244-如何实现">2.4.4. 如何实现</a></li>
+            <li><a href="#245-spring的循环依赖">2.4.5. spring的循环依赖</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-建造者模式builder">3. 建造者模式（Builder）</a>
+      <ul>
+        <li><a href="#31-使用建造者模式">3.1. 使用建造者模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-原型模式">4. 原型模式</a>
+      <ul>
+        <li><a href="#41-使用原型模式">4.1. 使用原型模式</a></li>
+        <li><a href="#42-原型模式的实现方式深拷贝和浅拷贝">4.2. 原型模式的实现方式：深拷贝和浅拷贝</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><ol>
+<li>从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。</li>
+<li>大部分设计模式要解决的都是代码的可扩展性问题。</li>
+<li>了解它们都能<code>解决哪些问题</code>，掌握<code>典型的应用场景</code>，并且懂得<code>不过度应用</code>。</li>
+</ol>
+<p>创建型设计模式</p>
+<ol>
+<li>常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。</li>
+<li>创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。</li>
+</ol>
+<h2 id="1-单例模式">1. 单例模式</h2>
+<h3 id="11-为什么使用单例模式">1.1. 为什么使用单例模式</h3>
+<h4 id="111-处理资源冲突多线程环境下">1.1.1. 处理资源冲突（多线程环境下）</h4>
+<p>如何解决：
+1. 对象级别的锁(只能解决同一个对象在不同的线程下顺序执行，不同对象之间并不共享同一把锁)</p>
+<pre><code>```java
+public class Logger {
+  private FileWriter writer;
+
+  public Logger() {
+    File file = new File(&quot;/Users/wangzheng/log.txt&quot;);
+    writer = new FileWriter(file, true); //true表示追加写入(FileWriter 本身就是线程安全的，它的内部实现中本身就加了对象级别的锁)
+  }
+
+  public void log(String message) {
+    synchronized(this) {
+      writer.write(mesasge);
+    }
+  }
+}
+```
+
+2. 把对象级别的锁，换成类级别的锁(可以解决问题)
+
+```java
+public class Logger {
+  private FileWriter writer;
+
+  public Logger() {
+    File file = new File(&quot;/Users/wangzheng/log.txt&quot;);
+    writer = new FileWriter(file, true); //true表示追加写入
+  }
+
+  public void log(String message) {
+    synchronized(Logger.class) { // 类级别的锁
+      writer.write(mesasge);
+    }
+  }
+}
+```
+
+3. 分布式锁（实现一个安全可靠、无 bug、高性能的分布式锁，并不是件容易的事情）
+4. 并发队列（比如 Java 中的 BlockingQueue）：多个线程同时往并发队列里写日志，一个单独的线程负责将并发队列中的数据，写入到日志文件。这种方式实现起来也稍微有点复杂。
+5. 使用单例模式（思路简单一些）：不用创建那么多 Logger 对象，一方面节省内存空间，另一方面节省系统文件句柄（对于操作系统来说，文件句柄也是一种资源，不能随便浪费）。
+</code></pre>
+<h4 id="112-表示全局唯一类有些数据在系统中只应保存一份">1.1.2. 表示全局唯一类（有些数据在系统中只应保存一份）</h4>
+<ol>
+<li>配置信息类。</li>
+<li>唯一递增 ID 号码生成器。</li>
+<li>日志类。</li>
+<li>数据库连接池类。</li>
+<li>线程池类。</li>
+<li>文件系统。</li>
+</ol>
+<h3 id="12-如何实现一个单例">1.2. 如何实现一个单例</h3>
+<ol>
+<li>构造函数需要是 private 访问权限的，这样才能避免外部通过 new 创建实例；</li>
+<li>考虑对象创建时的线程安全问题；</li>
+<li>考虑是否支持延迟加载；</li>
+<li>考虑 getInstance() 性能是否高（是否加锁）。</li>
+</ol>
+<h4 id="121-饿汉式">1.2.1. 饿汉式</h4>
+<pre><code>```java
+public class IdGenerator { 
+  private AtomicLong id = new AtomicLong(0);
+  private static final IdGenerator instance = new IdGenerator();//在类加载的时候，instance 静态实例就已经创建并初始化好了，所以，instance 实例的创建过程是线程安全的,这样的实现方式不支持延迟加载（在真正用到 IdGenerator 的时候，再创建实例）
+  private IdGenerator() {}
+  public static IdGenerator getInstance() {
+    return instance;
+  }
+  public long getId() { 
+    return id.incrementAndGet();
+  }
+}
+// 如果初始化耗时长，那我们最好不要等到真正要用它的时候，才去执行这个耗时长的初始化过程
+// 如果实例占用资源多，按照 fail-fast 的设计原则（有问题及早暴露），那我们也希望在程序启动时就将这个实例初始化好
+```
+</code></pre>
+<h4 id="122-懒汉式相对于饿汉式的优势是支持延迟加载但是不支持高并发">1.2.2. 懒汉式(相对于饿汉式的优势是支持延迟加载,但是不支持高并发)</h4>
+<pre><code>```java
+public class IdGenerator { 
+  private AtomicLong id = new AtomicLong(0);
+  private static IdGenerator instance;
+  private IdGenerator() {}
+  public static synchronized IdGenerator getInstance() {//getInstance() 这个方法加了一把大锁（synchronzed），导致这个函数的并发度很低。如果频繁地用到，那频繁加锁、释放锁及并发度低等问题，会导致性能瓶颈，这种实现方式就不可取了.偶尔用到可以接受
+    if (instance == null) {
+      instance = new IdGenerator();
+    }
+    return instance;
+  }
+  public long getId() { 
+    return id.incrementAndGet();
+  }
+}
+```
+</code></pre>
+<h4 id="123-双重检测">1.2.3. 双重检测</h4>
+<pre><code>```java
+public class IdGenerator { 
+  private AtomicLong id = new AtomicLong(0);
+  private static IdGenerator instance;
+  private IdGenerator() {}
+  public static IdGenerator getInstance() {
+    if (instance == null) {
+      synchronized(IdGenerator.class) { // 此处为类级别的锁
+        if (instance == null) {
+          instance = new IdGenerator();
+        }
+      }
+    }
+    return instance;
+  }
+  public long getId() { 
+    return id.incrementAndGet();
+  }
+}
+//解决的方法很简单，只要把对象 new 操作和初始化操作设计为原子操作，就自然能禁止重排序
+```
+</code></pre>
+<h4 id="124-静态内部类">1.2.4. 静态内部类</h4>
+<pre><code>```java
+
+public class IdGenerator { 
+  private AtomicLong id = new AtomicLong(0);
+  private IdGenerator() {}
+
+  private static class SingletonHolder{
+    private static final IdGenerator instance = new IdGenerator();
+  }
+
+  public static IdGenerator getInstance() {
+    return SingletonHolder.instance;
+  }
+
+  public long getId() { 
+    return id.incrementAndGet();
+  }
+}
+//SingletonHolder 是一个静态内部类，当外部类 IdGenerator 被加载的时候，并不会创建 SingletonHolder 实例对象。只有当调用getInstance() 方法时，SingletonHolder 才会被加载，这个时候才会创建 instance。instance 的唯一性、创建过程的线程安全性，都由JVM 来保证。所以，这种实现方法既保证了线程安全，又能做到延迟加载。
+```
+</code></pre>
+<h4 id="125-枚举">1.2.5. 枚举</h4>
+<pre><code>```java
+
+public enum IdGenerator {
+  INSTANCE;
+  private AtomicLong id = new AtomicLong(0);
+
+  public long getId() { 
+    return id.incrementAndGet();
+  }
+}
+```
+</code></pre>
+<h3 id="13-单例存在哪些问题">1.3. 单例存在哪些问题</h3>
+<ol>
+<li>大部分情况下，我们在项目中使用单例，都是用它来表示一些全局唯一类，比如配置信息类、连接池类、ID 生成器类。</li>
+</ol>
+<h4 id="131-单例对-oop-特性的支持不友好">1.3.1. 单例对 OOP 特性的支持不友好</h4>
+<ol>
+<li>IdGenerator 的使用方式违背了基于接口而非实现的设计原则。</li>
+<li>从理论上来讲，单例类也可以被继承、也可以实现多态，只是实现起来会非常奇怪，会导致代码的可读性变差。</li>
+</ol>
+<h4 id="132-单例会隐藏类之间的依赖关系">1.3.2. 单例会隐藏类之间的依赖关系</h4>
+<ol>
+<li>单例类不需要显示创建、不需要依赖参数传递，在函数中直接调用就可以了。如果代码比较复杂，这种调用关系就会非常隐蔽。</li>
+</ol>
+<h4 id="133-单例对代码的扩展性不友好">1.3.3. 单例对代码的扩展性不友好</h4>
+<ol>
+<li><code>单例类在某些情况下会影响代码的扩展性、灵活性。所以，数据库连接池、线程池这类的资源池，最好还是不要设计成单例类。实际上，一些开源的数据库连接池、线程池也确实没有设计成单例类</code>。</li>
+</ol>
+<h4 id="134-单例对代码的可测试性不友好">1.3.4. 单例对代码的可测试性不友好</h4>
+<ol>
+<li>单例类这种硬编码式的使用方式，导致无法实现 mock 替换。</li>
+<li>成员变量相当于一种全局变量。</li>
+</ol>
+<h4 id="135-单例不支持有参数的构造函数参数只有在new-instance的时候有用">1.3.5. 单例不支持有参数的构造函数（参数只有在new instance的时候有用）</h4>
+<ol>
+<li>第一种解决思路：在使用这个单例类的时候，要先调用 init() 方法，然后才能调用 getInstance() 方法，否则代码会抛出异常。</li>
+<li>第二种解决思路是：将参数放到 getIntance() 方法中。</li>
+<li>第三种解决思路是：将参数放到另外一个全局变量（配置对象）中。</li>
+</ol>
+<h3 id="14-替代方案">1.4. 替代方案</h3>
+<ol>
+<li>
+<p>为了保证全局唯一，除了使用单例，我们还可以用<code>静态方法</code>（操作静态变量）来实现。</p>
+</li>
+<li>
+<p>静态方法这种实现思路，并不能解决我们之前提到的问题。实际上，它比单例更加不灵活，比如，它无法支持延迟加载。</p>
+</li>
+<li>
+<p>第2中方法</p>
+<pre><code> ```java
+ // 1. 老的使用方式
+ public demofunction() {
+   //...
+   long id = IdGenerator.getInstance().getId();
+   //...
+ }
+
+ // 2. 新的使用方式：依赖注入
+ public demofunction(IdGenerator idGenerator) {
+   long id = idGenerator.getId();
+ }
+ // 外部调用demofunction()的时候，传入idGenerator
+ IdGenerator idGenerator = IdGenerator.getInsance();
+ demofunction(idGenerator);
+ ```
+</code></pre>
+</li>
+<li>
+<p>类对象的全局唯一性可以通过多种不同的方式来保证。我们既可以通过单例模式来强制保证，也可以通过工厂模式、IOC 容器（比如 Spring IOC 容器）来保证，还可以通过程序员自己来保证（自己在编写代码的时候自己保证不要创建两个类对象）。</p>
+</li>
+</ol>
+<h3 id="15-如何理解单例模式中的唯一性">1.5. 如何理解单例模式中的唯一性？</h3>
+<ol>
+<li>
+<p>单例模式创建的对象是进程唯一的。在进程间是不唯一的.</p>
+</li>
+<li>
+<p>进程之间是不共享地址空间的，如果我们在一个进程中创建另外一个进程（比如，代码中有一个 fork() 语句，进程执行到这条语句的时候会创建一个新的进程），操作系统会给新进程分配新的地址空间，并且将老进程地址空间的所有内容，重新拷贝一份到新进程的地址空间中，这些内容包括代码、数据（比如 user 临时变量、User 对象）。</p>
+</li>
+<li>
+<p>线程唯一</p>
+<pre><code> ```java
+
+ public class IdGenerator {
+   private AtomicLong id = new AtomicLong(0);
+
+   private static final ConcurrentHashMap&lt;Long, IdGenerator&gt; instances
+           = new ConcurrentHashMap&lt;&gt;();
+
+   private IdGenerator() {}
+
+   public static IdGenerator getInstance() {
+     Long currentThreadId = Thread.currentThread().getId();
+     instances.putIfAbsent(currentThreadId, new IdGenerator());
+     return instances.get(currentThreadId);
+   }
+
+   public long getId() {
+     return id.incrementAndGet();
+   }
+ }
+ ```
+</code></pre>
+</li>
+<li>
+<p>Java 语言本身提供了 ThreadLocal 并发工具类，可以更加轻松地实现线程唯一单例。</p>
+</li>
+<li>
+<p>对于 Java 语言来说，单例类对象的唯一性的作用范围并非进程，而是类加载器（Class Loader）</p>
+</li>
+</ol>
+<h3 id="16-如何实现集群环境下的单例">1.6. 如何实现集群环境下的单例？</h3>
+<ol>
+<li>具体来说，我们需要把这个单例对象序列化并存储到外部共享存储区（比如文件）.进程在使用这个单例对象的时候，需要先从外部共享存储区中将它读取到内存，并反序列化成对象，然后再使用，使用完成之后还需要再存储回外部共享存储区。</li>
+<li>为了保证任何时刻，在进程间都只有一份对象存在，一个进程在获取到对象之后，需要对对象加锁，避免其他进程再将其获取。在进程使用完这个对象之后，还需要显式地将对象从内存中删除，并且释放对对象的加锁。</li>
+</ol>
+<h3 id="17-如何实现一个多例模式">1.7. 如何实现一个多例模式？</h3>
+<ol>
+<li>“多例”指的就是，一个类可以创建多个对象，但是个数是有限制的，比如只能创建 3 个对象.多例的实现也比较简单，通过一个 Map 来存储对象类型和对象之间的对应关系，来控制对象的个数。</li>
+<li>对于多例模式，还有一种理解方式：同一类型的只能创建一个对象，不同类型的可以创建多个对象。这种多例模式的理解方式有点类似工厂模式。它跟工厂模式的不同之处是，多例模式创建的对象都是同一个类的对象，而工厂模式创建的是不同子类的对象。</li>
+<li>枚举类型也相当于多例模式，一个类型只能对应一个对象，一个类可以创建多个对象。</li>
+</ol>
+<h2 id="2-工厂模式">2. 工厂模式</h2>
+<ol>
+<li>当创建逻辑比较复杂（if-else 分支判断，组合其他类对象，做各种初始化操作），是一个“大工程”的时候，我们就考虑使用工厂模式，封装对象的创建过程，将对象的创建和使用相分离。</li>
+<li>封装变化：创建逻辑有可能变化，封装成工厂类之后，创建逻辑的变更对调用者透明。代码复用：创建代码抽离到独立的工厂类之后可以复用。隔离复杂性：封装复杂的创建逻辑，调用者无需了解如何创建对象。控制复杂度：将创建代码抽离出来，让原本的函数或类职责更单一，代码更简洁。</li>
+</ol>
+<h3 id="21-简单工厂工厂方法模式的一种特例">2.1. 简单工厂（工厂方法模式的一种特例）</h3>
+<ol>
+<li>
+<p>根据不同的特性，创建不同的对象。</p>
+<pre><code> ```java
+ public class RuleConfigSource {
+   public RuleConfig load(String ruleConfigFilePath) {
+     String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);
+     IRuleConfigParser parser = RuleConfigParserFactory.createParser(ruleConfigFileExtension);
+     if (parser == null) {
+       throw new InvalidRuleConfigException(
+               &quot;Rule config file format is not supported: &quot; + ruleConfigFilePath);
+     }
+
+     String configText = &quot;&quot;;
+     //从ruleConfigFilePath文件中读取配置文本到configText中
+     RuleConfig ruleConfig = parser.parse(configText);
+     return ruleConfig;
+   }
+
+   private String getFileExtension(String filePath) {
+     //...解析文件名获取扩展名，比如rule.json，返回json
+     return &quot;json&quot;;
+   }
+ }
+ // 为了让类的职责更加单一、代码更加清晰，我们还可以进一步将 createParser() 函数剥离到一个独立的类中，让这个类只负责对象的创       建。
+ // 大部分工厂类都是以“Factory”这个单词结尾的，但也不是必须的
+ public class RuleConfigParserFactory {
+   // 工厂类中创建对象的方法一般都是 create 开头（静态的方法）
+   public static IRuleConfigParser createParser(String configFormat) {
+     IRuleConfigParser parser = null;
+     if (&quot;json&quot;.equalsIgnoreCase(configFormat)) {
+       parser = new JsonRuleConfigParser();
+     } else if (&quot;xml&quot;.equalsIgnoreCase(configFormat)) {
+       parser = new XmlRuleConfigParser();
+     } else if (&quot;yaml&quot;.equalsIgnoreCase(configFormat)) {
+       parser = new YamlRuleConfigParser();
+     } else if (&quot;properties&quot;.equalsIgnoreCase(configFormat)) {
+       parser = new PropertiesRuleConfigParser();
+     }
+     return parser;
+   }
+ }
+ ```
+</code></pre>
+</li>
+<li>
+<p>第二种方式，工厂模式和单例模式的结合。</p>
+<pre><code> ```java
+ public class RuleConfigParserFactory {
+   private static final Map&lt;String, RuleConfigParser&gt; cachedParsers = new HashMap&lt;&gt;();
+
+   static {
+     cachedParsers.put(&quot;json&quot;, new JsonRuleConfigParser());
+     cachedParsers.put(&quot;xml&quot;, new XmlRuleConfigParser());
+     cachedParsers.put(&quot;yaml&quot;, new YamlRuleConfigParser());
+     cachedParsers.put(&quot;properties&quot;, new PropertiesRuleConfigParser());
+   }
+
+   public static IRuleConfigParser createParser(String configFormat) {
+     if (configFormat == null || configFormat.isEmpty()) {
+       return null;//返回null还是IllegalArgumentException全凭你自己说了算
+     }
+     IRuleConfigParser parser = cachedParsers.get(configFormat.toLowerCase());
+     return parser;
+   }
+ }
+ ```
+</code></pre>
+</li>
+</ol>
+<h3 id="22-工厂方法">2.2. 工厂方法</h3>
+<ol>
+<li>
+<p>工厂方法模式比起简单工厂模式更加符合开闭原则。</p>
+<pre><code> ```java
+ public interface IRuleConfigParserFactory {
+   IRuleConfigParser createParser();
+ }
+
+ public class JsonRuleConfigParserFactory implements IRuleConfigParserFactory {
+   @Override
+   public IRuleConfigParser createParser() {
+     return new JsonRuleConfigParser();
+   }
+ }
+
+ public class XmlRuleConfigParserFactory implements IRuleConfigParserFactory {
+   @Override
+   public IRuleConfigParser createParser() {
+     return new XmlRuleConfigParser();
+   }
+ }
+
+ public class YamlRuleConfigParserFactory implements IRuleConfigParserFactory {
+   @Override
+   public IRuleConfigParser createParser() {
+     return new YamlRuleConfigParser();
+   }
+ }
+
+ public class PropertiesRuleConfigParserFactory implements IRuleConfigParserFactory {
+   @Override
+   public IRuleConfigParser createParser() {
+     return new PropertiesRuleConfigParser();
+   }
+ }
+ ```
+</code></pre>
+</li>
+<li>
+<p>【使用】可以为工厂类再创建一个<code>简单工厂</code>(第二种)，也就是工厂的工厂，用来创建工厂类对象。</p>
+</li>
+<li>
+<p>需要添加新的规则配置解析器的时候，我们只需要创建新的 parser 类和 parser factory 类，并且在 RuleConfigParserFactoryMap 类中，将新的 parser factory 对象添加到 cachedFactories 中即可。代码的改动非常少，基本上符合开闭原则。</p>
+</li>
+</ol>
+<h4 id="221-使用场景">2.2.1. 使用场景</h4>
+<ol>
+<li>当对象的创建逻辑比较复杂，不只是简单的 new 一下就可以，而是要组合其他类对象，做各种初始化操作的时候，我们推荐使用工厂方法模式，将复杂的创建逻辑拆分到多个工厂类中，让每个工厂类都不至于过于复杂。而使用简单工厂模式，将所有的创建逻辑都放到一个工厂类中，会导致这个工厂类变得很复杂。</li>
+<li>避免烦人的 if-else 分支逻辑，这个时候，我们就推荐使用工厂方法模式。</li>
+<li>【本质】<code>简单工厂是将不同创建逻辑放到一个工厂类中，if-else 逻辑在这个工厂类中</code>,<code>工厂方法是将不同创建逻辑放到不同工厂类中，先用一个工厂类的工厂来来得到某个工厂，再用这个工厂来创建，if-else 逻辑在工厂类的工厂中</code>.</li>
+</ol>
+<h3 id="23-抽象工厂了解">2.3. 抽象工厂（了解）</h3>
+<ol>
+<li>【解决的问题】在简单工厂和工厂方法中，类只有一种分类方式。如果有多种分类方法，就需要抽象工厂模式。让一个工厂负责创建多个不同类型的对象（IRuleConfigParser、ISystemConfigParser 等），而不是只创建一种 parser 对象。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IConfigParserFactory</span> <span class="o">{</span>
+  <span class="n">IRuleConfigParser</span> <span class="nf">createRuleParser</span><span class="o">();</span>
+  <span class="n">ISystemConfigParser</span> <span class="nf">createSystemParser</span><span class="o">();</span>
+  <span class="c1">//此处可以扩展新的parser类型，比如IBizConfigParser
+</span><span class="c1"></span><span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JsonConfigParserFactory</span> <span class="kd">implements</span> <span class="n">IConfigParserFactory</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">IRuleConfigParser</span> <span class="nf">createRuleParser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">JsonRuleConfigParser</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">ISystemConfigParser</span> <span class="nf">createSystemParser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">JsonSystemConfigParser</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">XmlConfigParserFactory</span> <span class="kd">implements</span> <span class="n">IConfigParserFactory</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">IRuleConfigParser</span> <span class="nf">createRuleParser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">XmlRuleConfigParser</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">ISystemConfigParser</span> <span class="nf">createSystemParser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">XmlSystemConfigParser</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// 省略YamlConfigParserFactory和PropertiesConfigParserFactory代码
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="24-设计一个依赖注入框架di容器">2.4. 设计一个依赖注入框架（DI容器）</h3>
+<ol>
+<li>DI 容器底层最基本的设计思路就是基于工厂模式的。DI 容器相当于一个大的工厂类，负责在程序启动的时候，<code>根据配置（要创建哪些类对象，每个类对象的创建需要依赖哪些其他类对象）事先创建好对象</code>。当应用程序需要<code>使用某个类对象的时候，直接从容器中获取即可</code>。正是因为它持有一堆对象，所以这个框架才被称为“容器”。</li>
+<li>一个工厂类只负责某个类对象或者某一组相关类对象（继承自同一抽象类或者接口的子类）的创建，而 DI 容器负责的是整个应用中所有类对象的创建。</li>
+<li>DI 容器负责的事情要比单纯的工厂模式要多。比如，它还包括配置的解析、对象生命周期的管理。</li>
+<li>DI 容器在一些软件开发中已经成为了标配，比如 Spring IOC、Google Guice。但是，大部分人可能只是把它当作一个黑盒子来使用，并未真正去了解它的底层是如何实现的。当然，如果只是做一些简单的小项目，简单会用就足够了，但是，如果我们面对的是非常复杂的系统，当系统出现问题的时候，对底层原理的掌握程度，决定了我们排查问题的能力，直接影响到我们排查问题的效率。</li>
+</ol>
+<h4 id="241-配置解析">2.4.1. 配置解析</h4>
+<ol>
+<li>将需要由 DI 容器来创建的类对象和创建类对象的必要信息（使用哪个构造函数以及对应的构造函数参数都是什么等等），放到配置文件中。容器读取配置文件，根据配置文件提供的信息来创建对象。</li>
+<li>例如spring的配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">配置文件beans.xml：
+&lt;beans&gt;
+   &lt;bean id=&#34;rateLimiter&#34; class=&#34;com.xzg.RateLimiter&#34;&gt;
+      &lt;constructor-arg ref=&#34;redisCounter&#34;/&gt;
+   &lt;/bean&gt;
+ 
+   &lt;bean id=&#34;redisCounter&#34; class=&#34;com.xzg.redisCounter&#34;&gt;
+     &lt;constructor-arg type=&#34;String&#34; value=&#34;127.0.0.1&#34;&gt;
+     &lt;constructor-arg type=&#34;int&#34; value=1234&gt;
+   &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="242-创建对象反射语法">2.4.2. 创建对象(反射语法)</h4>
+<ol>
+<li>只需要<code>将所有类对象的创建都放到一个工厂类中完成</code>就可以了，比如 BeansFactory。</li>
+<li>使用<code>反射</code>(一种动态加载类和创建对象的机制)机制，不管是创建一个对象还是十个对象，BeansFactory 工厂类代码都是一样的。</li>
+</ol>
+<h4 id="243-对象的生命周期管理">2.4.3. 对象的生命周期管理</h4>
+<ol>
+<li>例如spring框架</li>
+<li>scope=prototype 表示返回新创建的对象，scope=singleton 表示返回单例对象。</li>
+<li>lazy-init=true，对象在真正被使用到的时候（比如：BeansFactory.getBean(“userService”)）才被被创建；如果 lazy-init=false，对象在应用启动的时候就事先创建好。</li>
+<li>还可以配置对象的 init-method 和 destroy-method 方法，比如 init-method=loadProperties()，destroy-method=updateConfigFile()。</li>
+</ol>
+<h4 id="244-如何实现">2.4.4. 如何实现</h4>
+<h4 id="245-spring的循环依赖">2.4.5. spring的循环依赖</h4>
+<h2 id="3-建造者模式builder">3. 建造者模式（Builder）</h2>
+<ol>
+<li>【问题】构造方法的参数过多，容易搞错各参数的顺序，传递进错误的参数值，导致非常隐蔽的 bug。</li>
+<li>可以使用set解决上边的问题，必须的参数放在构造方法中，非必须的使用set。</li>
+<li>【问题升级 合法校验（Preconditions）】必填的配置项有很多。如果我们把必填项也通过 set() 方法设置，那校验这些必填项是否已经填写的逻辑就无处安放了。</li>
+<li>【问题升级2 依赖关系（Dependencies）】假设配置项之间有一定的依赖关系。</li>
+<li>【问题升级3 不可变（Immutable）】希望 ResourcePoolConfig 类对象是<code>不可变对象</code>，也就是说，对象在创建好之后，就不能再修改内部的属性值。要实现这个功能，我们就不能在 ResourcePoolConfig 类中暴露 set() 方法。</li>
+</ol>
+<h3 id="31-使用建造者模式">3.1. 使用建造者模式</h3>
+<ol>
+<li>
+<p>把校验逻辑放置到 Builder 类中，先创建建造者，并且通过 set() 方法设置建造者的变量值，然后在使用 build() 方法真正创建对象之前，做集中的校验，校验通过之后才会创建对象。</p>
+</li>
+<li>
+<p>ResourcePoolConfig 的构造函数改为 private 私有权限。这样我们就只能通过建造者来创建 ResourcePoolConfig 类对象。</p>
+</li>
+<li>
+<p>ResourcePoolConfig 没有提供任何 set() 方法，这样我们创建出来的对象就是不可变对象了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResourcePoolConfig</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxTotal</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxIdle</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">minIdle</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nf">ResourcePoolConfig</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">maxTotal</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">maxTotal</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">maxIdle</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">maxIdle</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">minIdle</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">minIdle</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="c1">//...省略getter方法...
+</span><span class="c1"></span>
+  <span class="c1">//我们将Builder类设计成了ResourcePoolConfig的内部类。
+</span><span class="c1"></span>  <span class="c1">//我们也可以将Builder类设计成独立的非内部类ResourcePoolConfigBuilder。
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DEFAULT_MAX_TOTAL</span> <span class="o">=</span> <span class="n">8</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DEFAULT_MAX_IDLE</span> <span class="o">=</span> <span class="n">8</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DEFAULT_MIN_IDLE</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxTotal</span> <span class="o">=</span> <span class="n">DEFAULT_MAX_TOTAL</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxIdle</span> <span class="o">=</span> <span class="n">DEFAULT_MAX_IDLE</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">minIdle</span> <span class="o">=</span> <span class="n">DEFAULT_MIN_IDLE</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">ResourcePoolConfig</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// 校验逻辑放到这里来做，包括必填项校验、依赖关系校验、约束条件校验等
+</span><span class="c1"></span>      <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">maxIdle</span> <span class="o">&gt;</span> <span class="n">maxTotal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">minIdle</span> <span class="o">&gt;</span> <span class="n">maxTotal</span> <span class="o">||</span> <span class="n">minIdle</span> <span class="o">&gt;</span> <span class="n">maxIdle</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+
+      <span class="k">return</span> <span class="k">new</span> <span class="n">ResourcePoolConfig</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">setMaxTotal</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxTotal</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">maxTotal</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">maxTotal</span> <span class="o">=</span> <span class="n">maxTotal</span><span class="o">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">setMaxIdle</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxIdle</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">maxIdle</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">maxIdle</span> <span class="o">=</span> <span class="n">maxIdle</span><span class="o">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">setMinIdle</span><span class="o">(</span><span class="kt">int</span> <span class="n">minIdle</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">minIdle</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;...&#34;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">minIdle</span> <span class="o">=</span> <span class="n">minIdle</span><span class="o">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// 这段代码会抛出IllegalArgumentException，因为minIdle&gt;maxIdle
+</span><span class="c1"></span><span class="n">ResourcePoolConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ResourcePoolConfig</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;dbconnectionpool&#34;</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">setMaxTotal</span><span class="o">(</span><span class="n">16</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">setMaxIdle</span><span class="o">(</span><span class="n">10</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">setMinIdle</span><span class="o">(</span><span class="n">12</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>【缺点】如果我们并不是很关心对象是否有短暂的无效状态，也不是太在意对象是否是可变的，可以不使用此模式。另外，使用建造者模式来构建对象，代码实际上是有点重复的，ResourcePoolConfig 类中的成员变量，要在 Builder 类中重新再定义一遍。</p>
+</li>
+<li>
+<p>工厂模式是用来创建<code>不同但是相关类型</code>的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象。建造者模式是用来创建<code>一种类型的复杂对象</code>，通过设置不同的可选参数，“定制化”地创建不同的对象。</p>
+</li>
+</ol>
+<h2 id="4-原型模式">4. 原型模式</h2>
+<ol>
+<li>【问题】如果对象的创建成本比较大，而同一个类的不同对象之间差别不大（大部分字段都相同），在这种情况下，我们可以利用对已有对象（原型）进行复制（或者叫拷贝）的方式来创建新对象，以达到节省创建时间的目的。</li>
+<li>如果对象中的数据需要经过复杂的计算才能得到（比如排序、计算哈希值），或者需要从 RPC、网络、数据库、文件系统等非常慢速的 IO 中读取，这种情况下，我们就可以利用原型模式，从其他已有对象中直接拷贝得到。</li>
+<li>我们把正在使用的数据的版本定义为“服务版本”，当我们要更新内存中的数据的时候，我们并不是直接在服务版本（假设是版本 a 数据）上更新，而是重新创建另一个版本数据（假设是版本 b 数据），等新的版本数据建好之后，再一次性地将服务版本从版本 a 切换到版本 b。这样既保证了数据一直可用，又避免了中间状态的存在。</li>
+</ol>
+<h3 id="41-使用原型模式">4.1. 使用原型模式</h3>
+<ol>
+<li>拷贝 currentKeywords 数据到 newKeywords 中，然后从数据库中只捞出新增或者有更新的关键词，更新到 newKeywords 中。相对于数据库的 IO 操作来说，内存操作和 CPU 计算的耗时都是可以忽略的。</li>
+</ol>
+<h3 id="42-原型模式的实现方式深拷贝和浅拷贝">4.2. 原型模式的实现方式：深拷贝和浅拷贝</h3>
+<ol>
+<li>浅拷贝只会复制图中的索引（散列表），不会复制数据（SearchWord 对象）本身。相反，深拷贝不仅仅会复制索引，还会复制数据本身。</li>
+<li>在 Java 语言中，Object 类的 clone() 方法执行的就是我们刚刚说的浅拷贝。它只会拷贝对象中的基本数据类型的数据（比如，int、long），以及引用对象（SearchWord）的内存地址，不会递归地拷贝引用对象本身。</li>
+<li>【实现1】递归拷贝对象、对象的引用对象以及引用对象的引用对象……直到要拷贝的对象只包含基本数据类型数据，没有引用对象为止。</li>
+<li>【实现2】先将对象序列化，然后再反序列化成新的对象。</li>
+<li>【实现3】先采用浅拷贝的方式创建 newKeywords。对于需要更新的 SearchWord 对象，我们再使用深度拷贝的方式创建一份新的对象，替换 newKeywords 中的老对象。毕竟需要更新的数据是很少的。这种方式即利用了浅拷贝节省时间、空间的优点，又能保证 currentKeywords 中的中数据都是老版本的数据。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                </span><span><a href="/tags/program/">PROGRAM</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-08-24</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-7-%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="大数据架构笔记-7-分类算法"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%97%E5%BC%8F-clickhouse/" class="next" rel="next" title="后端-数据库-CLICKHOUSE">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

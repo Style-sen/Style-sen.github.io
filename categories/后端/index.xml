@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>后端 - 分类 - 锦枫紫兰</title>
+        <link>/categories/%E5%90%8E%E7%AB%AF/</link>
+        <description>后端 - 分类 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 25 Mar 2019 14:32:17 &#43;0000</lastBuildDate><atom:link href="/categories/%E5%90%8E%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+    <title>后端-构建API服务</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-api/</link>
+    <pubDate>Mon, 25 Mar 2019 14:32:17 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-api/</guid>
+    <description><![CDATA[标准 OpenAPI规范 JSON Schema 设计原则 1 2 3 1. API版本放进URL中。 2. API执行前都需要进行认证和权限的判定（中间件）。`权限的判定，通过to]]></description>
+</item>
+<item>
+    <title>后端-web框架-Flask</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</link>
+    <pubDate>Mon, 11 Mar 2019 09:55:21 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/</guid>
+    <description><![CDATA[配置的最佳实践 变量的配置 通过调用自定义config.py文件中config字典，可以得到一个类，这个类里面定义的都是类变量，这些变量就是自定]]></description>
+</item>
+</channel>
+</rss>

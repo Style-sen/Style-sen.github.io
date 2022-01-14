@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>WEB - 标签 - 锦枫紫兰</title>
+        <link>/tags/web/</link>
+        <description>WEB - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 02 Aug 2019 15:53:10 &#43;0000</lastBuildDate><atom:link href="/tags/web/" rel="self" type="application/rss+xml" /><item>
+    <title>后端-web框架-基础件-socket.io</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/</link>
+    <pubDate>Fri, 02 Aug 2019 15:53:10 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-%E5%9F%BA%E7%A1%80%E4%BB%B6-socket-io/</guid>
+    <description><![CDATA[Socket.IO 是一个基于 Node.js 的实时应用程序框架，在即时通讯、通知与消息推送，实时分析等场景中有较为广泛的应用。 Server INIT 1 const io = require(&#39;socket.io&#39;)(server, options); 命名空间(Namespace]]></description>
+</item>
+</channel>
+</rss>

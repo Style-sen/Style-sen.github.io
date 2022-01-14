@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>PYTHON - 标签 - 锦枫紫兰</title>
+        <link>/tags/python/</link>
+        <description>PYTHON - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 14 Oct 2021 11:36:11 &#43;0800</lastBuildDate><atom:link href="/tags/python/" rel="self" type="application/rss+xml" /><item>
+    <title>PYTHON-POLORS</title>
+    <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-polors/</link>
+    <pubDate>Thu, 14 Oct 2021 11:36:11 &#43;0800</pubDate><guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-polors/</guid>
+    <description><![CDATA[概述 相比较PANDAS来说，处理比较大的数据集会很快。]]></description>
+</item>
+<item>
+    <title>PROGRAM PYTHON 第三方库 SCAPY</title>
+    <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-scapy/</link>
+    <pubDate>Fri, 16 Apr 2021 10:00:28 &#43;0800</pubDate><guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-scapy/</guid>
+    <description><![CDATA[Scapy是功能强大的交互式数据包处理程序、数据包生成器、网络扫描器、网络发现工具和包嗅探工具。 它能够伪造或解码各种协议的数据包，在线发送它]]></description>
+</item>
+<item>
+    <title>并发编程</title>
+    <link>/post/program-python-08-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
+    <pubDate>Mon, 15 Mar 2021 17:44:35 &#43;0800</pubDate><guid>/post/program-python-08-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
+    <description><![CDATA[线程 GIL锁，全称为Global Interpreter Lock，也就是全局解释器锁,在一个进程中每次只能有一个线程在运行。 threading 线程间通讯 生产者和消费者问题 使用全局]]></description>
+</item>
+<item>
+    <title>PYTHON-内建函数</title>
+    <link>/post/program-python-04-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/</link>
+    <pubDate>Fri, 19 Feb 2021 06:24:13 &#43;0800</pubDate><guid>/post/program-python-04-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/</guid>
+    <description><![CDATA[1. 文件 python的文件类似linux的一切皆文件，比如网络。 1.1. open()打开一个文件。 默认只读。 1.1.1. 参数 file mode encoding指定编码。 1.2. r]]></description>
+</item>
+<item>
+    <title>PYTHON-语法</title>
+    <link>/post/program-python-03-%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Fri, 19 Feb 2021 05:36:46 &#43;0800</pubDate><guid>/post/program-python-03-%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[1. 运算符 1.1. 算术运算符 1.2. 赋值运算符 +=与+的区别。 1 2 3 4 5 6 7 8 9 10 11 12 In [21]: a=[] In [22]: a Out[22]: [] In [23]: a+=b&#39;1&#39; In [24]: a Out[24]: [49] In [25]: a= [] + b&#34;2432&#34; --------------------------------------------------------------------------- TypeError Traceback (most recent call last) &lt;ipython-input-25-5f6065d809aa&gt; in &lt;module&gt; ----&gt; 1]]></description>
+</item>
+<item>
+    <title>python-标准库</title>
+    <link>/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/</link>
+    <pubDate>Mon, 29 Jul 2019 16:07:02 &#43;0000</pubDate><guid>/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/</guid>
+    <description><![CDATA[1. main 2. argparse 被 CLICK 代替 3. base64 4. COLLECTIONS 5. datetime 5.1. 属性 datetime.MINYEAR（1）和datetime.MAXYEAR（9999）。 5.2. 类 5.2.1. date 5.2.1.1. 实例属性 y]]></description>
+</item>
+<item>
+    <title>python-第三方库</title>
+    <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/</link>
+    <pubDate>Mon, 29 Jul 2019 16:07:02 &#43;0000</pubDate><guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%80%BB/</guid>
+    <description><![CDATA[1. Beautiful Soup是一个可以从HTML或XML文件中提取数据的Python库 2. click 参考Python命令行神器 Click 简明笔记 使用 @click.comman]]></description>
+</item>
+<item>
+    <title>python数据类型</title>
+    <link>/post/program-python-02-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+    <pubDate>Fri, 21 Jun 2019 10:33:49 &#43;0000</pubDate><guid>/post/program-python-02-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+    <description><![CDATA[4种基本数据类型：整数，浮点数，字符串，布尔值 type() 1. 字符串 1.1. 字符串驻留 由于Cpython在编译优化时, 某些情况下会尝试使用已经存在的不可变对象]]></description>
+</item>
+<item>
+    <title>开始一个python应用</title>
+    <link>/post/program-python-01-%E5%BC%80%E5%A7%8B/</link>
+    <pubDate>Tue, 23 Apr 2019 16:40:15 &#43;0000</pubDate><guid>/post/program-python-01-%E5%BC%80%E5%A7%8B/</guid>
+    <description><![CDATA[1. 版本切换 pyenv 命令 功能 pyenv versions 列出已安装python版本 pyenv local 设置当前shell的python版本 pyenv global 设置全局的python版本 pyenv install -l 列出可以使用的]]></description>
+</item>
+<item>
+    <title>桌面应用打包和开源协议</title>
+    <link>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8-%E6%89%93%E5%8C%85/</link>
+    <pubDate>Tue, 23 Apr 2019 16:40:15 &#43;0000</pubDate><guid>/post/program-python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8-%E6%89%93%E5%8C%85/</guid>
+    <description><![CDATA[打包 cx-freeze PSF协议，想怎么用就怎么用。 cx-freeze与python3.7 fbs不建议 分为免费版（GPL）和收费版。 pyinstaller PyInstaller 是在 GPL 许可证下发布的]]></description>
+</item>
+</channel>
+</rss>

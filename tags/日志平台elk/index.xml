@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>日志平台，ELK - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0elk/</link>
+        <description>日志平台，ELK - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Nov 2019 18:23:40 &#43;0000</lastBuildDate><atom:link href="/tags/%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0elk/" rel="self" type="application/rss+xml" /><item>
+    <title>微服务架构笔记-08-中间件-日志平台</title>
+    <link>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-08-%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0/</link>
+    <pubDate>Mon, 11 Nov 2019 18:23:40 &#43;0000</pubDate><guid>/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-08-%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0/</guid>
+    <description><![CDATA[解决的问题 将日志统一收集到一个地方集中管理(统一收集、过滤清洗)。 处理日志，输出运维、研发可用的数据（可视化界面、监控、告警、日志搜索）。 满]]></description>
+</item>
+</channel>
+</rss>

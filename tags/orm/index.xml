@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ORM - 标签 - 锦枫紫兰</title>
+        <link>/tags/orm/</link>
+        <description>ORM - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 02 Aug 2019 20:10:26 &#43;0000</lastBuildDate><atom:link href="/tags/orm/" rel="self" type="application/rss+xml" /><item>
+    <title>ORM-Sequelize</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/</link>
+    <pubDate>Fri, 02 Aug 2019 20:10:26 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-js-sequelize/</guid>
+    <description><![CDATA[摘自Sequelize 中文API文档 MODEL定义 时间戳 延时 Getters &amp; setters - 访问器&amp;设置器 可以在你的模型中将对象属性定义为访问/设置函数 访问]]></description>
+</item>
+<item>
+    <title>后端-ORM-PYTHON</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/</link>
+    <pubDate>Fri, 08 Mar 2019 09:56:28 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/</guid>
+    <description><![CDATA[数据库设计 数据库中的字段要区分永久性还是递变性，永久性存为一张表，递变性的字段单独为一张表，但是会随时间变化。 永久性的字段衍伸的字段，可以用]]></description>
+</item>
+</channel>
+</rss>

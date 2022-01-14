@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>后端-web框架-Flask - 锦枫紫兰</title><meta name="description" content="Flask开发"><meta property="og:title" content="后端-web框架-Flask" />
+<meta property="og:description" content="Flask开发" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-03-11T09:55:21+00:00" />
+<meta property="article:modified_time" content="2019-03-11T09:55:21+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="后端-web框架-Flask"/>
+<meta name="twitter:description" content="Flask开发"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/" /><link rel="next" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "后端-web框架-Flask",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "后端, FLASK, PYTHON","wordcount":  1981 ,
+        "url": "\/post\/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-flask\/","datePublished": "2019-03-11T09:55:21+00:00","dateModified": "2019-03-11T09:55:21+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "Flask开发"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">后端-web框架-Flask</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置的最佳实践">配置的最佳实践</a>
+      <ul>
+        <li><a href="#变量的配置">变量的配置</a>
+          <ul>
+            <li><a href="#具体的变量">具体的变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#日志的配置">日志的配置</a></li>
+        <li><a href="#应用工厂-app-factory">应用工厂 App Factory</a></li>
+        <li><a href="#使用消息队列">使用消息队列</a>
+          <ul>
+            <li><a href="#celery">celery</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用cookiecutterhttpsgithubcomcookiecutter-flaskcookiecutter-flask"><em>使用<a href="https://github.com/cookiecutter-flask/cookiecutter-flask">cookiecutter</a></em></a></li>
+        <li><a href="#使用dockerhttpsgithubcomtiangolouwsgi-nginx-flask-docker">使用<a href="https://github.com/tiangolo/uwsgi-nginx-flask-docker">docker</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#功能实现">功能实现</a>
+      <ul>
+        <li><a href="#认证">认证</a>
+          <ul>
+            <li><a href="#在-flask-login-中如果你不特殊处理的话session-是在你关闭浏览器之后就失效的">在 ==Flask-Login== 中，如果你不特殊处理的话，session 是在你关闭浏览器之后就失效的。</a></li>
+          </ul>
+        </li>
+        <li><a href="#flaskflask-script扩展与clickhttpwwwharmelcn201808flask-scripthtml"><a href="http://www.harmel.cn/2018/08/flask-script.html">Flask：Flask-Script扩展与Click</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#插件">插件</a>
+      <ul>
+        <li><a href="#用户相关登录权限角色">用户相关（登录、权限、角色）</a>
+          <ul>
+            <li><a href="#flask-principalhttpspythonhostedorgflask-principal"><a href="https://pythonhosted.org/Flask-Principal/">Flask-Principal</a></a></li>
+            <li><a href="#flask-login">[Flask-login]</a></li>
+            <li><a href="#flask-httpauth">[Flask-httpauth]</a></li>
+            <li><a href="#flask-cachinghttpsgithubcomsh4nksflask-caching"><a href="https://github.com/sh4nks/flask-caching">Flask-caching</a></a>
+              <ul>
+                <li><a href="#常用参数配置">常用参数配置</a></li>
+                <li><a href="#heading"></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="配置的最佳实践">配置的最佳实践</h2>
+<h3 id="变量的配置">变量的配置</h3>
+<ol>
+<li>通过调用自定义config.py文件中config字典，可以得到一个类，这个类里面定义的都是类变量，这些变量就是自定义的一些配置项。</li>
+<li>敏感信息通过读取环境变量获得。</li>
+<li>环境变量可以在Docker部署的时候确定，即docker-compose.yml，此文件不要放入到版本控制中。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import os
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+class Config:
+    &#34;&#34;&#34;base config&#34;&#34;&#34;
+    SECRET_KEY = os.environ.get(&#39;SECRET_KEY&#39;) or &#39;secret key&#39;
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+class ProductionConfig(Config):
+    &#34;&#34;&#34;运行环境配置&#34;&#34;&#34;
+    SQLALCHEMY_DATABASE_URI = os.environ.get(&#39;DATABASE_URL&#39;) or \
+        &#39;sqlite:///&#39; + os.path.join(BASEDIR, &#39;data.sqlite&#39;)
+......
+
+config = {
+    &#39;development&#39;: DevelopmentConfig,
+    &#39;testing&#39;: ProductionConfig,
+    &#39;production&#39;: ProductionConfig,
+    &#39;default&#39;: DevelopmentConfig
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">app = Flask(__name__)
+app.config.from_object(config[&#39;testing&#39;])
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="具体的变量">具体的变量</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;JSON_AS_ASCII&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>   <span class="c1"># 让jsonify返回的json串支持中文显</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="日志的配置">日志的配置</h3>
+<ol>
+<li>log配置，实现日志自动按日期生成日志文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">def make_dir(make_dir_path):
+    path = make_dir_path.strip()
+    if not os.path.exists(path):
+        os.makedirs(path)
+    return path
+
+
+log_dir_name = &#34;flask_logs&#34;
+log_file_name = (&#39;logger-&#39; +
+                 time.strftime(&#39;%Y-%m-%d&#39;, time.localtime(time.time())) +
+                 &#39;.log&#39;)
+log_file_folder = &#39;/var/log&#39; + os.sep + log_dir_name
+make_dir(log_file_folder)
+log_file_str = log_file_folder + os.sep + log_file_name
+log_level = logging.WARNING
+handler = logging.FileHandler(log_file_str, encoding=&#39;UTF-8&#39;)
+handler.setLevel(log_level)
+logging_format = logging.Formatter(&#39;%(asctime)s - %(levelname)s - %(filename)s \
+- %(funcName)s - %(lineno)s - %(message)s&#39;)
+handler.setFormatter(logging_format)
+
+app = Flask(__name__)
+
+app.logger.addHandler(handler)
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>需要一个定时任务，定时清掉日志。</li>
+</ol>
+<h3 id="应用工厂-app-factory">应用工厂 App Factory</h3>
+<ol>
+<li>Flask官方建议采用工厂的模式来创建应用</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">from flask import Flask
+from flask_mail import Mail
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import import_string
+ 
+mail = Mail()
+db = SQLAlchemy()
+ 
+blueprints = [
+    &#39;myapp.main:main&#39;,
+    &#39;myapp.admin:admin&#39;,
+]
+ 
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
+ 
+    # Load extensions
+    mail.init_app(app)
+    db.init_app(app)
+ 
+    # Load blueprints
+    for bp_name in blueprints:
+        bp = import_string(bp_name)
+        app.register_blueprint(bp)
+ 
+    return app
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">app = create_app(&#39;config&#39;)
+app.run(host=&#39;0.0.0.0&#39;, debug=True)
+</code></pre></td></tr></table>
+</div>
+</div><p>我们不在代码中直接创建应用，而是通过调用”create_app()”方法来返回一个应用对象，这个”create_app()”就是应用工厂方法。在工厂方法里，我们分别加载了配置，扩展和蓝图。</p>
+<h3 id="使用消息队列">使用消息队列</h3>
+<ol>
+<li>可参考<a href="https://github.com/timlardner/Docker-FlaskCeleryRabbitRedis" target="_blank" rel="noopener noreffer">timlardner/Docker-FlaskCeleryRabbitRedis</a>;</li>
+<li>参考<a href="https://mp.weixin.qq.com/s?__biz=MzI1ODAzMDY2NA==&amp;mid=2247484446&amp;idx=1&amp;sn=b91ad8e81d9ebc1f75995e124cc806b6&amp;chksm=ea0f2939dd78a02f042b922106d5860c4efc77ba1c8600cae9b41c9053824281e040a178fd9d&amp;mpshare=1&amp;scene=1&amp;srcid=0311sjqtEyYUGzwWa7ViaKWU&amp;pass_ticket=loo%2BacnyDhsVY9kWu3hzpVE2ZWjgCBeKfG8rma19zY8Kr7C%2FtjID7vxlCyBVKSnA#rd" target="_blank" rel="noopener noreffer">Web开发之旅&ndash;Flask使用Celery执行异步任务</a></li>
+<li>问题一<a href="https://www.cnblogs.com/cord/p/9263491.html" target="_blank" rel="noopener noreffer">Airflow: TypeError can&rsquo;t pickle memoryview objects</a></li>
+<li><a href="http://www.pythondoc.com/flask-celery/index.html" target="_blank" rel="noopener noreffer">http://www.pythondoc.com/flask-celery/index.html</a></li>
+</ol>
+<h4 id="celery">celery</h4>
+<ol>
+<li>使用task嵌套时, 子task调用间隔不能太小，尤其在子task间结果相互依赖，特别是都操作数据库。</li>
+<li>celery容器和APP容器分开运行，<a href="https://github.com/nickjj/build-a-saas-app-with-flask" target="_blank" rel="noopener noreffer">参考</a>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">celery
+----status
+--------AsyncResult    方法，获取任务ID的状态
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用cookiecutterhttpsgithubcomcookiecutter-flaskcookiecutter-flask"><em>使用<a href="https://github.com/cookiecutter-flask/cookiecutter-flask" target="_blank" rel="noopener noreffer">cookiecutter</a></em></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">myflaskapp
+|---autoapp.py（调用create_app）
+|---myflaskapp
+    |---app.py(创建create_app)
+    |---database.py(数据库)
+    |---extensions.py(flask扩展集合)
+    |---settings.py(配置)
+    |---models.py（自己觉得可以把公用的orm放在这）
+    |---public（其他业务）
+        |---forms.py
+        |---models.py
+        |---views.py
+        |---api.py(创建新的blueprint)
+    |---user（用户管理）
+        |---forms.py
+        |---models.py（ORM）
+        |---views.py(blueprint)
+        |---api.py（创建新的blueprint）
+    |---templates
+        |---public(专有的页面)
+        |---user（专有的页面）
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用dockerhttpsgithubcomtiangolouwsgi-nginx-flask-docker">使用<a href="https://github.com/tiangolo/uwsgi-nginx-flask-docker" target="_blank" rel="noopener noreffer">docker</a></h3>
+<h2 id="功能实现">功能实现</h2>
+<h3 id="认证">认证</h3>
+<p>==（注：站点认证使用flask-login，API认证使用flask-httpauth）==</p>
+<h4 id="在-flask-login-中如果你不特殊处理的话session-是在你关闭浏览器之后就失效的">在 ==Flask-Login== 中，如果你不特殊处理的话，session 是在你关闭浏览器之后就失效的。</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#34;自己控制 session 的过期时间&#34;
+session.permanent = True    &#34;首先需要设置 login_manager 的 session类型为永久的&#34;
+app.permanent_session_lifetime = timedelta(minutes=5)    &#34;然后再设置 session 的过期时间&#34;
+&#34;同时，还需要注意的是 cookie 的默认有效期其实是 一年 的，所以，我们最好也设置一下&#34;
+login_manager.remember_cookie_duration=timedelta(days=1)
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="flaskflask-script扩展与clickhttpwwwharmelcn201808flask-scripthtml"><a href="http://www.harmel.cn/2018/08/flask-script.html" target="_blank" rel="noopener noreffer">Flask：Flask-Script扩展与Click</a></h3>
+<h2 id="插件">插件</h2>
+<h3 id="用户相关登录权限角色">用户相关（登录、权限、角色）</h3>
+<h4 id="flask-principalhttpspythonhostedorgflask-principal"><a href="https://pythonhosted.org/Flask-Principal/" target="_blank" rel="noopener noreffer">Flask-Principal</a></h4>
+<ol>
+<li><a href="https://www.jianshu.com/p/a2d4cf7cc9e2" target="_blank" rel="noopener noreffer">基于Flask-Principal的权限控制</a></li>
+</ol>
+<h4 id="flask-login">[Flask-login]</h4>
+<h4 id="flask-httpauth">[Flask-httpauth]</h4>
+<h4 id="flask-cachinghttpsgithubcomsh4nksflask-caching"><a href="https://github.com/sh4nks/flask-caching" target="_blank" rel="noopener noreffer">Flask-caching</a></h4>
+<p>Flask-cache（已停止更新）的fork版。缓存支持。
+参考<a href="https://www.cnblogs.com/cwp-bg/p/9687005.html" target="_blank" rel="noopener noreffer">flask插件系列之flask_caching缓存</a></p>
+<h5 id="常用参数配置">常用参数配置</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">CACHE_TYPE:设置缓存的类型
+
+# 下面五个参数是所有的类型共有的
+CACHE_NO_NULL_WARNING = &#34;warning&#34; # null类型时的警告消息
+CACHE_ARGS = [] # 在缓存类实例化过程中解包和传递的可选列表，用来配置相关后端的额外的参数
+CACHE_OPTIONS = {}  # 可选字典,在缓存类实例化期间传递，也是用来配置相关后端的额外的键值对参数
+CACHE_DEFAULT_TIMEOUT # 默认过期/超时时间，单位为秒
+CACHE_THRESHOLD # 缓存的最大条目数
+
+CACHE_TYPE = null # 默认的缓存类型，无缓存
+CACHE_TYPE = &#39;simple&#39; # 使用本地python字典进行存储，线程非安全
+
+CACHE_TYPE = &#39;filesystem&#39; # 使用文件系统来存储缓存的值
+CACHE_DIR = &#34;&#34; # 文件目录
+
+CACHE_TYPE = &#39;memcached&#39; # 使用memcached服务器缓存
+CACHE_KEY_PREFIX # 设置cache_key的前缀
+CAHCE_MEMCACHED_SERVERS # 服务器地址的列表或元组
+CACHE_MEMCACHED_USERNAME # 用户名
+CACHE_MEMCACHED_PASSWORD # 密码
+
+CACHE_TYPE = &#39;uwsgi&#39; # 使用uwsgi服务器作为缓存
+CACHE_UWSGI_NAME # 要连接的uwsgi缓存实例的名称
+
+CACHE_TYPE = &#39;redis&#39; # 使用redis作为缓存
+CACHE_KEY_PREFIX # 设置cache_key的前缀
+CACHE_REDIS_HOST  # redis地址
+CACHE_REDIS_PORT  # redis端口
+CACHE_REDIS_PASSWORD # redis密码
+CACHE_REDIS_DB # 使用哪个数据库
+# 也可以一键配置
+CACHE_REDIS_URL 连接到Redis服务器的URL。示例redis://user:password@localhost:6379/2
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="heading"></h5>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+                </span><span><a href="/tags/flask/">FLASK</a>
+                </span><span><a href="/tags/python/">PYTHON</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-03-11</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-orm-python/" class="prev" rel="prev" title="后端-ORM-PYTHON"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-05-http%E5%8D%8F%E8%AE%AE/" class="next" rel="next" title="微服务架构笔记-网络协议">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>VSCODE - 标签 - 锦枫紫兰</title>
+        <link>/tags/vscode/</link>
+        <description>VSCODE - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 11 May 2021 17:39:35 &#43;0800</lastBuildDate><atom:link href="/tags/vscode/" rel="self" type="application/rss+xml" /><item>
+    <title>TOOLS VI非VIM</title>
+    <link>/post/tools-vi%E9%9D%9Evim/</link>
+    <pubDate>Tue, 11 May 2021 17:39:35 &#43;0800</pubDate><guid>/post/tools-vi%E9%9D%9Evim/</guid>
+    <description><![CDATA[vi 命令模式 输入:之后 `1,6 s/^/System.out.println(&rdquo; 2,$ s/^/新增的字符串 注：此为2行至尾行 `% s/^/System.out.println(&rdquo; 注：此为所有行]]></description>
+</item>
+<item>
+    <title>VSCODE</title>
+    <link>/post/tools-vscode/</link>
+    <pubDate>Sat, 02 Mar 2019 09:54:45 &#43;0000</pubDate><guid>/post/tools-vscode/</guid>
+    <description><![CDATA[1. 安装 1 sudo snap install code --classic 2. 配置 打开设置（快捷键Ctrl + ,）,里面有两个设置。 【一个】是USER SETTINGS（用户设置）也就是全局配置，其他项]]></description>
+</item>
+<item>
+    <title>chrome插件</title>
+    <link>/post/tools-chrome/</link>
+    <pubDate>Wed, 30 Jan 2019 10:22:21 &#43;0000</pubDate><guid>/post/tools-chrome/</guid>
+    <description><![CDATA[插件网站 1. t9tio/tomato-pie 不太好用 2. Awesome Screenshot 比较好用 3. Tampermonkey 3.1. 油猴脚本网站Greasy Fork 3.2. 编写油猴脚本 3.2.1. 元数据块 元数据块是描述脚本的一个用户脚本部分。它通常包含脚]]></description>
+</item>
+</channel>
+</rss>

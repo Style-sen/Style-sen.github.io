@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Ubuntu服务器系统及基础设施 - 锦枫紫兰</title><meta name="description" content="Ubuntu服务系统"><meta property="og:title" content="Ubuntu服务器系统及基础设施" />
+<meta property="og:description" content="Ubuntu服务系统" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E8%BF%90%E7%BB%B4-02-%E7%B3%BB%E7%BB%9F-ubuntu/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-01-23T09:47:48+00:00" />
+<meta property="article:modified_time" content="2019-01-23T09:47:48+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="Ubuntu服务器系统及基础设施"/>
+<meta name="twitter:description" content="Ubuntu服务系统"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E8%BF%90%E7%BB%B4-02-%E7%B3%BB%E7%BB%9F-ubuntu/" /><link rel="prev" href="/post/program-python-05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" /><link rel="next" href="/post/%E8%BF%90%E7%BB%B4-01-%E7%A1%AC%E4%BB%B6/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ubuntu服务器系统及基础设施",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E8%BF%90%E7%BB%B4-02-%E7%B3%BB%E7%BB%9F-ubuntu\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "运维","wordcount":  4766 ,
+        "url": "\/post\/%E8%BF%90%E7%BB%B4-02-%E7%B3%BB%E7%BB%9F-ubuntu\/","datePublished": "2019-01-23T09:47:48+00:00","dateModified": "2019-01-23T09:47:48+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "Ubuntu服务系统"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">Ubuntu服务器系统及基础设施</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-u盘安装">1. U盘安装</a></li>
+    <li><a href="#2-文件系统">2. 文件系统</a></li>
+    <li><a href="#3-系统管理">3. 系统管理</a>
+      <ul>
+        <li><a href="#31-shell终端">3.1. SHELL终端</a>
+          <ul>
+            <li><a href="#311-sh">3.1.1. SH</a></li>
+            <li><a href="#312-bash">3.1.2. BASH</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-path">3.2. PATH</a></li>
+        <li><a href="#33-systemctl">3.3. systemctl</a></li>
+        <li><a href="#34-iostat-查看磁盘io">3.4. <code>iostat</code> 查看磁盘IO</a></li>
+        <li><a href="#35-iotop-查看哪个进程磁盘读写最高">3.5. <code>iotop</code> 查看哪个进程磁盘读写最高</a></li>
+        <li><a href="#36-netstat">3.6. netstat</a></li>
+        <li><a href="#37-lsof">3.7. lsof</a></li>
+        <li><a href="#38-nc">3.8. nc</a></li>
+        <li><a href="#39-为网络连接设置文件描述符">3.9. 为网络连接设置文件描述符</a></li>
+        <li><a href="#310-包管理">3.10. 包管理</a></li>
+        <li><a href="#311-strace">3.11. STRACE</a></li>
+        <li><a href="#312-command">3.12. Command</a></li>
+        <li><a href="#313-shell脚本">3.13. shell脚本</a></li>
+        <li><a href="#314-定时任务">3.14. 定时任务</a>
+          <ul>
+            <li><a href="#3141-crontab命令">3.14.1. crontab命令</a></li>
+          </ul>
+        </li>
+        <li><a href="#315-系统日志">3.15. 系统日志</a>
+          <ul>
+            <li><a href="#3151-rsyslog-日志收集">3.15.1. rsyslog 日志收集</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-ssh访问">4. SSH访问</a>
+      <ul>
+        <li><a href="#41-常用操作">4.1. 常用操作</a></li>
+        <li><a href="#42-修改ssh默认端口安全第一步">4.2. 修改SSH默认端口（安全第一步）</a></li>
+        <li><a href="#43-增加系统管理员非超级管理员用户安全第二步">4.3. 增加系统管理员（非超级管理员）用户（安全第二步）</a></li>
+        <li><a href="#44-查看上方使用私钥登录取消密码登录安全第三步">4.4. 查看上方使用私钥登录，取消密码登录（安全第三步）</a></li>
+        <li><a href="#45-禁止root用户直接登录ssh安全第四步">4.5. 禁止root用户直接登录ssh（安全第四步）</a></li>
+        <li><a href="#46-ssh隧道">4.6. ssh隧道</a></li>
+        <li><a href="#47-连接问题排查方法">4.7. 连接问题排查方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-windows下工具">5. windows下工具</a>
+      <ul>
+        <li><a href="#51-webshell">5.1. webshell</a></li>
+        <li><a href="#52-haproxyhttpswwwhaproxyorg">5.2. <a href="https://www.haproxy.org/">HAProxy</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#6-系统管理工具">6. 系统管理工具</a>
+      <ul>
+        <li><a href="#61-webminhttpwwwwebmincom">6.1. <a href="http://www.webmin.com/">webmin</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#7-常用工具">7. 常用工具</a>
+      <ul>
+        <li><a href="#71-envsubst--将环境变量传递给文件">7.1. envsubst  将环境变量传递给文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-常见问题">8. 常见问题</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-u盘安装">1. U盘安装</h2>
+<ol>
+<li>windows 7以上系统；</li>
+<li>下载<a href="https://rufus.ie/" target="_blank" rel="noopener noreffer">Rufus</a>;</li>
+<li>下载Ubuntu server镜像；</li>
+<li>使用Rufus制作启动U盘；</li>
+<li>U盘启动即可安装。</li>
+</ol>
+<h2 id="2-文件系统">2. 文件系统</h2>
+<table>
+<thead>
+<tr>
+<th>根目录</th>
+<th>一级子目录</th>
+<th>二级子目录</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/usr</td>
+<td></td>
+<td></td>
+<td>这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录</td>
+</tr>
+<tr>
+<td></td>
+<td>/include</td>
+<td></td>
+<td>用户安装的lib库的头文件都在这里</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-系统管理">3. 系统管理</h2>
+<h3 id="31-shell终端">3.1. SHELL终端</h3>
+<h4 id="311-sh">3.1.1. SH</h4>
+<h4 id="312-bash">3.1.2. BASH</h4>
+<ol>
+<li>bash shell的命令分为两类：<code>外部命令</code>和<code>内部命令</code>。外部命令是通过系统调用或独立的程序实现的，如sed、awk等等。内部命令是由特殊的文件格式(.def)所实现，如cd、history、exec等等。</li>
+<li><code>fork</code>是linux的系统调用，用来创建子进程(child process)。子进程是父进程(parent process)的一个副本，从父进程那里获得一定的资源分配以及继承父进程的环境。子进程与父进程唯一不同的地方在于pid(process id)。</li>
+<li>环境变量只能单向从父进程传给子进程。不管子进程的环境变量如何变化，都不会影响父进程的环境变量。</li>
+<li><code>exec</code>命令不产生新的子进程。在执行时会把当前的shell process关闭，然后换到后面的命令继续执行。PID不变。</li>
+</ol>
+<h3 id="32-path">3.2. PATH</h3>
+<ol>
+<li>普通用户使用$PATH；</li>
+<li>使用sudo去执行一个程序时，出于安全的考虑，这个程序将在新的、最小化的环境中执行。也就是说，诸如PATH这样的环境变量，在sudo命令下已经被重置成默认的状态了。所以当一个刚初始化的PATH变量中不会包含你所要运行的程序所在的目录，用sudo去执行，你就会得到“command not found”的错误。
+要改变PATH在sudo会话中的初始值，打开/etc/sudoers文件，找到“secure_path”一行。当值执行sudo命令时，”secure_path“中包含的路径将被当做默认PATH变量使用。比如加入/usr/local/bin到其中：
+<code>Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin</code>
+更改会即可生效。</li>
+</ol>
+<h3 id="33-systemctl">3.3. systemctl</h3>
+<p>Systemctl是一个systemd(系统初始化程序，系统开始的第一个进程，pid为1)工具，主要负责控制systemd系统和服务管理器。</p>
+<h3 id="34-iostat-查看磁盘io">3.4. <code>iostat</code> 查看磁盘IO</h3>
+<ol>
+<li>avg-cpu：为总体CPU使用统计情况，对于多核CPU，这里为所有CPU的平均值;主要看iowait的值，它指示CPU用于等待io请求完成的时间。</li>
+<li>Device：为各磁盘设备的io统计信息。</li>
+<li>Device中各列含义:
+a. Device：设备名称
+b. tps：每秒进程下发的IO读、写请求数量
+c. Blk_read/s：每秒读扇区数量（一扇区为512bytes）
+d. Blk_wrtn/s：每秒写扇区数量
+e. Blk_read：取样时间间隔内读扇区总数量
+f. Blk_wrtn：取样时间间隔内写扇区总数量</li>
+<li><code>iostat 1 3</code>表示每隔1秒打印1次，共打印3次。iostat命令还有一个非常实用的选项-x，它可以显示更多的信息，也是一个最常用的选项.</li>
+<li>-d选项可以把CPU相关信息过滤掉，只显示磁盘相关信息:
+rrqm/s：每秒对该设备的读请求被合并次数，文件系统会对读取同块（block）的请求进行合并。
+wrqm/s：每秒对该设备的写请求被合并次数。
+r/s：每秒完成的读次数。
+w/s：每秒完成的写次数。
+rkB/s：每秒读数据量（kB为单位）。
+wkB/s：每秒写数据量（kB为单位）。
+avgrq-sz：平均每次IO操作的数据量（扇区数为单位）。
+avgqu-sz：平均等待处理的IO请求队列长度。
+await：平均每次IO请求等待时间（包括等待时间和处理时间，毫秒为单位）。
+svctm：平均每次IO请求的处理时间（毫秒为单位）。
+%util：采用周期内用于IO操作的时间比率，即IO队列非空的时间比率。</li>
+<li>最应该关注的是%util，磁盘使用率100%，其实就是%util的值为100%。</li>
+</ol>
+<h3 id="35-iotop-查看哪个进程磁盘读写最高">3.5. <code>iotop</code> 查看哪个进程磁盘读写最高</h3>
+<h3 id="36-netstat">3.6. netstat</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-t</td>
+<td>&ndash;tcp</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>&ndash;listening</td>
+</tr>
+</tbody>
+</table>
+<h3 id="37-lsof">3.7. lsof</h3>
+<ol>
+<li>列出打开文件，在linux中一切皆文件</li>
+</ol>
+<h3 id="38-nc">3.8. nc</h3>
+<ol>
+<li>验证网络连接.</li>
+</ol>
+<h3 id="39-为网络连接设置文件描述符">3.9. 为网络连接设置文件描述符</h3>
+<h3 id="310-包管理">3.10. 包管理</h3>
+<ol>
+<li>优先snap包管理器。</li>
+<li>系统中最好安装有一个版本的docker。</li>
+</ol>
+<h3 id="311-strace">3.11. STRACE</h3>
+<ol>
+<li>
+<p>strace常用来跟踪进程执行时的系统调用和所接收的信号。 在Linux世界，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">root@ubuntu:/usr# strace cat /dev/null 
+execve<span class="o">(</span><span class="s2">&#34;/bin/cat&#34;</span>, <span class="o">[</span><span class="s2">&#34;cat&#34;</span>, <span class="s2">&#34;/dev/null&#34;</span><span class="o">]</span>, <span class="o">[</span>/* <span class="m">22</span> vars */<span class="o">])</span> <span class="o">=</span> <span class="m">0</span>
+brk<span class="o">(</span>0<span class="o">)</span>                                  <span class="o">=</span> 0xab1000
+access<span class="o">(</span><span class="s2">&#34;/etc/ld.so.nohwcap&#34;</span>, F_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>
+mmap<span class="o">(</span>NULL, 8192, PROT_READ<span class="p">|</span>PROT_WRITE, MAP_PRIVATE<span class="p">|</span>MAP_ANONYMOUS, -1, 0<span class="o">)</span> <span class="o">=</span> 0x7f29379a7000
+access<span class="o">(</span><span class="s2">&#34;/etc/ld.so.preload&#34;</span>, R_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>
+...
+brk<span class="o">(</span>0<span class="o">)</span> <span class="o">=</span> 0xab1000
+brk<span class="o">(</span>0xad2000<span class="o">)</span> <span class="o">=</span> 0xad2000
+fstat<span class="o">(</span>1, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFCHR<span class="p">|</span>0620, <span class="nv">st_rdev</span><span class="o">=</span>makedev<span class="o">(</span>136, 0<span class="o">)</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>
+open<span class="o">(</span><span class="s2">&#34;/dev/null&#34;</span>, O_RDONLY<span class="o">)</span> <span class="o">=</span> <span class="m">3</span>
+fstat<span class="o">(</span>3, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFCHR<span class="p">|</span>0666, <span class="nv">st_rdev</span><span class="o">=</span>makedev<span class="o">(</span>1, 3<span class="o">)</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>
+read<span class="o">(</span>3, <span class="s2">&#34;&#34;</span>, 32768<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+close<span class="o">(</span>3<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+close<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+close<span class="o">(</span>2<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+exit_group<span class="o">(</span>0<span class="o">)</span> <span class="o">=</span> ?
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>每一行都是一条系统调用，等号左边是系统调用的函数名及其参数，右边是该调用的返回值。</p>
+</li>
+<li>
+<p>strace 显示这些调用的参数并返回符号形式的值。strace 从内核接收信息，而且不需要以任何特殊的方式来构建内核。</p>
+</li>
+</ol>
+<h3 id="312-command">3.12. Command</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xargs</td>
+<td><a href="https://www.runoob.com/linux/linux-comm-xargs.html" target="_blank" rel="noopener noreffer">Linux xargs 命令</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="313-shell脚本">3.13. shell脚本</h3>
+<ol>
+<li>在脚本中使用export设置环境变量，<code>./</code>之后没有生效。原因是执行脚本用./test.sh的方式，如果采用source test.sh，则环境变量会生效。</li>
+<li><code>直接执行一个脚本文件是在一个子shell中运行的，而source则是在当前shell环境中运行的</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#! /bin/zsh
+</span><span class="cp"></span>
+<span class="k">function</span> mimvp_randnum_uuid<span class="o">(){</span>
+    <span class="nv">min</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nv">max</span><span class="o">=</span><span class="nv">$2</span>
+    <span class="nv">mid</span><span class="o">=</span><span class="k">$((</span><span class="nv">$max</span><span class="o">-</span><span class="nv">$min</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
+    <span class="nv">num</span><span class="o">=</span><span class="k">$(</span>head -n <span class="m">20</span> /proc/sys/kernel/random/uuid <span class="p">|</span> cksum <span class="p">|</span> cut -f1 -d <span class="s1">&#39; &#39;</span><span class="k">)</span>
+    <span class="nv">randnum</span><span class="o">=</span><span class="k">$((</span><span class="nv">$num</span><span class="o">%</span><span class="nv">$mid</span><span class="o">+</span><span class="nv">$min</span><span class="k">))</span>
+    <span class="nb">echo</span> <span class="nv">$randnum</span>
+<span class="o">}</span>
+
+<span class="k">function</span> print_randnum_uuid<span class="o">(){</span>
+    <span class="k">for</span> i in <span class="o">{</span>1..50<span class="o">}</span><span class="p">;</span>
+    <span class="k">do</span> 
+        <span class="nv">randnum</span><span class="o">=</span><span class="k">$(</span>mimvp_randnum_uuid <span class="m">40000000</span> 50000000<span class="k">)</span>
+        <span class="c1">#echo -e &#34;$i \t $randnum&#34;</span>
+        <span class="nb">echo</span> <span class="nv">$randnum</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+
+print_randnum_uuid
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="314-定时任务">3.14. 定时任务</h3>
+<p>参考<a href="https://www.lulinux.com/archives/2258" target="_blank" rel="noopener noreffer">Ubuntu 16.04设置crontab定时计划任务</a>
+参考<a href="https://www.cnblogs.com/peida/archive/2013/01/08/2850483.html" target="_blank" rel="noopener noreffer">每天一个linux命令（50）：crontab命令</a></p>
+<ol>
+<li>crond是linux下用来周期性的执行某种任务或等待处理某些事件的一个守护进程，与windows下的计划任务类似，当安装完成操作系统后，默认会安装此服务工具（<code>如果使用的容器镜像，可能被裁减</code>），并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。</li>
+<li>Linux下的任务调度分为两类，<code>系统任务调度</code>和<code>用户任务调度</code>。</li>
+<li>在<code>/etc/crontab</code>文件，是系统任务调度的配置文件。</li>
+<li>用户任务调度：用户定期要执行的工作。用户可以使用 crontab 工具来定制自己的计划任务。所有用户定义的crontab 文件都被保存在 <code>/var/spool/cron/crontabs</code>目录中。其文件名与用户名一致。</li>
+</ol>
+<h4 id="3141-crontab命令">3.14.1. crontab命令</h4>
+<h3 id="315-系统日志">3.15. 系统日志</h3>
+<h4 id="3151-rsyslog-日志收集">3.15.1. rsyslog 日志收集</h4>
+<h2 id="4-ssh访问">4. SSH访问</h2>
+<h3 id="41-常用操作">4.1. 常用操作</h3>
+<ol>
+<li>
+<p>上传目录到服务器
+<code>scp  -r /tmp/local_dir username@servername:remote_dir</code></p>
+</li>
+<li>
+<p>免密登录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#客户端配置</span>
+ssh-keygen -t rsa  //（会有提示输入密码，直接回车即可）
+<span class="c1"># 之后会在家目录下建立 .ssh 文件夹，内有id_rsa（私钥）和id_rsa.pub（公钥）两个文件</span>
+<span class="c1"># 将公钥文件上传到服务器上server的家目录</span>
+scp ~/.ssh/id_rsa.pub server@192.168.0.10:~
+
+<span class="c1"># 服务器端配置</span>
+<span class="c1"># 使用server用户登录并进入家目录</span>
+<span class="c1"># cd /home/server</span>
+<span class="c1"># 建立 .ssh 文件夹</span>
+mkdir .ssh<span class="p">;</span>
+<span class="c1"># 修改文件夹权限【Ubuntu和Centos一样】</span>
+chmod <span class="m">700</span> .ssh
+<span class="c1"># 将客户端传过来的id_rsa.pub文件中的内容加入到authorized_keys中</span>
+cat id_rsa.pub &gt;&gt; .ssh/authorized_keys
+chmod <span class="m">644</span> .ssh/authorized_keys 【Ubuntu和Centos不一样】
+<span class="c1">#之后你从客户端使用 client 用户登录服务器的server用户时就不需要再输入密码了，但是第一次连接时还是会提示你进行远程主机公钥指纹核对并将其存入 ~/.ssh/known_hosts 文件。</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>免密登录之后，还<code>需要输入密码</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">【Centos】
+首先我们就要去查看系统的日志文件
+tail /var/log/secure -n <span class="m">20</span> 【tail /var/log/auth.log】
+发现问题的所在：Authentication refused: bad ownership or modes <span class="k">for</span> file
+从字面上可以看出是目录的属主和权限配置不当，查找资料得知：SSH不希望home目录和~/.ssh目录对组有写权限，通过下面几条命令改下
+chmod g-w /home/zhangming
+chmod <span class="m">700</span> /home/zhangming/.ssh
+chmod <span class="m">600</span> /home/zhangming/.ssh/authorized_keys
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>多个私钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">临时生效
+ssh-agent bash
+<span class="c1"># ssh-add 私钥名称</span>
+ssh-add id_rsa
+
+修改配置文件
+<span class="nb">cd</span>  ~/.ssh
+touch  config
+chmod  <span class="m">600</span>  ~/.ssh/config
+
+<span class="c1">#主机服务器  ,</span> 
+Host         别名
+HostName     填入云服务器ip
+Port         <span class="m">22</span>
+User    用户名
+IdentityFile ~/.ssh/私钥文件名
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="42-修改ssh默认端口安全第一步">4.2. 修改SSH默认端口（安全第一步）</h3>
+<ol>
+<li>
+<p>备份原sshd配置文件<code>cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup</code></p>
+</li>
+<li>
+<p>修改sshd_config文件，打开<code>port 22</code>,再新增一个Port，保存。</p>
+</li>
+<li>
+<p>重启sshd服务，<code>systemctl restart sshd</code>或<code>/etc/init.d/sshd restart</code>或<code>/etc/init.d/ssh restart</code>。ss -ntl 或 netstat -ntl 查看一下端口。</p>
+</li>
+<li>
+<p>防火墙（iptables）、安全组（ECS）规则设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="m">60022</span> -j ACCEPT
+$ systemctl restart iptables.service
+$ systemctl restart sshd.service
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="43-增加系统管理员非超级管理员用户安全第二步">4.3. 增加系统管理员（非超级管理员）用户（安全第二步）</h3>
+<ol>
+<li>
+<p>添加新用户<code>sudo useradd mangues</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">useradd与adduser都是创建新的用户
+1、useradd在使用该命令创建用户是不会在/home下自动创建与用户名同名的用户目录，而且不会自动选择shell版本，也没有设置密码，那么这个用户是不能登录的，需要使用passwd命令修改密码。
+2、adduser在使用该命令创建用户是会在/home下自动创建与用户名同名的用户目录，系统shell版本，会在创建时会提示输入密码，更加友好。
+————————————————
+版权声明：本文为CSDN博主「mangues」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u012915455/java/article/details/80080005
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改ssh配置<code>sudo vim /etc/ssh/sshd_config</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">AllowUsers mangues mangues@192.168.0.1    //允许 mangues 和从 192.168.0.1 登录的 mangues 帐户通过 SSH 登录系统。
+DenyUsers mangues  // 黑名单
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>/etc/hosts.allow</code>和<code>/etc/hosts.deny</code>这两个文件。</p>
+</li>
+<li>
+<p>将用户放进sudoers中，<code>sudo usermod -a -G sudo hduser</code>和<code>sudo adduser ostechnix sudo</code>。</p>
+</li>
+<li>
+<p>移除用户的sudo权限，<code>sudo deluser ostechnix sudo</code>。</p>
+</li>
+</ol>
+<h3 id="44-查看上方使用私钥登录取消密码登录安全第三步">4.4. 查看上方使用私钥登录，取消密码登录（安全第三步）</h3>
+<ol>
+<li>在<code>/etc/ssh/sshd_config</code>配置文件中设置以下参数<code>PasswordAuthentication  no</code>。</li>
+</ol>
+<h3 id="45-禁止root用户直接登录ssh安全第四步">4.5. 禁止root用户直接登录ssh（安全第四步）</h3>
+<ol>
+<li>在<code>/etc/ssh/sshd_config</code>配置文件中设置以下参数<code>PermitRootLogin  no</code>。</li>
+<li>禁用 root 用户远程登录, root登录时可能报用户名或者密码错误。如果您需要使用root进行远程登录, 需要通过其他方式(如vnc)连接到服务器.</li>
+</ol>
+<h3 id="46-ssh隧道">4.6. ssh隧道</h3>
+<ol>
+<li>
+<p><code>ssh -Nfg -L [本地主机]:[本地端口]:[目标机地址]:[目标机端口] [中间机IP]</code></p>
+</li>
+<li>
+<p>这里我们用到了SSH客户端的三个参数，下面我们一一做出解释：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">-N 告诉SSH客户端，这个连接不需要执行任何命令，仅仅做端口转发
+-f 告诉SSH客户端在后台运行
+-L 做本地映射端口
+-g 指定该选项表示允许外界主机连接本地转发端口
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="47-连接问题排查方法">4.7. 连接问题排查方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 停止sshd服务
+service sshd stop
+2. 前台运行sshd,可以看到连接时的打印信息
+/usr/sbin/sshd -d
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-windows下工具">5. windows下工具</h2>
+<ol>
+<li><a href="https://cmder.net/" target="_blank" rel="noopener noreffer">cmder</a>类linux终端，支持很多linux命令</li>
+<li><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="noopener noreffer">putty</a>小而美</li>
+<li>注：putty支持putty私钥，不支持openssh密钥，需要转换。<a href="https://blog.csdn.net/icbm/article/details/89391093" target="_blank" rel="noopener noreffer">Unable to use key file &ldquo;xxx&rdquo; (OpenSSH SSH-2 private key)</a></li>
+</ol>
+<h3 id="51-webshell">5.1. webshell</h3>
+<ol>
+<li><a href="https://github.com/huashengdun/webssh" target="_blank" rel="noopener noreffer">huashengdun/webssh</a>功能较简单;</li>
+<li><a href="https://github.com/liftoff/GateOne" target="_blank" rel="noopener noreffer">liftoff/GateOne</a>功能强大，代码也很大。</li>
+</ol>
+<h3 id="52-haproxyhttpswwwhaproxyorg">5.2. <a href="https://www.haproxy.org/" target="_blank" rel="noopener noreffer">HAProxy</a></h3>
+<ol>
+<li><a href="https://blog.csdn.net/muye0503/article/details/45721411" target="_blank" rel="noopener noreffer">让一个端口同时做两件事：http/https和ssh</a></li>
+</ol>
+<h2 id="6-系统管理工具">6. 系统管理工具</h2>
+<h3 id="61-webminhttpwwwwebmincom">6.1. <a href="http://www.webmin.com/" target="_blank" rel="noopener noreffer">webmin</a></h3>
+<ol>
+<li>ubuntu上下载deb文件之后，直接安装即开始运行，可以通过<code>https://localhost:10000</code>访问。</li>
+</ol>
+<h2 id="7-常用工具">7. 常用工具</h2>
+<h3 id="71-envsubst--将环境变量传递给文件">7.1. envsubst  将环境变量传递给文件</h3>
+<h2 id="8-常见问题">8. 常见问题</h2>
+<ol>
+<li><a href="https://www.cnblogs.com/airdot/p/9688530.html" target="_blank" rel="noopener noreffer">ubuntu-18.04 设置开机启动脚本</a></li>
+<li><a href="https://www.cnblogs.com/jianxuanbing/p/10042892.html" target="_blank" rel="noopener noreffer">Ubuntu 18.04 Server 设置静态IP</a></li>
+<li><a href="https://blog.csdn.net/nick19860328/article/details/53533931" target="_blank" rel="noopener noreffer">Ubuntu 16.04 DNS 修改 /etc/resolv.conf 被清空 或重启不生效解决</a></li>
+<li><a href="https://www.cnblogs.com/breezey/p/9155988.html" target="_blank" rel="noopener noreffer">Ubuntu 18.04设置dns</a></li>
+<li>[Ubuntu安装软件出现依赖问题]一般是由于依赖老版本，但是已经安装了新版本，此时可以使用<code>apitude</code>工具，不接受推荐，使用降低版本。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-01-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-python-05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="prev" rel="prev" title="Python-面向对象"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E8%BF%90%E7%BB%B4-01-%E7%A1%AC%E4%BB%B6/" class="next" rel="next" title="服务器硬件">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

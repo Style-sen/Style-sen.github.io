@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>设计模式-结构型 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="设计模式-结构型" />
+<meta property="og:description" content="1. 结构型 结构型模式主要总结了一些类或对象组合在一起的经典结构，这些经典的结构可以解决特定应用场景的问题。 常用的有：代理模式、桥接模式、装饰者" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3-%E7%BB%93%E6%9E%84%E5%9E%8B/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-08-29T11:59:59+00:00" />
+<meta property="article:modified_time" content="2020-08-29T11:59:59+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="设计模式-结构型"/>
+<meta name="twitter:description" content="1. 结构型 结构型模式主要总结了一些类或对象组合在一起的经典结构，这些经典的结构可以解决特定应用场景的问题。 常用的有：代理模式、桥接模式、装饰者"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3-%E7%BB%93%E6%9E%84%E5%9E%8B/" /><link rel="prev" href="/post/program-php-%E5%9F%BA%E7%A1%80/" /><link rel="next" href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4-%E8%A1%8C%E4%B8%BA%E5%9E%8B/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "设计模式-结构型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3-%E7%BB%93%E6%9E%84%E5%9E%8B\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "设计模式, PROGRAM","wordcount":  6331 ,
+        "url": "\/post\/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3-%E7%BB%93%E6%9E%84%E5%9E%8B\/","datePublished": "2020-08-29T11:59:59+00:00","dateModified": "2020-08-29T11:59:59+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">设计模式-结构型</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-结构型">1. 结构型</a>
+          <ul>
+            <li><a href="#11-代理模式">1.1. 代理模式</a>
+              <ul>
+                <li><a href="#111-第一种方法">1.1.1. 第一种方法</a></li>
+                <li><a href="#112-第二种方法">1.1.2. 第二种方法</a></li>
+                <li><a href="#113-第三种方法">1.1.3. 第三种方法</a></li>
+                <li><a href="#114-应用场景比如egg中middleware">1.1.4. 应用场景(比如egg中middleware)</a>
+                  <ul>
+                    <li><a href="#1141-业务系统的非功能性需求开发">1.1.4.1. 业务系统的非功能性需求开发</a></li>
+                    <li><a href="#1142-代理模式在-rpc缓存中的应用">1.1.4.2. 代理模式在 RPC、缓存中的应用</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#12-桥接模式">1.2. 桥接模式</a>
+              <ul>
+                <li><a href="#121-jdbc">1.2.1. JDBC</a></li>
+                <li><a href="#122-应用举例">1.2.2. 应用举例</a></li>
+              </ul>
+            </li>
+            <li><a href="#13-装饰者模式">1.3. 装饰者模式</a>
+              <ul>
+                <li><a href="#131-java-io-类的奇怪用法">1.3.1. Java IO 类的“奇怪”用法</a></li>
+                <li><a href="#132-比较">1.3.2. 比较</a></li>
+              </ul>
+            </li>
+            <li><a href="#14-适配器模式">1.4. 适配器模式</a>
+              <ul>
+                <li><a href="#141-why">1.4.1. WHY</a></li>
+                <li><a href="#142-应用">1.4.2. 应用</a></li>
+                <li><a href="#143-比较">1.4.3. 比较</a></li>
+              </ul>
+            </li>
+            <li><a href="#15-门面模式">1.5. 门面模式</a>
+              <ul>
+                <li><a href="#151-好处">1.5.1. 好处</a></li>
+              </ul>
+            </li>
+            <li><a href="#16-组合模式">1.6. 组合模式</a>
+              <ul>
+                <li><a href="#161-应用">1.6.1. 应用</a></li>
+              </ul>
+            </li>
+            <li><a href="#17-享元模式">1.7. 享元模式</a>
+              <ul>
+                <li><a href="#171-应用">1.7.1. 应用</a></li>
+                <li><a href="#172-比较">1.7.2. 比较</a></li>
+                <li><a href="#173-java中应用">1.7.3. java中应用</a>
+                  <ul>
+                    <li><a href="#1731-integer">1.7.3.1. Integer</a></li>
+                    <li><a href="#1732-string">1.7.3.2. String</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h3 id="1-结构型">1. 结构型</h3>
+<ol>
+<li>结构型模式主要总结了一些<code>类或对象组合在一起</code>的经典结构，这些经典的结构可以解决特定应用场景的问题。</li>
+<li>常用的有：代理模式、桥接模式、装饰者模式、适配器模式。不常用的有：门面模式、组合模式、享元模式。</li>
+</ol>
+<h4 id="11-代理模式">1.1. 代理模式</h4>
+<ol>
+<li>在不改变原始类（或叫被代理类）代码的情况下，通过引入代理类来给原始类附加功能。</li>
+</ol>
+<h5 id="111-第一种方法">1.1.1. 第一种方法</h5>
+<ol>
+<li>代理类和原始类需要实现相同的接口。将原始类依赖注入到代理类中。</li>
+</ol>
+<h5 id="112-第二种方法">1.1.2. 第二种方法</h5>
+<ol>
+<li>【如果不知道原始类的接口】。一般都是采用继承的方式。让代理类继承原始类（使用super），然后扩展附加功能。</li>
+</ol>
+<h5 id="113-第三种方法">1.1.3. 第三种方法</h5>
+<ol>
+<li>【如果需要代理的类太多】可以使用<code>动态代理</code>来解决这个问题。所谓动态代理（Dynamic Proxy），就是我们不事先为每个原始类编写代理类，而是在运行的时候，动态地创建原始类对应的代理类，然后在系统中用代理类替换掉原始类。</li>
+<li>Java 语言本身就已经提供了动态代理的语法（实际上，动态代理底层依赖的就是 Java 的反射语法）.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+public class MetricsCollectorProxy {
+  private MetricsCollector metricsCollector;
+
+  public MetricsCollectorProxy() {
+    this.metricsCollector = new MetricsCollector();
+  }
+
+  public Object createProxy(Object proxiedObject) {
+    Class&lt;?&gt;[] interfaces = proxiedObject.getClass().getInterfaces();
+    DynamicProxyHandler handler = new DynamicProxyHandler(proxiedObject);
+    return Proxy.newProxyInstance(proxiedObject.getClass().getClassLoader(), interfaces, handler);
+  }
+
+  private class DynamicProxyHandler implements InvocationHandler {
+    private Object proxiedObject;
+
+    public DynamicProxyHandler(Object proxiedObject) {
+      this.proxiedObject = proxiedObject;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+      long startTimestamp = System.currentTimeMillis();
+      Object result = method.invoke(proxiedObject, args);
+      long endTimeStamp = System.currentTimeMillis();
+      long responseTime = endTimeStamp - startTimestamp;
+      String apiName = proxiedObject.getClass().getName() + &#34;:&#34; + method.getName();
+      RequestInfo requestInfo = new RequestInfo(apiName, responseTime, startTimestamp);
+      metricsCollector.recordRequest(requestInfo);
+      return result;
+    }
+  }
+}
+
+//MetricsCollectorProxy使用举例
+MetricsCollectorProxy proxy = new MetricsCollectorProxy();
+IUserController userController = (IUserController) proxy.createProxy(new UserController());
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><code>Spring AOP 底层的实现原理就是基于动态代理</code>。用户配置好需要给哪些类创建代理，并定义好在执行原始类的业务代码前后执行哪些附加功能。Spring 为这些类创建动态代理对象，并在 JVM 中替代原始类对象。原本在代码中执行的原始类的方法，被换作执行代理类的方法，也就实现了给原始类添加附加功能的目的。</li>
+</ol>
+<h5 id="114-应用场景比如egg中middleware">1.1.4. 应用场景(比如egg中middleware)</h5>
+<h6 id="1141-业务系统的非功能性需求开发">1.1.4.1. 业务系统的非功能性需求开发</h6>
+<ol>
+<li>比如：监控、统计、鉴权、限流、事务、幂等、日志。我们将这些附加功能与业务功能解耦，放到代理类中统一处理，让程序员只需要关注业务方面的开发。</li>
+<li>这部分工作都是可以在 Spring AOP 切面中完成的。</li>
+</ol>
+<h6 id="1142-代理模式在-rpc缓存中的应用">1.1.4.2. 代理模式在 RPC、缓存中的应用</h6>
+<ol>
+<li>通过远程代理，将网络通信、数据编解码等细节隐藏起来。</li>
+<li>针对获取用户个人信息的需求，我们可以开发两个接口，一个支持缓存，一个支持实时查询。</li>
+</ol>
+<h4 id="12-桥接模式">1.2. 桥接模式</h4>
+<ol>
+<li>将抽象和实现解耦，让它们可以独立变化。</li>
+<li>一个类存在两个（或多个）独立变化的维度，我们通过组合的方式，让这两个（或多个）维度可以独立进行扩展。</li>
+<li>通过组合关系来替代继承关系，避免继承层次的指数级爆炸。</li>
+</ol>
+<h5 id="121-jdbc">1.2.1. JDBC</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">
+<span class="kn">package</span> <span class="nn">com.mysql.jdbc</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Driver</span> <span class="kd">extends</span> <span class="n">NonRegisteringDriver</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Driver</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">registerDriver</span><span class="o">(</span><span class="k">new</span> <span class="n">Driver</span><span class="o">());</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SQLException</span> <span class="n">E</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;Can&#39;t register driver!&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Construct a new driver and register it with DriverManager
+</span><span class="cm">   * @throws SQLException if a database error occurs.
+</span><span class="cm">   */</span>
+  <span class="kd">public</span> <span class="nf">Driver</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+    <span class="c1">// Required for Class.forName().newInstance()
+</span><span class="c1"></span>  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>执行 Class.forName(“com.mysql.jdbc.Driver”) 这条语句的时候，实际上是做了两件事情。第一件事情是要求 JVM 查找并加载指定的 Driver 类，第二件事情是执行该类的静态代码，也就是将 MySQL Driver 注册到 DriverManager 类中。</li>
+<li>当我们把具体的 Driver 实现类（比如，com.mysql.jdbc.Driver）注册到 DriverManager 之后，后续所有对 JDBC 接口的调用，都会委派到对具体的 Driver 实现类来执行。而 Driver 实现类都<code>实现了相同的接口（java.sql.Driver ）</code>，这也是可以灵活切换 Driver 的原因。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+public class DriverManager {
+  private final static CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = new CopyOnWriteArrayList&lt;DriverInfo&gt;();
+
+  //...
+  static {
+    loadInitialDrivers();
+    println(&#34;JDBC DriverManager initialized&#34;);
+  }
+  //...
+
+  public static synchronized void registerDriver(java.sql.Driver driver) throws SQLException {
+    if (driver != null) {
+      registeredDrivers.addIfAbsent(new DriverInfo(driver));
+    } else {
+      throw new NullPointerException();
+    }
+  }
+
+  public static Connection getConnection(String url, String user, String password) throws SQLException {
+    java.util.Properties info = new java.util.Properties();
+    if (user != null) {
+      info.put(&#34;user&#34;, user);
+    }
+    if (password != null) {
+      info.put(&#34;password&#34;, password);
+    }
+    return (getConnection(url, info, Reflection.getCallerClass()));
+  }
+  //...
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>“抽象”，指的并非“抽象类”或“接口”，而是跟具体的数据库无关的、被抽象出来的一套“类库”。具体的 Driver（比如，com.mysql.jdbc.Driver）就相当于“实现”。注意，这里所说的“实现”，也并非指“接口的实现类”，而是跟具体数据库相关的一套“类库”。JDBC 和 Driver 独立开发，通过对象之间的组合关系，组装在一起。JDBC 的所有逻辑操作，最终都委托给 Driver 来执行。</li>
+</ol>
+<h5 id="122-应用举例">1.2.2. 应用举例</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 消息发送
+public interface MsgSender {
+  void send(String message);
+}
+
+public class TelephoneMsgSender implements MsgSender {
+  private List&lt;String&gt; telephones;
+
+  public TelephoneMsgSender(List&lt;String&gt; telephones) {
+    this.telephones = telephones;
+  }
+
+  @Override
+  public void send(String message) {
+    //...
+  }
+
+}
+
+public class EmailMsgSender implements MsgSender {
+  // 与TelephoneMsgSender代码结构类似，所以省略...
+}
+
+public class WechatMsgSender implements MsgSender {
+  // 与TelephoneMsgSender代码结构类似，所以省略...
+}
+
+public abstract class Notification {
+  protected MsgSender msgSender;
+
+  public Notification(MsgSender msgSender) {
+    this.msgSender = msgSender;
+  }
+
+  public abstract void notify(String message);
+}
+
+public class SevereNotification extends Notification {
+  public SevereNotification(MsgSender msgSender) {
+    super(msgSender);
+  }
+
+  @Override
+  public void notify(String message) {
+    msgSender.send(message);
+  }
+}
+
+public class UrgencyNotification extends Notification {
+  // 与SevereNotification代码结构类似，所以省略...
+}
+public class NormalNotification extends Notification {
+  // 与SevereNotification代码结构类似，所以省略...
+}
+public class TrivialNotification extends Notification {
+  // 与SevereNotification代码结构类似，所以省略...
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="13-装饰者模式">1.3. 装饰者模式</h4>
+<h5 id="131-java-io-类的奇怪用法">1.3.1. Java IO 类的“奇怪”用法</h5>
+<ol>
+<li>需要附加更多的增强功能，那就会导致组合爆炸，<code>类继承结构变得无比复杂</code>，代码既不好扩展，也不好维护。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+public abstract class InputStream {
+  //...
+  public int read(byte b[]) throws IOException {
+    return read(b, 0, b.length);
+  }
+  
+  public int read(byte b[], int off, int len) throws IOException {
+    //...
+  }
+  
+  public long skip(long n) throws IOException {
+    //...
+  }
+
+  public int available() throws IOException {
+    return 0;
+  }
+  
+  public void close() throws IOException {}
+
+  public synchronized void mark(int readlimit) {}
+    
+  public synchronized void reset() throws IOException {
+    throw new IOException(&#34;mark/reset not supported&#34;);
+  }
+
+  public boolean markSupported() {
+    return false;
+  }
+}
+
+public class BufferedInputStream extends InputStream {
+  protected volatile InputStream in;
+
+  protected BufferedInputStream(InputStream in) {
+    this.in = in;
+  }
+  
+  //...实现基于缓存的读数据接口...  
+}
+
+public class DataInputStream extends InputStream {
+  protected volatile InputStream in;
+
+  protected DataInputStream(InputStream in) {
+    this.in = in;
+  }
+  
+  //...实现读取基本类型数据的接口
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>装饰器类和原始类继承同样的父类</code>，这样我们可以对原始类<code>“嵌套”多个装饰器类</code>。</li>
+<li><code>装饰器类是对功能的增强</code>，这也是装饰器模式应用场景的一个重要特点。</li>
+<li>为了避免代码重复，Java IO 抽象出了一个装饰器父类 FilterInputStream，代码实现如下所示。InputStream 的所有的装饰器类（BufferedInputStream、DataInputStream）都继承自这个装饰器父类。这样，装饰器类只需要实现它需要增强的方法就可以了，其他方法继承装饰器父类的默认实现。</li>
+</ol>
+<h5 id="132-比较">1.3.2. 比较</h5>
+<ol>
+<li>代理模式中，代理类附加的是跟原始类无关的功能，而在装饰器模式中，装饰器类附加的是跟原始类相关的增强功能。</li>
+</ol>
+<h4 id="14-适配器模式">1.4. 适配器模式</h4>
+<ol>
+<li>它的两种实现方式，<code>类适配器（使用继承关系来实现）</code>和对象适配器(使用组合关系来实现)，以及 5 种常见的应用场景。</li>
+<li>将不兼容的接口转换为可兼容的接口。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 类适配器: 基于继承
+public interface ITarget {
+  void f1();
+  void f2();
+  void fc();
+}
+
+public class Adaptee {
+  public void fa() { //... }
+  public void fb() { //... }
+  public void fc() { //... }
+}
+
+public class Adaptor extends Adaptee implements ITarget {
+  public void f1() {
+    super.fa();
+  }
+  
+  public void f2() {
+    //...重新实现f2()...
+  }
+  
+  // 这里fc()不需要实现，直接继承自Adaptee，这是跟对象适配器最大的不同点
+}
+
+// 对象适配器：基于组合
+public interface ITarget {
+  void f1();
+  void f2();
+  void fc();
+}
+
+public class Adaptee {
+  public void fa() { //... }
+  public void fb() { //... }
+  public void fc() { //... }
+}
+
+public class Adaptor implements ITarget {
+  private Adaptee adaptee;
+  
+  public Adaptor(Adaptee adaptee) {
+    this.adaptee = adaptee;
+  }
+  
+  public void f1() {
+    adaptee.fa(); //委托给Adaptee
+  }
+  
+  public void f2() {
+    //...重新实现f2()...
+  }
+  
+  public void fc() {
+    adaptee.fc();
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>【使用类适配器还是对象适配器】：判断的标准主要有两个，一个是 Adaptee 接口的个数，另一个是 Adaptee 和 ITarget 的契合程度。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">如果 Adaptee 接口并不多，那两种实现方式都可以。
+如果 Adaptee 接口很多，而且 Adaptee 和 ITarget 接口定义大部分都相同，那我们推荐使用类适配器，因为 Adaptor 复用父类 Adaptee 的接口，比起对象适配器的实现方式，Adaptor 的代码量要少一些。
+如果 Adaptee 接口很多，而且 Adaptee 和 ITarget 接口定义大部分都不相同，那我们推荐使用对象适配器，因为组合结构相对于继承更加灵活。
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="141-why">1.4.1. WHY</h5>
+<ol>
+<li>适配器模式可以看作一种“补偿模式”，用来补救设计上的缺陷。应用这种模式算是“无奈之举”。</li>
+<li>封装有缺陷的接口设计.</li>
+<li>统一多个类的接口设计:通过适配器模式，将它们的接口适配为统一的接口定义，然后我们就可以使用<code>多态</code>的特性来复用代码逻辑。[要对用户输入的文本内容做敏感词过滤，为了提高过滤的召回率，我们引入了多款第三方敏感词过滤系统，依次对用户输入的内容进行过滤，过滤掉尽可能多的敏感词。]</li>
+<li>替换依赖的外部系统</li>
+<li>兼容老版本接口</li>
+<li>适配不同格式的数据</li>
+</ol>
+<h5 id="142-应用">1.4.2. 应用</h5>
+<ol>
+<li>Java 开发的，那 Slf4j 这个日志框架你肯定不陌生，它相当于 JDBC 规范，提供了一套打印日志的统一接口规范。不过，它只定义了接口，并没有提供具体的实现，需要配合其他日志框架（log4j、logback……）来使用。</li>
+<li>不仅仅提供了统一的接口定义，还提供了针对不同日志框架的适配器。对不同日志框架的接口进行二次封装，适配成统一的 Slf4j 接口定义。</li>
+<li>在开发业务系统或者开发框架、组件的时候，我们统一使用 Slf4j 提供的接口来编写打印日志的代码，具体使用哪种日志框架实现（log4j、logback……），是可以动态地指定的。</li>
+<li>提供了反向适配器，也就是从 Slf4j 到其他日志框架的适配。我们可以先将 JCL 切换为 Slf4j，然后再将 Slf4j 切换为 log4j。</li>
+</ol>
+<h5 id="143-比较">1.4.3. 比较</h5>
+<ol>
+<li>代理模式：代理模式在不改变原始类接口的条件下，为原始类定义一个代理类，主要目的是控制访问，而非加强功能，这是它跟装饰器模式最大的不同。</li>
+<li>桥接模式：桥接模式的目的是将接口部分和实现部分分离，从而让它们可以较为容易、也相对独立地加以改变。</li>
+<li>装饰器模式：装饰者模式在不改变原始类接口的情况下，对原始类功能进行增强，并且支持多个装饰器的嵌套使用。</li>
+<li>适配器模式：适配器模式是一种事后的补救策略。适配器提供跟原始类不同的接口，而代理模式、装饰器模式提供的都是跟原始类相同的接口。</li>
+</ol>
+<h4 id="15-门面模式">1.5. 门面模式</h4>
+<ol>
+<li>解决接口的可复用性（通用性）和易用性之间的矛盾。</li>
+<li>门面模式为子系统（<code>既可以是一个完整的系统，也可以是更细粒度的类或者模块</code>）提供一组统一的接口，定义一组高层接口让子系统更易用。</li>
+<li><code>完成接口设计，就相当于完成了一半的开发任务。只要接口设计得好，那代码就差不到哪里去</code>。</li>
+<li><code>尽量保持接口的可复用性，但针对特殊情况，允许提供冗余的门面接口，来提供更易用的接口</code>。</li>
+</ol>
+<h5 id="151-好处">1.5.1. 好处</h5>
+<ol start="2">
+<li>解决易用性问题。封装系统的底层实现，隐藏系统的复杂性，提供一组更加简单易用、更高层的接口。</li>
+<li>解决性能问题。减少通信次数（移动网络）。如果门面接口不多，我们完全可以将它跟非门面接口放到一块，也不需要特殊标记，当作普通接口来用即可。如果门面接口很多，我们可以在已有的接口之上，再重新抽象出一层，专门放置门面接口，从类、包的命名上跟原来的接口层做区分。如果门面接口特别多，并且很多都是跨多个子系统的，我们可以将门面接口放到一个新的子系统中。</li>
+<li>解决分布式事务问题。要支持两个接口调用在一个事务中执行，是比较难实现的，这涉及<code>分布式事务</code>问题。虽然我们可以通过引入<code>分布式事务框架或者事后补偿的机制</code>来解决，但代码实现都比较复杂。而最简单的解决方案是，利用数据库事务或者 <code>Spring 框架提供的事务</code>（如果是 Java 语言的话），在一个事务中，执行创建用户和创建钱包这两个 SQL 操作。这就要求两个 SQL 操作要在一个接口中完成，所以，我们可以借鉴门面模式的思想，再设计一个包裹这两个操作的新接口，让新接口在一个事务中执行两个 SQL 操作。</li>
+</ol>
+<h4 id="16-组合模式">1.6. 组合模式</h4>
+<ol>
+<li>主要是用来处理<code>树形结构数据</code>。这里的“数据”，你可以简单理解为一组对象集合.</li>
+<li>将一组对象组织（Compose）成树形结构，以表示一种“部分 - 整体”的层次结构。将单个对象和组合对象都看做树中的节点，以统一处理逻辑，并且它利用树形结构的特点，递归地处理每个子树，依次简化代码实现。</li>
+<li>组合模式让客户端可以统一单个对象（文件）和组合对象（目录）的处理逻辑（递归遍历）[抽象出来一个抽象类]。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+public abstract class FileSystemNode {
+  protected String path;
+
+  public FileSystemNode(String path) {
+    this.path = path;
+  }
+
+  public abstract int countNumOfFiles();
+  public abstract long countSizeOfFiles();
+
+  public String getPath() {
+    return path;
+  }
+}
+
+public class File extends FileSystemNode {
+  public File(String path) {
+    super(path);
+  }
+
+  @Override
+  public int countNumOfFiles() {
+    return 1;
+  }
+
+  @Override
+  public long countSizeOfFiles() {
+    java.io.File file = new java.io.File(path);
+    if (!file.exists()) return 0;
+    return file.length();
+  }
+}
+
+public class Directory extends FileSystemNode {
+  private List&lt;FileSystemNode&gt; subNodes = new ArrayList&lt;&gt;();
+
+  public Directory(String path) {
+    super(path);
+  }
+
+  @Override
+  public int countNumOfFiles() {
+    int numOfFiles = 0;
+    for (FileSystemNode fileOrDir : subNodes) {
+      numOfFiles += fileOrDir.countNumOfFiles();
+    }
+    return numOfFiles;
+  }
+
+  @Override
+  public long countSizeOfFiles() {
+    long sizeofFiles = 0;
+    for (FileSystemNode fileOrDir : subNodes) {
+      sizeofFiles += fileOrDir.countSizeOfFiles();
+    }
+    return sizeofFiles;
+  }
+
+  public void addSubNode(FileSystemNode fileOrDir) {
+    subNodes.add(fileOrDir);
+  }
+
+  public void removeSubNode(FileSystemNode fileOrDir) {
+    int size = subNodes.size();
+    int i = 0;
+    for (; i &lt; size; ++i) {
+      if (subNodes.get(i).getPath().equalsIgnoreCase(fileOrDir.getPath())) {
+        break;
+      }
+    }
+    if (i &lt; size) {
+      subNodes.remove(i);
+    }
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="161-应用">1.6.1. 应用</h5>
+<ol>
+<li>公司的组织结构包含部门和员工两种数据类型。</li>
+</ol>
+<h4 id="17-享元模式">1.7. 享元模式</h4>
+<ol>
+<li>享元模式的意图是复用对象，节省内存，前提是<code>享元对象是不可变对象</code>。</li>
+<li>不仅仅相同对象可以设计成享元，对于相似对象，我们也可以将这些对象中相同的部分（字段）提取出来，设计成享元，让这些大量相似对象引用这些享元。</li>
+<li>实际上，享元模式对 JVM 的垃圾回收并不友好。因为享元工厂类一直保存了对享元对象的引用，这就导致享元对象在没有任何代码使用的情况下，也并不会被 JVM 垃圾回收机制自动回收掉。因此，在某些情况下，如果对象的生命周期很短，也不会被密集使用，利用享元模式反倒可能会浪费更多的内存。所以，除非经过线上验证，利用享元模式真的可以大大节省内存，否则，就不要过度使用这个模式.</li>
+</ol>
+<h5 id="171-应用">1.7.1. 应用</h5>
+<ol>
+<li>实际上，我们可以将棋子的 id、text、color 属性拆分出来，设计成独立的类，并且作为享元供多个棋盘复用。</li>
+<li>棋子使用<code>静态属性</code>。</li>
+<li>利用工厂类来缓存 ChessPieceUnit 信息（也就是 id、text、color）。通过工厂类获取到的 ChessPieceUnit 就是享元。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//主要是通过工厂模式，在工厂类中，通过一个 Map 来缓存已经创建过的享元对象，来达到复用的目的。
+public class ChessPieceUnitFactory {
+  private static final Map&lt;Integer, ChessPieceUnit&gt; pieces = new HashMap&lt;&gt;();
+
+  static {
+    pieces.put(1, new ChessPieceUnit(1, &#34;車&#34;, ChessPieceUnit.Color.BLACK));
+    pieces.put(2, new ChessPieceUnit(2,&#34;馬&#34;, ChessPieceUnit.Color.BLACK));
+    //...省略摆放其他棋子的代码...
+  }
+
+  public static ChessPieceUnit getChessPiece(int chessPieceId) {
+    return pieces.get(chessPieceId);
+  }
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>文本编辑器中，对于字体格式，我们可以将它设计成享元，让不同的文字共享使用。</li>
+</ol>
+<h5 id="172-比较">1.7.2. 比较</h5>
+<ol>
+<li>在单例模式中，一个类只能创建一个对象，而在享元模式中，一个类可以创建多个对象，每个对象被多处代码引用共享。实际上，享元模式有点类似于之前讲到的单例的变体：多例。</li>
+<li>池化技术中的“复用”可以理解为“重复使用”，主要目的是节省时间（比如从数据库池中取一个连接，不需要重新创建）。在任意时刻，每一个<code>对象、连接、线程</code>，并不会被多处使用，而是被一个使用者独占，当使用完成之后，放回到池中，再由其他使用者重复利用。享元模式中的“复用”可以理解为“共享使用”，在整个生命周期中，都是被所有使用者共享的，主要目的是<code>节省空间</code>。</li>
+</ol>
+<h5 id="173-java中应用">1.7.3. java中应用</h5>
+<h6 id="1731-integer">1.7.3.1. Integer</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Integer i = 56; //自动装箱
+int j = i; //自动拆箱
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>当我们通过“==”来判定两个对象是否相等的时候，实际上是在判断两个局部变量存储的地址是否相同，换句话说，是在判断两个局部变量是否指向相同的对象。</li>
+<li>当我们通过自动装箱，也就是调用 valueOf() 来创建 Integer 对象的时候，如果要创建的 Integer 对象的值在 -128 到 127 之间，会从 IntegerCache 类中直接返回，否则才调用 new 方法创建。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+public static Integer valueOf(int i) {
+    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>只能选择缓存对于大部分应用来说最常用的整型值，也就是一个字节的大小（-128 到 127 之间的数据）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">JDK 也提供了方法来让我们可以自定义缓存的最大值
+//方法一：
+-Djava.lang.Integer.IntegerCache.high=255
+//方法二：
+-XX:AutoBoxCacheMax=255
+JDK 并没有提供设置最小值的方法。
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>除了 Integer 类型之外，其他包装器类型，比如 Long、Short、Byte 等，也都利用了享元模式来缓存 -128 到 127 之间的数据。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="n">123</span><span class="o">);</span><span class="c1">//并不会使用到 IntegerCache
+</span><span class="c1"></span><span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="n">123</span><span class="o">;</span>
+<span class="n">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">123</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="1732-string">1.7.3.2. String</h6>
+<ol>
+<li>跟 Integer 类的设计思路相似，String 类利用享元模式来复用相同的字符串常量（也就是代码中的“小争哥”）.</li>
+<li>JVM 会专门开辟一块存储区来存储字符串常量，这块存储区叫作<code>“字符串常量池”</code>。</li>
+<li>只能在某个字符串常量第一次被用到的时候，存储到常量池中，当之后再用到的时候，直接引用常量池中已经存在的即可，就不需要再重新创建了。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                </span><span><a href="/tags/program/">PROGRAM</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-08-29</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-php-%E5%9F%BA%E7%A1%80/" class="prev" rel="prev" title="PHP-基础"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/program-%E8%B7%A8%E8%AF%AD%E8%A8%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4-%E8%A1%8C%E4%B8%BA%E5%9E%8B/" class="next" rel="next" title="设计模式-行为型">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

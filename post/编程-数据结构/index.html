@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>编程-数据结构 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="编程-数据结构" />
+<meta property="og:description" content="图 图描述一种多对多的关系。 最基本的单元是顶点（vertex），顶点之间的关联关系，被称为边（edge）。有的图中边具有权重（Weight）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-03-25T16:49:12+00:00" />
+<meta property="article:modified_time" content="2019-03-25T16:49:12+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="编程-数据结构"/>
+<meta name="twitter:description" content="图 图描述一种多对多的关系。 最基本的单元是顶点（vertex），顶点之间的关联关系，被称为边（edge）。有的图中边具有权重（Weight）。"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-api/" /><link rel="next" href="/post/%E7%94%9F%E4%BA%A7%E7%AE%A1%E7%90%86-%E4%BA%A7%E5%93%81%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "编程-数据结构",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  883 ,
+        "url": "\/post\/%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84\/","datePublished": "2019-03-25T16:49:12+00:00","dateModified": "2019-03-25T16:49:12+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">编程-数据结构</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#图">图</a>
+      <ul>
+        <li><a href="#存储方式">存储方式</a>
+          <ul>
+            <li><a href="#邻接矩阵">邻接矩阵</a></li>
+            <li><a href="#邻接表和逆邻接表">邻接表和逆邻接表</a></li>
+            <li><a href="#十字链表">十字链表</a></li>
+            <li><a href="#邻接多重表">邻接多重表</a></li>
+          </ul>
+        </li>
+        <li><a href="#应用">应用</a>
+          <ul>
+            <li><a href="#广度搜索算法和深度搜索算法">广度搜索算法和深度搜索算法</a>
+              <ul>
+                <li><a href="#实现">实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#迪杰斯拉特算法">迪杰斯拉特算法</a></li>
+            <li><a href="#最小生成树">最小生成树</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="图">图</h2>
+<ol>
+<li>图描述一种多对多的关系。</li>
+<li>最基本的单元是顶点（vertex），顶点之间的关联关系，被称为边（edge）。有的图中边具有权重（Weight）。涉及到权重的图，被称为带权图（Weighted Graph）。有的图中边还具有方向，这类图成为有向图，否则是无向图。</li>
+</ol>
+<h3 id="存储方式">存储方式</h3>
+<h4 id="邻接矩阵">邻接矩阵</h4>
+<ol>
+<li>拥有n个顶点的图，它所包含的连接数量最多是n（n-1）个。因此，要表达各个顶点之间的关联关系，最清晰易懂的方式是使用二维数组（矩阵）。</li>
+<li>表达图中顶点关联关系的矩阵，就叫做邻接矩阵。</li>
+<li>无向图对应的矩阵是一个对称矩阵。</li>
+<li>优点：简单直观，可以快速查到一个顶点和另一顶点之间的关联关系。</li>
+<li>缺点：占用了太多的空间。</li>
+</ol>
+<h4 id="邻接表和逆邻接表">邻接表和逆邻接表</h4>
+<ol>
+<li>在邻接表中，图的每一个顶点都是一个链表的头节点，其后连接着该顶点能够直接达到的相邻顶点。</li>
+<li>优点：空间可以大大缩小。</li>
+<li>逆邻接表每一个顶点作为链表的头节点，后继节点所存储的是能够直接达到该顶点的相邻顶点。</li>
+<li>可以根据实际需求，选择使用邻接表还是逆邻接表。</li>
+</ol>
+<h4 id="十字链表">十字链表</h4>
+<ol>
+<li>十字链表的每一个顶点，都是两个链表的根节点，其中一个链表存储着该顶点能到达的相邻顶点，另一个链表存储着能到达该顶点的相邻节点。</li>
+<li>在优化之后的十字链表中，链表的每一个节点不再是顶点，而是一条边，里面包含起止顶点的下标。</li>
+</ol>
+<h4 id="邻接多重表">邻接多重表</h4>
+<h3 id="应用">应用</h3>
+<h4 id="广度搜索算法和深度搜索算法">广度搜索算法和深度搜索算法</h4>
+<ol>
+<li>深度优先遍历简称DFS（Depth First Search），广度优先遍历简称BFS（Breadth First Search），它们是遍历图当中所有顶点的两种方式。</li>
+<li>先深入探索，走到头再回退寻找其他出路的遍历方式，就叫做深度优先遍历（DFS）。</li>
+<li>一层一层由内而外的遍历方式，就叫做广度优先遍历（BFS）。</li>
+</ol>
+<h5 id="实现">实现</h5>
+<ol>
+<li>实现深度优先遍历的关键在于回溯；实现广度优先遍历的关键在于重放。</li>
+<li>要想实现回溯，可以利用栈的先入后出特性，也可以采用递归的方式（因为递归本身就是基于方法调用栈来实现）。</li>
+<li>回溯与重放是完全相反的过程。</li>
+<li>把遍历过的顶点按照之前的遍历顺序重新回顾，就叫做重放。同样的，要实现重放也需要额外的存储空间，可以利用队列的先入先出特性来实现。</li>
+<li>可以用一个布尔类型的数组来存储所有顶点的遍历状态。</li>
+</ol>
+<h4 id="迪杰斯拉特算法">迪杰斯拉特算法</h4>
+<h4 id="最小生成树">最小生成树</h4>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-03-25</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-api/" class="prev" rel="prev" title="后端-构建API服务"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E7%94%9F%E4%BA%A7%E7%AE%A1%E7%90%86-%E4%BA%A7%E5%93%81%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/" class="next" rel="next" title="生产管理-产品从无到有">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

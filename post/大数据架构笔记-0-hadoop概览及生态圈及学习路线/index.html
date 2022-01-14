@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>大数据架构笔记-hadoop生态圈-学习路线 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="大数据架构笔记-hadoop生态圈-学习路线" />
+<meta property="og:description" content="求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。 hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserve" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-12-10T18:16:38+00:00" />
+<meta property="article:modified_time" content="2019-12-10T18:16:38+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="大数据架构笔记-hadoop生态圈-学习路线"/>
+<meta name="twitter:description" content="求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。 hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserve"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" /><link rel="prev" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%9E%B6%E6%9E%84%E5%8E%86%E5%8F%B2%E6%A6%82%E5%BF%B5/" /><link rel="next" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "大数据架构笔记-hadoop生态圈-学习路线",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "大数据","wordcount":  5726 ,
+        "url": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF\/","datePublished": "2019-12-10T18:16:38+00:00","dateModified": "2019-12-10T18:16:38+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">大数据架构笔记-hadoop生态圈-学习路线</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hadoop">hadoop</a>
+      <ul>
+        <li><a href="#30-新特性">3.0 新特性</a></li>
+        <li><a href="#30默认端口发生变化">3.0默认端口发生变化（）</a></li>
+        <li><a href="#hadoop-common">Hadoop Common</a></li>
+        <li><a href="#hdfs分布式文件系统-最底层--存储">HDFS（分布式文件系统） 最底层  【存储】</a></li>
+        <li><a href="#yarn">YARN</a></li>
+        <li><a href="#mapreduce-计算框架">MapReduce 【计算框架】</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他相关组件独立项目">其他相关组件（独立项目）</a>
+      <ul>
+        <li><a href="#flume日志收集工具">Flume【日志收集工具】</a></li>
+        <li><a href="#hbase分布式数据库存储">Hbase（分布式数据库）【存储】</a></li>
+        <li><a href="#hivesql引擎">Hive【SQL引擎】</a></li>
+        <li><a href="#kafka分布式消息队列">Kafka【分布式消息队列】</a></li>
+        <li><a href="#mahout机器学习">mahout【机器学习】</a></li>
+        <li><a href="#oozie工作流调度器">Oozie【工作流调度器】</a></li>
+        <li><a href="#pig">pig</a></li>
+        <li><a href="#spark计算框架">Spark【计算框架】</a></li>
+        <li><a href="#sqoop">Sqoop</a></li>
+        <li><a href="#storm计算框架渐渐过时">Storm【计算框架】【渐渐过时】</a></li>
+        <li><a href="#zookeeper-集群管理分布式锁服务">zookeeper 集群管理，分布式锁服务</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#搜索">搜索</a></li>
+    <li><a href="#广告">广告</a></li>
+    <li><a href="#推荐">推荐</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#java-se核心知识第一阶段">Java SE核心知识（第一阶段）</a>
+      <ul>
+        <li><a href="#java编程概述及基本语法">Java编程概述及基本语法</a></li>
+        <li><a href="#java多线程技术">Java多线程技术</a></li>
+        <li><a href="#java-se网路编程">Java SE网路编程</a></li>
+      </ul>
+    </li>
+    <li><a href="#java-web数据可视化第二阶段">Java Web数据可视化（第二阶段）</a>
+      <ul>
+        <li><a href="#java-web-后端技术">Java Web 后端技术</a></li>
+        <li><a href="#前端可视化技术">前端可视化技术</a></li>
+        <li><a href="#关系型数据库mysql高级应用">关系型数据库MySQL高级应用</a></li>
+        <li><a href="#linux-服务器应用实战">Linux 服务器应用实战</a></li>
+        <li><a href="#拉勾网招聘行业报表数据可视化项目实战">拉勾网招聘行业报表数据可视化项目实战</a></li>
+      </ul>
+    </li>
+    <li><a href="#hadoop核心及生态圈技术栈第三阶段">Hadoop核心及生态圈技术栈（第三阶段）</a>
+      <ul>
+        <li><a href="#hadoop核心之分布式文件系统hdfs">Hadoop核心之分布式文件系统HDFS</a></li>
+        <li><a href="#hadoop核心之分布式计算框架mapreduce">Hadoop核心之分布式计算框架MapReduce</a></li>
+        <li><a href="#hadoop核心之分布式资源调度框架yarn">Hadoop核心之分布式资源调度框架Yarn</a></li>
+        <li><a href="#hadoop生态圈技术栈上">Hadoop生态圈技术栈（上）</a></li>
+        <li><a href="#hadoop生态圈技术栈下">Hadoop生态圈技术栈（下）</a></li>
+      </ul>
+    </li>
+    <li><a href="#分布式缓存redis及kafka消息中间件第四阶段">分布式缓存Redis及Kafka消息中间件（第四阶段）</a>
+      <ul>
+        <li><a href="#高性能分布式缓存redis">高性能分布式缓存Redis</a></li>
+        <li><a href="#高吞吐消息中间件kafka">高吞吐消息中间件Kafka</a></li>
+      </ul>
+    </li>
+    <li><a href="#pb级电商离线数仓项目实战第五阶段">PB级电商离线数仓项目实战（第五阶段）</a></li>
+    <li><a href="#内存级快速计算引擎spark第六阶段">内存级快速计算引擎Spark（第六阶段）</a>
+      <ul>
+        <li><a href="#scala编程">Scala编程</a></li>
+        <li><a href="#spark实战应用">Spark实战应用</a></li>
+      </ul>
+    </li>
+    <li><a href="#智慧物流项目第七阶段">智慧物流项目（第七阶段）</a>
+      <ul>
+        <li><a href="#数据采集">数据采集</a></li>
+        <li><a href="#仓库缺货-销量预测">仓库缺货-销量预测</a></li>
+        <li><a href="#运输车辆调度">运输车辆调度</a></li>
+        <li><a href="#车辆位置指标实时监控">车辆位置/指标实时监控</a></li>
+        <li><a href="#轨迹回放">轨迹回放</a></li>
+        <li><a href="#多维度业务指标看板">多维度业务指标看板</a></li>
+      </ul>
+    </li>
+    <li><a href="#实时计算领域最锋利的武器flink第八阶段">实时计算领域最锋利的武器Flink（第八阶段）</a>
+      <ul>
+        <li><a href="#flink基础">Flink基础</a></li>
+        <li><a href="#flink进阶">Flink进阶</a></li>
+        <li><a href="#flink高级实践及调优">Flink高级实践及调优</a></li>
+        <li><a href="#flink综合案例实战">Flink综合案例实战</a></li>
+      </ul>
+    </li>
+    <li><a href="#大数据新技术实践第九阶段">大数据新技术实践（第九阶段）</a>
+      <ul>
+        <li><a href="#olap列式数据库管理系统clickhouse">OLAP列式数据库管理系统ClickHouse</a></li>
+        <li><a href="#新型列式存储分布式数据库kudu">新型列式存储分布式数据库Kudu</a></li>
+        <li><a href="#开源的分布式分析引擎kylin">开源的分布式分析引擎Kylin</a></li>
+        <li><a href="#实时统计分析开源数据存储druid">实时统计分析开源数据存储Druid</a></li>
+      </ul>
+    </li>
+    <li><a href="#elastic-stack-日志搜索挖掘及可视化解决方案第十阶段">Elastic Stack 日志搜索、挖掘及可视化解决方案（第十阶段）</a>
+      <ul>
+        <li><a href="#elasticsearch全文搜索引擎">Elasticsearch全文搜索引擎</a></li>
+        <li><a href="#logstash采集kibana展示方案">Logstash采集、Kibana展示方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#电商行业实时数仓项目第十一阶段">电商行业实时数仓项目（第十一阶段）</a></li>
+    <li><a href="#hadoopspark大数据处理算法及案例第十二阶段">Hadoop/Spark大数据处理算法及案例（第十二阶段）</a>
+      <ul>
+        <li><a href="#大数据处理算法及案例上">大数据处理算法及案例（上）</a></li>
+        <li><a href="#大数据处理算法及案例下">大数据处理算法及案例（下）</a></li>
+      </ul>
+    </li>
+    <li><a href="#机器学习第十三阶段">机器学习（第十三阶段）</a>
+      <ul>
+        <li><a href="#python-编程核心">Python 编程核心</a></li>
+        <li><a href="#python编程实战">Python编程实战</a></li>
+      </ul>
+    </li>
+    <li><a href="#人才用户画像匹配系统第十四阶段">人才用户画像匹配系统（第十四阶段）</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h1 id="求职">求职</h1>
+<ol>
+<li>简历要好好准备；</li>
+<li>准备面试：先讲框架，再谈细节。优化细节，框架演化。</li>
+</ol>
+<h1 id="hadoop生态圈">hadoop生态圈</h1>
+<ol>
+<li>从上往下，从底层往上层。</li>
+<li>所有需要通过webserver提供服务。</li>
+</ol>
+<h2 id="hadoop">hadoop</h2>
+<h3 id="30-新特性">3.0 新特性</h3>
+<ol>
+<li>Classpath isolation:增加此配置，防止不同版本jar包冲突。</li>
+<li>Shell重写了。</li>
+<li>支持HDFS中的擦除编码（Erasure Encoding）默认的EC策略可以节省50%的存储空间，同时还可以承受更多的存储故障。</li>
+<li>DataNode内部添加了负载均衡（Disk Balancer）。</li>
+<li>MapReduce任务级本地优化。</li>
+<li>MapReduce内存参数自动推断。</li>
+<li>基于cgroup的内存隔离和IO Disk隔离。</li>
+<li>支持更改分配容器的资源Container resizing（内存和磁盘）。</li>
+</ol>
+<h3 id="30默认端口发生变化">3.0默认端口发生变化（）</h3>
+<h3 id="hadoop-common">Hadoop Common</h3>
+<h3 id="hdfs分布式文件系统-最底层--存储">HDFS（分布式文件系统） 最底层  【存储】</h3>
+<h3 id="yarn">YARN</h3>
+<h3 id="mapreduce-计算框架">MapReduce 【计算框架】</h3>
+<ol>
+<li>适用于离线的批量的数据计算。</li>
+</ol>
+<h2 id="其他相关组件独立项目">其他相关组件（独立项目）</h2>
+<h3 id="flume日志收集工具">Flume【日志收集工具】</h3>
+<ol>
+<li>Flume 是将数据从产生、传输、处理并最终写入目标路径的过程抽象为数据流，在具体的数据流中，数据源支持在 Flume 中定制数据发送方，从而支持收集各种不同协议数据。</li>
+<li>Flume 数据流提供对日志数据进行简单处理的能力，如过滤、格式转换等。</li>
+<li>Flume 还具有能够将日志写往各种数据目标（文件、HDFS、网络）的能力。在 Hadoop 平台，我们主要使用的是通过 Flume 将数据从源服务器写入 Hadoop 的 HDFS 上。</li>
+</ol>
+<h3 id="hbase分布式数据库存储">Hbase（分布式数据库）【存储】</h3>
+<ol>
+<li>基于HDFS，数据还是存在于HDFS。</li>
+<li>列存储。</li>
+<li>最大优点是查询速度快，这对数据完整性要求不高的大数据处理领域，比如互联网，犹为重要。</li>
+<li>非常适合需对数据进行随机读、写操作、比如每秒对PB级数据进行几千次读、写访问是非常简单的操作。 其次，Hbase构建在HDFS之上，其内部管理的文件全部存储在HDFS中。这使它具有高度容错性和可扩展性，并支持Hadoop mapreduce程序设计模型。</li>
+<li>如果你的应用是<code>交易历史查询系统</code>、查询场景简单，检索条件较少、每天有<code>千万行数据更新</code>、那么Hbase将是一个很好的选择。</li>
+</ol>
+<h3 id="hivesql引擎">Hive【SQL引擎】</h3>
+<ol>
+<li>本质是mapreduce。</li>
+<li>将SQL转换到MapReduce上执行。</li>
+<li>哪怕你不熟悉 MapReduce 程序，只要会写标准的 SQL 语句，也能对 HDFS 上的海量数据进行分析和计算。<code>通常做统计</code>。</li>
+</ol>
+<h3 id="kafka分布式消息队列">Kafka【分布式消息队列】</h3>
+<ol>
+<li>最大特性就是可以实时的处理大量数据以满足各种需求场景：比如基于 Hadoop 平台的数据分析、低时延的实时系统、Storm/Spark 流式处理引擎等。</li>
+<li>Kafka 现在它已被多家大型公司作为多种类型的数据管道和消息系统使用。</li>
+</ol>
+<h3 id="mahout机器学习">mahout【机器学习】</h3>
+<h3 id="oozie工作流调度器">Oozie【工作流调度器】</h3>
+<ol>
+<li>Oozie 是一个基于工作流引擎的调度器，它其实就是一个运行在 Java Servlet 容器（如 Tomcat）中的 Javas Web 应用，你可以在它上面运行 Hadoop 的 Map Reduce 和 Pig 等任务，。</li>
+<li>对于 Oozie 来说，工作流就是一系列的操作（如 Hadoop 的 MR，Pig 的任务、Shell 任务等），通过 Oozie 可以实现多个任务的依赖性。也就是说，一个操作的输入依赖于前一个任务的输出，只有前一个操作完全完成后，才能开始第二个。</li>
+<li>Oozie 工作流通过 hPDL 定义（hPDL 是一种 XML 的流程定义语言），工作流操作通过远程系统启动任务。当任务完成后，远程系统会进行回调来通知任务已经结束，然后再开始下一个操作。</li>
+</ol>
+<h3 id="pig">pig</h3>
+<ol>
+<li>Hive 可以把脚本和 SQL 语言翻译成 MapReduce 程序，扔给计算引擎去计算。Pig 与 Hive 类似，它定义了一种数据流语言，即 Pig Latin，它是 <code>MapReduce 编程的复杂性的抽象</code>.</li>
+<li>Pig Latin 可以完成排序、过滤、求和、关联等操作，支持自定义函数。Pig 自动把 Pig Latin 映射为 MapReduce 作业，上传到集群运行，减少用户编写 Java 程序的苦恼。</li>
+</ol>
+<h3 id="spark计算框架">Spark【计算框架】</h3>
+<ol>
+<li>Spark 提供了内存中的分布式计算能力，相比传统的 MapReduce 大数据分析效率更高、运行速度更快。总结一句话：以内存换效率。</li>
+<li>批量计算，spark core</li>
+<li>实时计算， stream</li>
+<li>还可以机器学习， mllib</li>
+<li>还可以SQL</li>
+</ol>
+<h3 id="sqoop">Sqoop</h3>
+<ol>
+<li>通过 Sqoop（SQL-to-Hadoop）主要用于传统数据库和 Hadoop 之间传输数据。数据的导入和导出本质上是 MapreDuce 程序，充分利用了 MR 的并行化和容错性。</li>
+</ol>
+<h3 id="storm计算框架渐渐过时">Storm【计算框架】【渐渐过时】</h3>
+<ol>
+<li>实时计算。</li>
+</ol>
+<h3 id="zookeeper-集群管理分布式锁服务">zookeeper 集群管理，分布式锁服务</h3>
+<ol>
+<li>ZooKeeper 相当于一个和事佬的角色，如果两人之间发生了一些矛盾或者冲突，无法自行解决的话，这个时候就需要 ZooKeeper 这个和事佬从中进行调解，而和事佬调解的方式是站在第三方客观的角度，根据一些规则（如道德规则、法律规则），客观的对冲突双方做出合理、合规的判决。</li>
+<li>节点丢失或重启，都会发起<code>选举</code>。</li>
+</ol>
+<h1 id="常见业务">常见业务</h1>
+<h2 id="搜索">搜索</h2>
+<ol>
+<li>搜索内容；</li>
+<li>提供服务。</li>
+</ol>
+<h2 id="广告">广告</h2>
+<h2 id="推荐">推荐</h2>
+<h1 id="职业方向">职业方向</h1>
+<h1 id="学习路线">学习路线</h1>
+<ol>
+<li><a href="https://www.yuque.com/sunzanfeng/weovci/hy3i5c" target="_blank" rel="noopener noreffer">雨雀文档</a></li>
+</ol>
+<h2 id="java-se核心知识第一阶段">Java SE核心知识（第一阶段）</h2>
+<h3 id="java编程概述及基本语法">Java编程概述及基本语法</h3>
+<ol>
+<li>Java技术体系平台</li>
+<li>Java核心机制与JVM运行原理</li>
+<li>Java开发环境搭建</li>
+<li>Java变量、数据类型、数组及运算符</li>
+<li>Java流程控制结构</li>
+<li>面向对象编程</li>
+<li>高级类特性</li>
+<li>Java API、异常机制、反射及IO流</li>
+<li>Lambda表达式</li>
+<li>函数式接口</li>
+</ol>
+<p>###Java集合与泛型
+集合框架概述
+Collection 系列集合
+List系列集合与Set系列集合
+Iterator 与 ListIterator
+Collections 工具类
+集合中使用泛型
+自定义泛型</p>
+<h3 id="java多线程技术">Java多线程技术</h3>
+<p>线程的原理
+线程的创建与启动
+创建线程的几种方式对比
+继承 Thread 类与实现 Runnable 接口
+创建线程方式对比
+线程的控制
+线程的调度
+线程的优先级
+线程的生命周期
+多线程的安全问题与解决办法
+线程的同步
+互斥锁
+线程的死锁问题
+线程通信
+生产者与消费者案例</p>
+<h3 id="java-se网路编程">Java SE网路编程</h3>
+<p>网络编程基础知识
+网络编程的主要问题
+如何实现网络中主机的相互通讯
+网络通讯要素
+网络通信协议
+OSI参考模型
+TCP/IP参考模型(或TCP/IP协议)
+数据的封装与拆封
+Java.net.InetAddress 类
+TCP 协议与UDP协议
+基于TCP协议的网络编程
+Socket 的TCP编程
+基于UDP协议的网络编程
+URL编程
+针对HTTP协议的URLConnection</p>
+<h2 id="java-web数据可视化第二阶段">Java Web数据可视化（第二阶段）</h2>
+<h3 id="java-web-后端技术">Java Web 后端技术</h3>
+<p>Tomcat&amp;Nginx服务器中间件
+Servlet规范组件
+Ajax&amp;Json轻量级数据交互
+Maven项目构建工具
+Preformance 工具的使用及注意事项
+Git项目协作工具
+Spring依赖管理框架
+SpringMVC表现层框架
+Mybatis持久层框架
+分布式架构理论</p>
+<h3 id="前端可视化技术">前端可视化技术</h3>
+<p>XML可扩展标记语言
+HTML、CSS、JavaScript静态化技术
+Jquery、Vue脚本框架
+ECharts可视化组件
+FusionCharts可视化组件</p>
+<h3 id="关系型数据库mysql高级应用">关系型数据库MySQL高级应用</h3>
+<p>MySQL基础
+MySQL数据库对象
+SQL结构化查询语言
+JDBC操作
+MySQL查询和慢查询日志分析
+MySQL调优之索引优化
+MySQL调优之存储引擎优化
+MySQL调优之锁机制优化
+MySQL高可用</p>
+<h3 id="linux-服务器应用实战">Linux 服务器应用实战</h3>
+<p>Linux系统基础
+Linux网络基础
+Linux安全策略
+Shell编程基础及应用
+Linux运维技巧</p>
+<h3 id="拉勾网招聘行业报表数据可视化项目实战">拉勾网招聘行业报表数据可视化项目实战</h3>
+<h2 id="hadoop核心及生态圈技术栈第三阶段">Hadoop核心及生态圈技术栈（第三阶段）</h2>
+<h3 id="hadoop核心之分布式文件系统hdfs">Hadoop核心之分布式文件系统HDFS</h3>
+<p>大数据概述
+Hadoop概述
+Apache Hadoop完全分布式集群部署
+HDFS简介及应用场景
+HDFS原理详解
+HDFS Shell 操作
+HDFS Java API 操作
+HDFS原理输入及调优
+双缓冲机制
+HDFS源码剖析、设计模式及二次开发</p>
+<h3 id="hadoop核心之分布式计算框架mapreduce">Hadoop核心之分布式计算框架MapReduce</h3>
+<p>MapReduce设计目标及核心思想
+MapReduce主要功能
+MapReduce处理流程
+MapReduce入门案例
+Mapper抽象类与Reducer抽象类
+MapReduce内置数据类型及自定义数据类型
+如何确定Map和Reduce个数
+MapReduce Shuffle过程之Combine合并机制
+MapReduce Shuffle过程之Partition分区机制、自定义分区
+MapReduce Shuffle之序列化
+MapReduce Shuffle过程之自定义排序及二次排序
+MapReduce Shuffle过程之数据压缩机制
+自定义InputFormat及OutputFormat
+MapReduce生产级调优
+MapReduce案例实战</p>
+<h3 id="hadoop核心之分布式资源调度框架yarn">Hadoop核心之分布式资源调度框架Yarn</h3>
+<p>分布式资源调度及Yarn简介
+Yarn架构及原理
+Yarn核心组件之ResourceManager 资源管理器
+Yarn核心组件之NodeManager 节点管理器
+Yarn核心组件之Application Master 任务专员
+Yarn核心组件之Container 容器
+Yarn资源调度FIFO策略和应用
+Yarn资源调度Fair策略和应用
+Yarn资源调度Capacity策略和应用
+Yarn多租户资源调度配置
+Yarn生产级调优</p>
+<h3 id="hadoop生态圈技术栈上">Hadoop生态圈技术栈（上）</h3>
+<p>数据仓库Hive高级应用
+ETL转换抽取工具Sqoop
+ETL转换抽取工具CDC
+ETL转换抽取工具DataX
+数据采集工具Flume
+分布式协调服务组件ZooKeeper
+海量列式非关系型数据库HBase</p>
+<h3 id="hadoop生态圈技术栈下">Hadoop生态圈技术栈（下）</h3>
+<p>海量列式非关系型数据库HBase
+SQL语义级查询系统Impala
+任务调度组件Oozie
+任务调度组件Azkaban
+任务调度组件airflow</p>
+<h2 id="分布式缓存redis及kafka消息中间件第四阶段">分布式缓存Redis及Kafka消息中间件（第四阶段）</h2>
+<h3 id="高性能分布式缓存redis">高性能分布式缓存Redis</h3>
+<p>NoSQL&amp;Redis入门
+分布式数据库CAP原理
+Redis五大数据类型和基本操作命令
+Redis总体配置Redis.conf
+Redis持久化（RDB和AOF）
+Redis事务控制
+Redis发布和订阅
+Redis（Master/Slave）主从复制
+Java客户端Jedis
+通讯协议及事件处理机制
+Redis + Lua环境协作组件
+Redis慢查询及监视器</p>
+<h3 id="高吞吐消息中间件kafka">高吞吐消息中间件Kafka</h3>
+<p>Kafka架构
+Kafka安装及高级应用
+Kafka生产者原理
+Kafka broker端原理
+Kafka 集群
+Kafka消费者源码剖析
+Kafka深度调优
+Flume+Kafka整合应用</p>
+<h2 id="pb级电商离线数仓项目实战第五阶段">PB级电商离线数仓项目实战（第五阶段）</h2>
+<p><a href="https://www.bilibili.com/video/BV1dD4y1d7wL" target="_blank" rel="noopener noreffer">大数据数据仓库实战项目-电商数仓教程V3.0最新版</a></p>
+<ol>
+<li>数仓分层建设及理论梳理</li>
+<li>数仓建设痛点剖析</li>
+<li>数据血缘管理机制</li>
+<li>质量监控策略</li>
+<li>离线数仓全流程性能优化方案</li>
+<li>电商行业离线数仓业务真实级源码构建与剖析</li>
+</ol>
+<h2 id="内存级快速计算引擎spark第六阶段">内存级快速计算引擎Spark（第六阶段）</h2>
+<h3 id="scala编程">Scala编程</h3>
+<p>Scala基础
+Scala控制结构和函数
+Scala数组相关操作
+Scala映射和元组
+Scala继承、特质、高阶函数
+Scala集合
+Scala模式匹配和样例类
+Scala偏函数
+Scala Future及类型参数
+Scala 高级类型
+Scala 隐式转换和隐式参数</p>
+<h3 id="spark实战应用">Spark实战应用</h3>
+<p>Spark Core核心
+Spark SQL结构化处理
+Spark Streaming流处理
+Spark GraphX图挖掘
+Spark MLib机器学习
+Spark综合案例实战</p>
+<h2 id="智慧物流项目第七阶段">智慧物流项目（第七阶段）</h2>
+<h3 id="数据采集">数据采集</h3>
+<p>Flume/Maxwell</p>
+<h3 id="仓库缺货-销量预测">仓库缺货-销量预测</h3>
+<p>LigthGBM模型算法</p>
+<h3 id="运输车辆调度">运输车辆调度</h3>
+<p>动态规划算法</p>
+<h3 id="车辆位置指标实时监控">车辆位置/指标实时监控</h3>
+<p>实时指标Redis存储
+SparkStreaming消费一致性，Exactly Once解决方案</p>
+<h3 id="轨迹回放">轨迹回放</h3>
+<p>HBase海量历史数据存储
+HBase应用及优化</p>
+<h3 id="多维度业务指标看板">多维度业务指标看板</h3>
+<h2 id="实时计算领域最锋利的武器flink第八阶段">实时计算领域最锋利的武器Flink（第八阶段）</h2>
+<h3 id="flink基础">Flink基础</h3>
+<p>Flink 的应用场景和架构模型
+Flink 入门程序 WordCount 和 SQL 实现
+Flink 的编程模型与其他框架比较
+Flink 常用的 DataSet 和 DataStream API
+Flink SQL &amp; Table 编程和案例
+Flink 集群安装部署和 HA 配置</p>
+<h3 id="flink进阶">Flink进阶</h3>
+<p>Flink 常见核心概念分析
+Flink 窗口、时间和水印
+Flink 状态与容错
+Flink Side OutPut 分流
+Flink CEP 复杂事件处理
+Flink 常用的 Source 和 Connector</p>
+<h3 id="flink高级实践及调优">Flink高级实践及调优</h3>
+<p>Flink 高可用配置
+Flink Exactly-once 实现原理解析
+Flink反压问题排查
+Flink数据倾斜问题处理
+Flink并行度和资源设置
+Flink生产环境作业监控
+Flink维表关联方案
+Flink海量数据高效去重
+Flink与Kafka的整合
+Flink 中 watermark 的定义和使用
+Flink 中的聚合函数和累加器的设计和使用
+自定义消息事件及Pattern</p>
+<h3 id="flink综合案例实战">Flink综合案例实战</h3>
+<h2 id="大数据新技术实践第九阶段">大数据新技术实践（第九阶段）</h2>
+<h3 id="olap列式数据库管理系统clickhouse">OLAP列式数据库管理系统ClickHouse</h3>
+<p>ClickHouse简介及应用场景
+ClickHouse架构及原理
+ClickHouse数据类型
+ClickHouse列设计
+ClickHouse物化列&amp;表达式列
+ClickHouse实战案例</p>
+<h3 id="新型列式存储分布式数据库kudu">新型列式存储分布式数据库Kudu</h3>
+<p>Kudu 简介及应用场景
+Kudu 的高层设计
+Kudu 中的角色
+Kudu 中的概念与机制
+Kudu 安装部署
+Kudu 管理
+Kudu操作接口
+Kudu性能调优
+Kudu实战案例</p>
+<h3 id="开源的分布式分析引擎kylin">开源的分布式分析引擎Kylin</h3>
+<p>Kylin的工作原理
+Kylin的技术架构
+Kylin的主要特点
+Kylin快速入门
+Cube优化
+增量构建
+查询和可视化
+Cube Planner及仪表盘
+流式构建
+Kylin实战案例</p>
+<h3 id="实时统计分析开源数据存储druid">实时统计分析开源数据存储Druid</h3>
+<p>Druid原理及部署
+Druid数据摄入
+Druid客户端
+Druid实战案例</p>
+<h2 id="elastic-stack-日志搜索挖掘及可视化解决方案第十阶段">Elastic Stack 日志搜索、挖掘及可视化解决方案（第十阶段）</h2>
+<h3 id="elasticsearch全文搜索引擎">Elasticsearch全文搜索引擎</h3>
+<p>认识全文搜索引擎
+倒排索引机制
+全文搜索引擎Elasticsearch介绍
+Elasticsearch Single-Node Mode快速部署
+Elasticsearch之入门使用
+Elasticsearch之高级应用
+Elasticsearch之企业级高可用分布式集群
+Elasticsearch之数据模型构建
+Elasticsearch之拉勾网亿级数据量搜索实战
+Elasticsearch之深度应用及原理剖析
+Elasticsearch 7.x分布式集群调优策略</p>
+<h3 id="logstash采集kibana展示方案">Logstash采集、Kibana展示方案</h3>
+<p>Intput插件应用及原理
+自定义Intput插件
+Filter插件
+自定义Filter过滤插件
+Output插件应用及原理
+自定义Output插件
+Kibana可视化组件</p>
+<h2 id="电商行业实时数仓项目第十一阶段">电商行业实时数仓项目（第十一阶段）</h2>
+<p>Flink流式处理技术构建复杂的电商订单指标
+ClickHouse快速电商业务查询
+数据完整处理链条展现
+电商大促峰值数据大数据解决方案</p>
+<h2 id="hadoopspark大数据处理算法及案例第十二阶段">Hadoop/Spark大数据处理算法及案例（第十二阶段）</h2>
+<h3 id="大数据处理算法及案例上">大数据处理算法及案例（上）</h3>
+<p>K-均值算法
+KNN算法
+朴素贝叶斯
+马尔可夫链
+推荐算法
+成对文档相似性
+算法案例实战应用</p>
+<h3 id="大数据处理算法及案例下">大数据处理算法及案例（下）</h3>
+<p>线性回归
+Cox回归
+皮尔逊（Pearson）相关分析
+社交网络分析之推荐系统
+社交网络分析之三角形计数
+社交网络分析之情感分析
+算法案例实战应用</p>
+<h2 id="机器学习第十三阶段">机器学习（第十三阶段）</h2>
+<h3 id="python-编程核心">Python 编程核心</h3>
+<p>交互式解释器
+Python基础语法
+Python面向对象
+Python数据结构
+Anaconda工具使用</p>
+<h3 id="python编程实战">Python编程实战</h3>
+<p>PySpark
+Python与SparkSql整合
+Python与SparkStreaming整合
+Python+SparkMllib机器学习实战项目</p>
+<h2 id="人才用户画像匹配系统第十四阶段">人才用户画像匹配系统（第十四阶段）</h2>
+<p>用户建模确定特征维度
+标签分类及标签库设计
+ETL计算
+特征处理
+推荐算法模型处理，人才和企业精准对接</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-12-10</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%9E%B6%E6%9E%84%E5%8E%86%E5%8F%B2%E6%A6%82%E5%BF%B5/" class="prev" rel="prev" title="微服务架构笔记-架构历史及架构"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E9%9C%80%E6%B1%82%E5%92%8C%E6%BC%94%E8%BF%9B%E5%AE%9E%E4%BE%8B/" class="next" rel="next" title="大数据架构笔记-hadoop生态圈">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Docker，运维 - 标签 - 锦枫紫兰</title>
+        <link>/tags/docker%E8%BF%90%E7%BB%B4/</link>
+        <description>Docker，运维 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Jan 2019 16:06:54 &#43;0000</lastBuildDate><atom:link href="/tags/docker%E8%BF%90%E7%BB%B4/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker-compose编排容器</title>
+    <link>/post/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8/</link>
+    <pubDate>Wed, 23 Jan 2019 16:06:54 &#43;0000</pubDate><guid>/post/%E8%BF%90%E7%BB%B4-6-docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8/</guid>
+    <description><![CDATA[1. 思想 容器间通讯，使用docker内部网络，最好不要映射出来再调用，会有坑。 默认情况下，Compose会为我们的应用创建一个网络，服务的每个]]></description>
+</item>
+</channel>
+</rss>

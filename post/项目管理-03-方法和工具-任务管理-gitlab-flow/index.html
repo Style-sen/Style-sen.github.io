@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SCRUM&#43;GITLAB-FLOW - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="SCRUM&#43;GITLAB-FLOW" />
+<meta property="og:description" content="参考GitLab 工作流概览 GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。 1. 软件开发阶段 一般情况下，软件开发经过 10 个主要阶" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-06-26T12:08:42+00:00" />
+<meta property="article:modified_time" content="2019-06-26T12:08:42+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="SCRUM&#43;GITLAB-FLOW"/>
+<meta name="twitter:description" content="参考GitLab 工作流概览 GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。 1. 软件开发阶段 一般情况下，软件开发经过 10 个主要阶"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow/" /><link rel="prev" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-02-scrum%E6%95%8F%E6%8D%B7/" /><link rel="next" href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SCRUM+GITLAB-FLOW",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "项目管理, GIT","wordcount":  3924 ,
+        "url": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-03-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86-gitlab-flow\/","datePublished": "2019-06-26T12:08:42+00:00","dateModified": "2019-06-26T12:08:42+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">SCRUM&#43;GITLAB-FLOW</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-软件开发阶段">1. 软件开发阶段</a></li>
+    <li><a href="#2-gitlab-工单追踪器">2. GitLab 工单追踪器</a></li>
+    <li><a href="#3-通过-gitlab-进行代码复审">3. 通过 GitLab 进行代码复审</a></li>
+    <li><a href="#4-构建测试以及发布">4. 构建、测试以及发布</a>
+      <ul>
+        <li><a href="#41-静态代码测试">4.1. 静态代码测试</a>
+          <ul>
+            <li><a href="#411-sonarqubehttpswwwjianshucompfdd6fb209f10">4.1.1. <a href="https://www.jianshu.com/p/fdd6fb209f10">SonarQube</a></a></li>
+          </ul>
+        </li>
+        <li><a href="#42-发布">4.2. 发布</a>
+          <ul>
+            <li><a href="#421-文档发布">4.2.1. 文档发布</a>
+              <ul>
+                <li><a href="#4211-doxygen生成文档放进public中">4.2.1.1. Doxygen生成文档放进public中</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5-使用gitlab的11条军规">5. 使用gitlab的11条军规</a>
+      <ul>
+        <li><a href="#51-使用功能分支-不直接提交commit到-master-分支">5.1. 使用功能分支-不直接提交（commit）到 master 分支</a></li>
+        <li><a href="#52-测试所有的提交-不仅仅只在-master-分支上">5.2. 测试所有的提交-不仅仅只在 master 分支上</a></li>
+        <li><a href="#53-在所有的提交上-运行所有的测试">5.3. 在所有的提交上-运行所有的测试</a></li>
+        <li><a href="#54-在合并到-master-之前执行代码审查而不是事后审查">5.4. 在合并到 master 之前执行代码审查，而不是事后审查</a></li>
+        <li><a href="#55-部署是自动的并基于分支或标签tag">5.5. 部署是自动的，并基于分支或标签（tag）</a></li>
+        <li><a href="#56-标签tag是由用户设置的而不是由-ci-创建">5.6. 标签（tag）是由用户设置的，而不是由 CI 创建</a></li>
+        <li><a href="#57-发布release是基于标签tag的">5.7. 发布（release）是基于标签（tag）的</a></li>
+        <li><a href="#58-永远不对已推送的提交pushed-commits进行变基rebase">5.8. 永远不对已推送的提交（pushed commits）进行变基（rebase）</a></li>
+        <li><a href="#59-每个人都从-master-分支开始工作目标也是-master-分支">5.9. 每个人都从 master 分支开始工作，目标也是 master 分支</a></li>
+        <li><a href="#510-在-master-分支中修正错误其次再到发布分支">5.10. 在 master 分支中修正错误，其次再到发布分支</a></li>
+        <li><a href="#511-提交信息commit-message应体现意图">5.11. 提交信息（commit message）应体现意图</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://linux.cn/article-8503-1.html" target="_blank" rel="noopener noreffer">GitLab 工作流概览</a></p>
+<p>GitLab 是一个基于 git 的仓库管理程序，也是一个方便软件开发的强大完整应用。</p>
+<h2 id="1-软件开发阶段">1. 软件开发阶段</h2>
+<p><strong>一般情况下，软件开发经过 10 个主要阶段；GitLab 为这 10 个阶段依次提供了解决方案</strong>：</p>
+<p><code>IDEA</code>： 每一个从点子开始的项目，通常来源于一次闲聊。在这个阶段，GitLab 集成了 Mattermost。（开始一个项目）
+<code>ISSUE</code>： 最有效的讨论一个点子的方法，就是为这个点子建立一个工单讨论。你的团队和你的合作伙伴可以在 工单追踪器issue tracker 中帮助你去提升这个点子。
+<code>PLAN</code>： 一旦讨论得到一致的同意，就是开始编码的时候了。但是等等！首先，我们需要优先考虑组织我们的工作流。对于此，我们可以使用 工单看板Issue Board。（backlog）
+<code>CODE</code>： 现在，当一切准备就绪，我们可以开始写代码了。
+<code>COMMIT</code>： 当我们为我们的初步成果欢呼的时候，我们就可以在版本控制下，提交代码到功能分支了。
+<code>TEST</code>： 通过 GitLab CI，我们可以运行脚本来构建和测试我们的应用。
+<code>REVIEW</code>： 一旦脚本成功运行，我们测试和构建成功，我们就可以进行 代码复审code review 以及批准。
+<code>STAGING</code>：： 现在是时候将我们的代码部署到演示环境来检查一下，看看是否一切就像我们预估的那样顺畅——或者我们可能仍然需要修改。
+<code>PRODUCTION</code>： 当一切都如预期，就是部署到生产环境的时候了！
+<code>FEEDBACK</code>： 现在是时候返回去看我们项目中需要提升的部分了。我们使用周期分析 Cycle Analytics来对当前项目中关键的部分进行的反馈。</p>
+<h2 id="2-gitlab-工单追踪器">2. GitLab 工单追踪器</h2>
+<ol>
+<li>就是一个sprint backlog。每一个sprint就是一个milestone，一个项目的里程碑可以升级到组中，组中具有相同的里程碑会合并。。</li>
+<li>包含了一个backlog看板。</li>
+</ol>
+<h2 id="3-通过-gitlab-进行代码复审">3. 通过 GitLab 进行代码复审</h2>
+<ol>
+<li>在<code>merge request</code>页面，可以进行评论，也可以<code>Insert suggestion</code>进行代码的建议修改。</li>
+</ol>
+<h2 id="4-构建测试以及发布">4. 构建、测试以及发布</h2>
+<p><a href="https://git.witcent.net/help/topics/autodevops/index.md" target="_blank" rel="noopener noreffer">Auto DevOps</a></p>
+<h3 id="41-静态代码测试">4.1. 静态代码测试</h3>
+<h4 id="411-sonarqubehttpswwwjianshucompfdd6fb209f10">4.1.1. <a href="https://www.jianshu.com/p/fdd6fb209f10" target="_blank" rel="noopener noreffer">SonarQube</a></h4>
+<ol>
+<li>
+<p>由于 SonarQube 使用 Elasticsearch 作为全文模糊搜索引擎，故需要设置如下内核参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看</span>
+$ sysctl vm.max_map_count <span class="c1"># max_map_count文件包含限制一个进程可以拥有的VMA(虚拟内存区域)的数量</span>
+$ sysctl fs.file-max
+$ <span class="nb">ulimit</span> -n <span class="c1"># 查看文件句柄数</span>
+$ <span class="nb">ulimit</span> -u <span class="c1"># 查看最大用户进程数</span>
+
+<span class="c1"># 实时修改生效</span>
+$ sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span>
+$ sysctl -w fs.file-max<span class="o">=</span><span class="m">65536</span>
+$ <span class="nb">ulimit</span> -n <span class="m">65536</span>
+$ <span class="nb">ulimit</span> -u <span class="m">4096</span>
+
+<span class="c1"># 永久生效</span>
+$ <span class="nb">echo</span> <span class="s2">&#34;vm.max_map_count=262144 fs.file-max=65536&#34;</span> &gt; /etc/sysctl.d/99-sysctl.conf
+$ /sbin/sysctl -p
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装运行，使用<a href="https://docs.sonarqube.org/latest/setup/install-server/" target="_blank" rel="noopener noreffer">官方文档</a>中的<code>Docker Compose.yml</code>作为参考。</p>
+</li>
+<li>
+<p>首次使用<code>admin</code>和<code>admin</code>登陆。</p>
+</li>
+<li>
+<p>安装C++检查工具,在gitlab-runner容器中，安装<code>apt-get install cppcheck</code>，不用和sonarqube在一台机器中.</p>
+</li>
+<li>
+<p>安装插件<a href="https://github.com/SonarOpenCommunity/sonar-cxx/wiki/Install-the-Plugin" target="_blank" rel="noopener noreffer">‵sonar-cxx-plugin-x.y.z.jar‵</a>【Sonar C++ plugin只是完成了报告的读取，并没有任何代码分析的功能】.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 下载jar文件，拷贝到SONARQUBE_HOME/extensions/plugins；
+2. 1. 重启sonarqube实例；
+3. 【Administration】-&gt;【Marketplace】-&gt;【Plugins】查看插件已经安装成功.
+4. 新建一个【Quality Profiles】,选择CXX，并在右上角设置里，设为默认。
+5. 【rules】中选择CXX，然后选择【Repository】选择检查工具,如cppcheck，点击【Bulk Change】应用在自定义的Quality Profiles中。
+    clang-tidy 跨平台。
+6. 【重要】需要设置一个选项，【Administration】-&gt;【Configuration】-&gt; 【General Settings】-&gt; 【CXX】-&gt;【File suffixes】 必须设置。
+7. 【重要】【Administration】-&gt;【Configuration】-&gt; 【General Settings】-&gt; 【CXX External Analyzers】需要设置文件名称。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>接下来，有两个选择：a,安装sonar-scanner，手动扫描；b,安装<a href="https://github.com/gabrie-allaigre/sonar-gitlab-plugin" target="_blank" rel="noopener noreffer">gitlab-plugin</a>插件，每次提交都会检查一次,但是<code>Only SonarQube &lt; 7.7, because preview mode is removed</code>有限制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 下载[sonar-scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/);
+<span class="k">2.</span> 配置/etc/profile
+    [root@localhost local]# vim /etc/profile
+    export SONAR_HOME=/usr/local/sonarqube-6.7.5
+    export SONAR_SCANNER_HOME=/usr/local/sonar-scanner
+    PATH=$PATH:$SONAR_HOME/bin:$SONAR_RUNNER_HOME/bin
+    [root@localhost local]# source /etc/profile
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>增加用户，生成token，编写<code>sonar-project.properties</code>文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c">#sonarqube服务器地址</span><span class="w">
+</span><span class="w"></span>sonar.host.url=<span class="p">[</span>ip+port<span class="p">]</span><span class="w">
+</span><span class="w"></span>sonar.login=<span class="p">[</span>token<span class="p">]</span><span class="w"> </span><span class="c">#使用token，不用配passwd</span><span class="w">
+</span><span class="w"></span><span class="c">#项目唯一标识（不能出现重复）</span><span class="w">
+</span><span class="w"></span>sonar.projectKey=key<span class="w">
+</span><span class="w"></span><span class="c">#项目名称</span><span class="w">
+</span><span class="w"></span>sonar.projectName=name<span class="w">
+</span><span class="w"></span><span class="c">#源代码目录</span><span class="w">
+</span><span class="w"></span>sonar.sources=src<span class="w">
+</span><span class="w"></span><span class="c">#版本号</span><span class="w">
+</span><span class="w"></span>sonar.projectVersion=V1<span class="m">.0.0</span><span class="w">
+</span><span class="w"></span><span class="c">#语言</span><span class="w">
+</span><span class="w"></span>sonar.language=CXX<span class="w">
+</span><span class="w"></span><span class="c">#源代码文件编码</span><span class="w">
+</span><span class="w"></span>sonar.sourceEncoding=UTF<span class="m">-8</span><span class="w">
+</span><span class="w"></span>sonar.cxx.clangtidy.reportPath=cppcheck-report.xml<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用.先执行cppcheck<code>cppcheck --xml --xml-version=2 --enable=all ./ 2&gt;cppcheck-report.xml</code>，然后执行<code>sonar-scanner</code>.</p>
+</li>
+</ol>
+<h3 id="42-发布">4.2. 发布</h3>
+<h4 id="421-文档发布">4.2.1. 文档发布</h4>
+<ol>
+<li>
+<p>Gitlab Pages的原理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 首先，当你新建一个Gitlab项目的时候，你同时也建了一个存储库。
+<span class="k">2.</span> 只要你的工程目录的根目录下有.gitlab-ci.yml文件，注意必须严格起这个名字。gitlab runner就会执行这个脚本文件。
+<span class="k">3.</span> 脚本的最终目的很简单：把静态文件放入名为public目录下的文件夹内。Gitlab pages会一直去这个存储库的public目录找。注意：这个public是指存储库的public，与项目结构无关。换言之，这个public目录不可见。
+<span class="k">4.</span> 也就是说：当你在项目的根目录下添加了.gitlab-ci.yml，且在脚本中将静态文件正确地放入了public文件夹，gitlab page就会自动打开并部署，部署的域名将会默认分配。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><a href="https://www.e-learn.cn/topic/491597" target="_blank" rel="noopener noreffer">Gitlab Pages默认是没有使能的，需要在配置文件中打开</a>。</p>
+</li>
+<li>
+<p>使用CI配置文件，必须使用<code>pages</code>作为job的名称，必须使用<code>public</code>文件夹作为附件。</p>
+</li>
+</ol>
+<h5 id="4211-doxygen生成文档放进public中">4.2.1.1. Doxygen生成文档放进public中</h5>
+<h2 id="5-使用gitlab的11条军规">5. 使用gitlab的11条军规</h2>
+<h3 id="51-使用功能分支-不直接提交commit到-master-分支">5.1. 使用功能分支-不直接提交（commit）到 master 分支</h3>
+<ol>
+<li>使用 Git 时，任何正在进行的操作，都应为之创建一个分支（branch），以便最终在合并（merge）之前进行代码审查（code review）。</li>
+</ol>
+<h3 id="52-测试所有的提交-不仅仅只在-master-分支上">5.2. 测试所有的提交-不仅仅只在 master 分支上</h3>
+<ol>
+<li>有些人将 CI 系统设置为只测试合并到 master 分支的东西。这太迟了！总是拥有绿色的 master 测试（译者注：绿色在 CI 里通常意味着测试通过，而红色意味着测试失败），人们会觉得有信心。例如，在开始开发新功能之前，人们不得不测试 master 分支那是没有意义和荒谬的。CI 并不昂贵，所以这样做是最好的。</li>
+</ol>
+<h3 id="53-在所有的提交上-运行所有的测试">5.3. 在所有的提交上-运行所有的测试</h3>
+<ol>
+<li>如果你的测试时间长于 5 分钟则让它们并行；</li>
+<li>如果您正工作在一个功能分支并添加新提交（commit），请随之运行测试。如果测试需要很长时间，请尝试并行运行。合并请求（merge requests）时，在服务器端来执行此操作以运行完整的测试套件。如果你有一个用于开发的测试套件，而另一个测试套件你只为新版本运行；那么设置并行测试并运行全部测试套件是值得的。</li>
+</ol>
+<h3 id="54-在合并到-master-之前执行代码审查而不是事后审查">5.4. 在合并到 master 之前执行代码审查，而不是事后审查</h3>
+<ol>
+<li>不要在一周结束时测试一切。当场就搞！这样你更有可能抓住可能导致问题的东西，而其他人也会努力提出解决方案。</li>
+</ol>
+<h3 id="55-部署是自动的并基于分支或标签tag">5.5. 部署是自动的，并基于分支或标签（tag）</h3>
+<ol>
+<li>如果您不想每次都部署 master 分支，那么你可以创建一个 production 分支；但你没理由用脚本（script）或登录到某个地方手动操作。自动化一切，或以特定分支来触发生产部署。</li>
+</ol>
+<h3 id="56-标签tag是由用户设置的而不是由-ci-创建">5.6. 标签（tag）是由用户设置的，而不是由 CI 创建</h3>
+<ol>
+<li>应由用户来打标签（tag），并且基于此，CI 将执行一个动作。不应让 CI 去更改代码库。如果你需要非常详细的指标，你应该【有一个服务器报告】来详细说明新版本。</li>
+</ol>
+<h3 id="57-发布release是基于标签tag的">5.7. 发布（release）是基于标签（tag）的</h3>
+<ol>
+<li>如果你打了 tag，则意味着创建了一个新版本。</li>
+</ol>
+<h3 id="58-永远不对已推送的提交pushed-commits进行变基rebase">5.8. 永远不对已推送的提交（pushed commits）进行变基（rebase）</h3>
+<ol>
+<li>当你推送（push）到公共分支后，你就不该对其变基，因为这样会很难跟进你正在改进的内容，很难跟进测试结果是什么，而且它打破了 cherry-picking。有时我们在审查流程的后期要求代码贡献者合并及变基（git merge &ndash;squash），以使一些东西容易还原时，我们也会违背这一规则。但一般而言，准则是：代码应干净，修改历史应真实。</li>
+</ol>
+<h3 id="59-每个人都从-master-分支开始工作目标也是-master-分支">5.9. 每个人都从 master 分支开始工作，目标也是 master 分支</h3>
+<ol>
+<li>这意味着没有任何长期分支。你可以检出 master 分支，构建功能，创建合并请求，并再次指向到 master 分支。在合并之前，应该进行完整的代码审查，而不应在代码审查和合并间存在任何中间阶段。</li>
+</ol>
+<h3 id="510-在-master-分支中修正错误其次再到发布分支">5.10. 在 master 分支中修正错误，其次再到发布分支</h3>
+<ol>
+<li>如果你发现 bug，最糟的事莫过于你在刚发布的版本里修复了它，而未在 master 分支修复。为避免这种情况，应总是向前修复（fix forward）。在 master 中修复，然后 cherry-pick 到其他补丁发布分支。</li>
+</ol>
+<h3 id="511-提交信息commit-message应体现意图">5.11. 提交信息（commit message）应体现意图</h3>
+<ol>
+<li>不仅要说明你做了什么，还应说明为什么这么做。如果解释一下为什么这么做，而不是用其他方式，这会更加有用。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
+                </span><span><a href="/tags/git/">GIT</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-06-26</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-02-scrum%E6%95%8F%E6%8D%B7/" class="prev" rel="prev" title="组织管理-SCRUM"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%88%86%E5%B8%83%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" class="next" rel="next" title="微服务架构笔记-分布式-锁">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

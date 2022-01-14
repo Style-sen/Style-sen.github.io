@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>如何管理一个项目 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="如何管理一个项目" />
+<meta property="og:description" content="学习 极客时间 《项目管理实战20讲》（完） 项目管理能力，成为一个职场人士的【必备技能】，具备项目管理能力的程序员，会在这个程序员严重同质化的局" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-04-23T10:45:49+08:00" />
+<meta property="article:modified_time" content="2021-04-23T10:45:49+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="如何管理一个项目"/>
+<meta name="twitter:description" content="学习 极客时间 《项目管理实战20讲》（完） 项目管理能力，成为一个职场人士的【必备技能】，具备项目管理能力的程序员，会在这个程序员严重同质化的局"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE/" /><link rel="prev" href="/post/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" /><link rel="next" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何管理一个项目",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "项目管理","wordcount":  13478 ,
+        "url": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-01-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE\/","datePublished": "2021-04-23T10:45:49+08:00","dateModified": "2021-04-23T10:45:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">如何管理一个项目</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-如何学习">1. 如何学习</a>
+      <ul>
+        <li><a href="#学习方法">学习方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-学习路径">2. 学习路径</a>
+      <ul>
+        <li><a href="#21-误区">2.1. 误区</a>
+          <ul>
+            <li><a href="#211-凡事恨不得事必躬亲想办法影响他人去把事情做好">2.1.1. 【凡事恨不得事必躬亲】想办法影响他人去把事情做好</a></li>
+            <li><a href="#212-追在别人屁股后面做监工明确目标建立机制">2.1.2. 【追在别人屁股后面做监工】明确目标，建立机制</a></li>
+            <li><a href="#213-拿着锤子看哪里都是钉子">2.1.3. 【拿着锤子看哪里都是钉子】</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-常识项目管理知识框架">2.2. 常识（项目管理知识框架）</a>
+          <ul>
+            <li><a href="#221-十大领域十个角度包含项目运作的方方面面脑图工具">2.2.1. 十大领域（十个角度，包含项目运作的方方面面）【脑图工具】</a>
+              <ul>
+                <li><a href="#2211-干系人管理辅助领域">2.2.1.1. 干系人管理（辅助领域）</a></li>
+                <li><a href="#2212-范围管理核心领域做什么">2.2.1.2. 范围管理（核心领域）做什么</a></li>
+                <li><a href="#2213-进度时间管理核心领域">2.2.1.3. 进度（时间管理）（核心领域）</a></li>
+                <li><a href="#2214-成本管理核心领域">2.2.1.4. 成本管理（核心领域）</a></li>
+                <li><a href="#2215-质量管理核心领域">2.2.1.5. 质量管理（核心领域）</a></li>
+                <li><a href="#2216-资源管理辅助领域">2.2.1.6. 资源管理（辅助领域）</a></li>
+                <li><a href="#2217-采购管理辅助领域">2.2.1.7. 采购管理（辅助领域）</a></li>
+                <li><a href="#2218-沟通管理辅助领域">2.2.1.8. 沟通管理（辅助领域）</a></li>
+                <li><a href="#2219-风险管理辅助领域">2.2.1.9. 风险管理（辅助领域）</a></li>
+                <li><a href="#22110-整合管理整体领域如何实现整体最优">2.2.1.10. 整合管理（整体领域）如何实现整体最优</a></li>
+              </ul>
+            </li>
+            <li><a href="#222-五大过程组">2.2.2. 五大过程组</a>
+              <ul>
+                <li><a href="#2221-启动过程组">2.2.2.1. 启动过程组</a>
+                  <ul>
+                    <li><a href="#22211-识别项目中的四类干系人">2.2.2.1.1. 识别项目中的四类干系人</a></li>
+                    <li><a href="#22212-制定项目章程通过启动会公开确认">2.2.2.1.2. 制定项目章程【通过启动会公开确认】</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2222-规划过程组">2.2.2.2. 规划过程组</a>
+                  <ul>
+                    <li><a href="#22221-排除计划中的延期地雷">2.2.2.2.1. 排除计划中的‘延期地雷’</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2223-执行过程组">2.2.2.3. 执行过程组</a>
+                  <ul>
+                    <li><a href="#22231-方案评审oarp评审">2.2.2.3.1. 方案评审（OARP评审）</a></li>
+                    <li><a href="#22232-bugbashbug大扫除">2.2.2.3.2. BugBash（Bug大扫除）</a></li>
+                    <li><a href="#22233-冒烟用例评审">2.2.2.3.3. 冒烟用例【评审】</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2224-监控过程组大盘或报表">2.2.2.4. 监控过程组【大盘或报表】</a>
+                  <ul>
+                    <li><a href="#22241-紧急汇报直面问题有章法">2.2.2.4.1. 紧急汇报：直面问题有章法</a></li>
+                    <li><a href="#22242-常规汇报项目周报回答的三个问题">2.2.2.4.2. 常规汇报：项目周报回答的三个问题</a></li>
+                    <li><a href="#22243-数据汇报善用透明的力量">2.2.2.4.3. 数据汇报：善用“透明”的力量</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2225-收尾过程组">2.2.2.5. 收尾过程组</a>
+                  <ul>
+                    <li><a href="#22251-复盘会的基调设定">2.2.2.5.1. 复盘会的基调设定</a></li>
+                    <li><a href="#22252-复盘会的会前准备">2.2.2.5.2. 复盘会的会前准备</a></li>
+                    <li><a href="#22253-复盘会的简易流程">2.2.2.5.3. 复盘会的简易流程</a></li>
+                    <li><a href="#22254-打造团队持续改进能力">2.2.2.5.4. 打造团队持续改进能力</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#223-互联网项目管理的职责定位">2.2.3. 互联网项目管理的职责定位</a></li>
+          </ul>
+        </li>
+        <li><a href="#23-硬技能项目的完整流程">2.3. 硬技能（项目的完整流程）</a>
+          <ul>
+            <li><a href="#231-需求变更化解程序员的头号噩梦">2.3.1. 需求变更：化解程序员的&quot;头号噩梦&rdquo;</a>
+              <ul>
+                <li><a href="#2311-达成最小共识变更是有代价的">2.3.1.1. 达成最小共识，变更是有代价的</a></li>
+                <li><a href="#2312-源头治理一次把事情做对">2.3.1.2. 源头治理：一次把事情做对</a></li>
+                <li><a href="#2313-快试错不可抗力巧应对">2.3.1.3. 快试错，不可抗力巧应对</a></li>
+              </ul>
+            </li>
+            <li><a href="#232-风险管理如何系统化应对风险">2.3.2. 风险管理：如何系统化应对风险？</a>
+              <ul>
+                <li><a href="#2321-系统化风险识别">2.3.2.1. 系统化风险识别</a></li>
+                <li><a href="#2322-冰山下的风险不可知的风险">2.3.2.2. 冰山下的风险（不可知的风险）</a></li>
+                <li><a href="#2323-风险应对措施">2.3.2.3. 风险应对措施</a></li>
+                <li><a href="#2324-树立正确的风险观">2.3.2.4. 树立正确的风险观</a>
+                  <ul>
+                    <li><a href="#23241-治未病建立系统性保健机制">2.3.2.4.1. 治未病，建立系统性保健机制</a></li>
+                    <li><a href="#23242-积极管理致命风险往往在一开始就埋下了">2.3.2.4.2. 积极管理致命风险（往往在一开始就埋下了）</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#233-质量管理一次把事情做对">2.3.3. 质量管理：一次把事情做对</a>
+              <ul>
+                <li><a href="#2331-质量规划明确标准">2.3.3.1. 质量规划、明确标准</a></li>
+                <li><a href="#2332-质量分析追根溯源">2.3.3.2. 质量分析、追根溯源</a></li>
+                <li><a href="#2333-质量控制层层卡点">2.3.3.3. 质量控制、层层卡点</a></li>
+              </ul>
+            </li>
+            <li><a href="#234-高效会议项目中要开好哪些会议">2.3.4. 高效会议：项目中要开好哪些会议</a>
+              <ul>
+                <li><a href="#2341-项目中的重要会议">2.3.4.1. 项目中的重要会议</a></li>
+                <li><a href="#2342-保障会议品质的关键">2.3.4.2. 保障会议品质的关键</a>
+                  <ul>
+                    <li><a href="#23421-明确会议的边界">2.3.4.2.1. 明确会议的边界</a></li>
+                    <li><a href="#23422-建立会议规则">2.3.4.2.2. 建立会议规则</a></li>
+                    <li><a href="#23423-做好会后跟进">2.3.4.2.3. 做好会后跟进</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#235-故事案例引入变化">2.3.5. 故事案例：引入变化</a>
+              <ul>
+                <li><a href="#2351-天时">2.3.5.1. 天时</a></li>
+                <li><a href="#2352-地利">2.3.5.2. 地利</a></li>
+                <li><a href="#2353-人和">2.3.5.3. 人和</a></li>
+              </ul>
+            </li>
+            <li><a href="#236-故事案例敏捷">2.3.6. 故事案例：敏捷</a>
+              <ul>
+                <li><a href="#2361-为什么引入敏捷">2.3.6.1. 为什么引入敏捷</a>
+                  <ul>
+                    <li><a href="#23611-痛点一发布时间不可控快速的增量交互">2.3.6.1.1. 痛点一：发布时间不可控（快速的增量交互）</a></li>
+                    <li><a href="#23612-痛点二摆脱接力综合症从对抗走向协作">2.3.6.1.2. 痛点二：摆脱接力综合症（从对抗走向协作）</a></li>
+                    <li><a href="#23613-痛点三需求理解不一致面对面澄清及估算">2.3.6.1.3. 痛点三：需求理解不一致（面对面澄清及估算）</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#237-工具方法结合高效管理">2.3.7. 工具方法结合：高效管理</a>
+              <ul>
+                <li><a href="#2371-visiowbs及甘特图">2.3.7.1. Visio:WBS及甘特图</a></li>
+                <li><a href="#2372-visio里程碑规划图时间轴图">2.3.7.2. Visio:里程碑规划图（时间轴图）</a></li>
+                <li><a href="#2373-任务管理看板燃尽图">2.3.7.3. 任务管理：看板，燃尽图</a></li>
+                <li><a href="#2374-cicd质量卡点">2.3.7.4. CI/CD：质量卡点</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#24-软技能沟通协作">2.4. 软技能（沟通协作）</a>
+          <ul>
+            <li><a href="#241-向上沟通三个误区">2.4.1. 向上沟通：三个误区</a>
+              <ul>
+                <li><a href="#2411-误区一所有问题都自己抗">2.4.1.1. 误区一：所有问题，都自己抗</a></li>
+                <li><a href="#2412-误区二只知道吐槽不知道争取">2.4.1.2. 误区二：只知道吐槽，不知道争取</a></li>
+                <li><a href="#2413-误区三抓不住重点给不出方案">2.4.1.3. 误区三：抓不住重点，给不出方案</a></li>
+              </ul>
+            </li>
+            <li><a href="#242-跨部门沟通不归你管的人积极配合">2.4.2. 跨部门沟通：不归你管的人积极配合</a>
+              <ul>
+                <li><a href="#2421-约法三章先说清除">2.4.2.1. 约法三章，先说清除</a></li>
+                <li><a href="#2422-打开边界一起想办法">2.4.2.2. 打开边界，一起想办法</a></li>
+              </ul>
+            </li>
+            <li><a href="#243-向下沟通">2.4.3. 向下沟通</a>
+              <ul>
+                <li><a href="#2431-执行力">2.4.3.1. 执行力</a>
+                  <ul>
+                    <li><a href="#24311-主动担责">2.4.3.1.1. 主动担责</a></li>
+                    <li><a href="#24312-有始有终">2.4.3.1.2. 有始有终</a></li>
+                  </ul>
+                </li>
+                <li><a href="#2432-信息力">2.4.3.2. 信息力</a></li>
+                <li><a href="#2433-感知力">2.4.3.3. 感知力</a></li>
+                <li><a href="#2434-透明力">2.4.3.4. 透明力</a></li>
+                <li><a href="#2435-影响力">2.4.3.5. 影响力</a></li>
+                <li><a href="#2436-整合力">2.4.3.6. 整合力</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#25-pmp认证">2.5. PMP认证</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-qt项目管理">3. Qt项目管理</a>
+      <ul>
+        <li><a href="#31-正确理解需求">3.1. 正确理解需求</a></li>
+        <li><a href="#32-深谋远虑的研发">3.2. 深谋远虑的研发</a></li>
+        <li><a href="#33-考虑周全的硬件选型">3.3. 考虑周全的硬件选型</a></li>
+        <li><a href="#34-团队步调一致">3.4. 团队步调一致</a></li>
+        <li><a href="#35-避免重新发明轮子">3.5. 避免重新发明轮子</a></li>
+        <li><a href="#36-性能优化和重构">3.6. 性能优化和重构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p><code>学习 极客时间 《项目管理实战20讲》</code>（完）</p>
+<ol>
+<li>项目管理能力，成为一个职场人士的【必备技能】，具备项目管理能力的程序员，会在这个程序员严重同质化的局面下，拥有更多的竞争优势。。</li>
+<li>项目管理【不同于技术管理】，项目管理的思维和方法，构建出了一套【多人协同】的底层操作系统，个人-》团队。</li>
+<li>从头到尾把事做成。</li>
+</ol>
+<h2 id="1-如何学习">1. 如何学习</h2>
+<ol>
+<li><code>体机用</code>：<code>体</code>对应于项目管理的知识体系。<code>用</code>对应于各种项目管理实践。<code>机</code>不光指时机，同时还意味着环境和条件，只有将知识技能和具体的<code>场景</code>相结合，才能发挥出真正的效用。对<code>机</code>的把握是核心能力。</li>
+</ol>
+<h3 id="学习方法">学习方法</h3>
+<ol>
+<li>破除魔障（一步一步，肯定行）。</li>
+<li>每次一小步（不积奎步，无以至千里）。</li>
+<li>先找找感觉（每天唱谱，左右手单手练习）。</li>
+<li>“足”量的刻意练习（10000小时）。</li>
+</ol>
+<h2 id="2-学习路径">2. 学习路径</h2>
+<h3 id="21-误区">2.1. 误区</h3>
+<h4 id="211-凡事恨不得事必躬亲想办法影响他人去把事情做好">2.1.1. 【凡事恨不得事必躬亲】想办法影响他人去把事情做好</h4>
+<ol>
+<li>第一个层次-让他人知道要做（Awareness）：单方面的工作交代和告知，停留在浅层次的信息传达上。</li>
+<li>第二个层次-让他人有动力做（Desire）：讲清楚为什么要做，为什么要现在做，获得理解及认同，激发团队的动力。</li>
+<li>第三个层次-让他人有能力做（Ability）：项目成功关键路径上的核心能力缺失，要当作最高优先级的风险管理。短期引入人才、长期培养人才。</li>
+</ol>
+<h4 id="212-追在别人屁股后面做监工明确目标建立机制">2.1.2. 【追在别人屁股后面做监工】明确目标，建立机制</h4>
+<ol>
+<li>明确目标，建立机制，并让这个机制运转起来，最终在项目组形成一种良性的秩序。</li>
+<li>【始终依靠流程和规则】来约束大家的行为。</li>
+<li>然后，就可以集中精力去做愿景驱动、激励团队等更高层面的工作。</li>
+</ol>
+<h4 id="213-拿着锤子看哪里都是钉子">2.1.3. 【拿着锤子看哪里都是钉子】</h4>
+<ol>
+<li>
+<p>不要着急使用原来没有的工具和方法。</p>
+</li>
+<li>
+<p>要加强沟通，看【最需要什么】。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 时间、成本、质量、范围这几个因素，哪个最重要？哪些允许有一定调整空间？
+2. 各个角色的痛点在哪儿？哪些需要最先解决？背后的原因是什么？
+3. 对痛点的改进是不是有真实需要？需求的迫切程度如何？
+4. 老板或项目发起人对项目管理以及你本人的定位怎样？是否沟通达成一致？
+5. 打算引入新方法或工具？如何引入，自上而下全面推广？还是自下而上一步步优化？最有可能从哪个问题切入？
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="22-常识项目管理知识框架">2.2. 常识（项目管理知识框架）</h3>
+<ol>
+<li>
+<p>国际上三大项目管理的研究体系，欧洲的IPMA，英国的PRINCE2和美国的PMI（国内普及度最高）。</p>
+</li>
+<li>
+<p>本文主要讨论PMI</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">  1. 项目是为创造独特的产品、服务或成果而进行的临时性工作。
+  2. 项目管理就是将各种知识、技能、工具和技术应用于项目活动，以满足项目的要求。<span class="sb">`</span>保目标、助决策、提效能、促协作<span class="sb">`</span><span class="o">(</span>网易<span class="o">)</span>。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>十大领域五大过程组，一横一纵两条主线。</p>
+</li>
+</ol>
+<h4 id="221-十大领域十个角度包含项目运作的方方面面脑图工具">2.2.1. 十大领域（十个角度，包含项目运作的方方面面）【脑图工具】</h4>
+<h5 id="2211-干系人管理辅助领域">2.2.1.1. 干系人管理（辅助领域）</h5>
+<ol>
+<li>哪些人是你的干系人？（项目发起人等）</li>
+<li>是否存在潜在的干系人？（赞助方等）</li>
+<li>分析完干系方之后，如何管理干系人的期望和影响？（谁来拍板、什么方式参与等）</li>
+</ol>
+<h5 id="2212-范围管理核心领域做什么">2.2.1.2. 范围管理（核心领域）做什么</h5>
+<ol>
+<li>主要任务是搞清楚到底要做到哪些事，才能更好地达成各方的期望。</li>
+<li>确保围绕预期目标来设计相应的【方案（概要方案+详细方案）】，进一步确定前、中、后的工作。</li>
+</ol>
+<h5 id="2213-进度时间管理核心领域">2.2.1.3. 进度（时间管理）（核心领域）</h5>
+<ol>
+<li>规划好阶段性步骤，同时明确每个里程碑的目标成果和时间安排。</li>
+</ol>
+<h5 id="2214-成本管理核心领域">2.2.1.4. 成本管理（核心领域）</h5>
+<ol>
+<li>从全局视角去思考，更有效地管理各项投入。预算多少？什么时候到位？怎样才能用在刀刃上？</li>
+</ol>
+<h5 id="2215-质量管理核心领域">2.2.1.5. 质量管理（核心领域）</h5>
+<ol>
+<li>确定项目成功的标准是什么？需要引入哪些流程和方法，保障质量？</li>
+</ol>
+<h5 id="2216-资源管理辅助领域">2.2.1.6. 资源管理（辅助领域）</h5>
+<ol>
+<li>有哪些资源可以使用。渠道、经费、人员等。</li>
+</ol>
+<h5 id="2217-采购管理辅助领域">2.2.1.7. 采购管理（辅助领域）</h5>
+<ol>
+<li>思考哪些需要外部采购？经费受限的话，是否可以通过交换？</li>
+</ol>
+<h5 id="2218-沟通管理辅助领域">2.2.1.8. 沟通管理（辅助领域）</h5>
+<ol>
+<li>使用什么方式沟通？沟通频率？如何保持信息的高效传递？</li>
+</ol>
+<h5 id="2219-风险管理辅助领域">2.2.1.9. 风险管理（辅助领域）</h5>
+<ol>
+<li>提前做好系统性的风险识别，分等级制定应对策略。</li>
+</ol>
+<h5 id="22110-整合管理整体领域如何实现整体最优">2.2.1.10. 整合管理（整体领域）如何实现整体最优</h5>
+<ol>
+<li>如何去统筹全局，整合并协调各个环节的利益冲突和工作安排。</li>
+</ol>
+<h4 id="222-五大过程组">2.2.2. 五大过程组</h4>
+<ol>
+<li>PDCA环（戴明环）：规划（plan）、执行（do）、检查（check）和行动（act）。<code>周而复始、螺旋上升</code>。</li>
+<li>五大过程组基于PDCA的法则。</li>
+</ol>
+<h5 id="2221-启动过程组">2.2.2.1. 启动过程组</h5>
+<ol>
+<li>启动过程组意味着正式开始一个项目，或者是开始一个项目中的新阶段。</li>
+<li>包括识别干系人和制定项目章程两个子过程。</li>
+</ol>
+<h6 id="22211-识别项目中的四类干系人">2.2.2.1.1. 识别项目中的四类干系人</h6>
+<ol>
+<li>
+<p>干系人分析是指对项目干系人进行分析和归类，有针对性地规划管理其核心诉求和期望，让干系人更好地参与项目，对项目产生积极影响。</p>
+</li>
+<li>
+<p>按照在项目上的权利和利益相关度对干系人进行划分，分成四类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 高利益-高权力：项目发起人（项目资助人），天然支持者，重点管理：
+    a. <span class="o">[</span>目标<span class="o">]</span>发起这个项目的背景和初衷是什么？项目组的整体目标是什么？如何知道我们做到了？
+    b. <span class="o">[</span>资源<span class="o">]</span>有哪些资源短缺或限制因素？涉及哪些外部资源的管理？哪些是项目获得成功的关键资源？
+    c. <span class="o">[</span>流程<span class="o">]</span>项目组的决策流程是怎样的？需求如何通过审核？如何确认变更呢？
+    d. <span class="o">[</span>团队<span class="o">]</span>如何考虑项目团队的组织结构的？团队组建多长时间了？各个角色的合作状况如何？在团队及组织结构上，是否有需要特别关注的状况？
+    e. <span class="o">[</span>沟通<span class="o">]</span>通过什么渠道了解项目状况？希望我以什么样的方式跟你保持信息同步？哪些风险和问题需要经过特别审批？
+    f. <span class="o">[</span>期望<span class="o">]</span>最看重项目的哪些因素<span class="o">(</span>进度、质量、成本、范围<span class="o">)</span>？在极端情况下，这些要素如何排序？希望我在承担项目管理之后，给项目及团队的哪些方面带来提升？
+2. 高利益-低权力：项目组成员。核心是做到项目事项的随时告知，及时通报项目的进展和困难。
+    a. <span class="o">[</span>流程<span class="o">]</span>项目计划一般如何确定？计划的变更是否得到周知？组内的任务分配、跟踪流程是怎样的？项目的文档管理、发布流程、需求变更流程是怎样的？分别使用了哪些工具？
+    b. <span class="o">[</span>沟通<span class="o">]</span>你得到了与你目前工作相关的足够的项目北京信息了吗？如果没有，你还希望知道哪些方面的信息？
+    c. <span class="o">[</span>期望<span class="o">]</span>你所知道的项目组成员的信息渠道有哪些？你需要参加哪些项目会议？团队成员需要参加哪些会议？
+3. 低利益-高权力：职能经理。管理着资源（人）
+    a. <span class="o">[</span>反对者<span class="o">]</span>建立信任，化解敌意。通过积极地聆听，了解对方的内心想法，正确理解对方的逻辑，才有可能进一步对其施加影响。
+    b. <span class="o">[</span>支持者<span class="o">]</span>明确知道，他们各自对项目不同的期望和诉求，有意识地创造更多的空间和机会，让他们深度参与。
+    c. <span class="o">[</span>中立者<span class="o">]</span>有精力的话，进一步将其转化为支持力量。
+    q1. <span class="o">[</span>团队<span class="o">]</span>你的团队成员构成和分布怎么样？总人数、资深工程师的分布情况，团队成员的稳定性怎么样？不同成员之间如何分工？
+    q2. <span class="o">[</span>目标<span class="o">]</span>你们团队今年的整体目标是什么？目前的完成度？对完成目标的信心如何？有哪些潜在风险？
+    q3. <span class="o">[</span>沟通<span class="o">]</span>你所知道的项目组成员的信息渠道有哪些？你要参加哪些项目会议？团队成员需要参加哪些会议？
+    q4. <span class="o">[</span>合作<span class="o">]</span>你的团队与其他团队之间的合作是否顺畅？不同角色的团队之间的沟通渠道有哪些？你的团队需要的支持有哪些？
+    q5. <span class="o">[</span>风险<span class="o">]</span>目前项目团队的最大风险和问题是什么？在你们团队的工作中，返工的情况多吗？一般是什么原因导致的？
+    q6. <span class="o">[</span>期望<span class="o">]</span>你希望我承担项目管理工作后，给项目及团队带来哪些改变？
+4. 低利益-低权力：外围支持人员。复杂度低而且非核心的工作。提前约定好，每天或每周进展汇报的格式和内容即可，确保他们的工作职责和任务明确，进展符合预期就可以了。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>干系人分析之后，从而制定出合理的【干系人沟通计划】。</p>
+</li>
+</ol>
+<h6 id="22212-制定项目章程通过启动会公开确认">2.2.2.1.2. 制定项目章程【通过启动会公开确认】</h6>
+<ol>
+<li>【启动会】好比一个大型的推土机，面对项目组全员，正式宣告一个新项目或者新阶段的开始，公开确认项目章程，包括明晰各方干系人的期望和诉求，设定愿景目标和重要里程碑，确定责任分工和沟通机制。<code>省去非常多的后期沟通成本</code></li>
+<li>如果跨部门，【启动会】可以邀请更高的管理层出面，讲清楚项目的背景、目标和重要性。</li>
+<li>【启动会】也是项目管理人员的公开授权方式，让你以后的推进工作更容易开展。</li>
+</ol>
+<h5 id="2222-规划过程组">2.2.2.2. 规划过程组</h5>
+<ol>
+<li>规划把愿景目标转化为【可落地的行动方案和工作路线】：明确项目范围、确定里程碑、做好准备。</li>
+<li>对一个复杂的项目，规划通常是一个渐进明晰的过程，近期的规划往往是最具体的，需要拆分到具体版本和工作项。远期的规划比较模糊。</li>
+<li>规划需要动态细化、不断更新。</li>
+<li>计划是“市场需求或发起人的期望”和“团队生产力”之间平衡的结果。从本质上来讲，计划是用来对焦的，做计划，是个集体对焦的过程。</li>
+</ol>
+<h6 id="22221-排除计划中的延期地雷">2.2.2.2.1. 排除计划中的‘延期地雷’</h6>
+<ol>
+<li>
+<p>不够具体。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"> <span class="k">1.</span> 好的计划，不仅要给出时间节点，还要给出依据和来源，这样才能更有效地对焦。
+ <span class="k">2.</span> 【WBS工作分解（描述思路的规划和设计工具）】，可以清晰表示各项目工作之间的相互联系，帮助更高效地管理项目。
+ <span class="k">3.</span> 创建WBS的过程，就是把项目工作按【阶段可交付成果】分解成较小的、更易于管理的组成部分的过程,一般以3个工作日一项任务为尺度。但是也不能是任务的简单罗列，需要识别关键资源和关键依赖，还要考虑研发之外其他环节。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>不够全面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 识别依赖并画出关键路径。（甘特图）
+<span class="k">2.</span> 再叠加上时间轴图，标明其他合作环节（比如评审会议，上线时间等）。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>不够准确。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 定义完成标准：就是某个时间点需要完成的事项列表或者应该达成的某项指标。任何重要时间节点，都应该有一组完成标准。越早越好。
+<span class="k">2.</span> 常见的几个关键时间节点：需求/设计确认（反馈意见数小于多少）；功能完成/提测（单元测试覆盖率、静态代码分析分数等）；里程碑完成。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>没有共识。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 没有达成共识的计划，是不具备任何效力的。需要达成共识并公开透明。（规划会）
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>不够即时。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 及时调整变更。做计划永远是个反复修正、渐进明晰的过程。重要的是，每一次进行调整，都要确保项目中的每个人知道当前的计划是什么，调整计划需要怎样的决策过程，需要谁参与。并公开告知所有的项目成员。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="2223-执行过程组">2.2.2.3. 执行过程组</h5>
+<ol>
+<li>前两个过程组做好了，这一过程相对轻松，重在整合资源，推动项目落地。</li>
+<li>在项目执行过程中，【想要降低偏差、减少返工】，你就需要构建系统能力，在产品研发的整个过程中，建立起【真正闭环反馈】的产品验证机制。</li>
+<li>三种实用的方法。</li>
+</ol>
+<h6 id="22231-方案评审oarp评审">2.2.2.3.1. 方案评审（OARP评审）</h6>
+<ol>
+<li>
+<p>需求评审、交互评审、视觉评审都是非常基本的闭环验证方法。</p>
+</li>
+<li>
+<p>要想执行中不走样，就必须把方案评审做到位。评审的精髓不在会，而在于背后的决策机制。</p>
+</li>
+<li>
+<p>OARP（Owner, Approver, Reviewer、Participant）决策机制:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">负责人（Owner）负责给出方案，组织各方讨论并【推进】作出最终的决定；
+批准者（Approver）最终批准者；
+审核者（Reviewer）负责人和批准者挑选出来的审核人。审核者有责任对文档进行讨论分析、并提出反馈意见，负责人必须重视并给予回复。
+参与者（Participant）其他提供意见的人。参与者会收到文档的相关信息，可以对相关问题作出反馈。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>Owner</th>
+<th>Approver</th>
+<th>Reviewer</th>
+<th>Participant</th>
+<th>确认方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求稿</td>
+<td>策划人员</td>
+<td>产品负责人</td>
+<td>产品/设计/开发/测试Leader</td>
+<td>项目组</td>
+<td>会议+邮件</td>
+</tr>
+<tr>
+<td>需求变更</td>
+<td>策划人员</td>
+<td>产品负责人</td>
+<td>产品/设计/开发/测试Leader</td>
+<td>项目组</td>
+<td>任务流程</td>
+</tr>
+<tr>
+<td>设计稿</td>
+<td>设计人员</td>
+<td>产品负责人</td>
+<td>产品/设计/开发/测试Leader</td>
+<td>项目组</td>
+<td>会议+邮件</td>
+</tr>
+<tr>
+<td>开发设计文档</td>
+<td>开发人员</td>
+<td>技术负责人</td>
+<td>开发/测试/运维Leader</td>
+<td>项目组</td>
+<td>邮件</td>
+</tr>
+<tr>
+<td>测试计划/测试用例</td>
+<td>测试人员</td>
+<td>技术负责人</td>
+<td>开发/测试Leader</td>
+<td>项目组</td>
+<td>会议</td>
+</tr>
+</tbody>
+</table>
+<h6 id="22232-bugbashbug大扫除">2.2.2.3.2. BugBash（Bug大扫除）</h6>
+<ol>
+<li>
+<p>【由来】在项目开发里程碑的末期（如Beta版发布前），划出一个专门的时间段，在这期间，所有参与项目的人，集中全部精力一起来给项目找Bug，目的是从各个维度衡量和体验产品。</p>
+</li>
+<li>
+<p>在各个阶段都可以bug bash。</p>
+</li>
+<li>
+<p>如何组织（最大程度地调动团队成员的参与热情，也是非常好的团建活动）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1. 时间点的选择。文档完成，里程碑完成的时候。
+2. 地点的选择。单独的作战室，自带笔记本，备好零食饮料。
+3. 参与者。让项目组中不同角色的人群都参与，丰富多维的视角。
+4. 现场安排。需要排名，营造氛围。
+5. 活动结束。直接公布bug或建议数，现场给奖品，并发邮件通报全组。
+6. 最后，对Bug进行去重之后，分类定级，明确修复计划，并公示结果。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h6 id="22233-冒烟用例评审">2.2.2.3.3. 冒烟用例【评审】</h6>
+<ol>
+<li>冒烟测试指在对一个新版进行系统大规模的测试之前，先验证一下软件的基本功能是否实现，是否具备可测试性。</li>
+<li>最害怕一个词‘差不多’。冒烟测试用例，可以说是开发和测试之间最基础的合约。</li>
+<li>安排专门的测试用例评审会。</li>
+</ol>
+<h5 id="2224-监控过程组大盘或报表">2.2.2.4. 监控过程组【大盘或报表】</h5>
+<ol>
+<li>【审时度势、沉着应变】定期对项目的进展、范围、质量等进行跟踪和监控，识别目前的进度与计划的偏差，快速准确地采取办法进行纠正和调整。</li>
+<li>有效的沟通汇报必不可少，从三个方面来展开。</li>
+<li>【想要改善什么，你就去透明什么，越直观越好】。</li>
+</ol>
+<h6 id="22241-紧急汇报直面问题有章法">2.2.2.4.1. 紧急汇报：直面问题有章法</h6>
+<ol>
+<li>
+<p>执行中遇到困难，一定要直面问题，暴露问题。</p>
+</li>
+<li>
+<p>紧急报告，是指在项目发生突发事件，或者提示重要风险状态变化时的实时报告。</p>
+</li>
+<li>
+<p>紧急报告，一般包括5个基本元素。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 事件描述。言简意赅。定性。
+<span class="k">2.</span> 影响结果。定量。
+<span class="k">3.</span> 跟进分析。具体原因。
+<span class="k">4.</span> 响应措施：包含负责人及时间表。给出解决方法。
+<span class="k">5.</span> 所需支持。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h6 id="22242-常规汇报项目周报回答的三个问题">2.2.2.4.2. 常规汇报：项目周报回答的三个问题</h6>
+<ol>
+<li>
+<p>项目周报回答的三个问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 项目的整体进展状态到底如何？（晴[一切正常]-少云[有点小问题，按计划]-多云[有问题，通过努力，按计划]-阴[高风险]-雨[很难按计划]-雪[无法继续]）
+<span class="k">2.</span> 风险可控吗？
+<span class="k">3.</span> 目标达成有没有问题？ 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>周报模板（阅读时间不超过5分钟）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 【必选】项目整体状态评估：
+<span class="k">2.</span> 【必选】风险列表：主要风险项，措施跟进以及监控状态；
+<span class="k">3.</span> 【必选】项目概况/计划变更：项目节点完成情况，各组主要动态，计划变更情况等；
+<span class="k">4.</span> 【必选】进度计划/当前版本：当前最新的项目计划时间线及进展状况；
+<span class="k">5.</span> 【可选】外部资源依赖协调：
+<span class="k">6.</span> 【可选】燃尽图
+<span class="k">7.</span> 【可选】质量图
+<span class="k">8.</span> 【可选】运营相关图标：运营数据的图表。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h6 id="22243-数据汇报善用透明的力量">2.2.2.4.3. 数据汇报：善用“透明”的力量</h6>
+<ol>
+<li>能用图表和数据的，绝不会用文字。并在项目组大群里公开。</li>
+<li>常用图表：倒计时、工作量燃尽图（JIRA录入任务和工作量之后自动生成）、剩余工作量、工作状态分布。</li>
+</ol>
+<h5 id="2225-收尾过程组">2.2.2.5. 收尾过程组</h5>
+<ol>
+<li>‵慎终如始、则无败事‵交付项目成果、组织团队的回顾复盘、归档所有文档等组织过程资产。<code>复盘、复盘、复盘</code>复盘是对思维的训练。</li>
+</ol>
+<h6 id="22251-复盘会的基调设定">2.2.2.5.1. 复盘会的基调设定</h6>
+<ol>
+<li>
+<p>在复盘会之前，想清楚我们复盘的目的，设定好复盘的基调，其实更为重要。【避免陷入追责】</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 首先，我们自己要先进入反思区；并且奠定基调，这次复盘不是来挑问题的，而是为了找到问题的根源并改进的。
+<span class="k">2.</span> 只有直面问题，找到方法，制定方案。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h6 id="22252-复盘会的会前准备">2.2.2.5.2. 复盘会的会前准备</h6>
+<ol>
+<li>【客观的输入】在复盘会之前，你要去梳理整个版本的历程，包括项目或里程碑的各项数据和信息、目标和达成结果、进度计划、需求变更、质量状况。</li>
+<li>【主观的输入】同时，还可以提前收集这个版本期间，团队满意度的问卷调查。</li>
+<li>除此之外，视频也是非常好的回顾材料（照片，感动）。</li>
+</ol>
+<h6 id="22253-复盘会的简易流程">2.2.2.5.3. 复盘会的简易流程</h6>
+<ol>
+<li>
+<p>现场回顾总结项目/里程碑的整体概况，包括目标达成情况、进度计划及变更情况，需求变更情况，质量报告等项目历程记录。</p>
+</li>
+<li>
+<p>与会人员用便签纸写下项目过程中做的好的以及做的不好的3个点，按照项目的各个环节分类，分别贴在白板上，确保大家的意见能够充分、自由地表达。</p>
+</li>
+<li>
+<p>在白板前逐条review大家的意见，共同发现问题，并讨论。</p>
+</li>
+<li>
+<p>对大家总结出的好和不好的点，进行集体投票。</p>
+</li>
+<li>
+<p>项目经理整理投票，做得好的，总结经验；做的不好的，当场讨论出改进方案。</p>
+</li>
+<li>
+<p>收尾</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 项目代码：打tag存档；
+<span class="k">2.</span> 项目文档：确保文档库中的文档为最新；
+<span class="k">3.</span> 经验教训：确保项目过程及分享会所产生的各类经验教训、技术分享存入文档库，供未来的项目使用。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>后续</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 持续跟进改进方案的实施状态。【改进措施一定要落地、重点行动不要太多，一个就够了（投票TOP1）】
+<span class="k">2.</span> 复盘会的次数，也不要太多，每个季度1-2次里程碑复盘，达到真正的落地效果。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h6 id="22254-打造团队持续改进能力">2.2.2.5.4. 打造团队持续改进能力</h6>
+<ol>
+<li>想要让团队进入自发改进的正向循环，你需要更好地激发团队的主人翁意识，让团队成为复盘的主角。不仅要关注事，还要关注人（工作状态，参与的愉悦，批奏章）。</li>
+<li>越是困难时期，越是塑造团队能力的大好机会，关注个人的状态。</li>
+</ol>
+<h4 id="223-互联网项目管理的职责定位">2.2.3. 互联网项目管理的职责定位</h4>
+<ol>
+<li>
+<p>【特点】项目边界交叠在一起；周期不确定。</p>
+</li>
+<li>
+<p><code>保目标、助决策、提效能、促协作</code>(网易)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 【保目标】首先，围绕组织绩效目标，定位出核心的3～5件要事，即【关键战役】，再把关键战役进行规划分解，拆到可交付可验收的【里程碑】，最后落地到【版本/迭代的工作安排】中。
+2. 【助决策】接着，通过清晰而系统的反馈机制和平台，把执行中的进展状态、变更、风险等【集中呈现】，帮助管理者进行优化和调整（调整业务策略、调整目标和规划、优化资源配置）。
+3. 【提效能】去关注和消灭团队总的低价值工作所引发的效能痛点。
+4. 【促协作】着眼于使用各种项目管理方法和工具，让高价值工作者可以更好地工作。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>保目标、助决策是要打通从战略到执行的闭环；提效能、促协作则是打通上下游协同的闭环。</p>
+</li>
+</ol>
+<h3 id="23-硬技能项目的完整流程">2.3. 硬技能（项目的完整流程）</h3>
+<ol>
+<li>五大过程组的流程，已经融入之前的'常识'中。</li>
+</ol>
+<h4 id="231-需求变更化解程序员的头号噩梦">2.3.1. 需求变更：化解程序员的&quot;头号噩梦&rdquo;</h4>
+<ol>
+<li>流程：发起申请——变更委员会评估——接受变更、调整计划——公布。</li>
+</ol>
+<h5 id="2311-达成最小共识变更是有代价的">2.3.1.1. 达成最小共识，变更是有代价的</h5>
+<ol>
+<li>严格按照变更流程；</li>
+<li>最开始，做好需求评审，对需求质量把关。</li>
+</ol>
+<h5 id="2312-源头治理一次把事情做对">2.3.1.2. 源头治理：一次把事情做对</h5>
+<ol>
+<li>“小黑屋+deadline”，产品和设计人员，头脑风暴，把事情做对。</li>
+</ol>
+<h5 id="2313-快试错不可抗力巧应对">2.3.1.3. 快试错，不可抗力巧应对</h5>
+<ol>
+<li>来自大老板或者大客户的需求，就是不可抗力。</li>
+<li>不要直接顶回去，要去剖析、把握和满足老板或客户的真正诉求。</li>
+<li>成立需求应急响应小队，快速试错，用数据说话。</li>
+</ol>
+<h4 id="232-风险管理如何系统化应对风险">2.3.2. 风险管理：如何系统化应对风险？</h4>
+<h5 id="2321-系统化风险识别">2.3.2.1. 系统化风险识别</h5>
+<ol>
+<li>风险识别的主体，应该包含项目中的团队成员在内的各方干系人。</li>
+<li>系统化的风险识别，是一个反复进行的过程，从构思阶段开始，贯穿项目规划和执行的始终。</li>
+<li>项目的典型风险列表：</li>
+<li>识别风险的输出，及时初始的【风险登记册】：包括已知的风险清单，以及潜在应对措施清单。对于已识别的每个风险，都要评估其概率（发生的可能性）和影响（对项目目标进度（&gt;20%高风险）、成本（&gt;40%高风险）、范围、质量的潜在影响），并进行优先排序。</li>
+</ol>
+<h5 id="2322-冰山下的风险不可知的风险">2.3.2.2. 冰山下的风险（不可知的风险）</h5>
+<ol>
+<li>没有人反馈风险，不代表没有风险（缺乏沟通渠道；提出来也没用；老板认为自己没有能力等）。</li>
+<li>一个优秀的项目经理，必须是优秀的“情报人员”。需要一个真诚的心，去关注项目中的每个角色、每个成员的需求，理解他们的困难，愿意为他们提供发展的机会，帮助他们去获得更大的成功。</li>
+<li>你识别的风险越多，项目的风险就越低。</li>
+</ol>
+<h5 id="2323-风险应对措施">2.3.2.3. 风险应对措施</h5>
+<ol>
+<li>对于发生概率很高的严重风险，一定要提前准备风险应对【方案】和危机应【预案】。</li>
+<li>在项目排期是，要确保相应的故障演练计划，并且做好充分的准备。</li>
+<li>每周的项目状态同步会议上，对风险进行再评估，并通过周期性的风险审查，来识别新的风险。</li>
+</ol>
+<h5 id="2324-树立正确的风险观">2.3.2.4. 树立正确的风险观</h5>
+<ol>
+<li>风险的另外一面是“机”。</li>
+</ol>
+<h6 id="23241-治未病建立系统性保健机制">2.3.2.4.1. 治未病，建立系统性保健机制</h6>
+<ol>
+<li>
+<p>致力于持续改善人与人之间的互动品质，提升项目团队的健康度。</p>
+</li>
+<li>
+<p>经常匿名的问卷收集或访谈，定期做一场开诚布公的复盘会。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">问卷
+<span class="k">1.</span> 对这个版本研发过程的综合评分（迭代方式、工作量、工作压力、团队配合、时间管理等各个方面），反映了过程满意度。
+<span class="k">2.</span> 对这个版本功能设计的满意度，即产品认可度。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>坚持在多个版本中反复使用，积累数据，回顾趋势。</p>
+</li>
+</ol>
+<h6 id="23242-积极管理致命风险往往在一开始就埋下了">2.3.2.4.2. 积极管理致命风险（往往在一开始就埋下了）</h6>
+<ol>
+<li>挖掘出这些致命风险，把他们变成可见的，可谈的。</li>
+<li>正视风险，不村侥幸心理。</li>
+<li>在项目的核心团队中，周期性地树立和同步风险状态。</li>
+</ol>
+<h4 id="233-质量管理一次把事情做对">2.3.3. 质量管理：一次把事情做对</h4>
+<ol>
+<li>程序员们只有27%的时间在做真正产生价值的编码工作。20%的时间，是在做需求质量和代码质量问题所引发的Bug修复、返工和紧急上线工作。</li>
+<li>质量成本分为两类：一类是事前防止失败的一致性成本；一类是事后处理失败的非一致性成本，包括内部Bug引发的返工成本，以及外部Bug导致的用户侧成本。</li>
+<li>【鼓励开发人员通过各类技术手段从上游保障质量】，【事后检查处理的代价其实是最高的】。</li>
+<li>实际上，质量是规划、设计、建造出来的，不是检查出来的。预防高于检查，预防错误的成本通常比在检查中发现并纠正错误的成本低很多。</li>
+<li>一次性把事情做对的成本是最低的，但是，就意味着，我们要有意识地提升预防类工作的占比，从根本上降低内部bug率和外部bug率。</li>
+</ol>
+<h5 id="2331-质量规划明确标准">2.3.3.1. 质量规划、明确标准</h5>
+<ol>
+<li>
+<p>规划质量，是识别项目及产品的质量要求和标准，并确定用哪些保障方法、改进措施来达到这些标准的过程。</p>
+</li>
+<li>
+<p>在业务生命周期的不同阶段，质量标准应该是动态变化的。</p>
+</li>
+<li>
+<p>只能结合具体项目和具体阶段的质量诉求，对质量的标准进行合理定义。</p>
+</li>
+<li>
+<p>定义好了质量标准，需要思考，在整个项目进程中，需要规划好哪些质量保障活动，以很好地达到这个标准：特别关注研发过程中的质量保障手段。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 适当的编码规范；
+<span class="k">2.</span> 提交规范；
+<span class="k">3.</span> 分支规范；
+<span class="k">4.</span> 设计代码准入标准（静态扫描、覆盖率测试、冲突检测，版本检测等）；
+<span class="k">5.</span> 确保代码Review；
+<span class="k">6.</span> 单元测试；
+<span class="k">7.</span> 接口验证；
+<span class="k">8.</span> UI验证。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>质量作为目标的一部分，达到要求是最重要的，不需要追求质量的无止境提升。质量终究也是有代价的，是否够用则取决于项目目标和要求。</p>
+</li>
+</ol>
+<h5 id="2332-质量分析追根溯源">2.3.3.2. 质量分析、追根溯源</h5>
+<ol>
+<li>质量分析，指识别项目运行期间，整体质量上遇到的问题和制约因素，分析根本原因，并制定相对应的预防措施和解决方案。</li>
+<li>每月坚持开Bug分析会；</li>
+<li>持续进行内部Bug分类；引入阶段分类（需求不清、设计缺陷、逻辑错误、测试遗漏、变更引发、历史遗留）、类别分类（功能、性能、界面、兼容性）</li>
+<li>建立质量大盘，拉通不同业务线或模块的【每月Bug趋势】。</li>
+</ol>
+<h5 id="2333-质量控制层层卡点">2.3.3.3. 质量控制、层层卡点</h5>
+<ol>
+<li>将一些明确下来的质量规范和做法，真正落地到各个环节。【卡点的在线工具化】</li>
+<li>CI/CD。</li>
+<li>质量控制和卡点行为，也要结合项目的质量要求和团队的质量成熟度，一层一层地加强质量把关和收口。</li>
+</ol>
+<h4 id="234-高效会议项目中要开好哪些会议">2.3.4. 高效会议：项目中要开好哪些会议</h4>
+<ol>
+<li>断舍离，只开最有必要的会，会而有议，议而有决，决而有行。</li>
+<li>有意识地选择，最适合项目现阶段状况的会议。</li>
+</ol>
+<h5 id="2341-项目中的重要会议">2.3.4.1. 项目中的重要会议</h5>
+<ol>
+<li>
+<p>启动会（誓师大会）（启动过程组）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 启动会的目的是清晰目标，明确授权；
+    （WHY）充分理解项目背景、目的和意义，才能更好地唤起团队的参与热情。
+    （WHAT）描绘蓝图，设定清晰的愿景。
+    （HOW）明确团队之间的责任分工以及合作公约。
+<span class="k">2.</span> 方面：
+   <span class="k">1.</span> 项目背景
+   <span class="k">2.</span> 项目目标
+   <span class="k">3.</span> 项目范围
+   <span class="k">4.</span> 里程碑计划
+   <span class="k">5.</span> 主要风险
+   <span class="k">6.</span> 组织架构
+   <span class="k">7.</span> 责任分工
+   <span class="k">8.</span> 流程机制
+   <span class="k">9.</span> 沟通方式
+   <span class="k">10.</span> 支持工具（任务管理、文档管理、代码管理的工具）
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>评审会（需求评审、方案评审、需求变更评审，螺旋上升）</p>
+</li>
+<li>
+<p>每日站会</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 关键是还政于民，满足的是【团队的自组织需要】，而不是leader的监控需求。
+<span class="k">2.</span> 自己决定站会时间；轮流主持人。
+<span class="k">3.</span> “三张牌”式站会法：
+   <span class="k">1.</span> 红牌。随时喊停，避免过度讨论，每个人都有机会。
+   <span class="k">2.</span> 黄牌。打断讨论，进行提问。
+   <span class="k">3.</span> 绿牌。发言权，每次只有一个人发言，按顺序，发过言之后，归还给主持人。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>项目周会（人数少的话，不需要项目周会）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 目的是解决整体计划层面、跨团队协同配合的问题。（负责人参与或全员参与）
+<span class="k">2.</span> 除了常规的各角色进度和风险同步之外，还需要根据项目组每个时期的整体阶段性重点，来设置相应的环节，让大家清晰地感受到项目组明确的导向，也就是什么是当前最重要的。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>复盘会（螺旋上升）</p>
+</li>
+</ol>
+<h5 id="2342-保障会议品质的关键">2.3.4.2. 保障会议品质的关键</h5>
+<ol>
+<li>不要盯着会议的数量，而是要追求会议的品质。</li>
+</ol>
+<h6 id="23421-明确会议的边界">2.3.4.2.1. 明确会议的边界</h6>
+<ol>
+<li>每个会议都有【特定的主题和目的】，并有【明确的参会人员范围】，这个就是会议的边界。</li>
+<li>对于哪些与主题不相干的议题，要坚决舍弃。</li>
+<li>确保个部分的进展信息在会前统一提交，会议当场只说重要问题、风险及需要支持的地方；</li>
+<li>确保会议当场严格围绕主题开展，对偏离主题的讨论，及时叫停。</li>
+</ol>
+<h6 id="23422-建立会议规则">2.3.4.2.2. 建立会议规则</h6>
+<ol>
+<li>对于行为（迟到，请假、拖堂、跑题等）建立规则。</li>
+</ol>
+<h6 id="23423-做好会后跟进">2.3.4.2.3. 做好会后跟进</h6>
+<ol>
+<li>及时汇总讨论的结果，形成会议结论。</li>
+<li>会后有跟进项目，直接进任务系统，确保跟进到底。</li>
+<li>会议纪要明文呈现，下次会议统一回顾。</li>
+</ol>
+<h4 id="235-故事案例引入变化">2.3.5. 故事案例：引入变化</h4>
+<ol>
+<li>要想引入变化，简单来说，需要“天时、地利、人和”。</li>
+<li>这个变化，必须是【解决团队大家的问题】，并不是好才引入。</li>
+</ol>
+<h5 id="2351-天时">2.3.5.1. 天时</h5>
+<ol>
+<li>
+<p>合适的时机。</p>
+</li>
+<li>
+<p>实际上，问题并不等于时机，只有把【问题和痛点】关联起来，才能形成一个好的时机。</p>
+</li>
+<li>
+<p>所谓痛点，就是必须及时解决的问题，包含着强烈的迫切感。判断是否是痛点的标志，就是看这个问题，如果不解决，对方是否会很苦恼、很痛苦。</p>
+</li>
+<li>
+<p>【要想促发别人的行为，必须换位思考，去体会和抓住他的痛点】。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 访谈法，直接问。
+<span class="k">2.</span> 观察法。判断是不是伪痛点。去观察那些花他时间和精力最多、他反复强调却又没很好解决的问题，那些才是真正痛点。
+<span class="k">3.</span> 同理心和聆听。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在变革的早期，最重要的就是寻找到早期支持者。围绕着你想要引入的变化，击中几个重要干系人的痛点之后，这个世纪就到了。</p>
+</li>
+</ol>
+<h5 id="2352-地利">2.3.5.2. 地利</h5>
+<ol>
+<li>结合团队的实际情况，而不是照搬理论或者所谓的“最佳实践”。</li>
+<li>结合每个项目团队的现状，做好本地化的场景适配，这样才能获得好的效果。</li>
+<li>也并不是向环境妥协，而是创造一个最小阻力的落地方法，先快速地跑起来，让团队感受到变化带来的闭环成效。</li>
+</ol>
+<h5 id="2353-人和">2.3.5.3. 人和</h5>
+<ol>
+<li>
+<p>企业变革失败的最常见因素就是人的阻力。（与生俱来的对变化的情绪反应）</p>
+</li>
+<li>
+<p>所以要多聆听彼此，充分理解，找到共同的出发点。（对一些事情，不同的人去看，会产生完全不同的看法）</p>
+</li>
+<li>
+<p>在沟通时，你要因人而异，针对不同的人，采取不同的策略。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 首先，先判断每个人的立场。立场不同，看问题的视角就不同。
+<span class="k">2.</span> 把变化涉及到的干系人，按照角色和层级做个初始划分，思考下不同区域的人，会怎么看待这个变化带给他的影响（找到更多的积极因素，对消极因素，也要提前引入相应的工具或方法来规避或改善）。
+<span class="k">3.</span> 所以，在大范围公布并引入变化之前，与关键角色进行一对一的沟通，是更稳妥的做法。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>引入变化的过程中，面向全员的正式公开沟通，一般会【放在最后，水到渠成】。</p>
+</li>
+</ol>
+<h4 id="236-故事案例敏捷">2.3.6. 故事案例：敏捷</h4>
+<h5 id="2361-为什么引入敏捷">2.3.6.1. 为什么引入敏捷</h5>
+<ol>
+<li>
+<p>敏捷的特点就是【小即是美】，发布周期更短。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 人：拆分成小规模（5~7人）、跨职能的小团队。
+<span class="k">2.</span> 事：拆分成一系列小而具体的交付物，按优先级排序，增量交付。
+<span class="k">3.</span> 时间：拆分成固定大小的短迭代（1——4周），在每个迭代结束后，对可工作的产出进行演示。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h6 id="23611-痛点一发布时间不可控快速的增量交互">2.3.6.1.1. 痛点一：发布时间不可控（快速的增量交互）</h6>
+<ol>
+<li>改进1：提早集成与测试；</li>
+<li>改进2：及时规避风；</li>
+<li>改进3：快速响应变化。</li>
+</ol>
+<h6 id="23612-痛点二摆脱接力综合症从对抗走向协作">2.3.6.1.2. 痛点二：摆脱接力综合症（从对抗走向协作）</h6>
+<ol>
+<li>待解决问题1：宁愿选择等待；</li>
+<li>待解决问题2：角色间泾渭分明。</li>
+<li>设定共同的Sprint目标和完成标准；</li>
+<li>开发测试一起开始，一起结束。（故事点燃尽图，里程碑燃尽图）</li>
+</ol>
+<h6 id="23613-痛点三需求理解不一致面对面澄清及估算">2.3.6.1.3. 痛点三：需求理解不一致（面对面澄清及估算）</h6>
+<ol>
+<li>迭代计划会分成了两个部分：面对面地讲解收集来的需求，明确需求的优先级和验证条件；团队估算（扑克牌）（同时估算出工作量），对估算差别大的需求，需要进一步讨论。</li>
+<li>三个好处：需求探索更深入；估算结果更加全面、细致；找到更优的整体解决方案。</li>
+<li>快速可靠交付，用户价值驱动，持续自发改进。</li>
+</ol>
+<h4 id="237-工具方法结合高效管理">2.3.7. 工具方法结合：高效管理</h4>
+<h5 id="2371-visiowbs及甘特图">2.3.7.1. Visio:WBS及甘特图</h5>
+<h5 id="2372-visio里程碑规划图时间轴图">2.3.7.2. Visio:里程碑规划图（时间轴图）</h5>
+<h5 id="2373-任务管理看板燃尽图">2.3.7.3. 任务管理：看板，燃尽图</h5>
+<h5 id="2374-cicd质量卡点">2.3.7.4. CI/CD：质量卡点</h5>
+<h3 id="24-软技能沟通协作">2.4. 软技能（沟通协作）</h3>
+<h4 id="241-向上沟通三个误区">2.4.1. 向上沟通：三个误区</h4>
+<h5 id="2411-误区一所有问题都自己抗">2.4.1.1. 误区一：所有问题，都自己抗</h5>
+<ol>
+<li>迈过自己内心的那道坎，主动大胆地发起沟通，是做好向上沟通的第一步。有些问题已经严重到不属于自己可以抗的级别了。</li>
+<li>不管通过什么途径，我们必须时刻从大局出发，让这些项目关键信息，及时有效地流动，保障及时有效的决策。</li>
+<li>当真正重要、紧急的事情发生时，一定要确保第一时间沟通。记住，你不需要所有问题，都自己抗。</li>
+</ol>
+<h5 id="2412-误区二只知道吐槽不知道争取">2.4.1.2. 误区二：只知道吐槽，不知道争取</h5>
+<ol>
+<li>当团队和管理层之间关系紧张时，很多项目经理会特别容易掉进一个误区：尽自己的努力帮团队解决问题，脏活累活都自己来。</li>
+<li>把“夹心饼”变成“连接器”，成为高层干系人与团队之间紧密联系的纽带。</li>
+<li>当需要高层重视和支持的事件发生时，该出手时就得出手，引发高层关注，把团队最一手的相关动态信息及时传递给他，争取高层必要的支持，而不是跟着团队一起吐槽。</li>
+</ol>
+<h5 id="2413-误区三抓不住重点给不出方案">2.4.1.3. 误区三：抓不住重点，给不出方案</h5>
+<ol>
+<li>如果只是反映问题，没有对应的方案，更没有说明关注这个问题的原因的话，高层不但不会重视，甚至还会产生反效果。</li>
+<li>沟通之前，做好充分的准备。要反映的问题，与高层干系人的核心关注点是否相匹配，这是能否引起其关注并进一步行动的关键所在。</li>
+<li>在向高层干系人提问题的同时，<code>【一定要给他一个明确的点】</code>，让他知道，为什么要关注这个问题<code>【数据和事实】</code>。</li>
+<li>针对提出的问题，列举可能的解决方案，这一点非常重要；不需要完整的，只是<code>【前进一小步的解决方案】</code>。</li>
+</ol>
+<h4 id="242-跨部门沟通不归你管的人积极配合">2.4.2. 跨部门沟通：不归你管的人积极配合</h4>
+<ol>
+<li>人类社会的很多冲突，都始于“边界”二字。</li>
+<li>共同目标、利益捆绑和流程约束是基础，开需要更开放的心态。</li>
+</ol>
+<h5 id="2421-约法三章先说清除">2.4.2.1. 约法三章，先说清除</h5>
+<ol>
+<li>
+<p>第一步：建立君子协定（上级领导）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 合作前，要跟对方建立合约，明确合作目标、合作事项、双方各自的需求和责任、时间进度要求、风险及责任人。需要公开作出正式的承诺。
+<span class="k">2.</span> 刚开始合作时,建立稳定的预期是关键，双方责任及进度要求，必须要得到公开确认。
+<span class="k">3.</span> 承诺越公开、越正式、日后对双方的约束效力就越大。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>第二步：建立机制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 合作建立之后，需要建立常规的沟通机制来持续推动；
+<span class="k">2.</span> 可以借助标准的任务管理和文档管理工具，对项目任务和文档做到统一的流程化管理，在过程中确保及时地跟进检查。
+<span class="k">3.</span> 运行过程中，经常自检，确认下流程上是否有疏忽的地方。是否存在&#34;三不管&#34;地带？每个依赖任务的职责是否明确，责任是否具体到个人。一旦发现，需要及时沟通、权责分明、分工合理。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>第三步：解决问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> &#34;找他们领导&#34;是王炸，不到特别时刻，不要随便拿出来用。
+<span class="k">2.</span> 自己尽快启动风险应对机制，确定问题处理方案；
+<span class="k">3.</span> 把问题和相关的决议结果抄送给双方的负责人，让双方清楚问题对整体项目的影响及调整方案。
+<span class="k">4.</span> 需明确，今后要采取哪些预防措施，以避免问题的再次发生。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="2422-打开边界一起想办法">2.4.2.2. 打开边界，一起想办法</h5>
+<ol>
+<li>
+<p>首先，要建立统一、清晰的节奏感（交付节奏，关键节点）；</p>
+</li>
+<li>
+<p>其次，想要打开边界，你还需要主动往前一步（每个模块都要有担当）；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 上敬老，对于用户方，要去主动深挖用户方的需求及业务背景，走在用户的前面；
+<span class="k">2.</span> 下爱小，对于依赖方，要全面监控、必要容错、并帮助它不断改进。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="243-向下沟通">2.4.3. 向下沟通</h4>
+<ol>
+<li>&ldquo;非职权领导力&rdquo;：执行力、信息力、感知力、透明力、影响力和整合力。</li>
+</ol>
+<h5 id="2431-执行力">2.4.3.1. 执行力</h5>
+<ol>
+<li>根基，俗称“靠谱”。立身之本。</li>
+</ol>
+<h6 id="24311-主动担责">2.4.3.1.1. 主动担责</h6>
+<ol>
+<li>首先需要跳出自己的小圈圈，主动承担更大的责任，而不是眼睁睁地看着项目出现问题，放手不管。</li>
+</ol>
+<h6 id="24312-有始有终">2.4.3.1.2. 有始有终</h6>
+<ol>
+<li>言必信，行必果。交给你的任何事情，都有始有终。</li>
+<li>一个有始有终的闭环，意味着你要对自己的每一个行为负责，清楚地了解为什么做，目标是什么，做完之后效果是怎样的，还有什么问题，以后要做哪些改进。如果中途有变化，也要及时根相关方明确说明调整或取消的原因是什么。</li>
+</ol>
+<h5 id="2432-信息力">2.4.3.2. 信息力</h5>
+<ol>
+<li>要让流动的信息汇聚起来。</li>
+<li>信息互通机制和平台：周会、站会、周报、邮件列表、通讯群，甚至是各类数据平台，都可以成为信息力的承载。</li>
+<li>让非正式的信息自动流向你。内功：好奇、热心、真诚、友善等。</li>
+</ol>
+<h5 id="2433-感知力">2.4.3.3. 感知力</h5>
+<ol>
+<li>
+<p>感知力是对“冰山下”的隐形信息的敏锐度。</p>
+</li>
+<li>
+<p>重点就是平时在开会时你要多联系、多观察。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> 第一层：现象层；&#34;冰山上的行为&#34;。
+<span class="k">2.</span> 第二层：意图层。多问几个为什么。
+<span class="k">3.</span> 第三层：感受层。试着从现象和意图中，去感受每个人的状态和需要。必须要先要处理好感受。让那些平常看不到的真实一面，被集体看见和理解。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="2434-透明力">2.4.3.4. 透明力</h5>
+<ol>
+<li>观察的结果只有透明出来，才能发挥效用。需要想办法把你看到的问题可视化，让决策者和团队都能看到这些问题。透明的力量。</li>
+<li>一个是“分析-思考-看见”（共识），一个是”目睹-感受-看见“（共鸣）。</li>
+<li>想要改善什么，就把什么透明化！在走脑的同时又要走心，让团队的所有人都看见问题，调动起集体的关注力和改变的动力。</li>
+</ol>
+<h5 id="2435-影响力">2.4.3.5. 影响力</h5>
+<ol>
+<li>项目经理，行走江湖，靠的是大家肯买你的账。对个人来说，时有说服力；对群体来说，时有感染力。</li>
+<li>影响力的真正秘诀是”听“，提得每一条建议都是建立在对对方的理解之上，所以才会被对方听进去。</li>
+<li>”不听“是一切沟通问题的根源。</li>
+<li>当你真诚地抱着想要了解和倾听对方的愿望，放下对自己的想法的执着时你才能留意到对方真正的需求。这样自然的交流分享，反而更容易产生碰撞，引发共鸣。</li>
+</ol>
+<h5 id="2436-整合力">2.4.3.6. 整合力</h5>
+<ol>
+<li>优秀的全局整合能力非常关键。</li>
+<li>凡是能促进业务良性运作的，凡是能促进团队健康发展的都是整合管理的范畴。</li>
+</ol>
+<h3 id="25-pmp认证">2.5. PMP认证</h3>
+<ol>
+<li>还是有必要的。</li>
+</ol>
+<h2 id="3-qt项目管理">3. Qt项目管理</h2>
+<h3 id="31-正确理解需求">3.1. 正确理解需求</h3>
+<ol>
+<li>首先分析并详细记录最终用户和市场的需求。</li>
+<li>然后，建议构建多个【用例】来描述用户在新系统中每个可能的举动。</li>
+<li>可能需要原型设计。</li>
+<li>建议您多构建几套原型；迭代、细化是成功的重要组成部分。</li>
+</ol>
+<h3 id="32-深谋远虑的研发">3.2. 深谋远虑的研发</h3>
+<ol>
+<li>们建议从一开始就假设您的应用需要运行在多种设备上。</li>
+</ol>
+<h3 id="33-考虑周全的硬件选型">3.3. 考虑周全的硬件选型</h3>
+<ol>
+<li>开发者在嵌入式设备就绪前，通常在台式机或软件模拟器上开始开发，这完全行得通。但是，尽早在真实硬件或开发板上运行应用程序也非常重要，它能验证您的硬件是否能正常运行您所设想的内容。</li>
+</ol>
+<h3 id="34-团队步调一致">3.4. 团队步调一致</h3>
+<ol>
+<li>建议使用相同的工具链和框架来统一分布式开发团队 —— 使用 Qt 很容易实现这些— 尽可能地跨工具和功能重用代码。一种有效的方法是基于 Qt 创建自己定义的 SDK，来确保团队成员和项目之间的一致性。</li>
+</ol>
+<h3 id="35-避免重新发明轮子">3.5. 避免重新发明轮子</h3>
+<ol>
+<li>，Qt 具有非常强大的跨台抽象层，因此不需要编写特定平台、处理器或操作系统的代码。如果您正在使用 “#ifdef OS_LINUX” 这样的方式来写代码，那么某些内容可能已经出错了。</li>
+</ol>
+<h3 id="36-性能优化和重构">3.6. 性能优化和重构</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-04-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/plat-linux-02-%E8%B0%83%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" class="prev" rel="prev" title="LINUX调试和性能分析"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7-git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="next" rel="next" title="GIT基本操作">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

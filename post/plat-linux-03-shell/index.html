@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SHELL - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="SHELL" />
+<meta property="og:description" content="注：命令后台执行。 1 2 1. command &amp; #后台运行，你关掉终端会停止运行 2. nohup command &amp; #后台运行，你关掉终端也会继续运行 1. 变量 1.1. 定义变量 定义：your_nam" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-linux-03-shell/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-03-29T14:41:33+08:00" />
+<meta property="article:modified_time" content="2021-03-29T14:41:33+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="SHELL"/>
+<meta name="twitter:description" content="注：命令后台执行。 1 2 1. command &amp; #后台运行，你关掉终端会停止运行 2. nohup command &amp; #后台运行，你关掉终端也会继续运行 1. 变量 1.1. 定义变量 定义：your_nam"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-linux-03-shell/" /><link rel="prev" href="/post/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA/" /><link rel="next" href="/post/plat-linux-%E5%BA%94%E7%94%A8-01-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B0%81%E8%A3%85/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SHELL",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-linux-03-shell\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, LINUX","wordcount":  1946 ,
+        "url": "\/post\/plat-linux-03-shell\/","datePublished": "2021-03-29T14:41:33+08:00","dateModified": "2021-03-29T14:41:33+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">SHELL</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-变量">1. 变量</a>
+      <ul>
+        <li><a href="#11-定义变量">1.1. 定义变量</a></li>
+        <li><a href="#12-使用变量">1.2. 使用变量</a></li>
+        <li><a href="#13-只读变量">1.3. 只读变量</a></li>
+        <li><a href="#14-删除变量">1.4. 删除变量</a></li>
+        <li><a href="#15-变量类型">1.5. 变量类型</a>
+          <ul>
+            <li><a href="#151-shell变量">1.5.1. shell变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#16-字符串">1.6. 字符串</a>
+          <ul>
+            <li><a href="#161-拼接">1.6.1. 拼接</a></li>
+          </ul>
+        </li>
+        <li><a href="#17-数组">1.7. 数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-运算符">2. 运算符</a>
+      <ul>
+        <li><a href="#21-算数运算符">2.1. 算数运算符</a>
+          <ul>
+            <li><a href="#211-">2.1.1. (())</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-关系运算符">2.2. 关系运算符</a></li>
+        <li><a href="#23-布尔运算符">2.3. 布尔运算符</a></li>
+        <li><a href="#24-逻辑运算符">2.4. 逻辑运算符</a></li>
+        <li><a href="#25-字符串运算符">2.5. 字符串运算符</a></li>
+        <li><a href="#26-文件测试运算符">2.6. 文件测试运算符</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-流程控制">3. 流程控制</a>
+      <ul>
+        <li><a href="#31-if">3.1. if</a></li>
+        <li><a href="#32-for">3.2. for</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-注释">4. 注释</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>注：命令后台执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. <span class="nb">command</span> <span class="p">&amp;</span> <span class="c1">#后台运行，你关掉终端会停止运行</span>
+2. nohup <span class="nb">command</span> <span class="p">&amp;</span> <span class="c1">#后台运行，你关掉终端也会继续运行</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="1-变量">1. 变量</h2>
+<h3 id="11-定义变量">1.1. 定义变量</h3>
+<ol>
+<li>定义：<code>your_name=&quot;runoob.com&quot;</code>,变量名和等号之间不能有空格.</li>
+<li>用语句给变量赋值： for file in <code>ls /etc</code> 或 for file in $(ls /etc)。</li>
+</ol>
+<h3 id="12-使用变量">1.2. 使用变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="nv">$your_name</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">your_name</span><span class="si">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-只读变量">1.3. 只读变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">readonly</span> myUrl
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="14-删除变量">1.4. 删除变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">unset</span> variable_name <span class="c1"># unset 命令不能删除只读变量</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="15-变量类型">1.5. 变量类型</h3>
+<h4 id="151-shell变量">1.5.1. shell变量</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$$</span>                <span class="c1"># Shell本身的PID（ProcessID）</span> 
+<span class="nv">$!</span>                <span class="c1"># Shell最后运行的后台Process的PID</span> 
+<span class="nv">$?</span>                <span class="c1"># 最后运行的命令的结束代码（返回值） 终止状态。</span>
+<span class="nv">$-</span>                <span class="c1"># 使用Set命令设定的Flag一览</span> 
+<span class="nv">$*</span>                <span class="c1"># 所有参数列表。如&#34;$*&#34;用「&#34;」括起来的情况、以&#34;$1 $2 … $n&#34;的形式输出所有参数。</span> 
+<span class="nv">$@</span>                <span class="c1"># 所有参数列表。如&#34;$@&#34;用「&#34;」括起来的情况、以&#34;$1&#34; &#34;$2&#34; … &#34;$n&#34; 的形式输出所有参数。</span> 
+<span class="nv">$#</span>                <span class="c1"># 添加到Shell的参数个数</span> 
+<span class="nv">$0</span>                <span class="c1"># Shell本身的文件名,但在bash下，执行source,为&#39;bash&#39;;</span>
+<span class="nv">$1</span>～<span class="nv">$n</span>            <span class="c1"># 添加到Shell的各参数值。$1是第1参数、$2是第2参数…。</span>
+<span class="nv">$BASH_SOURCE</span>      <span class="c1"># 【bash】取得当前执行的 shell 文件所在的路径及文件名</span>
+<span class="nv">$BASH_SOURCE</span><span class="o">[</span>0<span class="o">]</span>   <span class="c1"># 【bash】等价于 BASH_SOURCE ,</span>
+<span class="nv">$SHELL</span>            <span class="c1"># 当前默认使用的shell</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="16-字符串">1.6. 字符串</h3>
+<ol>
+<li>字符串是shell编程中最常用最有用的数据类型（除了数字和字符串，也没啥其它类型好用了），字符串可以用单引号，也可以用双引号，也可以不用引号。</li>
+<li>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的；</li>
+<li>双引号里可以有变量.</li>
+<li>单引号字串中不能出现单独一个的单引号（对单引号使用转义符后也不行），但可成对出现，作为字符串拼接使用。</li>
+<li>双引号里可以出现转义字符</li>
+</ol>
+<h4 id="161-拼接">1.6.1. 拼接</h4>
+<ol>
+<li>使用双引号拼接<code>greeting_1=&quot;hello, ${your_name} !&quot;</code></li>
+<li>使用单引号拼接<code>greeting_2='hello, '$your_name' !'</code></li>
+</ol>
+<h3 id="17-数组">1.7. 数组</h3>
+<h2 id="2-运算符">2. 运算符</h2>
+<h3 id="21-算数运算符">2.1. 算数运算符</h3>
+<ol>
+<li>默认情况下，Shell 不会直接进行算术运算，而是把+两边的数据（数值或者变量）当做字符串.</li>
+<li>要想让数学计算发挥作用，必须使用数学计算命令.</li>
+<li>(()) 和 bc 即可.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>运算操作符/运算命令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(( ))</td>
+<td>用于整数运算，效率很高，推荐使用。</td>
+<td></td>
+</tr>
+<tr>
+<td>let</td>
+<td>用于整数运算，和 (()) 类似。</td>
+<td></td>
+</tr>
+<tr>
+<td>$[]</td>
+<td>用于整数运算，不如 (()) 灵活。</td>
+<td></td>
+</tr>
+<tr>
+<td>expr</td>
+<td>可用于整数运算，也可以处理字符串。比较麻烦，需要注意各种细节，不推荐使用。</td>
+<td></td>
+</tr>
+<tr>
+<td>bc</td>
+<td>Linux下的一个计算器程序，可以处理整数和小数。Shell 本身只支持整数运算，想计算小数就得使用 bc 这个外部的计算器。</td>
+<td></td>
+</tr>
+<tr>
+<td>declare -i</td>
+<td>将变量定义为整数，然后再进行数学运算时就不会被当做字符串了。功能有限，仅支持最基本的数学运算（加减乘除和取余），不支持逻辑运算、自增自减等，所以在实际开发中很少使用。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="211-">2.1.1. (())</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">((</span><span class="nv">a</span><span class="o">=</span>10+66<span class="o">)</span>
+<span class="o">((</span><span class="nv">b</span><span class="o">=</span>a-15<span class="o">))</span>
+<span class="o">((</span><span class="nv">c</span><span class="o">=</span>a+b<span class="o">))</span>	这种写法可以在计算完成后给变量赋值。以 <span class="o">((</span><span class="nv">b</span><span class="o">=</span>a-15<span class="o">))</span> 为例，即将 a-15 的运算结果赋值给变量 c。
+
+注意，使用变量时不用加$前缀，<span class="o">((</span> <span class="o">))</span> 会自动解析变量名。
+<span class="nv">a</span><span class="o">=</span><span class="k">$((</span><span class="m">10</span><span class="o">+</span><span class="m">66</span><span class="o">)</span>
+<span class="nv">b</span><span class="o">=</span><span class="k">$((</span>a-15<span class="k">))</span>
+<span class="nv">c</span><span class="o">=</span><span class="k">$((</span>a+b<span class="k">))</span>	可以在 <span class="o">((</span> <span class="k">))</span> 前面加上$符号获取 <span class="o">((</span> <span class="o">))</span> 命令的执行结果，也即获取整个表达式的值。以 <span class="nv">c</span><span class="o">=</span><span class="k">$((</span>a+b<span class="k">))</span> 为例，即将 a+b 这个表达式的运算结果赋值给变量 c。
+
+注意，类似 <span class="nv">c</span><span class="o">=((</span>a+b<span class="o">))</span> 这样的写法是错误的，不加$就不能取得表达式的结果。
+<span class="o">((</span>a&gt;7 <span class="o">&amp;&amp;</span> <span class="nv">b</span><span class="o">==</span>c<span class="o">))</span>	<span class="o">((</span> <span class="o">))</span> 也可以进行逻辑运算，在 <span class="k">if</span> 语句中常会使用逻辑运算。
+<span class="nb">echo</span> <span class="k">$((</span>a+10<span class="k">))</span>	需要立即输出表达式的运算结果时，可以在 <span class="o">((</span> <span class="o">))</span> 前面加$符号。
+<span class="o">((</span><span class="nv">a</span><span class="o">=</span>3+5, <span class="nv">b</span><span class="o">=</span>a+10<span class="o">))</span>	对多个表达式同时进行计算。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-关系运算符">2.2. 关系运算符</h3>
+<ol>
+<li><code>关系运算符只支持数字，不支持字符串，除非字符串的值是数字</code>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+<th>举例(a为10，b为20)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td>检测两个数是否相等，相等返回 true。</td>
+<td>[ $a -eq $b ] 返回 false。</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>检测两个数是否不相等，不相等返回 true。</td>
+<td>[ $a -ne $b ] 返回 true。</td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>检测左边的数是否大于右边的，如果是，则返回 true。</td>
+<td>[ $a -gt $b ] 返回 false。</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>检测左边的数是否小于右边的，如果是，则返回 true。</td>
+<td>[ $a -lt $b ] 返回 true。</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>检测左边的数是否大于等于右边的，如果是，则返回 true。</td>
+<td>[ $a -ge $b ] 返回 false。</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>检测左边的数是否小于等于右边的，如果是，则返回 true。</td>
+<td>[ $a -le $b ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-布尔运算符">2.3. 布尔运算符</h3>
+<h3 id="24-逻辑运算符">2.4. 逻辑运算符</h3>
+<ol>
+<li>【注】有逻辑运算符必须要双[].</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>逻辑的 AND</td>
+<td><code>[[ $a -lt 100 &amp;&amp; $b -gt 100 ]]</code> 返回 false</td>
+</tr>
+<tr>
+<td><code>||</code></td>
+<td>逻辑的 OR</td>
+<td><code>[[ $a -lt 100 || $b -gt 100 ]]</code> 返回 true</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-字符串运算符">2.5. 字符串运算符</h3>
+<ol>
+<li>字符串比较直接用<code>=</code>.</li>
+</ol>
+<h3 id="26-文件测试运算符">2.6. 文件测试运算符</h3>
+<h2 id="3-流程控制">3. 流程控制</h2>
+<h3 id="31-if">3.1. if</h3>
+<ol>
+<li><code>【从本质上讲，if 检测的是命令的退出状态】</code></li>
+<li>expression 和方括号(<i class="far fa-square fa-fw"></i> )之间必须有空格，否则会有语法错误</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="k">if</span> <span class="o">[</span> expression <span class="m">1</span> <span class="o">]</span>
+<span class="k">then</span>
+   Statement<span class="o">(</span>s<span class="o">)</span> to be executed <span class="k">if</span> expression <span class="m">1</span> is默认 <span class="nb">true</span>
+<span class="k">elif</span> <span class="o">[</span> expression <span class="m">2</span> <span class="o">]</span>
+<span class="k">then</span>
+   Statement<span class="o">(</span>s<span class="o">)</span> to be executed <span class="k">if</span> expression <span class="m">2</span> is <span class="nb">true</span>
+<span class="k">elif</span> <span class="o">[</span> expression <span class="m">3</span> <span class="o">]</span>
+<span class="k">then</span>
+   Statement<span class="o">(</span>s<span class="o">)</span> to be executed <span class="k">if</span> expression <span class="m">3</span> is <span class="nb">true</span>
+<span class="k">else</span>
+   Statement<span class="o">(</span>s<span class="o">)</span> to be executed <span class="k">if</span> no expression is <span class="nb">true</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="32-for">3.2. for</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="k">for</span> var in item1 item2 ... itemN
+<span class="k">do</span>
+    command1
+    command2
+    ...
+    commandN
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>for var in item1 item2 ... itemN; do command1; command2… done;</code></p>
+<h2 id="4-注释">4. 注释</h2>
+<ol>
+<li>【注】不要在行后加注释。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/linux/">LINUX</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-03-29</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/plat-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F-%E7%8A%B6%E6%80%81%E6%9C%BA/" class="prev" rel="prev" title="状态机"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-linux-%E5%BA%94%E7%94%A8-01-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B0%81%E8%A3%85/" class="next" rel="next" title="系统调用和标准库的封装">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

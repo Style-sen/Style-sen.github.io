@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>嵌入式-ESP32 - 锦枫紫兰</title><meta name="description" content="ESP32开发"><meta property="og:title" content="嵌入式-ESP32" />
+<meta property="og:description" content="ESP32开发" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-05-23T10:31:03+00:00" />
+<meta property="article:modified_time" content="2019-05-23T10:31:03+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="嵌入式-ESP32"/>
+<meta name="twitter:description" content="ESP32开发"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32/" /><link rel="prev" href="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" /><link rel="next" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-micropython/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "嵌入式-ESP32",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  2983 ,
+        "url": "\/post\/%E5%B5%8C%E5%85%A5%E5%BC%8F-esp32\/","datePublished": "2019-05-23T10:31:03+00:00","dateModified": "2019-05-23T10:31:03+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": "ESP32开发"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">嵌入式-ESP32</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#esp32技术参考手册chrome-extensioncdonnmffkdaoajfknoeeecmchibpmkmgstaticpdfwebviewerhtmlfilehttps3a2f2fwwwespressifcom2fsites2fdefault2ffiles2fdocumentation2fesp32_technical_reference_manual_cnpdf"><a href="chrome-extension://cdonnmffkdaoajfknoeeecmchibpmkmg/static/pdf/web/viewer.html?file=https%3A%2F%2Fwww.espressif.com%2Fsites%2Fdefault%2Ffiles%2Fdocumentation%2Fesp32_technical_reference_manual_cn.pdf">《ESP32技术参考手册》</a></a>
+      <ul>
+        <li><a href="#启动过程">启动过程</a></li>
+      </ul>
+    </li>
+    <li><a href="#硬件家族">硬件家族</a></li>
+    <li><a href="#开始编程">开始编程</a>
+      <ul>
+        <li><a href="#了解编译系统cmakehttpsdocsespressifcomprojectsesp-idfzh_cnstableapi-guidesbuild-system-cmakehtml">了解<a href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/api-guides/build-system-cmake.html">编译系统Cmake</a></a>
+          <ul>
+            <li><a href="#工程目录">工程目录</a></li>
+            <li><a href="#main的kconfigprojbuild文件">main的Kconfig.projbuild文件</a></li>
+            <li><a href="#项目cmakelists-文件">项目CMakeLists 文件</a></li>
+            <li><a href="#组件cmakelists-文件">组件CMakeLists 文件</a></li>
+            <li><a href="#组件中使用第三方-cmake-项目">组件中使用第三方 CMake 项目</a></li>
+          </ul>
+        </li>
+        <li><a href="#研究api参考">研究API参考</a>
+          <ul>
+            <li><a href="#event-loop-library">Event Loop Library</a></li>
+            <li><a href="#peripherals">peripherals</a>
+              <ul>
+                <li><a href="#i2c">I2C</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#研究头文件">研究头文件</a></li>
+        <li><a href="#研究example">研究Example</a>
+          <ul>
+            <li><a href="#bluetooth">bluetooth</a>
+              <ul>
+                <li><a href="#gatt_client">gatt_client</a></li>
+              </ul>
+            </li>
+            <li><a href="#get-started">get-started</a>
+              <ul>
+                <li><a href="#blink">blink</a></li>
+              </ul>
+            </li>
+            <li><a href="#peripherals-1">peripherals</a>
+              <ul>
+                <li><a href="#adc">ADC</a></li>
+                <li><a href="#i2c-1">I2C</a>
+                  <ul>
+                    <li><a href="#i2c_self_test">i2c_self_test</a></li>
+                    <li><a href="#i2c_tools">i2c_tools</a></li>
+                  </ul>
+                </li>
+                <li><a href="#spi_slave">spi_slave</a>
+                  <ul>
+                    <li><a href="#sender">sender</a></li>
+                  </ul>
+                </li>
+                <li><a href="#timer_group硬件定时器">timer_group(硬件定时器)</a></li>
+                <li><a href="#uart">uart</a>
+                  <ul>
+                    <li><a href="#uart_async_rxtxtasks">uart_async_rxtxtasks</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#system">system</a>
+              <ul>
+                <li><a href="#esp-timer">esp-timer</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#扩展">扩展</a>
+          <ul>
+            <li><a href="#at命令httpsgithubcomespressifesp32-at"><a href="https://github.com/espressif/esp32-at">AT命令</a></a></li>
+            <li><a href="#使用pn532模块">使用PN532模块</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#micropython">MicroPython</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="esp32技术参考手册chrome-extensioncdonnmffkdaoajfknoeeecmchibpmkmgstaticpdfwebviewerhtmlfilehttps3a2f2fwwwespressifcom2fsites2fdefault2ffiles2fdocumentation2fesp32_technical_reference_manual_cnpdf"><a href="chrome-extension://cdonnmffkdaoajfknoeeecmchibpmkmg/static/pdf/web/viewer.html?file=https%3A%2F%2Fwww.espressif.com%2Fsites%2Fdefault%2Ffiles%2Fdocumentation%2Fesp32_technical_reference_manual_cn.pdf" target="_blank" rel="noopener noreffer">《ESP32技术参考手册》</a></h2>
+<ol>
+<li>双CPU，两个CPU的名称分别是“PRO_CPU”和“APP_CPU”；</li>
+<li>存储</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">片上存储器
+    –448 KB Internal ROM
+    –520 KB Internal SRAM
+    –8 KB RTC FAST Memory
+    –8 KB RTC SLOW Memory
+片外存储器
+    片外SPI存储器可作为片外存储器被映射到可用的地址空间。部分片上存储器可用作片外存储器的Cache。
+        –最大支持16 MB片外SPI Flash
+        –最大支持8 MB片外SPI SRAM
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>ESP32 芯片包含两个硬件定时器组。每组有两个通用硬件定时器。它们都是基于 16 位预分频器和 64 位自动重载功能的向上/向下计数器的 64 位通用定时器。</li>
+</ol>
+<h3 id="启动过程">启动过程</h3>
+<ol>
+<li>在esp32 上电运行后，芯片运行的第一个程序。这段程序是芯片设计与生产的时候，固化在硬件电路中的。所以它是不可修改的(Read Only Memory)。</li>
+<li>esp32 的 ROM 负责检测芯片的strapping配置，来决定芯片应该处于什么状态。比如，esp32 上电后，ROM 程序会检查 [GPIO0, GPIO2, GPIO4, MTDO, GPIO5]的状态。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">如果 GPIO0 / GPIO2 同时为低电平，则会进入下载模式，等待串口通信信息。
+如果GPIO0为高电平，则会进入Flash 运行模式，启动SPI 驱动，并加载Flash中的程序段。
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>关于启动模式</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">BOOT_MODE[5:0]:
+
+pull-up, pull-down, pull-down, pull-up, pull-up, SW4 /5/4/3/2/1/ )  
+[GPIO0, GPIO2, GPIO4, MTDO, GPIO5]  
+1 x x x x --&gt; SPI Boot  
+0 0 x x x --&gt; Download Boot (Jonit-Detection of UART0+UART1+SDIO_Slave)  
+下载模式的串口输出如下(115200), ROM默认会输出当前所处的模式。  
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))   
+waiting for download  
+
+其中，boot:0x3 表示的是芯片strapping pin脚的状态，   
+0x03对应 [GPIO0, GPIO2, GPIO4, MTDO, GPIO5] 的值为 [ 0, 0, 0, 1, 1]  
+所以处于 Download Boot 模式。  
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>关于下载模式</li>
+</ol>
+<p>可以使用<a href="https://github.com/espressif/esptool" target="_blank" rel="noopener noreffer">esptool</a>脚本，可以进行寄存器的读写，固件下载，程序运行等操作。</p>
+<ol start="5">
+<li>关于STUB</li>
+</ol>
+<p>在ROM模式，由于芯片处于低频工作的状态，通信速率受限。在esptool中，会将一段小程序加载到esp32的RAM中，并跳转执行RAM中的小程序。这段小程序包含了ROM中相同的串口通信协议，并对其进行了扩充。</p>
+<ol start="6">
+<li>关于 Flash Boot 模式</li>
+</ol>
+<p>如果芯片启动时，GPIO0为高电平，芯片会进入Flash 运行模式。 此时，启动SPI 驱动，并加载Flash中的程序段。ROM 会读取外置 Flash 的0x1000地址，加载并运行二级bootloader。</p>
+<ol start="7">
+<li>关于二级Bootloader</li>
+</ol>
+<p>二级bootloader可以认为是一个独立的小程序，二级bootloader会对芯片频率进行初始化，并且读取系统SPI的配置信息，对Flash 运行模式以及频率进行配置，然后根据分区表的定义，从对应的地址加载应用程序，并且运行应用程序固件。</p>
+<h2 id="硬件家族">硬件家族</h2>
+<table>
+<thead>
+<tr>
+<th>硬件代码</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESP32 DEVKITV1</td>
+<td>开发板</td>
+<td><a href="https://github.com/playelek/pinout-doit-32devkitv1" target="_blank" rel="noopener noreffer">PINOUT-DOIT ESP32 Devkit V1</a>，<a href="" rel="">原理图</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="开始编程">开始编程</h2>
+<p><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/index.html" target="_blank" rel="noopener noreffer">ESP-IDF 编程指南</a></p>
+<ol>
+<li>构建toolchain；</li>
+<li>配置ESP-IDF；</li>
+<li>设置环境变量</li>
+<li>开始一个工程，工程目录下：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">idf.py menuconfig   # 配置
+idf.py build    # build
+idf.py -p PORT flash    # flash
+idf.py -p PORT monitor    # 监控  Ctrl+]退出
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>升级ESP-IDF，使用git命令，直接pull即可，注意子模块的更新。</li>
+</ol>
+<h3 id="了解编译系统cmakehttpsdocsespressifcomprojectsesp-idfzh_cnstableapi-guidesbuild-system-cmakehtml">了解<a href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/api-guides/build-system-cmake.html" target="_blank" rel="noopener noreffer">编译系统Cmake</a></h3>
+<p>Read this document if you want to know how to organise and build a new ESP-IDF project or component using the CMake-based build system.\</p>
+<ol>
+<li>一个工程是各种组件的融合。</li>
+<li>project 是一个包含文件和配置的目录；</li>
+<li>工程配置放在工程根目录下的sdkconfig文件中，通过idf.py menuconfig来进行修改。一个工程只能有这一个文件。</li>
+<li>一个工程通常构建两个APP，一个是project app，一个是bootloader app。</li>
+<li>组件是独立的代码库，通称是以静态库(.a)提供。</li>
+</ol>
+<h4 id="工程目录">工程目录</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">- myProject/
+     - CMakeLists.txt  # cmake规则文件
+     - sdkconfig    # idf.py menuconfig 自动生成
+     - components/ - component1/ - CMakeLists.txt
+                                 - Kconfig
+                                 - src1.c
+                   - component2/ - CMakeLists.txt
+                                 - Kconfig
+                                 - src1.c
+                                 - include/ - component2.h
+     - main/ - Kconfig.projbuild
+             - CMakeLists.txt    # 组件规则
+             - src/
+                 - app_main.c
+                 - module1/
+                 - module2/
+             - inc/
+                 - module1/
+                 - module2/
+     - build/    # idf.py menuconfig 自动生成
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="main的kconfigprojbuild文件">main的Kconfig.projbuild文件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 开始一个菜单
+menu &#34;菜单名称&#34;
+    # 开始一个配置
+    config 配置名（全大写） # 对应CONFIG_配置名
+        bool  &#34;配置描述&#34;  # bool类型，选中即定义，不选中即没有定义（可使用#ifdef）
+        default &#34;n&#34;（&#34;y&#34;）
+
+        int   &#34;配置描述&#34;  # 整数类型，
+        range 0 10  # 整数范围
+        default 5  # 默认整数
+
+        string  &#34;配置描述&#34;  # 字符串类型
+        default &#34;&#34;  
+
+        help
+            xxxxxxxxx  # 帮助信息
+
+        depends on 配置名  # 依赖配置名
+
+        if 配置名
+            menu
+
+            endmenu
+        elif
+            menu
+                
+            endmenu
+        endif
+    choice 配置名
+        prompt &#34;描述&#34;
+
+    endchoice
+
+endmenu
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="项目cmakelists-文件">项目CMakeLists 文件</h4>
+<p>必要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cmake_minimum_required(VERSION 3.5)    //必须放在 CMakeLists.txt 文件的第一行，它会告诉 CMake 构建该项目所需要的最小版本号
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)    //会导入 CMake 的其余功能来完成配置项目、检索组件等任务。
+project(myProject)    //会创建项目本身，并指定项目名称
+</code></pre></td></tr></table>
+</div>
+</div><p>选用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">COMPONENT_DIRS</span>    <span class="c1">//组件的搜索目录，默认为 ${IDF_PATH}/components、${PROJECT_PATH}/components 和 EXTRA_COMPONENT_DIRS。如果您不想在这些位置搜索组件，请覆盖此变量。
+</span><span class="c1"></span><span class="n">EXTRA_COMPONENT_DIRS</span>    <span class="c1">//用于搜索组件的其它可选目录列表。路径可以是相对于项目目录的相对路径，也可以是绝对路径。
+</span><span class="c1"></span><span class="n">COMPONENTS</span>    <span class="c1">//要构建进项目中的组件名称列表，默认为 COMPONENT_DIRS 目录下检索到的所有组件。使用此变量可以“精简”项目以缩短构建时间。请注意，如果一个组件通过 COMPONENT_REQUIRES 指定了它依赖的另一个组件，则会自动将其添加到 COMPONENTS 中，所以 COMPONENTS 列表可能会非常短。
+</span><span class="c1"></span><span class="n">COMPONENT_REQUIRES_COMMON</span>    <span class="c1">//每个组件都需要的通用组件列表，这些通用组件会自动添加到每个组件的 COMPONENT_PRIV_REQUIRES 列表中以及项目的 COMPONENTS 列表中。默认情况下，此变量设置为 ESP-IDF 项目所需的最小核心“系统”组件集。通常您无需在项目中更改此变量。
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="组件cmakelists-文件">组件CMakeLists 文件</h4>
+<p>最小的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">set(COMPONENT_SRCS &#34;foo.c&#34;)   # 用空格分隔的源文件列表（*.c，*.cpp，*.cc，*.S），里面所有的源文件都将会编译进组件库中
+set(COMPONENT_ADD_INCLUDEDIRS &#34;include&#34;)    # 用空格分隔的目录列表，里面的路径会被添加到所有需要该组件的组件（包括 main 组件）全局 include 搜索路径中
+register_component()
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="组件中使用第三方-cmake-项目">组件中使用第三方 CMake 项目</h4>
+<h3 id="研究api参考">研究API参考</h3>
+<h4 id="event-loop-library">Event Loop Library</h4>
+<h4 id="peripherals">peripherals</h4>
+<h5 id="i2c">I2C</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">esp_err_ti2c_set_timeout(i2c_port_ti2c_num, int timeout)    //设置I2C的超时时间 第一个参数为 I2C的port number 第二个参数的单位为APB 80Mhz的时钟周期
+esp_err_ti2c_get_timeout(i2c_port_ti2c_num, int *timeout)    //读取I2C的超时间 第一个参数为 I2C的port number 第二个参数为存储结果的指针
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="研究头文件">研究头文件</h3>
+<table>
+<thead>
+<tr>
+<th>头文件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bt.h</td>
+<td>configures the BT controller and VHCI from the host side.</td>
+</tr>
+<tr>
+<td>esp_bt_main.h</td>
+<td>initializes and enables the Bluedroid stack.</td>
+</tr>
+<tr>
+<td>esp_gap_ble_api.h</td>
+<td>implements the GAP configuration, such as advertising and connection parameters.</td>
+</tr>
+<tr>
+<td>esp_gattc_api.h</td>
+<td>implements the GATT Client configuration, such as connecting to peripherals and searching for services.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="研究example">研究Example</h3>
+<h4 id="bluetooth">bluetooth</h4>
+<h5 id="gatt_client">gatt_client</h5>
+<h4 id="get-started">get-started</h4>
+<h5 id="blink">blink</h5>
+<h4 id="peripherals-1">peripherals</h4>
+<h5 id="adc">ADC</h5>
+<h5 id="i2c-1">I2C</h5>
+<h6 id="i2c_self_test">i2c_self_test</h6>
+<h6 id="i2c_tools">i2c_tools</h6>
+<ol>
+<li>是开发I2C设备的有用的工具。</li>
+<li>默认 i2c 0，SDA（18）  SCL（19）</li>
+<li>提供命令行：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> ==============================================================
+ |       Steps to Use i2c-tools on ESP32                      |
+ |                                                            |
+ |  1. Try &#39;help&#39;, check all supported commands               |
+ |  2. Try &#39;i2cconfig&#39; to configure your I2C bus              |
+ |  3. Try &#39;i2cdetect&#39; to scan devices on the bus             |
+ |  4. Try &#39;i2cget&#39; to get the content of specific register   |
+ |  5. Try &#39;i2cset&#39; to set the value of specific register     |
+ |  6. Try &#39;i2cdump&#39; to dump all the register (Experiment)    |
+ |                                                            |
+ ==============================================================
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="spi_slave">spi_slave</h5>
+<h6 id="sender">sender</h6>
+<h5 id="timer_group硬件定时器">timer_group(硬件定时器)</h5>
+<ol>
+<li>使用队列；</li>
+<li>timer_group。</li>
+<li>参考<a href="https://blog.csdn.net/qq_27114397/article/details/81636607" target="_blank" rel="noopener noreffer">ESP32 学习笔记（十）Timer</a>.</li>
+</ol>
+<h5 id="uart">uart</h5>
+<h6 id="uart_async_rxtxtasks">uart_async_rxtxtasks</h6>
+<ol>
+<li>创建freertos任务</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#include &#34;freertos/FreeRTOS.h&#34;
+#include &#34;freertos/task.h&#34;
+
+xTaskCreate(rx_task, &#34;uart_rx_task&#34;, 1024*2, NULL, configMAX_PRIORITIES, NULL);
+xTaskCreate(tx_task, &#34;uart_tx_task&#34;, 1024*2, NULL, configMAX_PRIORITIES-1, NULL);
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="system">system</h4>
+<h5 id="esp-timer">esp-timer</h5>
+<ol>
+<li>虽然FreeRTOS提供了软件定时器，但是这些定时器有一些限制：最大分辨率等于系统滴答周期；回调函数是从低优先级分派的。</li>
+<li>硬件定时器不受上述限制，但是又很难用，所以出现了esp-timer。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">esp_timer_get_time</span><span class="p">()</span>    <span class="c1">//
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>休眠模式</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="扩展">扩展</h3>
+<h4 id="at命令httpsgithubcomespressifesp32-at"><a href="https://github.com/espressif/esp32-at" target="_blank" rel="noopener noreffer">AT命令</a></h4>
+<ol>
+<li>参考上述工程，可将AT命令集加入到自定义工程中。</li>
+<li>at Cmakefiles</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">set(COMPONENT_ADD_INCLUDEDIRS include)
+set(COMPONENT_REQUIRES main)
+register_component()
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>main Cmakefiles 链接静态库（.a）</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">register_component()
+target_link_libraries(main &#34;-L../components/at/lib&#34;)
+target_link_libraries(main at_core)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="使用pn532模块">使用PN532模块</h4>
+<ol>
+<li>参考<a href="https://github.com/redchenjs/nfc_attendance_system_esp32" target="_blank" rel="noopener noreffer">redchenjs/nfc_attendance_system_esp32</a></li>
+</ol>
+<h2 id="micropython">MicroPython</h2>
+<ol>
+<li>参考<a href="https://docs.micropython.org/en/latest/esp32/quickref.html" target="_blank" rel="noopener noreffer">Quick reference for the ESP32</a></li>
+<li><a href="http://www.1zlab.com/wiki/micropython-esp32/emp-ide-userguide/" target="_blank" rel="noopener noreffer">MicroPython-ESP32基础教程</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-05-23</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6-ai%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="prev" rel="prev" title="数据科学-机器学习"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-micropython/" class="next" rel="next" title="MicroPython">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

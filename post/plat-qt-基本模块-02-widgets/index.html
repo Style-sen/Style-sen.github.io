@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>QT基本模块-WIDGETS - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="QT基本模块-WIDGETS" />
+<meta property="og:description" content="1. 设计要点 qmake: QT &#43;= widgets 如果希望界面自适应电脑的分辨率或者改变界面大小时，界面上的所有部件也能够做出相应改变。这种时候就可以使用“布局（Layou" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-02-widgets/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-09-18T11:02:18+08:00" />
+<meta property="article:modified_time" content="2021-09-18T11:02:18+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="QT基本模块-WIDGETS"/>
+<meta name="twitter:description" content="1. 设计要点 qmake: QT &#43;= widgets 如果希望界面自适应电脑的分辨率或者改变界面大小时，界面上的所有部件也能够做出相应改变。这种时候就可以使用“布局（Layou"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-02-widgets/" /><link rel="prev" href="/post/hardware-moto-mikrokopter%E5%BC%80%E6%BA%90%E7%94%B5%E6%9C%BA%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/" /><link rel="next" href="/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-03-gui/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "QT基本模块-WIDGETS",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-02-widgets\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, QT","wordcount":  4742 ,
+        "url": "\/post\/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-02-widgets\/","datePublished": "2021-09-18T11:02:18+08:00","dateModified": "2021-09-18T11:02:18+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">QT基本模块-WIDGETS</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-设计要点">1. 设计要点</a>
+      <ul>
+        <li><a href="#11-组件">1.1. 组件</a>
+          <ul>
+            <li><a href="#111-window和dialog">1.1.1. Window和Dialog</a></li>
+            <li><a href="#112-应用主窗口">1.1.2. 应用主窗口</a>
+              <ul>
+                <li><a href="#1121-qmainwindow类">1.1.2.1. QMainWindow(类)</a></li>
+              </ul>
+            </li>
+            <li><a href="#113-dialog-windows现成的对话框">1.1.3. Dialog Windows现成的对话框</a>
+              <ul>
+                <li><a href="#1131-qcolordialog类选择颜色">1.1.3.1. QColorDialog(类)选择颜色</a></li>
+                <li><a href="#1132-qfiledialog类选择文件或者文件夹">1.1.3.2. QFileDialog(类)选择文件或者文件夹</a></li>
+                <li><a href="#1133-qfontdialog类选择字体">1.1.3.3. QFontDialog(类)选择字体</a></li>
+                <li><a href="#1134-qinputdialog类单值输入">1.1.3.4. QInputDialog(类)单值输入</a></li>
+                <li><a href="#1135-qmessagebox类弹出消息">1.1.3.5. QMessageBox(类)弹出消息</a></li>
+                <li><a href="#1136-qprogressdialog类进度条">1.1.3.6. QProgressDialog(类)进度条</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#12-样式">1.2. 样式</a></li>
+        <li><a href="#13-布局">1.3. 布局</a></li>
+        <li><a href="#14-modelview架构">1.4. Model/View架构</a></li>
+        <li><a href="#15-graphics-view-framework">1.5. Graphics View Framework</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-qabstractbutton">2. QAbstractButton</a></li>
+    <li><a href="#3-qabstractitemdelegate显示和编辑模型中的数据项">3. QAbstractItemDelegate显示和编辑模型中的数据项</a></li>
+    <li><a href="#4-qabstractitemview抽象类">4. QAbstractItemView抽象类</a></li>
+    <li><a href="#5-qaction组件中的一个动作">5. QAction组件中的一个动作</a></li>
+    <li><a href="#6-qapplication">6. QApplication</a></li>
+    <li><a href="#7-qboxlayout水平或竖直排列子部件">7. QBoxLayout水平或竖直排列子部件</a></li>
+    <li><a href="#8-qbuttongroup按钮组">8. QButtonGroup按钮组</a></li>
+    <li><a href="#9-qcombobox下拉选择框单选">9. QComboBox下拉选择框(单选)</a></li>
+    <li><a href="#10-qcompleter">10. QCompleter</a></li>
+    <li><a href="#11-qdesktopwidget获取屏幕信息该类已过时">11. QDesktopWidget获取屏幕信息（该类已过时）</a></li>
+    <li><a href="#12-qdialog">12. QDialog</a></li>
+    <li><a href="#13-qdialogbuttonbox">13. QDialogButtonBox</a></li>
+    <li><a href="#14-qdockwidget">14. QDockWidget</a></li>
+    <li><a href="#15-qformlayout窗体布局">15. QFormLayout窗体布局</a></li>
+    <li><a href="#16-qframe边框">16. QFrame边框</a></li>
+    <li><a href="#17-qgridlayout网格状布局">17. QGridLayout网格状布局</a></li>
+    <li><a href="#18-qgroupbox带有标题的分组框">18. QGroupBox带有标题的分组框</a></li>
+    <li><a href="#19-qhboxlayout水平布局">19. QHBoxLayout水平布局</a></li>
+    <li><a href="#20-qitemdelegate模型的显示和编辑功能">20. QItemDelegate模型的显示和编辑功能</a></li>
+    <li><a href="#21-qlistview提供列表或图标视图">21. QListView提供列表或图标视图</a></li>
+    <li><a href="#22-qmenu类菜单">22. QMenu(类)菜单</a></li>
+    <li><a href="#23-qmenubar类水平菜单栏">23. QMenuBar(类)水平菜单栏</a></li>
+    <li><a href="#24-qpushbutton">24. QPushButton</a></li>
+    <li><a href="#25-qradiobutton单选按钮">25. QRadioButton单选按钮</a></li>
+    <li><a href="#26-qscrollarea">26. QScrollArea</a></li>
+    <li><a href="#27-qsizepolicy描述水平和垂直大小调整策略的布局属性">27. QSizePolicy描述水平和垂直大小调整策略的布局属性</a></li>
+    <li><a href="#28-qsplitter分割器">28. QSplitter分割器</a></li>
+    <li><a href="#29-qstatusbar水平状态栏">29. QStatusBar水平状态栏</a></li>
+    <li><a href="#30-qstyle抽象基类封装了gui的外观">30. QStyle【抽象基类】封装了GUI的外观</a></li>
+    <li><a href="#31-qtableview表视图">31. QTableView（表视图）</a></li>
+    <li><a href="#32-qtablewidget表格组件">32. QTableWidget表格组件</a></li>
+    <li><a href="#33-qtablewidgetitem">33. QTableWidgetItem</a></li>
+    <li><a href="#34-qtabwidget选项卡">34. QTabWidget选项卡</a></li>
+    <li><a href="#35-qtextbrowser">35. QTextBrowser</a></li>
+    <li><a href="#36-qtreeview提供了树视图的默认模型视图实现">36. QTreeView提供了树视图的默认模型/视图实现</a></li>
+    <li><a href="#37-qtreewidget树形控件">37. QTreeWidget树形控件</a></li>
+    <li><a href="#38-qtreewidgetitem-树形控件的节点">38. QTreeWidgetItem 树形控件的节点</a></li>
+    <li><a href="#39-qscrollarea">39. QScrollArea</a></li>
+    <li><a href="#40-qvboxlayout垂直方向布局">40. QVBoxLayout垂直方向布局</a></li>
+    <li><a href="#41-qwidget所有ui对象的基类">41. <code>QWidget</code>所有UI对象的基类</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-设计要点">1. 设计要点</h2>
+<p><code>qmake:	QT += widgets</code></p>
+<ol>
+<li>如果希望界面自适应电脑的分辨率或者改变界面大小时，界面上的所有部件也能够做出相应改变。这种时候就可以使用“布局（Layout）功能”。所谓布局，就是界面上组件的排列方式，使用布局可以使组件有规则地分布，并且随着窗体大小自动地调整大小和相对位置。</li>
+<li>需要为窗体制定一个总的布局。这样布局之后，当窗体大小改变时，各个组件都会自动改变大小。</li>
+<li>如果想要界面自适应电脑分辨率大小，可以将所有组件的<code>sizePolicy</code>中的<code>Horizontal Policy</code>和<code>Vertical Policy</code>设置成<code>Ignored</code>，再进行上述布局。</li>
+<li>【对于所有有区域的控件不要用绝对长度和宽度，全都用相对比例】。</li>
+</ol>
+<h3 id="11-组件">1.1. 组件</h3>
+<h4 id="111-window和dialog">1.1.1. Window和Dialog</h4>
+<ol>
+<li>没有嵌入父widget的widget称为window；</li>
+<li>通常，一个window有一个frame和一个title bar；也可以没有。</li>
+<li>任何没有父widget的QWidget都将成为一个window，并且在大多数平台上都将在桌面的任务栏中列出。这通常只适用于应用程序中的一个窗口，即<code>primary window</code>。</li>
+<li>另外，一个有父类的QWidget可以通过设置<code>Qt:: window</code>标志成为window。根据窗口管理系统的不同，这些<code>secondary windows</code>通常被堆叠在它们各自的父窗口的顶部，并且没有它们自己的任务栏条目。</li>
+<li><code>QMainWindow</code>类在其构造函数中设置了<code>Qt::Window</code>标志，因为它被设计成一个window，并提供了子窗口部件不需要的工具。</li>
+<li><code>Dialog Windows</code>用作向用户提供选项和选择的<code>secondary windows</code>。对话框是通过继承<code>QDialog</code>并使用小部件和布局来实现用户界面来创建的。</li>
+</ol>
+<h4 id="112-应用主窗口">1.1.2. 应用主窗口</h4>
+<h5 id="1121-qmainwindow类">1.1.2.1. QMainWindow(类)</h5>
+<ol>
+<li>Qt用QMainWindow和相关类来管理<code>primary window</code>。QMainWindow已经定义了一个布局，可以往里添加一些 QToolBar 和 QDockWidget，也可以添加一个 QMenuBar 和一个 QStatusBar。这个布局有一个中央区域，可以放任意部件。</li>
+<li>继承自<code>QWidget</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">menuBar</span><span class="p">()</span><span class="c1">//返回主窗口的菜单栏QMenuBar，没有就会创建
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="113-dialog-windows现成的对话框">1.1.3. Dialog Windows现成的对话框</h4>
+<h5 id="1131-qcolordialog类选择颜色">1.1.3.1. QColorDialog(类)选择颜色</h5>
+<h5 id="1132-qfiledialog类选择文件或者文件夹">1.1.3.2. QFileDialog(类)选择文件或者文件夹</h5>
+<h5 id="1133-qfontdialog类选择字体">1.1.3.3. QFontDialog(类)选择字体</h5>
+<h5 id="1134-qinputdialog类单值输入">1.1.3.4. QInputDialog(类)单值输入</h5>
+<h5 id="1135-qmessagebox类弹出消息">1.1.3.5. QMessageBox(类)弹出消息</h5>
+<ol>
+<li>继承自<code>QDialog</code>;</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//静态方法
+</span><span class="c1"></span><span class="n">question</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">,</span> <span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">title</span><span class="p">,</span> <span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">StandardButtons</span> <span class="n">buttons</span> <span class="o">=</span> <span class="n">StandardButtons</span><span class="p">(</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">No</span><span class="p">),</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">StandardButton</span> <span class="n">defaultButton</span> <span class="o">=</span> <span class="n">NoButton</span><span class="p">)</span>
+<span class="n">QMessageBox</span><span class="o">::</span><span class="n">StandardButton</span> <span class="n">warning</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">,</span> <span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">title</span><span class="p">,</span> <span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">StandardButtons</span> <span class="n">buttons</span> <span class="o">=</span> <span class="n">Ok</span><span class="p">,</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">StandardButton</span> <span class="n">defaultButton</span> <span class="o">=</span> <span class="n">NoButton</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="1136-qprogressdialog类进度条">1.1.3.6. QProgressDialog(类)进度条</h5>
+<h3 id="12-样式">1.2. 样式</h3>
+<h3 id="13-布局">1.3. 布局</h3>
+<h3 id="14-modelview架构">1.4. Model/View架构</h3>
+<h3 id="15-graphics-view-framework">1.5. Graphics View Framework</h3>
+<ol>
+<li>图形视图框架用于管理和与大量定制的<code>2D</code>图形项进行交互，以及用于可视化这些项的视图小部件，支持缩放和旋转。</li>
+</ol>
+<h2 id="2-qabstractbutton">2. QAbstractButton</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="err">【信号】</span>
+<span class="kt">void</span> <span class="n">clicked</span><span class="p">(</span><span class="kt">bool</span> <span class="n">checked</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span><span class="c1">//单击
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-qabstractitemdelegate显示和编辑模型中的数据项">3. QAbstractItemDelegate显示和编辑模型中的数据项</h2>
+<ol>
+<li>继承自<code>QObject</code>.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//需要被继承类重写的方法
+</span><span class="c1"></span><span class="n">createEditor</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">,</span> <span class="k">const</span> <span class="n">QStyleOptionViewItem</span> <span class="o">&amp;</span><span class="n">option</span><span class="p">,</span> <span class="k">const</span> <span class="n">QModelIndex</span> <span class="o">&amp;</span><span class="n">index</span><span class="p">)</span><span class="c1">//创建一个控件用于编辑model中的数据，并返回。index为列号，option为显示选项
+</span><span class="c1"></span><span class="n">setModelData</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">editor</span><span class="p">,</span> <span class="n">QAbstractItemModel</span> <span class="o">*</span><span class="n">model</span><span class="p">,</span> <span class="k">const</span> <span class="n">QModelIndex</span> <span class="o">&amp;</span><span class="n">index</span><span class="p">)</span> <span class="c1">//用编辑器的当前值设置model的值
+</span><span class="c1"></span><span class="n">setEditorData</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">editor</span><span class="p">,</span> <span class="k">const</span> <span class="n">QModelIndex</span> <span class="o">&amp;</span><span class="n">index</span><span class="p">)</span><span class="c1">//用model的值设置editor的值
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-qabstractitemview抽象类">4. QAbstractItemView抽象类</h2>
+<ol>
+<li><code>QAbstractItemView</code>是所有的使用<code>QAbstractItemModel</code>模型的视图的基类，是一个不能被实例化的抽象类。它通过信号槽机制为与模型的交互操作提供了一个标准化的接口，确保子类视图能够随着模型的变化而及时更新。该类对键盘和鼠标的导航、视窗的滚动、项的编辑以及选择提供了标准的支持。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">setItemDelegate</span><span class="p">(</span><span class="n">QAbstractItemDelegate</span> <span class="o">*</span><span class="n">delegate</span><span class="p">)</span>    <span class="c1">//设置委托model
+</span><span class="c1"></span><span class="n">setItemDelegateForColumn</span><span class="p">(</span><span class="kt">int</span> <span class="n">column</span><span class="p">,</span> <span class="n">QAbstractItemDelegate</span> <span class="o">*</span><span class="n">delegate</span><span class="p">)</span><span class="c1">//为column设置委托model
+</span><span class="c1"></span><span class="n">setItemDelegateForRow</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="n">QAbstractItemDelegate</span> <span class="o">*</span><span class="n">delegate</span><span class="p">)</span> <span class="c1">//设置委托model为row
+</span><span class="c1"></span><span class="n">setModel</span><span class="p">(</span><span class="n">QAbstractItemModel</span> <span class="o">*</span><span class="n">model</span><span class="p">)</span> <span class="c1">//设置模型，view的操作就委托给了model进行处理，model变化view可以实时更新
+</span><span class="c1"></span><span class="n">selectionModel</span><span class="p">()</span><span class="c1">//Returns the current selection model
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-qaction组件中的一个动作">5. QAction组件中的一个动作</h2>
+<h2 id="6-qapplication">6. QApplication</h2>
+<h2 id="7-qboxlayout水平或竖直排列子部件">7. QBoxLayout水平或竖直排列子部件</h2>
+<h2 id="8-qbuttongroup按钮组">8. QButtonGroup按钮组</h2>
+<ol>
+<li>提供一个容器管理一组按钮。</li>
+<li>继承<code>QObject</code>.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">QButtonGroup</span><span class="p">(</span><span class="n">QObject</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">)</span><span class="c1">//构造函数
+</span><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">addButton</span><span class="p">(</span><span class="n">QAbstractButton</span> <span class="o">*</span><span class="n">button</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="c1">//如果id为-1将自动给分配一个ID从-2开始减，如果指定id的话,请指定正数
+</span><span class="c1"></span><span class="n">button</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="k">const</span><span class="c1">//获取指定id的button
+</span><span class="c1">//信号
+</span><span class="c1"></span><span class="n">buttonClicked</span><span class="p">(</span><span class="n">QAbstractButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span><span class="c1">//按键点击了一下
+</span><span class="c1"></span><span class="n">buttonPressed</span><span class="p">(</span><span class="n">QAbstractButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
+<span class="n">buttonReleased</span><span class="p">(</span><span class="n">QAbstractButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
+<span class="n">buttonToggled</span><span class="p">(</span><span class="n">QAbstractButton</span> <span class="o">*</span><span class="n">button</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">checked</span><span class="p">)</span><span class="c1">//checked is true if the button is checked, or false if the button is unchecked
+</span><span class="c1"></span><span class="n">idClicked</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+<span class="n">idPressed</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+<span class="n">idReleased</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+<span class="n">idToggled</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">checked</span><span class="p">)</span><span class="c1">//checked is true if the button is checked, or false if the button is unchecked.
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9-qcombobox下拉选择框单选">9. QComboBox下拉选择框(单选)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">addItem</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="k">const</span> <span class="n">QVariant</span> <span class="o">&amp;</span><span class="n">userData</span> <span class="o">=</span> <span class="n">QVariant</span><span class="p">())</span><span class="c1">//增加选项，可以自定义数据
+</span><span class="c1"></span><span class="n">addItem</span><span class="p">(</span><span class="k">const</span> <span class="n">QIcon</span> <span class="o">&amp;</span><span class="n">icon</span><span class="p">,</span> <span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="k">const</span> <span class="n">QVariant</span> <span class="o">&amp;</span><span class="n">userData</span> <span class="o">=</span> <span class="n">QVariant</span><span class="p">())</span>
+<span class="n">addItems</span><span class="p">(</span><span class="k">const</span> <span class="n">QStringList</span> <span class="o">&amp;</span><span class="n">texts</span><span class="p">)</span>
+<span class="n">clear</span><span class="p">()</span><span class="c1">//清空所有选项
+</span><span class="c1"></span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="c1">//知道索引，就用
+</span><span class="c1"></span><span class="n">setCurrentText</span><span class="p">(</span><span class="s">&#34;text&#34;</span><span class="p">)</span><span class="c1">//知道文本，就用
+</span><span class="c1"></span><span class="n">QVariant</span> <span class="n">currentData</span><span class="p">(</span><span class="kt">int</span> <span class="n">role</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">::</span><span class="n">UserRole</span><span class="p">)</span> <span class="k">const</span>
+<span class="n">currentIndex</span><span class="p">()</span> <span class="k">const</span>
+<span class="n">currentText</span><span class="p">()</span> <span class="k">const</span>
+<span class="n">itemData</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">role</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">::</span><span class="n">UserRole</span><span class="p">)</span><span class="c1">//返回自定义数据
+</span><span class="c1"></span><span class="n">itemText</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span><span class="c1">//返回文本
+</span><span class="c1"></span><span class="n">model</span><span class="p">()</span><span class="c1">//返回使用的model
+</span><span class="c1"></span><span class="n">findText</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="n">Qt</span><span class="o">::</span><span class="n">MatchFlags</span> <span class="n">flags</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">::</span><span class="n">MatchExactly</span><span class="o">|</span><span class="n">Qt</span><span class="o">::</span><span class="n">MatchCaseSensitive</span><span class="p">)</span><span class="c1">//返回TEXT对应的index,没有找到返回-1
+</span><span class="c1">//【支持输入筛选】
+</span><span class="c1"></span><span class="n">setEditable</span><span class="p">(</span><span class="kt">bool</span> <span class="n">editable</span><span class="p">)</span><span class="c1">//设置用户是否可以编辑，默认是false
+</span><span class="c1"></span><span class="n">setCompleter</span><span class="p">(</span><span class="n">QCompleter</span> <span class="o">*</span><span class="n">completer</span><span class="p">)</span><span class="c1">//只有可编辑才支持设置，不然会被忽略。注意输入之后需要判断是否在选项中
+</span><span class="c1">//【信号】
+</span><span class="c1"></span><span class="n">currentIndexChanged</span><span class="c1">//当前索引改变触发
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="10-qcompleter">10. QCompleter</h2>
+<h2 id="11-qdesktopwidget获取屏幕信息该类已过时">11. QDesktopWidget获取屏幕信息（该类已过时）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">availableGeometry</span><span class="p">()</span><span class="c1">//获取应用程序可用区域
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="12-qdialog">12. QDialog</h2>
+<ol>
+<li>对话框。</li>
+<li><code>this-&gt;setAttribute(Qt::WA_DeleteOnClose,true); // false 则不立即清空</code>,点击关闭立即杀死自己。</li>
+<li><code>setModal(true)</code>设置为模态。</li>
+</ol>
+<h2 id="13-qdialogbuttonbox">13. QDialogButtonBox</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//信号
+</span><span class="c1"></span><span class="n">accepted</span><span class="p">()</span>
+<span class="n">rejected</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="14-qdockwidget">14. QDockWidget</h2>
+<ol>
+<li><code>QDockWidget</code>是可以在<code>QMainWindow</code>窗口停靠，或在桌面最上层浮动的window。</li>
+</ol>
+<h2 id="15-qformlayout窗体布局">15. QFormLayout窗体布局</h2>
+<ol>
+<li>与网格状布局类似，但是只有最右侧的一列网格会改变大小。</li>
+</ol>
+<h2 id="16-qframe边框">16. QFrame边框</h2>
+<ol>
+<li>继承<code>QWidget</code>;</li>
+</ol>
+<h2 id="17-qgridlayout网格状布局">17. QGridLayout网格状布局</h2>
+<ol>
+<li>网状布局大小改变时，每个网格的大小都改变。</li>
+</ol>
+<h2 id="18-qgroupbox带有标题的分组框">18. QGroupBox带有标题的分组框</h2>
+<h2 id="19-qhboxlayout水平布局">19. QHBoxLayout水平布局</h2>
+<ol>
+<li>继承<code>QBoxLayout</code>;</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">QHBoxLayout</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span><span class="c1">//构造函数
+</span><span class="c1"></span><span class="n">QHBoxLayout</span><span class="p">()</span><span class="c1">//默认构造函数
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="20-qitemdelegate模型的显示和编辑功能">20. QItemDelegate模型的显示和编辑功能</h2>
+<ol>
+<li>继承<code>QAbstractItemDelegate</code>;</li>
+<li>一般被继承,委托。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//重写的公共成员函数
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="21-qlistview提供列表或图标视图">21. QListView提供列表或图标视图</h2>
+<ol>
+<li>继承自<code>QAbstractItemView</code>;</li>
+</ol>
+<h2 id="22-qmenu类菜单">22. QMenu(类)菜单</h2>
+<ol>
+<li>用于菜单栏、上下文菜单栏和其他弹出菜单。</li>
+</ol>
+<h2 id="23-qmenubar类水平菜单栏">23. QMenuBar(类)水平菜单栏</h2>
+<ol>
+<li>用来放置QMenu。</li>
+</ol>
+<h2 id="24-qpushbutton">24. QPushButton</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">setMenu</span><span class="p">()</span><span class="c1">//将一个按钮变为菜单按钮,点击下拉
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="25-qradiobutton单选按钮">25. QRadioButton单选按钮</h2>
+<ol>
+<li>继承<code>QAbstractButton</code>；</li>
+<li>一般和<code>QButtonGroup</code>类配合使用。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">QRadioButton</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">)</span><span class="c1">//构造函数
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="26-qscrollarea">26. QScrollArea</h2>
+<h2 id="27-qsizepolicy描述水平和垂直大小调整策略的布局属性">27. QSizePolicy描述水平和垂直大小调整策略的布局属性</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//类型
+</span><span class="c1"></span><span class="k">enum</span> <span class="nc">QSizePolicy</span><span class="o">::</span><span class="n">Policy</span><span class="c1">//【Fixed】不能放大或者缩小【Preferred】控件的sizeHint是它的sizeHint，但是可以放大或者缩小【Expanding】控件可以自行增大或者缩小
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="28-qsplitter分割器">28. QSplitter分割器</h2>
+<h2 id="29-qstatusbar水平状态栏">29. QStatusBar水平状态栏</h2>
+<ol>
+<li>QStatusBar 可以添加多个 QWidget，因此，可以构建出很复杂的状态栏。</li>
+</ol>
+<h2 id="30-qstyle抽象基类封装了gui的外观">30. QStyle【抽象基类】封装了GUI的外观</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="err">【类型】</span>
+<span class="k">enum</span> <span class="nc">QStyle</span><span class="o">::</span><span class="n">StandardPixmap</span><span class="c1">//标准位图图标
+</span><span class="c1"></span><span class="err">【实例方法】</span>
+<span class="n">standardIcon</span><span class="p">()</span><span class="c1">//获取内置的标准图标
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="31-qtableview表视图">31. QTableView（表视图）</h2>
+<ol>
+<li>继承自<code>QAbstractItemView</code>;</li>
+<li>适合大型项目。</li>
+</ol>
+<h2 id="32-qtablewidget表格组件">32. QTableWidget表格组件</h2>
+<ol>
+<li>继承自<code>QTableView</code>;</li>
+<li>QTableWidget 约等于 QTableView + Model。</li>
+<li>适合小型项目。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">setRowCount</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="c1">//设置行数，增加减少行
+</span><span class="c1"></span><span class="n">setColumnCount</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="c1">//设置列数
+</span><span class="c1"></span><span class="n">setHorizontalHeaderLabels</span><span class="p">(</span><span class="k">const</span> <span class="n">QStringList</span><span class="p">)</span><span class="c1">//设置表头标题
+</span><span class="c1"></span><span class="n">setHorizontalHeaderItem</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">QTableWidgetItem</span><span class="err">）</span><span class="c1">//设置表头标题，适合对表头格式有要求的
+</span><span class="c1"></span><span class="n">clearContents</span><span class="p">()</span><span class="c1">//只清除工作区，不清除表头
+</span><span class="c1"></span><span class="n">rowCount</span><span class="p">()</span><span class="c1">//获取行数
+</span><span class="c1"></span><span class="n">stItem</span><span class="p">()</span><span class="c1">//设置单元格，【必须先设置行数】
+</span><span class="c1"></span><span class="n">setCellWidget</span><span class="p">()</span><span class="c1">//在单元格中设置控件
+</span><span class="c1"></span><span class="n">cellWidget</span><span class="p">()</span><span class="c1">//获取单元格的控件
+</span><span class="c1"></span><span class="n">currentItem</span><span class="p">()</span><span class="c1">//获取当前的item
+</span><span class="c1"></span><span class="n">item</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">column</span><span class="p">)</span> <span class="k">const</span><span class="c1">//获取指定行和列的item
+</span><span class="c1">//信号
+</span><span class="c1"></span><span class="n">itemChanged</span><span class="p">()</span><span class="c1">//单元格的内容改变（enter，离开焦点）触发，背景颜色改变也会触发
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="33-qtablewidgetitem">33. QTableWidgetItem</h2>
+<ol>
+<li>每个单元格（包括表头）。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//构造函数可以传入type，可以通过type()获取
+</span><span class="c1"></span><span class="n">setTextAlignment</span><span class="p">(</span><span class="kt">int</span> <span class="n">alignment</span><span class="p">)</span><span class="c1">//设置文字对齐方式。
+</span><span class="c1"></span><span class="n">setBackground</span><span class="p">(</span><span class="k">const</span> <span class="n">QBrush</span> <span class="o">&amp;</span><span class="n">brush</span><span class="p">)</span><span class="c1">//设置单元格背景颜色。
+</span><span class="c1"></span><span class="n">setForeground</span><span class="p">(</span><span class="k">const</span> <span class="n">QBrush</span> <span class="o">&amp;</span><span class="n">brush</span><span class="p">)</span><span class="c1">//设置单元格前景色。
+</span><span class="c1"></span><span class="n">setIcon</span><span class="p">(</span><span class="k">const</span> <span class="n">QIcon</span> <span class="o">&amp;</span><span class="n">icon</span><span class="p">)</span><span class="c1">//为单元格设置一个图标。
+</span><span class="c1"></span><span class="n">setFont</span><span class="p">(</span><span class="k">const</span> <span class="n">QFont</span> <span class="o">&amp;</span><span class="n">font</span><span class="p">)</span><span class="c1">//为单元格显示文字设置字体。
+</span><span class="c1"></span><span class="n">setCheckState</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">CheckState</span> <span class="n">state</span><span class="p">)</span><span class="c1">//设置单元格勾选状态，单元格里出现一个QCheckBox组件。
+</span><span class="c1"></span><span class="n">setFlags</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">ItemFlags</span> <span class="n">flags</span><span class="p">)</span><span class="c1">//设置单元格的一些属性标记。
+</span><span class="c1"></span><span class="n">setFlags</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">ItemIsEditable</span><span class="p">)</span><span class="c1">//单元格内容变为灰色，且不能选中单元格；用户不能编辑单元格内容，但是可以通过代码修改
+</span><span class="c1"></span><span class="n">setFlags</span><span class="p">(</span><span class="n">pItem</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">Qt</span><span class="o">::</span><span class="n">ItemIsEditable</span><span class="p">))</span><span class="c1">//使单元格内容不会变为灰色，可以选中单元格，但是用户不能编辑单元格内容
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="34-qtabwidget选项卡">34. QTabWidget选项卡</h2>
+<h2 id="35-qtextbrowser">35. QTextBrowser</h2>
+<h2 id="36-qtreeview提供了树视图的默认模型视图实现">36. QTreeView提供了树视图的默认模型/视图实现</h2>
+<ol>
+<li>继承自<code>QAbstractItemView</code>;</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">setWordWrap</span><span class="p">()</span><span class="c1">//设置换行,并不会换行，只会增加省略号
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="37-qtreewidget树形控件">37. QTreeWidget树形控件</h2>
+<ol>
+<li>继承自<code>QTreeView</code>.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">//实例方法：
+</span><span class="c1"></span><span class="n">clear</span><span class="p">()</span> <span class="c1">//清空
+</span><span class="c1"></span><span class="n">topLevelItemCount</span><span class="p">()</span><span class="c1">//获取顶层节点的数目
+</span><span class="c1"></span><span class="n">setHeaderHidden</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="c1">//设置表头为隐藏
+</span><span class="c1"></span><span class="n">currentItem</span><span class="p">()</span><span class="c1">//获取当前节点
+</span><span class="c1">//信号
+</span><span class="c1"></span><span class="n">itemClicked</span><span class="p">(</span><span class="n">QTreeWidgetItem</span> <span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">int</span> <span class="n">column</span><span class="p">)</span><span class="c1">//点击一个节点发出
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="38-qtreewidgetitem-树形控件的节点">38. QTreeWidgetItem 树形控件的节点</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">QTreeWidgetItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Type</span><span class="p">)</span><span class="c1">//在构造函数里传递一个类型值之后，就可以用 type() 返回这个节点的类型值
+</span><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">addChild</span><span class="p">(</span><span class="n">QTreeWidgetItem</span> <span class="o">*</span><span class="n">child</span><span class="p">)</span><span class="c1">//增加子节点
+</span><span class="c1"></span><span class="n">setData</span><span class="p">(</span><span class="kt">int</span> <span class="n">column</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">role</span> <span class="p">,</span> <span class="k">const</span> <span class="n">QVariant</span> <span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span><span class="c1">//额外增加属性，不显示在UI中：column（列）role（enum Qt:: ItemDataRole）
+</span><span class="c1"></span><span class="n">QVariant</span> <span class="n">data</span><span class="p">(</span><span class="kt">int</span> <span class="n">column</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">role</span><span class="p">)</span><span class="c1">//获取上边的额外属性
+</span><span class="c1"></span><span class="n">text</span><span class="p">(</span><span class="kt">int</span> <span class="n">column</span><span class="p">)</span> <span class="c1">//获取节点的文字
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="39-qscrollarea">39. QScrollArea</h2>
+<ol>
+<li>滚动区控件。</li>
+</ol>
+<h2 id="40-qvboxlayout垂直方向布局">40. QVBoxLayout垂直方向布局</h2>
+<ol>
+<li>继承<code>QBoxLayout</code>;</li>
+</ol>
+<h2 id="41-qwidget所有ui对象的基类">41. <code>QWidget</code>所有UI对象的基类</h2>
+<ol>
+<li>一般和布局配合使用。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//static属性
+</span><span class="c1">//static方法
+</span><span class="c1">//实例属性
+</span><span class="c1">//实例方法
+</span><span class="c1"></span><span class="n">resize</span><span class="p">()</span><span class="c1">//重新调整大小
+</span><span class="c1"></span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parentWidget</span><span class="p">()</span> <span class="k">const</span><span class="c1">//获取此组件的父组件
+</span><span class="c1"></span><span class="n">QString</span> <span class="n">toolTip</span><span class="p">()</span> <span class="k">const</span><span class="c1">//控件的toolTip用来给控件进行注释等信息
+</span><span class="c1">//public slots
+</span><span class="c1"></span><span class="n">hide</span><span class="p">()</span><span class="c1">//隐藏，不可见
+</span><span class="c1">//信号
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">customContextMenuRequested</span><span class="p">(</span><span class="k">const</span> <span class="n">QPoint</span> <span class="o">&amp;</span><span class="n">pos</span><span class="p">)</span><span class="c1">//右键点击，上下文菜单
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/qt/">QT</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-09-18</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/hardware-moto-mikrokopter%E5%BC%80%E6%BA%90%E7%94%B5%E6%9C%BA%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/" class="prev" rel="prev" title="MikroKopter开源电机项目学习"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-qt-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9D%97-03-gui/" class="next" rel="next" title="QT基本模块-GUI">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

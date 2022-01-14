@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>大数据架构笔记-1-hadoop安装配置命令 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="大数据架构笔记-1-hadoop安装配置命令" />
+<meta property="og:description" content="本文以3.2.1版本为主 参考大数据运维实战 参考尚硅谷大数据资料 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-apache/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-06-17T10:27:25+00:00" />
+<meta property="article:modified_time" content="2020-06-17T10:27:25+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="大数据架构笔记-1-hadoop安装配置命令"/>
+<meta name="twitter:description" content="本文以3.2.1版本为主 参考大数据运维实战 参考尚硅谷大数据资料 选择发行版 对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-apache/" /><link rel="prev" href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-microbit-%E6%A6%82%E8%BF%B0/" /><link rel="next" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-3-mapreduce/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "大数据架构笔记-1-hadoop安装配置命令",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-apache\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  4960 ,
+        "url": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-1-%E9%83%A8%E7%BD%B2-apache\/","datePublished": "2020-06-17T10:27:25+00:00","dateModified": "2020-06-17T10:27:25+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">大数据架构笔记-1-hadoop安装配置命令</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#伪分布式部署">伪分布式部署</a></li>
+    <li><a href="#全分布式集群搭建">全分布式集群搭建</a>
+      <ul>
+        <li><a href="#安装java">安装<code>java</code></a>
+          <ul>
+            <li><a href="#配置环境变量">配置环境变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#安装hadoop">安装<code>hadoop</code></a>
+          <ul>
+            <li><a href="#下载httphadoopapacheorg获取二进制压缩包"><a href="http://hadoop.apache.org/">下载</a>获取二进制压缩包。</a></li>
+            <li><a href="#解压到指定目录并新建tmp目录设置环境变量path即可">解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。</a></li>
+          </ul>
+        </li>
+        <li><a href="#hadoop集群配置非安全">hadoop集群配置（<code>非安全</code>）</a>
+          <ul>
+            <li><a href="#特定站点的配置">特定站点的配置</a>
+              <ul>
+                <li><a href="#环境变量">环境变量</a></li>
+                <li><a href="#配置hadoop守护进程">配置Hadoop守护进程</a>
+                  <ul>
+                    <li><a href="#etchadoopcore-sitexml">etc/hadoop/core-site.xml（）</a></li>
+                    <li><a href="#etchadoophdfs-sitexml">etc/hadoop/hdfs-site.xml</a></li>
+                    <li><a href="#etchadoopyarn-sitexml">etc/hadoop/yarn-site.xml</a></li>
+                    <li><a href="#etchadoopmapred-sitexml">etc/hadoop/mapred-site.xml</a></li>
+                    <li><a href="#健康检查配置">健康检查配置</a></li>
+                    <li><a href="#修改etchadoopworkers">修改etc/hadoop/workers</a></li>
+                    <li><a href="#配置机架感知">配置机架感知</a></li>
+                    <li><a href="#hadoop日志配置">hadoop日志配置</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#配置本地网络etchosts主机名和ip的映射">配置本地网络/etc/hosts，主机名和IP的映射</a></li>
+            <li><a href="#使主机名生效etcsysconfignetwork中的hostname">使主机名生效<code>/etc/sysconfig/network</code>中的hostname</a></li>
+            <li><a href="#关闭防火墙iptables">关闭防火墙（iptables）。</a></li>
+            <li><a href="#关闭selinux">关闭SELinux。</a></li>
+            <li><a href="#主从相互之间ssh免密登录">主从相互之间ssh免密登录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ha-cluster即高可用集群模式">HA Cluster，即高可用集群模式</a></li>
+    <li><a href="#ha--federation-cluster即高可用联邦集群模式">HA + Federation Cluster，即高可用联邦集群模式</a></li>
+    <li><a href="#启动">启动</a>
+      <ul>
+        <li><a href="#第一次启动">第一次启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#查看集群状态">查看集群状态</a></li>
+    <li><a href="#查看端口">查看端口</a></li>
+    <li><a href="#hadoop命令">hadoop命令</a>
+      <ul>
+        <li><a href="#hdfs">hdfs</a></li>
+        <li><a href="#mapreduce">Mapreduce</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>本文以3.2.1版本为主</p>
+<p>参考<a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=144#/detail/pc?id=3079" target="_blank" rel="noopener noreffer">大数据运维实战</a>
+参考<a href="" rel="">尚硅谷大数据资料</a></p>
+<h1 id="选择发行版">选择发行版</h1>
+<ol>
+<li>对于初学入门的话，建议选择 Apache Hadoop 版本最好，因为它的社区活跃、文档、资料详实。</li>
+<li>企业环境：在国内大型互联网企业中，使用较多的是 CDH【收费】 或 HDP 发行版本，个人推荐采用 HDP 发行版本，原因是部署简单、性能稳定。</li>
+</ol>
+<h1 id="版本兼容选择">版本兼容选择</h1>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>old</th>
+<th>new</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hadoop</td>
+<td>2.7.2</td>
+<td>3.1.3</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>3.4.10</td>
+<td>3.5.7</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>5.6.24</td>
+<td>5.7.16</td>
+</tr>
+<tr>
+<td>Hive</td>
+<td>1.2.1</td>
+<td>3.1.2</td>
+</tr>
+<tr>
+<td>Flume</td>
+<td>1.7.0</td>
+<td>1.9.0</td>
+</tr>
+<tr>
+<td>Kafka</td>
+<td>0.11-0.2</td>
+<td>2.11-2.4.1</td>
+</tr>
+<tr>
+<td>Kafka Eagle</td>
+<td>1.3.7</td>
+<td>1.4.5</td>
+</tr>
+<tr>
+<td>Azkaban</td>
+<td>2.5.0</td>
+<td>3.84.4</td>
+</tr>
+<tr>
+<td>Spark</td>
+<td>2.1.1</td>
+<td>3.0.0</td>
+</tr>
+<tr>
+<td>Hbase</td>
+<td>1.3.1</td>
+<td>2.0.5</td>
+</tr>
+<tr>
+<td>Phoenix</td>
+<td>4.14.1</td>
+<td>5.0.0</td>
+</tr>
+<tr>
+<td>Sqoop</td>
+<td>1.4.6</td>
+<td>1.4.6</td>
+</tr>
+<tr>
+<td>Presto</td>
+<td>0.189</td>
+<td>0.189</td>
+</tr>
+<tr>
+<td>Kylin</td>
+<td>2.5.1</td>
+<td>3.0.1</td>
+</tr>
+<tr>
+<td>Atlas</td>
+<td>0.8.4</td>
+<td>2.0.0</td>
+</tr>
+<tr>
+<td>Ranger</td>
+<td>2.0.0</td>
+<td>2.0.0</td>
+</tr>
+<tr>
+<td>Solr</td>
+<td>5.2.1</td>
+<td>7.7.0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="hadoop搭建">hadoop搭建</h1>
+<ol>
+<li>参考官方文档<a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Prepare_to_Start_the_Hadoop_Cluster" target="_blank" rel="noopener noreffer">开始集群</a></li>
+<li>官方文档支持5种搭建方式,参考<a href="https://www.jianshu.com/p/c3a834e45ae3" target="_blank" rel="noopener noreffer">hadoop 生态圈介绍</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1. 单机模式：非分布式。默认模式。作为一个JAVA进程，调试有用。
+2. 伪分布式操作模式：单节点。伪分布式。作为分开的JAVA进程。通常使用这种模式进行开发和调试工作。
+3. 全分布式部署。
+4. HA Cluster，即高可用集群模式
+5. HA + Federation Cluster，即高可用联邦集群模式
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="伪分布式部署">伪分布式部署</h2>
+<ol>
+<li><code>伪分布式安装 Hadoop 只需要一台机器，硬件配置最低为 4 核 CPU、8G 内存即可</code></li>
+</ol>
+<h2 id="全分布式集群搭建">全分布式集群搭建</h2>
+<ol>
+<li>参考<a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html" target="_blank" rel="noopener noreffer">官方文档</a>从若干节点到千级节点。</li>
+<li><code>官方文档并不涉及安全和高可用</code>。</li>
+<li>将硬件划分为功能。</li>
+<li>通常，集群中的一台机器被指定为<code>NameNode</code>(hadoop文件系统的管家)，而另一台机器被指定为<code>ResourceManager</code>(yarn的管家，主要管理任务的执行，例如MapReduce任务)。这些是主节点。</li>
+<li>其他服务(如Web App Proxy Server和MapReduce Job History Server)通常在专用硬件或共享基础设施上运行，这取决于负载。</li>
+<li>集群中的其他机器同时充当DataNode和NodeManager。这些是workers(从节点)。</li>
+<li>视业务、资金等情况而定，因为该模式日后也可以安全升级成高可用模式。</li>
+</ol>
+<h3 id="安装java">安装<code>java</code></h3>
+<p><a href="https://www.jianshu.com/p/9b987388a518" target="_blank" rel="noopener noreffer">Linux安装JDK完整步骤</a></p>
+<h4 id="配置环境变量">配置环境变量</h4>
+<ol>
+<li>JAVA_HOME</li>
+<li>CLASSPATH</li>
+<li>PATH</li>
+</ol>
+<h3 id="安装hadoop">安装<code>hadoop</code></h3>
+<h4 id="下载httphadoopapacheorg获取二进制压缩包"><a href="http://hadoop.apache.org/" target="_blank" rel="noopener noreffer">下载</a>获取二进制压缩包。</h4>
+<h4 id="解压到指定目录并新建tmp目录设置环境变量path即可">解压到指定目录并新建tmp目录,设置环境变量（PATH）即可。</h4>
+<h3 id="hadoop集群配置非安全">hadoop集群配置（<code>非安全</code>）</h3>
+<ol>
+<li>Hadoop的Java配置由两种类型的重要配置文件驱动</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">只读默认配置 - core-default.xml, hdfs-default.xml, yarn-default.xml and mapred-default.xml.
+特定站点的配置 - etc/hadoop/core-site.xml, etc/hadoop/hdfs-site.xml, etc/hadoop/yarn-site.xml and etc/hadoop/mapred-site.xml
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>另外，您可以通过在<code>etc/hadoop/hadoop-env.sh</code>和<code>etc/hadoop/ yarn-env.sh</code>中设置站点特定的值来控制在发行版的bin目录中找到的Hadoop脚本。</li>
+<li>HDFS守护进程是NameNode、SecondaryNameNode（<code>主要做文件的合并工作</code>）和DataNode。YARN守护进程是ResourceManager、NodeManager和WebAppProxy。如果要使用MapReduce，那么MapReduceJobHistoryServer也将运行。对于大型安装，它们通常运行在不同的主机上。</li>
+</ol>
+<h4 id="特定站点的配置">特定站点的配置</h4>
+<h5 id="环境变量">环境变量</h5>
+<ol>
+<li>使用etc/hadoop/hadoop-env.sh以及可选的etc/hadoop/mapred-env.sh和etc/hadoop/yarn-env.sh脚本对Hadoop守护进程的处理环境进行特定于站点的自定义。</li>
+<li>至少配置一下<code>JAVA_HOME</code>.（<code>还可配一下user</code>）</li>
+<li>可以使用下表中显示的配置选项来配置各个守护程序:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>守护进程</th>
+<th>环境变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NameNode</td>
+<td>HDFS_NAMENODE_OPTS</td>
+<td>例如<code>export HDFS_NAMENODE_OPTS=&quot;-XX:+UseParallelGC -Xmx4g&quot;</code></td>
+</tr>
+<tr>
+<td>NameNode</td>
+<td>HDFS_NAMENODE_USER</td>
+<td>默认为hdfs，可以设置为root</td>
+</tr>
+<tr>
+<td>DataNode</td>
+<td>HDFS_DATANODE_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>DataNode</td>
+<td>HDFS_DATANODE_USER</td>
+<td>默认为hdfs，可以设置为root</td>
+</tr>
+<tr>
+<td>Secondary NameNode</td>
+<td>HDFS_SECONDARYNAMENODE_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>Secondary NameNode</td>
+<td>HDFS_SECONDARYNAMENODE_USER</td>
+<td>默认为hdfs，可以设置为root</td>
+</tr>
+<tr>
+<td>ResourceManager</td>
+<td>YARN_RESOURCEMANAGER_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>NodeManager</td>
+<td>YARN_NODEMANAGER_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>WebAppProxy</td>
+<td>YARN_PROXYSERVER_OPTS</td>
+<td></td>
+</tr>
+<tr>
+<td>Map Reduce Job History Server</td>
+<td>MAPRED_HISTORYSERVER_OPTS</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>其他有用的参数</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">HADOOP_PID_DIR - 目录 the daemons’ process id files are stored.
+HADOOP_LOG_DIR - 目录 the daemons’ log files are stored. Log files are automatically created if they don’t exist.
+HADOOP_HEAPSIZE_MAX - The maximum amount of memory to use for the Java heapsize. Units supported by the JVM are also supported here. If no unit is present, it will be assumed the number is in megabytes. By default, Hadoop will let the JVM determine how much to use. This value can be overriden on a per-daemon basis using the appropriate _OPTS variable listed above. For example, setting HADOOP_HEAPSIZE_MAX=1g and HADOOP_NAMENODE_OPTS=&#34;-Xmx5g&#34; will configure the NameNode with 5GB heap.
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>在大多数情况下，您应该指定HADOOP PID DIR和HADOOP LOG DIR目录，以便它们只能由将要运行HADOOP守护进程的用户写入。否则，可能会出现符号链接攻击。</li>
+<li>在/etc/profile.d配置HADOOP_HOME</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">  HADOOP_HOME=/path/to/hadoop
+  export HADOOP_HOME
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="配置hadoop守护进程">配置Hadoop守护进程</h5>
+<h6 id="etchadoopcore-sitexml">etc/hadoop/core-site.xml（）</h6>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fs.defaultFS</td>
+<td>访问HDFS文件系统的URI,默认端口是8020</td>
+<td>hdfs://host:port/ 主节点</td>
+<td>1</td>
+</tr>
+<tr>
+<td>io.file.buffer.size</td>
+<td>131072</td>
+<td>Size of read/write buffer used in SequenceFiles.</td>
+<td></td>
+</tr>
+<tr>
+<td>hadoop.tmp.dir</td>
+<td></td>
+<td>默认为<code>/tmp/hadoop-${user.name}</code>,最好不要定义在/tmp中，默认namenode和datanode会用到</td>
+<td></td>
+</tr>
+<tr>
+<td>hadoop.http.staticuser.user</td>
+<td>静态用户，默认dr.who</td>
+<td>The user name to filter as, on static web filters while rendering content. An example use is the HDFS web UI (user to be used for browsing files).</td>
+<td></td>
+</tr>
+<tr>
+<td>io.compression.codecs</td>
+<td></td>
+<td>逗号分隔的压缩编解码器类列表，可用于压缩/解压缩</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h6 id="etchadoophdfs-sitexml">etc/hadoop/hdfs-site.xml</h6>
+<ol>
+<li>NameNode配置</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dfs.namenode.name.dir</td>
+<td>本地文件系统路径用于存放（元数据信息） namespace and transactions logs persistently.</td>
+<td>如果这是一个以逗号分隔的目录列表，那么为了冗余，名称表将复制到所有目录中。默认为 <code>file://${hadoop.tmp.dir}/dfs/name</code>，一般都改一下</td>
+</tr>
+<tr>
+<td>dfs.hosts / dfs.hosts.exclude	List of permitted/excluded DataNodes.	If necessary, use these files to control the list of allowable datanodes.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dfs.blocksize	268435456	HDFS blocksize of 256MB for large file-systems.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dfs.namenode.handler.count	100	More NameNode server threads to handle RPCs from large number of DataNodes.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dfs.replication</td>
+<td>默认为3</td>
+<td>数据副本数</td>
+</tr>
+<tr>
+<td>dfs.namenode.secondary.http-address</td>
+<td>默认0.0.0.0:9868</td>
+<td>The secondary namenode http server address and port.</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>DataNode配置</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dfs.datanode.data.dir</td>
+<td>Comma separated list of paths on the local filesystem of a DataNode 用于存放数据的blocks.</td>
+<td>如果这是一个以逗号分隔的目录列表，那么为了冗余，数据将复制到所有目录中。默认为 <code>file://${hadoop.tmp.dir}/dfs/data</code>，一般都改一下</td>
+</tr>
+</tbody>
+</table>
+<h6 id="etchadoopyarn-sitexml">etc/hadoop/yarn-site.xml</h6>
+<ol>
+<li>ResourceManager和NodeManager配置。</li>
+</ol>
+<p>Parameter	Value	Notes
+yarn.acl.enable	true / false	Enable ACLs? Defaults to false.
+yarn.admin.acl	Admin ACL	ACL to set admins on the cluster. ACLs are of for comma-separated-usersspacecomma-separated-groups. Defaults to special value of * which means anyone. Special value of just space means no one has access.
+yarn.log-aggregation-enable	false	Configuration to enable or disable log aggregation</p>
+<ol start="2">
+<li>ResourceManager单独配置</li>
+</ol>
+<p>Parameter	Value	Notes
+yarn.resourcemanager.address	ResourceManager host:port for clients to submit jobs.	host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.
+yarn.resourcemanager.scheduler.address	ResourceManager host:port for ApplicationMasters to talk to Scheduler to obtain resources.	host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.
+yarn.resourcemanager.resource-tracker.address	ResourceManager host:port for NodeManagers.	host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.
+yarn.resourcemanager.admin.address	ResourceManager host:port for administrative commands.	host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.
+yarn.resourcemanager.webapp.address	ResourceManager web-ui host:port.	host:port If set, overrides the hostname set in yarn.resourcemanager.hostname.
+yarn.resourcemanager.hostname	ResourceManager host.	host Single hostname that can be set in place of setting all yarn.resourcemanager*address resources. Results in default ports for ResourceManager components.
+yarn.resourcemanager.scheduler.class	ResourceManager Scheduler class.	CapacityScheduler (recommended), FairScheduler (also recommended), or FifoScheduler. Use a fully qualified class name, e.g., org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler.
+yarn.scheduler.minimum-allocation-mb	Minimum limit of memory to allocate to each container request at the Resource Manager.	In MBs
+yarn.scheduler.maximum-allocation-mb	Maximum limit of memory to allocate to each container request at the Resource Manager.	In MBs
+yarn.resourcemanager.nodes.include-path / yarn.resourcemanager.nodes.exclude-path	List of permitted/excluded NodeManagers.	If necessary, use these files to control the list of allowable NodeManagers.</p>
+<ol start="3">
+<li>NodeManager单独配置</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yarn.nodemanager.resource.memory-mb	Resource i.e. available physical memory, in MB, for given NodeManager	Defines total available resources on the NodeManager to be made available to running containers</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.vmem-pmem-ratio	Maximum ratio by which virtual memory usage of tasks may exceed physical memory	The virtual memory usage of each task may exceed its physical memory limit by this ratio. The total amount of virtual memory used by tasks on the NodeManager may exceed its physical memory usage by this ratio.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.local-dirs	Comma-separated list of paths on the local filesystem where intermediate data is written.	Multiple paths help spread disk i/o.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.log-dirs	Comma-separated list of paths on the local filesystem where logs are written.	Multiple paths help spread disk i/o.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.log.retain-seconds	10800	Default time (in seconds) to retain log files on the NodeManager Only applicable if log-aggregation is disabled.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.remote-app-log-dir	/logs	HDFS directory where the application logs are moved on application completion. Need to set appropriate permissions. Only applicable if log-aggregation is enabled.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.remote-app-log-dir-suffix	logs	Suffix appended to the remote log dir. Logs will be aggregated to ${yarn.nodemanager.remote-app-log-dir}/${user}/${thisParam} Only applicable if log-aggregation is enabled.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn.nodemanager.aux-services</td>
+<td>mapreduce_shuffle</td>
+<td>可在 NodeManager 上运行的扩展服务，需配置成 mapreduce_shuffle，才可运行 MapReduce 程序。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>yarn.nodemanager.env-whitelist	Environment properties to be inherited by containers from NodeManagers	For mapreduce application in addition to the default values HADOOP_MAPRED_HOME should to be added. Property value should JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPAT</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>Configurations for History Server (Needs to be moved elsewhere)</li>
+</ol>
+<p>Parameter	Value	Notes
+yarn.log-aggregation.retain-seconds	-1	How long to keep aggregation logs before deleting them. -1 disables. Be careful, set this too small and you will spam the name node.
+yarn.log-aggregation.retain-check-interval-seconds	-1	Time between checks for aggregated log retention. If set to 0 or a negative value then the value is computed as one-tenth of the aggregated log retention time. Be careful, set this too small and you will spam the name node.</p>
+<h6 id="etchadoopmapred-sitexml">etc/hadoop/mapred-site.xml</h6>
+<ol>
+<li>MapReduce Applications配置</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mapreduce.framework.name</td>
+<td>yarn</td>
+<td>指定mapreduce的执行环境（默认为本地）</td>
+<td>1</td>
+</tr>
+<tr>
+<td>mapreduce.map.memory.mb	1536	Larger resource limit for maps.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapreduce.map.java.opts	-Xmx1024M	Larger heap-size for child jvms of maps.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapreduce.reduce.memory.mb	3072	Larger resource limit for reduces.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapreduce.reduce.java.opts	-Xmx2560M	Larger heap-size for child jvms of reduces.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapreduce.task.io.sort.mb	512	Higher memory-limit while sorting data for efficiency.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapreduce.task.io.sort.factor	100	More streams merged at once while sorting files.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapreduce.reduce.shuffle.parallelcopies	50	Higher number of parallel copies run by reduces to fetch outputs from very large number of maps.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>MapReduce JobHistory Serve</li>
+</ol>
+<p>Parameter	Value	Notes
+mapreduce.jobhistory.address	MapReduce JobHistory Server host:port	Default port is 10020.
+mapreduce.jobhistory.webapp.address	MapReduce JobHistory Server Web UI host:port	Default port is 19888.
+mapreduce.jobhistory.intermediate-done-dir	/mr-history/tmp	Directory where history files are written by MapReduce jobs.
+mapreduce.jobhistory.done-dir	/mr-history/done	Directory where history files are managed by the MR JobHistory Server.</p>
+<h6 id="健康检查配置">健康检查配置</h6>
+<ol>
+<li>Hadoop提供了一种机制，管理员可以通过这种机制配置NodeManager，以便定期运行管理员提供的脚本，以确定节点是否健康。</li>
+</ol>
+<p><code>etc/hadoop/yarn-site.xml</code></p>
+<p>Parameter	Value	Notes
+yarn.nodemanager.health-checker.script.path	Node health script	Script to check for node’s health status.
+yarn.nodemanager.health-checker.script.opts	Node health script options	Options for script to check for node’s health status.
+yarn.nodemanager.health-checker.interval-ms	Node health script interval	Time interval for running health script.
+yarn.nodemanager.health-checker.script.timeout-ms	Node health script timeout interval	Timeout for health script execution.</p>
+<h6 id="修改etchadoopworkers">修改etc/hadoop/workers</h6>
+<p><code>将从机主机名（IP的映射）写进去</code>
+2. 它不用于任何基于java的Hadoop配置。为了使用此功能，必须为用于运行Hadoop的帐户建立ssh信任(通过无密码的ssh或其他方法，如Kerberos)。</p>
+<h6 id="配置机架感知">配置机架感知</h6>
+<ol>
+<li>强烈建议在启动HDFS之前配置机架感知。</li>
+</ol>
+<h6 id="hadoop日志配置">hadoop日志配置</h6>
+<ol>
+<li>Hadoop通过Apache Commons Logging框架使用Apache log4j进行日志记录。 编辑etc / hadoop / log4j.properties文件以自定义Hadoop守护程序的日志配置（日志格式等）。</li>
+</ol>
+<h4 id="配置本地网络etchosts主机名和ip的映射">配置本地网络/etc/hosts，主机名和IP的映射</h4>
+<h4 id="使主机名生效etcsysconfignetwork中的hostname">使主机名生效<code>/etc/sysconfig/network</code>中的hostname</h4>
+<h4 id="关闭防火墙iptables">关闭防火墙（iptables）。</h4>
+<p><code>/etc/init.d/iptables stop</code></p>
+<h4 id="关闭selinux">关闭SELinux。</h4>
+<p><code>setenforce 0</code>
+<code>getenforce</code></p>
+<h4 id="主从相互之间ssh免密登录">主从相互之间ssh免密登录</h4>
+<p><code>相同的私钥和公钥</code></p>
+<h2 id="ha-cluster即高可用集群模式">HA Cluster，即高可用集群模式</h2>
+<ol>
+<li>一般来说，分为NN的高可用和RM的高可用。在完全分布式的基础上，增加备用NN和RM节点。</li>
+<li>NN高可用，也就是集群里面会部署两台NN（最多也只能两台），以形成主备NN节点，达到高可用的目的。RM高可用与NN高可用类似，也是在集群里部署备用RM节点。</li>
+<li>主备模式。当Active的NN/RM出现问题无法工作时，Standby的那台则立即无缝切入，继续保障集群正常运转。</li>
+<li>这种模式是很多企业都使用的，但是依然有缺陷。性能瓶颈依然存在——仅有一台NN/RM，由于无法横向扩展，其很可能会超负载运行。</li>
+</ol>
+<h2 id="ha--federation-cluster即高可用联邦集群模式">HA + Federation Cluster，即高可用联邦集群模式</h2>
+<ol>
+<li>解决了单纯HA模式的性能瓶颈。</li>
+<li>整个HA集群再划分为两个以上的集群，不同的集群之间通过Federation进行连接。</li>
+<li>不同集群间可以共享数据节点，也可以不共享，可以互相访问和操作数据，也可以不。<code>集群之间的数据相互独立，不能不经过NN访问DN的数据</code></li>
+<li>这样便做到了HA集群的横向扩展，从而移除了单纯HA模式同时仅有1台NN/RM工作所带来的性能瓶颈。</li>
+<li>Federation模式，相当于在多个集群之上又构建了一个集群层次。</li>
+<li>从数据访问的角度看，也可以简单的将其理解为一台路由器，而每一个HA集群则是单独的网络，不同网络间通过<code>Federation路由器进行沟通</code>。</li>
+<li>此模式是目前hadoop生态中最高的一种模式，适用于规模较大的企业。</li>
+</ol>
+<p>作者：mtide_net
+链接：https://www.jianshu.com/p/c3a834e45ae3
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h2 id="启动">启动</h2>
+<ol>
+<li>完成所有必要的配置后，将文件分发到所有机器上的HADOOP CONF DIR目录。这应该是所有机器上的相同目录。</li>
+<li>通常，建议HDFS和YARN作为单独的用户运行。在大多数安装中，HDFS进程作为HDFS执行。YARN通常使用YARN帐户。</li>
+</ol>
+<h3 id="第一次启动">第一次启动</h3>
+<ol>
+<li>必须格式化namenode。生成集群元数据，生成fsimage(持久化)。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$HADOOP_HOME/bin/hdfs namenode -format &lt;cluster_name&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>启动集群。<code>./start-all.sh</code></li>
+</ol>
+<h2 id="查看集群状态">查看集群状态</h2>
+<ol>
+<li><code>jps</code>查看进程。</li>
+<li><code>./hadoop fs -ls /</code></li>
+</ol>
+<h2 id="查看端口">查看端口</h2>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>端口</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>namenode</td>
+<td>9870</td>
+<td></td>
+</tr>
+<tr>
+<td>namenode</td>
+<td>9000</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>9864</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>9866</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>9867</td>
+<td></td>
+</tr>
+<tr>
+<td>datanode</td>
+<td>40599</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8030</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8031</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8032</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8033</td>
+<td></td>
+</tr>
+<tr>
+<td>resourcemanager</td>
+<td>8088</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>8040</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>8042</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>13562</td>
+<td></td>
+</tr>
+<tr>
+<td>nodemanager</td>
+<td>39547</td>
+<td></td>
+</tr>
+<tr>
+<td>historyserver</td>
+<td>8188</td>
+<td></td>
+</tr>
+<tr>
+<td>historyserver</td>
+<td>10200</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="hadoop命令">hadoop命令</h2>
+<h3 id="hdfs">hdfs</h3>
+<ol>
+<li>HDFS 上面的文件，<code>只能创建和删除</code>，无法更新一个存在的文件，如果要更新 HDFS 上的文件，需要先删除这个文件，然后提交最新的文件即可。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">hdfs namenode -format    // 格式化namenode
+hdfs --daemon start namenode    // 启动namenode
+hadoop fs -ls /    //查看 hdfs 根目录数据
+hadoop fs -mkdir /logs    //在 hdfs 根目录创建一个 logs 目录
+hadoop fs -put /data/test.txt /logs    // 从本地上传一个文件到 hdfs 的 /logs 目录下
+hadoop fs -cat /logs/test.txt    // 查看 hdfs 中一个文本文件的内容
+hadoop fs -text /logs/db.gz    // HDFS 上的压缩文件通过“-text”参数也能直接查看，因为默认情况下 Hadoop 会自动识别常见的压缩格式
+hadoop fs  -rm  -r /logs/test.txt    // 删除 hdfs 上一个文件
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="mapreduce">Mapreduce</h3>
+<ol>
+<li><code>share/hadoop/mapreduce</code>，找到一个名为 hadoop-mapreduce-examples-3.2.1.jar 的 jar 文件.包含了一个 wordcount 功能，它主要功能是用来统计一系列文本文件中每个单词出现的次数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">hadoop jar /opt/hadoop/current/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar  wordcount /demo  /output
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>最后的两个路径都是 HDFS 上的路径，第一个路径是分析读取文件的目录，<code>必须存在</code>；第二个路径是分析任务输出结果的存放路径，<code>必须不存在</code>，分析任务会自动创建这个目录。</li>
+<li>part-r-00000，表示输出文件名，常见的名称有 part-m-00000、part-r-00001，其中，带 m 标识的文件是 mapper 输出，带 r 标识的文件是 reduce 输出的，00000 为 job 任务编号，part-r-00000 整个文件为结果输出文件。</li>
+<li>默认 mapreduce 的运行环境是 local（本地），要让 mapreduce 在 yarn 上运行，需要做几个参数配置就行了。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-06-17</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-microbit-%E6%A6%82%E8%BF%B0/" class="prev" rel="prev" title="嵌入式-MicroBit-概述"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-3-mapreduce/" class="next" rel="next" title="大数据架构笔记-2-MAPREDUCE">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

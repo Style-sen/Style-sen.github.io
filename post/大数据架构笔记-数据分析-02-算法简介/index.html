@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>大数据架构笔记-数据分析-02-算法简介 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="大数据架构笔记-数据分析-02-算法简介" />
+<meta property="og:description" content="分类算法 最近邻算法（K-NearestNeighbor）KNN：近朱者赤，近墨者黑 找到 K 个与新数据最近的样本，取样本中最多的一个类别作为新数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-02-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2020-09-03T15:59:38+00:00" />
+<meta property="article:modified_time" content="2020-09-03T15:59:38+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="大数据架构笔记-数据分析-02-算法简介"/>
+<meta name="twitter:description" content="分类算法 最近邻算法（K-NearestNeighbor）KNN：近朱者赤，近墨者黑 找到 K 个与新数据最近的样本，取样本中最多的一个类别作为新数"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-02-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" /><link rel="prev" href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" /><link rel="next" href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-01-%E5%9F%BA%E7%A1%80%E5%8F%8A%E6%B5%81%E7%A8%8B/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "大数据架构笔记-数据分析-02-算法简介",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-02-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "数据分析, 数据挖掘","wordcount":  2221 ,
+        "url": "\/post\/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-02-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B\/","datePublished": "2020-09-03T15:59:38+00:00","dateModified": "2020-09-03T15:59:38+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">大数据架构笔记-数据分析-02-算法简介</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#分类算法">分类算法</a>
+      <ul>
+        <li><a href="#最近邻算法k-nearestneighborknn近朱者赤近墨者黑">最近邻算法（K-NearestNeighbor）KNN：近朱者赤，近墨者黑</a>
+          <ul>
+            <li><a href="#优缺点">优缺点</a>
+              <ul>
+                <li><a href="#优点">优点</a></li>
+                <li><a href="#缺点">缺点</a></li>
+              </ul>
+            </li>
+            <li><a href="#关于-k距离最近的样本数-的选取">关于 K（距离最近的样本数） 的选取</a></li>
+          </ul>
+        </li>
+        <li><a href="#决策树">决策树</a>
+          <ul>
+            <li><a href="#算法原理">算法原理</a></li>
+            <li><a href="#算法优缺点">算法优缺点</a>
+              <ul>
+                <li><a href="#不同版本">不同版本</a></li>
+                <li><a href="#cart优点">CART优点</a></li>
+                <li><a href="#cart缺点">CART缺点</a></li>
+              </ul>
+            </li>
+            <li><a href="#关于剪枝">关于剪枝</a></li>
+            <li><a href="#扩展">扩展</a></li>
+          </ul>
+        </li>
+        <li><a href="#朴素贝叶斯">朴素贝叶斯</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="分类算法">分类算法</h2>
+<h3 id="最近邻算法k-nearestneighborknn近朱者赤近墨者黑">最近邻算法（K-NearestNeighbor）KNN：近朱者赤，近墨者黑</h3>
+<ol>
+<li>找到 K 个与新数据最近的样本，取样本中最多的一个类别作为新数据的类别。</li>
+<li>【距离最近】关于距离该怎么计算呢？最常见的一个计算方法就是欧式距离，即两点之间的连线，如果放在地图上就是两个房子的直线距离。当然除了欧式距离，还有很多距离计算的方式，比如曼哈顿距离、切比雪夫距离等。</li>
+</ol>
+<h4 id="优缺点">优缺点</h4>
+<h5 id="优点">优点</h5>
+<ol>
+<li>【简单易实现】KNN 算法最后实际上并没有抽象出任何模型，而是把全部的数据集直接当作模型本身，当一条新数据来了之后跟数据集里面的每一条数据进行对比。</li>
+<li>【对于边界不规则的数据效果较好】最终的预测是把未知数据作为中心点，然后画一个圈，使得圈里有 K 个数据，所以对于边界不规则的数据，要比线性的分类器效果更好。</li>
+</ol>
+<h5 id="缺点">缺点</h5>
+<ol>
+<li>【只适合小数据集】每次预测新数据都需要使用全部的数据集。</li>
+<li>【数据不平衡效果不好】特别多的数据最后在投票的时候会更有竞争优势。</li>
+<li>【必须要做数据标准化】使用距离来进行计算，如果数据量纲不同，数值较大的字段影响就会变大，所以需要对数据进行标准化，比如都转换到 0-1 的区间。</li>
+<li>【不适合特征维度太多的数据】  只能处理小数据集，如果数据的维度太多，那么样本在每个维度上的分布就很少。比如我们只有三个样本，每个样本只有一个维度，这比每个样本有三个维度特征要明显很多。</li>
+</ol>
+<h4 id="关于-k距离最近的样本数-的选取">关于 K（距离最近的样本数） 的选取</h4>
+<ol>
+<li>当K 越小的时候容易过拟合；K 越大的时候容易欠拟合。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">对于 K 的取值，一种显而易见的办法就是从 1 开始不断地尝试，查看准确率。随着 K 的增加，一般情况下准确率会先变大后变小，然后选取效果最好的那个 K 值就好了。
+当然，关于 K 最好使用奇数，因为偶数在投票的时候就困难了，如果两个类别的投票数量是一样的，那就没办法抉择了，只能随机选一个。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="决策树">决策树</h3>
+<h4 id="算法原理">算法原理</h4>
+<ol>
+<li>把所有样本数据中出现的情况组合都构建入这棵树的时候，我们的算法也就完成了对样本的学习。最终形成的这棵树上，所有的叶子节点都是要输出的类别信息，所有的非叶子节点都是特征信息。当一个新的数据来了之后，就按照对应的判断条件，从根节点走到叶子节点，从而获得这个数据的分类结果。</li>
+<li>【如何选择一个特征作为根节点？下一次决策又该选取哪个特征作为节点？】决策树算法使用了一种称作信息增益的方法来衡量一个特征和特征之间的重要性，信息增益越大表明这个特征越重要，那么就优先对这个特征进行决策。</li>
+<li>实际上决策树实现的时候都采用了贪心算法，来寻找一个最近的最优解，而不是全局的最优解。</li>
+</ol>
+<h4 id="算法优缺点">算法优缺点</h4>
+<h5 id="不同版本">不同版本</h5>
+<ol>
+<li>决策树最初的版本称为 ID3（ Iterative Dichotomiser 3 ），ID3 的缺点是无法处理数据是连续值的情况，也无法处理数据存在缺失的问题，需要在准备数据环节把缺失字段进行补齐或者删除数据。后来有人提出了改进方案称为 C4.5，加入了对连续值属性的处理，同时也可以处理数据缺失的情况。同时，还有一种目前应用最多的 CART（ Classification And Regression Tree）分类与回归树，每次分支只使用二叉树划分，同时可以用于解决回归问题。</li>
+</ol>
+<h5 id="cart优点">CART优点</h5>
+<ol>
+<li>【非常直观，可解释极强】:在生成的决策树上，每个节点都有明确的判断分支条件，所以非常容易看到为什么要这样处理，比起神经网络模型的黑盒处理，高解释性的模型非常受金融保险行业的欢迎。</li>
+<li>【预测速度比较快】 由于最终生成的模型是一个树形结构，对于一条新数据的预测，只需要按照条件在每一个节点进行判定就可以。通常来说，树形结构都有助于提升运算速度。</li>
+<li>【既可以处理离散值也可以处理连续值】还可以处理缺失值。</li>
+</ol>
+<h5 id="cart缺点">CART缺点</h5>
+<ol>
+<li>【容易过拟合】在极端的情况下，我们根据样本生成了一个最完美的树，那么样本中出现的每一个值都会有一条路径来拟合，所以如果样本中存在一些问题数据，或者样本与测试数据存在一定的差距时，就会看出泛化性能不好，出现了过拟合的现象。</li>
+<li>【需要处理样本不均衡的问题】如果样本不均衡，某些特征的样本比例过大，最终的模型结果将会更偏向这些特征。</li>
+<li>【样本的变化会引发树结构巨变】</li>
+</ol>
+<h4 id="关于剪枝">关于剪枝</h4>
+<ol>
+<li>【决策树容易过拟合】需要使用剪枝的方式来使得模型的泛化能力更好，所以剪枝可以理解为简化我们的决策树，去掉不必要的节点路径以提高泛化能力。剪枝的方法主要有预剪枝和后剪枝两种方式。</li>
+<li>【预剪枝】在决策树构建之初就设定一个阈值，当分裂节点的熵阈值小于设定值的时候就不再进行分裂了；然而这种方法的实际效果并不是很好，因为谁也没办法预料到我们设定的恰好是我们想要的。</li>
+<li>【后剪枝】后剪枝方法就是在我们的决策树已经构建完成以后，再根据设定的条件来判断是否要合并一些中间节点，使用叶子节点来代替。在实际的情况下，通常都是采用后剪枝的方案。</li>
+</ol>
+<h4 id="扩展">扩展</h4>
+<ol>
+<li>【随机森林】为了更好地解决泛化及树结构变动等问题，从决策树演进出来随机森林算法。根据我们前面讲的模型集成方法，随机森林就是使用了 bagging 方案构建了多棵决策树，然后对所有树的结果来进行平均计算以获得最终的结果。</li>
+<li>【GBDT】在随机森林的基础上，研究者又提出了梯度提升决策树算法（Gradient Boosting Decision Tree，GBDT），GBDT 是基于 boosting 的策略。与随机森林一样的是，GBDT 也会构建多棵决策树；但不同的是，GBDT 构建的多棵树之间是有联系的，每个分类器在上一轮分类器的残差基础上进行训练。</li>
+<li>【XGBoost】一个非常火热的模型，有“机器学习大杀器”之称，在很多比赛中都获得了非常好的结果。但实际上 XGBoost 不算是一个算法，而是对 GBDT 的一种工程实现，它优化了 GBDT 里面的求解过程，并加入了很多工程上的优化项目，使得数据处理、运算速度等环节都有了很大的提升。</li>
+</ol>
+<h3 id="朴素贝叶斯">朴素贝叶斯</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+                </span><span><a href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2020-09-03</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/%E5%90%8E%E7%AB%AF-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="prev" rel="prev" title="后端-数据库-时序数据库"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-01-%E5%9F%BA%E7%A1%80%E5%8F%8A%E6%B5%81%E7%A8%8B/" class="next" rel="next" title="大数据架构笔记-数据分析">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

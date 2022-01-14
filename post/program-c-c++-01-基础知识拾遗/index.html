@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>PROGRAM C C&#43;&#43; 基础知识拾遗 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="PROGRAM C C&#43;&#43; 基础知识拾遗" />
+<meta property="og:description" content="1. 语言版本 目前最广泛使用的C语言版本是 ANSI / ISO C(C89,C90)，最经典的C语言教材是《C程序设计语言(The C Programming Language) 第二版》，【几乎所有的开" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-03-02T14:57:50+08:00" />
+<meta property="article:modified_time" content="2021-03-02T14:57:50+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="PROGRAM C C&#43;&#43; 基础知识拾遗"/>
+<meta name="twitter:description" content="1. 语言版本 目前最广泛使用的C语言版本是 ANSI / ISO C(C89,C90)，最经典的C语言教材是《C程序设计语言(The C Programming Language) 第二版》，【几乎所有的开"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/program-c-c&#43;&#43;-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/" /><link rel="prev" href="/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/" /><link rel="next" href="/post/%E5%85%B6%E4%BB%96-%E5%AD%A9%E5%AD%90-%E5%B0%8F%E5%AD%A6/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PROGRAM C C++ 基础知识拾遗",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/program-c-c\x2b\x2b-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PROGRAM, C\/C\x2b\x2b","wordcount":  3004 ,
+        "url": "\/post\/program-c-c\x2b\x2b-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97\/","datePublished": "2021-03-02T14:57:50+08:00","dateModified": "2021-03-02T14:57:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">PROGRAM C C&#43;&#43; 基础知识拾遗</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-语言版本">1. 语言版本</a></li>
+    <li><a href="#2-语法">2. 语法</a>
+      <ul>
+        <li><a href="#21-statichttpswwwrunoobcomw3cnotecpp-static-usagehtml">2.1. <a href="https://www.runoob.com/w3cnote/cpp-static-usage.html"><code>static</code></a></a>
+          <ul>
+            <li><a href="#211-c">2.1.1. C++</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-const">2.2. <code>const</code></a>
+          <ul>
+            <li><a href="#221-c">2.2.1. C++</a></li>
+          </ul>
+        </li>
+        <li><a href="#23-函数">2.3. 函数</a></li>
+        <li><a href="#24-冒号">2.4. 冒号(:)</a>
+          <ul>
+            <li><a href="#241-c">2.4.1. C++</a></li>
+          </ul>
+        </li>
+        <li><a href="#25-restrict">2.5. restrict</a></li>
+        <li><a href="#26-struct">2.6. struct</a>
+          <ul>
+            <li><a href="#261-c">2.6.1. C++</a></li>
+          </ul>
+        </li>
+        <li><a href="#27-volatile">2.7. volatile</a></li>
+        <li><a href="#28-typedef">2.8. <code>typedef</code></a>
+          <ul>
+            <li><a href="#281-c">2.8.1. <code>C++</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#goto"><code>goto</code></a></li>
+        <li><a href="#29-c特有">2.9. C++特有</a>
+          <ul>
+            <li><a href="#291-异常">2.9.1. 异常</a></li>
+            <li><a href="#292-lambda-函数与表达式">2.9.2. Lambda 函数与表达式</a></li>
+            <li><a href="#293-命名空间namespace">2.9.3. 命名空间（namespace）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-库">3. 库</a>
+      <ul>
+        <li><a href="#31-动态库">3.1. 动态库</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-语言版本">1. 语言版本</h2>
+<ol>
+<li>目前最广泛使用的C语言版本是 ANSI / ISO C(C89,C90)，最经典的C语言教材是《C程序设计语言(The C Programming Language) 第二版》，【几乎所有的开发工具都支持 ANSI / ISO C 标准】。1999年发布的 ISO/IEC 9899:1999标准，通常被成为C99，C99并没有得到广泛的支持。</li>
+<li><a href="https://en.cppreference.com/w/cpp/compiler_support" target="_blank" rel="noopener noreffer">C++ compiler support</a></li>
+</ol>
+<h2 id="2-语法">2. 语法</h2>
+<ol>
+<li>程序的入口：<code>int main(int argc, const char * argv[])</code>；<code>argc</code>参数表示了命令行中参数的个数;<code>argv</code>指针，数组的长度即为参数个数.</li>
+<li>在c语言标准中，加法与减法运算对于地址的操作（适用&amp;获得地址和指针变量）和对于值的操作是不同的。</li>
+<li>当一个加法运算，加号两边的操作数一个是指针，另一个是一个整数时，这个整数值先乘以指针指向的数据类型的大小（如sizeof(int)），然后再和指针的值相加；当一个减法运算，减号左边的操作数是一个指针，右边的操作数是一个整数时，这个整数值先乘以指针指向的数据类型的大小（如sizeof(int)），然后再被指针的值减去；当一个减法运算，减号两边的操作数都是地址时，则这两个地址的数据类型必须一致（如都是int *类型），否则无法通过编译。减法运算的结果为地址值的差，再除以该地址的数据类型的大小（如sizeof(int)）。</li>
+</ol>
+<h3 id="21-statichttpswwwrunoobcomw3cnotecpp-static-usagehtml">2.1. <a href="https://www.runoob.com/w3cnote/cpp-static-usage.html" target="_blank" rel="noopener noreffer"><code>static</code></a></h3>
+<ol>
+<li>在修饰变量的时候，<code>static</code> 修饰的静态局部变量只执行初始化一次【在编译阶段】，而且延长了局部变量的生命周期，直到程序运行结束以后才释放,【不能被其他函数调用】。</li>
+<li><code>static</code> 修饰全局变量的时候，这个全局变量只能在本文件中访问，不能在其它文件中访问，即便是 extern 外部声明也不可以。</li>
+<li><code>static</code> 修饰一个函数，则这个函数的只能在本文件中调用，不能被其他文件调用。<code>static</code> 修饰的变量存放在全局数据区的静态变量区，包括全局静态变量和局部静态变量，都在全局数据区分配内存。初始化的时候自动初始化为 0。</li>
+<li>不想被释放的时候，可以使用<code>static</code>修饰。比如修饰函数中存放在栈空间的数组。如果不想让这个数组在函数调用结束释放可以使用 <code>static</code> 修饰。</li>
+<li>考虑到数据安全性（当程序想要使用全局变量的时候应该先考虑使用 <code>static</code>）。</li>
+<li>【注】：<code>全局变量一个进程只有一个</code>。</li>
+</ol>
+<h4 id="211-c">2.1.1. C++</h4>
+<ol>
+<li>被 static 修饰的变量属于类变量，可以通过类名.变量名直接引用，而不需要 new 出一个类来;</li>
+<li>被 static 修饰的方法属于类方法，可以通过类名.方法名直接引用，而不需要 new 出一个类来;</li>
+<li>被 static 修饰的变量、被 static 修饰的方法统一属于类的静态资源，是类实例之间共享的，换言之，一处变、处处变。<code>在所有对象中都可以共享它。使用静态成员变量实现多个对象之间的数据共享不会破坏隐藏的原则，保证了安全性还可以节省内存。</code>【注】<code>静态成员在一个进程中共享，多个进程间独立。</code></li>
+<li>静态成员变量不能在类的内部初始化，<strong>【在类的内部只是声明，定义必须在类外,定义时不能加上static关键字】</strong>。定义时可以指定初始值,也可以不指定,不指定时系统默认其初始值为0.</li>
+<li>类的对象可以使用静态成员函数和非静态成员函数。</li>
+<li>如果类有一个静态成员指针变量，在进程中执行new或malloc操作分配了内存，进程退出前并不需要调用new或malloc，因为<code>系统会自动进行释放</code>。</li>
+</ol>
+<h3 id="22-const">2.2. <code>const</code></h3>
+<h4 id="221-c">2.2.1. C++</h4>
+<ol>
+<li><code>const</code>成员变量是属于对象的，其生命周期就是对象的生命周期，在这个生命周期中其值是不可改变的。</li>
+<li>非<code>static</code>的<code>const</code>成员变量<em>不能在类的内部初始化</em>，在类的内部只是声明，<strong>只能通过构造函数的初始化列表进行初始化</strong>,并且必须进行初始化。</li>
+<li>为<code>static</code>的<code>const</code>成员变量，应遵循<code>static</code>初始化原则，在类外进行初始化.</li>
+<li><code>【常变量只能初始化不能赋值】</code>，所以在构造函数中赋值，或者使用自定义的成员函数赋值都是错误的。</li>
+</ol>
+<h3 id="23-函数">2.3. 函数</h3>
+<ol>
+<li>【传址调用】指针作为参数在函数中传递的时候，它的实质依然是值传递，形参只是实参的一份拷贝，他们分别属于不同的两个指针变量。两个指针变量的地址肯定是不一样的，值是一样的，指向相同的内存。<code>void funcAddr(int *a_Fml)</code></li>
+<li>【引用调用】形参是实参的引用，实参与形参拥有相同的地址。系统对传过来的参数没有拷贝，不会有任何额外开销，直接使用原始变量的内存空间。所以说，引用调用是比传址更高效的调用方式。<code>void funcRef(int &amp;a_Fml)</code></li>
+</ol>
+<h3 id="24-冒号">2.4. 冒号(:)</h3>
+<ol>
+<li><code>struct</code>中bit位的定义。</li>
+</ol>
+<h4 id="241-c">2.4.1. C++</h4>
+<ol>
+<li>构造函数后加冒号是初始化表达式.</li>
+</ol>
+<h3 id="25-restrict">2.5. restrict</h3>
+<ol>
+<li>它只可以用于限定和约束指针，并表明指针是访问一个数据对象的唯一且初始的方式.即它告诉编译器，所有修改该指针所指向内存中内容的操作都必须通过该指针来修改,而不能通过其它途径(其它变量或指针)来修改;这样做的好处是,能帮助编译器进行更好的优化代码,生成更有效率的汇编代码.如 int *restrict ptr, ptr 指向的内存单元只能被 ptr 访问到，任何同样指向这个内存单元的其他指针都是未定义的，直白点就是无效指针。</li>
+</ol>
+<h3 id="26-struct">2.6. struct</h3>
+<h4 id="261-c">2.6.1. C++</h4>
+<ol>
+<li>c++中允许在结构体当中定义函数，它的用法和类的用法很像，不过与类有一个区别在于，struct中定义的函数和变量都是默认为public的，但class中的则是默认为private。</li>
+</ol>
+<h3 id="27-volatile">2.7. volatile</h3>
+<ol>
+<li>遇到这个关键字声明的变量，编译器对访问该变量的代码就不再进行优化,防止优化编译器把变量从内存装入 CPU 寄存器中，系统总是重新从它所在的内存读取数据，从而可以提供对特殊地址（一个寄存器变量或者表示一个端口数据）的稳定访问。</li>
+<li>适用场景：【1】内嵌汇编操纵栈：这种方式属于编译无法识别的变量改变，【2】另外更多的可能是多线程并发访问共享变量时，一个线程改变了变量的值，怎样让改变后的值对其它线程 visible。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1<span class="o">)</span> 中断服务程序中修改的供其它程序检测的变量需要加 volatile；
+2<span class="o">)</span> 多任务环境下各任务间共享的标志应该加 volatile；
+3<span class="o">)</span> 存储器映射的硬件寄存器通常也要加 volatile 说明，因为每次对它的读写都可能由不同意义；
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="28-typedef">2.8. <code>typedef</code></h3>
+<ol>
+<li>定义一个新类型。</li>
+</ol>
+<h4 id="281-c">2.8.1. <code>C++</code></h4>
+<ol>
+<li><a href="https://blog.csdn.net/weixin_34167043/article/details/92634545" target="_blank" rel="noopener noreffer">typedef定义类成员函数指针</a>.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">class</span> <span class="nc">foo</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">g</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="n">foo</span><span class="o">::*</span><span class="n">memberf_pointer</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span><span class="c1">//是一个指向函数的指针，而且这个指针指向的函数必须是类foo的成员函数
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">foo</span> <span class="n">f</span> <span class="p">;</span>
+    <span class="n">memberf_pointer</span> <span class="n">mp</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">foo</span><span class="o">::</span><span class="n">g</span><span class="p">;</span><span class="c1">//如何赋值
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="o">*</span><span class="n">mp</span><span class="p">)</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="c1">//如何调用
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="goto"><code>goto</code></h3>
+<ol>
+<li>尽量避免使用<code>goto</code>.</li>
+<li>可以考虑使用goto的情形：(1)从多重循环中直接跳出(2)出错时清除资源(3)可增加程序的清晰度。</li>
+<li>使用goto语句只能goto到同一函数内，而不能从一个函数里goto到另外一个函数里。</li>
+<li>使用goto语句在同一函数内进行goto时，goto的起点应是函数内一段小功能的结束处，goto的目的label处应是函数内另外一段小功能的开始处。</li>
+<li>不能从一段复杂的执行状态中的位置goto到另外一个位置，比如，从多重嵌套的循环判断中跳出去就是不允许的。</li>
+<li>应该避免向两个方向跳转.</li>
+</ol>
+<h3 id="29-c特有">2.9. C++特有</h3>
+<h4 id="291-异常">2.9.1. 异常</h4>
+<ol>
+<li>throw 关键字除了可以用在函数体中抛出异常；</li>
+<li>throw 用在函数头和函数体之间，指明当前函数能够抛出的异常类型，这称为异常规范（Exception specification），有些教程也称为异常指示符或异常列表。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">double</span> <span class="nf">func</span> <span class="p">(</span><span class="kt">char</span> <span class="n">param</span><span class="p">)</span> <span class="n">throw</span> <span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="kt">double</span> <span class="nf">func</span> <span class="p">(</span><span class="kt">char</span> <span class="n">param</span><span class="p">)</span> <span class="n">throw</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="p">,</span> <span class="n">exception</span><span class="p">);</span>
+<span class="kt">double</span> <span class="nf">func</span> <span class="p">(</span><span class="kt">char</span> <span class="n">param</span><span class="p">)</span> <span class="n">throw</span> <span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="292-lambda-函数与表达式">2.9.2. Lambda 函数与表达式</h4>
+<h4 id="293-命名空间namespace">2.9.3. 命名空间（namespace）</h4>
+<ol>
+<li>C语言中所有的全局标识符共享一个作用域；C++中提出了命名空间的概念；</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++">
+<span class="k">namespace</span> <span class="n">Name</span>
+<span class="p">{</span>
+    <span class="k">namespace</span> <span class="n">Internal</span>
+    <span class="p">{</span>
+    <span class="cm">/*...*/</span>
+    <span class="p">}</span>
+    <span class="cm">/*...*/</span>
+<span class="p">}</span>
+
+<span class="err">使用整个命名空间：</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">name</span><span class="p">;</span>    <span class="err">后续代码正在使用指定命名空间中的名称</span>
+<span class="err">使用命名空间中的变量：</span><span class="k">using</span> <span class="n">name</span><span class="o">::</span><span class="n">variable</span>
+<span class="err">使用默认命名空间中的变量</span><span class="o">:</span>  <span class="o">::</span><span class="n">variable</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-库">3. 库</h2>
+<h3 id="31-动态库">3.1. 动态库</h3>
+<ol>
+<li>动态库只加载1份，但是其中的全局变量和静态变量会在每个进程中有1份，是独立的。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/program/">PROGRAM</a>
+                </span><span><a href="/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-03-02</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-c-c&#43;&#43;-%E6%A0%87%E5%87%86%E5%BA%93/" class="prev" rel="prev" title="C/C&#43;&#43; 标准库"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%85%B6%E4%BB%96-%E5%AD%A9%E5%AD%90-%E5%B0%8F%E5%AD%A6/" class="next" rel="next" title="高新区小学">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

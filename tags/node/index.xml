@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>NODE - 标签 - 锦枫紫兰</title>
+        <link>/tags/node/</link>
+        <description>NODE - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 30 Apr 2020 16:21:09 &#43;0000</lastBuildDate><atom:link href="/tags/node/" rel="self" type="application/rss+xml" /><item>
+    <title>模块化开发及常用模块</title>
+    <link>/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/</link>
+    <pubDate>Wed, 03 Apr 2019 14:36:52 &#43;0000</pubDate><guid>/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/</guid>
+    <description><![CDATA[理论 参考详解JavaScript模块化开发 参考JavaScript中的模块化开发 一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地]]></description>
+</item>
+<item>
+    <title>NODEJS-外围设备模块</title>
+    <link>/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/</link>
+    <pubDate>Thu, 28 Mar 2019 10:20:06 &#43;0000</pubDate><guid>/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/</guid>
+    <description><![CDATA[NFC nfc-pcsc 1 node:&gt;=8 分析源码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 NFC类（继承自EventEmitter） |----emit reader(接收到pcsc的信号) |----r]]></description>
+</item>
+<item>
+    <title>JS标准内置对象(全局作用域里的对象)</title>
+    <link>/post/program-js-js%E5%AF%B9%E8%B1%A1%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/</link>
+    <pubDate>Tue, 15 Jan 2019 10:16:06 &#43;0000</pubDate><guid>/post/program-js-js%E5%AF%B9%E8%B1%A1%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/</guid>
+    <description><![CDATA[参考JavaScript 标准内置对象 感谢 1 2 3 4 作者：小黎也 链接：https://juejin.im/post/5e523e726fb9a0]]></description>
+</item>
+<item>
+    <title>NodeJS-性能</title>
+    <link>/post/js-nodejs-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><guid>/post/js-nodejs-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+    <description><![CDATA[参考你不知道的Node.js性能优化 参考Node.js 调试指南 使用最新版的NodeJS 对于生产环境而言，Node.js 官方推荐使用最新的 LTS 版]]></description>
+</item>
+</channel>
+</rss>

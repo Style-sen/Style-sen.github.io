@@ -1,0 +1,67 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>JS - 标签 - 锦枫紫兰</title>
+        <link>/tags/js/</link>
+        <description>JS - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 02 Aug 2021 14:45:56 &#43;0800</lastBuildDate><atom:link href="/tags/js/" rel="self" type="application/rss+xml" /><item>
+    <title>Echarts</title>
+    <link>/post/program-js-ts-echarts/</link>
+    <pubDate>Mon, 02 Aug 2021 14:45:56 &#43;0800</pubDate><guid>/post/program-js-ts-echarts/</guid>
+    <description><![CDATA[配置项详解 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65]]></description>
+</item>
+<item>
+    <title>WEB常用库</title>
+    <link>/post/program-js-web%E6%8F%92%E4%BB%B6/</link>
+    <pubDate>Fri, 29 Jan 2021 14:30:24 &#43;0800</pubDate><guid>/post/program-js-web%E6%8F%92%E4%BB%B6/</guid>
+    <description><![CDATA[1. Jquery JS库。 1.1. 插件 1.1.1. Datatableslink 一个高度灵活的工具，可以将任何HTML表格添加高级的交互功能 引入 1 2 3 4 cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js ‵‵‵ 简单使用 1 2 3 $(document).ready(function(){ $(&#39;#myTable&#39;).DataTable(); }); sweetalart2 一个美观，响应]]></description>
+</item>
+<item>
+    <title>JS-表达式和运算符</title>
+    <link>/post/js-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+    <pubDate>Thu, 07 May 2020 17:10:55 &#43;0000</pubDate><guid>/post/js-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+    <description><![CDATA[展开语法 在函数调用时使用展开语法。 1 2 3 function myFunction(x, y, z) {} var args = [0, 1, 2]; myFunction(...args); 在 new 表达式中应用 1 2 var dateFields = [1970, 0, 1]; // 1970年1月1日 var d = new Date(...dateFields); 构造字面量数组]]></description>
+</item>
+<item>
+    <title>JS-NODEJS-基础</title>
+    <link>/post/js-nodejs-%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Thu, 30 Apr 2020 16:21:09 &#43;0000</pubDate><guid>/post/js-nodejs-%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[参考ElemeFE/node-interview 参考挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇 摘自图解Javascript原型链 基础 其他皆]]></description>
+</item>
+<item>
+    <title>JS-原理(原型链-事件循环-内存-作用域链-垃圾回收)</title>
+    <link>/post/js-%E5%8E%9F%E7%90%86%E5%8E%9F%E5%9E%8B%E9%93%BE-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-%E5%86%85%E5%AD%98-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/</link>
+    <pubDate>Wed, 17 Apr 2019 14:54:11 &#43;0000</pubDate><guid>/post/js-%E5%8E%9F%E7%90%86%E5%8E%9F%E5%9E%8B%E9%93%BE-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-%E5%86%85%E5%AD%98-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/</guid>
+    <description><![CDATA[摘自面试一定会问到的-js事件循环 线程 执行中的线程。 主线程：也就是 js 引擎执行的线程，这个线程只有一个，页面渲染、函数处理都在这个主线程上执行]]></description>
+</item>
+<item>
+    <title>JS-snippets</title>
+    <link>/post/js-snippets/</link>
+    <pubDate>Mon, 15 Apr 2019 15:22:39 &#43;0000</pubDate><guid>/post/js-snippets/</guid>
+    <description><![CDATA[使用JS现在文件 cunzaizhuyi/maskPlugin 为一个视频添加一个覆盖物，从而挡住视频某区域，在视频的某一时间段，比如第10到第20分钟不显示划定的这块区域。应用场景包括]]></description>
+</item>
+<item>
+    <title>模块化开发及常用模块</title>
+    <link>/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/</link>
+    <pubDate>Wed, 03 Apr 2019 14:36:52 &#43;0000</pubDate><guid>/post/js-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E5%8C%85%E6%8B%ACnodejs%E6%A8%A1%E5%9D%97/</guid>
+    <description><![CDATA[理论 参考详解JavaScript模块化开发 参考JavaScript中的模块化开发 一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地]]></description>
+</item>
+<item>
+    <title>WebApi</title>
+    <link>/post/program-js-ts-webapi/</link>
+    <pubDate>Wed, 03 Apr 2019 14:06:00 &#43;0000</pubDate><guid>/post/program-js-ts-webapi/</guid>
+    <description><![CDATA[WebAPI指一组设备兼容套件和访问接口，它允许Web应用及其内容访问设备硬件（比如电池状态或设备振动器），同时也可以获取设备上的数据（比如]]></description>
+</item>
+<item>
+    <title>NODEJS-外围设备模块</title>
+    <link>/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/</link>
+    <pubDate>Thu, 28 Mar 2019 10:20:06 &#43;0000</pubDate><guid>/post/js-nodejs-%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87/</guid>
+    <description><![CDATA[NFC nfc-pcsc 1 node:&gt;=8 分析源码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 NFC类（继承自EventEmitter） |----emit reader(接收到pcsc的信号) |----r]]></description>
+</item>
+<item>
+    <title>JS笔记</title>
+    <link>/post/js-html%E5%AF%B9%E8%B1%A1/</link>
+    <pubDate>Sat, 19 Jan 2019 10:20:20 &#43;0000</pubDate><guid>/post/js-html%E5%AF%B9%E8%B1%A1/</guid>
+    <description><![CDATA[CANVAS 使用实时凸包算法实现 规范 JavaScript Standard Style 插件 Velocity.js Velocity.js是一款动画切换插件，它重新实现了jQuery的$.animate()方法，并且你]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Django - 标签 - 锦枫紫兰</title>
+        <link>/tags/django/</link>
+        <description>Django - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 16 Jan 2019 11:41:14 &#43;0000</lastBuildDate><atom:link href="/tags/django/" rel="self" type="application/rss+xml" /><item>
+    <title>Django静态文件</title>
+    <link>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/</link>
+    <pubDate>Wed, 16 Jan 2019 11:41:14 &#43;0000</pubDate><guid>/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-django-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/</guid>
+    <description><![CDATA[思路 Django提供 django.contrib.staticfiles 中间件来管理静态文件。 方法 配置 将 django.contrib.staticfiles 包含进 INSTALLED_APPS； 在配置文件中定义 STATIC_URL； 访问 开发 开]]></description>
+</item>
+</channel>
+</rss>

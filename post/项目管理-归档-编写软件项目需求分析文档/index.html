@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>编写软件项目需求分析文档 - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="编写软件项目需求分析文档" />
+<meta property="og:description" content="参考软件需求分析模板 软件需求分析就是把软件计划期间建立的软件可行性分析求精和细化，分析各种可能的解法，并且分配给各个软件元素。 需求分析是软件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-08-05T15:45:11+08:00" />
+<meta property="article:modified_time" content="2021-08-05T15:45:11+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="编写软件项目需求分析文档"/>
+<meta name="twitter:description" content="参考软件需求分析模板 软件需求分析就是把软件计划期间建立的软件可行性分析求精和细化，分析各种可能的解法，并且分配给各个软件元素。 需求分析是软件"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3/" /><link rel="prev" href="/post/program-js-ts-echarts/" /><link rel="next" href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "编写软件项目需求分析文档",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "项目管理, 归档","wordcount":  2255 ,
+        "url": "\/post\/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E7%BC%96%E5%86%99%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3\/","datePublished": "2021-08-05T15:45:11+08:00","dateModified": "2021-08-05T15:45:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">编写软件项目需求分析文档</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-软件需求说明书的编制">1. 软件需求说明书的编制</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>参考<a href="https://blog.csdn.net/sinat_27261621/article/details/52754410" target="_blank" rel="noopener noreffer">软件需求分析模板</a></p>
+<ol>
+<li>
+<p>软件需求分析就是把软件计划期间建立的软件可行性分析求精和细化，分析各种可能的解法，并且分配给各个软件元素。</p>
+</li>
+<li>
+<p>需求分析是软件定义阶段中的最后一步，是【确定系统必须完成哪些工作】，也就是对目标系统提出完整、准确、清晰、具体的要求。</p>
+</li>
+<li>
+<p>软件需求分析的任务是：深入描述软件的【功能】和【性能】，确定【软件设计的约束】和软件同其他系统元素的【接口】细节，定义软件的其他【有效性需求】，借助于当前系统的逻辑模型导出目标系统逻辑模型，解决目标系统“做什么”的问题。</p>
+</li>
+<li>
+<p>需求分析可分为【需求提出】、【需求描述】及【需求评审】三个阶段。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1. 需求提出主要集中于描述系统目的。需求提出和分析仅仅集中在使用者对系统的观点上。这样的定义称作【系统规格说明】，并且它在用户和开发人员之间充当合同。
+2. 在问题分析阶段分析人员的主要任务是：对用户的需求进行鉴别、综合和建模，清除用户需求的模糊性、歧义性和不一致性，分析系统的数据要求，为原始问题及目标软件建立逻辑模型。分析人员要将对原始问题的理解与软件开发经验结合起来，以便发现哪些要求是由于用户的片面性或短期行为所导致的不合理要求，哪些是用户尚未提出但具有真正价值的潜在需求。
+3. 在需求评审阶段，分析人员要在用户和软件设计人员的配合下对自己生成的需求规格说明和初步的用户手册进行【复核】，以确保软件需求的完整、准确、清晰、具体，并使用户和软件设计人员对需求规格说明和初步的用户手册的理解达成一致。一旦发现遗漏或模糊点，必须尽快更正，再行检查。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="1-软件需求说明书的编制">1. 软件需求说明书的编制</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">1　引言
+1．1编写目的
+　　<span class="c1">#说明编写这份软件需求说明书的目的，指出预期的读者。</span>
+1．2背景
+　　<span class="c1">#说明：</span>
+　　<span class="c1">#a．待开发的软件系统的名称；</span>
+　　<span class="c1">#b．本项目的任务提出者、开发者、用户及实现该软件的计算中心或计算机网络；</span>
+　　<span class="c1">#C．该软件系统同其他系统或其他机构的基本的相互来往关系。</span>
+1．3定义<span class="o">(</span>术语和缩略词<span class="o">)</span>
+　　<span class="c1">#列出本文件中用到的专门术语的定义和外文首字母组词的原词组。</span>
+1．4参考资料
+　　<span class="c1">#列出用得着的参考资料，如：</span>
+　　<span class="c1">#a．本项目的经核准的计划任务书或合同、上级机关的批文；</span>
+　　<span class="c1">#b．属于本项目的其他已发表的文件；</span>
+　　<span class="c1">#c．本文件中各处引用的文件、资料、包括所要用到的软件开发标准。 列出这些文件资料的标题、文件编号、发表日期和出版单位，说明能够得到这些文件资料的来源。</span>
+2　任务概述
+2．1目标
+　　<span class="c1">#叙述该项软件开发的意图、应用目标、作用范围以及其他应向读者说明的有关该软件开发的背景材料。解释被开发软件与其他有关软件之间的关系。如果本软件产品是一项独立的软件，而且全部内容自含，则说明这一点。如果所定义的产品是一个更大的系统的一个组成部分，则应说明本产品与该系统中其他各组成部分之间的关系，为此可使用一张方框图来说明该系统的组成和本产品同其他各部分的联系和接口。|</span>
+2．2用户的特点
+　　<span class="c1">#列出本软件的最终用户的特点，充分说明操作人员、维护人员的教育水平和技术专长，以及本软件的预期使甩频度。这些是软件设计工作的重要约束</span>
+2．3假定和约束
+　　<span class="c1">#列出进行本软件开发工作的假定和约束，例如经费限制、开发期限等。</span>
+3　需求规定
+3．1对功能的规定
+　　<span class="c1">#用列表的方式（例如IPO表即输入、处理、输出表的形式），逐项定量和定性地叙述对软件所提出的功能要求，说明输入什么量、经怎样的处理、得到什么输出，说明软件应支持的终端数和应支持的并行操作的用户数。</span>
+3．2对性能的规定
+3．2．1精度
+　　<span class="c1">#说明对该软件的输入、输出数据精度的要求，可能包括传输过程中的精度。</span>
+3．2．2时间特性要求
+　　<span class="c1">#说明对于该软件的时间特性要求，如对：</span>
+　　<span class="c1">#a．响应时间；</span>
+　　<span class="c1">#b．更新处理时间；</span>
+　　<span class="c1">#c．数据的转换和传送时间；</span>
+　　<span class="c1">#d．解题时间； 等的要求。</span>
+3．2．3灵活性
+　　<span class="c1">#说明对该软件的灵活性的要求，即当需求发生某些变化时，该软件对这些变化的适应能力，如：</span>
+　　<span class="c1">#a．操作方式上的变化；</span>
+　　<span class="c1">#b．运行环境的变化；</span>
+　　<span class="c1">#c．同其他软件的接口的变化；</span>
+　　<span class="c1">#d．精度和有效时限的变化；</span>
+　　<span class="c1">#e．计划的变化或改进。</span>
+　　<span class="c1">#对于为了提供这些灵活性而进行的专门设计的部分应该加以标明。</span>
+3．3输人输出要求
+　　<span class="c1">#解释各输入输出数据类型，并逐项说明其媒体、格式、数值范围、精度等。对软件的数据输出及必须标明的控制输出量进行解释并举例，包括对硬拷贝报告（正常结果输出、状态输出及异常输出）以及图形或显示报告的描述。</span>
+3．4数据管理能力要求
+　　<span class="c1">#说明需要管理的文卷和记录的个数、表和文卷的大小规模，要按可预见的增长对数据及其分量的存储要求作出估算。</span>
+3．5故障处理要求
+　　<span class="c1">#列出可能的软件、硬件故障以及对各项性能而言所产生的后果和对故障处理的要求。</span>
+3．6其他专门要求
+　　<span class="c1">#如用户单位对安全保密的要求，对使用方便的要求，对可维护性、可补充性、易读性、可靠性、运行环境可转换性的特殊要求等。</span>
+4　运行环境规定
+4．1设备
+　　<span class="c1">#列出运行该软件所需要的硬设备。说明其中的新型设备及其专门功能，包括：</span>
+　　<span class="c1">#a．处理器型号及内存容量；</span>
+　　<span class="c1">#b．外存容量、联机或脱机、媒体及其存储格式，设备的型号及数量；</span>
+　　<span class="c1">#c．输入及输出设备的型号和数量，联机或脱机；</span>
+　　<span class="c1">#d．数据通信设备的型号和数量；</span>
+　　<span class="c1">#e．功能键及其他专用硬件</span>
+4．2支持软件
+　　<span class="c1">#列出支持软件,包括要用到的操作系统、编译（或汇编）程序、测试支持软件等。</span>
+4．3 接口
+　　<span class="c1">#说明该软件同其他软件之间的接口、数据通信协议等。</span>
+4．4控制
+　　<span class="c1">#说明控制该软件的运行的方法和控制信号，并说明这些控制信号的来源。</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
+                </span><span><a href="/tags/%E5%BD%92%E6%A1%A3/">归档</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-08-05</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-js-ts-echarts/" class="prev" rel="prev" title="Echarts"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E5%BD%92%E6%A1%A3-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/" class="next" rel="next" title="注释规范Doxygen">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

@@ -1,0 +1,37 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>TOOLS - 分类 - 锦枫紫兰</title>
+        <link>/categories/tools/</link>
+        <description>TOOLS - 分类 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 11 Nov 2021 09:57:37 &#43;0800</lastBuildDate><atom:link href="/categories/tools/" rel="self" type="application/rss+xml" /><item>
+    <title>命令行终端</title>
+    <link>/post/tools-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BB%88%E7%AB%AF/</link>
+    <pubDate>Thu, 11 Nov 2021 09:57:37 &#43;0800</pubDate><guid>/post/tools-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BB%88%E7%AB%AF/</guid>
+    <description><![CDATA[1. 阅读What&rsquo;s the difference between a console, a terminal, and a shell? Terminal只是显示文本并接收输入，他不会看你的输入，也不会思考。 在技术上，Conso]]></description>
+</item>
+<item>
+    <title>TOOLS VI非VIM</title>
+    <link>/post/tools-vi%E9%9D%9Evim/</link>
+    <pubDate>Tue, 11 May 2021 17:39:35 &#43;0800</pubDate><guid>/post/tools-vi%E9%9D%9Evim/</guid>
+    <description><![CDATA[vi 命令模式 输入:之后 `1,6 s/^/System.out.println(&rdquo; 2,$ s/^/新增的字符串 注：此为2行至尾行 `% s/^/System.out.println(&rdquo; 注：此为所有行]]></description>
+</item>
+<item>
+    <title>Visual Studio</title>
+    <link>/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/</link>
+    <pubDate>Sat, 02 Mar 2019 09:54:45 &#43;0000</pubDate><guid>/post/plat-%E7%BC%96%E8%AF%91-vs-msvc/</guid>
+    <description><![CDATA[1. 支持QT开发 下载并安装Qt Visual Studio Tools. 在VS的[扩展]中增加QT版本即选中qt安装目录下的qmake.exe。 1.1. 设置 1.1.1. Qt 1.1.1.1. General Qt Designer:Run in detached window]]></description>
+</item>
+<item>
+    <title>VSCODE</title>
+    <link>/post/tools-vscode/</link>
+    <pubDate>Sat, 02 Mar 2019 09:54:45 &#43;0000</pubDate><guid>/post/tools-vscode/</guid>
+    <description><![CDATA[1. 安装 1 sudo snap install code --classic 2. 配置 打开设置（快捷键Ctrl + ,）,里面有两个设置。 【一个】是USER SETTINGS（用户设置）也就是全局配置，其他项]]></description>
+</item>
+<item>
+    <title>chrome插件</title>
+    <link>/post/tools-chrome/</link>
+    <pubDate>Wed, 30 Jan 2019 10:22:21 &#43;0000</pubDate><guid>/post/tools-chrome/</guid>
+    <description><![CDATA[插件网站 1. t9tio/tomato-pie 不太好用 2. Awesome Screenshot 比较好用 3. Tampermonkey 3.1. 油猴脚本网站Greasy Fork 3.2. 编写油猴脚本 3.2.1. 元数据块 元数据块是描述脚本的一个用户脚本部分。它通常包含脚]]></description>
+</item>
+</channel>
+</rss>

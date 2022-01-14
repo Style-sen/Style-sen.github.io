@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>大数据 - 标签 - 锦枫紫兰</title>
+        <link>/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+        <description>大数据 - 标签 - 锦枫紫兰</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 10 Dec 2019 18:16:38 &#43;0000</lastBuildDate><atom:link href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="self" type="application/rss+xml" /><item>
+    <title>大数据架构笔记-hadoop生态圈-学习路线</title>
+    <link>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+    <pubDate>Tue, 10 Dec 2019 18:16:38 &#43;0000</pubDate><guid>/post/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E7%AC%94%E8%AE%B0-0-hadoop%E6%A6%82%E8%A7%88%E5%8F%8A%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%8A%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid>
+    <description><![CDATA[求职 简历要好好准备； 准备面试：先讲框架，再谈细节。优化细节，框架演化。 hadoop生态圈 从上往下，从底层往上层。 所有需要通过webserve]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>编码-UML - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="编码-UML" />
+<meta property="og:description" content="概述 UML 是一种为面向对象开发系统的产品进行说明、可视化、和编制文档的标准语言。 UML 中最重要的建模元素是符号。 适当有效地使用符号对于一个完整的，有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%E7%BC%96%E7%A8%8B-uml/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2019-07-30T17:07:25+00:00" />
+<meta property="article:modified_time" content="2019-07-30T17:07:25+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="编码-UML"/>
+<meta name="twitter:description" content="概述 UML 是一种为面向对象开发系统的产品进行说明、可视化、和编制文档的标准语言。 UML 中最重要的建模元素是符号。 适当有效地使用符号对于一个完整的，有"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/%E7%BC%96%E7%A8%8B-uml/" /><link rel="prev" href="/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/" /><link rel="next" href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "编码-UML",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/%E7%BC%96%E7%A8%8B-uml\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","wordcount":  2383 ,
+        "url": "\/post\/%E7%BC%96%E7%A8%8B-uml\/","datePublished": "2019-07-30T17:07:25+00:00","dateModified": "2019-07-30T17:07:25+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">编码-UML</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#uml-概念模型">UML 概念模型</a></li>
+    <li><a href="#图表">图表</a>
+      <ul>
+        <li><a href="#uml-类图">UML 类图:</a></li>
+        <li><a href="#uml-对象图">UML 对象图：</a></li>
+        <li><a href="#uml-组件图">UML 组件图：</a></li>
+        <li><a href="#uml-部署图">UML 部署图：</a></li>
+        <li><a href="#uml-用例图">UML 用例图:</a></li>
+        <li><a href="#uml-交互图">UML 交互图：</a></li>
+        <li><a href="#uml-状态图">UML 状态图：</a></li>
+        <li><a href="#uml-活动图">UML 活动图：</a></li>
+      </ul>
+    </li>
+    <li><a href="#作图工具">作图工具</a>
+      <ul>
+        <li><a href="#drawiohttpswwwdrawio"><a href="https://www.draw.io/">draw.io</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#具体实现">具体实现</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="概述">概述</h2>
+<ol>
+<li>UML 是一种为面向对象开发系统的产品进行说明、可视化、和编制文档的标准语言。</li>
+<li>UML 中最重要的建模元素是符号。</li>
+<li>适当有效地使用符号对于一个完整的，有意义的模型来说是非常重要的。如果一个模型的目的无法正确的描绘，那么该模型是无用的。</li>
+<li>在开始学习 UML 的时候就要强调表示法的重要性，不同的符号可用于表示物件和关系。</li>
+<li>可扩展性是 UML 的另一个重要的特点，这使得UML更加强大和灵活。</li>
+<li>UML 的核心是图表，大致可以将这些图归类为结构图和行为图。</li>
+</ol>
+<ul>
+<li>结构图是由静态图，如类图，对象图等静态图；</li>
+<li>行为图是由像序列图，协作图等动态图；</li>
+</ul>
+<h2 id="uml-概念模型">UML 概念模型</h2>
+<ol>
+<li>掌握 UML 概念模型可以通过学习以下三大要素达到：</li>
+</ol>
+<ul>
+<li>UML构建模块</li>
+<li>规则连接构建模块</li>
+<li>UML公共机制</li>
+</ul>
+<ol start="2">
+<li>一个对象中包含了数据和(控制数据)的方法，其中数据表示对象的状态.</li>
+<li>对象是现实世界的实体存在我们周围像抽象，封装，继承，多态的基本概念，都可以使用UML表示。</li>
+<li>以下是一些面向对象基本概念：</li>
+</ol>
+<ul>
+<li>对象: 对象代表一个实体的基本构建块.</li>
+<li>类: 类是对象的蓝图.</li>
+<li>抽象化: 抽象代表现实世界中实体的行为.</li>
+<li>封装: 封装是将数据绑定在一起，并隐藏他们外部世界的机制。</li>
+<li>继承: 继承是从现有的机制作出新的类。</li>
+<li>多态性: 定义的机制来以不同的形式存在.</li>
+</ul>
+<h2 id="图表">图表</h2>
+<h3 id="uml-类图">UML 类图:</h3>
+<ol>
+<li>展现了一组<code>对象</code>、<code>接口</code>、<code>协作</code>和<code>它们之间的关系</code>。类图描述的是一种静态关系，在系统的整个生命周期都是有效的，是面向对象系统的建模中最常见的图。</li>
+<li>能够让我们在正确编写代码以前对系统有一个全面的认识。</li>
+<li>在UML类图中，常见的有以下几种关系:泛化（Generalization）, 实现（Realization）,关联（Association）,聚合（Aggregation）,组合(Composition)，依赖(Dependency)：</li>
+</ol>
+<ul>
+<li>泛化(generalization)：表示is-a的关系，是对象之间耦合度最大的一种关系，子类继承父类的所有细节。直接使用语言中的继承表达。在类图中使用<code>带三角箭头的实线</code>表示，箭头从子类指向父类。</li>
+<li>实现：是一种类与接口的关系，表示类是接口所有特征和行为的实现。在类图中使用<code>带三角箭头的虚线</code>表示，箭头从实现类指向接口。</li>
+<li>关联：可以是双向的，也可以是单向的。<code>双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头</code>。对象之间一种<code>引用关系</code>，比如客户类与订单类之间的关系。这种关系通常使用类的属性表达。即我们代码中成员类变量的关系。箭头指向成员类。</li>
+<li>聚合：他体现的是整体与部分拥有的关系，即has-a的关系，此时整体与部分之间是可分离的，他们可以具有各自的生命周期，部分可以属于多个整体对象，也可以为多个整体对象共享；比如计算机与CPU、汽车和轮胎；表现在代码层面上，和单向关联关系是一致的，只能从语义级别来区分， <code>在类图使用空心的菱形表示，菱形表示整体</code>；</li>
+<li>组合：是整体与部分的关系, 但部分不能离开整体而单独存在.他体现的是一种contains-a的关系， 如公司和部门是整体和部分的关系, 没有公司就不存在部门，这种关系比聚合更强，也称为强聚合；整体的生命周期结束也就意味着部分的生命周期结束； <code>用带实心菱形的实线表示，菱形指向整体</code>.</li>
+<li>依赖：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。与关联关系不同的是，<code>依赖关系是以参数变量的形式传入到依赖类中的，依赖是单向的，要避免双向依赖</code>。一般来说，不应该存在双向依赖。依赖是一种弱关联，只要一个类用到另一个类，但是和另一个类的关系不是太明显的时候（可以说是“uses”了那个类），就可以把这种关系看成是依赖。 【代码表现】：局部变量、方法的参数或者对静态方法的调用</li>
+</ul>
+<ol start="4">
+<li>一个完整的类图一般包括3个基本组件：类名、属性、方法。</li>
+</ol>
+<h3 id="uml-对象图">UML 对象图：</h3>
+<p>对象图是类图的一个实例。因此，一类图的基本要素是类似的。对象图是由对象和链接。在一个特定的时刻，它捕获该系统的实例。</p>
+<p>对象图用于原型设计，逆向工程和实际场景建模。</p>
+<h3 id="uml-组件图">UML 组件图：</h3>
+<p>组件图是一种特殊的UML图来描述系统的静态实现视图。组件图包括物理组件，如库，档案，文件夹等。</p>
+<p>此图是用来从实施的角度。使用一个以上的元件图来表示整个系统。正向和逆向工程技术的使用，使可执行文件组件图。</p>
+<h3 id="uml-部署图">UML 部署图：</h3>
+<p>组件图是用来描述一个系统的静态部署视图。这些图主要用于系统工程师。</p>
+<p>部署图是由节点和它们之间的关系。一个高效的部署图是应用软件开发的一个组成部分。</p>
+<h3 id="uml-用例图">UML 用例图:</h3>
+<p>用例图是从用户角度描述系统功能，并指出各功能的操作者，用来捕捉系统的动态性质。</p>
+<p>一个高层次的设计用例图是用来捕捉系统的要求，因此它代表系统的功能和流向。虽然用例图的正向和反向工程是不是一个很好的选择，但他们仍然在一个稍微不同的方法来模拟它。</p>
+<h3 id="uml-交互图">UML 交互图：</h3>
+<p>交互图，用于捕获系统的动态性质。</p>
+<p>交互图包括序列图和协作图，其中：序列图显示对象之间的动态合作关系，它强调对象之间消息发送的顺序，同时显示对象之间的交互；协作图描述对象间的协作关系，协作图跟时序图相似，显示对象间的动态合作关系。</p>
+<h3 id="uml-状态图">UML 状态图：</h3>
+<p>状态图是一个用于模拟系统的动态性质的五个图。这些图用来模拟一个对象的整个生命周期。</p>
+<p>一个对象的状态被定义为对象所在的条件下，特定的时间和对象移动对其他状态，在某些事件发生时。状态图还用于正向和反向工程。</p>
+<p>状态图着重描述从一个状态到另一个状态的流程，主要有外部事件的参与。</p>
+<h3 id="uml-活动图">UML 活动图：</h3>
+<p>活动图是 UML 的动态模型的一种图形，一般用来描述相关用例图，活动图是一种特殊的状态图。
+准确的活动图定义：活动图描述满足用例要求所要进行的活动以及活动间的约束关系，有利于识别并行活动。活动图是一种特殊的状态图，它对于系统的功能建模特别重要，强调对象间的控制流程。</p>
+<h2 id="作图工具">作图工具</h2>
+<h3 id="drawiohttpswwwdrawio"><a href="https://www.draw.io/" target="_blank" rel="noopener noreffer">draw.io</a></h3>
+<h2 id="具体实现">具体实现</h2>
+<ol>
+<li>首先画出类图，确定对象（属性、方法、关系）。</li>
+<li>在业务逻辑层，创建对象方法，更改对象状态。</li>
+<li>数据库设计，创建对象属性，分为两类：状态类、历史类，一一对应。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2019-07-30</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-python-06-%E6%A0%87%E5%87%86%E5%BA%93/" class="prev" rel="prev" title="python-标准库"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/%E5%90%8E%E7%AB%AF-web%E6%A1%86%E6%9E%B6-node-egg/" class="next" rel="next" title="后端-web框架-node-egg">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>

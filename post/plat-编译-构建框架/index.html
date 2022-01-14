@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>构建框架（make） - 锦枫紫兰</title><meta name="description" content="锦枫紫兰"><meta property="og:title" content="构建框架（make）" />
+<meta property="og:description" content="1. 使用make menuconfig 1.1. ulfalizer/Kconfiglib Just drop kconfiglib.py and the scripts you want somewhere. There are no third-party dependencies, but the terminal menuconfig won&rsquo;t work on Windows unless a package like windows-curses is installed. Kconfiglib is a Kconfig implementation in Python 2/3. 1.2. 使用 使用Kconfig语法写一个Kconfi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/" />
+<meta property="og:image" content="/logo.png"/>
+<meta property="article:published_time" content="2021-04-02T10:49:12+08:00" />
+<meta property="article:modified_time" content="2021-04-02T10:49:12+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="构建框架（make）"/>
+<meta name="twitter:description" content="1. 使用make menuconfig 1.1. ulfalizer/Kconfiglib Just drop kconfiglib.py and the scripts you want somewhere. There are no third-party dependencies, but the terminal menuconfig won&rsquo;t work on Windows unless a package like windows-curses is installed. Kconfiglib is a Kconfig implementation in Python 2/3. 1.2. 使用 使用Kconfig语法写一个Kconfi"/>
+<meta name="application-name" content="锦枫紫兰">
+<meta name="apple-mobile-web-app-title" content="锦枫紫兰"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/post/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6/" /><link rel="prev" href="/post/program-markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" /><link rel="next" href="/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "构建框架（make）",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/post\/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6\/"
+        },"image": ["\/images\/Apple-Devices-Preview.webp"],"genre": "post","keywords": "PLAT, 编译","wordcount":  6381 ,
+        "url": "\/post\/plat-%E7%BC%96%E8%AF%91-%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6\/","datePublished": "2021-04-02T10:49:12+08:00","dateModified": "2021-04-02T10:49:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "\/images\/avatar.webp"},"author": {
+                "@type": "Person",
+                "name": "子兰"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/post/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/about/" title="关于"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="锦枫紫兰">锦枫紫兰</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/post/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/about/" title="关于">关于</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto" style="top:8rem;">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single special" data-toc="enable"><h2 class="single-title animated fadeInDown faster">构建框架（make）</h2><div class="single-card" ><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>目录</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-使用make-menuconfig">1. 使用<code>make menuconfig</code></a>
+      <ul>
+        <li><a href="#11-ulfalizerkconfiglibhttpsgithubcomulfalizerkconfiglib">1.1. <a href="https://github.com/ulfalizer/Kconfiglib">ulfalizer/Kconfiglib</a></a></li>
+        <li><a href="#12-使用">1.2. 使用</a></li>
+        <li><a href="#13-kconfig语法">1.3. Kconfig语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-cmakehttpscmakeorg">2. <a href="https://cmake.org/">CMake</a></a>
+      <ul>
+        <li><a href="#21-安装">2.1. 安装</a></li>
+        <li><a href="#22-使用">2.2. 使用</a>
+          <ul>
+            <li><a href="#221-编写cmakeliststxt">2.2.1. 编写<code>CMakeLists.txt</code></a>
+              <ul>
+                <li><a href="#2211-内置变量">2.2.1.1. 内置变量</a></li>
+                <li><a href="#2212-cmake文件中数组操作">2.2.1.2. Cmake文件中数组操作</a></li>
+                <li><a href="#2213-cmakeliststxt需要的元素">2.2.1.3. CMakeLists.txt需要的元素</a></li>
+              </ul>
+            </li>
+            <li><a href="#222-命令行选项">2.2.2. 命令行选项</a>
+              <ul>
+                <li><a href="#2221-环境变量">2.2.2.1. 环境变量</a></li>
+                <li><a href="#2222-ccmake">2.2.2.2. ccmake</a></li>
+                <li><a href="#2223-cmake">2.2.2.3. cmake</a></li>
+                <li><a href="#2224-使用交叉编译">2.2.2.4. 使用交叉编译</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-示例">3. 示例</a>
+      <ul>
+        <li><a href="#31-neutreec_cpp_project_frameworkhttpsgithubcomneutreec_cpp_project_frameworkblobmasterreadme_zhmd">3.1. <a href="https://github.com/Neutree/c_cpp_project_framework/blob/master/README_ZH.md">Neutree/c_cpp_project_framework</a></a></li>
+        <li><a href="#32-kracejiccleancppprojecthttpsgithub1scomkracejiccleancppproject">3.2. <a href="https://github1s.com/kracejic/cleanCppProject">kracejic/cleanCppProject</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-总结适合自己的构建系统">4. 总结（适合自己的构建系统）</a>
+      <ul>
+        <li><a href="#41-目录结构">4.1. 目录结构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><h2 id="1-使用make-menuconfig">1. 使用<code>make menuconfig</code></h2>
+<h3 id="11-ulfalizerkconfiglibhttpsgithubcomulfalizerkconfiglib">1.1. <a href="https://github.com/ulfalizer/Kconfiglib" target="_blank" rel="noopener noreffer">ulfalizer/Kconfiglib</a></h3>
+<ol>
+<li>Just drop kconfiglib.py and the scripts you want somewhere. There are no third-party dependencies, but the terminal menuconfig won&rsquo;t work on Windows unless a package like windows-curses is installed.</li>
+<li>Kconfiglib is a Kconfig implementation in Python 2/3.</li>
+</ol>
+<h3 id="12-使用">1.2. 使用</h3>
+<ol>
+<li>使用Kconfig语法写一个Kconfig文件。</li>
+<li><code>python3 -m menuconfig/guicongfig/alldefconfig</code>进行配置，会生成<code>.config</code>的中间文件.</li>
+<li><code>python3 -m genconfig</code>会生成一个头文件（生成的时候，会和老文件进行对比），默认为<code>config.h</code>文件.需要在源码中引用。【每次更改完配置都要执行】。</li>
+</ol>
+<h3 id="13-kconfig语法">1.3. Kconfig语法</h3>
+<ol>
+<li><a href="https://blog.csdn.net/qq_23274715/article/details/104880443" target="_blank" rel="noopener noreffer">KConfig使用介绍</a></li>
+</ol>
+<h2 id="2-cmakehttpscmakeorg">2. <a href="https://cmake.org/" target="_blank" rel="noopener noreffer">CMake</a></h2>
+<ol>
+<li>一些使用 CMake 作为项目架构系统的知名开源项目有 VTK、ITK、KDE、OpenCV、OSG 等。</li>
+<li><a href="https://www.hahack.com/codes/cmake/#" target="_blank" rel="noopener noreffer">CMake 入门实战</a></li>
+</ol>
+<h3 id="21-安装">2.1. 安装</h3>
+<ol>
+<li><code>sudo apt-get install cmake</code>.</li>
+</ol>
+<h3 id="22-使用">2.2. 使用</h3>
+<ol>
+<li><code>CMake</code>的所有的语句都写在一个叫<code>CMakeLists.txt</code>的文件中。</li>
+<li>当<code>CMakeLists.txt</code>文件确定后,可以用<code>ccmake</code>命令对相关的变量值进行配置。这个命令必须指向<code>CMakeLists.txt</code>所在的目录。</li>
+<li>配置完成之后,应用<code>cmake</code>命令生成相应的<code>makefile</code>（在Unix like系统下）或者 <code>project</code>文件（指定用window下的相应编程工具编译时）。</li>
+<li><strong>需要使用<a href="https://github1s.com/Neutree/c_cpp_project_framework/blob/HEAD/tools/kconfig/genconfig.py" target="_blank" rel="noopener noreffer">此工具</a>获取Kconfig的配置</strong>。</li>
+</ol>
+<h4 id="221-编写cmakeliststxt">2.2.1. 编写<code>CMakeLists.txt</code></h4>
+<ol>
+<li>&ldquo;#&ldquo;后面为注释的内容，CMake的命令<code>不区分大小写</code>.</li>
+</ol>
+<h5 id="2211-内置变量">2.2.1.1. 内置变量</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="m">1</span>.<span class="w"> </span>CMAKE_BINARY_DIR/PROJECT_BINARY_DIR/&lt;projectname&gt;_BINARY_DIR<span class="w">
+</span><span class="w">    </span><span class="c">#这三个变量指代的内容是一致的,如果是 in source 编译,指得就是工程顶层目录,如果是 out-of-source 编译,指的是工程编译发生的目录。</span><span class="w">
+</span><span class="w">    </span><span class="c">#PROJECT_BINARY_DIR 跟其他指令稍有区别,现在,你可以理解为他们是一致的。</span><span class="w">
+</span><span class="w"></span><span class="m">2</span>.<span class="w"> </span>CMAKE_SOURCE_DIR/PROJECT_SOURCE_DIR/&lt;projectname&gt;_SOURCE_DIR<span class="w">
+</span><span class="w">    </span><span class="c">#这三个变量指代的内容是一致的,不论采用何种编译方式,都是工程顶层目录。也就是在 in source 编译时,他跟 CMAKE_BINARY_DIR 等变量一致。</span><span class="w">
+</span><span class="w">    </span><span class="c">#PROJECT_SOURCE_DIR 跟其他指令稍有区别,现在,你可以理解为他们是一致的。</span><span class="w">
+</span><span class="w"></span><span class="m">3</span>.<span class="w"> </span>CMAKE_CURRENT_SOURCE_DIR<span class="w">
+</span><span class="w">    </span><span class="c">#指的是当前处理的 CMakeLists.txt 所在的路径</span><span class="w">
+</span><span class="w"></span><span class="m">4</span>.<span class="w"> </span>CMAKE_CURRRENT_BINARY_DIR<span class="w">
+</span><span class="w">    </span><span class="c">#如果是 in-source 编译,它跟 CMAKE_CURRENT_SOURCE_DIR 一致,如果是 out-of-source 编译,他指的是 target 编译目录。</span><span class="w">
+</span><span class="w">    </span><span class="c">#使用我们上面提到的 ADD_SUBDIRECTORY(src bin)可以更改这个变量的值。</span><span class="w">
+</span><span class="w">    </span><span class="c">#使用 SET(EXECUTABLE_OUTPUT_PATH &lt;新路径&gt;)并不会对这个变量造成影响,它仅仅修改了最终目标文件存放的路径。</span><span class="w">
+</span><span class="w"></span><span class="m">5</span>.<span class="w"> </span>CMAKE_CURRENT_LIST_FILE<span class="w">
+</span><span class="w">    </span><span class="c">#输出调用这个变量的 CMakeLists.txt 的完整路径</span><span class="w">
+</span><span class="w"></span><span class="m">6</span>.<span class="w"> </span>CMAKE_CURRENT_LIST_LINE<span class="w">
+</span><span class="w">    </span><span class="c">#输出这个变量所在的行</span><span class="w">
+</span><span class="w"></span><span class="m">7</span>.<span class="w"> </span>CMAKE_MODULE_PATH<span class="w">
+</span><span class="w">    </span><span class="c">#这个变量用来定义自己的 cmake 模块所在的路径。如果你的工程比较复杂,有可能会自己编写一些 cmake 模块,这些 cmake 模块是随你的工程发布的,为了让 cmake 在处理CMakeLists.txt 时找到这些模块,你需要通过 SET 指令,将自己的 cmake 模块路径设置一下。</span><span class="w">
+</span><span class="w">    </span><span class="c">#比如</span><span class="w">
+</span><span class="w">    </span><span class="c">#    SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)</span><span class="w">
+</span><span class="w">    </span><span class="c">#    这时候你就可以通过 INCLUDE 指令来调用自己的模块了。</span><span class="w">
+</span><span class="w"></span><span class="m">8</span>.<span class="w"> </span>EXECUTABLE_OUTPUT_PATH<span class="w"> </span>和<span class="w"> </span>LIBRARY_OUTPUT_PATH<span class="w">
+</span><span class="w">    </span><span class="c">#分别用来重新定义最终结果的存放目录</span><span class="w">
+</span><span class="w"></span><span class="m">9</span>.<span class="w"> </span>PROJECT_NAME<span class="w">
+</span><span class="w">    </span><span class="c">#返回通过 PROJECT 指令定义的项目名称。</span><span class="w">
+</span><span class="w"></span>COMPILE_FLAGS<span class="w"> </span><span class="c">#编译选项</span><span class="w">
+</span><span class="w"></span>LINK_FLAGS<span class="w"> </span><span class="c">#链接选项</span><span class="w">
+</span><span class="w"></span>CMAKE_C_FLAGS<span class="w"> </span><span class="c">#</span><span class="w">
+</span><span class="w"></span>CMAKE_C_FLAGS_DEBUG<span class="w">
+</span><span class="w"></span>CMAKE_C_FLAGS_RELEASE<span class="w">
+</span><span class="w"></span>CMAKE_CXX_FLAGS<span class="w"> </span><span class="c">#</span><span class="w">
+</span><span class="w"></span>CMAKE_CXX_FLAGS_DEBUG<span class="w">
+</span><span class="w"></span>CMAKE_CXX_FLAGS_RELEASE<span class="w">
+</span><span class="w"></span>CMAKE_SHARED_LINKER_FLAGS<span class="w"> </span><span class="c">#共享库的链接标志</span><span class="w">
+</span><span class="w"></span>CMAKE_EXE_LINKER_FLAGS<span class="w"> </span><span class="c">#可执行程序的链接标志</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml">使用find_package引入外部依赖包<span class="w">
+</span><span class="w"></span>对于系统预定义的<span class="w"> </span>Find&lt;LibaryName&gt;.cmake<span class="w"> </span>模块，使用方法一般如上例所示。<span class="w">
+</span><span class="w">
+</span><span class="w"></span>每一个模块都会定义以下几个变量<span class="w"> </span><span class="sd">-
+</span><span class="sd">
+</span><span class="sd">&lt;LibaryName&gt;_FOUND</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>&lt;LibaryName&gt;_INCLUDE_DIR<span class="w"> </span>or<span class="w"> </span>&lt;LibaryName&gt;_INCLUDES<span class="w"> </span>&lt;LibaryName&gt;_LIBRARY<span class="w"> </span>or<span class="w"> </span>&lt;LibaryName&gt;_LIBRARIES<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="2212-cmake文件中数组操作">2.2.1.2. Cmake文件中数组操作</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># 增</span><span class="w">
+</span><span class="w"></span>LIST(APPEND<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;element&gt;<span class="w"> </span><span class="p">[</span>&lt;element&gt;<span class="w"> </span>...<span class="p">]</span>)<span class="w"> </span><span class="c"># 追加，【改变原数组】</span><span class="w">
+</span><span class="w"></span>LIST(PREPEND<span class="w"> </span>&lt;list&gt;<span class="w"> </span><span class="p">[</span>&lt;element&gt;<span class="w"> </span>...<span class="p">]</span>)<span class="w"> </span><span class="c"># 将元素插入到列表的0索引位置</span><span class="w">
+</span><span class="w"></span>LIST(INSERT<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;element_index&gt;<span class="w"> </span>&lt;element&gt;<span class="w"> </span><span class="p">[</span>&lt;element&gt;<span class="w"> </span>...<span class="p">]</span>)<span class="w"> </span><span class="c"># 在指定位置将元素（一个或多个）插入到列表中</span><span class="w">
+</span><span class="w"></span><span class="c"># 删</span><span class="w">
+</span><span class="w"></span>LIST(POP_BACK<span class="w"> </span>&lt;list&gt;<span class="w"> </span><span class="p">[</span>&lt;out-var&gt;...<span class="p">]</span>)<span class="w"> </span><span class="c"># 将列表中最后元素移除，如果指定了输出变量，则会将最后一个元素移入到该变量，并【将元素从原列表中移除】。如果指定了多个输出变量，则依次将原列的最后一个元素移入到输出变量中，如果输出变量个数大于列表的长度，那么超出部分的输出变量未定义。</span><span class="w">
+</span><span class="w"></span>LIST(POP_FRONT<span class="w"> </span>&lt;list&gt;<span class="w"> </span><span class="p">[</span>&lt;out-var&gt;...<span class="p">]</span>)<span class="w"> </span><span class="c"># 将列表中第一个元素移除，其他与上相同</span><span class="w">
+</span><span class="w"></span>LIST(REMOVE_ITEM<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;value&gt;<span class="w"> </span><span class="p">[</span>&lt;value&gt;<span class="w"> </span>...<span class="p">]</span>)<span class="w"> </span><span class="c"># 将指定的元素从列表中移除</span><span class="w">
+</span><span class="w"></span>LIST(REMOVE_AT<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;index&gt;<span class="w"> </span><span class="p">[</span>&lt;index&gt;<span class="w"> </span>...<span class="p">]</span>)<span class="w"> </span><span class="c"># 将指定索引的元素从列表中移除</span><span class="w">
+</span><span class="w"></span>LIST(REMOVE_DUPLICATES<span class="w"> </span>&lt;list&gt;)<span class="w"> </span><span class="c"># 移除列表中的重复元素</span><span class="w">
+</span><span class="w"></span>LIST(FILTER<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;INCLUDE|EXCLUDE&gt;<span class="w"> </span>REGEX<span class="w"> </span>&lt;regular_expression&gt;)<span class="w"> </span><span class="c"># 根据正则表达式包含或排除列表中的元素，【改变原数组】元素变少</span><span class="w">
+</span><span class="w"></span><span class="c"># 改</span><span class="w">
+</span><span class="w"></span>LIST(TRANSFORM<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;ACTION&gt;<span class="w"> </span><span class="p">[</span>&lt;SELECTOR&gt;<span class="p">]</span><span class="w"> </span><span class="p">[</span>OUTPUT_VARIABLE<span class="w"> </span>&lt;output<span class="w"> </span>variable&gt;<span class="p">]</span>)<span class="w"> </span><span class="c"># 指定的动作运用到所有或者部分指定的元素</span><span class="w">
+</span><span class="w"></span><span class="c"># 查</span><span class="w">
+</span><span class="w"></span>LIST(FIND<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;value&gt;<span class="w"> </span>&lt;output<span class="w"> </span>variable&gt;)<span class="w"> </span><span class="c"># 查找，返回索引</span><span class="w">
+</span><span class="w"></span>LIST(GET<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;element<span class="w"> </span>index&gt;<span class="w"> </span><span class="p">[</span>&lt;element<span class="w"> </span>index&gt;<span class="w"> </span>...<span class="p">]</span><span class="w"> </span>&lt;output<span class="w"> </span>variable&gt;)<span class="w"> </span><span class="c"># 获取元素（如-1，0，1），存储到新创建的变量中</span><span class="w">
+</span><span class="w"></span>LIST(JOIN<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;glue&gt;<span class="w"> </span>&lt;output<span class="w"> </span>variable&gt;)<span class="w"> </span><span class="c"># 将列表中的元素用&lt;glue&gt;链接起来，组成一个字符串后，返回给&lt;output variable&gt;变量</span><span class="w">
+</span><span class="w"></span>LIST(LENGTH<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;output<span class="w"> </span>variable&gt;)<span class="w"> </span><span class="c"># 获取数组的长度，存储到新创建的变量中</span><span class="w">
+</span><span class="w"></span>LIST(SUBLIST<span class="w"> </span>&lt;list&gt;<span class="w"> </span>&lt;begin&gt;<span class="w"> </span>&lt;length&gt;<span class="w"> </span>&lt;output<span class="w"> </span>variable&gt;)<span class="w"> </span><span class="c"># 获取数组的一部分</span><span class="w">
+</span><span class="w"></span><span class="c"># 排序</span><span class="w">
+</span><span class="w"></span>LIST(REVERSE<span class="w"> </span>&lt;list&gt;)<span class="w"> </span><span class="c"># 将整个列表反转</span><span class="w">
+</span><span class="w"></span>LIST(SORT<span class="w"> </span>&lt;list&gt;<span class="w"> </span><span class="p">[</span>COMPARE<span class="w"> </span>&lt;compare&gt;<span class="p">]</span><span class="w"> </span><span class="p">[</span>CASE<span class="w"> </span>&lt;case&gt;<span class="p">]</span><span class="w"> </span><span class="p">[</span>ORDER<span class="w"> </span>&lt;order&gt;<span class="p">]</span>)<span class="w"> </span><span class="c"># 排序</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="2213-cmakeliststxt需要的元素">2.2.1.3. CMakeLists.txt需要的元素</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml">cmake_minimum_required(VERSION<span class="w"> </span><span class="m">3.2</span>)<span class="w">     </span><span class="c">#1. 指定cmake的最低版本，必需</span><span class="w">
+</span><span class="w"></span>PROJECT(test_math<span class="w"> </span>LANGUAGES<span class="w"> </span>C<span class="w"> </span>CXX)<span class="w">      </span><span class="c">#2. 指定工程名，一般和项目的文件夹名称对应，必需，指定语言（可选）</span><span class="w">
+</span><span class="w"></span>message(<span class="s2">&#34;&#34;</span>)<span class="w">                             </span><span class="c">#3. 用来打印信息</span><span class="w">
+</span><span class="w"></span>ADD_DEFINITIONS(<span class="s2">&#34;-Wall -lpthread -g&#34;</span>)<span class="w">   </span><span class="c">#4. 指定编译选项</span><span class="w">
+</span><span class="w"></span>INCLUDE_DIRECTORIES(include)<span class="w">            </span><span class="c">#5. 指定【头文件】搜索目录,可以有多个</span><span class="w">
+</span><span class="w"></span>LINK_DIRECTORIES()<span class="w">                      </span><span class="c">#   指定【库】搜索目录</span><span class="w">
+</span><span class="w"></span>link_libraries()<span class="w">                        </span><span class="c">#   （添加需要链接的库文件路径，注意这里是全路径），该用法【已经被废弃】</span><span class="w">
+</span><span class="w"></span><span class="c">#FIND 系列指令，通过FIND寻找路径并进行添加</span><span class="w">
+</span><span class="w"></span>FIND_PATH(&lt;VAR&gt;<span class="w"> </span>name1<span class="w"> </span>path1<span class="w"> </span>path2<span class="w"> </span>...)<span class="w">  </span><span class="c"># VAR 变量代表包含这个文件的路径</span><span class="w">
+</span><span class="w"></span>FIND_FILE(&lt;VAR&gt;<span class="w"> </span>name1<span class="w"> </span>path1<span class="w"> </span>path2<span class="w"> </span>...)<span class="w">  </span><span class="c"># VAR 变量代表找到的文件全路径，包含文件名</span><span class="w">
+</span><span class="w"></span>FIND_LIBRARY(&lt;VAR&gt;<span class="w"> </span>name1<span class="w"> </span>path1<span class="w"> </span>path2<span class="w"> </span>...)<span class="w"> </span><span class="c">#VAR 变量表示找到的库全路径，包含库文件名</span><span class="w">
+</span><span class="w"></span>FIND_PROGRAM(&lt;VAR&gt;<span class="w"> </span>name1<span class="w"> </span>path1<span class="w"> </span>path2<span class="w"> </span>...)<span class="w"> </span><span class="c">#VAR 变量代表包含这个程序的全路径。</span><span class="w">
+</span><span class="w"></span>FIND_PACKAGE<span class="w">                            </span><span class="c"># 【重点】</span><span class="w">
+</span><span class="w"></span>AUX_SOURCE_DIRECTORY(src<span class="w"> </span>DIR_SRCS)<span class="w">      </span><span class="c">#6. 该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名</span><span class="w">
+</span><span class="w"></span>add_subdirectory(math)<span class="w">                  </span><span class="c">#7. 添加子目录，这个目录里边也有一个CMakeLists.txt</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>SET(TEST_MATH<span class="w">  </span>${DIR_SRCS})<span class="w">             </span><span class="c">#8. 设置环境变量</span><span class="w">
+</span><span class="w"></span>SET(LIBRARIES<span class="w"> </span>libm.so)<span class="w">                  </span><span class="c">#9. 设置外部的依赖库</span><span class="w">
+</span><span class="w"></span>SET(EXECUTABLE_OUTPUT_PATH<span class="w"> </span>${PROJECT_BINARY_DIR}/bin)<span class="w">  </span><span class="c">#10. 设置可执行文件的输出路径</span><span class="w">
+</span><span class="w"></span>SET(FS_BUILD_BINARY_PREFIX<span class="w"> </span><span class="s2">&#34;Yfs&#34;</span>)<span class="w">
+</span><span class="w"></span><span class="c"># 加入一个配置头文件 config.h ，这个文件由 CMake 从 config.h.in 生成，通过这样的机制，将可以通过预定义一些参数和变量来控制代码的生成</span><span class="w">
+</span><span class="w"></span>configure_file<span class="w"> </span>(<span class="w">
+</span><span class="w">  </span><span class="s2">&#34;${PROJECT_SOURCE_DIR}/config.h.in&#34;</span><span class="w">
+</span><span class="w">  </span><span class="s2">&#34;${PROJECT_BINARY_DIR}/config.h&#34;</span><span class="w">
+</span><span class="w"></span>)<span class="w">
+</span><span class="w"></span><span class="c"># 是否使用自己的 MathFunctions 库</span><span class="w">
+</span><span class="w"></span>option<span class="w"> </span>(USE_MYMATH<span class="w">  </span><span class="c">#添加了一个 USE_MYMATH 选项，并且默认值为 ON</span><span class="w">
+</span><span class="w">       </span><span class="s2">&#34;Use provided math implementation&#34;</span><span class="w"> </span>ON)<span class="w">
+</span><span class="w"></span><span class="c"># 是否加入 MathFunctions 库</span><span class="w">
+</span><span class="w"></span>if<span class="w"> </span>(USE_MYMATH)<span class="w"> </span><span class="c">#根据 USE_MYMATH 变量的值来决定是否使用我们自己编写的 MathFunctions 库。</span><span class="w">
+</span><span class="w">  </span>include_directories<span class="w"> </span>(<span class="s2">&#34;${PROJECT_SOURCE_DIR}/math&#34;</span>)<span class="w">
+</span><span class="w">  </span>add_subdirectory<span class="w"> </span>(math)<span class="w">  
+</span><span class="w">  </span>set<span class="w"> </span>(EXTRA_LIBS<span class="w"> </span>${EXTRA_LIBS}<span class="w"> </span>MathFunctions)<span class="w">
+</span><span class="w"></span>endif<span class="w"> </span>(USE_MYMATH)<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 生成可执行文件（2选1）</span><span class="w">
+</span><span class="w"></span><span class="c">#add executable file</span><span class="w">
+</span><span class="w"></span>ADD_EXECUTABLE(${FS_BUILD_BINARY_PREFIX}sqrt<span class="w"> </span>${TEST_MATH})<span class="w">  </span><span class="c">#指定生成目标（运行程序的名称，源文件列表），必需</span><span class="w">
+</span><span class="w"></span><span class="c"># 生成链接库（2选1）</span><span class="w">
+</span><span class="w"></span>add_library<span class="w"> </span>(MathFunctions<span class="w"> </span>STATIC(SHARED)<span class="w"> </span>${DIR_LIB_SRCS})<span class="w">  </span><span class="c">#STATIC和SHARED二选一,注自动在库名前增加`lib`，在库名后增加`.so`</span><span class="w">
+</span><span class="w"></span><span class="c">#add link library</span><span class="w">
+</span><span class="w"></span>TARGET_LINK_LIBRARIES(${FS_BUILD_BINARY_PREFIX}sqrt<span class="w"> </span>${LIBRARIES})<span class="w"> </span><span class="c">#指定需要链接的链接库,【必须】,可以是可执行文件，也可以是库</span><span class="w">
+</span><span class="w"></span><span class="c"># 指定安装路径 make install</span><span class="w">
+</span><span class="w"></span>install<span class="w"> </span>(TARGETS<span class="w"> </span>Demo<span class="w"> </span>DESTINATION<span class="w"> </span>bin)<span class="w">  </span><span class="c"># 目标文件</span><span class="w">
+</span><span class="w"></span>install<span class="w"> </span>(FILES<span class="w"> </span><span class="s2">&#34;${PROJECT_BINARY_DIR}/config.h&#34;</span><span class="w"> </span><span class="c"># 其他文件</span><span class="w">
+</span><span class="w">         </span>DESTINATION<span class="w"> </span>include)<span class="w">
+</span><span class="w"></span><span class="c"># 启用测试 make test</span><span class="w">
+</span><span class="w"></span>enable_testing()<span class="w">
+</span><span class="w"></span><span class="c"># 测试程序是否成功运行</span><span class="w">
+</span><span class="w"></span>add_test<span class="w"> </span>(test_run<span class="w"> </span>Demo<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span>)<span class="w">    </span><span class="c">#第一个测试 test_run 用来测试程序是否成功运行并返回 0 值</span><span class="w">
+</span><span class="w"></span><span class="c"># 测试帮助信息是否可以正常提示</span><span class="w">
+</span><span class="w"></span>add_test<span class="w"> </span>(test_usage<span class="w"> </span>Demo)<span class="w">
+</span><span class="w"></span>set_tests_properties<span class="w"> </span>(test_usage<span class="w">
+</span><span class="w">  </span>PROPERTIES<span class="w"> </span>PASS_REGULAR_EXPRESSION<span class="w"> </span><span class="s2">&#34;Usage: .* base exponent&#34;</span>)<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 测试 5 的平方</span><span class="w">
+</span><span class="w"></span>add_test<span class="w"> </span>(test_5_2<span class="w"> </span>Demo<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span>)<span class="w">
+</span><span class="w">
+</span><span class="w"></span>set_tests_properties<span class="w"> </span>(test_5_2<span class="w">
+</span><span class="w"> </span>PROPERTIES<span class="w"> </span>PASS_REGULAR_EXPRESSION<span class="w"> </span><span class="s2">&#34;is 25&#34;</span>)<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 测试 10 的 5 次方</span><span class="w">
+</span><span class="w"></span>add_test<span class="w"> </span>(test_10_5<span class="w"> </span>Demo<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">5</span>)<span class="w">
+</span><span class="w">
+</span><span class="w"></span>set_tests_properties<span class="w"> </span>(test_10_5<span class="w">
+</span><span class="w"> </span>PROPERTIES<span class="w"> </span>PASS_REGULAR_EXPRESSION<span class="w"> </span><span class="s2">&#34;is 100000&#34;</span>)<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 测试 2 的 10 次方</span><span class="w">
+</span><span class="w"></span>add_test<span class="w"> </span>(test_2_10<span class="w"> </span>Demo<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">10</span>)<span class="w">
+</span><span class="w">
+</span><span class="w"></span>set_tests_properties<span class="w"> </span>(test_2_10<span class="w">
+</span><span class="w"> </span>PROPERTIES<span class="w"> </span>PASS_REGULAR_EXPRESSION<span class="w"> </span><span class="s2">&#34;is 1024&#34;</span>)<span class="w">  </span><span class="c"># PASS_REGULAR_EXPRESSION 用来测试输出是否包含后面跟着的字符串。</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>config.h.in</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c">#cmakedefine USE_MYMATH    #（对应C/C++文件中的宏）include &#34;config.h&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="222-命令行选项">2.2.2. 命令行选项</h4>
+<h5 id="2221-环境变量">2.2.2.1. 环境变量</h5>
+<ol>
+<li><code>CMAKE_INCLUDE_PATH</code> 头文件搜索路径，分号;你不使用 FIND_PATH，CMAKE_INCLUDE_PATH 变量的设置是没有作用的.</li>
+<li><code>CMAKE_LIBRARY_PATH</code> 库文件搜索路径，分号;CMAKE_LIBRARY_PATH 可以用在 FIND_LIBRARY 中。.</li>
+</ol>
+<h5 id="2222-ccmake">2.2.2.2. ccmake</h5>
+<ol>
+<li><code>..</code>可以查看修改预定义的值。</li>
+</ol>
+<h5 id="2223-cmake">2.2.2.3. cmake</h5>
+<ol>
+<li>‵-H.`在当前目录中搜索CMakeLists.txt文件。</li>
+<li><code>-Bbuild</code>在build目录中生成所有的文件，方便删除缓存。</li>
+<li><code>--build .</code>类似于直接执行<code>make</code>命令。</li>
+<li><code>-D</code>定义一个宏。</li>
+</ol>
+<h5 id="2224-使用交叉编译">2.2.2.4. 使用交叉编译</h5>
+<ol>
+<li>
+<p>编写<code>CrossCompile.cmake</code>文件,可供多个程序使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml">set(CMAKE_SYSTEM_NAME<span class="w"> </span>Linux)<span class="w">                                </span><span class="c"># 必须</span><span class="w">
+</span><span class="w"></span>set(TOOLCHAIN_PATH<span class="w"> </span>/OPT/gcc-arm-linux-gnueabi)<span class="w">
+</span><span class="w"></span>set(CMAKE_C_COMPILER<span class="w"> </span>${tools}/bin/arm-linux-gnueabi-gcc)<span class="w">    </span><span class="c"># 交叉编译工具</span><span class="w">
+</span><span class="w"></span>set(CMAKE_CXX_COMPILER<span class="w"> </span>${tools}/bin/arm-linux-gnueabi-g++)<span class="w">  </span><span class="c"># 交叉编译工具</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># where is the target environment </span><span class="w">
+</span><span class="w"></span>SET(CMAKE_FIND_ROOT_PATH<span class="w">  </span>/opt/arm/ppc_74xx<span class="w"> </span>/home/rickk/arm_inst)<span class="w">  </span><span class="c"># 指定目标环境，一系列的路径</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># search for programs in the build host directories (not necessary)</span><span class="w">
+</span><span class="w"></span>SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM<span class="w"> </span>NEVER)<span class="w">
+</span><span class="w"></span><span class="c"># for libraries and headers in the target directories</span><span class="w">
+</span><span class="w"></span>SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY<span class="w"> </span>ONLY)<span class="w">  </span><span class="c">#只会</span><span class="w">
+</span><span class="w"></span>SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE<span class="w"> </span>ONLY)<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># configure Boost and Qt</span><span class="w">
+</span><span class="w"></span>SET(QT_QMAKE_EXECUTABLE<span class="w"> </span>/opt/qt-embedded/qmake)<span class="w">
+</span><span class="w"></span>SET(BOOST_ROOT<span class="w"> </span>/opt/boost_arm)<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>上述命令必须写入脚本中，使用 -DCMAKE_TOOLCHAIN_FILE=xxx.cmake 的方式使用。不能直接写入 CMakeLists.txt 或使用 include(xx.cmake)。</p>
+</li>
+</ol>
+<h2 id="3-示例">3. 示例</h2>
+<h3 id="31-neutreec_cpp_project_frameworkhttpsgithubcomneutreec_cpp_project_frameworkblobmasterreadme_zhmd">3.1. <a href="https://github.com/Neutree/c_cpp_project_framework/blob/master/README_ZH.md" target="_blank" rel="noopener noreffer">Neutree/c_cpp_project_framework</a></h3>
+<ol>
+<li>一个足够简单易用并且可配置的用于构建<code>C/C++</code>的模板工程;</li>
+<li>使用<code>CMake</code>构建，并且支持带GUI配置界面的<code>Kconfig</code>.</li>
+</ol>
+<h3 id="32-kracejiccleancppprojecthttpsgithub1scomkracejiccleancppproject">3.2. <a href="https://github1s.com/kracejic/cleanCppProject" target="_blank" rel="noopener noreffer">kracejic/cleanCppProject</a></h3>
+<ol>
+<li>Features: Modern CMake, CPack, Doxygen, PlantUML, Catch Unit testing, static analysis.</li>
+</ol>
+<h2 id="4-总结适合自己的构建系统">4. 总结（适合自己的构建系统）</h2>
+<h3 id="41-目录结构">4.1. 目录结构</h3>
+<ol>
+<li>
+<p>参考ESP32的目录组织。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">CMakeLists.txt
+Kconfig
+- components/ <span class="c1">#组件(一般每个组件编译为一个静态库)</span>
+    - component1/ 
+        - CMakeLists.txt
+        - Kconfig
+        - src/
+            - src1.c
+        - inc/
+    - component2/ 
+        - CMakeLists.txt
+        - Kconfig
+        - src/
+            - src1.c
+        - inc/ 
+            - component2.h
+main    <span class="c1">#生成可执行文件的主要代码</span>
+    - CMakeLists.txt    <span class="c1"># 组件规则</span>
+    - src
+    - inc
+build   <span class="c1">#生成结果目录</span>
+cmake/  <span class="c1">#自己写的cmake模块</span>
+tools/  <span class="c1">#其他工具，比如读取kconfig的配置</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>欢迎使用<a href="https://gitee.com/heartblood/c-c-project-template" target="_blank" rel="noopener noreffer">模板</a></p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/plat/">PLAT</a>
+                </span><span><a href="/tags/%E7%BC%96%E8%AF%91/">编译</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>更新于 2021-04-02</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/post/program-markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="prev" rel="prev" title="MarkDown基本语法"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a>
+            <a href="/post/plat-qt-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A6%82%E8%A7%88/" class="next" rel="next" title="QT安装配置及概览">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
+</div><div id="comments" class="single-card"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.0"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/">子兰</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment-alt fa-fw"></i>
+            </a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.0/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.5/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.1-beta.0/dist/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.3.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Style-sen/hugoblogtalks"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"HM4MCKQ8J3","algoliaIndex":"blog_hugo","algoliaSearchKey":"745772944fb8af8e9fedec85d62d1a07","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script src="/js/themes.min.js"></script></body>
+</html>
